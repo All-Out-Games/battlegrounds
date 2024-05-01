@@ -1,0 +1,15 @@
+C:\AllOut\fight-club\build\Assembly.deps.json
+C:\AllOut\fight-club\build\Assembly.dll
+C:\AllOut\fight-club\build\Assembly.pdb
+C:\AllOut\fight-club\build\CoreAssembly.dll
+C:\AllOut\fight-club\build\CoreAssembly.pdb
+C:\AllOut\fight-club\obj\Debug\net7.0\Assembly.csproj.AssemblyReference.cache
+C:\AllOut\fight-club\obj\Debug\net7.0\Assembly.GeneratedMSBuildEditorConfig.editorconfig
+C:\AllOut\fight-club\obj\Debug\net7.0\Assembly.AssemblyInfoInputs.cache
+C:\AllOut\fight-club\obj\Debug\net7.0\Assembly.AssemblyInfo.cs
+C:\AllOut\fight-club\obj\Debug\net7.0\Assembly.csproj.CoreCompileInputs.cache
+C:\AllOut\fight-club\obj\Debug\net7.0\Assembly.csproj.Up2Date
+C:\AllOut\fight-club\obj\Debug\net7.0\Assembly.dll
+C:\AllOut\fight-club\obj\Debug\net7.0\refint\Assembly.dll
+C:\AllOut\fight-club\obj\Debug\net7.0\Assembly.pdb
+C:\AllOut\fight-club\obj\Debug\net7.0\ref\Assembly.dll
