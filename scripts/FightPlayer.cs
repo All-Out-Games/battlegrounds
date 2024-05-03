@@ -7,8 +7,8 @@ public partial class FightPlayer : Player
 {
     #region Attributes
 
-    private SyncVar<int> TotalEliminations = new();
-    private SyncVar<int> TotalDamageDealt = new();
+    protected SyncVar<int> TotalEliminations = new();
+    protected SyncVar<int> TotalDamageDealt = new();
     
     private int currentHealth = 100;
     [Serialized] public int MaxHealth = 100;
@@ -24,30 +24,43 @@ public partial class FightPlayer : Player
         }
     }
 
-    private FightPlayerEffectManager _effectManager;
+    protected FightPlayerEffectManager _effectManager;
+    protected FightPlayerUI _playerUI;
+    protected Polygon_Collider _collider;
 
     #endregion
 
     public override void Awake()
     {
-        _effectManager = Entity.AddComponent<FightPlayerEffectManager>();
-        _effectManager.AssignPlayer(this);
+        _effectManager = AddFightPlayerComponent<FightPlayerEffectManager>();
+        _playerUI = AddFightPlayerComponent<FightPlayerUI>();
         base.Awake();
     }
 
     public override void Start()
     {
-        base.Start();
+        _collider = Entity.GetComponent<Polygon_Collider>();
+        if (_collider == null)
+        {
+            Log.Error("Collider not found");
+        }
     }
 
     public override void Update()
     {
-        base.Update();
+        BumpDecay();
     }
 
     public override void LateUpdate()
     {
         base.LateUpdate();
+    }
+
+    public T AddFightPlayerComponent<T>() where T : FightPlayerComponent
+    {
+        T fpc = Entity.AddComponent<T>();
+        fpc.AssignPlayer(this);
+        return fpc;
     }
 
     #region Health, Damage, Respawn
@@ -91,6 +104,7 @@ public partial class FightPlayer : Player
 
     #region Movement
 
+    // Basic Movement Speed Modifier (related to buff)
     private List<float> _speedMultipliers = new List<float>();
     private float GetTotalVelocityMultiplier()
     {
@@ -111,10 +125,34 @@ public partial class FightPlayer : Player
     }
     public override Vector2 CalculatePlayerVelocity(Vector2 currentVelocity, Vector2 input, float deltaTime)
     {
+        if (CurrentHealth <= 0) {
+            return Vector2.Zero;
+        }
+        
         var velocity = DefaultPlayerVelocityCalculation(currentVelocity, input, deltaTime, GetTotalVelocityMultiplier());
         return velocity;
     }
 
+    // Bump
+    public Vector2 Bump = Vector2.Zero;
+
+    /// <summary>
+    /// Called each frame to decay bump
+    /// </summary>
+    protected void BumpDecay()
+    {
+        Bump = Vector2.Lerp(Bump, Vector2.Zero, Time.DeltaTime * 2.0f);
+    }
+
+    public void AddBump(Vector2 add, bool reset)
+    {
+        Bump += add;
+
+        if (reset) {
+            this.Entity.GetComponent<Rigidbody>().Velocity *= 0.001f;
+        }
+    }
+    
     #endregion
 
     #region EffectManager
@@ -122,6 +160,20 @@ public partial class FightPlayer : Player
     public FightPlayerEffectManager GetEffectMgr()
     {
         return _effectManager;
+    }
+
+    #endregion
+
+    #region Collision
+
+    public void AddPlayerCollisionFunction(Action<Entity> collisionFunc)
+    {
+        _collider.OnCollisionEnter += collisionFunc;
+    }
+
+    public void RemovePlayerCollisionFunction(Action<Entity> collisionFunc)
+    {
+        _collider.OnCollisionEnter -= collisionFunc;
     }
 
     #endregion

@@ -9,9 +9,10 @@ public class AbilityConfig : System<AbilityConfig>
 
     public struct RollOutConfig
     {
-        public float Duration = 10;
-        public float ContactDamage = 5;
+        public float Duration = 10f;
+        public float ContactDamage = 5f;
         public float SpeedBuffMultiplier = 1.5f;
+        public float BumpStrength = 10f;
 
         public RollOutConfig()
         {

@@ -16,7 +16,6 @@ public class EffectRollOut : AEffect
     /// Call this function before adding the created Effect instance to the player!
     /// </summary>
     /// <param name="cfg"></param>
-    /// <param name="player"></param>
     public void AssignConfig(AbilityConfig.RollOutConfig cfg)
     {
         _config = cfg;
@@ -26,15 +25,29 @@ public class EffectRollOut : AEffect
     {
         _player = (FightPlayer)Player;
         _player.AddSpeedModifier(_config.SpeedBuffMultiplier);
+        _player.AddPlayerCollisionFunction(OnRolloutCollision);
         
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         _player.RemoveSpeedModifier(_config.SpeedBuffMultiplier);
+        _player.RemovePlayerCollisionFunction(OnRolloutCollision);
     }
+    
+    
 
     public override bool IsActiveEffect { get; }
     public override bool BlockAbilityActivation { get; }
     public override bool IsValidTarget { get; }
+
+    protected void OnRolloutCollision(Entity other)
+    {
+        FightPlayer otherPlayer = other.GetComponent<FightPlayer>();
+        if (otherPlayer != null)
+        {
+            Vector2 bumpDir = other.Position - Entity.Position;
+            otherPlayer.AddBump(bumpDir * _config.BumpStrength, false);
+        }
+    }
 }
