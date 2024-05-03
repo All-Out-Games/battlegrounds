@@ -7,6 +7,7 @@ public class DummySystem : System<DummySystem> {
         Log.Info("Registering player events");
         Player.OnPlayerJoin += OnPlayerJoin;
         Player.OnPlayerLeave += OnPlayerLeave;
+        Log.Info($"Current Directory: {System.IO.Directory.GetCurrentDirectory()}");
     }
 
     public override void Update() 
@@ -23,6 +24,7 @@ public class DummySystem : System<DummySystem> {
     {
         Log.Info("Player joined!");
         Save.SetInt(player, "test", Save.GetInt(player, "test", 0) + 1);
+        
     }
 
     public void OnPlayerLeave(Player player)

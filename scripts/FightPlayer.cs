@@ -1,5 +1,8 @@
 using AO;
 
+/// <summary>
+/// Model class of the player. Stores data and handle actions using RPC
+/// </summary>
 public partial class FightPlayer : Player
 {
     #region Attributes
@@ -8,6 +11,7 @@ public partial class FightPlayer : Player
     private SyncVar<int> TotalDamageDealt = new();
     
     private int currentHealth = 100;
+    [Serialized] public int MaxHealth = 100;
     public int CurrentHealth 
     { 
         get { return currentHealth; } 
@@ -81,6 +85,32 @@ public partial class FightPlayer : Player
 
     #endregion
 
-    
+    #region Movement
+
+    private List<float> _speedMultipliers = new List<float>();
+    private float GetTotalVelocityMultiplier()
+    {
+        return _speedMultipliers.Count > 0 ? _speedMultipliers.Aggregate((x, y) =>  x*y ) : 1.0f;
+    }
+
+    public void AddSpeedModifier(float md)
+    {
+        _speedMultipliers.Add(md);
+    }
+
+    public void RemoveSpeedModifier(float md)
+    {
+        if (!_speedMultipliers.Remove(md))
+        {
+            Log.Error($"FightPlayer: The Modifier {md} is not found!");
+        }
+    }
+    public override Vector2 CalculatePlayerVelocity(Vector2 currentVelocity, Vector2 input, float deltaTime)
+    {
+        var velocity = DefaultPlayerVelocityCalculation(currentVelocity, input, deltaTime, GetTotalVelocityMultiplier());
+        return velocity;
+    }
+
+    #endregion
     
 }
