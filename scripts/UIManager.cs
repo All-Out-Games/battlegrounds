@@ -16,12 +16,17 @@ public class UIManager : System<UIManager>
     private float _popupRemainingTime;
 
     private FontAsset _defaultFont;
+    private UI.ButtonSettings _defaultButtonSettings;
+    private UI.TextSettings _defaultTextSettings;
     
     public override void Awake()
     {
         PopupEvent = SetPopup;
         UpdateUIEvent = UpdateUI;
         _defaultFont = Assets.GetAsset<FontAsset>("$AO/fonts/Barlow-SemiBold.ttf");
+        _defaultButtonSettings = new UI.ButtonSettings()
+            { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") };
+        _defaultTextSettings = new UI.TextSettings() { Font = _defaultFont, Size = 24, Color = Vector4.LightBlue };
     }
     
     public override void Start()
@@ -87,42 +92,43 @@ public class UIManager : System<UIManager>
             }
         }
         
-        /*// Draw the score
+        // Draw the score
         {
-            var topBarRect = UI.ScreenRect.CutTop(0.05f);
-            var currencyRect = topBarRect.CutLeft(0.088f).Offset(0.215f, -0.007f);
+            var topBarRect = UI.ScreenRect.CutTop(80f);
+            var currencyRect = topBarRect.CutLeft(225f).Offset(550f, -10f);
             UI.Image(currencyRect, Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png"), Vector4.White);
-            UI.Text(currencyRect, $"Score: {_scoreTxt}", new UI.TextSettings() {Size = 40, Color = Vector4.LightGreen, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
+            UI.Text(currencyRect, $"Score: {_scoreTxt}", new UI.TextSettings() {Font = _defaultFont,Size = 40, Color = Vector4.LightGreen, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
             // Draw resources
-            var resourceRect = topBarRect.CutLeft(0.088f).Offset(0.215f, -0.007f);
+            var resourceRect = topBarRect.CutLeft(225f).Offset(550f, -10f);
             UI.Image(resourceRect, Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png"), Vector4.White);
-            UI.Text(resourceRect, $"Material: {_resourceTxt}", new UI.TextSettings() {Size = 40, Color = Vector4.Green, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
+            UI.Text(resourceRect, $"Material: {_resourceTxt}", new UI.TextSettings() {Font = _defaultFont, Size = 40, Color = Vector4.Green, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
             // Draw money
-            var moneyRect = topBarRect.CutLeft(0.088f).Offset(0.215f, -0.007f);
+            var moneyRect = topBarRect.CutLeft(225f).Offset(550f, -10f);
             UI.Image(moneyRect, Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png"), Vector4.White);
-            UI.Text(moneyRect, $"Money: {_moneyTxt}", new UI.TextSettings() { Size = 40, Color = Vector4.LightGreen, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
-        }*/
+            UI.Text(moneyRect, $"Money: {_moneyTxt}", new UI.TextSettings() { Font = _defaultFont, Size = 40, Color = Vector4.LightGreen, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
+        }
 
 
         // Draw the side buttons
         {
-            //Log.Error("???");
 
             var sideBarRect = UI.ScreenRect.LeftCenterRect().Grow(110, 100, 110, 0).Offset(5, 0);
 
             var buttonRect = sideBarRect.CutTop(100);
-            if (UI.Button(buttonRect, $"+Atk: {_atkTxt}", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, new UI.TextSettings() { Size = 24, Color = Vector4.LightBlue }).clicked)
+            if (UI.Button(buttonRect, $"Add Rollout", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
+                    _defaultTextSettings).clicked)
             {
                 var player = (FightPlayer)Network.LocalPlayer;
-                Log.Info("I'm upgrading a stat!");
-                // player.CallServer_UpgradeAtk();
+                Log.Debug("Rollin' Out!");
+                player.GetEffectMgr().CallServer_CastRollOut(1);
             }
 
             // Spacing
             sideBarRect.CutTop(10);
 
             var buttonRect2 = sideBarRect.CutTop(100);
-            if (UI.Button(buttonRect2, $"+Mtp: {_multiplierTxt}", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, new UI.TextSettings() {Size = 24, Color = Vector4.LightBlue }).clicked)
+            if (UI.Button(buttonRect2, $"+Mtp: {_multiplierTxt}", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
+                    _defaultTextSettings).clicked)
             {
                 var player = (FightPlayer)Network.LocalPlayer;
                 Log.Info("I'm upgrading another stat!");

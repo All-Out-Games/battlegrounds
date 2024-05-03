@@ -6,19 +6,9 @@ using TinyJson;
 /// This component is attached to the player and:
 /// When requested to handle a effect, fetch player data here and add effect
 /// </summary>
-public partial class FightPlayerEffectManager : Component
+public partial class FightPlayerEffectManager : FightPlayerComponent
 {
-    private FightPlayer _player;
     
-    public override void Awake()
-    {
-        _player = Entity.GetComponent<FightPlayer>();
-    }
-
-    public override void Start()
-    {
-
-    } 
 
     public bool AddEffect<T>(Player caster, float? duration = null, Action<T> preInit = null) where T : AEffect
     {
@@ -33,13 +23,38 @@ public partial class FightPlayerEffectManager : Component
 
     #region Ef: RollOut
 
+    [ServerRpc]
+    public void CastRollOut(int level)
+    {
+        if (Network.IsServer)
+        {
+            //EffectRollOut _rollOut = new EffectRollOut();
+            //_rollOut.AssignConfig(cfg);
+            AbilityConfig.RollOutConfig cfg = AbilityConfig.GetPlayerRollOutConfig(level);
+
+            Action<EffectRollOut> initRollOutWithConfig = (rollOut) =>
+            {
+                rollOut.AssignConfig(cfg);
+            };
+            
+            AddEffect<EffectRollOut>(_player, cfg.Duration, initRollOutWithConfig);
+            CallClient_ActivateRollOut(cfg);
+        }
+    }
+    
     [ClientRpc]
     public void ActivateRollOut(AbilityConfig.RollOutConfig cfg)
     {
-        EffectRollOut newRollout = new EffectRollOut();
-        newRollout.AssignConfig(cfg, _player);
-        AddEffect<EffectRollOut>(_player, cfg.Duration, null);
+        // Note: RPC cannot pass class references. 
+        // Use player.Entity.NetworkId if we need to pass the caster through server.
+        // then Entity.FindByNetworkId() in client.
+        Action<EffectRollOut> initRollOutWithConfig = (rollOut) =>
+        {
+            rollOut.AssignConfig(cfg);
+        };
+        AddEffect<EffectRollOut>(_player, cfg.Duration, initRollOutWithConfig);
     }
+    
 
     #endregion
 }

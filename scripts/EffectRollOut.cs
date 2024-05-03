@@ -17,14 +17,14 @@ public class EffectRollOut : AEffect
     /// </summary>
     /// <param name="cfg"></param>
     /// <param name="player"></param>
-    public void AssignConfig(AbilityConfig.RollOutConfig cfg, FightPlayer player)
+    public void AssignConfig(AbilityConfig.RollOutConfig cfg)
     {
-        _player = player;
         _config = cfg;
     }
     
     public override void OnEffectStart()
     {
+        _player = (FightPlayer)Player;
         _player.AddSpeedModifier(_config.SpeedBuffMultiplier);
         
     }

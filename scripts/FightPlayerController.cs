@@ -3,17 +3,7 @@
 /// <summary>
 /// Controller of the arena player
 /// </summary>
-public class FightPlayerController : Component
+public class FightPlayerController : FightPlayerComponent
 {
-    private FightPlayer _player;
-    
-    public override void Awake()
-    {
-        _player = Entity.GetComponent<FightPlayer>();
-    }
 
-    public override void Start()
-    {
-
-    }
 }

@@ -18,9 +18,12 @@ public class AbilityConfig : System<AbilityConfig>
         }
     }
 
-    public RollOutConfig GetPlayerRollOutConfig(int level)
+    public static RollOutConfig GetPlayerRollOutConfig(int level)
     {
         RollOutConfig cfg = new RollOutConfig();
+        
+        // Modify the config on the server side in this function based on parameters
+        
         return cfg;
     }
     

@@ -24,10 +24,14 @@ public partial class FightPlayer : Player
         }
     }
 
+    private FightPlayerEffectManager _effectManager;
+
     #endregion
 
     public override void Awake()
     {
+        _effectManager = Entity.AddComponent<FightPlayerEffectManager>();
+        _effectManager.AssignPlayer(this);
         base.Awake();
     }
 
@@ -109,6 +113,15 @@ public partial class FightPlayer : Player
     {
         var velocity = DefaultPlayerVelocityCalculation(currentVelocity, input, deltaTime, GetTotalVelocityMultiplier());
         return velocity;
+    }
+
+    #endregion
+
+    #region EffectManager
+
+    public FightPlayerEffectManager GetEffectMgr()
+    {
+        return _effectManager;
     }
 
     #endregion
