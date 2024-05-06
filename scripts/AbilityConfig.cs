@@ -9,10 +9,14 @@ public class AbilityConfig : System<AbilityConfig>
 
     public struct RollOutConfig
     {
+        public static int BumpDmgBase = 9;
+        public static int BumpDmgGrowth = 3;
+        
         public float Duration = 10f;
-        public float ContactDamage = 5f;
+        public int ContactDamage = 5;
         public float SpeedBuffMultiplier = 1.5f;
-        public float BumpStrength = 10f;
+        public float BumpStrength = 114f;
+        
 
         public RollOutConfig()
         {
@@ -24,7 +28,8 @@ public class AbilityConfig : System<AbilityConfig>
         RollOutConfig cfg = new RollOutConfig();
         
         // Modify the config on the server side in this function based on parameters
-        
+        cfg.ContactDamage = RollOutConfig.BumpDmgBase + level * RollOutConfig.BumpDmgGrowth * level;
+
         return cfg;
     }
     

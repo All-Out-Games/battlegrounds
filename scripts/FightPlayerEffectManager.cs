@@ -28,16 +28,9 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     {
         if (Network.IsServer)
         {
-            //EffectRollOut _rollOut = new EffectRollOut();
-            //_rollOut.AssignConfig(cfg);
             AbilityConfig.RollOutConfig cfg = AbilityConfig.GetPlayerRollOutConfig(level);
 
-            Action<EffectRollOut> initRollOutWithConfig = (rollOut) =>
-            {
-                rollOut.AssignConfig(cfg);
-            };
-            
-            AddEffect<EffectRollOut>(_player, cfg.Duration, initRollOutWithConfig);
+            //AddEffect<EffectRollOut>(_player, cfg.Duration, initRollOutWithConfig);
             CallClient_ActivateRollOut(cfg);
         }
     }
@@ -55,6 +48,37 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
         AddEffect<EffectRollOut>(_player, cfg.Duration, initRollOutWithConfig);
     }
     
+    #endregion
+
+    #region Ef: No Movement
+
+    [ServerRpc]
+    public void CastNoMovement(ulong casterId, float duration)
+    {
+        if (Network.IsServer)
+        {
+            CallClient_ActivateNoMovement(casterId, duration);
+        }
+    }
+    
+    [ClientRpc]
+    public void ActivateNoMovement(ulong casterId, float duration)
+    {
+        // Note: RPC cannot pass class references. 
+        // Use player.Entity.NetworkId if we need to pass the caster through server.
+        // then Entity.FindByNetworkId() in client.
+        FightPlayer caster;
+        var casterEntity = Entity.FindByNetworkId(casterId);
+        if (casterEntity != null)
+        {
+            caster = casterEntity.GetComponent<FightPlayer>();
+        }
+        else
+        {
+            caster = null;
+        }
+        AddEffect<EffectNoMovement>(caster, duration);
+    }
 
     #endregion
 }

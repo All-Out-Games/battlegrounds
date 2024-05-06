@@ -127,12 +127,13 @@ public class UIManager : System<UIManager>
             sideBarRect.CutTop(10);
 
             var buttonRect2 = sideBarRect.CutTop(100);
-            if (UI.Button(buttonRect2, $"+Mtp: {_multiplierTxt}", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
+            if (UI.Button(buttonRect2, $"Add BUMP", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
                     _defaultTextSettings).clicked)
             {
                 var player = (FightPlayer)Network.LocalPlayer;
-                Log.Info("I'm upgrading another stat!");
-                // player.CallServer_UpgradeMtp();
+                Log.Info("Adding A bump!");
+                player.AddBump(new Vector2(20, 0), false);  // Add 
+                TestServerRPC.CallServer_AddBumpToNetworkID(player.Entity.NetworkId, new Vector2(120, 0));
             }
             
         }

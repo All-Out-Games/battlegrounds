@@ -9,7 +9,7 @@ public partial class FightPlayer : Player
 
     protected SyncVar<int> TotalEliminations = new();
     protected SyncVar<int> TotalDamageDealt = new();
-    
+
     private int currentHealth = 100;
     [Serialized] public int MaxHealth = 100;
     public int CurrentHealth 
@@ -24,26 +24,28 @@ public partial class FightPlayer : Player
         }
     }
 
-    protected FightPlayerEffectManager _effectManager;
-    protected FightPlayerUI _playerUI;
-    protected Polygon_Collider _collider;
+    protected FightPlayerEffectManager EffectManager;
+    protected FightPlayerUI PlayerUi;
+    protected Polygon_Collider Collider;
+    public Entity CollisionEntity;
 
     #endregion
 
     public override void Awake()
     {
-        _effectManager = AddFightPlayerComponent<FightPlayerEffectManager>();
-        _playerUI = AddFightPlayerComponent<FightPlayerUI>();
+        EffectManager = AddFightPlayerComponent<FightPlayerEffectManager>();
+        PlayerUi = AddFightPlayerComponent<FightPlayerUI>();
         base.Awake();
     }
 
     public override void Start()
     {
-        _collider = Entity.GetComponent<Polygon_Collider>();
-        if (_collider == null)
-        {
-            Log.Error("Collider not found");
-        }
+        var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
+        CollisionEntity = collisionPrefab.Instantiate();
+        CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;
+        CollisionEntity.LocalScale = new Vector2(0.22f, 0.22f);
+        CollisionEntity.SetParent(Entity, false);
+        Collider = CollisionEntity.GetComponent<Polygon_Collider>();
     }
 
     public override void Update()
@@ -130,6 +132,7 @@ public partial class FightPlayer : Player
         }
         
         var velocity = DefaultPlayerVelocityCalculation(currentVelocity, input, deltaTime, GetTotalVelocityMultiplier());
+        velocity += Bump * deltaTime;
         return velocity;
     }
 
@@ -143,14 +146,31 @@ public partial class FightPlayer : Player
     {
         Bump = Vector2.Lerp(Bump, Vector2.Zero, Time.DeltaTime * 2.0f);
     }
-
+    
+    [ClientRpc]
     public void AddBump(Vector2 add, bool reset)
     {
-        Bump += add;
+        Bump = add; // Changed from accumulation to directly set
 
         if (reset) {
             this.Entity.GetComponent<Rigidbody>().Velocity *= 0.001f;
         }
+    }
+    
+    public void AddBumpFrom(FightPlayer player, Vector2 add, bool reset)
+    {
+        if (!reset)
+        {
+            Log.Info("Adding Movement Limitations");
+            EffectManager.CastNoMovement(player.Entity.NetworkId, 0.75f);
+        }
+
+        if (Network.IsServer)
+        {
+            CallClient_AddBump(add,reset);
+            AddBump(add, reset);
+        }
+        
     }
     
     #endregion
@@ -159,7 +179,7 @@ public partial class FightPlayer : Player
 
     public FightPlayerEffectManager GetEffectMgr()
     {
-        return _effectManager;
+        return EffectManager;
     }
 
     #endregion
@@ -168,12 +188,12 @@ public partial class FightPlayer : Player
 
     public void AddPlayerCollisionFunction(Action<Entity> collisionFunc)
     {
-        _collider.OnCollisionEnter += collisionFunc;
+        Collider.OnCollisionEnter += collisionFunc;
     }
 
     public void RemovePlayerCollisionFunction(Action<Entity> collisionFunc)
     {
-        _collider.OnCollisionEnter -= collisionFunc;
+        Collider.OnCollisionEnter -= collisionFunc;
     }
 
     #endregion
