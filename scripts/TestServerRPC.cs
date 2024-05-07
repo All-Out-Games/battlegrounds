@@ -12,4 +12,10 @@ public partial class TestServerRPC
         FightPlayer targetPly = Entity.FindByNetworkId(netID).GetComponent<FightPlayer>();
         targetPly.AddBumpFrom(targetPly, add, false);
     }
+
+    [ClientRpc]
+    public static void LogSomethingOnClient(string msg)
+    {
+        Log.Info($"From Server: {msg}");
+    }
 }

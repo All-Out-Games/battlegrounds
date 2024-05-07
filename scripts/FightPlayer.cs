@@ -43,7 +43,7 @@ public partial class FightPlayer : Player
         var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
         CollisionEntity = collisionPrefab.Instantiate();
         CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;
-        CollisionEntity.LocalScale = new Vector2(0.22f, 0.22f);
+        CollisionEntity.LocalScale = new Vector2(1.5f, 1.5f);
         CollisionEntity.SetParent(Entity, false);
         Collider = CollisionEntity.GetComponent<Polygon_Collider>();
     }

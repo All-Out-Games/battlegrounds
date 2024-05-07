@@ -15,7 +15,7 @@ public class AbilityConfig : System<AbilityConfig>
         public float Duration = 10f;
         public int ContactDamage = 5;
         public float SpeedBuffMultiplier = 1.5f;
-        public float BumpStrength = 114f;
+        public float BumpStrength = 35f;
         
 
         public RollOutConfig()

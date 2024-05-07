@@ -44,10 +44,17 @@ public class EffectRollOut : AEffect
     protected void OnRolloutCollision(Entity other)
     {
         FightPlayer otherPlayer = other.GetComponent<FightPlayer>();
-        if (otherPlayer != null && Network.IsServer)
+        if (otherPlayer != null)
         {
             Vector2 bumpDir = other.Position - Entity.Position;
-            otherPlayer.CallClient_AddBump(bumpDir * _config.BumpStrength, false);
+            var add = bumpDir * _config.BumpStrength;
+            if (Network.IsServer)
+            {
+                otherPlayer.CallClient_AddBump(add, false);
+                otherPlayer.AddBump(add, false);
+                otherPlayer.TakeDamage(3);
+            }
+
         }
     }
 }
