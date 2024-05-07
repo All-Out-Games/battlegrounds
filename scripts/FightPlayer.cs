@@ -26,11 +26,19 @@ public partial class FightPlayer : Player
 
     protected FightPlayerEffectManager EffectManager;
     protected FightPlayerUI PlayerUi;
-    protected Circle_Collider Collider;
+    
+    protected Circle_Collider Collider; // MAIN Collider used for bumping / damage
+    protected Box_Collider PunchCollider;
+    
     public Entity CollisionEntity;
 
     #endregion
 
+    #region EventFunctions
+
+    
+
+    
     public override void Awake()
     {
         EffectManager = AddFightPlayerComponent<FightPlayerEffectManager>();
@@ -46,6 +54,17 @@ public partial class FightPlayer : Player
         CollisionEntity.LocalScale = new Vector2(1.01f, 1.01f);
         CollisionEntity.SetParent(Entity, false);
         Collider = CollisionEntity.GetComponent<Circle_Collider>();
+
+        var punchColliderEntity = Entity.TryGetChildByName_Internal(CollisionEntity.Id, "PunchCollider"); // TODO: No public API yet for get child by name
+        if (punchColliderEntity != null)
+        {
+            Log.Debug("Found Punch Collider!");
+            PunchCollider = punchColliderEntity.GetComponent<Box_Collider>();
+        }
+        else
+        {
+            Log.Error("Shin: Punch Collider Not FOUND");
+        }
     }
 
     public override void Update()
@@ -57,6 +76,8 @@ public partial class FightPlayer : Player
     {
         base.LateUpdate();
     }
+    
+    #endregion
 
     public T AddFightPlayerComponent<T>() where T : FightPlayerComponent
     {
@@ -93,7 +114,7 @@ public partial class FightPlayer : Player
     {
         CurrentHealth = health;
 
-        SpineAnimator.SpineInstance.StateMachine.SetTrigger("flinch");
+        SetAnimTrigger("flinch");
 
         if (CurrentHealth <= 0)
         {
@@ -193,6 +214,25 @@ public partial class FightPlayer : Player
     public void RemovePlayerCollisionFunction(Action<Entity> collisionFunc)
     {
         Collider.OnCollisionEnter -= collisionFunc;
+    }
+
+    public void AddPlayerPunchCollisionFunction()
+    {
+        //TODO
+    }
+
+    public void RemovePlayerPunchCollisionFunction()
+    {
+        
+    }
+
+    #endregion
+
+    #region Actions
+
+    public void SetAnimTrigger(string variableName)
+    {
+        SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
     }
 
     #endregion

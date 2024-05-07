@@ -1,11 +1,13 @@
 ﻿using AO;
 
-public class EffectNoMovement : AEffect
+
+/// <summary>
+/// Blocks movement input (by setting a speed modifier)
+/// Very useful for multiple occasions.
+/// </summary>
+public class EffectNoMovement : FightEffect
 {
     
-    private FightPlayer _player;
-
-
     public EffectNoMovement()
     {
         IsActiveEffect = false;
@@ -13,18 +15,18 @@ public class EffectNoMovement : AEffect
         BlockAbilityActivation = false;
         FreezePlayer = false; // Note: This effect WILL NOT freeze the player,
                               // it's just adding a 0 modifier to the player to prevent them from move from input
-                              // Used in bump effects
+                              // Useful for when you want to block active movement but not passive ones (e.g. bumping)
     }
     
     public override void OnEffectStart()
     {
-        _player = (FightPlayer)Player;
-        _player.AddSpeedModifier(0);
+        FightPlayer = (FightPlayer)Player;
+        FightPlayer.AddSpeedModifier(0);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
-        _player.RemoveSpeedModifier(0);
+        FightPlayer.RemoveSpeedModifier(0);
     }
     
     public override bool IsActiveEffect { get; }

@@ -25,14 +25,42 @@ public class AbilityConfig : System<AbilityConfig>
 
     public static RollOutConfig GetPlayerRollOutConfig(int level)
     {
-        RollOutConfig cfg = new RollOutConfig();
-        
-        // Modify the config on the server side in this function based on parameters
-        cfg.ContactDamage = RollOutConfig.BumpDmgBase + level * RollOutConfig.BumpDmgGrowth * level;
+        RollOutConfig cfg = new RollOutConfig
+        {
+            // Modify the config on the server side in this function based on parameters
+            ContactDamage = RollOutConfig.BumpDmgBase + level * RollOutConfig.BumpDmgGrowth
+        };
 
         return cfg;
     }
     
+
+    #endregion
+
+    #region Punch
+
+    public struct PunchConfig
+    {
+        public static int PunchDmgBase = 5;
+        public static int PunchDmgGrowth = 2;
+        public static float PunchAnimationTime = 1f;
+
+        public int PunchDamage = 5;
+        
+        public PunchConfig()
+        {
+        
+        }
+    }
+
+    public static PunchConfig GetPlayerPunchConfig(int level)
+    {
+        PunchConfig cfg = new PunchConfig
+        {
+            PunchDamage = PunchConfig.PunchDmgGrowth * level + PunchConfig.PunchDmgBase
+        };
+        return cfg;
+    }
 
     #endregion
 }

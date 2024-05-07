@@ -1,8 +1,7 @@
 ﻿using AO;
 
-public class EffectRollOut : AEffect
+public class EffectRollOut : FightEffect
 {
-    private FightPlayer _player;
     private AbilityConfig.RollOutConfig _config;
 
     public EffectRollOut()
@@ -23,16 +22,16 @@ public class EffectRollOut : AEffect
     
     public override void OnEffectStart()
     {
-        _player = (FightPlayer)Player;
-        _player.AddSpeedModifier(_config.SpeedBuffMultiplier);
-        _player.AddPlayerCollisionFunction(OnRolloutCollision);
+        base.OnEffectStart();
+        FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
+        FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
         
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
-        _player.RemoveSpeedModifier(_config.SpeedBuffMultiplier);
-        _player.RemovePlayerCollisionFunction(OnRolloutCollision);
+        FightPlayer.RemoveSpeedModifier(_config.SpeedBuffMultiplier);
+        FightPlayer.RemovePlayerCollisionFunction(OnRolloutCollision);
     }
     
     
@@ -55,7 +54,7 @@ public class EffectRollOut : AEffect
             if (Network.IsServer)
             {
                 // TODO: Bumping is changing on the engine side, just do the damage for now (Shin, May07 2024)
-                otherPlayer.AddBumpFrom(_player, add, false);
+                otherPlayer.AddBumpFrom(FightPlayer, add, false);
                 //otherPlayer.CallClient_AddBump(add, false);
                 otherPlayer.TakeDamage(3);
             }

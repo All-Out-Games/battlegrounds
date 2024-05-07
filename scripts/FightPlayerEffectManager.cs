@@ -1,5 +1,4 @@
 ﻿using AO;
-using TinyJson;
 
 /// <summary>
 /// Manage all effects added on a player
@@ -23,6 +22,10 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
 
     #region Ef: RollOut
 
+    /// <summary>
+    /// Request the server to cast RollOut
+    /// </summary>
+    /// <param name="level"></param>
     [ServerRpc]
     public void CastRollOut(int level)
     {
@@ -52,6 +55,11 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
 
     #region Ef: No Movement
 
+    /// <summary>
+    /// Ask the server to cast NoMovement debuff on this player
+    /// </summary>
+    /// <param name="casterId"></param>
+    /// <param name="duration"></param>
     [ServerRpc]
     public void CastNoMovement(ulong casterId, float duration)
     {
@@ -80,5 +88,31 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
         AddEffect<EffectNoMovement>(caster, duration);
     }
 
+    #endregion
+
+    #region Ef: Punch
+
+    [ServerRpc]
+    public void CastPunch(int level)
+    {
+        if (Network.IsServer)
+        {
+            AbilityConfig.PunchConfig cfg = AbilityConfig.GetPlayerPunchConfig(level);
+            
+            CallClient_ActivatePunch(cfg);
+        }
+    }
+
+    [ClientRpc]
+    public void ActivatePunch(AbilityConfig.PunchConfig cfg)
+    {
+        Action<EffectPunch> initPunchWithConfig = (efp) =>
+        {
+            efp.AssignConfig(cfg);
+        };
+        
+        AddEffect<EffectPunch>(_player, AbilityConfig.PunchConfig.PunchAnimationTime);
+        AddEffect<EffectNoMovement>(_player, AbilityConfig.PunchConfig.PunchAnimationTime);
+    }
     #endregion
 }
