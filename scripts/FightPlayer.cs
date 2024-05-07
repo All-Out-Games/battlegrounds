@@ -24,6 +24,9 @@ public partial class FightPlayer : Player
         }
     }
 
+    // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
+    public AbilityConfig.PlayerStatus PlayerStatus = AbilityConfig.PlayerStatus.Combat;
+
     protected FightPlayerEffectManager EffectManager;
     protected FightPlayerUI PlayerUi;
     
@@ -34,10 +37,14 @@ public partial class FightPlayer : Player
 
     #endregion
 
-    #region EventFunctions
-
+    public T AddFightPlayerComponent<T>() where T : FightPlayerComponent
+    {
+        T fpc = Entity.AddComponent<T>();
+        fpc.AssignPlayer(this);
+        return fpc;
+    }
     
-
+    #region EventFunctions
     
     public override void Awake()
     {
@@ -58,18 +65,20 @@ public partial class FightPlayer : Player
         var punchColliderEntity = Entity.TryGetChildByName_Internal(CollisionEntity.Id, "PunchCollider"); // TODO: No public API yet for get child by name
         if (punchColliderEntity != null)
         {
-            Log.Debug("Found Punch Collider!");
+            //Log.Debug("Found Punch Collider!");
             PunchCollider = punchColliderEntity.GetComponent<Box_Collider>();
         }
         else
         {
-            Log.Error("Shin: Punch Collider Not FOUND");
+            Log.Error("Shin: Punch Collider NOT FOUND");
         }
     }
 
     public override void Update()
     {
-        BumpDecay();
+        //BumpDecay();
+        HandlePunchInput();
+        
     }
 
     public override void LateUpdate()
@@ -79,12 +88,22 @@ public partial class FightPlayer : Player
     
     #endregion
 
-    public T AddFightPlayerComponent<T>() where T : FightPlayerComponent
+    #region Input Handling
+
+    protected void HandlePunchInput()
     {
-        T fpc = Entity.AddComponent<T>();
-        fpc.AssignPlayer(this);
-        return fpc;
+        if (GetKeybindDown(FightClubGameManager.PunchKeybind))
+        {
+            if (IsLocal)
+            {
+                EffectManager.CallServer_CastPunch(1);
+            }
+        }
     }
+
+    #endregion
+
+
 
     #region Health, Damage, Respawn
 
@@ -216,14 +235,9 @@ public partial class FightPlayer : Player
         Collider.OnCollisionEnter -= collisionFunc;
     }
 
-    public void AddPlayerPunchCollisionFunction()
+    public Vector2 GetFacingDirection()
     {
-        //TODO
-    }
-
-    public void RemovePlayerPunchCollisionFunction()
-    {
-        
+        return PunchCollider.Entity.Position - Entity.Position;
     }
 
     #endregion

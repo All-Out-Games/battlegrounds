@@ -5,12 +5,12 @@
   "name": "PunchCollider",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
+    "X": 1,
     "Y": 0
   },
   "local_rotation": 0,
   "local_scale": {
-    "X": 2.5555438995361328,
+    "X": 1,
     "Y": 1
   },
   "sibling_index": 0,
@@ -23,14 +23,14 @@
   "internal_component_type": "Box_Collider",
   "data": {
     "size": {
-      "X": 0.4971625208854675,
-      "Y": 3.2318854331970215
+      "X": 1,
+      "Y": 1
     },
     "offset": {
-      "X": 0.3572796881198883,
-      "Y": 0.0789048969745636
+      "X": 0,
+      "Y": 0
     },
-    "is_trigger": false,
+    "is_trigger": true,
     "density": 1,
     "friction": 0.2000000029802322,
     "restitution": 0,

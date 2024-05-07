@@ -5,6 +5,17 @@
 /// </summary>
 public class AbilityConfig : System<AbilityConfig>
 {
+    #region Gameplay Enums
+
+    public enum PlayerStatus
+    {
+        Combat,
+        Safe,
+        Dead
+    }
+
+    #endregion
+    
     #region RollOut
 
     public struct RollOutConfig
@@ -43,9 +54,13 @@ public class AbilityConfig : System<AbilityConfig>
     {
         public static int PunchDmgBase = 5;
         public static int PunchDmgGrowth = 2;
-        public static float PunchAnimationTime = 1f;
-
+        public static float PunchAnimationTime = 0.6f; // Entire duration of the punch animation
+        public static float PunchActivationTime = 0.25f;  // Delay time before activating the collider
+        public static float PunchRange = 2;
+        
+        
         public int PunchDamage = 5;
+        
         
         public PunchConfig()
         {
