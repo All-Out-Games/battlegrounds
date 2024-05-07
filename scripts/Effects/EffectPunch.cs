@@ -45,16 +45,20 @@ public partial class EffectPunch : FightEffect
     IEnumerator DelayActivePunchHitbox(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        Physics.RaycastHit rc;
-        var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetFacingDirection(),
-            AbilityConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayers().ToArray(), out rc);
-
-        if (rc.Entity != null)
+        if (Network.IsServer)
         {
-            FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
-            other.TakeDamage(_config.PunchDamage);
+            Physics.RaycastHit rc;
+            var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetFacingDirection(),
+                AbilityConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayers().ToArray(), out rc);
+
+            if (rc.Entity != null)
+            {
+                FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
+                other.TakeDamage(_config.PunchDamage);
+            }
+            Log.Debug($"Shin: Falcon Punch! Dmg = {_config.PunchDamage}");
         }
-        Log.Debug("Falcon Punch!");
+        
         //FightPlayer.AddPlayerPunchCollisionFunction(OnPunchCollisionEnter);
     }
 

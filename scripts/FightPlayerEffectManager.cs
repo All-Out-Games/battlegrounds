@@ -1,7 +1,7 @@
 ﻿using AO;
 
 /// <summary>
-/// Manage all effects added on a player
+/// Manage all effects added on a player; Most abilities in FightClub is implemented using AEffect
 /// This component is attached to the player and:
 /// When requested to handle a effect, fetch player data here and add effect
 /// </summary>
@@ -111,7 +111,7 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
             efp.AssignConfig(cfg);
         };
         
-        AddEffect<EffectPunch>(_player, AbilityConfig.PunchConfig.PunchAnimationTime);
+        AddEffect<EffectPunch>(_player, AbilityConfig.PunchConfig.PunchAnimationTime, initPunchWithConfig);
         AddEffect<EffectNoMovement>(_player, AbilityConfig.PunchConfig.PunchAnimationTime);
     }
     #endregion

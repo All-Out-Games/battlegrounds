@@ -74,6 +74,7 @@ public class AbilityConfig : System<AbilityConfig>
         {
             PunchDamage = PunchConfig.PunchDmgGrowth * level + PunchConfig.PunchDmgBase
         };
+        // Log.Debug(cfg.PunchDamage.ToString()); // Correct
         return cfg;
     }
 
