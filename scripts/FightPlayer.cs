@@ -26,7 +26,7 @@ public partial class FightPlayer : Player
 
     protected FightPlayerEffectManager EffectManager;
     protected FightPlayerUI PlayerUi;
-    protected Polygon_Collider Collider;
+    protected Circle_Collider Collider;
     public Entity CollisionEntity;
 
     #endregion
@@ -43,9 +43,9 @@ public partial class FightPlayer : Player
         var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
         CollisionEntity = collisionPrefab.Instantiate();
         CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;
-        CollisionEntity.LocalScale = new Vector2(1.5f, 1.5f);
+        CollisionEntity.LocalScale = new Vector2(1.01f, 1.01f);
         CollisionEntity.SetParent(Entity, false);
-        Collider = CollisionEntity.GetComponent<Polygon_Collider>();
+        Collider = CollisionEntity.GetComponent<Circle_Collider>();
     }
 
     public override void Update()
@@ -132,7 +132,7 @@ public partial class FightPlayer : Player
         }
         
         var velocity = DefaultPlayerVelocityCalculation(currentVelocity, input, deltaTime, GetTotalVelocityMultiplier());
-        velocity += Bump * deltaTime;
+        // velocity += Bump * deltaTime; // No bump for now, see EffectRollOut.cs
         return velocity;
     }
 
@@ -150,25 +150,24 @@ public partial class FightPlayer : Player
     [ClientRpc]
     public void AddBump(Vector2 add, bool reset)
     {
-        Bump = add; // Changed from accumulation to directly set
+        if (!reset)
+        {
+            Log.Info("Adding Movement Limitations");
+            EffectManager.AddEffect<EffectNoMovement>(null, 0.75f);
+        }
+        
+        // Bump = add; // Changed from accumulation to directly set
 
         if (reset) {
             this.Entity.GetComponent<Rigidbody>().Velocity *= 0.001f;
         }
     }
     
-    public void AddBumpFrom(FightPlayer player, Vector2 add, bool reset)
+    public void AddBumpFrom(FightPlayer caster, Vector2 add, bool reset)
     {
-        if (!reset)
-        {
-            Log.Info("Adding Movement Limitations");
-            EffectManager.CastNoMovement(player.Entity.NetworkId, 0.75f);
-        }
-
         if (Network.IsServer)
         {
             CallClient_AddBump(add,reset);
-            AddBump(add, reset);
         }
         
     }

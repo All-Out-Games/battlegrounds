@@ -23,7 +23,7 @@ public class DummySystem : System<DummySystem> {
     public void OnPlayerJoin(Player player) 
     {
         Log.Info("Player joined!");
-        Save.SetInt(player, "test", Save.GetInt(player, "test", 0) + 1);
+        //Save.SetInt(player, "test", Save.GetInt(player, "test", 0) + 1);
         
     }
 

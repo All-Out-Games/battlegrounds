@@ -46,12 +46,17 @@ public class EffectRollOut : AEffect
         FightPlayer otherPlayer = other.GetComponent<FightPlayer>();
         if (otherPlayer != null)
         {
+            if(otherPlayer.HasEffect<EffectNoMovement>())
+            {
+                return;
+            }
             Vector2 bumpDir = other.Position - Entity.Position;
             var add = bumpDir * _config.BumpStrength;
             if (Network.IsServer)
             {
-                otherPlayer.CallClient_AddBump(add, false);
-                otherPlayer.AddBump(add, false);
+                // TODO: Bumping is changing on the engine side, just do the damage for now (Shin, May07 2024)
+                otherPlayer.AddBumpFrom(_player, add, false);
+                //otherPlayer.CallClient_AddBump(add, false);
                 otherPlayer.TakeDamage(3);
             }
 
