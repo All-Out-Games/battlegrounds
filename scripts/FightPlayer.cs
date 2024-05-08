@@ -76,7 +76,7 @@ public partial class FightPlayer : Player
 
     public override void Update()
     {
-        //BumpDecay();
+        BumpDecay();
         HandlePunchInput();
         
     }
@@ -172,7 +172,7 @@ public partial class FightPlayer : Player
         }
         
         var velocity = DefaultPlayerVelocityCalculation(currentVelocity, input, deltaTime, GetTotalVelocityMultiplier());
-        // velocity += Bump * deltaTime; // No bump for now, see EffectRollOut.cs
+        velocity += Bump * deltaTime; // No bump for now, see EffectRollOut.cs
         return velocity;
     }
 
@@ -196,7 +196,7 @@ public partial class FightPlayer : Player
             EffectManager.AddEffect<EffectNoMovement>(null, 0.75f);
         }
         
-        // Bump = add; // Changed from accumulation to directly set
+        Bump = add; // Changed from accumulation to directly set
 
         if (reset) {
             this.Entity.GetComponent<Rigidbody>().Velocity *= 0.001f;
