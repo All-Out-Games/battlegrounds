@@ -1,5 +1,4 @@
 using AO;
-
 /// <summary>
 /// Model class of the player. Stores data and handle actions using RPC
 /// </summary>
@@ -24,11 +23,25 @@ public partial class FightPlayer : Player
         }
     }
 
+    private int currentAttack = 5;
+    public int CurrentAttack
+    {
+        get { return currentAttack; }
+        set
+        {
+            if (Network.IsServer) {
+                CallClient_SetAttack(currentAttack);
+            }
+            currentAttack = value; 
+        }
+    }
+
     // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
-    public AbilityConfig.PlayerStatus PlayerStatus = AbilityConfig.PlayerStatus.Combat;
+    public EffectConfig.PlayerStatus PlayerStatus = EffectConfig.PlayerStatus.Combat;
 
     protected FightPlayerEffectManager EffectManager;
     protected FightPlayerUI PlayerUi;
+    protected FightPlayerSkillTree SkillTree;
     
     protected Circle_Collider Collider; // MAIN Collider used for bumping / damage
     protected Box_Collider PunchCollider;
@@ -50,7 +63,7 @@ public partial class FightPlayer : Player
     {
         EffectManager = AddFightPlayerComponent<FightPlayerEffectManager>();
         PlayerUi = AddFightPlayerComponent<FightPlayerUI>();
-        base.Awake();
+        SkillTree = AddFightPlayerComponent<FightPlayerSkillTree>();
     }
 
     public override void Start()
@@ -77,7 +90,11 @@ public partial class FightPlayer : Player
     public override void Update()
     {
         BumpDecay();
-        HandlePunchInput();
+        if (IsLocal)
+        {
+            HandlePunchInput();
+        }
+        
         
     }
 
@@ -90,14 +107,12 @@ public partial class FightPlayer : Player
 
     #region Input Handling
 
+    // All input handling functions must be wrapped within player.IsLocal condition!
     protected void HandlePunchInput()
     {
         if (GetKeybindDown(FightClubGameManager.PunchKeybind))
         {
-            if (IsLocal)
-            {
-                EffectManager.CallServer_CastPunch(1);
-            }
+            EffectManager.CallServer_CastPunch(1);
         }
     }
 
@@ -117,6 +132,12 @@ public partial class FightPlayer : Player
     public void SetHealth(int health)
     {
         currentHealth = health;
+    }
+
+    [ClientRpc]
+    public void SetAttack(int attack)
+    {
+        currentAttack = attack;
     }
 
     public void TakeDamage(int damage)

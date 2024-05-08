@@ -3,7 +3,7 @@
 /// <summary>
 /// Base Ability Config. Pass modified data to player based on player stats on the server
 /// </summary>
-public class AbilityConfig : System<AbilityConfig>
+public static class EffectConfig
 {
     #region Gameplay Enums
 
@@ -59,7 +59,7 @@ public class AbilityConfig : System<AbilityConfig>
         public static float PunchRange = 2;
         
         
-        public int PunchDamage = 5;
+        public int PunchDamage = 5; // TODO: The final damage should be determined by the player's stats and their skilltree.
         
         
         public PunchConfig()

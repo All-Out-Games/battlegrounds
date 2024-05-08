@@ -1,8 +1,9 @@
 ﻿using AO;
 
-public class EffectRollOut : FightEffect
+
+public partial class EffectRollOut : FightEffect
 {
-    private AbilityConfig.RollOutConfig _config;
+    private EffectConfig.RollOutConfig _config;
 
     public EffectRollOut()
     {
@@ -15,7 +16,7 @@ public class EffectRollOut : FightEffect
     /// Call this function before adding the created Effect instance to the player!
     /// </summary>
     /// <param name="cfg"></param>
-    public void AssignConfig(AbilityConfig.RollOutConfig cfg)
+    public void AssignConfig(EffectConfig.RollOutConfig cfg)
     {
         _config = cfg;
     }

@@ -1,5 +1,6 @@
 ﻿using AO;
 
+
 /// <summary>
 /// Manage all effects added on a player; Most abilities in FightClub is implemented using AEffect
 /// This component is attached to the player and:
@@ -31,7 +32,7 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     {
         if (Network.IsServer)
         {
-            AbilityConfig.RollOutConfig cfg = AbilityConfig.GetPlayerRollOutConfig(level);
+            EffectConfig.RollOutConfig cfg = EffectConfig.GetPlayerRollOutConfig(level);
 
             //AddEffect<EffectRollOut>(_player, cfg.Duration, initRollOutWithConfig);
             CallClient_ActivateRollOut(cfg);
@@ -39,7 +40,7 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     }
     
     [ClientRpc]
-    public void ActivateRollOut(AbilityConfig.RollOutConfig cfg)
+    public void ActivateRollOut(EffectConfig.RollOutConfig cfg)
     {
         // Note: RPC cannot pass class references. 
         // Use player.Entity.NetworkId if we need to pass the caster through server.
@@ -97,22 +98,22 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     {
         if (Network.IsServer)
         {
-            AbilityConfig.PunchConfig cfg = AbilityConfig.GetPlayerPunchConfig(level);
+            EffectConfig.PunchConfig cfg = EffectConfig.GetPlayerPunchConfig(level);
             
             CallClient_ActivatePunch(cfg);
         }
     }
 
     [ClientRpc]
-    public void ActivatePunch(AbilityConfig.PunchConfig cfg)
+    public void ActivatePunch(EffectConfig.PunchConfig cfg)
     {
         Action<EffectPunch> initPunchWithConfig = (efp) =>
         {
             efp.AssignConfig(cfg);
         };
         
-        AddEffect<EffectPunch>(_player, AbilityConfig.PunchConfig.PunchAnimationTime, initPunchWithConfig);
-        AddEffect<EffectNoMovement>(_player, AbilityConfig.PunchConfig.PunchAnimationTime);
+        AddEffect<EffectPunch>(_player, EffectConfig.PunchConfig.PunchAnimationTime, initPunchWithConfig);
+        AddEffect<EffectNoMovement>(_player, EffectConfig.PunchConfig.PunchAnimationTime);
     }
     #endregion
 }

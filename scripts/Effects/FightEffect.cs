@@ -1,6 +1,7 @@
 using AO;
 
 
+
 /// <summary>
 /// Base class derived from AEffect to get FightPlayer 
 /// </summary>

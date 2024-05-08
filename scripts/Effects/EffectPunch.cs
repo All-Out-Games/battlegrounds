@@ -4,7 +4,7 @@ using AO;
 
 public partial class EffectPunch : FightEffect
 {
-    private AbilityConfig.PunchConfig _config;
+    private EffectConfig.PunchConfig _config;
 
     EffectPunch()
     {
@@ -27,7 +27,7 @@ public partial class EffectPunch : FightEffect
         
     }
     
-    public void AssignConfig(AbilityConfig.PunchConfig cfg)
+    public void AssignConfig(EffectConfig.PunchConfig cfg)
     {
         _config = cfg;
     }
@@ -38,7 +38,7 @@ public partial class EffectPunch : FightEffect
         FightPlayer.SetAnimTrigger("punch");
         if (Network.IsServer)
         {
-            Coroutine.Start(Entity, DelayActivePunchHitbox(AbilityConfig.PunchConfig.PunchActivationTime));
+            Coroutine.Start(Entity, DelayActivePunchHitbox(EffectConfig.PunchConfig.PunchActivationTime));
         }
     }
 
@@ -49,7 +49,7 @@ public partial class EffectPunch : FightEffect
         {
             Physics.RaycastHit rc;
             var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetFacingDirection(),
-                AbilityConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayers().ToArray(), out rc);
+                EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayers().ToArray(), out rc);
 
             if (rc.Entity != null)
             {

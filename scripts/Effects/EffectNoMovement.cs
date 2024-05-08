@@ -1,11 +1,10 @@
 ﻿using AO;
 
-
 /// <summary>
 /// Blocks movement input (by setting a speed modifier)
 /// Very useful for multiple occasions.
 /// </summary>
-public class EffectNoMovement : FightEffect
+public partial class EffectNoMovement : FightEffect
 {
     
     public EffectNoMovement()

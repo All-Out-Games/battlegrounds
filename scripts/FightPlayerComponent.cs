@@ -13,4 +13,14 @@ public class FightPlayerComponent : Component
     {
         _player = pl;
     }
+
+    public FightPlayerComponent(FightPlayer pl)
+    {
+        _player = pl;
+    }
+
+    public FightPlayerComponent()
+    {
+        
+    }
 }

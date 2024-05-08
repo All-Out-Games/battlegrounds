@@ -51,7 +51,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     {
         Log.Info("Player left!");
         FightPlayer fpl = (FightPlayer)player;
-        if (fpl.PlayerStatus == AbilityConfig.PlayerStatus.Combat)
+        if (fpl.PlayerStatus == EffectConfig.PlayerStatus.Combat)
         {
             var findIndex = CombatPlayer.FindIndex(entity => entity.Id == fpl.Entity.Id);
             if (findIndex == -1)
@@ -64,7 +64,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
                 CombatPlayer.RemoveAt(findIndex);
             }
         }
-        else if (fpl.PlayerStatus == AbilityConfig.PlayerStatus.Safe)
+        else if (fpl.PlayerStatus == EffectConfig.PlayerStatus.Safe)
         {
             var findIndex = SafePlayer.FindIndex(entity => entity.Id == fpl.Entity.Id);
             if (findIndex == -1)
