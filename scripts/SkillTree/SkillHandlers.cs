@@ -48,7 +48,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     [ClientRpc]
     public void Punch_Adder(int level)
     {
-        Log.Debug("Punch Ability is available by default");
+        Log.Debug($"Punch Ability is available by default, cur lvl = {level}");
     }
 
     [ClientRpc]

@@ -2,23 +2,16 @@ using AO;
 
 public partial class FightPlayerSkillTree : FightPlayerComponent
 {
-    public Dictionary<string, bool> SkillUnlockDict; // [SkillKey : Unlocked], note that only active skills can be "unlocked"
-    public Dictionary<string, int> SkillLevelDict; // [SkillKey: Level], level of all skills, 0 means not upgraded yet.
+    public Dictionary<string, int> SkillLevelDict = new(); // [SkillKey: Level], level of all skills, 0 means not upgraded yet.
 
     #region EventFunctions
 
     public override void Awake()
     {
-        // Initialize all entries before syncing happens
-        foreach (var skill in SkillConfig.ActiveSkills)
-        {
-            SkillUnlockDict[skill] = false; // Add entries to all active skills
-        }
 
         foreach (var skill in SkillConfig.GetAllSkillKeys())
         {
             SkillLevelDict[skill] = 0;
-            // SkillLevelDict["Punch"] = 1; // Unlock punch by default
         }
     }
     
@@ -26,27 +19,6 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     #endregion
 
     #region Skill Handling
-
-    public void UnlockSkill(string skillKey,bool unlock)
-    {
-        bool skillUnlocked = false;
-        if (SkillUnlockDict.TryGetValue(skillKey, out skillUnlocked))
-        {
-            SkillUnlockDict[skillKey] = unlock; // Unlock is usually always true
-
-            if (SkillLevelDict[skillKey] != 0)
-            {
-                Log.Warn($"{skillKey} level is not 0 when being unlocked...");
-            }
-            
-            SkillLevelDict[skillKey] = 1;
-            Save.SetInt(_player, skillKey, 1);
-        }
-        else
-        {
-            Log.Error($"SkillTree: Skill {skillKey} NOT FOUND");
-        }
-    }
 
     [ServerRpc]
     public bool UpgradeSkill(string skillKey, int maxLevel)
@@ -56,11 +28,20 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             int currentLevel;
             if (SkillLevelDict.TryGetValue(skillKey, out currentLevel))
             {
-                if (currentLevel < maxLevel)
+                if (currentLevel == 0) // First Unlock
+                {
+                    SkillLevelDict[skillKey] = 1;
+                    AddSkill(skillKey, SkillLevelDict[skillKey]);
+                    Save.SetInt(_player, skillKey, 1);
+                    CallClient_SyncSkill(skillKey, 1);
+                    return true;
+                }
+                else if (currentLevel < maxLevel) // Upgrade
                 {
                     SkillLevelDict[skillKey] = currentLevel + 1;
                     RemoveSkill(skillKey);
                     AddSkill(skillKey, SkillLevelDict[skillKey]);
+                    
                     Save.SetInt(_player, skillKey, SkillLevelDict[skillKey]);
                     CallClient_SyncSkill(skillKey, SkillLevelDict[skillKey]);
                     return true;
@@ -84,14 +65,13 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
 
     public bool IsActiveUnlocked(string skillKey)
     {
-        bool skillUnlocked;
-        if (SkillUnlockDict.TryGetValue(skillKey, out skillUnlocked))
+        if (SkillConfig.ActiveSkills.Contains(skillKey))
         {
-            return skillUnlocked;
+            return SkillLevelDict[skillKey] > 0;
         }
         else
         {
-            Log.Error($"SkillTree: Skill {skillKey} NOT FOUND");
+            Log.Error($"SkillTree: Skill {skillKey} is not an ACTIVE Skill!");
             return false;
         }
     }
@@ -141,13 +121,17 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     {
         if (Network.IsClient)
         {
-            Log.Debug($"Skill Level Get from Server. {skillKey} = {level}");
+            Log.Error($"Skill Level Get from Server. {skillKey} = {level}");
             if (SkillLevelDict[skillKey] != 0)
             {
                 RemoveSkill(skillKey);
             }
             SkillLevelDict[skillKey] = level;
-            AddSkill(skillKey, level);
+            if (level != 0)
+            {
+                AddSkill(skillKey, level);
+            }
+           
         }
     }
     
@@ -164,7 +148,11 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             RemoveSkill(skillKey);
         }
         SkillLevelDict[skillKey] = level;
-        AddSkill(skillKey, level);
+        if (level != 0)
+        {
+            AddSkill(skillKey, level);
+        }
+        
     }
 
     /// <summary>

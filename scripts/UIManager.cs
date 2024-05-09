@@ -65,12 +65,14 @@ public class UIManager : System<UIManager>
         }
         _popupRemainingTime = time;
         _popupTxt = txt;
+        
     }
 
     public override void Update()
     {
         // Update timers
         {
+            
             if (_popupRemainingTime > 0)
             {
                 //Log.Warn(_popupTxt);
@@ -89,6 +91,7 @@ public class UIManager : System<UIManager>
                 _popupRemainingTime = 0;
                 _popupTxt = "";
             }
+            
         }
         
         // Draw the score

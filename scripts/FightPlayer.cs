@@ -66,7 +66,14 @@ public partial class FightPlayer : Player
         PlayerUi = AddFightPlayerComponent<FightPlayerUI>();
         
         SkillTree = AddFightPlayerComponent<FightPlayerSkillTree>();
+        
+    }
+
+    public void OnLoad()
+    {
+        // Called after Playerdata loaded
         SkillTree.InitializeSkillTreeComp();
+        SkillTree.HandleAllSkills();
     }
     
     public override void Start()
@@ -91,8 +98,7 @@ public partial class FightPlayer : Player
             Log.Error("Shin: Punch Collider NOT FOUND");
         }
         
-        // Skill Tree
-        //SkillTree.HandleAllSkills();
+        
     }
 
     public override void Update()
