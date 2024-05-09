@@ -4,6 +4,15 @@ using AO;
 
 public static partial class SkillConfig
 {
+    
+    public enum NodeType
+    {
+        AttrBoost,
+        SkillUnlock,
+        SkillReplace,
+        SkillEnhance
+    }
+    
     #region SkillKeys
     // These are keys to skills, which associate the skill node to the logics in skill tree nodes.
     
@@ -38,7 +47,7 @@ public static partial class SkillConfig
         
         public int UpgradeCost;
         public int MaximumLevel;
-        public SkillTreeNode.NodeType NType;
+        public NodeType NType;
         public Vector2 UIPosition;
 
         // Keys are unique for each node
@@ -47,4 +56,5 @@ public static partial class SkillConfig
         public string ParentNodeKey;
 
     }
+    
 }

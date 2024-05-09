@@ -235,11 +235,16 @@ public partial class FightPlayer : Player
     
     #endregion
 
-    #region EffectManager
+    #region Sub Component Getters
 
     public FightPlayerEffectManager GetEffectMgr()
     {
         return EffectManager;
+    }
+
+    public FightPlayerSkillTree GetSkillTree()
+    {
+        return SkillTree;
     }
 
     #endregion

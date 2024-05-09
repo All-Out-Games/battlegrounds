@@ -1,7 +1,7 @@
 
 using AO;
 
-public class FightPlayerSkillTree : FightPlayerComponent
+public partial class FightPlayerSkillTree : FightPlayerComponent
 {
     public Dictionary<string, bool> SkillUnlockDict; // [SkillKey : Unlocked], note that only active skills can be "unlocked"
     public Dictionary<string, int> SkillLevelDict; // [SkillKey: Level], level of all skills, 0 means not upgraded yet.
@@ -23,6 +23,7 @@ public class FightPlayerSkillTree : FightPlayerComponent
             // SkillLevelDict["Punch"] = 1; // Unlock punch by default
         }
     }
+    
 
     #endregion
 
@@ -84,9 +85,28 @@ public class FightPlayerSkillTree : FightPlayerComponent
     /// Get the Save of player and populate skill trees 
     /// </summary>
     /// <param name="player"></param>
-    public void InitializeSkillTreeComp(FightPlayer player)
+    public void InitializeSkillTreeComp()
     {
+        // TODO
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void HandleAllSkills()
+    {
+        // TODO
         
+        // Phase 1: Attr Boosts (and passives, which are essentially permanent effects)
+        
+        
+        // Phase 2: Active Skill Unlocks
+        
+        
+        // Phase 3: Active Skill Replacements
+        
+        
+        // Phase 4: Active Skill Enhancements
     }
 
     #endregion
