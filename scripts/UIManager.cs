@@ -1,5 +1,4 @@
-﻿namespace Assembly.scripts;
-using AO;
+﻿using AO;
 public class UIManager : System<UIManager>
 {
     // Update using event when you need to. This should avoid fetching references each frame which causes a slight overhead

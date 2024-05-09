@@ -1,6 +1,5 @@
 ﻿using AO;
 
-
 /// <summary>
 /// Manage all effects added on a player; Most abilities in FightClub is implemented using AEffect
 /// This component is attached to the player and:
