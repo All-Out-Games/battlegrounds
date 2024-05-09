@@ -62,12 +62,17 @@ public partial class FightPlayer : Player
     public override void Awake()
     {
         EffectManager = AddFightPlayerComponent<FightPlayerEffectManager>();
+        
         PlayerUi = AddFightPlayerComponent<FightPlayerUI>();
+        
         SkillTree = AddFightPlayerComponent<FightPlayerSkillTree>();
+        SkillTree.InitializeSkillTreeComp();
     }
-
+    
     public override void Start()
     {
+        // Colliders
+        
         var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
         CollisionEntity = collisionPrefab.Instantiate();
         CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;
@@ -85,6 +90,9 @@ public partial class FightPlayer : Player
         {
             Log.Error("Shin: Punch Collider NOT FOUND");
         }
+        
+        // Skill Tree
+        //SkillTree.HandleAllSkills();
     }
 
     public override void Update()
@@ -138,6 +146,7 @@ public partial class FightPlayer : Player
     public void SetAttack(int attack)
     {
         currentAttack = attack;
+        
     }
 
     public void TakeDamage(int damage)

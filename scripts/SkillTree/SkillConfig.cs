@@ -13,15 +13,17 @@ public static partial class SkillConfig
         SkillEnhance
     }
     
-    #region SkillKeys
     // These are keys to skills, which associate the skill node to the logics in skill tree nodes.
+    // Add keys here when new skills are added
+    #region SkillKeys
+    
+    public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
     
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "ShoulderCrash", "RollOut", "GroundSlam", 
         "Fireball"};
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "FireFist" };
-
-    public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
+    
 
     public static readonly HashSet<string> SkillBoostSkills = new HashSet<string>() { };
 
