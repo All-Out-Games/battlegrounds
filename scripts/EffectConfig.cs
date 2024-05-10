@@ -74,7 +74,6 @@ public static class EffectConfig
         {
             PunchDamage = PunchConfig.PunchDmgGrowth * level + PunchConfig.PunchDmgBase
         };
-        // Log.Debug(cfg.PunchDamage.ToString()); // Correct
         return cfg;
     }
 

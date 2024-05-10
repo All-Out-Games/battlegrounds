@@ -42,6 +42,7 @@ public partial class FightPlayer : Player
     protected FightPlayerEffectManager EffectManager;
     protected FightPlayerUI PlayerUi;
     protected FightPlayerSkillTree SkillTree;
+    protected FightPlayerSkillSlots SkillSlots;
     
     protected Circle_Collider Collider; // MAIN Collider used for bumping / damage
     protected Box_Collider PunchCollider;
@@ -66,7 +67,8 @@ public partial class FightPlayer : Player
         PlayerUi = AddFightPlayerComponent<FightPlayerUI>();
         
         SkillTree = AddFightPlayerComponent<FightPlayerSkillTree>();
-        
+
+        SkillSlots = AddFightPlayerComponent<FightPlayerSkillSlots>();
     }
 
     public void OnLoad()
@@ -104,12 +106,8 @@ public partial class FightPlayer : Player
     public override void Update()
     {
         BumpDecay();
-        if (IsLocal)
-        {
-            HandlePunchInput();
-        }
         
-        
+        ControllerUpdate();
     }
 
     public override void LateUpdate()
@@ -117,19 +115,6 @@ public partial class FightPlayer : Player
         base.LateUpdate();
     }
     
-    #endregion
-
-    #region Input Handling
-
-    // All input handling functions must be wrapped within player.IsLocal condition!
-    protected void HandlePunchInput()
-    {
-        if (GetKeybindDown(FightClubGameManager.PunchKeybind))
-        {
-            EffectManager.CallServer_CastPunch(1);
-        }
-    }
-
     #endregion
 
 
@@ -260,6 +245,11 @@ public partial class FightPlayer : Player
     public FightPlayerSkillTree GetSkillTree()
     {
         return SkillTree;
+    }
+
+    public FightPlayerSkillSlots GetSkillSlots()
+    {
+        return SkillSlots;
     }
 
     #endregion

@@ -19,13 +19,12 @@ public static partial class SkillConfig
     
     public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
     
-    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "ShoulderCrash", "RollOut", "GroundSlam", 
-        "Fireball"};
+    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut"};
 
-    public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "FireFist" };
+    public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "WindFist", "DoublePunch" };
     
 
-    public static readonly HashSet<string> SkillBoostSkills = new HashSet<string>() { };
+    public static readonly HashSet<string> SkillBoostSkills = new HashSet<string>() { "FireFist" };
 
     public static HashSet<string> GetAllSkillKeys()
     {
@@ -55,7 +54,7 @@ public static partial class SkillConfig
         // Keys are unique for each node
         public string SkillKey;
         public string[] ChildrenNodeKeys;
-        public string ParentNodeKey;
+        public string[] ParentNodeKeys;
 
     }
     

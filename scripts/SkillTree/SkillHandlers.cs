@@ -49,11 +49,13 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     public void Punch_Adder(int level)
     {
         Log.Debug($"Punch Ability is available by default, cur lvl = {level}");
+        _player.GetSkillSlots().UpdateSlot("Punch", level, "Punch");
     }
 
     [ClientRpc]
     public void Punch_Remover()
     {
-        Log.Debug("Punch Ability REMOVED");
+        // Active & Replacement Ability do not need to be removed. Their upgrade function will just change the abilities' level
+        // Stat & Enhancements (normally) need a remover when upgrading. 
     }
 }

@@ -18,7 +18,7 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(900,100),
         SkillKey = "Punch",
-        ParentNodeKey = null,
+        ParentNodeKeys = null,
         ChildrenNodeKeys = new [] {"ShoulderCrash", "HealthBoost", "AttackBoost", "FireFist"},
     };
     
@@ -33,7 +33,7 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(450,120),
         SkillKey = "ShoulderCrash",
-        ParentNodeKey = "Punch",
+        ParentNodeKeys = new [] {"Punch"},
         ChildrenNodeKeys = {},
     };
     
@@ -48,7 +48,7 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(800,180),
         SkillKey = "HealthBoost",
-        ParentNodeKey = "Punch",
+        ParentNodeKeys = new [] {"Punch"},
         ChildrenNodeKeys = {},
     };
     
@@ -63,7 +63,7 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(1000,180),
         SkillKey = "AttackBoost",
-        ParentNodeKey = "Punch",
+        ParentNodeKeys = new [] {"Punch"},
         ChildrenNodeKeys = {},
     };
 

@@ -6,6 +6,8 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
 
     #region EventFunctions
 
+    protected Action<string, int> SkillUpgradeEvent;
+    
     public override void Awake()
     {
 
@@ -13,8 +15,15 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
         {
             SkillLevelDict[skill] = 0;
         }
+
+        SkillUpgradeEvent += OnSkillUpgrade;
     }
-    
+
+    public override void OnDestroy()
+    {
+        
+        SkillUpgradeEvent -= OnSkillUpgrade;
+    }
 
     #endregion
 
@@ -121,17 +130,9 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     {
         if (Network.IsClient)
         {
-            Log.Error($"Skill Level Get from Server. {skillKey} = {level}");
-            if (SkillLevelDict[skillKey] != 0)
-            {
-                RemoveSkill(skillKey);
-            }
+            // Log.Debug($"Skill Level Get from Server. {skillKey} = {level}");
             SkillLevelDict[skillKey] = level;
-            if (level != 0)
-            {
-                AddSkill(skillKey, level);
-            }
-           
+            // Add / Remove skill are called on server and automatically synced
         }
     }
     
@@ -171,6 +172,8 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                 HandleSkill(key, lvl);
                 CallClient_SyncSkill(key, lvl);
             };
+            // Phase 0: Default unlock for all players
+            UpgradeSkill("Punch", 1);
             
             // Phase 1: Attr Boosts (and passives, which are essentially permanent effects)
             foreach (string abKey in SkillConfig.AttrBoostSkills)
@@ -206,7 +209,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     /// <summary>
     /// [Client & Server]
     /// </summary>
-    public void OnSkillUpgrade()
+    public void OnSkillUpgrade(string skillKey, int level)
     {
         // TODO: Update Skill Tree UI after server unlock/upgrade
     }
