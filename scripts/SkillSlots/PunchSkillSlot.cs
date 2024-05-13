@@ -1,5 +1,8 @@
 
 
+using System.Reflection;
+using AO;
+
 public class PunchSkillSlot : SkillSlot
 {
     
@@ -9,5 +12,16 @@ public class PunchSkillSlot : SkillSlot
         FightPlayer owner = SlotsMgr.GetPlayer();
         
         // Use Reflection to call server RPC and cast the skill
+        FightPlayerEffectManager mgr = owner.GetEffectMgr();
+            
+        MethodInfo skillCaster = EffectManagerType.GetMethod($"CallServer_Cast{CurrentSkillKey}");
+        if (skillCaster == null)
+        {
+            TestServerRPC.LogSomethingOnServer($"PunchSkillSlot: Skill Caster for {CurrentSkillKey} NOT FOUND!");
+            return;
+        }
+
+        skillCaster.Invoke(mgr, BindingFlags.Public | BindingFlags.Instance, null, null, null);
+        TestServerRPC.LogSomethingOnServer($"{CurrentSkillKey} Casted!");
     }
 }

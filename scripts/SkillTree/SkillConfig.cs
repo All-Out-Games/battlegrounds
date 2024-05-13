@@ -10,7 +10,7 @@ public static partial class SkillConfig
         AttrBoost,
         SkillUnlock,
         SkillReplace,
-        SkillEnhance
+        SkillEnhance // Unused for current design
     }
     
     // These are keys to skills, which associate the skill node to the logics in skill tree nodes.
@@ -21,17 +21,17 @@ public static partial class SkillConfig
     
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut"};
 
-    public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "WindFist", "DoublePunch" };
+    public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "WindFist", "DoublePunch", "FireFist" };
     
 
-    public static readonly HashSet<string> SkillBoostSkills = new HashSet<string>() { "FireFist" };
+    public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() {  };
 
     public static HashSet<string> GetAllSkillKeys()
     {
         HashSet<string> allSkills = new HashSet<string>(ActiveSkills);
         allSkills.UnionWith(ReplacementSkills);
         allSkills.UnionWith(AttrBoostSkills);
-        allSkills.UnionWith(SkillBoostSkills);
+        allSkills.UnionWith(SkillEnhanceSkills);
         return allSkills;
     }
 

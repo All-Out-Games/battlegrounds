@@ -69,13 +69,18 @@ public partial class FightPlayer : Player
         SkillTree = AddFightPlayerComponent<FightPlayerSkillTree>();
 
         SkillSlots = AddFightPlayerComponent<FightPlayerSkillSlots>();
+        SkillSlots.InitKeybind();
     }
 
     public void OnLoad()
     {
-        // Called after Playerdata loaded
+        // Called after Playerdata loaded [After Start()]
+        
+        
         SkillTree.InitializeSkillTreeComp();
         SkillTree.HandleAllSkills();
+        
+        
     }
     
     public override void Start()

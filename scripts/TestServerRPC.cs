@@ -18,4 +18,10 @@ public partial class TestServerRPC
     {
         Log.Info($"From Server: {msg}");
     }
+
+    [ServerRpc]
+    public static void LogSomethingOnServer(string msg)
+    {
+        Log.Info($"From Client: {msg}");
+    }
 }

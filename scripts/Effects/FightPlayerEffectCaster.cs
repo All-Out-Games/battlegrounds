@@ -6,14 +6,22 @@ public partial class FightPlayerEffectManager
     // All effects related to active skills should go here.
     // TODO: Use reflection to call Cast{SkillKey} functions on server (e.g. CallServer_CastPunch)
     
+    
+    // PART 1: The active effects which can be triggered by the player
+    // IMPORTANT: We use reflections to call these RPCs. Make sure the skill handler's name is Cast{SkillKey}.
+    // The cast function MUST be 0-parameters as we want to read the player's skill data on server.
+    // The activate function MUST take a single parameter which is a customizable struct for the skill.
+    
     #region Ef: Punch
 
     [ServerRpc]
-    public void CastPunch(int level)
+    public void CastPunch()
     {
         if (Network.IsServer)
         {
-            EffectConfig.PunchConfig cfg = EffectConfig.GetPlayerPunchConfig(level);
+            if (_player.HasEffect<EffectPunch>()) return; // Avoid double cast
+            
+            EffectConfig.PunchConfig cfg = EffectConfig.GetPlayerPunchConfig(1); // TODO: This need to be some get level APIs from the skill tree
             
             CallClient_ActivatePunch(cfg);
         }
@@ -44,6 +52,8 @@ public partial class FightPlayerEffectManager
     {
         if (Network.IsServer)
         {
+            if (_player.HasEffect<EffectRollOut>()) return; // Avoid double cast
+            
             EffectConfig.RollOutConfig cfg = EffectConfig.GetPlayerRollOutConfig(level);
 
             //AddEffect<EffectRollOut>(_player, cfg.Duration, initRollOutWithConfig);
@@ -65,4 +75,7 @@ public partial class FightPlayerEffectManager
     }
     
     #endregion
+    
+    
+    // PART 2: Effects inflicted by other players
 }

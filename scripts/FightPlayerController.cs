@@ -9,7 +9,7 @@ public partial class FightPlayer
     {
         if (IsLocal)
         {
-            HandlePunchInput();
+            HandleSkillSlotInput();
         }
     }
     
@@ -17,14 +17,20 @@ public partial class FightPlayer
     #region Input Handling
 
     // All input handling functions must be wrapped within player.IsLocal condition!
-    protected void HandlePunchInput()
+
+    protected void HandleSkillSlotInput()
     {
-        // TODO: Unify input handler to be skill slot based.
-        if (GetKeybindDown(FightClubGameManager.PunchKeybind))
+        //TestServerRPC.CallServer_LogSomethingOnServer(SkillSlots.ActiveSkillSlots["Punch"].SlotKeyBind.ToString());
+        foreach (var kv in SkillSlots.ActiveSkillSlots)
         {
-            EffectManager.CallServer_CastPunch(1);
+            // TODO: More complex input handling. Wrap handler functions in slots
+            if (GetKeybindDown(kv.Value.SlotKeyBind))
+            {
+                TestServerRPC.CallServer_LogSomethingOnServer("Skill Cast Input!");
+                
+                kv.Value.UseSkill();
+            }
         }
     }
-
     #endregion
 }

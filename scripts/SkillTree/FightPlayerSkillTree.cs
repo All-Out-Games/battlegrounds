@@ -196,7 +196,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             }
         
             // Phase 4: Active Skill Enhancements
-            foreach (var sbKey in SkillConfig.SkillBoostSkills)
+            foreach (var sbKey in SkillConfig.SkillEnhanceSkills)
             {
                 handleSkillWithSync(sbKey);
             }

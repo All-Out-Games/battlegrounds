@@ -8,6 +8,8 @@ using AO;
 /// </summary>
 public abstract class SkillSlot
 {
+    protected static Type EffectManagerType = Type.GetType("FightPlayerEffectManager");
+    
     public Keybind SlotKeyBind;
     
     /// <summary>
@@ -22,7 +24,7 @@ public abstract class SkillSlot
     protected string CurrentSkillKey;
 
     public int SkillLevel;
-
+    // TODO: Cooldown should be syncvars
     protected float CurrentCooldown;
     protected float CurrentMaxCooldown;
     protected FightPlayerSkillSlots SlotsMgr;
