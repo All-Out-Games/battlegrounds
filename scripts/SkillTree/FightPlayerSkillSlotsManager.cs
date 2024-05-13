@@ -1,9 +1,21 @@
 using AO;
 
-public class FightPlayerSkillSlots : FightPlayerComponent
+public class FightPlayerSkillSlotsManager : FightPlayerComponent
 {
 
     public Dictionary<string, SkillSlot> ActiveSkillSlots = new(); // A slot becomes active if the player put in an active skill
+
+    public override void Update()
+    {
+        foreach (var kv in ActiveSkillSlots)
+        {
+            if (kv.Value.CurrentCooldownTime() > 0)
+            {
+                kv.Value.ReduceCooldown(Time.DeltaTime);
+            }
+        }
+    }
+
 
     public void InitKeybind()
     {
@@ -15,9 +27,10 @@ public class FightPlayerSkillSlots : FightPlayerComponent
         AssignKeybindToSlot(FightClubGameManager.PunchKeybind, "Punch");
         
         // TODO
-        var rollout = new PunchSkillSlot();
-        rollout.InitSlot("Slot1", this);
-        ActiveSkillSlots["Slot1"] = rollout;
+        var slot1 = new EquipSkillSlot();
+        slot1.InitSlot("Slot1", this);
+        ActiveSkillSlots["Slot1"] = slot1;
+        AssignKeybindToSlot(FightClubGameManager.Slot1Keybind, "Slot1");
     }
     
     
@@ -42,7 +55,12 @@ public class FightPlayerSkillSlots : FightPlayerComponent
 
     public void DeactivateSlot(string mainKey)
     {
-        ActiveSkillSlots.Remove(mainKey);
+        ActiveSkillSlots[mainKey].AssignSkill("Empty", 0);
+    }
+
+    public SkillSlot GetSkillSlots(string mainKey)
+    {
+        return ActiveSkillSlots[mainKey];
     }
 
     public FightPlayer GetPlayer()

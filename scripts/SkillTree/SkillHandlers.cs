@@ -26,6 +26,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     
     public void RemoveSkill(string skillKey)
     {
+        return; // Shin: Design redundancy. Currently not useful. When skills become upgradable we'll need to use this
         if (Network.IsServer)
         {
             MethodInfo skillRemover = SkillTreeCompType.GetMethod($"CallClient_{skillKey}_Remover");
@@ -45,17 +46,27 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     // Reflection will be used to call these functions
     // Note that FightPlayerComponent provides access to player directly (call attribute _player)
 
+    #region Skill: Punch
+
     [ClientRpc]
     public void Punch_Adder(int level)
     {
         Log.Debug($"Punch Ability is available by default, cur lvl = {level}");
         _player.GetSkillSlots().UpdateSlot("Punch", level, "Punch");
     }
+    
+
+    #endregion
+
+    #region Skill: RollOut
 
     [ClientRpc]
-    public void Punch_Remover()
+    public void RollOut_Adder(int level)
     {
-        // Active & Replacement Ability do not need to be removed. Their upgrade function will just change the abilities' level
-        // Stat & Enhancements (normally) need a remover when upgrading. 
+        Log.Debug($"RollOut Upgraded, cur lvl = {level}");
+        // TODO: After skill slot design settled,call "TryFillEmptySlot(level, skillKey)" here
     }
+    
+
+    #endregion
 }

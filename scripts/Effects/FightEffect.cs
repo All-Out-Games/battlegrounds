@@ -10,7 +10,8 @@ public abstract class FightEffect : AEffect
     protected FightPlayer FightPlayer;
 
     /// <summary>
-    /// Get the owner as FightPlayer
+    /// Get the owner as FightPlayer.
+    /// If you want to use this field you must call base.OnEffectStart
     /// </summary>
     public override void OnEffectStart()
     {

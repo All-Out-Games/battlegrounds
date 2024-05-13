@@ -27,6 +27,7 @@ public static class EffectConfig
         public int ContactDamage = 5;
         public float SpeedBuffMultiplier = 1.5f;
         public float BumpStrength = 35f;
+        public float Cooldown = 5f;
         
 
         public RollOutConfig()

@@ -8,13 +8,13 @@ public static partial class SkillConfig
     #region Node Configs
 
     /// <summary>
-    /// Root node
+    /// Punch node
     /// </summary>
     public static readonly SkillTreeNodeConfig RootNodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Punch Forward and deals 1.0x damage",
         MaximumLevel = 1,
-        NType = NodeType.SkillUnlock,
+        NType = NodeType.SkillReplace,
         UpgradeCost = 0,
         UIPosition = new Vector2(900,100),
         SkillKey = "Punch",
@@ -23,7 +23,7 @@ public static partial class SkillConfig
     };
     
     /// <summary>
-    /// Shoulder Crash node
+    /// ShoulderCrash node
     /// </summary>
     public static readonly SkillTreeNodeConfig ShoulderCrashNodeConfig = new SkillTreeNodeConfig()
     {
@@ -38,7 +38,7 @@ public static partial class SkillConfig
     };
     
     /// <summary>
-    /// Health Boost node
+    /// HealthBoost node
     /// </summary>
     public static readonly SkillTreeNodeConfig HealthBoostNodeConfig = new SkillTreeNodeConfig()
     {
@@ -53,7 +53,7 @@ public static partial class SkillConfig
     };
     
     /// <summary>
-    /// Health Boost node
+    /// AttackBoost node
     /// </summary>
     public static readonly SkillTreeNodeConfig AttackBoostNodeConfig = new SkillTreeNodeConfig()
     {
@@ -66,12 +66,21 @@ public static partial class SkillConfig
         ParentNodeKeys = new [] {"Punch"},
         ChildrenNodeKeys = {},
     };
-
-    #endregion
-
-    #region SkillConfigs
-
     
+    /// <summary>
+    /// RollOut node
+    /// </summary>
+    public static readonly SkillTreeNodeConfig RollOutNodeConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Boost your speed and enable you to crash into other players",
+        MaximumLevel = 1,
+        NType = NodeType.AttrBoost,
+        UpgradeCost = 0,
+        UIPosition = new Vector2(1250,180),
+        SkillKey = "RollOut",
+        ParentNodeKeys = new [] {"Punch"},
+        ChildrenNodeKeys = {},
+    };
 
     #endregion
     
@@ -82,5 +91,6 @@ public static partial class SkillConfig
             {"ShoulderCrash", ShoulderCrashNodeConfig},
             {"HealthBoost", HealthBoostNodeConfig},
             {"AttackBoost", AttackBoostNodeConfig},
+            {"RollOut", RollOutNodeConfig},
         };
 }

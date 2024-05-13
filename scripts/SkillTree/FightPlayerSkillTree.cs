@@ -103,6 +103,8 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     /// [Server Only]
     /// Called in player's Awake function. 
     /// Get the Save of player and populate skill trees. [Save API is only available on server]
+    ///
+    /// Also: If you need to do any testing and modify player skill level manually, do it here.
     /// </summary>
     public void InitializeSkillTreeComp()
     {

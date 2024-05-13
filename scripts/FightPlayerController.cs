@@ -12,6 +12,22 @@ public partial class FightPlayer
             HandleSkillSlotInput();
         }
     }
+
+    protected void UseSkillSlot(SkillSlot slot)
+    {
+        if (slot.IsUsable())
+        {
+            slot.UseSkill();
+        }
+        else if (slot.IsEmpty())
+        {
+            UIManager.Instance.SetPopup($"Slot {slot.GetMainKey()}, Is EMPTY!", 2.0f, this);
+        }
+        else
+        {
+            UIManager.Instance.SetPopup($"Slot {slot.GetMainKey()}, Key {slot.GetCurrentSkillKey()} Is NOT usable", 2.0f, this);
+        }
+    }
     
     
     #region Input Handling
@@ -21,14 +37,15 @@ public partial class FightPlayer
     protected void HandleSkillSlotInput()
     {
         //TestServerRPC.CallServer_LogSomethingOnServer(SkillSlots.ActiveSkillSlots["Punch"].SlotKeyBind.ToString());
-        foreach (var kv in SkillSlots.ActiveSkillSlots)
+        foreach (var kv in SkillSlotsManager.ActiveSkillSlots)
         {
             // TODO: More complex input handling. Wrap handler functions in slots
-            if (GetKeybindDown(kv.Value.SlotKeyBind))
+            SkillSlot curSlot = kv.Value;
+            if (GetKeybindDown(curSlot.SlotKeyBind))
             {
-                TestServerRPC.CallServer_LogSomethingOnServer("Skill Cast Input!");
+                //TestServerRPC.CallServer_LogSomethingOnServer("Skill Cast Input!");
+                UseSkillSlot(curSlot);
                 
-                kv.Value.UseSkill();
             }
         }
     }

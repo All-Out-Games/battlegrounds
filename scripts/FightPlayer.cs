@@ -42,7 +42,7 @@ public partial class FightPlayer : Player
     protected FightPlayerEffectManager EffectManager;
     protected FightPlayerUI PlayerUi;
     protected FightPlayerSkillTree SkillTree;
-    protected FightPlayerSkillSlots SkillSlots;
+    protected FightPlayerSkillSlotsManager SkillSlotsManager;
     
     protected Circle_Collider Collider; // MAIN Collider used for bumping / damage
     protected Box_Collider PunchCollider;
@@ -68,8 +68,8 @@ public partial class FightPlayer : Player
         
         SkillTree = AddFightPlayerComponent<FightPlayerSkillTree>();
 
-        SkillSlots = AddFightPlayerComponent<FightPlayerSkillSlots>();
-        SkillSlots.InitKeybind();
+        SkillSlotsManager = AddFightPlayerComponent<FightPlayerSkillSlotsManager>();
+        SkillSlotsManager.InitKeybind();
     }
 
     public void OnLoad()
@@ -252,9 +252,9 @@ public partial class FightPlayer : Player
         return SkillTree;
     }
 
-    public FightPlayerSkillSlots GetSkillSlots()
+    public FightPlayerSkillSlotsManager GetSkillSlots()
     {
-        return SkillSlots;
+        return SkillSlotsManager;
     }
 
     #endregion

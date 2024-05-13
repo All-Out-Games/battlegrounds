@@ -21,13 +21,14 @@ public abstract class SkillSlot
     /// <summary>
     /// The current skillKey for the slot. It can be changed when the player replace the skill in this slot.
     /// </summary>
-    protected string CurrentSkillKey;
+    protected string CurrentSkillKey = "Empty";
 
-    public int SkillLevel;
+    public int SkillLevel = 0;
+    public bool IsSilent = false;
     // TODO: Cooldown should be syncvars
     protected float CurrentCooldown;
     protected float CurrentMaxCooldown;
-    protected FightPlayerSkillSlots SlotsMgr;
+    protected FightPlayerSkillSlotsManager SlotsMgr;
 
     public float CurrentCooldownTime()
     {
@@ -39,7 +40,7 @@ public abstract class SkillSlot
         return float.Clamp(CurrentCooldown / CurrentMaxCooldown, 0, 1);
     }
 
-    public void InitSlot(string mainKey, FightPlayerSkillSlots mgr)
+    public void InitSlot(string mainKey, FightPlayerSkillSlotsManager mgr)
     {
         MainSkillKey = mainKey;
         SlotsMgr = mgr;
@@ -52,12 +53,41 @@ public abstract class SkillSlot
         SkillLevel = level;
     }
 
+    public string GetCurrentSkillKey()
+    {
+        return CurrentSkillKey;
+    }
+
+    public string GetMainKey()
+    {
+        return MainSkillKey;
+    }
+    
     public void ApplyCooldown(float maxCooldown)
     {
+        // The parameter should be included in the skill config
         CurrentCooldown = maxCooldown;
         CurrentMaxCooldown = maxCooldown;
     }
-    
+
+    public void ReduceCooldown(float delta)
+    {
+        CurrentCooldown -= delta;
+    }
+
+    public void SilentSlot(bool silent)
+    {
+        IsSilent = silent;
+    }
+
+    public bool IsEmpty()
+    {
+        return CurrentSkillKey == "Empty";
+    }
+    public bool IsUsable()
+    {
+        return !IsEmpty() && !IsSilent && CurrentCooldown <= 0;
+    }
     
     public abstract void UseSkill();
 }

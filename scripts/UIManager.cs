@@ -80,7 +80,7 @@ public class UIManager : System<UIManager>
                 // Draw the popup
                 {
                     var centerRect = UI.ScreenRect.CenterRect().Grow(235).CutBottom(50);
-                    UI.Text(centerRect, $"{_popupTxt}", new UI.TextSettings() {Size = 24, Color = Vector4.Black, 
+                    UI.Text(centerRect, $"{_popupTxt}", new UI.TextSettings() {Font = _defaultFont, Size = 24, Color = Vector4.Black, 
                         VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center,
                         WordWrap = true, Outline = true, OutlineColor = Vector4.White
                     });
@@ -117,12 +117,12 @@ public class UIManager : System<UIManager>
             var sideBarRect = UI.ScreenRect.LeftCenterRect().Grow(110, 100, 110, 0).Offset(5, 0);
 
             var buttonRect = sideBarRect.CutTop(100);
-            if (UI.Button(buttonRect, $"Add Rollout", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
+            if (UI.Button(buttonRect, $"Slot 1", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
                     _defaultTextSettings).clicked)
             {
                 var player = (FightPlayer)Network.LocalPlayer;
-                Log.Debug("Rollin' Out!");
-                player.GetEffectMgr().CallServer_CastRollOut(1);
+                Log.Debug("Casting Slot 1");
+                player.GetEffectMgr().CallServer_CastRollOut("Slot1");
             }
 
             // Spacing
@@ -136,6 +136,21 @@ public class UIManager : System<UIManager>
                 Log.Info("Adding A bump!");
                 player.AddBump(new Vector2(20, 0), false);  // Add 
                 TestServerRPC.CallServer_AddBumpToNetworkID(player.Entity.NetworkId, new Vector2(120, 0));
+            }
+            
+            // Spacing
+            sideBarRect.CutTop(10);
+            
+            var buttonRect3 = sideBarRect.CutTop(100);
+            if (UI.Button(buttonRect2, $"Unlock Rollout in Slot 1",
+                    new UI.ButtonSettings()
+                        { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
+                    _defaultTextSettings).clicked)
+            {
+                var player = (FightPlayer)Network.LocalPlayer;
+                Log.Info("Rollout Unlocked in Slot 1");
+                player.GetSkillTree().CallServer_UpgradeSkill("RollOut", 1);
+                player.GetSkillSlots().UpdateSlot("Slot1", 1, "RollOut");
             }
             
         }

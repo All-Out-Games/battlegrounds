@@ -6,6 +6,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     #region Attributes
 
     public static Keybind PunchKeybind;
+    public static Keybind Slot1Keybind;
     
     protected List<Entity> CombatPlayer = new(); // Only damage players in combat
     protected List<Entity> SafePlayer = new(); // Not in use now. (waiting for AFK area stuff)
@@ -19,6 +20,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public override void Awake()
     {
         PunchKeybind = Keybinds.RegisterKeybind("Punch", Input.UnifiedInput.KEYCODE_F);
+        Slot1Keybind = Keybinds.RegisterKeybind("Skill 1", Input.UnifiedInput.KEYCODE_R);
     }
 
     public override void Start() 
