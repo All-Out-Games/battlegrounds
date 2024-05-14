@@ -23,7 +23,6 @@ public static partial class SkillConfig
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "WindFist", "DoublePunch", "FireFist" };
     
-
     public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() {  };
 
     public static HashSet<string> GetAllSkillKeys()

@@ -1,0 +1,44 @@
+10
+253403070465
+201474708792244 1715705907565823500
+{
+  "name": "AbilityTreeView",
+  "local_enabled": true,
+  "local_position": {
+    "X": 0,
+    "Y": 0
+  },
+  "local_rotation": 0,
+  "local_scale": {
+    "X": 1,
+    "Y": 1
+  },
+  "sibling_index": 1,
+  "parent": "199008852283556:1715704740019608500"
+},
+{
+  "cid": 1,
+  "aoid": "201509978716419:1715705924265605600",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0.0099999997764826,
+      "Y": 0.0299999993294477
+    },
+    "max": {
+      "X": 0.9900000095367432,
+      "Y": 0.8799999952316284
+    },
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
+  }
+}

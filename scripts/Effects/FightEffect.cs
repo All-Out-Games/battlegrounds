@@ -17,4 +17,9 @@ public abstract class FightEffect : AEffect
     {
         FightPlayer = (FightPlayer)Player;
     }
+    
+    public override void OnEffectUpdate()
+    {
+        
+    }
 }

@@ -1,6 +1,5 @@
 ﻿using AO;
 
-
 public partial class EffectRollOut : FightEffect
 {
     private EffectConfig.RollOutConfig _config;
@@ -35,6 +34,8 @@ public partial class EffectRollOut : FightEffect
         _skillSlot.SilentSlot(true);
     }
 
+
+
     public override void OnEffectEnd(bool interrupt)
     {
         FightPlayer.RemoveSpeedModifier(_config.SpeedBuffMultiplier);
@@ -42,6 +43,7 @@ public partial class EffectRollOut : FightEffect
         _skillSlot.SilentSlot(false);
         _skillSlot.ApplyCooldown(_config.Cooldown);
     }
+    
     
     
 
