@@ -1,9 +1,12 @@
 ﻿using AO;
+
 public class UIManager : System<UIManager>
 {
     // Update using event when you need to. This should avoid fetching references each frame which causes a slight overhead
     public Action<FightPlayer> UpdateUIEvent;
     public Action<string, float, Player> PopupEvent;
+
+    private Dictionary<string, UniqueUIWindow> UniqueUiWindows = new(); // [PrefabPath : Window Class]
 
     private string _scoreTxt;
     private string _resourceTxt;
@@ -17,11 +20,11 @@ public class UIManager : System<UIManager>
     private FontAsset _defaultFont;
     private UI.ButtonSettings _defaultButtonSettings;
     private UI.TextSettings _defaultTextSettings;
-    
+
+    private UICanvas _mainCanvas;
     public override void Awake()
     {
         PopupEvent = SetPopup;
-        UpdateUIEvent = UpdateUI;
         _defaultFont = Assets.GetAsset<FontAsset>("$AO/fonts/Barlow-SemiBold.ttf");
         _defaultButtonSettings = new UI.ButtonSettings()
             { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") };
@@ -33,30 +36,13 @@ public class UIManager : System<UIManager>
         _scoreTxt = "0";
         _resourceTxt = "0";
         _moneyTxt = "0";
-
-        UpdateUI((FightPlayer)Network.LocalPlayer);
     }
-    
 
-    public void UpdateUI(FightPlayer player)
+    public UICanvas FindCanvas()
     {
-        if (player == null || Network.LocalPlayer == null)
-        {
-            return;
-        }
-
-        if (!player.IsLocal)
-        {
-            return;
-        }
-        //_scoreTxt = player.Score.ToString();
-        //_resourceTxt = player.Resource.ToString();
-        //_atkTxt = player.Atk.ToString();
-        //_multiplierTxt = player.Multiplier.ToString();
-        //_moneyTxt = player.Money.ToString();
+        var canvas = Entity.FindByName("Canvas").GetComponent<UICanvas>();
+        return canvas;
     }
-
-    
     public void SetPopup(string txt, float time, Player player)
     {
         if (!player.IsLocal)
@@ -66,6 +52,37 @@ public class UIManager : System<UIManager>
         _popupRemainingTime = time;
         _popupTxt = txt;
         
+    }
+
+    public void OpenUniqueUIWindow(string prefabPath)
+    {
+        // Try get existing window
+        UniqueUIWindow uniqueWd;
+        if (!UniqueUiWindows.TryGetValue(prefabPath, out uniqueWd))
+        {
+            // If not exist, create one
+            uniqueWd = UIWindow.InstantiateWindow(prefabPath) as UniqueUIWindow;
+            if (uniqueWd == null)
+            {
+                Log.Error($"Cannot get a UniqueUIWindow component from {prefabPath}!");
+                return;
+            }
+
+            _mainCanvas ??= FindCanvas();
+            uniqueWd.Entity.SetParent(_mainCanvas.Entity,false);
+            UniqueUiWindows.Add(prefabPath, uniqueWd);
+        }
+        
+        // Close all that is currently active, then open window
+        foreach (var kv in UniqueUiWindows)
+        {
+            UniqueUIWindow v = kv.Value;
+            if (v.IsActive)
+            {
+                v.CloseWindow();
+            }
+        }
+        uniqueWd.OpenWindow();
     }
 
     public override void Update()
@@ -94,66 +111,83 @@ public class UIManager : System<UIManager>
             
         }
         
-        // Draw the score
+        // Admin menus
+        if (Network.LocalPlayer != null && Network.LocalPlayer.IsAdmin)
         {
-            var topBarRect = UI.ScreenRect.CutTop(80f);
-            var currencyRect = topBarRect.CutLeft(225f).Offset(550f, -10f);
-            UI.Image(currencyRect, Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png"), Vector4.White);
-            UI.Text(currencyRect, $"Score: {_scoreTxt}", new UI.TextSettings() {Font = _defaultFont,Size = 40, Color = Vector4.LightGreen, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
-            // Draw resources
-            var resourceRect = topBarRect.CutLeft(225f).Offset(550f, -10f);
-            UI.Image(resourceRect, Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png"), Vector4.White);
-            UI.Text(resourceRect, $"Material: {_resourceTxt}", new UI.TextSettings() {Font = _defaultFont, Size = 40, Color = Vector4.Green, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
-            // Draw money
-            var moneyRect = topBarRect.CutLeft(225f).Offset(550f, -10f);
-            UI.Image(moneyRect, Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png"), Vector4.White);
-            UI.Text(moneyRect, $"Money: {_moneyTxt}", new UI.TextSettings() { Font = _defaultFont, Size = 40, Color = Vector4.LightGreen, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
+            // Draw the score
+            {
+                var topBarRect = UI.ScreenRect.CutTop(80f);
+                var currencyRect = topBarRect.CutLeft(225f).Offset(550f, -10f);
+                UI.Image(currencyRect, Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png"), Vector4.White);
+                UI.Text(currencyRect, $"Score: {_scoreTxt}", new UI.TextSettings() {Font = _defaultFont,Size = 40, Color = Vector4.LightGreen, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
+                // Draw resources
+                var resourceRect = topBarRect.CutLeft(225f).Offset(550f, -10f);
+                UI.Image(resourceRect, Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png"), Vector4.White);
+                UI.Text(resourceRect, $"Material: {_resourceTxt}", new UI.TextSettings() {Font = _defaultFont, Size = 40, Color = Vector4.Green, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
+                // Draw money
+                var moneyRect = topBarRect.CutLeft(225f).Offset(550f, -10f);
+                UI.Image(moneyRect, Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png"), Vector4.White);
+                UI.Text(moneyRect, $"Money: {_moneyTxt}", new UI.TextSettings() { Font = _defaultFont, Size = 40, Color = Vector4.LightGreen, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
+            }
+
+
+            // Draw the side buttons
+            {
+
+                var sideBarRect = UI.ScreenRect.LeftCenterRect().Grow(330, 100, 330, 0).Offset(5, 0);
+
+                var buttonRect = sideBarRect.CutTop(100);
+                if (UI.Button(buttonRect, $"Slot 1", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
+                        _defaultTextSettings).clicked)
+                {
+                    var player = (FightPlayer)Network.LocalPlayer;
+                    Log.Debug("Casting Slot 1");
+                    player.GetEffectMgr().CallServer_CastRollOut("Slot1");
+                }
+
+                // Spacing
+                sideBarRect.CutTop(10);
+
+                var buttonRect2 = sideBarRect.CutTop(100);
+                if (UI.Button(buttonRect2, $"Add BUMP", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
+                        _defaultTextSettings).clicked)
+                {
+                    var player = (FightPlayer)Network.LocalPlayer;
+                    Log.Info("Adding A bump!");
+                    player.AddBump(new Vector2(20, 0), false);  // Add 
+                    TestServerRPC.CallServer_AddBumpToNetworkID(player.Entity.NetworkId, new Vector2(120, 0));
+                }
+                
+                // Spacing
+                sideBarRect.CutTop(10);
+                
+                var buttonRect3 = sideBarRect.CutTop(100);
+                if (UI.Button(buttonRect3, $"Unlock Rollout Slot 1",
+                        new UI.ButtonSettings()
+                            { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
+                        _defaultTextSettings).clicked)
+                {
+                    var player = (FightPlayer)Network.LocalPlayer;
+                    Log.Info("Rollout Unlocked in Slot 1");
+                    player.GetSkillTree().CallServer_UpgradeSkill("RollOut", 1);
+                    player.GetSkillSlots().UpdateSlot("Slot1", 1, "RollOut");
+                }
+                
+                // Spacing
+                sideBarRect.CutTop(10);
+                
+                var buttonRect4 = sideBarRect.CutTop(100);
+                if (UI.Button(buttonRect4, $"Ability Vendor",
+                        new UI.ButtonSettings()
+                            { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
+                        _defaultTextSettings).clicked)
+                {
+                    var player = (FightPlayer)Network.LocalPlayer;
+                    OpenUniqueUIWindow("AbilityVendorMenuWindow.prefab");
+                }
+            }
         }
 
-
-        // Draw the side buttons
-        {
-
-            var sideBarRect = UI.ScreenRect.LeftCenterRect().Grow(110, 100, 110, 0).Offset(5, 0);
-
-            var buttonRect = sideBarRect.CutTop(100);
-            if (UI.Button(buttonRect, $"Slot 1", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
-                    _defaultTextSettings).clicked)
-            {
-                var player = (FightPlayer)Network.LocalPlayer;
-                Log.Debug("Casting Slot 1");
-                player.GetEffectMgr().CallServer_CastRollOut("Slot1");
-            }
-
-            // Spacing
-            sideBarRect.CutTop(10);
-
-            var buttonRect2 = sideBarRect.CutTop(100);
-            if (UI.Button(buttonRect2, $"Add BUMP", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
-                    _defaultTextSettings).clicked)
-            {
-                var player = (FightPlayer)Network.LocalPlayer;
-                Log.Info("Adding A bump!");
-                player.AddBump(new Vector2(20, 0), false);  // Add 
-                TestServerRPC.CallServer_AddBumpToNetworkID(player.Entity.NetworkId, new Vector2(120, 0));
-            }
-            
-            // Spacing
-            sideBarRect.CutTop(10);
-            
-            var buttonRect3 = sideBarRect.CutTop(100);
-            if (UI.Button(buttonRect2, $"Unlock Rollout in Slot 1",
-                    new UI.ButtonSettings()
-                        { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
-                    _defaultTextSettings).clicked)
-            {
-                var player = (FightPlayer)Network.LocalPlayer;
-                Log.Info("Rollout Unlocked in Slot 1");
-                player.GetSkillTree().CallServer_UpgradeSkill("RollOut", 1);
-                player.GetSkillSlots().UpdateSlot("Slot1", 1, "RollOut");
-            }
-            
-        }
         
         
     }

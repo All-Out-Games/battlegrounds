@@ -2,7 +2,7 @@
 266287972353
 199008852283556 1715704740019608500
 {
-  "name": "AbilityVendorMenu",
+  "name": "AbilityVendorMenuWindow",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,8 +13,7 @@
     "X": 1,
     "Y": 1
   },
-  "sibling_index": 0,
-  "parent": "197297106323692:1715703929533471200"
+  "sibling_index": 0
 },
 {
   "cid": 1,
@@ -23,12 +22,12 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.1000000014901161,
-      "Y": 0.1000000014901161
+      "X": 0.2000000029802322,
+      "Y": 0.2000000029802322
     },
     "max": {
-      "X": 0.8999999761581421,
-      "Y": 0.8999999761581421
+      "X": 0.8000000119209290,
+      "Y": 0.8000000119209290
     },
     "insets": {
       "X": 0,
@@ -58,5 +57,16 @@
     "fit_aspect": false,
     "fit_aspect_kind": "Fit_Aspect::AUTO",
     "fit_aspect_anchor": "UIFitAspectAnchor::CENTER"
+  }
+},
+{
+  "cid": 3,
+  "aoid": "232291293965645:1715720498758479200",
+  "component_type": "Mono_Component",
+  "mono_component_type": "AbilityVendorWindow",
+  "data": {
+    "CloseButton": "229487592035743:1715719171247504800",
+    "AbilityTreeScroll": "199964725831157:1715705192611451700",
+    "AbilityNode": "204365239532516:1715707276188942200"
   }
 }

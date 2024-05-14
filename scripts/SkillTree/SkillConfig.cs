@@ -54,7 +54,9 @@ public static partial class SkillConfig
         public string SkillKey;
         public string[] ChildrenNodeKeys;
         public string[] ParentNodeKeys;
-
+        
+        // Special Handler needed - If this is marked True, a special handler will be called when the skill is added
+        public bool NeedSpecialHandler; // TODO: Implement in SkillHandler
     }
     
 }

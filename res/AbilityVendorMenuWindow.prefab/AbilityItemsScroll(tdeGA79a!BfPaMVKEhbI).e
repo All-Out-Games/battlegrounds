@@ -1,8 +1,8 @@
 10
-249108103169
-201619484403940 1715705976114912500
+261993005057
+199937270988634 1715705179611993800
 {
-  "name": "AbilityNode",
+  "name": "AbilityItemsScroll",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -14,11 +14,11 @@
     "Y": 1
   },
   "sibling_index": 0,
-  "parent": "199937270988634:1715705179611993800"
+  "parent": "201474708792244:1715705907565823500"
 },
 {
   "cid": 1,
-  "aoid": "201635606405508:1715705983748439400",
+  "aoid": "199954658633838:1715705187844784100",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
@@ -33,7 +33,7 @@
     "insets": {
       "X": 0,
       "Y": 0,
-      "Z": -1200,
+      "Z": 0,
       "W": 0
     },
     "offset": {
@@ -44,19 +44,17 @@
 },
 {
   "cid": 2,
-  "aoid": "201647538108602:1715705989397922500",
+  "aoid": "199964725831157:1715705192611451700",
   "component_type": "Internal_Component",
-  "internal_component_type": "UIImage",
+  "internal_component_type": "UIScrollView",
   "data": {
-    "sprite": "$AO/new/main_menu/top_bar_gradient.png",
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "fit_aspect": false,
-    "fit_aspect_kind": "Fit_Aspect::AUTO",
-    "fit_aspect_anchor": "UIFitAspectAnchor::CENTER"
+    "vertical": true,
+    "horizontal": true,
+    "content_inset": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    }
   }
 }
