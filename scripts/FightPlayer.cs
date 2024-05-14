@@ -39,44 +39,35 @@ public partial class FightPlayer : Player
     // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
     public EffectConfig.PlayerStatus PlayerStatus = EffectConfig.PlayerStatus.Combat;
 
-    [Serialized] protected FightPlayerEffectManager EffectManager;
-    [Serialized] protected FightPlayerUI PlayerUi;
-    [Serialized] protected FightPlayerSkillTree SkillTree;
-    [Serialized] protected FightPlayerSkillSlotsManager SkillSlotsManager;
-    
+    protected FightPlayerEffectManager EffectManager;
+    protected FightPlayerUI PlayerUi;
+    protected FightPlayerSkillTree SkillTree;
+    protected FightPlayerSkillSlotsManager SkillSlotsManager;
+
     protected Circle_Collider Collider; // MAIN Collider used for bumping / damage
     protected Box_Collider PunchCollider;
     
     public Entity CollisionEntity;
 
     #endregion
-
-    public T AddFightPlayerComponent<T>() where T : FightPlayerComponent
-    {
-        var e = Entity.Create(); e.SetParent(Entity, false);
-        T fpc = e.AddComponent<T>();
-        fpc.AssignPlayer(this);
-        return fpc;
-    }
     
     #region EventFunctions
     
     public override void Awake()
     {
-        EffectManager = AddFightPlayerComponent<FightPlayerEffectManager>();
-        PlayerUi = AddFightPlayerComponent<FightPlayerUI>();
-        SkillTree = AddFightPlayerComponent<FightPlayerSkillTree>();
-        SkillSlotsManager = AddFightPlayerComponent<FightPlayerSkillSlotsManager>();
-
-        SkillSlotsManager.InitKeybind();
-        SkillTree.InitializeSkillTreeComp();
-        SkillTree.HandleAllSkills();
+        EffectManager = Entity.AddComponent<FightPlayerEffectManager>();
+        PlayerUi = Entity.AddComponent<FightPlayerUI>();
+        SkillTree = Entity.AddComponent<FightPlayerSkillTree>();
+        SkillSlotsManager = Entity.AddComponent<FightPlayerSkillSlotsManager>();
     }
     
     public override void Start()
     {
+        SkillSlotsManager.InitKeybind();
+        SkillTree.InitializeSkillTreeComp();
+        SkillTree.HandleAllSkills();
+
         // Colliders
-        
         var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
         CollisionEntity = collisionPrefab.Instantiate();
         CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;

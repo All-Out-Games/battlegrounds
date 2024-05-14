@@ -10,7 +10,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     
     public override void Awake()
     {
-
+        base.Awake();
         foreach (var skill in SkillConfig.GetAllSkillKeys())
         {
             SkillLevelDict[skill] = 0;

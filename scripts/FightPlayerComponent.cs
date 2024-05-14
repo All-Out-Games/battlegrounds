@@ -9,18 +9,9 @@ public class FightPlayerComponent : Component
     
     protected FightPlayer _player;
 
-    public void AssignPlayer(FightPlayer pl)
+    public override void Awake()
     {
-        _player = pl;
-    }
-
-    public FightPlayerComponent(FightPlayer pl)
-    {
-        _player = pl;
-    }
-
-    public FightPlayerComponent()
-    {
-        
+        _player = Entity.GetComponent<Player>() as FightPlayer;
+        Log.Info($"Set player: {_player.Name}");
     }
 }
