@@ -54,7 +54,7 @@
       "W": 0
     },
     "offset": {
-      "X": 725,
+      "X": 775,
       "Y": 30
     }
   }
@@ -81,7 +81,7 @@
       "word_wrap_start_offset": 0,
       "offset": {
         "X": 0,
-        "Y": 0
+        "Y": 12
       },
       "do_drop_shadow": true,
       "drop_shadow_offset": {
@@ -186,5 +186,17 @@
       "click_sound_speed": 1,
       "keybind": 0
     }
+  }
+},
+{
+  "cid": 5,
+  "aoid": "241369636390819:1715724797217979900",
+  "component_type": "Mono_Component",
+  "mono_component_type": "AbilityItem",
+  "data": {
+    "SkillKeyText": "205961354730454:1715708031925641200",
+    "CostText": "241124931079348:1715724681353671200",
+    "SkillIcon": "0:0",
+    "ItemButton": "207050707302736:1715708547717808300"
   }
 }

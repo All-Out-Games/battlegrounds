@@ -66,6 +66,7 @@
   "mono_component_type": "AbilityVendorWindow",
   "data": {
     "CloseButton": "229487592035743:1715719171247504800",
-    "AbilityTreeScroll": "199964725831157:1715705192611451700"
+    "AbilityTreeScroll": "199964725831157:1715705192611451700",
+    "AbilityNode": "204365239532516:1715707276188942200"
   }
 }

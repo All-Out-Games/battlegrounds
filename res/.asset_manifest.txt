@@ -1,3 +1,3 @@
-AbilityItem.prefab - .ao - 6643a4834d5b99636ac794b4 - 8496634713992596881
-AbilityVendorMenuWindow.prefab - .ao - 6643db564d5b99636ac7a99e - 17871057652031545040
+AbilityItem.prefab - .ao - 6643e5384d5b99636ac7a9a1 - 6497479236492387875
+AbilityVendorMenuWindow.prefab - .ao - 6643e5384d5b99636ac7a9a0 - 1415993116909212638
 FatPlayerCollision.prefab - .ao - 66426d27a214e8c7a135d8b7 - 17567100292640013128
