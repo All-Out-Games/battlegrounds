@@ -39,10 +39,10 @@ public partial class FightPlayer : Player
     // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
     public EffectConfig.PlayerStatus PlayerStatus = EffectConfig.PlayerStatus.Combat;
 
-    protected FightPlayerEffectManager EffectManager;
-    protected FightPlayerUI PlayerUi;
-    protected FightPlayerSkillTree SkillTree;
-    protected FightPlayerSkillSlotsManager SkillSlotsManager;
+    [Serialized] protected FightPlayerEffectManager EffectManager;
+    [Serialized] protected FightPlayerUI PlayerUi;
+    [Serialized] protected FightPlayerSkillTree SkillTree;
+    [Serialized] protected FightPlayerSkillSlotsManager SkillSlotsManager;
     
     protected Circle_Collider Collider; // MAIN Collider used for bumping / damage
     protected Box_Collider PunchCollider;
@@ -53,7 +53,9 @@ public partial class FightPlayer : Player
 
     public T AddFightPlayerComponent<T>() where T : FightPlayerComponent
     {
-        T fpc = Entity.ServerAddComponentToNetworkedEntity<T>();
+        var e = Entity.Create(); e.SetParent(Entity, false);
+        T fpc = e.AddComponent<T>();
+        fpc.AssignPlayer(this);
         return fpc;
     }
     
@@ -61,28 +63,14 @@ public partial class FightPlayer : Player
     
     public override void Awake()
     {
-        if (Network.IsServer)
-        {
-            EffectManager = AddFightPlayerComponent<FightPlayerEffectManager>();
-        
-            PlayerUi = AddFightPlayerComponent<FightPlayerUI>();
-        
-            SkillTree = AddFightPlayerComponent<FightPlayerSkillTree>();
+        EffectManager = AddFightPlayerComponent<FightPlayerEffectManager>();
+        PlayerUi = AddFightPlayerComponent<FightPlayerUI>();
+        SkillTree = AddFightPlayerComponent<FightPlayerSkillTree>();
+        SkillSlotsManager = AddFightPlayerComponent<FightPlayerSkillSlotsManager>();
 
-            SkillSlotsManager = AddFightPlayerComponent<FightPlayerSkillSlotsManager>();
-            
-        }
-    }
-
-    public void OnLoad()
-    {
-        // Called after Playerdata loaded [After Start()]
+        SkillSlotsManager.InitKeybind();
         SkillTree.InitializeSkillTreeComp();
         SkillTree.HandleAllSkills();
-        
-        SkillSlotsManager.InitKeybind();
-        
-        
     }
     
     public override void Start()

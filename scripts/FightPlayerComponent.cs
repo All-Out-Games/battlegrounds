@@ -9,11 +9,6 @@ public class FightPlayerComponent : Component
     
     protected FightPlayer _player;
 
-    public override void Start()
-    {
-        _player = Entity.GetComponent<FightPlayer>();
-    }
-
     public void AssignPlayer(FightPlayer pl)
     {
         _player = pl;
