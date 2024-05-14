@@ -260,7 +260,7 @@ public partial class FightPlayer : Player
         Collider.OnCollisionEnter -= collisionFunc;
     }
 
-    public Vector2 GetFacingDirection()
+    public Vector2 GetPunchDirection()
     {
         return PunchCollider.Entity.Position - Entity.Position;
     }

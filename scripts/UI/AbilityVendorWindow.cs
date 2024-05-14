@@ -20,10 +20,12 @@ public class AbilityVendorWindow : UniqueUIWindow
     /// </summary>
     public void CreateAllSkillItems()
     {
+        // TODO: Skill Tabs
+        UIRect scrollRect = AbilityNode.GetComponent<UIRect>();
+        float maxY = 0;
         foreach (var kv in SkillConfig.STConfigQueryDict)
         {
             SkillConfig.SkillTreeNodeConfig cfg = kv.Value;
-            // TODO: Ability item initialize
             Log.Debug($"Node {cfg.SkillKey}: Position: {cfg.UIPosition}");
             Prefab abilityItemPrefab = Assets.GetAsset<Prefab>(AbilityItemPath);
             AbilityItem item = abilityItemPrefab.Instantiate().GetComponent<AbilityItem>();
@@ -34,9 +36,12 @@ public class AbilityVendorWindow : UniqueUIWindow
             }
             item.InitializeWithConfig(cfg);
             
+            maxY = float.Max(maxY, cfg.UIPosition.Y);
+            
             item.Entity.SetParent(AbilityNode, false);
             AbilityItems.Add(kv.Key, item);
         }
+        scrollRect.Insets = scrollRect.Insets with { Z = -(maxY + 150) };
     }
     
     

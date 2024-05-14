@@ -48,7 +48,7 @@ public partial class EffectPunch : FightEffect
         if (Network.IsServer)
         {
             Physics.RaycastHit rc;
-            var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetFacingDirection(),
+            var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
                 EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayers().ToArray(), out rc);
 
             if (rc.Entity != null)

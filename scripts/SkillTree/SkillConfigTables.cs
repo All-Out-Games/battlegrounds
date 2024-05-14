@@ -81,6 +81,21 @@ public static partial class SkillConfig
         ParentNodeKeys = new [] {"Punch"},
         ChildrenNodeKeys = {},
     };
+    
+    /// <summary>
+    /// RollOut node
+    /// </summary>
+    public static readonly SkillTreeNodeConfig PunchTwoConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Boost your speed and enable you to crash into other players",
+        MaximumLevel = 1,
+        NType = NodeType.SkillReplace,
+        UpgradeCost = 0,
+        UIPosition = new Vector2(120,450),
+        SkillKey = "Punch2",
+        ParentNodeKeys = new [] {"Punch"},
+        ChildrenNodeKeys = {},
+    };
 
     #endregion
     
@@ -92,5 +107,6 @@ public static partial class SkillConfig
             {"HealthBoost", HealthBoostNodeConfig},
             {"AttackBoost", AttackBoostNodeConfig},
             {"RollOut", RollOutNodeConfig},
+            {"Punch2", PunchTwoConfig}
         };
 }

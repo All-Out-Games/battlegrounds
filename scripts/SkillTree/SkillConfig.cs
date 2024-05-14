@@ -19,9 +19,9 @@ public static partial class SkillConfig
     
     public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
     
-    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut"};
+    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "ShoulderCrash"};
 
-    public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "WindFist", "DoublePunch", "FireFist" };
+    public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     
     public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() {  };
 
