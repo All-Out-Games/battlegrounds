@@ -16,7 +16,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillReplace,
         UpgradeCost = 0,
-        UIPosition = new Vector2(900,100),
+        UIPosition = new Vector2(540,30), // This will be set to the item's offset value
         SkillKey = "Punch",
         ParentNodeKeys = null,
         ChildrenNodeKeys = new [] {"ShoulderCrash", "HealthBoost", "AttackBoost", "FireFist"},

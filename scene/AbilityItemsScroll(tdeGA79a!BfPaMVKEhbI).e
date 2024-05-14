@@ -49,11 +49,11 @@
   "internal_component_type": "UIScrollView",
   "data": {
     "vertical": true,
-    "horizontal": false,
+    "horizontal": true,
     "content_inset": {
       "X": 0,
       "Y": 0,
-      "Z": -1,
+      "Z": 0,
       "W": 0
     }
   }
