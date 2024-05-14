@@ -59,11 +59,14 @@ public partial class FightPlayer : Player
         PlayerUi = Entity.AddComponent<FightPlayerUI>();
         SkillTree = Entity.AddComponent<FightPlayerSkillTree>();
         SkillSlotsManager = Entity.AddComponent<FightPlayerSkillSlotsManager>();
+
+        FightClubGameManager.Instance.OnPlayerJoin(this);
+        
+        SkillSlotsManager.InitKeybind();
     }
     
     public override void Start()
     {
-        SkillSlotsManager.InitKeybind();
         SkillTree.InitializeSkillTreeComp();
         SkillTree.HandleAllSkills();
 
@@ -101,6 +104,11 @@ public partial class FightPlayer : Player
         base.LateUpdate();
     }
     
+    public override void OnDestroy()
+    {
+        FightClubGameManager.Instance.OnPlayerLeave(this);
+    }
+
     #endregion
 
 

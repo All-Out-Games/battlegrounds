@@ -25,10 +25,6 @@ public class FightClubGameManager : System<FightClubGameManager> {
 
     public override void Start() 
     {
-        Log.Info("Registering player events");
-        Player.OnPlayerJoin += OnPlayerJoin;
-        Player.OnPlayerLeave += OnPlayerLeave;
-        Log.Info($"Current Directory: {System.IO.Directory.GetCurrentDirectory()}");
     }
 
     public override void Update() 
