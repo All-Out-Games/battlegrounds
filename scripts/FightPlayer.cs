@@ -53,8 +53,7 @@ public partial class FightPlayer : Player
 
     public T AddFightPlayerComponent<T>() where T : FightPlayerComponent
     {
-        T fpc = Entity.AddComponent<T>();
-        fpc.AssignPlayer(this);
+        T fpc = Entity.ServerAddComponentToNetworkedEntity<T>();
         return fpc;
     }
     
@@ -62,23 +61,26 @@ public partial class FightPlayer : Player
     
     public override void Awake()
     {
-        EffectManager = AddFightPlayerComponent<FightPlayerEffectManager>();
+        if (Network.IsServer)
+        {
+            EffectManager = AddFightPlayerComponent<FightPlayerEffectManager>();
         
-        PlayerUi = AddFightPlayerComponent<FightPlayerUI>();
+            PlayerUi = AddFightPlayerComponent<FightPlayerUI>();
         
-        SkillTree = AddFightPlayerComponent<FightPlayerSkillTree>();
+            SkillTree = AddFightPlayerComponent<FightPlayerSkillTree>();
 
-        SkillSlotsManager = AddFightPlayerComponent<FightPlayerSkillSlotsManager>();
-        SkillSlotsManager.InitKeybind();
+            SkillSlotsManager = AddFightPlayerComponent<FightPlayerSkillSlotsManager>();
+            
+        }
     }
 
     public void OnLoad()
     {
         // Called after Playerdata loaded [After Start()]
-        
-        
         SkillTree.InitializeSkillTreeComp();
         SkillTree.HandleAllSkills();
+        
+        SkillSlotsManager.InitKeybind();
         
         
     }
