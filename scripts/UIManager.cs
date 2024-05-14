@@ -6,7 +6,7 @@ public class UIManager : System<UIManager>
     public Action<FightPlayer> UpdateUIEvent;
     public Action<string, float, Player> PopupEvent;
 
-    private Dictionary<string, UniqueUIWindow> UniqueUiWindows; // [PrefabPath : Window Class]
+    private Dictionary<string, UniqueUIWindow> UniqueUiWindows = new(); // [PrefabPath : Window Class]
 
     private string _scoreTxt;
     private string _resourceTxt;
@@ -20,7 +20,8 @@ public class UIManager : System<UIManager>
     private FontAsset _defaultFont;
     private UI.ButtonSettings _defaultButtonSettings;
     private UI.TextSettings _defaultTextSettings;
-    
+
+    private UICanvas _mainCanvas;
     public override void Awake()
     {
         PopupEvent = SetPopup;
@@ -36,8 +37,12 @@ public class UIManager : System<UIManager>
         _resourceTxt = "0";
         _moneyTxt = "0";
     }
-    
-    
+
+    public UICanvas FindCanvas()
+    {
+        var canvas = Entity.FindByName("Canvas").GetComponent<UICanvas>();
+        return canvas;
+    }
     public void SetPopup(string txt, float time, Player player)
     {
         if (!player.IsLocal)
@@ -62,6 +67,9 @@ public class UIManager : System<UIManager>
                 Log.Error($"Cannot get a UniqueUIWindow component from {prefabPath}!");
                 return;
             }
+
+            _mainCanvas ??= FindCanvas();
+            uniqueWd.Entity.SetParent(_mainCanvas.Entity,false);
             UniqueUiWindows.Add(prefabPath, uniqueWd);
         }
         
@@ -104,7 +112,7 @@ public class UIManager : System<UIManager>
         }
         
         // Admin menus
-        if (Network.LocalPlayer.IsAdmin)
+        if (Network.LocalPlayer != null && Network.LocalPlayer.IsAdmin)
         {
             // Draw the score
             {
@@ -126,7 +134,7 @@ public class UIManager : System<UIManager>
             // Draw the side buttons
             {
 
-                var sideBarRect = UI.ScreenRect.LeftCenterRect().Grow(110, 100, 110, 0).Offset(5, 0);
+                var sideBarRect = UI.ScreenRect.LeftCenterRect().Grow(330, 100, 330, 0).Offset(5, 0);
 
                 var buttonRect = sideBarRect.CutTop(100);
                 if (UI.Button(buttonRect, $"Slot 1", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
@@ -154,7 +162,7 @@ public class UIManager : System<UIManager>
                 sideBarRect.CutTop(10);
                 
                 var buttonRect3 = sideBarRect.CutTop(100);
-                if (UI.Button(buttonRect2, $"Unlock Rollout in Slot 1",
+                if (UI.Button(buttonRect3, $"Unlock Rollout Slot 1",
                         new UI.ButtonSettings()
                             { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
                         _defaultTextSettings).clicked)
@@ -165,6 +173,18 @@ public class UIManager : System<UIManager>
                     player.GetSkillSlots().UpdateSlot("Slot1", 1, "RollOut");
                 }
                 
+                // Spacing
+                sideBarRect.CutTop(10);
+                
+                var buttonRect4 = sideBarRect.CutTop(100);
+                if (UI.Button(buttonRect4, $"Ability Vendor",
+                        new UI.ButtonSettings()
+                            { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
+                        _defaultTextSettings).clicked)
+                {
+                    var player = (FightPlayer)Network.LocalPlayer;
+                    OpenUniqueUIWindow("AbilityVendorMenuWindow.prefab");
+                }
             }
         }
 

@@ -8,9 +8,25 @@ using AO;
 /// </summary>
 public class UniqueUIWindow : UIWindow
 {
+    [Serialized] protected UIButton CloseButton;
+    public override void Start()
+    {
+        Log.Debug("Start Function called in UniqueUIWindow");
+        CloseButton ??= Entity.TryGetChildByName_Internal(Entity.Id, "CloseButton").GetComponent<UIButton>();
+        if (CloseButton == null)
+        {
+            Log.Error($"UniqueUIWindow: Could not find \"CloseButton\" on {Entity.Name}");
+            Entity.Destroy();
+            return;
+        }
+        //base.Start();
+        CloseButton.OnClicked += CloseWindow;
+    }
+    
     
     public override void CloseWindow()
     {
+        Log.Debug("Window Closed");
         Entity.LocalEnabled = false;
         IsActive = false;
         OnWindowClose?.Invoke(this, Network.LocalPlayer);
@@ -18,6 +34,7 @@ public class UniqueUIWindow : UIWindow
 
     public override void OpenWindow()
     {
+        Log.Debug("Window Open");
         OnWindowOpen?.Invoke(this, Network.LocalPlayer);
         Entity.LocalEnabled = true;
         IsActive = true;
