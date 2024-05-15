@@ -9,7 +9,7 @@ public class AbilityItem : Component
 
     protected SkillConfig.SkillTreeNodeConfig Config;
     protected UIRect Rect;
-
+    public SkillConfig.SkillTreeTabs NTab;
     protected void OpenUpgradeDialog()
     {
         // TODO: After click, popup a dialog to ask player if they want the upgrade
@@ -18,6 +18,8 @@ public class AbilityItem : Component
 
     public void InitializeWithConfig(SkillConfig.SkillTreeNodeConfig cfg)
     {
+        NTab = cfg.NTab;
+        
         Rect = Entity.GetComponent<UIRect>();
         Rect.Offset = cfg.UIPosition;
         

@@ -4,17 +4,19 @@ public static partial class SkillConfig
 {
     // NOTE: The query dictionary (SkillKey : NodeConfig) is defined at the bottom of this file as 'STConfigQueryDict'
     // You MUST define node config and add it to the query dict.
+    
 
     #region Node Configs
 
     /// <summary>
     /// Punch node
     /// </summary>
-    public static readonly SkillTreeNodeConfig RootNodeConfig = new SkillTreeNodeConfig()
+    public static readonly SkillTreeNodeConfig PunchNodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Punch Forward and deals 1.0x damage",
         MaximumLevel = 1,
         NType = NodeType.SkillReplace,
+        NTab = SkillTreeTabs.Basic,
         UpgradeCost = 0,
         UIPosition = new Vector2(420,30), // This will be set to the item's offset value
         SkillKey = "Punch",
@@ -30,6 +32,7 @@ public static partial class SkillConfig
         DescriptionTextKey = "Dash to a direction and deals 1.2x damage and knockback",
         MaximumLevel = 5,
         NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 0,
         UIPosition = new Vector2(120,120),
         SkillKey = "ShoulderCrash",
@@ -45,6 +48,7 @@ public static partial class SkillConfig
         DescriptionTextKey = "Boost the player's health",
         MaximumLevel = 5,
         NType = NodeType.AttrBoost,
+        NTab = SkillTreeTabs.Basic,
         UpgradeCost = 0,
         UIPosition = new Vector2(800,180),
         SkillKey = "HealthBoost",
@@ -60,6 +64,7 @@ public static partial class SkillConfig
         DescriptionTextKey = "Boost the player's attack",
         MaximumLevel = 5,
         NType = NodeType.AttrBoost,
+        NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 0,
         UIPosition = new Vector2(895,220),
         SkillKey = "AttackBoost",
@@ -75,6 +80,7 @@ public static partial class SkillConfig
         DescriptionTextKey = "Boost your speed and enable you to crash into other players",
         MaximumLevel = 1,
         NType = NodeType.AttrBoost,
+        NTab = SkillTreeTabs.Defensive,
         UpgradeCost = 0,
         UIPosition = new Vector2(770,330),
         SkillKey = "RollOut",
@@ -90,6 +96,7 @@ public static partial class SkillConfig
         DescriptionTextKey = "Boost your speed and enable you to crash into other players",
         MaximumLevel = 1,
         NType = NodeType.SkillReplace,
+        NTab = SkillTreeTabs.Basic,
         UpgradeCost = 0,
         UIPosition = new Vector2(120,450),
         SkillKey = "Punch2",
@@ -99,14 +106,23 @@ public static partial class SkillConfig
 
     #endregion
     
+    // MUST ADD for each new skill. This connects the unique skill key to their node config.
     public static readonly Dictionary<string, SkillTreeNodeConfig> STConfigQueryDict =
         new Dictionary<string, SkillTreeNodeConfig>()
         {
-            {"Punch", RootNodeConfig},
+            {"Punch", PunchNodeConfig},
             {"ShoulderCrash", ShoulderCrashNodeConfig},
             {"HealthBoost", HealthBoostNodeConfig},
             {"AttackBoost", AttackBoostNodeConfig},
             {"RollOut", RollOutNodeConfig},
             {"Punch2", PunchTwoConfig}
         };
+
+    // This affects how many pages appear on the ability book and ability vendor. Each page will have a tag that classifies the items.
+    public static readonly List<SkillTreeTabs> STConfigTabsList = new List<SkillTreeTabs>()
+    {
+        SkillTreeTabs.Basic,
+        SkillTreeTabs.Brawler,
+        SkillTreeTabs.Defensive,
+    };
 }

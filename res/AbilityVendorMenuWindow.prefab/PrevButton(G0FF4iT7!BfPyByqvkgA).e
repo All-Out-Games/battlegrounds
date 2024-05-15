@@ -1,8 +1,8 @@
 10
-249108103169
-229470556510164 1715719163181438000
+236223201281
+29967159272699 1715810008500684800
 {
-  "name": "CloseButton",
+  "name": "PrevButton",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,12 +13,12 @@
     "X": 1,
     "Y": 1
   },
-  "sibling_index": 3,
+  "sibling_index": 5,
   "parent": "199008852283556:1715704740019608500"
 },
 {
   "cid": 1,
-  "aoid": "229487592035743:1715719171247504800",
+  "aoid": "29967159368463:1715810008500732400",
   "component_type": "Internal_Component",
   "internal_component_type": "UIButton",
   "data": {
@@ -60,9 +60,9 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "$AO/new/log_in/close_button.png",
+      "sprite": "$AO/ui/controls/keyboard/arrow_keys/left.png",
       "sprite_hovered": "",
-      "sprite_pressed": "$AO/new/log_in/close_button_pressed.png",
+      "sprite_pressed": "$AO/ui/controls/keyboard/arrow_keys/left.png",
       "sprite_padding": {
         "X": 0,
         "Y": 0,
@@ -98,17 +98,17 @@
 },
 {
   "cid": 2,
-  "aoid": "237435402198760:1715722934416870800",
+  "aoid": "29967159427399:1715810008500761900",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.9499999880790710,
-      "Y": 0.8999999761581421
+      "X": 0,
+      "Y": 0.4000000059604645
     },
     "max": {
-      "X": 1,
-      "Y": 1
+      "X": 0.0700000002980232,
+      "Y": 0.5299999713897705
     },
     "insets": {
       "X": 0,
@@ -117,8 +117,8 @@
       "W": 0
     },
     "offset": {
-      "X": -99,
-      "Y": -9
+      "X": 0,
+      "Y": 0
     }
   }
 }

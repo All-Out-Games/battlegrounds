@@ -18,7 +18,6 @@ public partial class EffectPunch : FightEffect
         base.OnEffectStart();
 
         //Coroutine.Start(FightPlayer.Entity, DelayActivePunchHitbox(AbilityConfig.PunchConfig.PunchActivationTime));
-        
         Punch();
     }
 

@@ -13,7 +13,8 @@
     "X": 1,
     "Y": 1
   },
-  "sibling_index": 0
+  "sibling_index": 0,
+  "parent": "38236349980155:1715814149723427500"
 },
 {
   "cid": 1,
@@ -22,12 +23,12 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.2000000029802322,
-      "Y": 0.2000000029802322
+      "X": 0.1599999964237213,
+      "Y": 0.1599999964237213
     },
     "max": {
-      "X": 0.8000000119209290,
-      "Y": 0.8000000119209290
+      "X": 0.8500000238418579,
+      "Y": 0.8500000238418579
     },
     "insets": {
       "X": 0,
@@ -42,24 +43,6 @@
   }
 },
 {
-  "cid": 2,
-  "aoid": "199574646941535:1715705007914925500",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIImage",
-  "data": {
-    "sprite": "$AO/new/launcher/launcher_background.png",
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "fit_aspect": false,
-    "fit_aspect_kind": "Fit_Aspect::AUTO",
-    "fit_aspect_anchor": "UIFitAspectAnchor::CENTER"
-  }
-},
-{
   "cid": 3,
   "aoid": "232291293965645:1715720498758479200",
   "component_type": "Mono_Component",
@@ -67,6 +50,8 @@
   "data": {
     "CloseButton": "229487592035743:1715719171247504800",
     "AbilityTreeScroll": "199964725831157:1715705192611451700",
-    "AbilityNode": "204365239532516:1715707276188942200"
+    "AbilityNode": "204365239532516:1715707276188942200",
+    "NextButton": "29660170233517:1715809854760127000",
+    "PrevButton": "29967159368463:1715810008500732400"
   }
 }

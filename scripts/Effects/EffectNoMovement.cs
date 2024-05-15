@@ -13,19 +13,19 @@ public partial class EffectNoMovement : FightEffect
         IsValidTarget = false;
         BlockAbilityActivation = false;
         FreezePlayer = false; // Note: This effect WILL NOT freeze the player,
-                              // it's just adding a 0 modifier to the player to prevent them from move from input
+                              // it's just adding a modifier to the player to prevent them from move from input
                               // Useful for when you want to block active movement but not passive ones (e.g. bumping)
     }
     
     public override void OnEffectStart()
     {
         FightPlayer = (FightPlayer)Player;
-        FightPlayer.AddSpeedModifier(0);
+        FightPlayer.AddSpeedModifier(0.1f);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
-        FightPlayer.RemoveSpeedModifier(0);
+        FightPlayer.RemoveSpeedModifier(0.1f);
     }
     
     public override bool IsActiveEffect { get; }
