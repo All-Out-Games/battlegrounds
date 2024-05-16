@@ -19,6 +19,20 @@ public static partial class SkillConfig
         Defensive,
         Brawler,
     }
+
+    public enum StatType
+    {
+        None,
+        MaxHealth,
+        BaseSpeed,
+        AttackPower
+    }
+
+    public struct StatBuff
+    {
+        public StatType BoostType;
+        public float BoostValue;
+    }
     
     // These are keys to skills, which associate the skill node to the logics in skill tree nodes.
     // Add keys here when new skills are added
@@ -66,8 +80,8 @@ public static partial class SkillConfig
         // Special Handler needed - If this is marked True, a special handler will be called when the skill is added
         public bool NeedSpecialHandler; // TODO: Implement in SkillHandler
         
-        
-        
+        // Stat Type. Fill this if this is a stat buff node. This can only buff one stat, if need multiple or other custom data, implement special handler
+        public StatBuff Buff;
     }
     
 }

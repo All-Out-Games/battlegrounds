@@ -6,21 +6,43 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
 {
     // This file is dedicated for skill handlers. They are client RPCs that make modifications to the local clients
     // E.g. unlock abilities, add attributes, enhance or replace abilities.
-    // All abilities must implement an Adder and a Remover here.
+    // All abilities must have an Adder and a Remover here.
     protected static Type SkillTreeCompType = Type.GetType("FightPlayerSkillTree");
     
     public void AddSkill(string skillKey, int level)
     {
         if (Network.IsServer)
         {
-            MethodInfo skillAdder = SkillTreeCompType.GetMethod($"CallClient_{skillKey}_Adder");
-            if (skillAdder == null)
+            SkillConfig.SkillTreeNodeConfig cfg = SkillConfig.STConfigQueryDict[skillKey];
+
+            if (cfg.NeedSpecialHandler)
             {
-                Log.Error($"SkillAdder for {skillKey} was not found in SkillHandlers.cs!");
-                return;
+                // Special handlers will be called using Reflection
+                MethodInfo skillAdder = SkillTreeCompType.GetMethod($"CallClient_{skillKey}_Adder");
+                if (skillAdder == null)
+                {
+                    Log.Error($"SkillAdder for {skillKey} was not found in SkillHandlers.cs!");
+                    return;
+                }
+                skillAdder.Invoke(this, BindingFlags.Public | BindingFlags.Instance, null, new object[] {level}, null);
+            }
+            else
+            {
+                switch (cfg.NType)
+                {
+                    case SkillConfig.NodeType.SkillUnlock:
+                        CallClient_UnlockAdder(level, skillKey);
+                        break;
+                    case SkillConfig.NodeType.SkillReplace:
+                        CallClient_ReplacementAdder(level, skillKey, "Punch"); // Currently, punch are the only slot that need replacement
+                        break;
+                    case SkillConfig.NodeType.AttrBoost:
+                        CallClient_StatAdder(level, skillKey, cfg.Buff);
+                        break;
+                }
             }
             
-            skillAdder.Invoke(this, BindingFlags.Public | BindingFlags.Instance, null, new object[] {level}, null);
+
         }
     }
     
@@ -46,27 +68,29 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     // Reflection will be used to call these functions
     // Note that FightPlayerComponent provides access to player directly (call attribute _player)
 
-    #region Skill: Punch
+    #region Generic Adders
 
     [ClientRpc]
-    public void Punch_Adder(int level)
+    public void UnlockAdder(int level, string skillKey)
     {
-        Log.Debug($"Punch Ability is available by default, cur lvl = {level}");
-        _player.GetSkillSlots().UpdateSlot("Punch", level, "Punch");
+        // TODO: TryFindEmptySlot
+        // If the slot is edited by player, we don't automatically replace it
+        // We'll equip the newly acquired skill automatically if the slot is untouched.
+        
     }
-    
-
-    #endregion
-
-    #region Skill: RollOut
 
     [ClientRpc]
-    public void RollOut_Adder(int level)
+    public void ReplacementAdder(int level, string skillKey, string slotKey)
     {
-        Log.Debug($"RollOut Upgraded, cur lvl = {level}");
-        // TODO: After skill slot design settled,call "TryFillEmptySlot(level, skillKey)" here
+        _player.GetSkillSlots().UpdateSlot(slotKey, level, skillKey);
     }
-    
+
+    [ClientRpc]
+    public void StatAdder(int level, string skillKey, SkillConfig.StatBuff buff)
+    {
+        // TODO
+    }
 
     #endregion
+    
 }
