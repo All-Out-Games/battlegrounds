@@ -8,7 +8,10 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
 
     #region EventFunctions
 
-    public Action<string, int> SkillUpgradeEvent;
+    // This is only invoked on client (in SyncSkill RPC), which ensures the player update UI strictly after the server finishes upgrade and sync to player.
+    public Action<string, int> SkillUpgradeUIEvent; 
+    
+    // The gameplay logic update for upgrading a skill is handled in SkillHandler.cs
     
     public override void Awake()
     {
@@ -18,13 +21,14 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             SkillLevelDict[skill] = 0;
         }
 
-        SkillUpgradeEvent += OnSkillUpgrade;
+        SkillUpgradeUIEvent += OnSkillUpgrade;
     }
+    
 
     public override void OnDestroy()
     {
         
-        SkillUpgradeEvent -= OnSkillUpgrade;
+        SkillUpgradeUIEvent -= OnSkillUpgrade;
     }
 
     #endregion
@@ -137,7 +141,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             Log.Debug($"ST Component ID {Id}: Skill Level Get from Server. {skillKey} = {level}");
             SkillLevelDict[skillKey] = level;
             // Add / Remove skill are called on server and automatically synced
-            if(Initialized) SkillUpgradeEvent.Invoke(skillKey, level); // UI Event
+            if(Initialized) SkillUpgradeUIEvent.Invoke(skillKey, level); // UI Event
             
         }
         
@@ -220,7 +224,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     /// </summary>
     public void OnSkillUpgrade(string skillKey, int level)
     {
-        // TODO: Update Skill Tree UI after server unlock/upgrade
+        
     }
 
     #endregion

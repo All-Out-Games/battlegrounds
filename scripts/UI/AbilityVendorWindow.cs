@@ -7,16 +7,15 @@ public class AbilityVendorWindow : UniqueUIWindow
     [Serialized] public Entity AbilityNode; // The bg image for the scrollview. Add Ability Items as its children.
     [Serialized] public UIButton NextButton;
     [Serialized] public UIButton PrevButton;
-
-    protected Dictionary<string, AbilityItem> AbilityItems = new();
-    protected Dictionary<SkillConfig.SkillTreeTabs, float> TabScrollHeight; // Cached total scroll height of each tab.
-    protected static string AbilityItemPath = "AbilityItem.prefab";
     
+    protected Dictionary<SkillConfig.SkillTreeTabs, float> TabScrollHeight; // Cached total scroll height of each tab.
     protected SkillConfig.SkillTreeTabs CurrentTab = SkillConfig.SkillTreeTabs.Basic;
     protected int CurrentTabIndex = 0;
     protected int TabAmount = 0;
 
     protected FightPlayerSkillTree PlayerSkillTree;
+    protected Dictionary<string, AbilityItem> AbilityItems = new();
+    protected static string AbilityItemPath = "AbilityItem.prefab";
     public override void Start()
     {
         base.Start();
@@ -40,14 +39,14 @@ public class AbilityVendorWindow : UniqueUIWindow
         // This is called before Start()
         if (PlayerSkillTree.Initialized)
         {
-            PlayerSkillTree.SkillUpgradeEvent += UpdateSkillNode;
+            PlayerSkillTree.SkillUpgradeUIEvent += UpdateSkillNode;
         }
         
     }
 
     public override void OnDestroy()
     {
-        PlayerSkillTree.SkillUpgradeEvent -= UpdateSkillNode;
+        PlayerSkillTree.SkillUpgradeUIEvent -= UpdateSkillNode;
         base.OnDestroy();
     }
 
@@ -131,6 +130,10 @@ public class AbilityVendorWindow : UniqueUIWindow
     {
         // When a skill is updated, we want to update it as well as its children
         AbilityItems[skillKey].UpdateItem(PlayerSkillTree);
+        foreach (string childKey in SkillConfig.STConfigQueryDict[skillKey].GetChildrenNodeKeys())
+        {
+            AbilityItems[childKey].UpdateItem(PlayerSkillTree);
+        }
     }
 
     /// <summary>

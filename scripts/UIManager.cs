@@ -54,7 +54,7 @@ public class UIManager : System<UIManager>
         
     }
 
-    public void OpenUniqueUIWindow(string prefabPath)
+    public UniqueUIWindow OpenUniqueUIWindow(string prefabPath)
     {
         // Try get existing window
         UniqueUIWindow uniqueWd;
@@ -65,7 +65,7 @@ public class UIManager : System<UIManager>
             if (uniqueWd == null)
             {
                 Log.Error($"Cannot get a UniqueUIWindow component from {prefabPath}!");
-                return;
+                return null;
             }
 
             _mainCanvas ??= FindCanvas();
@@ -84,6 +84,7 @@ public class UIManager : System<UIManager>
             }
         }
         uniqueWd.OpenWindow();
+        return uniqueWd;
     }
 
     public UniqueUIWindow GetUniqueWindow(string prefabKey)

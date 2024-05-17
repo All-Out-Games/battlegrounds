@@ -74,6 +74,8 @@ public partial class FightPlayer : Player
         PlayerUi = Entity.GetComponent<FightPlayerUI>();
         SkillTree = Entity.GetComponent<FightPlayerSkillTree>();
         SkillSlotsManager = Entity.GetComponent<FightPlayerSkillSlotsManager>();
+        
+        Log.Debug($"Client Awake!");
     }
 
     public override void NetworkDeserialize(StreamReader reader)
@@ -83,7 +85,7 @@ public partial class FightPlayer : Player
 
     public override void Start()
     {
-        //Log.Debug($"{SkillSlotsManager == null}");
+        Log.Debug($"Client Start!");
         SkillSlotsManager.InitKeybind();
         
         SkillTree.InitializeSkillTreeComp();

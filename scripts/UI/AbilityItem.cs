@@ -22,6 +22,18 @@ public class AbilityItem : Component
     {
         // TODO: After click, popup a dialog to ask player if they want the upgrade
         Log.Debug($"{Config.SkillKey} clicked in the skill tree");
+        switch (Status)
+        {
+            case NodeStatus.Purchased:
+                // Node already unlocked
+                break; 
+            case NodeStatus.Attainable:
+                AbilityUnlockDialog dialog = UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityUnlockDialogPath) as AbilityUnlockDialog;
+                dialog.InitializeWithConfig(Config, OnAbilityUpgradeReturn);
+                break;
+            case NodeStatus.Locked:
+                break;
+        }
     }
 
     public void InitializeWithConfig(SkillConfig.SkillTreeNodeConfig cfg)
@@ -78,5 +90,17 @@ public class AbilityItem : Component
         }
 
         return attainable;
+    }
+
+    protected void OnAbilityUpgradeReturn(bool confirmed)
+    {
+        if (confirmed && Status == NodeStatus.Attainable)
+        {
+            // TODO: Request update from player skill tree
+            TestServerRPC.CallServer_LogSomethingOnServer($"Callback received. Requesting to upgrade {Config.SkillKey}");
+
+            FightPlayer fp = (FightPlayer)Network.LocalPlayer;
+            fp.GetSkillTree().CallServer_UpgradeSkill(Config.SkillKey, Config.MaximumLevel);
+        }
     }
 }
