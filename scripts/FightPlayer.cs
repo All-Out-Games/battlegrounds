@@ -1,4 +1,6 @@
 using AO;
+using StreamReader = AO.StreamReader;
+
 /// <summary>
 /// Model class of the player. Stores data and handle actions using RPC
 /// </summary>
@@ -39,10 +41,10 @@ public partial class FightPlayer : Player
     // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
     public EffectConfig.PlayerStatus PlayerStatus = EffectConfig.PlayerStatus.Combat;
 
-    protected FightPlayerEffectManager EffectManager;
-    protected FightPlayerUI PlayerUi;
-    protected FightPlayerSkillTree SkillTree;
-    protected FightPlayerSkillSlotsManager SkillSlotsManager;
+    [Serialized] protected FightPlayerEffectManager EffectManager;
+    [Serialized] protected FightPlayerUI PlayerUi;
+    [Serialized] protected FightPlayerSkillTree SkillTree;
+    [Serialized] protected FightPlayerSkillSlotsManager SkillSlotsManager;
 
     protected Circle_Collider Collider; // MAIN Collider used for bumping / damage
     protected Box_Collider PunchCollider;
@@ -55,18 +57,35 @@ public partial class FightPlayer : Player
     
     public override void Awake()
     {
-        EffectManager = Entity.AddComponent<FightPlayerEffectManager>();
-        PlayerUi = Entity.AddComponent<FightPlayerUI>();
-        SkillTree = Entity.AddComponent<FightPlayerSkillTree>();
-        SkillSlotsManager = Entity.AddComponent<FightPlayerSkillSlotsManager>();
+        
 
         FightClubGameManager.Instance.OnPlayerJoin(this);
         
-        SkillSlotsManager.InitKeybind();
+
+        if (Network.IsServer)
+        {
+            EffectManager = Entity.AddComponent<FightPlayerEffectManager>();
+            PlayerUi = Entity.AddComponent<FightPlayerUI>();
+            SkillTree = Entity.AddComponent<FightPlayerSkillTree>();
+            SkillSlotsManager = Entity.AddComponent<FightPlayerSkillSlotsManager>();
+        }
+        
+        EffectManager = Entity.GetComponent<FightPlayerEffectManager>();
+        PlayerUi = Entity.GetComponent<FightPlayerUI>();
+        SkillTree = Entity.GetComponent<FightPlayerSkillTree>();
+        SkillSlotsManager = Entity.GetComponent<FightPlayerSkillSlotsManager>();
     }
-    
+
+    public override void NetworkDeserialize(StreamReader reader)
+    {
+        base.NetworkDeserialize(reader);
+    }
+
     public override void Start()
     {
+        //Log.Debug($"{SkillSlotsManager == null}");
+        SkillSlotsManager.InitKeybind();
+        
         SkillTree.InitializeSkillTreeComp();
         SkillTree.HandleAllSkills();
 

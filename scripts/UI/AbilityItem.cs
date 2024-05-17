@@ -2,6 +2,12 @@ using AO;
 
 public class AbilityItem : Component
 {
+    public enum NodeStatus
+    {
+        Locked,
+        Attainable,
+        Purchased
+    }
     [Serialized] protected UIText SkillKeyText;
     [Serialized] protected UIText CostText;
     [Serialized] protected UIImage SkillIcon; // Unused for now
@@ -9,7 +15,9 @@ public class AbilityItem : Component
 
     protected SkillConfig.SkillTreeNodeConfig Config;
     protected UIRect Rect;
+    protected NodeStatus Status;
     public SkillConfig.SkillTreeTabs NTab;
+    
     protected void OpenUpgradeDialog()
     {
         // TODO: After click, popup a dialog to ask player if they want the upgrade
@@ -25,13 +33,50 @@ public class AbilityItem : Component
         
         Config = cfg;
         SkillKeyText.Text = cfg.SkillKey;
-        CostText.Text = $"Cost: {cfg.UpgradeCost}";
+        
 
         ItemButton.OnClicked += OpenUpgradeDialog;
     }
 
-    public void UpdateItem()
+    public void UpdateItem(FightPlayerSkillTree skillTree)
     {
+        // UI is updated after skillTree has been synced.
+        // Every (related) item call this once the skill tree changes
+        Log.Debug($"Ability Item: {Config.SkillKey}; Level = {skillTree.SkillLevelDict[Config.SkillKey]}");
+        // Check 1: Self Level
+        if (skillTree.SkillLevelDict[Config.SkillKey] > 0)
+        {
+            Status = NodeStatus.Purchased;
+            CostText.Text = "Unlocked";
+        }
+        // Check 2: Parent Level
+        else if (CheckAttainable(skillTree))
+        {
+            Status = NodeStatus.Attainable;
+            CostText.Text = $"Cost: {Config.UpgradeCost}";
+        }
+        // Otherwise...
+        else
+        {
+            Status = NodeStatus.Locked;
+            CostText.Text = "Need Prerequisite";
+            // TODO: No APIs to disable UI buttons yet
+        }
         
+    }
+
+    public bool CheckAttainable(FightPlayerSkillTree skillTree)
+    {
+        bool attainable = true;
+        foreach (string k in Config.GetParentNodeKeys())
+        {
+            if (skillTree.SkillLevelDict[k] <= 0)
+            {
+                attainable = false;
+                break;
+            }
+        }
+
+        return attainable;
     }
 }

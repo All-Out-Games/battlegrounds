@@ -18,6 +18,7 @@ public static partial class SkillConfig
         Basic,
         Defensive,
         Brawler,
+        Elemental,
     }
 
     public enum StatType
@@ -38,9 +39,10 @@ public static partial class SkillConfig
     // Add keys here when new skills are added
     #region SkillKeys
     
+    // [Add Skill] Item 3: Put Classification Here
     public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
     
-    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "ShoulderCrash"};
+    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "ShoulderCrash", "FireFist"};
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     
@@ -82,6 +84,20 @@ public static partial class SkillConfig
         
         // Stat Type. Fill this if this is a stat buff node. This can only buff one stat, if need multiple or other custom data, implement special handler
         public StatBuff Buff;
+
+        
+        // PROGRAMMING NOTICE:
+        // In C# structs, empty array (e.g. string[] ChildrenNodeKeys) will be initialized to null.
+        // You must do a null check if you want to iterate over it.
+        public string[] GetChildrenNodeKeys()
+        {
+            return ChildrenNodeKeys ?? Array.Empty<string>();
+        }
+
+        public string[] GetParentNodeKeys()
+        {
+            return ParentNodeKeys ?? Array.Empty<string>();
+        }
     }
     
 }

@@ -60,7 +60,7 @@ public static class EffectConfig
         public static float PunchRange = 2;
         
         
-        public int PunchDamage = 5; // TODO: The final damage should be determined by the player's stats and their skilltree.
+        public int PunchDamage = 5; // TODO: The final damage should be determined by the player's stats
         
         
         public PunchConfig()
@@ -69,11 +69,11 @@ public static class EffectConfig
         }
     }
 
-    public static PunchConfig GetPlayerPunchConfig(int level)
+    public static PunchConfig GetPlayerPunchConfig(int level, int atk = 0)
     {
         PunchConfig cfg = new PunchConfig
         {
-            PunchDamage = PunchConfig.PunchDmgGrowth * level + PunchConfig.PunchDmgBase
+            PunchDamage = PunchConfig.PunchDmgGrowth * level + PunchConfig.PunchDmgBase + atk
         };
         return cfg;
     }

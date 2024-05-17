@@ -15,6 +15,8 @@ public class AbilityVendorWindow : UniqueUIWindow
     protected SkillConfig.SkillTreeTabs CurrentTab = SkillConfig.SkillTreeTabs.Basic;
     protected int CurrentTabIndex = 0;
     protected int TabAmount = 0;
+
+    protected FightPlayerSkillTree PlayerSkillTree;
     public override void Start()
     {
         base.Start();
@@ -26,6 +28,27 @@ public class AbilityVendorWindow : UniqueUIWindow
         
         CreateAllSkillItems();
         UpdateSkillTreeTab();
+        
+        InitializeSkillTreeItem(Network.LocalPlayer as FightPlayer);
+    }
+
+    public override void OnInstantiate()
+    {
+        //PlayerSkillTree ??= ((FightPlayer)Network.LocalPlayer).GetSkillTree();
+        PlayerSkillTree ??= (Network.LocalPlayer.Entity.GetComponent<FightPlayer>()).GetSkillTree();
+        Log.Warn($"Local Component ID {PlayerSkillTree.Id}, LocalID {PlayerSkillTree.Entity.Id}");
+        // This is called before Start()
+        if (PlayerSkillTree.Initialized)
+        {
+            PlayerSkillTree.SkillUpgradeEvent += UpdateSkillNode;
+        }
+        
+    }
+
+    public override void OnDestroy()
+    {
+        PlayerSkillTree.SkillUpgradeEvent -= UpdateSkillNode;
+        base.OnDestroy();
     }
 
     /// <summary>
@@ -40,31 +63,74 @@ public class AbilityVendorWindow : UniqueUIWindow
             Log.Debug($"Node {cfg.SkillKey}: Position: {cfg.UIPosition}");
             Prefab abilityItemPrefab = Assets.GetAsset<Prefab>(AbilityItemPath);
             AbilityItem item = abilityItemPrefab.Instantiate().GetComponent<AbilityItem>();
+            
             if (item == null)
             {
                 Log.Error("Cannot find AbilityItem component on Ability Item prefab");
                 break;
             }
-            item.InitializeWithConfig(cfg);
+
+            //ItemSanityCheck(cfg);
             
+            item.InitializeWithConfig(cfg);
             item.Entity.SetParent(AbilityNode, false);
             AbilityItems.Add(kv.Key, item);
         }
         
     }
+
+    /// <summary>
+    /// Check skill tree node config.
+    /// This will report error if it detects defects in config
+    /// </summary>
+    /// <param name="cfg"></param>
+    protected void ItemSanityCheck(SkillConfig.SkillTreeNodeConfig cfg)
+    {
+        Log.Debug($"Skill Tree Sanity: Checking {cfg.SkillKey}...");
+        // If a node has child, all its children must also appoint it as the parent
+        
+        foreach (var k in cfg.GetChildrenNodeKeys())
+        {
+            var childCfg = SkillConfig.STConfigQueryDict[k];
+            Log.Debug($"Skill Tree Sanity: Checking Child {childCfg.SkillKey}...");
+            if (!childCfg.GetParentNodeKeys().Contains(cfg.SkillKey))
+            {
+                Log.Error($"{childCfg.SkillKey}, Child of node {cfg.SkillKey} did not set it as parent!");
+            }
+        }
+
+        foreach (var k in cfg.GetParentNodeKeys())
+        {
+            var parentCfg = SkillConfig.STConfigQueryDict[k];
+            Log.Debug($"Skill Tree Sanity: Checking parent {parentCfg.SkillKey}...");
+            if (!parentCfg.GetChildrenNodeKeys().Contains(cfg.SkillKey))
+            {
+                Log.Error($"{parentCfg.SkillKey}, Parent of node {cfg.SkillKey} did not set it as child!");
+            }
+        }
+    }
     
     /// <summary>
-    /// Function called after player makes a change to the skill tree. (Called in Client RPC, after server uprate)
+    /// The first update function, after player skill dict fetched
     /// </summary>
     /// <param name="window"></param>
     /// <param name="localPlayer"></param>
-    public void UpdateSkillTree(UIWindow window, Player localPlayer)
+    public void InitializeSkillTreeItem(FightPlayer localPlayer)
     {
-        FightPlayerSkillTree skillTree = ((FightPlayer)localPlayer).GetSkillTree();
-        foreach (var kv in skillTree.SkillLevelDict)
+        PlayerSkillTree ??= localPlayer.GetSkillTree();
+        // We have all skill nodes at this point (after player initialization)
+        // Just adjust all skill nodes status
+        foreach (var kv in PlayerSkillTree.SkillLevelDict)
         {
             // TODO: Update ability node status
+            UpdateSkillNode(kv.Key, kv.Value);
         }
+    }
+
+    protected void UpdateSkillNode(string skillKey, int level)
+    {
+        // When a skill is updated, we want to update it as well as its children
+        AbilityItems[skillKey].UpdateItem(PlayerSkillTree);
     }
 
     /// <summary>

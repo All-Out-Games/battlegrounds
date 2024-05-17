@@ -71,6 +71,7 @@ public class UIManager : System<UIManager>
             _mainCanvas ??= FindCanvas();
             uniqueWd.Entity.SetParent(_mainCanvas.Entity,false);
             UniqueUiWindows.Add(prefabPath, uniqueWd);
+            uniqueWd.OnInstantiate();
         }
         
         // Close all that is currently active, then open window
@@ -83,6 +84,17 @@ public class UIManager : System<UIManager>
             }
         }
         uniqueWd.OpenWindow();
+    }
+
+    public UniqueUIWindow GetUniqueWindow(string prefabKey)
+    {
+        UniqueUIWindow uwd;
+        bool exist = UniqueUiWindows.TryGetValue(prefabKey, out uwd);
+        if (!exist)
+        {
+            Log.Error($"UIManager: Window {prefabKey} not created yet.");
+        }
+        return uwd;
     }
 
     public override void Update()

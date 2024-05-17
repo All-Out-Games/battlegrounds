@@ -13,8 +13,7 @@
     "X": 1,
     "Y": 1
   },
-  "sibling_index": 0,
-  "parent": "38236349980155:1715814149723427500"
+  "sibling_index": 0
 },
 {
   "cid": 1,
@@ -53,5 +52,15 @@
     "AbilityNode": "204365239532516:1715707276188942200",
     "NextButton": "29660170233517:1715809854760127000",
     "PrevButton": "29967159368463:1715810008500732400"
+  }
+},
+{
+  "cid": 2,
+  "aoid": "268928068550133:1715885375295518000",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIPushLayer",
+  "data": {
+    "layer": -3,
+    "relative": true
   }
 }

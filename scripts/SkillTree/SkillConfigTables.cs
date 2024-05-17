@@ -5,7 +5,7 @@ public static partial class SkillConfig
     // NOTE: The query dictionary (SkillKey : NodeConfig) is defined at the bottom of this file as 'STConfigQueryDict'
     // You MUST define node config and add it to the query dict.
     
-
+    // [Add Skill] item 1: Config Entry
     #region Node Configs
 
     /// <summary>
@@ -20,8 +20,8 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(420,30), // This will be set to the item's offset value
         SkillKey = "Punch",
-        ParentNodeKeys = null,
-        ChildrenNodeKeys = new [] {"ShoulderCrash", "HealthBoost", "AttackBoost", "FireFist"},
+        ParentNodeKeys = new string[]{},
+        ChildrenNodeKeys = new string[] {"HealthBoost", "AttackBoost"},
     };
     
     /// <summary>
@@ -36,8 +36,8 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(120,120),
         SkillKey = "ShoulderCrash",
-        ParentNodeKeys = new [] {"Punch"},
-        ChildrenNodeKeys = {},
+        ParentNodeKeys = new string[]{},
+        ChildrenNodeKeys = new string[]{},
     };
     
     /// <summary>
@@ -52,8 +52,8 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(800,180),
         SkillKey = "HealthBoost",
-        ParentNodeKeys = new [] {"Punch"},
-        ChildrenNodeKeys = {},
+        ParentNodeKeys = new string [] {"Punch"},
+        ChildrenNodeKeys = new string[] {"Punch2"},
     };
     
     /// <summary>
@@ -64,12 +64,12 @@ public static partial class SkillConfig
         DescriptionTextKey = "Boost the player's attack",
         MaximumLevel = 5,
         NType = NodeType.AttrBoost,
-        NTab = SkillTreeTabs.Brawler,
+        NTab = SkillTreeTabs.Basic,
         UpgradeCost = 0,
         UIPosition = new Vector2(895,220),
         SkillKey = "AttackBoost",
-        ParentNodeKeys = new [] {"Punch"},
-        ChildrenNodeKeys = {},
+        ParentNodeKeys = new string[] {"Punch"},
+        ChildrenNodeKeys = new string[] {"Punch2"},
     };
     
     /// <summary>
@@ -84,12 +84,12 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(770,330),
         SkillKey = "RollOut",
-        ParentNodeKeys = new [] {"Punch"},
-        ChildrenNodeKeys = {},
+        ParentNodeKeys =  new string[]{},
+        ChildrenNodeKeys = new string[]{},
     };
     
     /// <summary>
-    /// RollOut node
+    /// Punch2 node
     /// </summary>
     public static readonly SkillTreeNodeConfig PunchTwoConfig = new SkillTreeNodeConfig()
     {
@@ -100,12 +100,29 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(120,450),
         SkillKey = "Punch2",
-        ParentNodeKeys = new [] {"Punch"},
-        ChildrenNodeKeys = {},
+        ParentNodeKeys = new string [] {"AttackBoost", "HealthBoost"},
+        ChildrenNodeKeys = new string[] {},
+    };
+    
+    /// <summary>
+    /// Fire Fist node
+    /// </summary>
+    public static readonly SkillTreeNodeConfig FireFistConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Boost your speed and enable you to crash into other players",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Elemental,
+        UpgradeCost = 0,
+        UIPosition = new Vector2(120,450),
+        SkillKey = "FireFist",
+        ParentNodeKeys = new string[]{},
+        ChildrenNodeKeys = new string[]{},
     };
 
     #endregion
     
+    // [Add Skill] item 2: Query Entry
     // MUST ADD for each new skill. This connects the unique skill key to their node config.
     public static readonly Dictionary<string, SkillTreeNodeConfig> STConfigQueryDict =
         new Dictionary<string, SkillTreeNodeConfig>()
@@ -115,14 +132,17 @@ public static partial class SkillConfig
             {"HealthBoost", HealthBoostNodeConfig},
             {"AttackBoost", AttackBoostNodeConfig},
             {"RollOut", RollOutNodeConfig},
-            {"Punch2", PunchTwoConfig}
+            {"Punch2", PunchTwoConfig},
+            {"FireFist", FireFistConfig}
         };
 
+    
     // This affects how many pages appear on the ability book and ability vendor. Each page will have a tag that classifies the items.
     public static readonly List<SkillTreeTabs> STConfigTabsList = new List<SkillTreeTabs>()
     {
         SkillTreeTabs.Basic,
         SkillTreeTabs.Brawler,
         SkillTreeTabs.Defensive,
+        SkillTreeTabs.Elemental
     };
 }

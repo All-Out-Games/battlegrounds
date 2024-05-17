@@ -14,7 +14,6 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
         if (Network.IsServer)
         {
             SkillConfig.SkillTreeNodeConfig cfg = SkillConfig.STConfigQueryDict[skillKey];
-
             if (cfg.NeedSpecialHandler)
             {
                 // Special handlers will be called using Reflection
@@ -28,6 +27,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             }
             else
             {
+                // Or we use generic handlers by skill type
                 switch (cfg.NType)
                 {
                     case SkillConfig.NodeType.SkillUnlock:
@@ -36,7 +36,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                     case SkillConfig.NodeType.SkillReplace:
                         CallClient_ReplacementAdder(level, skillKey, "Punch"); // Currently, punch are the only slot that need replacement
                         break;
-                    case SkillConfig.NodeType.AttrBoost:
+                    case SkillConfig.NodeType.AttrBoost: // Only handles single stat buff. If we need multiple stats write a special handler for that
                         CallClient_StatAdder(level, skillKey, cfg.Buff);
                         break;
                 }

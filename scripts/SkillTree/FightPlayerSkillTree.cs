@@ -4,9 +4,11 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
 {
     public Dictionary<string, int> SkillLevelDict = new(); // [SkillKey: Level], level of all skills, 0 means not upgraded yet.
 
+    public SyncVar<bool> Initialized = new SyncVar<bool>();
+
     #region EventFunctions
 
-    protected Action<string, int> SkillUpgradeEvent;
+    public Action<string, int> SkillUpgradeEvent;
     
     public override void Awake()
     {
@@ -132,10 +134,13 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     {
         if (Network.IsClient)
         {
-            // Log.Debug($"Skill Level Get from Server. {skillKey} = {level}");
+            Log.Debug($"ST Component ID {Id}: Skill Level Get from Server. {skillKey} = {level}");
             SkillLevelDict[skillKey] = level;
             // Add / Remove skill are called on server and automatically synced
+            if(Initialized) SkillUpgradeEvent.Invoke(skillKey, level); // UI Event
+            
         }
+        
     }
     
     /// <summary>
@@ -202,6 +207,8 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             {
                 handleSkillWithSync(sbKey);
             }
+            
+            Initialized.Set(true);
         }
         
     }
