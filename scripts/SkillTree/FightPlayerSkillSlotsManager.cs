@@ -2,7 +2,7 @@ using AO;
 
 public class FightPlayerSkillSlotsManager : FightPlayerComponent
 {
-
+    protected SkillSlotsPanel SlotsPanel;
     public Dictionary<string, SkillSlot> ActiveSkillSlots = new(); // A slot becomes active if the player put in an active skill
 
     public override void Update()

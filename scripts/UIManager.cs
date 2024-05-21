@@ -151,7 +151,7 @@ public class UIManager : System<UIManager>
 
                 var buttonRect = sideBarRect.CutTop(100);
                 if (UI.Button(buttonRect, $"Slot 1", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
-                        _defaultTextSettings).clicked)
+                        _defaultTextSettings).Clicked)
                 {
                     var player = (FightPlayer)Network.LocalPlayer;
                     Log.Debug("Casting Slot 1");
@@ -163,7 +163,7 @@ public class UIManager : System<UIManager>
 
                 var buttonRect2 = sideBarRect.CutTop(100);
                 if (UI.Button(buttonRect2, $"Add BUMP", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
-                        _defaultTextSettings).clicked)
+                        _defaultTextSettings).Clicked)
                 {
                     var player = (FightPlayer)Network.LocalPlayer;
                     Log.Info("Adding A bump!");
@@ -178,7 +178,7 @@ public class UIManager : System<UIManager>
                 if (UI.Button(buttonRect3, $"Unlock Rollout Slot 1",
                         new UI.ButtonSettings()
                             { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
-                        _defaultTextSettings).clicked)
+                        _defaultTextSettings).Clicked)
                 {
                     var player = (FightPlayer)Network.LocalPlayer;
                     Log.Info("Rollout Unlocked in Slot 1");
@@ -193,7 +193,7 @@ public class UIManager : System<UIManager>
                 if (UI.Button(buttonRect4, $"Ability Vendor",
                         new UI.ButtonSettings()
                             { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
-                        _defaultTextSettings).clicked)
+                        _defaultTextSettings).Clicked)
                 {
                     var player = (FightPlayer)Network.LocalPlayer;
                     OpenUniqueUIWindow("AbilityVendorMenuWindow.prefab");

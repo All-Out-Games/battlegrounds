@@ -6,9 +6,9 @@ using AO;
 /// They get instantiated if no previous instance exist (write a static public variable for each)
 /// Or we open the existing instancce and close all other instances of UniqueUIWindow (See UIManager->OpenUniqueWindow)
 /// </summary>
-public class UniqueUIWindow : UIWindow
+public class UniqueUIWindow : BaseUniqueWindow
 {
-    [Serialized] protected UIButton CloseButton;
+    [Serialized] protected UIButton CloseButton; // Unique UI Window must have a close button.
     public override void Start()
     {
         Log.Debug("Start Function called in UniqueUIWindow");
@@ -21,23 +21,6 @@ public class UniqueUIWindow : UIWindow
         }
         //base.Start();
         CloseButton.OnClicked += CloseWindow;
-    }
-    
-    
-    public override void CloseWindow()
-    {
-        Log.Debug("Window Closed");
-        Entity.LocalEnabled = false;
-        IsActive = false;
-        OnWindowClose?.Invoke(this, Network.LocalPlayer);
-    }
-
-    public override void OpenWindow()
-    {
-        Log.Debug("Window Open");
-        OnWindowOpen?.Invoke(this, Network.LocalPlayer);
-        Entity.LocalEnabled = true;
-        IsActive = true;
     }
 
     public virtual void OnInstantiate()
