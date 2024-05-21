@@ -16,14 +16,13 @@ public partial class EffectPunch : FightEffect
     public override void OnEffectStart()
     {
         base.OnEffectStart();
-
-        //Coroutine.Start(FightPlayer.Entity, DelayActivePunchHitbox(AbilityConfig.PunchConfig.PunchActivationTime));
         Punch();
+        FightPlayer.SetSkillBlockCast(true);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
-        
+        FightPlayer.SetSkillBlockCast(false);
     }
     
     public void AssignConfig(EffectConfig.PunchConfig cfg)

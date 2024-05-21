@@ -9,20 +9,30 @@ public class SkillSlotsPanel : BaseUniqueWindow
     [Serialized] private SkillSlotButton _sl2;
     [Serialized] private SkillSlotButton _sl3;
     [Serialized] private SkillSlotButton _sl4;
-    private List<SkillSlotButton> _skillSlotButtons;
+    private Dictionary<string, SkillSlotButton> _skillSlotButtons;
 
     [Serialized] private SkillSlotPunchButton _punchButton;
 
     public override void Awake()
     {
-        _skillSlotButtons = new List<SkillSlotButton>()
+        _skillSlotButtons = new Dictionary<string, SkillSlotButton>()
         {
-            _sl1,
-            _sl2,
-            _sl3,
-            _sl4
+            { "Punch", _punchButton },
+            { "Slot1", _sl1 },
+            { "Slot2", _sl2 },
+            { "Slot3", _sl3 },
+            { "Slot4", _sl4 }
         };
         base.Awake();
     }
-    
+
+    public void SetSlotCooldown(string key, float num)
+    {
+        _skillSlotButtons[key].SetCoolDownText($"{num}");
+    }
+
+    public void SetSlotText(string key, string txt)
+    {
+        _skillSlotButtons[key].SetSlotSkillKeyText(txt);
+    }
 }

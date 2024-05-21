@@ -7,9 +7,11 @@ using StreamReader = AO.StreamReader;
 public partial class FightPlayer : Player
 {
     #region Attributes
-
+    // SyncVars must not be set during Awake(). Do these in Start()
     protected SyncVar<int> TotalEliminations = new();
     protected SyncVar<int> TotalDamageDealt = new();
+    
+    protected SyncVar<bool> BlockCast = new(); // Block player from cast any skill 
 
     private int currentHealth = 100;
     [Serialized] public int MaxHealth = 100;
@@ -131,8 +133,7 @@ public partial class FightPlayer : Player
     }
 
     #endregion
-
-
+    
 
     #region Health, Damage, Respawn
 
@@ -293,6 +294,21 @@ public partial class FightPlayer : Player
     public void SetAnimTrigger(string variableName)
     {
         SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
+    }
+
+    /// <summary>
+    /// Put all general conditions of casting an active skill here.
+    /// We only check conditions related to the player here. Cooldown & silent are checked in SkillSlot.
+    /// </summary>
+    /// <returns></returns>
+    public bool SkillCastGeneralCheck()
+    {
+        return BlockCast.Value && PlayerStatus == EffectConfig.PlayerStatus.Combat;
+    }
+
+    public void SetSkillBlockCast(bool block)
+    {
+        BlockCast.Set(block);
     }
 
     #endregion

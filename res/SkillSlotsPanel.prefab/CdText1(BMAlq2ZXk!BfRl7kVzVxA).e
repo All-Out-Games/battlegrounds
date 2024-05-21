@@ -22,7 +22,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "15.0",
+    "text": "0",
     "settings": {
       "font_id": "",
       "size": 24,

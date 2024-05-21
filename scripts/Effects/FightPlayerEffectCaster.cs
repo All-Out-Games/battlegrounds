@@ -42,7 +42,6 @@ public partial class FightPlayerEffectManager
         };
         
         AddEffect<EffectPunch>(_player, EffectConfig.PunchConfig.PunchAnimationTime, initPunchWithConfig);
-        AddEffect<EffectNoMovement>(_player, EffectConfig.PunchConfig.PunchAnimationTime);
     }
     #endregion
     

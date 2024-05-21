@@ -2,3 +2,4 @@ AbilityItem.prefab - .ao - 6643f5634d5b99636ac7a9a4 - 14427433616163832665
 AbilityUpgradeDialog.prefab - .ao - 6647dbfca2a326d825267e81 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 664655484d5b99636ac7a9f8 - 11964448424736677955
 FatPlayerCollision.prefab - .ao - 66426d27a214e8c7a135d8b7 - 17567100292640013128
+SkillSlotsPanel.prefab - .ao - 664d0e32a2a326d825267f7f - 13364628548901299414

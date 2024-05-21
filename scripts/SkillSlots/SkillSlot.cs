@@ -65,14 +65,16 @@ public abstract class SkillSlot
     
     public void ApplyCooldown(float maxCooldown)
     {
-        // The parameter should be included in the skill config
+        // The parameter should be included in the skill's effect config
         CurrentCooldown = maxCooldown;
         CurrentMaxCooldown = maxCooldown;
     }
 
-    public void ReduceCooldown(float delta)
+    public float ReduceCooldown(float delta)
     {
         CurrentCooldown -= delta;
+        CurrentCooldown = CurrentCooldown < 0 ? 0 : CurrentCooldown;
+        return CurrentCooldown;
     }
 
     public void SilentSlot(bool silent)

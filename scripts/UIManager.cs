@@ -40,8 +40,8 @@ public class UIManager : System<UIManager>
 
     public UICanvas FindCanvas()
     {
-        var canvas = Entity.FindByName("Canvas").GetComponent<UICanvas>();
-        return canvas;
+        _mainCanvas ??= Entity.FindByName("Canvas").GetComponent<UICanvas>();
+        return _mainCanvas;
     }
     public void SetPopup(string txt, float time, Player player)
     {
@@ -67,9 +67,8 @@ public class UIManager : System<UIManager>
                 Log.Error($"Cannot get a UniqueUIWindow component from {prefabPath}!");
                 return null;
             }
-
-            _mainCanvas ??= FindCanvas();
-            uniqueWd.Entity.SetParent(_mainCanvas.Entity,false);
+            
+            uniqueWd.Entity.SetParent(FindCanvas().Entity,false);
             UniqueUiWindows.Add(prefabPath, uniqueWd);
             uniqueWd.OnInstantiate();
         }

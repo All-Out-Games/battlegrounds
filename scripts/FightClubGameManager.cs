@@ -7,9 +7,14 @@ public class FightClubGameManager : System<FightClubGameManager> {
 
     public static Keybind PunchKeybind;
     public static Keybind Slot1Keybind;
+    public static Keybind Slot2Keybind;
+    public static Keybind Slot3Keybind;
+    public static Keybind Slot4Keybind;
+    
     
     protected List<Entity> CombatPlayer = new(); // Only damage players in combat
-    protected List<Entity> SafePlayer = new(); // Not in use now. (waiting for AFK area stuff)
+    protected List<Entity> AFKPlayer = new(); // AFK Area
+    protected List<Entity> SafePlayer = new(); // Central
 
     public List<Entity> GetCombatPlayers()
     {
@@ -21,6 +26,9 @@ public class FightClubGameManager : System<FightClubGameManager> {
     {
         PunchKeybind = Keybinds.RegisterKeybind("Punch", Input.UnifiedInput.KEYCODE_F);
         Slot1Keybind = Keybinds.RegisterKeybind("Skill 1", Input.UnifiedInput.KEYCODE_R);
+        Slot2Keybind = Keybinds.RegisterKeybind("Skill 2", Input.UnifiedInput.KEYCODE_T);
+        Slot3Keybind = Keybinds.RegisterKeybind("Skill 3", Input.UnifiedInput.KEYCODE_V);
+        Slot4Keybind = Keybinds.RegisterKeybind("Skill 4", Input.UnifiedInput.KEYCODE_B);
     }
 
     public override void Start() 

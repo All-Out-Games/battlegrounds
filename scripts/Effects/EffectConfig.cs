@@ -11,7 +11,8 @@ public static class EffectConfig
     {
         Combat,
         Safe,
-        Dead
+        AFK,
+        Spectating
     }
 
     #endregion
