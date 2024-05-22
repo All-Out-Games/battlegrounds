@@ -1,0 +1,19 @@
+cosmicPortal.png
+	size: 2020, 2020
+	filter: Linear, Linear
+cosmic_portal/portal
+	bounds: 688, 1598, 414, 414
+	offsets: 1, 1, 416, 416
+cosmic_portal/portal_outer1
+	bounds: 1108, 1575, 437, 437
+	offsets: 1, 1, 439, 439
+cosmic_portal/portal_outer2
+	bounds: 1551, 1555, 461, 457
+	offsets: 1, 1, 463, 459
+cosmic_portal/portal_spin
+	bounds: 343, 1678, 334, 339
+	offsets: 1, 1, 336, 341
+	rotate: 90
+cosmic_portal/stars
+	bounds: 6, 1694, 331, 318
+	offsets: 0, 0, 331, 322

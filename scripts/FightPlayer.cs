@@ -41,7 +41,7 @@ public partial class FightPlayer : Player
     }
 
     // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
-    public EffectConfig.PlayerStatus PlayerStatus = EffectConfig.PlayerStatus.Combat;
+    public PlayerStatus PlayerStatus = PlayerStatus.Safe;
 
     [Serialized] protected FightPlayerEffectManager EffectManager;
     [Serialized] protected FightPlayerUI PlayerUi;
@@ -297,18 +297,54 @@ public partial class FightPlayer : Player
     }
 
     /// <summary>
+    /// [Server Only]
     /// Put all general conditions of casting an active skill here.
+    /// They must all be satisfied before the server dispatch a skill cast.
     /// We only check conditions related to the player here. Cooldown & silent are checked in SkillSlot.
     /// </summary>
     /// <returns></returns>
     public bool SkillCastGeneralCheck()
     {
-        return BlockCast.Value && PlayerStatus == EffectConfig.PlayerStatus.Combat;
+        return !BlockCast.Value && PlayerStatus == PlayerStatus.Combat;
     }
 
     public void SetSkillBlockCast(bool block)
     {
-        BlockCast.Set(block);
+        if (Network.IsServer)
+        {
+            BlockCast.Set(block);
+        }
+    }
+
+    #endregion
+
+    #region Zone Management
+
+    [ClientRpc]
+    public void SwitchStatus(int statusInt)
+    {
+        PlayerStatus status = (PlayerStatus)statusInt;
+        FightClubGameManager.Instance.RemovePlayerFromCurrentZone(this); // Remove player from zone first
+        PlayerStatus = status;
+        if (status == PlayerStatus.Combat)
+        {
+            OnTeleportToCombatZone();
+        }
+        else if (status == PlayerStatus.Safe)
+        {
+            OnTeleportToSafeZone();
+        }
+        FightClubGameManager.Instance.PlayerTeleportEvent.Invoke(this);
+    }
+
+    public void OnTeleportToCombatZone()
+    {
+        SkillSlotsManager.SkillSlotsPanelEnable(true);
+    }
+
+    public void OnTeleportToSafeZone()
+    {
+        SkillSlotsManager.SkillSlotsPanelEnable(false);
     }
 
     #endregion

@@ -19,9 +19,13 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
 
     public override void Start()
     {
-        SlotsPanel = UIWindow.InstantiateWindow(UniqueWindowKeys.SkillSlotsPanelPath) as SkillSlotsPanel; 
-        // TODO: Disable immediately as player is in the central hub
-        SlotsPanel.Entity.SetParent(UIManager.Instance.FindCanvas().Entity, false);
+        if (Network.IsClient)
+        {
+            SlotsPanel = UIWindow.InstantiateWindow(UniqueWindowKeys.SkillSlotsPanelPath) as SkillSlotsPanel; 
+            SlotsPanel.Entity.SetParent(UIManager.Instance.FindCanvas().Entity, false);
+            SkillSlotsPanelEnable(false);
+        }
+        
     }
     
     
@@ -73,7 +77,10 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     public void UpdateSlot(string mainKey, int level, string skillKey = null)
     {
         ActiveSkillSlots[mainKey].AssignSkill(skillKey ?? mainKey, level);
-        SlotsPanel.SetSlotText(mainKey, skillKey ?? mainKey);
+        if (Network.IsClient)
+        {
+            SlotsPanel.SetSlotText(mainKey, skillKey ?? mainKey);
+        }
     }
 
     public void RemoveSlot(string mainKey)
@@ -98,5 +105,14 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     public FightPlayer GetPlayer()
     {
         return _player;
+    }
+
+    public void SkillSlotsPanelEnable(bool enable)
+    {
+        if (Network.IsClient)
+        {
+            TestServerRPC.LogSomethingOnServer($"Set slot panel status to {enable}");
+            SlotsPanel.Entity.LocalEnabled = enable;
+        }
     }
 }

@@ -3,3 +3,18 @@ AbilityUpgradeDialog.prefab - .ao - 6647dbfca2a326d825267e81 - 16855350947188284
 AbilityVendorMenuWindow.prefab - .ao - 664655484d5b99636ac7a9f8 - 11964448424736677955
 FatPlayerCollision.prefab - .ao - 66426d27a214e8c7a135d8b7 - 17567100292640013128
 SkillSlotsPanel.prefab - .ao - 664d2470a2a326d825267f95 - 6365086264925676723
+environment/CentralHub/Platform_Large.png - .ao - 664e3b33a2a326d825267fb8 - 12033806716084652446
+environment/CentralHub/Platform_Large.png - .ao.ios - 664e3b33a2a326d825267fb7 - 8479110350304822805
+environment/PvP/ground.png - .ao - 664e2986a2a326d825267fa9 - 3941755338451764949
+environment/PvP/ground.png - .ao.ios - 664e2986a2a326d825267fa8 - 9257480414347845745
+environment/PvP/light_ring.png - .ao - 664e2986a2a326d825267fa7 - 5267325222286349184
+environment/PvP/light_ring.png - .ao.ios - 664e2987a2a326d825267fac - 14451557671411161846
+environment/PvP/mountain overlay.png - .ao - 664e2987a2a326d825267fae - 5425289671711470197
+environment/PvP/mountain overlay.png - .ao.ios - 664e2987a2a326d825267faf - 10161968245537579500
+environment/PvP/template.png - .ao - 664e2988a2a326d825267fb3 - 10119799048106586330
+environment/PvP/template.png - .ao.ios - 664e2988a2a326d825267fb4 - 14188427940155534268
+environment/gold.png - .ao - 664e651ba2a326d825267fdf - 3849509568267573875
+environment/gold.png - .ao.ios - 664e651aa2a326d825267fda - 14993547085893853238
+environment/portal/cosmicPortal.png - .ao - 664e651ba2a326d825267fe0 - 3995821800800756657
+environment/portal/cosmicPortal.png - .ao.ios - 664e651aa2a326d825267fdb - 4722501650766168214
+environment/portal/cosmicPortal.spine - .ao - 664e651aa2a326d825267fd9 - 9083999045970940274

@@ -5,17 +5,6 @@
 /// </summary>
 public static class EffectConfig
 {
-    #region Gameplay Enums
-
-    public enum PlayerStatus
-    {
-        Combat,
-        Safe,
-        AFK,
-        Spectating
-    }
-
-    #endregion
     
     #region RollOut
 

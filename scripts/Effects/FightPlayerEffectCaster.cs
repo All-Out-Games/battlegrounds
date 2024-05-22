@@ -19,6 +19,7 @@ public partial class FightPlayerEffectManager
     {
         if (Network.IsServer)
         {
+            if(!_player.SkillCastGeneralCheck()) return; // General Check
             if (_player.HasEffect<EffectPunch>()) return; // Avoid double cast
             
             // TODO: This can be some get level APIs from the skill tree. For now there's no skill level by design yet
@@ -57,6 +58,7 @@ public partial class FightPlayerEffectManager
     {
         if (Network.IsServer)
         {
+            if(!_player.SkillCastGeneralCheck()) return; // General Check
             if (_player.HasEffect<EffectRollOut>()) return; // Avoid double cast
             
             EffectConfig.RollOutConfig cfg = EffectConfig.GetPlayerRollOutConfig(1);

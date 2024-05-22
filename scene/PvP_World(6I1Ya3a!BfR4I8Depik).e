@@ -1,27 +1,27 @@
 10
-266287972354
-359905312717597 1716331881724713300
+257698037761
+3995215179226 1716399837848180900
 {
-  "name": "CentralHub_Scene",
+  "name": "PvP_World",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+    "X": 200,
+    "Y": 100
   },
   "local_rotation": 0,
   "local_scale": {
-    "X": 8,
-    "Y": 8
+    "X": 5,
+    "Y": 5
   },
-  "sibling_index": 1
+  "sibling_index": 2
 },
 {
   "cid": 1,
-  "aoid": "1965082910280:1716398821154408900",
+  "aoid": "3995216763310:1716399837848973600",
   "component_type": "Internal_Component",
   "internal_component_type": "Sprite_Renderer",
   "data": {
-    "texture": "environment/CentralHub/Platform_Large.png",
+    "texture": "environment/PvP/ground.png",
     "depth_offset": 0,
     "tint": {
       "X": 1,
