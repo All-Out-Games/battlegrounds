@@ -170,6 +170,7 @@ public partial class FightPlayer : Player
     /// <param name="damage"></param>
     public void TakeDamage(int damage)
     {
+        if (CurrentHealth <= 0) return; // Avoid damaging the dead
         CurrentHealth -= damage;
 
         if (Network.IsServer) {
@@ -371,8 +372,8 @@ public partial class FightPlayer : Player
             if (Network.IsServer)
             {
                 Zone combatZone = FightClubGameManager.References.PvpZone;
-                Teleport(Zone.GetRandomPointInZones(combatZone.ZoneId) + combatZone.Entity.Position);
-                //Teleport(combatZone.Entity.Position);
+                //Teleport(Zone.GetRandomPointInZones(combatZone.ZoneId) + combatZone.Entity.Position);
+                Teleport(combatZone.Entity.Position);
             }
             OnTeleportToCombatZone();
         }
@@ -381,8 +382,8 @@ public partial class FightPlayer : Player
             if (Network.IsServer)
             {
                 Zone hubZone = FightClubGameManager.References.CentralHubZone;
-                Teleport(Zone.GetRandomPointInZones(hubZone.ZoneId) + hubZone.Entity.Position);
-                //Teleport(hubZone.Entity.Position);
+                //Teleport(Zone.GetRandomPointInZones(hubZone.ZoneId) + hubZone.Entity.Position);
+                Teleport(hubZone.Entity.Position);
             }
             OnTeleportToSafeZone();
         }

@@ -50,7 +50,7 @@ public static partial class SkillConfig
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 0,
-        UIPosition = new Vector2(800,180),
+        UIPosition = new Vector2(730,230),
         SkillKey = "HealthBoost",
         ParentNodeKeys = new string [] {"Punch"},
         ChildrenNodeKeys = new string[] {"Punch2"},
@@ -66,7 +66,7 @@ public static partial class SkillConfig
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 0,
-        UIPosition = new Vector2(895,220),
+        UIPosition = new Vector2(110,230),
         SkillKey = "AttackBoost",
         ParentNodeKeys = new string[] {"Punch"},
         ChildrenNodeKeys = new string[] {"Punch2"},
@@ -98,27 +98,12 @@ public static partial class SkillConfig
         NType = NodeType.SkillReplace,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 0,
-        UIPosition = new Vector2(120,450),
+        UIPosition = new Vector2(420,430),
         SkillKey = "Punch2",
         ParentNodeKeys = new string [] {"AttackBoost", "HealthBoost"},
         ChildrenNodeKeys = new string[] {},
     };
     
-    /// <summary>
-    /// Fire Fist node
-    /// </summary>
-    public static readonly SkillTreeNodeConfig FireFistConfig = new SkillTreeNodeConfig()
-    {
-        DescriptionTextKey = "Boost your speed and enable you to crash into other players",
-        MaximumLevel = 1,
-        NType = NodeType.SkillUnlock,
-        NTab = SkillTreeTabs.Elemental,
-        UpgradeCost = 0,
-        UIPosition = new Vector2(120,450),
-        SkillKey = "FireFist",
-        ParentNodeKeys = new string[]{},
-        ChildrenNodeKeys = new string[]{},
-    };
 
     #endregion
     
@@ -133,9 +118,18 @@ public static partial class SkillConfig
             {"AttackBoost", AttackBoostNodeConfig},
             {"RollOut", RollOutNodeConfig},
             {"Punch2", PunchTwoConfig},
-            {"FireFist", FireFistConfig}
         };
 
+    // [Add Skill] Item 3: Put Classification Here
+    public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
+    
+    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "ShoulderCrash"};
+
+    public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
+    
+    public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() {  };
+    
+    
     
     // This affects how many pages appear on the ability book and ability vendor. Each page will have a tag that classifies the items.
     public static readonly List<SkillTreeTabs> STConfigTabsList = new List<SkillTreeTabs>()
@@ -143,6 +137,7 @@ public static partial class SkillConfig
         SkillTreeTabs.Basic,
         SkillTreeTabs.Brawler,
         SkillTreeTabs.Defensive,
-        SkillTreeTabs.Elemental
+        SkillTreeTabs.Stealth,
+        SkillTreeTabs.Psionic
     };
 }

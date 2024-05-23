@@ -18,7 +18,8 @@ public static partial class SkillConfig
         Basic,
         Defensive,
         Brawler,
-        Elemental,
+        Stealth,
+        Psionic
     }
 
     public enum StatType
@@ -39,14 +40,7 @@ public static partial class SkillConfig
     // Add keys here when new skills are added
     #region SkillKeys
     
-    // [Add Skill] Item 3: Put Classification Here
-    public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
-    
-    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "ShoulderCrash", "FireFist"};
 
-    public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
-    
-    public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() {  };
 
     public static HashSet<string> GetAllSkillKeys()
     {

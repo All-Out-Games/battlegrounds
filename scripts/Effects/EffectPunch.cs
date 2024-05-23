@@ -53,6 +53,7 @@ public partial class EffectPunch : FightEffect
             {
                 FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
                 other.TakeDamage(_config.PunchDamage);
+                // TODO: Player dealt damage to others event (for reward and stuff)
             }
             Log.Debug($"Shin: Falcon Punch! Dmg = {_config.PunchDamage}");
         }
