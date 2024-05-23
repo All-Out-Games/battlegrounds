@@ -1,3 +1,4 @@
+using System.Collections;
 using AO;
 using StreamReader = AO.StreamReader;
 
@@ -27,7 +28,7 @@ public partial class FightPlayer : Player
         }
     }
 
-    private int currentAttack = 5;
+    private int currentAttack = 25;
     public int CurrentAttack
     {
         get { return currentAttack; }
@@ -140,7 +141,14 @@ public partial class FightPlayer : Player
     [ClientRpc]
     public void DoRespawn()
     {
-        // TODO: Ref Gunr
+        ClearAllEffects();
+        // Teleport player to safe zone and get full health
+        if (Network.IsServer)
+        {
+            CallClient_SwitchStatus((int)PlayerStatus.Safe); 
+        }
+        
+        CurrentHealth = MaxHealth;
     }
 
     [ClientRpc]
@@ -156,12 +164,22 @@ public partial class FightPlayer : Player
         
     }
 
+    /// <summary>
+    /// [Server Only] The damage function on the server side.
+    /// </summary>
+    /// <param name="damage"></param>
     public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
 
         if (Network.IsServer) {
             CallClient_TakeDamage(CurrentHealth, damage);
+        }
+
+        if (CurrentHealth <= 0)
+        {
+            // Server only death routine (client-side handled in CallClient_TakeDamage)
+            Coroutine.Start(this.Entity, PlayerRespawnCoroutine());
         }
     }
     
@@ -170,15 +188,37 @@ public partial class FightPlayer : Player
     {
         CurrentHealth = health;
 
-        SetAnimTrigger("flinch");
-
         if (CurrentHealth <= 0)
         {
             Log.Debug("Death Triggered By RPC");
-            //MoveToLobbyArea();
+            PlayerDeath();
+        }
+        else
+        {
+            SetAnimTrigger("flinch");
         }
     }
 
+    
+    /// <summary>
+    /// The coroutine is [Server Only]. It counts down for a few seconds and trigger respawn on both sides.
+    /// </summary>
+    /// <returns></returns>
+    protected IEnumerator PlayerRespawnCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        CallClient_DoRespawn();
+    }
+
+    /// <summary>
+    /// [Server & Client]
+    /// </summary>
+    protected void PlayerDeath()
+    {
+        ClearAllEffects();
+        EffectManager.AddEffect<EffectDeath>(null, null, null); // TODO: Change caster to damage source?
+    }
+    
     #endregion
 
     #region Movement
@@ -328,10 +368,22 @@ public partial class FightPlayer : Player
         PlayerStatus = status;
         if (status == PlayerStatus.Combat)
         {
+            if (Network.IsServer)
+            {
+                Zone combatZone = FightClubGameManager.References.PvpZone;
+                //Teleport(Zone.GetRandomPointInZones(combatZone.ZoneId) + combatZone.Entity.Position);
+                Teleport(combatZone.Entity.Position);
+            }
             OnTeleportToCombatZone();
         }
         else if (status == PlayerStatus.Safe)
         {
+            if (Network.IsServer)
+            {
+                Zone hubZone = FightClubGameManager.References.CentralHubZone;
+                //Teleport(Zone.GetRandomPointInZones(hubZone.ZoneId) + hubZone.Entity.Position);
+                Teleport(hubZone.Entity.Position);
+            }
             OnTeleportToSafeZone();
         }
         FightClubGameManager.Instance.PlayerTeleportEvent.Invoke(this);

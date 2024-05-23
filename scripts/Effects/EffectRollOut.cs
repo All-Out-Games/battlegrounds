@@ -10,7 +10,7 @@ public partial class EffectRollOut : FightEffect
     {
         IsActiveEffect = false;
         BlockAbilityActivation = false;
-        IsValidTarget = false;
+        IsValidTarget = true;
     }
 
     /// <summary>

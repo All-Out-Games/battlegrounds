@@ -23,7 +23,7 @@ public partial class FightPlayerEffectManager
             if (_player.HasEffect<EffectPunch>()) return; // Avoid double cast
             
             // TODO: This can be some get level APIs from the skill tree. For now there's no skill level by design yet
-            EffectConfig.PunchConfig cfg = EffectConfig.GetPlayerPunchConfig(1); 
+            EffectConfig.PunchConfig cfg = EffectConfig.GetPlayerPunchConfig(1, _player.CurrentAttack); 
             
             CallClient_ActivatePunch(cfg, slotKey);
         }

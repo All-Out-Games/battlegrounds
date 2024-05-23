@@ -20,12 +20,12 @@ public partial class EffectNoMovement : FightEffect
     public override void OnEffectStart()
     {
         FightPlayer = (FightPlayer)Player;
-        FightPlayer.AddSpeedModifier(0.1f);
+        FightPlayer.AddSpeedModifier(0f);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
-        FightPlayer.RemoveSpeedModifier(0.1f);
+        FightPlayer.RemoveSpeedModifier(0f);
     }
     
     public override bool IsActiveEffect { get; }

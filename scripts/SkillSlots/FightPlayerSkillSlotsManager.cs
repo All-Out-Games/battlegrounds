@@ -22,13 +22,19 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         if (Network.IsClient)
         {
             SlotsPanel = UIWindow.InstantiateWindow(UniqueWindowKeys.SkillSlotsPanelPath) as SkillSlotsPanel; 
-            SlotsPanel.Entity.SetParent(UIManager.Instance.FindCanvas().Entity, false);
-            SkillSlotsPanelEnable(false);
+            
         }
         base.Awake();
     }
-    
-    
+
+    public override void Start()
+    {
+        if (Network.IsClient)
+        {
+            SlotsPanel.Entity.SetParent(UIManager.Instance.FindCanvas().Entity, false);
+            SkillSlotsPanelEnable(false);
+        }
+    }
 
 
     public void InitKeybind()

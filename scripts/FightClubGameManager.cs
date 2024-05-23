@@ -22,12 +22,13 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public static Keybind Slot2Keybind;
     public static Keybind Slot3Keybind;
     public static Keybind Slot4Keybind;
+    public static SceneReferenceHolder References;
     
     
     protected List<Entity> CombatPlayer = new(); // Only damage players in combat
     protected List<Entity> SpectatingPlayer = new(); // TODO: Unused for now
-    protected List<Entity> AFKPlayer = new(); // AFK Area
-    protected List<Entity> SafePlayer = new(); // Central
+    protected List<Entity> AFKPlayer = new(); // AFK Area players
+    protected List<Entity> SafePlayer = new(); // Central Area players
 
     public Action<FightPlayer> PlayerTeleportEvent;
     public List<Entity> GetCombatPlayers()

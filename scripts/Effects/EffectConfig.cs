@@ -43,14 +43,14 @@ public static class EffectConfig
 
     public struct PunchConfig
     {
-        public static int PunchDmgBase = 5;
+        public static int PunchDmgBase = 1;
         public static int PunchDmgGrowth = 2;
         public static float PunchAnimationTime = 0.6f; // Entire duration of the punch animation
         public static float PunchActivationTime = 0.25f;  // Delay time before activating the collider
         public static float PunchRange = 2;
         
         
-        public int PunchDamage = 5; // TODO: The final damage should be determined by the player's stats
+        public int PunchDamage = 5;
         
         
         public PunchConfig()

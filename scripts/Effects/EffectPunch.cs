@@ -10,7 +10,7 @@ public partial class EffectPunch : FightEffect
     {
         IsActiveEffect = false;
         BlockAbilityActivation = true;
-        IsValidTarget = false;
+        IsValidTarget = true;
     }
     
     public override void OnEffectStart()
