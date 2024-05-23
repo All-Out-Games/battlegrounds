@@ -17,7 +17,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         }
     }
 
-    public override void Start()
+    public override void Awake()
     {
         if (Network.IsClient)
         {
@@ -25,7 +25,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             SlotsPanel.Entity.SetParent(UIManager.Instance.FindCanvas().Entity, false);
             SkillSlotsPanelEnable(false);
         }
-        
+        base.Awake();
     }
     
     

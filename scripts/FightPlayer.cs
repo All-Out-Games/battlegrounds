@@ -43,7 +43,8 @@ public partial class FightPlayer : Player
     // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
     public PlayerStatus PlayerStatus = PlayerStatus.Safe;
 
-    [Serialized] protected FightPlayerEffectManager EffectManager;
+    
+    [Serialized] protected FightPlayerEffectManager EffectManager; 
     [Serialized] protected FightPlayerUI PlayerUi;
     [Serialized] protected FightPlayerSkillTree SkillTree;
     [Serialized] protected FightPlayerSkillSlotsManager SkillSlotsManager;
@@ -71,27 +72,26 @@ public partial class FightPlayer : Player
             SkillTree = Entity.AddComponent<FightPlayerSkillTree>();
             SkillSlotsManager = Entity.AddComponent<FightPlayerSkillSlotsManager>();
         }
-        
         EffectManager = Entity.GetComponent<FightPlayerEffectManager>();
         PlayerUi = Entity.GetComponent<FightPlayerUI>();
         SkillTree = Entity.GetComponent<FightPlayerSkillTree>();
         SkillSlotsManager = Entity.GetComponent<FightPlayerSkillSlotsManager>();
         
-        Log.Debug($"Client Awake!");
-    }
-
-    public override void NetworkDeserialize(StreamReader reader)
-    {
-        base.NetworkDeserialize(reader);
+        //Log.Debug($"Client Awake!");
+        SkillSlotsManager.InitKeybind();
     }
 
     public override void Start()
     {
-        Log.Debug($"Client Start!");
-        SkillSlotsManager.InitKeybind();
+        //Log.Debug($"Client Start!");
         
-        SkillTree.InitializeSkillTreeComp();
-        SkillTree.HandleAllSkills();
+        if (Network.IsServer)
+        {
+            SkillTree.InitializeSkillTreeComp();
+            SkillTree.HandleAllSkills();
+        }
+        
+        
 
         // Colliders
         var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider

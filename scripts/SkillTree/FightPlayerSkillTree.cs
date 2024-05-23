@@ -184,7 +184,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                 CallClient_SyncSkill(key, lvl);
             };
             // Phase 0: Default unlock for all players
-            UpgradeSkill("Punch", 1);
+            // UpgradeSkill("Punch", 1);
             
             // Phase 1: Attr Boosts (and passives, which are essentially permanent effects)
             foreach (string abKey in SkillConfig.AttrBoostSkills)

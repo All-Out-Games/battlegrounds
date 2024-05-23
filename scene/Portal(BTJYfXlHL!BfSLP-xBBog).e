@@ -1,26 +1,26 @@
 10
-240518168577
-31069919089008 1716413396906995300
+236223201281
+365682631791051 1716483885753440800
 {
   "name": "Portal",
   "local_enabled": true,
   "local_position": {
-    "X": 1.6439967155456543,
-    "Y": 1.7910928726196289
+    "X": -6.4873809814453125,
+    "Y": -5.6753573417663574
   },
   "local_rotation": 0,
   "local_scale": {
-    "X": 0.0500000007450581,
-    "Y": 0.0500000007450581
+    "X": 0.0799999982118607,
+    "Y": 0.0800000056624413
   },
   "sibling_index": 2,
-  "parent": "359905312717597:1716331881724713300",
+  "parent": "3995215179226:1716399837848180900",
   "spawn_as_networked_entity": true,
-  "network_id": 2
+  "network_id": 1
 },
 {
   "cid": 1,
-  "aoid": "31162563296502:1716413443303375800",
+  "aoid": "365682631954311:1716483885753517900",
   "component_type": "Internal_Component",
   "internal_component_type": "Spine_Animator",
   "data": {
@@ -37,7 +37,7 @@
 },
 {
   "cid": 3,
-  "aoid": "31207523722928:1716413465819635300",
+  "aoid": "365682632059222:1716483885753567700",
   "component_type": "Internal_Component",
   "internal_component_type": "Interactable",
   "data": {
@@ -50,13 +50,13 @@
 },
 {
   "cid": 2,
-  "aoid": "366140754091523:1716484102667505400",
+  "aoid": "366166482724117:1716484114849628600",
   "component_type": "Mono_Component",
   "mono_component_type": "ZoneTeleporter",
   "data": {
-    "SpawnPoint": "3995215294054:1716399837848237700",
-    "TeleportZone": "3995215330322:1716399837848255900",
-    "TeleportText": "PvPZone",
-    "ChangeStatusTo": "Combat"
+    "SpawnPoint": "360067163054752:1716331958358429600",
+    "TeleportZone": "3111059827982:1716399395061642500",
+    "TeleportText": "CentralHub",
+    "ChangeStatusTo": "Safe"
   }
 }
