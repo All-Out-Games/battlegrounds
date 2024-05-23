@@ -371,8 +371,8 @@ public partial class FightPlayer : Player
             if (Network.IsServer)
             {
                 Zone combatZone = FightClubGameManager.References.PvpZone;
-                //Teleport(Zone.GetRandomPointInZones(combatZone.ZoneId) + combatZone.Entity.Position);
-                Teleport(combatZone.Entity.Position);
+                Teleport(Zone.GetRandomPointInZones(combatZone.ZoneId) + combatZone.Entity.Position);
+                //Teleport(combatZone.Entity.Position);
             }
             OnTeleportToCombatZone();
         }
@@ -381,8 +381,8 @@ public partial class FightPlayer : Player
             if (Network.IsServer)
             {
                 Zone hubZone = FightClubGameManager.References.CentralHubZone;
-                //Teleport(Zone.GetRandomPointInZones(hubZone.ZoneId) + hubZone.Entity.Position);
-                Teleport(hubZone.Entity.Position);
+                Teleport(Zone.GetRandomPointInZones(hubZone.ZoneId) + hubZone.Entity.Position);
+                //Teleport(hubZone.Entity.Position);
             }
             OnTeleportToSafeZone();
         }

@@ -11,6 +11,7 @@ public abstract class UIWindow : Component
 
     public static UIWindow InstantiateWindow(string prefabPath)
     {
+        Log.Info($"UI Window {prefabPath} instantiated!");
         var windowPrefab = Assets.GetAsset<Prefab>(prefabPath);
         UIWindow newWindow = windowPrefab.Instantiate().GetComponent<UIWindow>();
         return newWindow;

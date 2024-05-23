@@ -7,29 +7,32 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
 
     public override void Update()
     {
-        foreach (var kv in ActiveSkillSlots)
+        if (_player.IsLocal)
         {
-            if (kv.Value.CurrentCooldownTime() > 0)
+            foreach (var kv in ActiveSkillSlots)
             {
-                float cooldown = kv.Value.ReduceCooldown(Time.DeltaTime);
-                SlotsPanel.SetSlotCooldown(kv.Key, cooldown);
+                if (kv.Value.CurrentCooldownTime() > 0)
+                {
+                    float cooldown = kv.Value.ReduceCooldown(Time.DeltaTime);
+                    SlotsPanel.SetSlotCooldown(kv.Key, cooldown);
+                }
             }
         }
+        
     }
 
     public override void Awake()
     {
-        if (Network.IsClient)
+        base.Awake();
+        if (_player.IsLocal)
         {
             SlotsPanel = UIWindow.InstantiateWindow(UniqueWindowKeys.SkillSlotsPanelPath) as SkillSlotsPanel; 
-            
         }
-        base.Awake();
     }
 
     public override void Start()
     {
-        if (Network.IsClient)
+        if (_player.IsLocal)
         {
             SlotsPanel.Entity.SetParent(UIManager.Instance.FindCanvas().Entity, false);
             SkillSlotsPanelEnable(false);
@@ -83,7 +86,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     public void UpdateSlot(string mainKey, int level, string skillKey = null)
     {
         ActiveSkillSlots[mainKey].AssignSkill(skillKey ?? mainKey, level);
-        if (Network.IsClient)
+        if (_player.IsLocal)
         {
             SlotsPanel.SetSlotText(mainKey, skillKey ?? mainKey);
         }
@@ -115,9 +118,9 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
 
     public void SkillSlotsPanelEnable(bool enable)
     {
-        if (Network.IsClient)
+        if (_player.IsLocal)
         {
-            TestServerRPC.LogSomethingOnServer($"Set slot panel status to {enable}");
+            TestServerRPC.LogSomethingOnServer($"Set slot panel status to {enable}, compID = {Id}");
             SlotsPanel.Entity.LocalEnabled = enable;
         }
     }
