@@ -45,7 +45,7 @@
       "X": 0,
       "Y": 1
     },
-    "text": "PvPZone"
+    "text": "CentralHub"
   }
 },
 {

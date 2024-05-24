@@ -30,11 +30,11 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig ShoulderCrashNodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Dash to a direction and deals 1.2x damage and knockback",
-        MaximumLevel = 5,
+        MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 0,
-        UIPosition = new Vector2(120,120),
+        UIPosition = new Vector2(450,30),
         SkillKey = "ShoulderCrash",
         ParentNodeKeys = new string[]{},
         ChildrenNodeKeys = new string[]{},

@@ -11,8 +11,7 @@ public static class EffectConfig
     public struct RollOutConfig
     {
         public static int BumpDmgBase = 9;
-        public static int BumpDmgGrowth = 3;
-        
+
         public float Duration = 10f;
         public int ContactDamage = 5;
         public float SpeedBuffMultiplier = 1.5f;
@@ -25,12 +24,12 @@ public static class EffectConfig
         }
     }
 
-    public static RollOutConfig GetPlayerRollOutConfig(int level)
+    public static RollOutConfig GetPlayerRollOutConfig(int attack)
     {
         RollOutConfig cfg = new RollOutConfig
         {
             // Modify the config on the server side in this function based on parameters
-            ContactDamage = RollOutConfig.BumpDmgBase + level * RollOutConfig.BumpDmgGrowth
+            ContactDamage = RollOutConfig.BumpDmgBase + attack
         };
 
         return cfg;
@@ -68,5 +67,35 @@ public static class EffectConfig
         return cfg;
     }
 
+    #endregion
+
+    #region ShoulderCrash
+
+    public struct ShoulderCrashConfig
+    {
+        public static int BumpDmgBase = 9;
+
+        public float DashDuration = 0.5f;
+        public float DashSpeed = 275f;
+        
+        public int ContactDamage = 5;
+        public float BumpStrength = 140f;
+        public float Cooldown = 8f;
+        public ShoulderCrashConfig()
+        {
+            
+        }
+
+
+    }
+
+    public static ShoulderCrashConfig GetPlayerShoulderCrashConfig(int attack)
+    {
+        ShoulderCrashConfig cfg = new ShoulderCrashConfig
+        {
+            ContactDamage = attack + ShoulderCrashConfig.BumpDmgBase
+        };
+        return cfg;
+    }
     #endregion
 }

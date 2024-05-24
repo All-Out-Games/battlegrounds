@@ -24,4 +24,11 @@ public partial class TestServerRPC
     {
         Log.Info($"From Client: {msg}");
     }
+
+    [ServerRpc]
+    public static void AddDashToNetworkID(ulong netID, Vector2 add, float duration)
+    {
+        FightPlayer targetPly = Entity.FindByNetworkId(netID).GetComponent<FightPlayer>();
+        targetPly.AddDash_Server(add,duration);
+    }
 }

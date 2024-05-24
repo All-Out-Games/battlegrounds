@@ -32,8 +32,8 @@
         "Z": 1,
         "W": 1
       },
-      "valign": "Vertical_Text_Align::Center",
-      "halign": "Horizontal_Text_Align::Center",
+      "valign": 1,
+      "halign": 1,
       "word_wrap": false,
       "word_wrap_start_offset": 0,
       "offset": {

@@ -149,12 +149,15 @@ public class UIManager : System<UIManager>
                 var sideBarRect = UI.ScreenRect.LeftCenterRect().Grow(330, 100, 330, 0).Offset(5, 0);
 
                 var buttonRect = sideBarRect.CutTop(100);
-                if (UI.Button(buttonRect, $"Slot 1", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
+                if (UI.Button(buttonRect, $"Dash", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
                         _defaultTextSettings).Clicked)
                 {
                     var player = (FightPlayer)Network.LocalPlayer;
-                    Log.Debug("Casting Slot 1");
-                    player.GetEffectMgr().CallServer_CastRollOut("Slot1");
+                    Log.Debug("Dash!");
+                    Vector2 dashDir = player.LastInputs.Length < 0.001
+                        ? (player.GetFacingDirection() ? Vector2.Right : Vector2.Left)
+                         : player.LastInputs;
+                    TestServerRPC.CallServer_AddDashToNetworkID(player.Entity.NetworkId, dashDir * 250f, 0.5f);
                 }
 
                 // Spacing
@@ -174,7 +177,7 @@ public class UIManager : System<UIManager>
                 sideBarRect.CutTop(10);
                 
                 var buttonRect3 = sideBarRect.CutTop(100);
-                if (UI.Button(buttonRect3, $"Unlock Rollout Slot 1",
+                if (UI.Button(buttonRect3, $"Unlock Default Skillset",
                         new UI.ButtonSettings()
                             { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
                         _defaultTextSettings).Clicked)
@@ -183,6 +186,9 @@ public class UIManager : System<UIManager>
                     Log.Info("Rollout Unlocked in Slot 1");
                     player.GetSkillTree().CallServer_UpgradeSkill("RollOut", 1);
                     player.GetSkillSlots().UpdateSlot("Slot1", 1, "RollOut");
+                    Log.Info("ShoulderCrash Unlocked in Slot 2");
+                    player.GetSkillTree().CallServer_UpgradeSkill("ShoulderCrash", 1);
+                    player.GetSkillSlots().UpdateSlot("Slot2", 1, "ShoulderCrash");
                 }
                 
                 // Spacing

@@ -4,9 +4,10 @@ public partial class FightPlayerEffectManager
 {
     
     // All effects related to active skills should go here.
-    // TODO: Use reflection to call Cast{SkillKey} functions on server (e.g. CallServer_CastPunch)
-    
-    
+    // Use reflection to call Cast{SkillKey} functions on server (e.g. CallServer_CastPunch)
+    // See EquipSkillSlot.cs
+
+
     // PART 1: The active effects which can be triggered by the player
     // IMPORTANT: We use reflections to call these RPCs. Make sure the skill handler's name is Cast{SkillKey}.
     // The cast function MUST take a single parameter which is the slot mainKey that's activating the skill.
@@ -61,9 +62,8 @@ public partial class FightPlayerEffectManager
             if(!_player.SkillCastGeneralCheck()) return; // General Check
             if (_player.HasEffect<EffectRollOut>()) return; // Avoid double cast
             
-            EffectConfig.RollOutConfig cfg = EffectConfig.GetPlayerRollOutConfig(1);
-
-            //AddEffect<EffectRollOut>(_player, cfg.Duration, initRollOutWithConfig);
+            EffectConfig.RollOutConfig cfg = EffectConfig.GetPlayerRollOutConfig(_player.CurrentAttack);
+            
             CallClient_ActivateRollOut(cfg, slotKey);
         }
     }
@@ -82,7 +82,34 @@ public partial class FightPlayerEffectManager
     }
     
     #endregion
-    
-    
+
+
+    #region Ef: ShoulderCrash
+
+    [ServerRpc]
+    public void CastShoulderCrash(string slotKey)
+    {
+        if (Network.IsServer)
+        {
+            if(!_player.SkillCastGeneralCheck()) return; // General Check
+            if (_player.HasEffect<EffectShoulderCrash>()) return; // Avoid double cast
+            
+            var cfg = EffectConfig.GetPlayerShoulderCrashConfig(_player.CurrentAttack);
+            
+            CallClient_ActivateShoulderCrash(cfg, slotKey);
+        }
+    }
+
+    [ClientRpc]
+    public void ActivateShoulderCrash(EffectConfig.ShoulderCrashConfig cfg, string slotKey)
+    {
+        Action<EffectShoulderCrash> initShoulderCrashWithConfig = (sc) =>
+        {
+            sc.AssignConfig(cfg, slotKey);
+        };
+        AddEffect<EffectNoMovement>(_player, cfg.DashDuration);
+        AddEffect<EffectShoulderCrash>(_player, cfg.DashDuration, initShoulderCrashWithConfig);
+    }
+    #endregion
     // PART 2: Effects inflicted by other players
 }

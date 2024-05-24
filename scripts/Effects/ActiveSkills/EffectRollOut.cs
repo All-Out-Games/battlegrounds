@@ -64,10 +64,8 @@ public partial class EffectRollOut : FightEffect
             var add = bumpDir * _config.BumpStrength;
             if (Network.IsServer)
             {
-                // TODO: Bumping is changing on the engine side, just do the damage for now (Shin, May07 2024)
                 otherPlayer.AddBumpFrom(FightPlayer, add, false);
-                //otherPlayer.CallClient_AddBump(add, false);
-                otherPlayer.TakeDamage(3);
+                otherPlayer.TakeDamage(_config.ContactDamage);
             }
 
         }

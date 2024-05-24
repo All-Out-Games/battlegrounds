@@ -23,11 +23,11 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.7500000000000000,
+      "X": 0.4000000059604645,
       "Y": 0.3499999940395355
     },
     "max": {
-      "X": 0.9499999880790710,
+      "X": 0.6000000238418579,
       "Y": 0.6499999761581421
     },
     "insets": {
@@ -118,6 +118,8 @@
       },
       "click_sound": "",
       "click_sound_speed": 1,
+      "stay_hot_while_active": false,
+      "return_to_center_to_cancel": false,
       "keybind": 0
     },
     "interactable": false

@@ -119,7 +119,7 @@ public partial class FightPlayer : Player
     public override void Update()
     {
         BumpDecay();
-        
+        DashDecay();
         ControllerUpdate();
     }
 
@@ -250,13 +250,13 @@ public partial class FightPlayer : Player
         }
         
         var velocity = DefaultPlayerVelocityCalculation(currentVelocity, input, deltaTime, GetTotalVelocityMultiplier());
-        velocity += Bump * deltaTime; // No bump for now, see EffectRollOut.cs
+        velocity += Bump * deltaTime;
+        velocity += Dash * deltaTime;
         return velocity;
     }
 
     // Bump
-    public Vector2 Bump = Vector2.Zero;
-
+    protected Vector2 Bump = Vector2.Zero;
     /// <summary>
     /// Called each frame to decay bump
     /// </summary>
@@ -290,7 +290,38 @@ public partial class FightPlayer : Player
         
     }
     
+    // Dash
+    public Vector2 Dash = Vector2.Zero;
+    protected float DashRemainingDuration;
+    protected const float DashDecayThreshold = 0.1f;
+
+    protected void DashDecay()
+    {
+        DashRemainingDuration -= Time.DeltaTime;
+        Dash = DashRemainingDuration > DashDecayThreshold
+            ? Dash
+            : Vector2.Lerp(Dash, Vector2.Zero, Time.DeltaTime * 10.0f);
+        //Bump = Vector2.Lerp(Bump, Vector2.Zero, Time.DeltaTime * 2.0f);
+    }
+    
+    [ClientRpc]
+    public void AddDash(Vector2 add, float duration)
+    {
+        Dash = add;
+        DashRemainingDuration = duration;
+    }
+
+    public void AddDash_Server(Vector2 add, float duration)
+    {
+        if (Network.IsServer)
+        {
+            CallClient_AddDash(add, duration);
+        }
+    }
+    
     #endregion
+
+
 
     #region Sub Component Getters
 
