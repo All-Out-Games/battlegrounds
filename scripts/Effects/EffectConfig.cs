@@ -105,7 +105,7 @@ public static class EffectConfig
     {
         public static int ShieldAmtBase = 20;
         
-        public float Duration = 4f;
+        public float Duration = 8f;
         public float Cooldown = 8f;
         public int ShieldAmt = ShieldAmtBase;
 

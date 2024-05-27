@@ -21,23 +21,24 @@ public partial class FightPlayer : Player
         get { return currentHealth; } 
         set 
         {
+            currentHealth = value; 
             if (Network.IsServer) {
                 CallClient_SetHealth(value);
             }
-            currentHealth = value; 
+            
         }
     }
 
-    private int currentAttack = 25;
+    private int currentAttack = 10;
     public int CurrentAttack
     {
         get { return currentAttack; }
         set
         {
+            currentAttack = value; 
             if (Network.IsServer) {
                 CallClient_SetAttack(currentAttack);
             }
-            currentAttack = value; 
         }
     }
 
@@ -46,15 +47,14 @@ public partial class FightPlayer : Player
 
     public int CurrentShield
     {
-        get { return currentAttack; }
+        get { return currentShield; }
         set
         {
+            currentShield = value;
             if (Network.IsServer)
             {
                 CallClient_SetShield(currentShield);
             }
-
-            currentShield = value;
         }
     }
 
@@ -63,12 +63,11 @@ public partial class FightPlayer : Player
         get { return maxShield; }
         set
         {
+            maxShield = value;
             if (Network.IsServer)
             {
                 CallClient_SetMaxShield(maxShield);
             }
-
-            maxShield = value;
         }
     } // Current Max value of shield
     
@@ -212,13 +211,32 @@ public partial class FightPlayer : Player
     /// TODO: Damage type and source + OnDamage Event for effects to register
     /// </summary>
     /// <param name="damage"></param>
-    public void TakeDamage(int damage)
+    /// <param name="source"></param>
+    public void TakeDamage(int damage, FightPlayer source)
     {
         if (CurrentHealth <= 0) return; // Avoid damaging the dead
-        CurrentHealth -= damage;
+
+        DamageReactionInfo info = new DamageReactionInfo();
+        
+        if (CurrentShield > 0)
+        {
+            CurrentShield -= damage;
+            if (CurrentShield <= 0)
+            {
+                // Shield is not enough
+                CurrentHealth += CurrentShield;
+                CurrentShield = 0;
+                info.ShieldBroken = true;
+            }
+        }
+        else
+        {
+            CurrentHealth -= damage;
+        }
+        
 
         if (Network.IsServer) {
-            CallClient_TakeDamage(CurrentHealth, damage);
+            CallClient_DamageReaction(CurrentHealth, damage, info); // This is just for UI and client-side animation
         }
 
         if (CurrentHealth <= 0)
@@ -229,10 +247,13 @@ public partial class FightPlayer : Player
     }
     
     [ClientRpc]
-    public void TakeDamage(int health, int damage)
+    public void DamageReaction(int health, int damage, DamageReactionInfo info)
     {
-        CurrentHealth = health;
-
+        if (info.ShieldBroken)
+        {
+            ShieldBreakEvent?.Invoke();
+        }
+        
         if (CurrentHealth <= 0)
         {
             Log.Debug("Death Triggered By RPC");

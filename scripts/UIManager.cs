@@ -183,12 +183,21 @@ public class UIManager : System<UIManager>
                         _defaultTextSettings).Clicked)
                 {
                     var player = (FightPlayer)Network.LocalPlayer;
+                    var skillTree = player.GetSkillTree();
+                    var skillSlots = player.GetSkillSlots();
+                    
+                    skillTree.CallServer_UpgradeSkill("RollOut", 1);
+                    skillSlots.UpdateSlot("Slot1", 1, "RollOut");
                     Log.Info("Rollout Unlocked in Slot 1");
-                    player.GetSkillTree().CallServer_UpgradeSkill("RollOut", 1);
-                    player.GetSkillSlots().UpdateSlot("Slot1", 1, "RollOut");
+                    
+                    skillTree.CallServer_UpgradeSkill("ShoulderCrash", 1);
+                    skillSlots.UpdateSlot("Slot2", 1, "ShoulderCrash");
                     Log.Info("ShoulderCrash Unlocked in Slot 2");
-                    player.GetSkillTree().CallServer_UpgradeSkill("ShoulderCrash", 1);
-                    player.GetSkillSlots().UpdateSlot("Slot2", 1, "ShoulderCrash");
+                    
+                    skillTree.CallServer_UpgradeSkill("Shield", 1);
+                    skillSlots.UpdateSlot("Slot3", 1, "Shield");
+                    Log.Info("Shield Unlocked in Slot 3");
+                    
                 }
                 
                 // Spacing

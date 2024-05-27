@@ -28,6 +28,7 @@ public partial class EffectPunch : FightEffect
     public void AssignConfig(EffectConfig.PunchConfig cfg)
     {
         Config = cfg;
+        SlotKey = "Punch"; // Punch (and upgraded versions of it) uses dedicated slot
     }
 
     [ClientRpc]
@@ -52,7 +53,7 @@ public partial class EffectPunch : FightEffect
             if (rc.Entity != null)
             {
                 FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
-                other.TakeDamage(Config.PunchDamage);
+                other.TakeDamage(Config.PunchDamage, FightPlayer);
                 // TODO: Player dealt damage to others event (for reward and stuff)
             }
             Log.Debug($"Shin: Falcon Punch! Dmg = {Config.PunchDamage}");
@@ -67,10 +68,9 @@ public partial class EffectPunch : FightEffect
         FightPlayer otherPlayer = other.GetComponent<FightPlayer>();
         if (otherPlayer != null)
         {
-            // TODO: Whitelist the damaged player and check; Each punch should damage a player only once
             if (Network.IsServer)
             {
-                otherPlayer.TakeDamage(Config.PunchDamage);
+                otherPlayer.TakeDamage(Config.PunchDamage, FightPlayer);
             }
 
         }

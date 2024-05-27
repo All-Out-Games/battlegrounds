@@ -18,9 +18,15 @@ public abstract class FightEffect : AEffect
     public override void OnEffectStart()
     {
         FightPlayer = (FightPlayer)Player;
+
+        // Effects related to active skills will have the slot key passed in for cooldown process
+        // We get their slot here
+        if (SlotKey != null)
+        {
+            FightPlayerSkillSlotsManager slotsMgr = FightPlayer.GetSkillSlots();
+            SkillSlot = slotsMgr.GetSkillSlot(SlotKey);
+        }
         
-        FightPlayerSkillSlotsManager slotsMgr = FightPlayer.GetSkillSlots();
-        SkillSlot = slotsMgr.GetSkillSlot(SlotKey);
     }
     
     public override void OnEffectUpdate()

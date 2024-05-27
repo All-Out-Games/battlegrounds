@@ -4,13 +4,19 @@ public class FightPlayerUI : FightPlayerComponent
 {
     public override void Update()
     {
+        Rect healthRect;
         if (_player.CurrentHealth > 0)
         {
-            DrawHealthBar();
+            healthRect = DrawHealthBar();
+            if (_player.CurrentShield > 0)
+            {
+                DrawShieldBar(healthRect.Copy());
+            }
         }
+
     }
 
-    protected void DrawHealthBar()
+    protected Rect DrawHealthBar()
     {
         var healthRect = UI.GetPlayerRect(_player);
         healthRect = healthRect.Grow(13, 50, 0, 50).Offset(0, -85);
@@ -20,16 +26,19 @@ public class FightPlayerUI : FightPlayerComponent
         var healthPercent = _player.CurrentHealth / (float)_player.MaxHealth;
         var healthPercentRect = healthRect.SubRect(0, 0, healthPercent, 1, 0, 0, 0, 0);
         UI.Image(healthPercentRect, null, Vector4.HSVLerp(Vector4.Red, Vector4.Green, healthPercent), new UI.NineSlice());
+        //UIManager.Instance.SetPopup($"Shield - {_player.CurrentShield} Max shield - {_player.MaxShield}", 0.5f, _player);
+        return healthRect;
 
-        if (_player.CurrentShield > 0)
-        {
-            DrawShieldBar();
-        }
-        
     }
 
-    protected void DrawShieldBar()
+    protected void DrawShieldBar(Rect healthRect)
     {
         
+        Rect shieldRect = healthRect.Grow(-7, -5, 0, -5).Offset(0, 13);
+        UI.Image(shieldRect, null, Vector4.Black, new UI.NineSlice());
+
+        float shieldPercent = _player.CurrentShield / (float)_player.MaxShield;
+        var shieldPercentRect = shieldRect.SubRect(0, 0, shieldPercent, 1, 0, 0, 0, 0);
+        UI.Image(shieldPercentRect, null, Vector4.LightBlue);
     }
 }

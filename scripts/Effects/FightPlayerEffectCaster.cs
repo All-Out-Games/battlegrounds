@@ -133,6 +133,7 @@ public partial class FightPlayerEffectManager
     [ClientRpc]
     public void ActivateShield(EffectConfig.ShieldConfig cfg, string slotKey)
     {
+        EffectShield.RemoveShieldEffect(_player); // Overwrite existing shield with new one
         Action<EffectShield> initShieldWithConfig = (shield) =>
         {
             shield.AssignConfig(cfg, slotKey);
