@@ -12,11 +12,11 @@ public static class EffectConfig
     {
         public static int BumpDmgBase = 9;
 
-        public float Duration = 10f;
+        public float Duration = 5f;
         public int ContactDamage = 5;
         public float SpeedBuffMultiplier = 1.5f;
         public float BumpStrength = 35f;
-        public float Cooldown = 5f;
+        public float Cooldown = 10f;
         
 
         public RollOutConfig()
@@ -97,5 +97,28 @@ public static class EffectConfig
         };
         return cfg;
     }
+    #endregion
+
+    #region Shield
+
+    public struct ShieldConfig
+    {
+        public static int ShieldAmtBase = 20;
+        
+        public float Duration = 4f;
+        public float Cooldown = 8f;
+        public int ShieldAmt = ShieldAmtBase;
+
+        public ShieldConfig()
+        {
+            
+        }
+    }
+
+    public static ShieldConfig GetPlayerShieldConfig()
+    {
+        return new ShieldConfig();
+    }
+
     #endregion
 }

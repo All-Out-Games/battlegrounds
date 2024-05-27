@@ -29,7 +29,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig ShoulderCrashNodeConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Dash to a direction and deals 1.2x damage and knockback",
+        DescriptionTextKey = "Dash to a direction and deals damage and knockback",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
@@ -98,9 +98,25 @@ public static partial class SkillConfig
         NType = NodeType.SkillReplace,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 0,
-        UIPosition = new Vector2(420,430),
+        UIPosition = new Vector2(450,430),
         SkillKey = "Punch2",
         ParentNodeKeys = new string [] {"AttackBoost", "HealthBoost"},
+        ChildrenNodeKeys = new string[] {},
+    };
+    
+    /// <summary>
+    /// Shield node
+    /// </summary>
+    public static readonly SkillTreeNodeConfig ShieldConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Boost your speed and enable you to crash into other players",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Defensive,
+        UpgradeCost = 0,
+        UIPosition = new Vector2(450,30),
+        SkillKey = "Shield",
+        ParentNodeKeys = new string [] {},
         ChildrenNodeKeys = new string[] {},
     };
     
@@ -118,12 +134,13 @@ public static partial class SkillConfig
             {"AttackBoost", AttackBoostNodeConfig},
             {"RollOut", RollOutNodeConfig},
             {"Punch2", PunchTwoConfig},
+            {"Shield", ShieldConfig},
         };
 
     // [Add Skill] Item 3: Put Classification Here
     public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
     
-    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "ShoulderCrash"};
+    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "ShoulderCrash", "Shield"};
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     

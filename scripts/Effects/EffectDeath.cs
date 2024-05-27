@@ -17,11 +17,7 @@ public class EffectDeath : FightEffect
         FightPlayer.SetAnimTrigger("death");
         FightPlayer.SetSkillBlockCast(true);
     }
-
-    public override void OnEffectUpdate()
-    {
-        
-    }
+    
 
     public override void OnEffectEnd(bool interrupt)
     {

@@ -11,7 +11,10 @@ public partial class FightPlayerEffectManager
     // PART 1: The active effects which can be triggered by the player
     // IMPORTANT: We use reflections to call these RPCs. Make sure the skill handler's name is Cast{SkillKey}.
     // The cast function MUST take a single parameter which is the slot mainKey that's activating the skill.
-    // The activate function MUST take a single parameter which is a customizable struct for the skill.
+    // The activate function MUST take 2 parameters which are a customizable struct for the skill & the slot key.
+    
+    // The slot key handles cooldown stuff, and the struct config will fetch the player's data on the server (and also 
+    // check if the player can cast the skill)
     
     #region Ef: Punch
 
@@ -110,6 +113,33 @@ public partial class FightPlayerEffectManager
         AddEffect<EffectNoMovement>(_player, cfg.DashDuration);
         AddEffect<EffectShoulderCrash>(_player, cfg.DashDuration, initShoulderCrashWithConfig);
     }
+    #endregion
+
+    #region Ef: Shield
+
+    [ServerRpc]
+    public void CastShield(string slotKey)
+    {
+        if (Network.IsServer)
+        {
+            if(!_player.SkillCastGeneralCheck()) return; // General Check
+            // Shield can be double cast. The new one will overwrite the old one
+            var cfg = EffectConfig.GetPlayerShieldConfig();
+            
+            CallClient_ActivateShield(cfg, slotKey);
+        }
+    }
+
+    [ClientRpc]
+    public void ActivateShield(EffectConfig.ShieldConfig cfg, string slotKey)
+    {
+        Action<EffectShield> initShieldWithConfig = (shield) =>
+        {
+            shield.AssignConfig(cfg, slotKey);
+        };
+        AddEffect(_player, cfg.Duration, initShieldWithConfig);
+    }
+
     #endregion
     // PART 2: Effects inflicted by other players
 }

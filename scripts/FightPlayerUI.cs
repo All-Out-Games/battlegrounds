@@ -7,7 +7,6 @@ public class FightPlayerUI : FightPlayerComponent
         if (_player.CurrentHealth > 0)
         {
             DrawHealthBar();
-            
         }
     }
 
@@ -22,5 +21,15 @@ public class FightPlayerUI : FightPlayerComponent
         var healthPercentRect = healthRect.SubRect(0, 0, healthPercent, 1, 0, 0, 0, 0);
         UI.Image(healthPercentRect, null, Vector4.HSVLerp(Vector4.Red, Vector4.Green, healthPercent), new UI.NineSlice());
 
+        if (_player.CurrentShield > 0)
+        {
+            DrawShieldBar();
+        }
+        
+    }
+
+    protected void DrawShieldBar()
+    {
+        
     }
 }

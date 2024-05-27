@@ -1,9 +1,8 @@
 ﻿using AO;
 
-public class EffectShoulderCrash : FightEffect
+public sealed class EffectShoulderCrash : FightEffect
 {
     private EffectConfig.ShoulderCrashConfig _config;
-    private string _skillSlotKey;
 
     private List<Entity> _interactedEntity;
 
@@ -21,6 +20,7 @@ public class EffectShoulderCrash : FightEffect
         base.OnEffectStart();
         FightPlayer.AddPlayerCollisionFunction(OnShoulderCrashCollision);
         FightPlayer.AddDash_Server(GetDashDirection() * _config.DashSpeed, _config.DashDuration);
+        SkillSlot.ApplyCooldown(_config.Cooldown);
     }
     
     public override void OnEffectEnd(bool interrupt)
@@ -36,7 +36,7 @@ public class EffectShoulderCrash : FightEffect
     public void AssignConfig(EffectConfig.ShoulderCrashConfig cfg, string slotKey)
     {
         _config = cfg;
-        _skillSlotKey = slotKey;
+        SlotKey = slotKey;
     }
 
     protected Vector2 GetDashDirection()

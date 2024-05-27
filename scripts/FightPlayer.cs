@@ -41,6 +41,38 @@ public partial class FightPlayer : Player
         }
     }
 
+    private int maxShield = 0;
+    private int currentShield = 0;
+
+    public int CurrentShield
+    {
+        get { return currentAttack; }
+        set
+        {
+            if (Network.IsServer)
+            {
+                CallClient_SetShield(currentShield);
+            }
+
+            currentShield = value;
+        }
+    }
+
+    public int MaxShield
+    {
+        get { return maxShield; }
+        set
+        {
+            if (Network.IsServer)
+            {
+                CallClient_SetMaxShield(maxShield);
+            }
+
+            maxShield = value;
+        }
+    } // Current Max value of shield
+    
+
     // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
     public PlayerStatus PlayerStatus = PlayerStatus.Safe;
 
@@ -161,11 +193,23 @@ public partial class FightPlayer : Player
     public void SetAttack(int attack)
     {
         currentAttack = attack;
-        
+    }
+
+    [ClientRpc]
+    public void SetShield(int shield)
+    {
+        currentShield = shield;
+    }
+
+    [ClientRpc]
+    public void SetMaxShield(int shield)
+    {
+        maxShield = shield;
     }
 
     /// <summary>
     /// [Server Only] The damage function on the server side.
+    /// TODO: Damage type and source + OnDamage Event for effects to register
     /// </summary>
     /// <param name="damage"></param>
     public void TakeDamage(int damage)

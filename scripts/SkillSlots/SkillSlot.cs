@@ -88,7 +88,7 @@ public abstract class SkillSlot
     }
     public bool IsUsable()
     {
-        return !IsEmpty() && !IsSilent && CurrentCooldown <= 0;
+        return !SlotsMgr.AllSilent && !IsEmpty() && !IsSilent && CurrentCooldown <= 0;
     }
     
     public abstract void UseSkill();

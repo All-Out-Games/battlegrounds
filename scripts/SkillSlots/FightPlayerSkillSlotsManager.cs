@@ -5,6 +5,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     protected SkillSlotsPanel SlotsPanel;
     public Dictionary<string, SkillSlot> ActiveSkillSlots = new(); // A slot becomes active if the player put in an active skill
 
+    public bool AllSilent;
     public override void Update()
     {
         if (_player.IsLocal)
@@ -100,13 +101,14 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     [ClientRpc]
     public void SilentAllSlot(bool silent)
     {
-        foreach (var kv in ActiveSkillSlots)
+        AllSilent = silent;
+        /*foreach (var kv in ActiveSkillSlots)
         {
-            kv.Value.SilentSlot(silent);
-        }
+            kv.Value.SilentSlot(silent); // This is stupid
+        }*/
     }
 
-    public SkillSlot GetSkillSlots(string mainKey)
+    public SkillSlot GetSkillSlot(string mainKey)
     {
         return ActiveSkillSlots[mainKey];
     }

@@ -4,7 +4,7 @@ using AO;
 
 public partial class EffectPunch : FightEffect
 {
-    private EffectConfig.PunchConfig _config;
+    protected EffectConfig.PunchConfig Config;
 
     EffectPunch()
     {
@@ -27,7 +27,7 @@ public partial class EffectPunch : FightEffect
     
     public void AssignConfig(EffectConfig.PunchConfig cfg)
     {
-        _config = cfg;
+        Config = cfg;
     }
 
     [ClientRpc]
@@ -52,10 +52,10 @@ public partial class EffectPunch : FightEffect
             if (rc.Entity != null)
             {
                 FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
-                other.TakeDamage(_config.PunchDamage);
+                other.TakeDamage(Config.PunchDamage);
                 // TODO: Player dealt damage to others event (for reward and stuff)
             }
-            Log.Debug($"Shin: Falcon Punch! Dmg = {_config.PunchDamage}");
+            Log.Debug($"Shin: Falcon Punch! Dmg = {Config.PunchDamage}");
         }
         
         //FightPlayer.AddPlayerPunchCollisionFunction(OnPunchCollisionEnter);
@@ -70,7 +70,7 @@ public partial class EffectPunch : FightEffect
             // TODO: Whitelist the damaged player and check; Each punch should damage a player only once
             if (Network.IsServer)
             {
-                otherPlayer.TakeDamage(_config.PunchDamage);
+                otherPlayer.TakeDamage(Config.PunchDamage);
             }
 
         }

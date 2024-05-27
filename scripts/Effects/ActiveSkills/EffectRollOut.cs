@@ -1,10 +1,8 @@
 ﻿using AO;
 
-public partial class EffectRollOut : FightEffect
+public sealed partial class EffectRollOut : FightEffect
 {
     private EffectConfig.RollOutConfig _config;
-    private string _skillSlotKey;
-    private SkillSlot _skillSlot;
 
     public EffectRollOut()
     {
@@ -20,7 +18,7 @@ public partial class EffectRollOut : FightEffect
     public void AssignConfig(EffectConfig.RollOutConfig cfg, string slotKey)
     {
         _config = cfg;
-        _skillSlotKey = slotKey;
+        SlotKey = slotKey;
     }
     
     public override void OnEffectStart()
@@ -28,10 +26,8 @@ public partial class EffectRollOut : FightEffect
         base.OnEffectStart();
         FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
         FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
-
-        FightPlayerSkillSlotsManager slotsMgr = FightPlayer.GetSkillSlots();
-        _skillSlot = slotsMgr.GetSkillSlots(_skillSlotKey);
-        _skillSlot.SilentSlot(true);
+        
+        SkillSlot.SilentSlot(true); // This skill is not in cooldown until the effect ends, so we need to silent it to prevent casting again.
     }
 
 
@@ -40,8 +36,8 @@ public partial class EffectRollOut : FightEffect
     {
         FightPlayer.RemoveSpeedModifier(_config.SpeedBuffMultiplier);
         FightPlayer.RemovePlayerCollisionFunction(OnRolloutCollision);
-        _skillSlot.SilentSlot(false);
-        _skillSlot.ApplyCooldown(_config.Cooldown);
+        SkillSlot.SilentSlot(false);
+        SkillSlot.ApplyCooldown(_config.Cooldown);
     }
     
     
