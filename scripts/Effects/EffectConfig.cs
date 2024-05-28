@@ -156,7 +156,7 @@ public static class EffectConfig
         ProjectileConfig cfg = new ProjectileConfig()
         {
             Damage = ProjectileConfig.ProjectileDamageBase + attack,
-            ProjectilePrefabKey = "projectile/BroccoliProjectile.prefab"
+            ProjectilePrefabKey = "BroccoliProjectile.prefab"
         };
         return cfg;
     }

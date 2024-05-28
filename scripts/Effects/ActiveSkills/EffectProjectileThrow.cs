@@ -21,7 +21,11 @@ public class EffectProjectileThrow : FightEffect
 
     public override void OnEffectEnd(bool interrupt)
     {
-        ProjectileThrow();
+        //Log.Debug($"Projectile Prefab Key {Config.ProjectilePrefabKey}");
+        if (Network.IsServer)
+        {
+            ProjectileThrow();
+        }
         FightPlayer.SetSkillBlockCast(false);
     }
 
@@ -36,9 +40,26 @@ public class EffectProjectileThrow : FightEffect
         // This function can be overwritten to create different projectile throwing behaviors
         // However, you should try to build the logic of the projectile within itself
         // i.e. inherit the Projectile component and put it on your prefab.
-        Log.Debug("Projectile Instantiated!");
-        Entity proj = AO.Entity.Instantiate(AO.Assets.GetAsset<Prefab>(Config.ProjectilePrefabKey));
+
+        //Entity proj = AO.Assets.GetAsset<Prefab>(Config.ProjectilePrefabKey).Instantiate();
+
+        Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
+            $"{FightPlayer.Id}_Spoon",
+            FightPlayer.Entity.Position, Vector2.Left);
         //proj.Position = Entity.Position;
+        Projectile projComp = proj.GetComponent<Projectile>();
+        projComp.Speed = Config.Speed;
+        projComp.Lifetime = Config.ProjectileLifetime;
+        projComp.OnHit = (other, predicted) =>
+        {
+            Log.Debug($"Hit {other.Name} !");
+            FightPlayer player = other.GetComponent<FightPlayer>();
+            if (player != null)
+            {
+                player.TakeDamage(Config.Damage, FightPlayer);
+                proj.Destroy();
+            }
+        };
     }
 
     public override bool IsActiveEffect { get; }

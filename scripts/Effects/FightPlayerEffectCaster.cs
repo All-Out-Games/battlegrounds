@@ -157,15 +157,18 @@ public partial class FightPlayerEffectManager
             if(!_player.SkillCastGeneralCheck()) return; // General Check
             var cfg = EffectConfig.GetPlayerSpoonThrowConfig(_player.CurrentAttack);
             
-            CallClient_ActivateSpoonThrow(cfg, slotKey);
+            CallClient_ActivateSpoonThrow(cfg, cfg.ProjectilePrefabKey,slotKey);
         }
     }
 
     [ClientRpc]
-    public void ActivateSpoonThrow(EffectConfig.ProjectileConfig cfg, string slotKey)
+    public void ActivateSpoonThrow(EffectConfig.ProjectileConfig cfg, string prefabKey, string slotKey)
     {
         void InitProjectileThrowWithConfig(EffectProjectileThrow pt)
         {
+            // TODO: RPC must pass strings as separate parameter. Strings in structs are not valid (To be fixed on engine side)
+            cfg.ProjectilePrefabKey = prefabKey; 
+            
             pt.AssignConfig(cfg, slotKey);
         }
 
