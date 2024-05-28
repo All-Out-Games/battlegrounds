@@ -236,7 +236,7 @@ public partial class FightPlayer : Player
         
 
         if (Network.IsServer) {
-            CallClient_DamageReaction(CurrentHealth, damage, info); // This is just for UI and client-side animation
+            CallClient_DamageReaction(CurrentHealth, damage, info); // All Client side stuff goes here
         }
 
         if (CurrentHealth <= 0)
