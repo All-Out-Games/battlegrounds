@@ -5,17 +5,15 @@
   "name": "BroccoliProjectile",
   "local_enabled": true,
   "local_position": {
-    "X": 4.7861504554748535,
-    "Y": 2.5317230224609375
+    "X": 0,
+    "Y": 0
   },
   "local_rotation": 0,
   "local_scale": {
     "X": 1,
     "Y": 1
   },
-  "sibling_index": 0,
-  "spawn_as_networked_entity": true,
-  "network_id": 1
+  "sibling_index": 0
 },
 {
   "cid": 1,
@@ -38,24 +36,15 @@
   }
 },
 {
-  "cid": 3,
-  "aoid": "439072599203485:1716924080418058000",
+  "cid": 5,
+  "aoid": "439168799105689:1716924125967274300",
   "component_type": "Internal_Component",
-  "internal_component_type": "Box_Collider",
+  "internal_component_type": "Rigidbody",
   "data": {
-    "size": {
-      "X": 0.5400000214576721,
-      "Y": 0.5600000023841858
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
-    },
-    "is_trigger": true,
-    "density": 1,
-    "friction": 0,
-    "restitution": 0,
-    "restitution_threshold": 1
+    "angular_damping": 0,
+    "linear_damping": 0,
+    "gravity_scale": 1,
+    "fixed_rotation": true
   }
 },
 {
@@ -68,14 +57,23 @@
   }
 },
 {
-  "cid": 5,
-  "aoid": "439168799105689:1716924125967274300",
+  "cid": 2,
+  "aoid": "457738977608465:1716932918669342700",
   "component_type": "Internal_Component",
-  "internal_component_type": "Rigidbody",
+  "internal_component_type": "Box_Collider",
   "data": {
-    "angular_damping": 0,
-    "linear_damping": 0,
-    "gravity_scale": 0,
-    "fixed_rotation": true
+    "size": {
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    },
+    "is_trigger": false,
+    "density": 1,
+    "friction": 0.2000000029802322,
+    "restitution": 0,
+    "restitution_threshold": 1
   }
 }
