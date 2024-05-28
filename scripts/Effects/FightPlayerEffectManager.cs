@@ -20,6 +20,7 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
         return _player.RemoveEffect<T>(interrupt);
     }
     
+    //[Effects] PART 2
     // Put some generic effects here. For effects related to abilities, see Effects/FightPlayerEffectCaster.cs
     
     // No Movement: Lower the players speed to zero, for example when they are doing an in-place animation

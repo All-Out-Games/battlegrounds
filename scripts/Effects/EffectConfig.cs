@@ -2,11 +2,12 @@
 
 /// <summary>
 /// Base Ability Config. Pass modified data to player based on player stats on the server
+/// This data will be passed through network, therefore IT SHOULD NOT CONTAIN ANY CLASS REFERENCES! (i.e. data only)
 /// </summary>
 public static class EffectConfig
 {
     
-    #region RollOut
+    #region Cfg: RollOut
 
     public struct RollOutConfig
     {
@@ -38,7 +39,7 @@ public static class EffectConfig
 
     #endregion
 
-    #region Punch
+    #region Cfg: Punch
 
     public struct PunchConfig
     {
@@ -69,7 +70,7 @@ public static class EffectConfig
 
     #endregion
 
-    #region ShoulderCrash
+    #region Cfg: ShoulderCrash
 
     public struct ShoulderCrashConfig
     {
@@ -99,7 +100,7 @@ public static class EffectConfig
     }
     #endregion
 
-    #region Shield
+    #region Cfg: Shield
 
     public struct ShieldConfig
     {
@@ -118,6 +119,46 @@ public static class EffectConfig
     public static ShieldConfig GetPlayerShieldConfig()
     {
         return new ShieldConfig();
+    }
+
+    #endregion
+
+    #region Cfg: Ranged Projectile
+
+    public struct ProjectileConfig
+    {
+        public static int ProjectileDamageBase = 5;
+        
+        public float Range = 30f;
+        public float Speed = 15f;
+        
+        public float Cooldown = 8f;
+        public float ProjectileLifetime = 2f;
+        public float ThrowAnimationLength = 0.3f; // You can use this as delay (or use animation event) to spawn the projectile
+        public int Damage = 0;
+
+        public string ProjectilePrefabKey;
+
+        public ProjectileConfig()
+        {
+            
+        }
+    }
+
+    /// <summary>
+    /// Projectile config can be reused, you can make it timed / ranged in your effect codes
+    /// Here the default config is for the spoon throw skill
+    /// </summary>
+    /// <param name="attack"></param>
+    /// <returns></returns>
+    public static ProjectileConfig GetPlayerSpoonThrowConfig(int attack)
+    {
+        ProjectileConfig cfg = new ProjectileConfig()
+        {
+            Damage = ProjectileConfig.ProjectileDamageBase + attack,
+            ProjectilePrefabKey = "projectile/BroccoliProjectile.prefab"
+        };
+        return cfg;
     }
 
     #endregion

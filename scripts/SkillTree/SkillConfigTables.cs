@@ -84,7 +84,7 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(770,330),
         SkillKey = "RollOut",
-        ParentNodeKeys =  new string[]{},
+        ParentNodeKeys =  new string[]{"Shield"},
         ChildrenNodeKeys = new string[]{},
     };
     
@@ -109,7 +109,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig ShieldConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Boost your speed and enable you to crash into other players",
+        DescriptionTextKey = "Dash forward and knock the enemy back",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Defensive,
@@ -117,14 +117,30 @@ public static partial class SkillConfig
         UIPosition = new Vector2(450,30),
         SkillKey = "Shield",
         ParentNodeKeys = new string [] {},
-        ChildrenNodeKeys = new string[] {},
+        ChildrenNodeKeys = new string[] {"RollOut"},
     };
-    
+
+    /// <summary>
+    /// Spoon Throw
+    /// </summary>
+    public static readonly SkillTreeNodeConfig SpoonThrowConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Throw a spoon towards aiming position",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Psionic,
+        UpgradeCost = 0,
+        UIPosition = new Vector2(450, 30),
+        SkillKey = "SpoonThrow",
+        ParentNodeKeys = new string[] {},
+        ChildrenNodeKeys = new string[]{},
+    };
 
     #endregion
     
     // [Add Skill] item 2: Query Entry
     // MUST ADD for each new skill. This connects the unique skill key to their node config.
+    // The standard format is {"[SkillKey]", "[SkillKey]Config"}
     public static readonly Dictionary<string, SkillTreeNodeConfig> STConfigQueryDict =
         new Dictionary<string, SkillTreeNodeConfig>()
         {
@@ -135,12 +151,13 @@ public static partial class SkillConfig
             {"RollOut", RollOutNodeConfig},
             {"Punch2", PunchTwoConfig},
             {"Shield", ShieldConfig},
+            {"SpoonThrow", SpoonThrowConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
     public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
     
-    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "ShoulderCrash", "Shield"};
+    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "ShoulderCrash", "Shield", "SpoonThrow"};
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     

@@ -8,7 +8,8 @@ public partial class FightPlayerEffectManager
     // See EquipSkillSlot.cs
 
 
-    // PART 1: The active effects which can be triggered by the player
+    // [Effects] PART 1: The active effects which can be triggered by the player
+    
     // IMPORTANT: We use reflections to call these RPCs. Make sure the skill handler's name is Cast{SkillKey}.
     // The cast function MUST take a single parameter which is the slot mainKey that's activating the skill.
     // The activate function MUST take 2 parameters which are a customizable struct for the skill & the slot key.
@@ -41,12 +42,12 @@ public partial class FightPlayerEffectManager
         // 1. For one-and-done skills, pass the slot key into init function. Call ApplyCooldown() from OnEffectStart
         // 2. For buff skills, pass the slot key into init function. Silent the slot at the start then unsilent
         // from OnEffectEnd, then apply cooldown
-        Action<EffectPunch> initPunchWithConfig = (efp) =>
+        void InitPunchWithConfig(EffectPunch efp)
         {
             efp.AssignConfig(cfg);
-        };
-        
-        AddEffect<EffectPunch>(_player, EffectConfig.PunchConfig.PunchAnimationTime, initPunchWithConfig);
+        }
+
+        AddEffect<EffectPunch>(_player, EffectConfig.PunchConfig.PunchAnimationTime, InitPunchWithConfig);
     }
     #endregion
     
@@ -56,7 +57,7 @@ public partial class FightPlayerEffectManager
     /// <summary>
     /// Request the server to cast RollOut
     /// </summary>
-    /// <param name="level"></param>
+    /// <param name="slotKey"></param>
     [ServerRpc]
     public void CastRollOut(string slotKey)
     {
@@ -77,15 +78,15 @@ public partial class FightPlayerEffectManager
         // Note: RPC cannot pass class references. 
         // Use player.Entity.NetworkId if we need to pass the caster through server.
         // then Entity.FindByNetworkId() in client.
-        Action<EffectRollOut> initRollOutWithConfig = (rollOut) =>
+        void InitRollOutWithConfig(EffectRollOut rollOut)
         {
             rollOut.AssignConfig(cfg, slotKey);
-        };
-        AddEffect<EffectRollOut>(_player, cfg.Duration, initRollOutWithConfig);
+        }
+
+        AddEffect<EffectRollOut>(_player, cfg.Duration, InitRollOutWithConfig);
     }
     
     #endregion
-
 
     #region Ef: ShoulderCrash
 
@@ -106,12 +107,13 @@ public partial class FightPlayerEffectManager
     [ClientRpc]
     public void ActivateShoulderCrash(EffectConfig.ShoulderCrashConfig cfg, string slotKey)
     {
-        Action<EffectShoulderCrash> initShoulderCrashWithConfig = (sc) =>
+        void InitShoulderCrashWithConfig(EffectShoulderCrash sc)
         {
             sc.AssignConfig(cfg, slotKey);
-        };
+        }
+
         AddEffect<EffectNoMovement>(_player, cfg.DashDuration);
-        AddEffect<EffectShoulderCrash>(_player, cfg.DashDuration, initShoulderCrashWithConfig);
+        AddEffect<EffectShoulderCrash>(_player, cfg.DashDuration, InitShoulderCrashWithConfig);
     }
     #endregion
 
@@ -134,13 +136,41 @@ public partial class FightPlayerEffectManager
     public void ActivateShield(EffectConfig.ShieldConfig cfg, string slotKey)
     {
         EffectShield.RemoveShieldEffect(_player); // Overwrite existing shield with new one
-        Action<EffectShield> initShieldWithConfig = (shield) =>
+
+        void InitShieldWithConfig(EffectShield shield)
         {
             shield.AssignConfig(cfg, slotKey);
-        };
-        AddEffect(_player, cfg.Duration, initShieldWithConfig);
+        }
+
+        AddEffect(_player, cfg.Duration, (Action<EffectShield>)InitShieldWithConfig);
     }
 
     #endregion
-    // PART 2: Effects inflicted by other players
+
+    #region Ef: SpoonThrow
+
+    [ServerRpc]
+    public void CastSpoonThrow(string slotKey)
+    {
+        if (Network.IsServer)
+        {
+            if(!_player.SkillCastGeneralCheck()) return; // General Check
+            var cfg = EffectConfig.GetPlayerSpoonThrowConfig(_player.CurrentAttack);
+            
+            CallClient_ActivateSpoonThrow(cfg, slotKey);
+        }
+    }
+
+    [ClientRpc]
+    public void ActivateSpoonThrow(EffectConfig.ProjectileConfig cfg, string slotKey)
+    {
+        void InitProjectileThrowWithConfig(EffectProjectileThrow pt)
+        {
+            pt.AssignConfig(cfg, slotKey);
+        }
+
+        AddEffect(_player, cfg.ThrowAnimationLength, (Action<EffectProjectileThrow>)InitProjectileThrowWithConfig);
+    }
+
+    #endregion
 }

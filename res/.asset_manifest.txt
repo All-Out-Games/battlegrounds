@@ -18,3 +18,6 @@ environment/gold.png - .ao.ios - 664e651aa2a326d825267fda - 14993547085893853238
 environment/portal/cosmicPortal.png - .ao - 664e651ba2a326d825267fe0 - 3995821800800756657
 environment/portal/cosmicPortal.png - .ao.ios - 664e651aa2a326d825267fdb - 4722501650766168214
 environment/portal/cosmicPortal.spine - .ao - 664e651aa2a326d825267fd9 - 9083999045970940274
+projectile/BroccoliProjectile.prefab - .ao - 665629d860923cfc467fd9be - 17095874624223671572
+projectile/broccoli.png - .ao - 6656296f60923cfc467fd9b9 - 11812411699987569959
+projectile/broccoli.png - .ao.ios - 6656296f60923cfc467fd9b8 - 13405905846631228871

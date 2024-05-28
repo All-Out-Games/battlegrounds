@@ -198,6 +198,10 @@ public class UIManager : System<UIManager>
                     skillSlots.UpdateSlot("Slot3", 1, "Shield");
                     Log.Info("Shield Unlocked in Slot 3");
                     
+                    skillTree.CallServer_UpgradeSkill("SpoonThrow", 1);
+                    skillSlots.UpdateSlot("Slot4", 1, "SpoonThrow");
+                    Log.Info("SpoonThrow Unlocked in Slot 4");
+                    
                 }
                 
                 // Spacing
