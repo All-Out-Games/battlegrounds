@@ -16,12 +16,13 @@ public enum PlayerStatus
 public class FightClubGameManager : System<FightClubGameManager> {
 
     #region Attributes
-
-    public static Keybind PunchKeybind;
+    
     public static Keybind Slot1Keybind;
     public static Keybind Slot2Keybind;
     public static Keybind Slot3Keybind;
     public static Keybind Slot4Keybind;
+    public static Keybind Slot5Keybind;
+    public static Keybind Slot6Keybind;
     public static SceneReferenceHolder References;
     
     
@@ -41,11 +42,12 @@ public class FightClubGameManager : System<FightClubGameManager> {
 
     public override void Awake()
     {
-        PunchKeybind = Keybinds.RegisterKeybind("Punch", Input.UnifiedInput.KEYCODE_F);
-        Slot1Keybind = Keybinds.RegisterKeybind("Skill 1", Input.UnifiedInput.KEYCODE_R);
-        Slot2Keybind = Keybinds.RegisterKeybind("Skill 2", Input.UnifiedInput.KEYCODE_T);
-        Slot3Keybind = Keybinds.RegisterKeybind("Skill 3", Input.UnifiedInput.KEYCODE_V);
-        Slot4Keybind = Keybinds.RegisterKeybind("Skill 4", Input.UnifiedInput.KEYCODE_B);
+        // Slot1Keybind = Keybinds.RegisterKeybind("Ability 1", Input.UnifiedInput.KEYCODE_F);
+        // Slot2Keybind = Keybinds.RegisterKeybind("Ability 2", Input.UnifiedInput.KEYCODE_R);
+        // Slot3Keybind = Keybinds.RegisterKeybind("Ability 3", Input.UnifiedInput.KEYCODE_T);
+        // Slot4Keybind = Keybinds.RegisterKeybind("Ability 4", Input.UnifiedInput.KEYCODE_V);
+        // Slot5Keybind = Keybinds.RegisterKeybind("Ability 5", Input.UnifiedInput.KEYCODE_B);
+        // Slot6Keybind = Keybinds.RegisterKeybind("Ability 6", Input.UnifiedInput.KEYCODE_G);
     }
 
     public override void Start()

@@ -16,6 +16,9 @@ public partial class EffectPunch : FightEffect
     public override void OnEffectStart()
     {
         base.OnEffectStart();
+        
+        AssignConfig(EffectConfig.GetPlayerPunchConfig(1, FightPlayer.CurrentAttack));
+        
         Punch();
         FightPlayer.SetSkillBlockCast(true);
     }
@@ -27,6 +30,7 @@ public partial class EffectPunch : FightEffect
     
     public void AssignConfig(EffectConfig.PunchConfig cfg)
     {
+        DurationRemaining = EffectConfig.PunchConfig.PunchAnimationTime;
         Config = cfg;
         SlotKey = "Punch"; // Punch (and upgraded versions of it) uses dedicated slot
     }

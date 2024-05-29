@@ -37,17 +37,6 @@ public partial class FightPlayer
     protected void HandleSkillSlotInput()
     {
         //TestServerRPC.CallServer_LogSomethingOnServer(SkillSlots.ActiveSkillSlots["Punch"].SlotKeyBind.ToString());
-        foreach (var kv in SkillSlotsManager.ActiveSkillSlots)
-        {
-            // TODO: More complex input handling. Wrap handler functions in slots
-            SkillSlot curSlot = kv.Value;
-            if (GetKeybindDown(curSlot.SlotKeyBind))
-            {
-                //TestServerRPC.CallServer_LogSomethingOnServer("Skill Cast Input!");
-                UseSkillSlot(curSlot);
-                
-            }
-        }
     }
     #endregion
 }

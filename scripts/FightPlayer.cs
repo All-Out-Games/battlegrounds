@@ -110,7 +110,7 @@ public partial class FightPlayer : Player
         SkillSlotsManager = Entity.GetComponent<FightPlayerSkillSlotsManager>();
         
         //Log.Debug($"Client Awake!");
-        SkillSlotsManager.InitKeybind();
+        //SkillSlotsManager.InitKeybind();
     }
 
     public override void Start()
