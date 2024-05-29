@@ -26,14 +26,12 @@ public class EffectShield : FightEffect
             FightPlayer.MaxShield = Config.ShieldAmt;
             FightPlayer.CurrentShield = Config.ShieldAmt;
         }
-        SkillSlot.SilentSlot(true);
         FightPlayer.ShieldBreakEvent += PrematureBreak;
     }
 
     public void AssignConfig(EffectConfig.ShieldConfig cfg, string slotKey)
     {
         Config = cfg;
-        SlotKey = slotKey;
     }
     
     public override void OnEffectEnd(bool interrupt)
@@ -43,8 +41,6 @@ public class EffectShield : FightEffect
             FightPlayer.CurrentShield = 0;
             FightPlayer.MaxShield = 0;
         }
-        SkillSlot.SilentSlot(false);
-        SkillSlot.ApplyCooldown(Config.Cooldown);
         FightPlayer.ShieldBreakEvent -= PrematureBreak;
     }
 

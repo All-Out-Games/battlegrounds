@@ -32,7 +32,6 @@ public partial class EffectPunch : FightEffect
     {
         DurationRemaining = EffectConfig.PunchConfig.PunchAnimationTime;
         Config = cfg;
-        SlotKey = "Punch"; // Punch (and upgraded versions of it) uses dedicated slot
     }
 
     [ClientRpc]

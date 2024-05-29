@@ -3,6 +3,10 @@ using AO;
 public partial class FightPlayerEffectManager
 {
     
+    // TODO: The casters are retired and replaced by Ability System
+#if false
+    
+
     // All effects related to active skills should go here.
     // Use reflection to call Cast{SkillKey} functions on server (e.g. CallServer_CastPunch)
     // See EquipSkillSlot.cs
@@ -16,6 +20,43 @@ public partial class FightPlayerEffectManager
     
     // The slot key handles cooldown stuff, and the struct config will fetch the player's data on the server (and also 
     // check if the player can cast the skill)
+
+    #region Ef: No Movement
+
+    /// <summary>
+    /// Ask the server to cast NoMovement debuff on this player
+    /// </summary>
+    /// <param name="casterId"></param>
+    /// <param name="duration"></param>
+    [ServerRpc]
+    public void CastNoMovement(ulong casterId, float duration)
+    {
+        if (Network.IsServer)
+        {
+            CallClient_ActivateNoMovement(casterId, duration);
+        }
+    }
+    
+    [ClientRpc]
+    public void ActivateNoMovement(ulong casterId, float duration)
+    {
+        // Note: RPC cannot pass class references. 
+        // Use player.Entity.NetworkId if we need to pass the caster through server.
+        // then Entity.FindByNetworkId() in client.
+        FightPlayer caster;
+        var casterEntity = Entity.FindByNetworkId(casterId);
+        if (casterEntity != null)
+        {
+            caster = casterEntity.GetComponent<FightPlayer>();
+        }
+        else
+        {
+            caster = null;
+        }
+        AddEffect<EffectNoMovement>(caster, duration);
+    }
+
+    #endregion
     
     #region Ef: Punch
 
@@ -176,4 +217,6 @@ public partial class FightPlayerEffectManager
     }
 
     #endregion
+
+#endif
 }

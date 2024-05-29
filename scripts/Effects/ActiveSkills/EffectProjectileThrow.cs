@@ -32,7 +32,6 @@ public class EffectProjectileThrow : FightEffect
     public virtual void AssignConfig(EffectConfig.ProjectileConfig cfg, string slotKey)
     {
         Config = cfg;
-        SlotKey = slotKey;
     }
     
     public virtual void ProjectileThrow()

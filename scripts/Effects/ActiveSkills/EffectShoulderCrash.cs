@@ -18,9 +18,12 @@ public sealed class EffectShoulderCrash : FightEffect
     public override void OnEffectStart()
     {
         base.OnEffectStart();
+        AssignConfig(EffectConfig.GetPlayerShoulderCrashConfig(FightPlayer.CurrentAttack));
         FightPlayer.AddPlayerCollisionFunction(OnShoulderCrashCollision);
-        FightPlayer.AddDash_Server(GetDashDirection() * _config.DashSpeed, _config.DashDuration);
-        SkillSlot.ApplyCooldown(_config.Cooldown);
+
+        Vector2 dir = GetDashDirection();
+        FightPlayer.SetFacingDirection(dir.X > 0);
+        FightPlayer.AddDash_Server(dir * _config.DashSpeed, _config.DashDuration);
     }
     
     public override void OnEffectEnd(bool interrupt)
@@ -33,18 +36,16 @@ public sealed class EffectShoulderCrash : FightEffect
     public override bool BlockAbilityActivation { get; }
     public override bool IsValidTarget { get; }
 
-    public void AssignConfig(EffectConfig.ShoulderCrashConfig cfg, string slotKey)
+    public void AssignConfig(EffectConfig.ShoulderCrashConfig cfg)
     {
         _config = cfg;
-        SlotKey = slotKey;
     }
 
     protected Vector2 GetDashDirection()
     {
         //Log.Debug(FightPlayer.LastInputs.ToString());
         // Use input direction if we have one; use face direction otherwise.
-        return FightPlayer.Velocity.Length > 0.01 ? FightPlayer.Velocity.Normalized :
-            FightPlayer.GetFacingDirection() ? Vector2.Right : Vector2.Left;
+        return AbilityPositionOrDirection.Normalized;
     }
     
     protected void OnShoulderCrashCollision(Entity other)

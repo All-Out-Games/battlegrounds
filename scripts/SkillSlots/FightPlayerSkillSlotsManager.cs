@@ -1,4 +1,5 @@
 using AO;
+using Assembly.scripts.SkillSlots.Abilities;
 
 public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
 {
@@ -34,6 +35,8 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         {
             SkillSlotsPanelEnable(false);
             ActiveAbilities.Add(_player.GetAbility<AbilityPunch>());
+            ActiveAbilities.Add(_player.GetAbility<AbilityRollOut>());
+            ActiveAbilities.Add(_player.GetAbility<AbilityShoulderCrash>());
         }
     }
 

@@ -15,7 +15,7 @@ public static class EffectConfig
 
         public float Duration = 5f;
         public int ContactDamage = 5;
-        public float SpeedBuffMultiplier = 1.5f;
+        public float SpeedBuffMultiplier = 1.35f;
         public float BumpStrength = 35f;
         public float Cooldown = 10f;
         

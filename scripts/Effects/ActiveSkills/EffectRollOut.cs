@@ -15,19 +15,21 @@ public sealed partial class EffectRollOut : FightEffect
     /// Call this function before adding the created Effect instance to the player!
     /// </summary>
     /// <param name="cfg"></param>
-    public void AssignConfig(EffectConfig.RollOutConfig cfg, string slotKey)
+    public void AssignConfig(EffectConfig.RollOutConfig cfg)
     {
         _config = cfg;
-        SlotKey = slotKey;
     }
     
     public override void OnEffectStart()
     {
         base.OnEffectStart();
+        
+        AssignConfig(EffectConfig.GetPlayerRollOutConfig(FightPlayer.CurrentAttack));
+        
+        DurationRemaining = _config.Duration;
+        
         FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
         FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
-        
-        SkillSlot.SilentSlot(true); // This skill is not in cooldown until the effect ends, so we need to silent it to prevent casting again.
     }
 
 
@@ -36,8 +38,6 @@ public sealed partial class EffectRollOut : FightEffect
     {
         FightPlayer.RemoveSpeedModifier(_config.SpeedBuffMultiplier);
         FightPlayer.RemovePlayerCollisionFunction(OnRolloutCollision);
-        SkillSlot.SilentSlot(false);
-        SkillSlot.ApplyCooldown(_config.Cooldown);
     }
     
     
