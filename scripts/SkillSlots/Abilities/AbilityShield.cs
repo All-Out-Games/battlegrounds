@@ -1,11 +1,11 @@
-using AO;
 namespace Assembly.scripts.SkillSlots.Abilities;
+using AO;
 
-public class AbilityRollOut : FightAbility
+public class AbilityShield : FightAbility
 {
-    public override string SkillKey => "RollOut";
-    
-    public override Type Effect => typeof(EffectRollOut);
+    public override string SkillKey => "Shield";
+
+    public override Type Effect => typeof(EffectShield);
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
 }

@@ -53,7 +53,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Projectile",
   "data": {
-    "speed": 15
+    "speed": 1
   }
 },
 {
@@ -63,14 +63,14 @@
   "internal_component_type": "Box_Collider",
   "data": {
     "size": {
-      "X": 0.5000000000000000,
-      "Y": 0.5000000000000000
+      "X": 0.6000000238418579,
+      "Y": 0.6000000238418579
     },
     "offset": {
       "X": 0,
       "Y": 0
     },
-    "is_trigger": false,
+    "is_trigger": true,
     "density": 1,
     "friction": 0.2000000029802322,
     "restitution": 0,

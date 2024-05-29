@@ -18,29 +18,24 @@ public class EffectShield : FightEffect
     public override void OnEffectStart()
     {
         base.OnEffectStart();
-
-        if (Network.IsServer)
-        {
-            // FightPlayer.CallClient_SetShield(Config.ShieldAmt);
-            // FightPlayer.CallClient_SetMaxShield(Config.ShieldAmt);
-            FightPlayer.MaxShield = Config.ShieldAmt;
-            FightPlayer.CurrentShield = Config.ShieldAmt;
-        }
+        
+        AssignConfig(EffectConfig.GetPlayerShieldConfig());
+        DurationRemaining = Config.Duration;
+        
+        FightPlayer.MaxShield = Config.ShieldAmt;
+        FightPlayer.CurrentShield = Config.ShieldAmt;
         FightPlayer.ShieldBreakEvent += PrematureBreak;
     }
 
-    public void AssignConfig(EffectConfig.ShieldConfig cfg, string slotKey)
+    public void AssignConfig(EffectConfig.ShieldConfig cfg)
     {
         Config = cfg;
     }
     
     public override void OnEffectEnd(bool interrupt)
     {
-        if (Network.IsServer)
-        {
-            FightPlayer.CurrentShield = 0;
-            FightPlayer.MaxShield = 0;
-        }
+        FightPlayer.CurrentShield = 0;
+        FightPlayer.MaxShield = 0;
         FightPlayer.ShieldBreakEvent -= PrematureBreak;
     }
 

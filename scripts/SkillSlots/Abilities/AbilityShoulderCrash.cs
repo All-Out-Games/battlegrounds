@@ -3,9 +3,10 @@ using AO;
 
 public class AbilityShoulderCrash : FightAbility
 {
+    public override string SkillKey => "ShoulderCrash";
 
     public override Type Effect => typeof(EffectShoulderCrash);
-    public override bool MonitorEffectDuration => true;
+    public override bool MonitorEffectDuration => false;
     public override TargettingMode TargettingMode => TargettingMode.Line;
     public override float MaxDistance => 5f;
 }

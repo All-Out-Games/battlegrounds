@@ -19,6 +19,7 @@ public sealed class EffectShoulderCrash : FightEffect
     {
         base.OnEffectStart();
         AssignConfig(EffectConfig.GetPlayerShoulderCrashConfig(FightPlayer.CurrentAttack));
+        DurationRemaining = _config.DashDuration;
         FightPlayer.AddPlayerCollisionFunction(OnShoulderCrashCollision);
 
         Vector2 dir = GetDashDirection();

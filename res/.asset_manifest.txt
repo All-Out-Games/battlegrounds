@@ -1,7 +1,7 @@
 AbilityItem.prefab - .ao - 6643f5634d5b99636ac7a9a4 - 14427433616163832665
 AbilityUpgradeDialog.prefab - .ao - 6647dbfca2a326d825267e81 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 664655484d5b99636ac7a9f8 - 11964448424736677955
-BroccoliProjectile.prefab - .ao - 6656513e60923cfc467fd9d0 - 5846155048495156770
+BroccoliProjectile.prefab - .ao - 6657a37787d80516fc66cbc0 - 11757042889840007052
 FatPlayerCollision.prefab - .ao - 66426d27a214e8c7a135d8b7 - 17567100292640013128
 SkillSlotsPanel.prefab - .ao - 6650e827bbb4cc59c69fd102 - 11546600357276263640
 environment/CentralHub/Platform_Large.png - .ao - 664e3b33a2a326d825267fb8 - 12033806716084652446

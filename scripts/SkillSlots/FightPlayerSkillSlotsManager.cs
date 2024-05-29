@@ -37,6 +37,8 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             ActiveAbilities.Add(_player.GetAbility<AbilityPunch>());
             ActiveAbilities.Add(_player.GetAbility<AbilityRollOut>());
             ActiveAbilities.Add(_player.GetAbility<AbilityShoulderCrash>());
+            ActiveAbilities.Add(_player.GetAbility<AbilityShield>());
+            ActiveAbilities.Add(_player.GetAbility<AbilitySpoonThrow>());
         }
     }
 

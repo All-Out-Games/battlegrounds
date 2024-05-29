@@ -16,20 +16,19 @@ public class EffectProjectileThrow : FightEffect
     public override void OnEffectStart()
     {
         base.OnEffectStart();
+        AssignConfig(EffectConfig.GetPlayerSpoonThrowConfig(FightPlayer.CurrentAttack));
+        DurationRemaining = Config.ThrowAnimationLength;
         FightPlayer.SetSkillBlockCast(true);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         //Log.Debug($"Projectile Prefab Key {Config.ProjectilePrefabKey}");
-        if (Network.IsServer)
-        {
-            ProjectileThrow();
-        }
+        ProjectileThrow();
         FightPlayer.SetSkillBlockCast(false);
     }
 
-    public virtual void AssignConfig(EffectConfig.ProjectileConfig cfg, string slotKey)
+    public virtual void AssignConfig(EffectConfig.ProjectileConfig cfg)
     {
         Config = cfg;
     }
@@ -44,11 +43,12 @@ public class EffectProjectileThrow : FightEffect
 
         Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
             $"{FightPlayer.Id}_Spoon",
-            FightPlayer.Entity.Position, Vector2.Left);
+            FightPlayer.Entity.Position, AbilityPositionOrDirection);
         //proj.Position = Entity.Position;
         Projectile projComp = proj.GetComponent<Projectile>();
         projComp.Speed = Config.Speed;
         projComp.Lifetime = Config.ProjectileLifetime;
+        
         projComp.OnHit = (other, predicted) =>
         {
             Log.Debug($"Hit {other.Name} !");
