@@ -4,6 +4,7 @@ using AO;
 public class AbilitySpoonThrow : FightAbility
 {
     public override string SkillKey => "SpoonThrow";
+    public override string SkillIconPath => "ability_icon_tmp/SpoonThrow_Tmp.png";
 
     public override Type Effect => typeof(EffectProjectileThrow);
     public override bool MonitorEffectDuration => false;

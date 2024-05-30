@@ -4,11 +4,12 @@ using Assembly.scripts.SkillSlots.Abilities;
 public class AbilityPunch : FightAbility
 {
     public override string SkillKey => "Punch";
-    
-    
+
+    public override string SkillIconPath => "ability_icon_tmp/Punch_Tmp.png";
     public override Type Effect => typeof(EffectPunch);
     public override bool MonitorEffectDuration => false;
     public override TargettingMode TargettingMode => TargettingMode.Self;
+    
 
     public override bool CanUse()
     {
