@@ -1,7 +1,6 @@
 
 using AO;
 
-
 #region Gameplay Enums
 
 public enum PlayerStatus
@@ -31,7 +30,10 @@ public class FightClubGameManager : System<FightClubGameManager> {
     protected List<Entity> AFKPlayer = new(); // AFK Area players
     protected List<Entity> SafePlayer = new(); // Central Area players
 
+    // Server Only Event. Client Related events should go in FightPlayerEvents, and be sent to the player client.
     public Action<FightPlayer> PlayerTeleportEvent;
+    public Action<FightPlayer, FightPlayer> PlayerEliminationEvent;
+    public Action<FightPlayer, FightPlayer, int> PlayerDamageEvent;
     public List<Entity> GetCombatPlayers()
     {
         return CombatPlayer;
@@ -53,6 +55,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public override void Start()
     {
         PlayerTeleportEvent += OnPlayerTeleport;
+        PlayerEliminationEvent += OnPlayerElimination;
     }
 
     public override void Update() 
@@ -63,6 +66,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public override void Shutdown()
     {
         PlayerTeleportEvent -= OnPlayerTeleport;
+        PlayerEliminationEvent -= OnPlayerElimination;
     }
 
     public void OnPlayerJoin(Player player) 
@@ -132,6 +136,8 @@ public class FightClubGameManager : System<FightClubGameManager> {
         }
     }
 
+    #region Server Events
+
     /// <summary>
     /// If the player teleported, call 'OnPlayerLeave' first to remove them from their current area
     /// Call this to move them to the new space player list
@@ -141,18 +147,29 @@ public class FightClubGameManager : System<FightClubGameManager> {
     {
         switch (fp.PlayerStatus)
         {
-             case PlayerStatus.Combat:
-                 CombatPlayer.Add(fp.Entity);
-                 break;
-             case PlayerStatus.Safe:
-                 SafePlayer.Add(fp.Entity);
-                 break;
-             case PlayerStatus.Spectating:
-                 SpectatingPlayer.Add(fp.Entity);
-                 break;
-             case PlayerStatus.AFK:
-                 AFKPlayer.Add(fp.Entity);
-                 break;
+            case PlayerStatus.Combat:
+                CombatPlayer.Add(fp.Entity);
+                break;
+            case PlayerStatus.Safe:
+                SafePlayer.Add(fp.Entity);
+                break;
+            case PlayerStatus.Spectating:
+                SpectatingPlayer.Add(fp.Entity);
+                break;
+            case PlayerStatus.AFK:
+                AFKPlayer.Add(fp.Entity);
+                break;
         }
     }
+    public void OnPlayerElimination(FightPlayer killer, FightPlayer victim)
+    {
+        UIManager.CallClient_SetGlobalPopup($"{killer.Name} killed {victim.Name}!", 2.5f);
+    }
+
+    public void OnPlayerDamage(FightPlayer killer, FightPlayer victim)
+    {
+        
+    }
+    
+    #endregion
 }

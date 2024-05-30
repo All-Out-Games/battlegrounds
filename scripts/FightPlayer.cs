@@ -15,7 +15,8 @@ public partial class FightPlayer : Player
     protected SyncVar<bool> BlockCast = new(); // Block player from cast any skill 
 
     protected SyncVar<int> currentHealth = new(100);
-    [Serialized] public int MaxHealth = 100;
+    protected SyncVar<int> currentAttack = new(10);
+    protected SyncVar<int> maxHealth = new(100);
     
     public int CurrentHealth 
     { 
@@ -28,16 +29,26 @@ public partial class FightPlayer : Player
             
         }
     }
-
-    private int currentAttack = 10;
+    
     public int CurrentAttack
     {
-        get { return currentAttack; }
+        get { return currentAttack.Value; }
         set
         {
-            currentAttack = value; 
             if (Network.IsServer) {
-                CallClient_SetAttack(currentAttack);
+                currentAttack.Set(value);
+            }
+        }
+    }
+
+    public int MaxHealth
+    {
+        get { return maxHealth.Value; }
+        set
+        {
+            if (Network.IsServer)
+            {
+                maxHealth.Set(value);
             }
         }
     }
@@ -149,9 +160,23 @@ public partial class FightPlayer : Player
 
     public override void Update()
     {
-        BumpDecay();
-        DashDecay();
-        ControllerUpdate();
+        //ControllerUpdate();
+        
+        switch (PlayerStatus)
+        {
+            case PlayerStatus.Combat:
+                BumpDecay();
+                DashDecay();
+                break;
+            case PlayerStatus.Safe:
+                break;
+            case PlayerStatus.AFK:
+                break;
+            case PlayerStatus.Spectating:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     public override void LateUpdate()
@@ -184,12 +209,6 @@ public partial class FightPlayer : Player
     
 
     [ClientRpc]
-    public void SetAttack(int attack)
-    {
-        currentAttack = attack;
-    }
-
-    [ClientRpc]
     public void SetShield(int shield)
     {
         currentShield = shield;
@@ -207,6 +226,7 @@ public partial class FightPlayer : Player
     /// </summary>
     /// <param name="damage"></param>
     /// <param name="source"></param>
+    /// <param name="info"></param>
     public void TakeDamage(int damage, FightPlayer source, DamageReactionInfo info)
     {
         if (CurrentHealth <= 0) return; // Avoid damaging the dead
@@ -229,14 +249,16 @@ public partial class FightPlayer : Player
         
 
         if (Network.IsServer) {
-            CallClient_DamageReaction(CurrentHealth, damage, info); // All Client side stuff goes here
-        }
-
-        if (CurrentHealth <= 0)
-        {
+            CallClient_DamageReaction(CurrentHealth, damage, info); // All Client side damage reaction goes here
+            
             // Server only death routine (client-side handled in CallClient_TakeDamage)
-            Coroutine.Start(this.Entity, PlayerRespawnCoroutine());
+            if (CurrentHealth <= 0)
+            {
+                Coroutine.Start(this.Entity, PlayerRespawnCoroutine());
+                FightClubGameManager.Instance.PlayerEliminationEvent.Invoke(source, this);
+            }
         }
+        
     }
     
     [ClientRpc]
@@ -423,6 +445,7 @@ public partial class FightPlayer : Player
 
     #region Actions
 
+    [ClientRpc]
     public void SetAnimTrigger(string variableName)
     {
         SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);

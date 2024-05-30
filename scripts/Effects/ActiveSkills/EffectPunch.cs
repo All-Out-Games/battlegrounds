@@ -29,13 +29,12 @@ public partial class EffectPunch : FightEffect
         DurationRemaining = EffectConfig.PunchConfig.PunchAnimationTime;
         Config = cfg;
     }
-
-    [ClientRpc]
+    
     public void Punch()
     {
-        FightPlayer.SetAnimTrigger("punch");
         if (Network.IsServer)
         {
+            FightPlayer.CallClient_SetAnimTrigger("punch");
             Coroutine.Start(Entity, DelayActivePunchHitbox(EffectConfig.PunchConfig.PunchActivationTime));
         }
     }

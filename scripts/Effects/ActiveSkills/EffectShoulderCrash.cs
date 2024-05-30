@@ -20,12 +20,14 @@ public sealed class EffectShoulderCrash : FightEffect
         Vector2 dir = GetDashDirection();
         FightPlayer.SetFacingDirection(dir.X > 0);
         FightPlayer.AddDash(dir * _config.DashSpeed, _config.DashDuration);
+        FightPlayer.GetEffectMgr().AddEffect<EffectNoMovement>(FightPlayer, _config.DashDuration + 0.2f);
     }
     
     public override void OnEffectEnd(bool interrupt)
     {
         FightPlayer.RemovePlayerCollisionFunction(OnShoulderCrashCollision);
         _interactedEntity = null;
+        FightPlayer.GetEffectMgr().RemoveEffect<EffectNoMovement>(false);
     }
 
 

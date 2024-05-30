@@ -43,10 +43,6 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     public void SilentAllSlot(bool silent)
     {
         AllSilent = silent;
-        /*foreach (var kv in ActiveSkillSlots)
-        {
-            kv.Value.SilentSlot(silent); // This is stupid
-        }*/
     }
     
 

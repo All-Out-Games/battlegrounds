@@ -26,6 +26,11 @@ public sealed partial class EffectRollOut : FightEffect
         
         FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
         FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
+
+        if (FightPlayer.IsLocal)
+        {
+            UIManager.Instance.SetPopup("You are Rollin! Bump other players with extra speed!", 3f, FightPlayer);
+        }
     }
 
 

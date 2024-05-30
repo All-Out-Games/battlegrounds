@@ -1,10 +1,7 @@
 ﻿using AO;
 
-public class UIManager : System<UIManager>
+public partial class UIManager : System<UIManager>
 {
-    // Update using event when you need to. This should avoid fetching references each frame which causes a slight overhead
-    public Action<FightPlayer> UpdateUIEvent;
-    public Action<string, float, Player> PopupEvent;
 
     private Dictionary<string, UniqueUIWindow> UniqueUiWindows = new(); // [PrefabPath : Window Class]
 
@@ -14,8 +11,8 @@ public class UIManager : System<UIManager>
     private string _multiplierTxt;
     private string _moneyTxt;
 
-    private string _popupTxt;
-    private float _popupRemainingTime;
+    public string PopupTxt;
+    public float PopupRemainingTime;
 
     private FontAsset _defaultFont;
     private UI.ButtonSettings _defaultButtonSettings;
@@ -24,7 +21,6 @@ public class UIManager : System<UIManager>
     private UICanvas _mainCanvas;
     public override void Awake()
     {
-        PopupEvent = SetPopup;
         _defaultFont = Assets.GetAsset<FontAsset>("$AO/fonts/Barlow-SemiBold.ttf");
         _defaultButtonSettings = new UI.ButtonSettings()
             { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") };
@@ -43,15 +39,23 @@ public class UIManager : System<UIManager>
         _mainCanvas ??= Entity.FindByName("Canvas").GetComponent<UICanvas>();
         return _mainCanvas;
     }
+    
     public void SetPopup(string txt, float time, Player player)
     {
         if (!player.IsLocal)
         {
             return;
         }
-        _popupRemainingTime = time;
-        _popupTxt = txt;
-        
+        PopupRemainingTime = time;
+        PopupTxt = txt;
+    }
+
+    [ClientRpc]
+    public static void SetGlobalPopup(string txt, float time)
+    {
+        UIManager mgr = Instance;
+        mgr.PopupTxt = txt;
+        mgr.PopupRemainingTime = time;
     }
 
     public UniqueUIWindow OpenUniqueUIWindow(string prefabPath)
@@ -102,14 +106,14 @@ public class UIManager : System<UIManager>
         // Update timers
         {
             
-            if (_popupRemainingTime > 0)
+            if (PopupRemainingTime > 0)
             {
                 //Log.Warn(_popupTxt);
-                _popupRemainingTime -= Time.DeltaTime;
+                PopupRemainingTime -= Time.DeltaTime;
                 // Draw the popup
                 {
                     var centerRect = UI.ScreenRect.CenterRect().Grow(235).CutBottom(50);
-                    UI.Text(centerRect, $"{_popupTxt}", new UI.TextSettings() {Font = _defaultFont, Size = 24, Color = Vector4.Black, 
+                    UI.Text(centerRect, $"{PopupTxt}", new UI.TextSettings() {Font = _defaultFont, Size = 24, Color = Vector4.Black, 
                         VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center,
                         WordWrap = true, Outline = true, OutlineColor = Vector4.White
                     });
@@ -117,8 +121,8 @@ public class UIManager : System<UIManager>
             }
             else
             {
-                _popupRemainingTime = 0;
-                _popupTxt = "";
+                PopupRemainingTime = 0;
+                PopupTxt = "";
             }
             
         }
