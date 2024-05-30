@@ -24,7 +24,7 @@ public sealed class EffectShoulderCrash : FightEffect
 
         Vector2 dir = GetDashDirection();
         FightPlayer.SetFacingDirection(dir.X > 0);
-        FightPlayer.AddDash_Server(dir * _config.DashSpeed, _config.DashDuration);
+        FightPlayer.AddDash(dir * _config.DashSpeed, _config.DashDuration);
     }
     
     public override void OnEffectEnd(bool interrupt)
@@ -67,7 +67,8 @@ public sealed class EffectShoulderCrash : FightEffect
             if (Network.IsServer)
             {
                 otherPlayer.AddBumpFrom(FightPlayer, add, false);
-                otherPlayer.TakeDamage(_config.ContactDamage, FightPlayer);
+                FightPlayer.DamageReactionInfo info = new FightPlayer.DamageReactionInfo();
+                otherPlayer.TakeDamage(_config.ContactDamage, FightPlayer, info);
             }
 
         }

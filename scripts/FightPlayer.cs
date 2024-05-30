@@ -212,11 +212,9 @@ public partial class FightPlayer : Player
     /// </summary>
     /// <param name="damage"></param>
     /// <param name="source"></param>
-    public void TakeDamage(int damage, FightPlayer source)
+    public void TakeDamage(int damage, FightPlayer source, DamageReactionInfo info)
     {
         if (CurrentHealth <= 0) return; // Avoid damaging the dead
-
-        DamageReactionInfo info = new DamageReactionInfo();
         
         if (CurrentShield > 0)
         {

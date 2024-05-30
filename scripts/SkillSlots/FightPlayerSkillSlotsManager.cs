@@ -23,11 +23,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         }
         
     }
-
-    public override void Awake()
-    {
-        base.Awake();
-    }
+    
 
     public override void Start()
     {
@@ -41,28 +37,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             ActiveAbilities.Add(_player.GetAbility<AbilitySpoonThrow>());
         }
     }
-
-
-    public void InitKeybind()
-    {
-        
-    }
     
-
-    public void AssignKeybindToSlot(Keybind slotKeybind, string mainKey)
-    {
-        
-    }
-
-    public void UpdateSlot(string mainKey, int level, string skillKey = null)
-    {
-
-    }
-
-    public void RemoveSlot(string mainKey)
-    {
-
-    }
 
     [ClientRpc]
     public void SilentAllSlot(bool silent)

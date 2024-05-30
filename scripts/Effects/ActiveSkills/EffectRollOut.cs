@@ -61,7 +61,8 @@ public sealed partial class EffectRollOut : FightEffect
             if (Network.IsServer)
             {
                 otherPlayer.AddBumpFrom(FightPlayer, add, false);
-                otherPlayer.TakeDamage(_config.ContactDamage, FightPlayer);
+                FightPlayer.DamageReactionInfo info = new FightPlayer.DamageReactionInfo();
+                otherPlayer.TakeDamage(_config.ContactDamage, FightPlayer, info);
             }
 
         }

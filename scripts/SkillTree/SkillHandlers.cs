@@ -82,7 +82,8 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     [ClientRpc]
     public void ReplacementAdder(int level, string skillKey, string slotKey)
     {
-        _player.GetSkillSlots().UpdateSlot(slotKey, level, skillKey);
+        // TODO
+        //_player.GetSkillSlots().UpdateSlot(slotKey, level, skillKey);
     }
 
     [ClientRpc]

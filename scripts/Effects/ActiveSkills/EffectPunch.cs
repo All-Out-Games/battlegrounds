@@ -56,7 +56,9 @@ public partial class EffectPunch : FightEffect
             if (rc.Entity != null)
             {
                 FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
-                other.TakeDamage(Config.PunchDamage, FightPlayer);
+                
+                FightPlayer.DamageReactionInfo info = new FightPlayer.DamageReactionInfo();
+                other.TakeDamage(Config.PunchDamage, FightPlayer, info);
                 // TODO: Player dealt damage to others event (for reward and stuff)
             }
             Log.Debug($"Shin: Falcon Punch! Dmg = {Config.PunchDamage}");
@@ -73,7 +75,8 @@ public partial class EffectPunch : FightEffect
         {
             if (Network.IsServer)
             {
-                otherPlayer.TakeDamage(Config.PunchDamage, FightPlayer);
+                FightPlayer.DamageReactionInfo info = new FightPlayer.DamageReactionInfo();
+                otherPlayer.TakeDamage(Config.PunchDamage, FightPlayer, info);
             }
 
         }

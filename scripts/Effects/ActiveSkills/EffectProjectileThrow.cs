@@ -55,7 +55,8 @@ public class EffectProjectileThrow : FightEffect
             FightPlayer player = other.GetComponent<FightPlayer>();
             if (player != null)
             {
-                player.TakeDamage(Config.Damage, FightPlayer);
+                FightPlayer.DamageReactionInfo info = new FightPlayer.DamageReactionInfo();
+                player.TakeDamage(Config.Damage, FightPlayer, info);
                 proj.Destroy();
             }
         };

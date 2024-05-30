@@ -182,25 +182,6 @@ public class UIManager : System<UIManager>
                             { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
                         _defaultTextSettings).Clicked)
                 {
-                    var player = (FightPlayer)Network.LocalPlayer;
-                    var skillTree = player.GetSkillTree();
-                    var skillSlots = player.GetSkillSlots();
-                    
-                    skillTree.CallServer_UpgradeSkill("RollOut", 1);
-                    skillSlots.UpdateSlot("Slot1", 1, "RollOut");
-                    Log.Info("Rollout Unlocked in Slot 1");
-                    
-                    skillTree.CallServer_UpgradeSkill("ShoulderCrash", 1);
-                    skillSlots.UpdateSlot("Slot2", 1, "ShoulderCrash");
-                    Log.Info("ShoulderCrash Unlocked in Slot 2");
-                    
-                    skillTree.CallServer_UpgradeSkill("Shield", 1);
-                    skillSlots.UpdateSlot("Slot3", 1, "Shield");
-                    Log.Info("Shield Unlocked in Slot 3");
-                    
-                    skillTree.CallServer_UpgradeSkill("SpoonThrow", 1);
-                    skillSlots.UpdateSlot("Slot4", 1, "SpoonThrow");
-                    Log.Info("SpoonThrow Unlocked in Slot 4");
                     
                 }
                 
