@@ -128,7 +128,7 @@ public partial class UIManager : System<UIManager>
         }
         
         // Admin menus
-        if (Network.LocalPlayer != null && Network.LocalPlayer.IsAdmin)
+        if (false && Network.LocalPlayer != null && Network.LocalPlayer.IsAdmin)
         {
             // Draw the score
             {

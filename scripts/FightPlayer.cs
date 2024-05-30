@@ -18,6 +18,8 @@ public partial class FightPlayer : Player
     protected SyncVar<int> currentAttack = new(10);
     protected SyncVar<int> maxHealth = new(100);
     
+    protected CameraControl CameraInterface = Camera.CreateCameraControl(1);
+    
     public int CurrentHealth 
     { 
         get => currentHealth.Value;
@@ -122,6 +124,7 @@ public partial class FightPlayer : Player
         
         //Log.Debug($"Client Awake!");
         //SkillSlotsManager.InitKeybind();
+        CameraInterface.Zoom = 1.4f;
     }
 
     public override void Start()
@@ -154,19 +157,17 @@ public partial class FightPlayer : Player
         {
             Log.Error("Shin: Punch Collider NOT FOUND");
         }
-        
-        
     }
 
     public override void Update()
     {
         //ControllerUpdate();
+        BumpDecay();
+        DashDecay();
         
         switch (PlayerStatus)
         {
             case PlayerStatus.Combat:
-                BumpDecay();
-                DashDecay();
                 break;
             case PlayerStatus.Safe:
                 break;
@@ -182,6 +183,11 @@ public partial class FightPlayer : Player
     public override void LateUpdate()
     {
         base.LateUpdate();
+        if (IsLocal)
+        {
+            CameraInterface.Position = Vector2.Lerp(new Vector2(CameraInterface.Position.X , CameraInterface.Position.Y + 0.5f), Entity.Position, 0.75f);
+        }
+        
     }
     
     public override void OnDestroy()
