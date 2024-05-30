@@ -5,13 +5,9 @@ public class EffectProjectileThrow : FightEffect
 {
 
     protected EffectConfig.ProjectileConfig Config;
-    
-    EffectProjectileThrow()
-    {
-        IsActiveEffect = false;
-        BlockAbilityActivation = true;
-        IsValidTarget = true;
-    }
+    public override bool IsActiveEffect => false;
+    public override bool BlockAbilityActivation => true;
+    public override bool IsValidTarget => true;
     
     public override void OnEffectStart()
     {
@@ -62,7 +58,5 @@ public class EffectProjectileThrow : FightEffect
         };
     }
 
-    public override bool IsActiveEffect { get; }
-    public override bool BlockAbilityActivation { get; }
-    public override bool IsValidTarget { get; }
+
 }

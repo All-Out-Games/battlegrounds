@@ -7,13 +7,9 @@
 public class EffectShield : FightEffect
 {
     protected EffectConfig.ShieldConfig Config;
-    
-    EffectShield()
-    {
-        IsActiveEffect = false;
-        BlockAbilityActivation = false;
-        IsValidTarget = true;
-    }
+    public override bool IsActiveEffect => false;
+    public override bool BlockAbilityActivation => false;
+    public override bool IsValidTarget => true;
 
     public override void OnEffectStart()
     {
@@ -55,7 +51,5 @@ public class EffectShield : FightEffect
             fightPlayer.GetEffectMgr().RemoveEffect<EffectShield>(true);
         }
     }
-    public override bool IsActiveEffect { get; }
-    public override bool BlockAbilityActivation { get; }
-    public override bool IsValidTarget { get; }
+
 }

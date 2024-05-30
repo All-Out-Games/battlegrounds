@@ -5,13 +5,9 @@ using AO;
 public partial class EffectPunch : FightEffect
 {
     protected EffectConfig.PunchConfig Config;
-
-    EffectPunch()
-    {
-        IsActiveEffect = false;
-        BlockAbilityActivation = true;
-        IsValidTarget = true;
-    }
+    public override bool IsActiveEffect => false;
+    public override bool BlockAbilityActivation => true;
+    public override bool IsValidTarget => true;
     
     public override void OnEffectStart()
     {
@@ -82,7 +78,5 @@ public partial class EffectPunch : FightEffect
         }
     }
 
-    public override bool IsActiveEffect { get; }
-    public override bool BlockAbilityActivation { get; }
-    public override bool IsValidTarget { get; }
+
 }

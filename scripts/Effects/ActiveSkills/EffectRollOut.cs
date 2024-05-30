@@ -3,13 +3,9 @@
 public sealed partial class EffectRollOut : FightEffect
 {
     private EffectConfig.RollOutConfig _config;
-
-    public EffectRollOut()
-    {
-        IsActiveEffect = false;
-        BlockAbilityActivation = false;
-        IsValidTarget = true;
-    }
+    public override bool IsActiveEffect => false;
+    public override bool BlockAbilityActivation => false;
+    public override bool IsValidTarget => true;
 
     /// <summary>
     /// Call this function before adding the created Effect instance to the player!
@@ -42,10 +38,6 @@ public sealed partial class EffectRollOut : FightEffect
     
     
     
-
-    public override bool IsActiveEffect { get; }
-    public override bool BlockAbilityActivation { get; }
-    public override bool IsValidTarget { get; }
 
     protected void OnRolloutCollision(Entity other)
     {

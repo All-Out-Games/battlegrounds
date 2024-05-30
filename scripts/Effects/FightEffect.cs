@@ -8,6 +8,7 @@ using AO;
 public abstract class FightEffect : AEffect
 {
     protected FightPlayer FightPlayer;
+    
 
     /// <summary>
     /// Get the owner as FightPlayer & the slot the skill has been triggered from.

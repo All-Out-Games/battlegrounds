@@ -3,17 +3,12 @@
 public sealed class EffectShoulderCrash : FightEffect
 {
     private EffectConfig.ShoulderCrashConfig _config;
-
-    private List<Entity> _interactedEntity;
-
-
-    EffectShoulderCrash()
-    {
-        IsActiveEffect = false;
-        BlockAbilityActivation = true;
-        IsValidTarget = true;
-        _interactedEntity = new List<Entity>();
-    }
+    private List<Entity> _interactedEntity = new List<Entity>();
+    public override bool IsActiveEffect => false;
+    public override bool BlockAbilityActivation => true;
+    public override bool IsValidTarget => true;
+    
+    
 
     public override void OnEffectStart()
     {
@@ -33,9 +28,7 @@ public sealed class EffectShoulderCrash : FightEffect
         _interactedEntity = null;
     }
 
-    public override bool IsActiveEffect { get; }
-    public override bool BlockAbilityActivation { get; }
-    public override bool IsValidTarget { get; }
+
 
     public void AssignConfig(EffectConfig.ShoulderCrashConfig cfg)
     {
