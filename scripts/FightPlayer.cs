@@ -14,16 +14,16 @@ public partial class FightPlayer : Player
     
     protected SyncVar<bool> BlockCast = new(); // Block player from cast any skill 
 
-    private int currentHealth = 100;
+    protected SyncVar<int> currentHealth = new(100);
     [Serialized] public int MaxHealth = 100;
+    
     public int CurrentHealth 
     { 
-        get { return currentHealth; } 
+        get => currentHealth.Value;
         set 
         {
-            currentHealth = value; 
             if (Network.IsServer) {
-                CallClient_SetHealth(value);
+                currentHealth.Set(value);
             }
             
         }
@@ -181,12 +181,7 @@ public partial class FightPlayer : Player
         
         CurrentHealth = MaxHealth;
     }
-
-    [ClientRpc]
-    public void SetHealth(int health)
-    {
-        currentHealth = health;
-    }
+    
 
     [ClientRpc]
     public void SetAttack(int attack)
@@ -247,12 +242,14 @@ public partial class FightPlayer : Player
     [ClientRpc]
     public void DamageReaction(int health, int damage, DamageReactionInfo info)
     {
+        // DO NOT use CurrentHealth SyncVar in this frame
+        // It might not arrive yet at this point. Trust the info sent from the triggering function on server (i.e. the parameters) here
         if (info.ShieldBroken)
         {
             ShieldBreakEvent?.Invoke();
         }
         
-        if (CurrentHealth <= 0)
+        if (health <= 0)
         {
             Log.Debug("Death Triggered By RPC");
             PlayerDeath();
