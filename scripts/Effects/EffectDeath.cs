@@ -15,14 +15,12 @@ public class EffectDeath : FightEffect
     {
         base.OnEffectStart();
         FightPlayer.SetAnimTrigger("death");
-        FightPlayer.SetSkillBlockCast(true);
     }
     
 
     public override void OnEffectEnd(bool interrupt)
     {
         FightPlayer.SetAnimTrigger("RESET");
-        FightPlayer.SetSkillBlockCast(false);
     }
 
     public override bool IsActiveEffect { get; }

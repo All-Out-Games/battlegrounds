@@ -19,14 +19,12 @@ public class EffectProjectileThrow : FightEffect
         
         AssignConfig(EffectConfig.GetPlayerSpoonThrowConfig(FightPlayer.CurrentAttack));
         DurationRemaining = Config.ThrowAnimationLength;
-        FightPlayer.SetSkillBlockCast(true);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         //Log.Debug($"Projectile Prefab Key {Config.ProjectilePrefabKey}");
         ProjectileThrow();
-        FightPlayer.SetSkillBlockCast(false);
     }
 
     public virtual void AssignConfig(EffectConfig.ProjectileConfig cfg)

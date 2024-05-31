@@ -11,8 +11,6 @@ public partial class FightPlayer : Player
     // SyncVars must not be set during Awake(). Do these in Start()
     protected SyncVar<int> TotalEliminations = new();
     protected SyncVar<int> TotalDamageDealt = new();
-    
-    protected SyncVar<bool> BlockCast = new(); // Block player from cast any skill 
 
     protected SyncVar<int> currentHealth = new(100);
     protected SyncVar<int> currentAttack = new(10);
@@ -148,6 +146,8 @@ public partial class FightPlayer : Player
         CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;
         CollisionEntity.LocalScale = new Vector2(1.01f, 1.01f);
         CollisionEntity.SetParent(Entity, false);
+        CollisionEntity.LocalPosition =
+            new Vector2(CollisionEntity.LocalPosition.X, CollisionEntity.LocalPosition.Y + 0.5f);
         Collider = CollisionEntity.GetComponent<Circle_Collider>();
 
         var punchColliderEntity = CollisionEntity.TryGetChildByName("PunchCollider");
@@ -455,10 +455,18 @@ public partial class FightPlayer : Player
 
     #region Actions
 
-    [ClientRpc]
+    
     public void SetAnimTrigger(string variableName)
     {
         SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
+    }
+    [ClientRpc]
+    public void SetAnimTriggerBroadcast(string variableName)
+    {
+        if (!IsLocal)
+        {
+            SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
+        }
     }
 
     /// <summary>
@@ -470,16 +478,9 @@ public partial class FightPlayer : Player
     /// <returns></returns>
     public bool SkillCastGeneralCheck()
     {
-        return !BlockCast.Value && PlayerStatus == PlayerStatus.Combat;
+        return PlayerStatus == PlayerStatus.Combat;
     }
-
-    public void SetSkillBlockCast(bool block)
-    {
-        if (Network.IsServer)
-        {
-            BlockCast.Set(block);
-        }
-    }
+    
 
     #endregion
 

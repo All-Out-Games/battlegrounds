@@ -16,12 +16,11 @@ public partial class EffectPunch : FightEffect
         AssignConfig(EffectConfig.GetPlayerPunchConfig(1, FightPlayer.CurrentAttack));
         
         Punch();
-        FightPlayer.SetSkillBlockCast(true);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
-        FightPlayer.SetSkillBlockCast(false);
+        
     }
     
     public void AssignConfig(EffectConfig.PunchConfig cfg)
@@ -32,9 +31,14 @@ public partial class EffectPunch : FightEffect
     
     public void Punch()
     {
+        if (FightPlayer.IsLocal)
+        {
+            FightPlayer.SetAnimTrigger("punch"); // Animation can be done locally first...
+        }
         if (Network.IsServer)
         {
-            FightPlayer.CallClient_SetAnimTrigger("punch");
+            // Damage and broadcast animation
+            FightPlayer.CallClient_SetAnimTriggerBroadcast("punch");
             Coroutine.Start(Entity, DelayActivePunchHitbox(EffectConfig.PunchConfig.PunchActivationTime));
         }
     }
