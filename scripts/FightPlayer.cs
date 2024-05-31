@@ -18,7 +18,7 @@ public partial class FightPlayer : Player
     protected SyncVar<int> currentAttack = new(10);
     protected SyncVar<int> maxHealth = new(100);
     
-    protected CameraControl CameraInterface = Camera.CreateCameraControl(1);
+    protected CameraControl CameraInterface;
     
     public int CurrentHealth 
     { 
@@ -105,10 +105,7 @@ public partial class FightPlayer : Player
     
     public override void Awake()
     {
-        
-
         FightClubGameManager.Instance.OnPlayerJoin(this);
-        
 
         if (Network.IsServer)
         {
@@ -122,9 +119,28 @@ public partial class FightPlayer : Player
         SkillTree = Entity.GetComponent<FightPlayerSkillTree>();
         SkillSlotsManager = Entity.GetComponent<FightPlayerSkillSlotsManager>();
         
+        // Colliders
+        var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
+        CollisionEntity = collisionPrefab.Instantiate();
+        CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;
+        CollisionEntity.LocalScale = new Vector2(1.01f, 1.01f);
+        CollisionEntity.SetParent(Entity, false);
+        Collider = CollisionEntity.GetComponent<Circle_Collider>();
+
+        var punchColliderEntity = CollisionEntity.TryGetChildByName("PunchCollider");
+        if (punchColliderEntity != null)
+        {
+            //Log.Debug("Found Punch Collider!");
+            PunchCollider = punchColliderEntity.GetComponent<Box_Collider>();
+        }
+        else
+        {
+            Log.Error("Shin: Punch Collider NOT FOUND");
+        }
+        
         //Log.Debug($"Client Awake!");
         //SkillSlotsManager.InitKeybind();
-        CameraInterface.Zoom = 1.4f;
+        
     }
 
     public override void Start()
@@ -136,27 +152,16 @@ public partial class FightPlayer : Player
             SkillTree.InitializeSkillTreeComp();
             SkillTree.HandleAllSkills();
         }
-        
-        
-
-        // Colliders
-        var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
-        CollisionEntity = collisionPrefab.Instantiate();
-        CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;
-        CollisionEntity.LocalScale = new Vector2(1.01f, 1.01f);
-        CollisionEntity.SetParent(Entity, false);
-        Collider = CollisionEntity.GetComponent<Circle_Collider>();
-
-        var punchColliderEntity = Entity.TryGetChildByName_Internal(CollisionEntity.Id, "PunchCollider"); // TODO: No public API yet for get child by name
-        if (punchColliderEntity != null)
-        {
-            //Log.Debug("Found Punch Collider!");
-            PunchCollider = punchColliderEntity.GetComponent<Box_Collider>();
-        }
         else
         {
-            Log.Error("Shin: Punch Collider NOT FOUND");
+            if (IsLocal)
+            {
+                CameraInterface = Camera.CreateCameraControl(1);
+                CameraInterface.Zoom = 1.4f;
+            }
+            
         }
+        
     }
 
     public override void Update()

@@ -12,7 +12,7 @@ public class UniqueUIWindow : BaseUniqueWindow
     public override void Start()
     {
         Log.Debug("Start Function called in UniqueUIWindow");
-        CloseButton ??= Entity.TryGetChildByName_Internal(Entity.Id, "CloseButton").GetComponent<UIButton>();
+        CloseButton ??= Entity.TryGetChildByName("CloseButton").GetComponent<UIButton>();
         if (CloseButton == null)
         {
             Log.Error($"UniqueUIWindow: Could not find \"CloseButton\" on {Entity.Name}");

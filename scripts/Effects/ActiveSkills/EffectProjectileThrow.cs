@@ -8,10 +8,15 @@ public class EffectProjectileThrow : FightEffect
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => true;
-    
+
+    protected List<Entity> WhiteList;
+
     public override void OnEffectStart()
     {
         base.OnEffectStart();
+        WhiteList = new List<Entity>();
+        WhiteList.Add(FightPlayer.Entity);
+        
         AssignConfig(EffectConfig.GetPlayerSpoonThrowConfig(FightPlayer.CurrentAttack));
         DurationRemaining = Config.ThrowAnimationLength;
         FightPlayer.SetSkillBlockCast(true);
@@ -47,13 +52,21 @@ public class EffectProjectileThrow : FightEffect
         
         projComp.OnHit = (other, predicted) =>
         {
+            if (WhiteList.Contains(other))
+            {
+                return;
+            }
             Log.Debug($"Hit {other.Name} !");
             FightPlayer player = other.GetComponent<FightPlayer>();
             if (player != null)
             {
-                FightPlayer.DamageReactionInfo info = new FightPlayer.DamageReactionInfo();
-                player.TakeDamage(Config.Damage, FightPlayer, info);
-                proj.Destroy();
+                WhiteList.Add(player.Entity);
+                if (player.PlayerStatus == PlayerStatus.Combat)
+                {
+                    FightPlayer.DamageReactionInfo info = new FightPlayer.DamageReactionInfo();
+                    player.TakeDamage(Config.Damage, FightPlayer, info);
+                    proj.Destroy();
+                }
             }
         };
     }
