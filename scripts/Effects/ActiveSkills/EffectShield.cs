@@ -1,4 +1,5 @@
 ﻿using AO;
+using StreamReader = AO.StreamReader;
 
 /// <summary>
 /// Base class of a shield ability.
@@ -27,7 +28,13 @@ public class EffectShield : FightEffect
     {
         Config = cfg;
     }
-    
+
+    public override void NetworkDeserialize(StreamReader reader)
+    {
+        base.NetworkDeserialize(reader);
+        FightPlayer.ShieldBreakEvent += PrematureBreak;
+    }
+
     public override void OnEffectEnd(bool interrupt)
     {
         FightPlayer.CurrentShield = 0;

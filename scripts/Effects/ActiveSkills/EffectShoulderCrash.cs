@@ -1,4 +1,5 @@
 ﻿using AO;
+using StreamReader = AO.StreamReader;
 
 public sealed class EffectShoulderCrash : FightEffect
 {
@@ -22,7 +23,7 @@ public sealed class EffectShoulderCrash : FightEffect
         FightPlayer.AddDash(dir * _config.DashSpeed, _config.DashDuration);
         FightPlayer.GetEffectMgr().AddEffect<EffectNoMovement>(FightPlayer, _config.DashDuration + 0.2f);
     }
-    
+
     public override void OnEffectEnd(bool interrupt)
     {
         FightPlayer.RemovePlayerCollisionFunction(OnShoulderCrashCollision);

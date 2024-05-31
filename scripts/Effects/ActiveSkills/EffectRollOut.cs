@@ -1,4 +1,5 @@
 ﻿using AO;
+using StreamReader = AO.StreamReader;
 
 public sealed partial class EffectRollOut : FightEffect
 {
@@ -33,6 +34,14 @@ public sealed partial class EffectRollOut : FightEffect
         }
     }
 
+    public override void NetworkDeserialize(StreamReader reader)
+    {
+        base.NetworkDeserialize(reader);
+        //AssignConfig(EffectConfig.GetPlayerRollOutConfig(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.GetPlayerRollOutConfig(FightPlayer.CurrentAttack));
+        FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
+        FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
+    }
 
 
     public override void OnEffectEnd(bool interrupt)

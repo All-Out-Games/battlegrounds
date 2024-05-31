@@ -118,26 +118,7 @@ public partial class FightPlayer : Player
         PlayerUi = Entity.GetComponent<FightPlayerUI>();
         SkillTree = Entity.GetComponent<FightPlayerSkillTree>();
         SkillSlotsManager = Entity.GetComponent<FightPlayerSkillSlotsManager>();
-        
-        // Colliders
-        var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
-        CollisionEntity = collisionPrefab.Instantiate();
-        CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;
-        CollisionEntity.LocalScale = new Vector2(1.01f, 1.01f);
-        CollisionEntity.SetParent(Entity, false);
-        Collider = CollisionEntity.GetComponent<Circle_Collider>();
 
-        var punchColliderEntity = CollisionEntity.TryGetChildByName("PunchCollider");
-        if (punchColliderEntity != null)
-        {
-            //Log.Debug("Found Punch Collider!");
-            PunchCollider = punchColliderEntity.GetComponent<Box_Collider>();
-        }
-        else
-        {
-            Log.Error("Shin: Punch Collider NOT FOUND");
-        }
-        
         //Log.Debug($"Client Awake!");
         //SkillSlotsManager.InitKeybind();
         
@@ -160,6 +141,24 @@ public partial class FightPlayer : Player
                 CameraInterface.Zoom = 1.4f;
             }
             
+        }
+        // Colliders
+        var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
+        CollisionEntity = collisionPrefab.Instantiate();
+        CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;
+        CollisionEntity.LocalScale = new Vector2(1.01f, 1.01f);
+        CollisionEntity.SetParent(Entity, false);
+        Collider = CollisionEntity.GetComponent<Circle_Collider>();
+
+        var punchColliderEntity = CollisionEntity.TryGetChildByName("PunchCollider");
+        if (punchColliderEntity != null)
+        {
+            //Log.Debug("Found Punch Collider!");
+            PunchCollider = punchColliderEntity.GetComponent<Box_Collider>();
+        }
+        else
+        {
+            Log.Error("Shin: Punch Collider NOT FOUND");
         }
         
     }

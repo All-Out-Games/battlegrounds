@@ -1,5 +1,5 @@
 using AO;
-
+using StreamReader = AO.StreamReader;
 
 
 /// <summary>
@@ -17,14 +17,27 @@ public abstract class FightEffect : AEffect
     public override void OnEffectStart()
     {
         FightPlayer = (FightPlayer)Player;
-
-        // Effects related to active skills will have the slot key passed in for cooldown process
-        // We get their slot here
-        
+        //Log.Debug("FightEffect Start");
     }
     
     public override void OnEffectUpdate()
     {
         
+    }
+
+    /// <summary>
+    /// This function handles join-in-progress stuff. When a new player joins, all existing effects will be synced to them
+    /// but the OnEffectStart function won't be called! We need to do things that ensures the OnEffectEnd function will be called error-free
+    /// Do you need to actually sync the effect?
+    /// Probably not, most effects won't last for longer than a few seconds. Usually you just guarantee them bug-free
+    /// You don't need to sync shield/heal/damage, etc. Those are handled by the server SyncVars.
+    /// However, proper syncing for the longer effects (e.g. buffs) is still suggested.
+    /// </summary>
+    /// <param name="reader"></param>
+    public override void NetworkDeserialize(StreamReader reader)
+    {
+        base.NetworkDeserialize(reader);
+        FightPlayer = (FightPlayer)Player;
+        //Log.Debug("FightEffect Deserialize");
     }
 }

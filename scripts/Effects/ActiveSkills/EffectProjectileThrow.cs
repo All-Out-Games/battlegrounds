@@ -60,13 +60,11 @@ public class EffectProjectileThrow : FightEffect
             FightPlayer player = other.GetComponent<FightPlayer>();
             if (player != null)
             {
+                // TODO： check player status here (do not damage spectators) Player status seems to be synced incorrectly
                 WhiteList.Add(player.Entity);
-                if (player.PlayerStatus == PlayerStatus.Combat)
-                {
-                    FightPlayer.DamageReactionInfo info = new FightPlayer.DamageReactionInfo();
-                    player.TakeDamage(Config.Damage, FightPlayer, info);
-                    proj.Destroy();
-                }
+                FightPlayer.DamageReactionInfo info = new FightPlayer.DamageReactionInfo();
+                player.TakeDamage(Config.Damage, FightPlayer, info);
+                proj.Destroy();
             }
         };
     }

@@ -13,7 +13,9 @@
     "X": 1,
     "Y": 1
   },
-  "sibling_index": 0
+  "sibling_index": 0,
+  "spawn_as_networked_entity": true,
+  "network_id": 1
 },
 {
   "cid": 1,
@@ -53,7 +55,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Projectile",
   "data": {
-    "speed": 1
+    "speed": 15
   }
 },
 {
