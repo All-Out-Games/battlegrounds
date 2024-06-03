@@ -128,7 +128,7 @@ public partial class UIManager : System<UIManager>
         }
         
         // Admin menus
-        if (false && Network.LocalPlayer != null && Network.LocalPlayer.IsAdmin)
+        if ( Network.LocalPlayer != null && Network.LocalPlayer.IsAdmin)
         {
             // Draw the score
             {
@@ -176,19 +176,7 @@ public partial class UIManager : System<UIManager>
                     player.AddBump(new Vector2(20, 0), false);  // Add 
                     TestServerRPC.CallServer_AddBumpToNetworkID(player.Entity.NetworkId, new Vector2(120, 0));
                 }
-                
-                // Spacing
-                sideBarRect.CutTop(10);
-                
-                var buttonRect3 = sideBarRect.CutTop(100);
-                if (UI.Button(buttonRect3, $"Unlock Default Skillset",
-                        new UI.ButtonSettings()
-                            { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
-                        _defaultTextSettings).Clicked)
-                {
-                    
-                }
-                
+
                 // Spacing
                 sideBarRect.CutTop(10);
                 

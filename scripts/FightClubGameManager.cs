@@ -50,6 +50,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
         // Slot4Keybind = Keybinds.RegisterKeybind("Ability 4", Input.UnifiedInput.KEYCODE_V);
         // Slot5Keybind = Keybinds.RegisterKeybind("Ability 5", Input.UnifiedInput.KEYCODE_B);
         // Slot6Keybind = Keybinds.RegisterKeybind("Ability 6", Input.UnifiedInput.KEYCODE_G);
+        Chat.RegisterChatCommandHandler(RunChatCommand);
     }
 
     public override void Start()
@@ -171,5 +172,73 @@ public class FightClubGameManager : System<FightClubGameManager> {
         
     }
     
+    #endregion
+
+    #region Chat Command
+
+    public bool CheckAdmin(Player player)
+    {
+        if (!player.IsAdmin)
+        {
+            Chat.SendMessage(player, "You must be an admin to use this command.");
+            return false;
+        }
+        return true;
+    }
+    
+    public void RunChatCommand(Player p, string command)
+    {
+        // TODO
+        var parts = command.ToLowerInvariant().Split(' ');
+        var cmd = parts[0];
+        FightPlayer player = (FightPlayer)p;
+        switch (cmd)
+        {
+            case "grant":
+                // Add currency
+                if (!CheckAdmin(p)) return;
+                if (parts.Length < 3)
+                {
+                    Chat.SendMessage(player, "Usage: /grant <player> <item> [amount]");
+                    return;
+                }
+
+                var target = Player.AllPlayers.FirstOrDefault(p => p.Name.ToLowerInvariant() == parts[1]);
+                if (parts[1] == "self" || parts[1] == "me")
+                {
+                    target = player;
+                }
+                if (target == null)
+                {
+                    Chat.SendMessage(player, $"Grant failed, player {parts[1]} not found.");
+                    return;
+                }
+
+                switch (parts[2])
+                {
+                    case "coins":
+                    {
+                        var amount = 1;
+                        if (parts.Length >= 3)
+                        {
+                            int.TryParse(parts[3], out amount);
+                        }
+
+                        var fightTarget = (FightPlayer)target;
+                        //fatTarget.Coins += amount;
+                        return;
+                    }
+                }
+
+                break;
+            case "giveability":
+                // Unlock ability by {skillkey}
+                break;
+            case "giveabilityforced":
+                // Force unlock
+                break;
+        }
+    }
+
     #endregion
 }

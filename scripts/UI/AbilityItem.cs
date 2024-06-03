@@ -100,7 +100,7 @@ public class AbilityItem : Component
             TestServerRPC.CallServer_LogSomethingOnServer($"Callback received. Requesting to upgrade {Config.SkillKey}");
 
             FightPlayer fp = (FightPlayer)Network.LocalPlayer;
-            fp.GetSkillTree().CallServer_UpgradeSkill(Config.SkillKey, Config.MaximumLevel);
+            fp.GetSkillTree().CallServer_RequestUpgradeSkill(Config.SkillKey);
         }
     }
 }

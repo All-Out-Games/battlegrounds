@@ -35,13 +35,44 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
 
     #region Skill Handling
 
+    /// <summary>
+    /// [Server RPC] request a skill upgrade. Server will be responsible of checking the currency and prerequisite requirements
+    /// </summary>
+    /// <param name="skillKey">unique skill key, see SkillConfigTables.cs</param>
     [ServerRpc]
+    public void RequestUpgradeSkill(string skillKey)
+    {
+        if (Network.IsServer)
+        {
+            // Get parent nodes and check if they are unlocked
+            SkillConfig.SkillTreeNodeConfig cfg = SkillConfig.STConfigQueryDict[skillKey];
+            foreach (string key in cfg.GetParentNodeKeys())
+            {
+                if (SkillLevelDict[key] == 0)
+                {
+                    Log.Error($"The parent nodes of {skillKey} are not unlocked yet!");
+                    return;
+                }
+            }
+
+            if (UpgradeSkill(skillKey, cfg.MaximumLevel))
+            {
+                Log.Info($"{skillKey} Upgrade Complete!");
+            }
+        }
+    }
+    
+    /// <summary>
+    /// [Server Only] Upgrade skill, without checking conditions
+    /// </summary>
+    /// <param name="skillKey">unique skill key, see SkillConfigTables.cs</param>
+    /// <param name="maxLevel"></param>
+    /// <returns></returns>
     public bool UpgradeSkill(string skillKey, int maxLevel)
     {
         if (Network.IsServer)
         {
-            int currentLevel;
-            if (SkillLevelDict.TryGetValue(skillKey, out currentLevel))
+            if (SkillLevelDict.TryGetValue(skillKey, out var currentLevel))
             {
                 if (currentLevel == 0) // First Unlock
                 {
@@ -51,12 +82,12 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                     CallClient_SyncSkill(skillKey, 1);
                     return true;
                 }
-                else if (currentLevel < maxLevel) // Upgrade
+                else if (currentLevel < maxLevel) // Upgrade, currently unused
                 {
                     SkillLevelDict[skillKey] = currentLevel + 1;
                     RemoveSkill(skillKey);
                     AddSkill(skillKey, SkillLevelDict[skillKey]);
-                    
+                
                     Save.SetInt(_player, skillKey, SkillLevelDict[skillKey]);
                     CallClient_SyncSkill(skillKey, SkillLevelDict[skillKey]);
                     return true;
@@ -72,6 +103,24 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             }
         }
         return false;
+    }
+
+    /// <summary>
+    /// Deprive the player of a skill. Typically only used in admin commands
+    /// </summary>
+    /// <param name="skillKey"></param>
+    public void DepriveSkill(string skillKey)
+    {
+        if (Network.IsServer)
+        {
+            if (SkillLevelDict.TryGetValue(skillKey, out var currentLevel))
+            {
+                SkillLevelDict[skillKey] = 0;
+                RemoveSkill(skillKey);
+                Save.SetInt(_player, skillKey, 0);
+                CallClient_SyncSkill(skillKey, 0);
+            }
+        }
     }
 
     #endregion

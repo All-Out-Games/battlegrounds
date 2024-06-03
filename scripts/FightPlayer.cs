@@ -12,12 +12,9 @@ public partial class FightPlayer : Player
     protected SyncVar<int> TotalEliminations = new();
     protected SyncVar<int> TotalDamageDealt = new();
 
-    protected SyncVar<int> currentHealth = new(100);
-    protected SyncVar<int> currentAttack = new(10);
-    protected SyncVar<int> maxHealth = new(100);
-    
     protected CameraControl CameraInterface;
     
+    protected SyncVar<int> currentHealth = new(100);
     public int CurrentHealth 
     { 
         get => currentHealth.Value;
@@ -30,6 +27,7 @@ public partial class FightPlayer : Player
         }
     }
     
+    protected SyncVar<int> currentAttack = new(10);
     public int CurrentAttack
     {
         get { return currentAttack.Value; }
@@ -41,6 +39,7 @@ public partial class FightPlayer : Player
         }
     }
 
+    protected SyncVar<int> maxHealth = new(100);
     public int MaxHealth
     {
         get { return maxHealth.Value; }
@@ -53,9 +52,8 @@ public partial class FightPlayer : Player
         }
     }
 
-    private int maxShield = 0;
-    private int currentShield = 0;
-
+    // Shields are temporary values. We do not sync them using syncvars.
+    [Serialized] private int currentShield = 0;
     public int CurrentShield
     {
         get { return currentShield; }
@@ -69,6 +67,7 @@ public partial class FightPlayer : Player
         }
     }
 
+    [Serialized] private int maxShield = 0;
     public int MaxShield
     {
         get { return maxShield; }
@@ -84,9 +83,7 @@ public partial class FightPlayer : Player
     
 
     // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
-    public PlayerStatus PlayerStatus = PlayerStatus.Safe;
-
-    
+    [Serialized] public PlayerStatus PlayerStatus = PlayerStatus.Safe;
     [Serialized] protected FightPlayerEffectManager EffectManager; 
     [Serialized] protected FightPlayerUI PlayerUi;
     [Serialized] protected FightPlayerSkillTree SkillTree;
@@ -198,6 +195,7 @@ public partial class FightPlayer : Player
     {
         FightClubGameManager.Instance.OnPlayerLeave(this);
     }
+    
 
     #endregion
     
