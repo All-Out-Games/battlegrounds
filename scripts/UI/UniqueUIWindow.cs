@@ -6,7 +6,7 @@ using AO;
 /// They get instantiated if no previous instance exist (write a static public variable for each)
 /// Or we open the existing instancce and close all other instances of UniqueUIWindow (See UIManager->OpenUniqueWindow)
 /// </summary>
-public class UniqueUIWindow : BaseUniqueWindow
+public class UniqueUIWindow : BaseUIWindow
 {
     [Serialized] protected UIButton CloseButton; // Unique UI Window must have a close button.
     public override void Start()
@@ -21,13 +21,5 @@ public class UniqueUIWindow : BaseUniqueWindow
         }
         //base.Start();
         CloseButton.OnClicked += CloseWindow;
-    }
-
-    public virtual void OnInstantiate()
-    {
-        // Called after first prefab creation. Unique windows don't typically get destroyed after that
-        // So handle any update from the player using events.
-        // If you need player data here, it's best to ensure the window is created after player load
-        // i.e. the earlier time point you should call UIManager.Instance.OpenUniqueUIWindow is probably player's start
     }
 }

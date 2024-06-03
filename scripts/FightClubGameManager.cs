@@ -237,6 +237,9 @@ public class FightClubGameManager : System<FightClubGameManager> {
             case "giveabilityforced":
                 // Force unlock
                 break;
+            case "depriveability":
+                // Remove a skill from player
+                break;
         }
     }
 

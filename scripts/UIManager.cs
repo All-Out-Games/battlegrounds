@@ -4,6 +4,10 @@ public partial class UIManager : System<UIManager>
 {
 
     private Dictionary<string, UniqueUIWindow> UniqueUiWindows = new(); // [PrefabPath : Window Class]
+    // Unique window will close all other instances when a new one opens. Overlay windows only themselves
+    // You must manage overlay windows yourself
+    private Dictionary<string, BaseUIWindow> OverlayWindows = new(); 
+
 
     private string _scoreTxt;
     private string _resourceTxt;
@@ -99,6 +103,37 @@ public partial class UIManager : System<UIManager>
             Log.Error($"UIManager: Window {prefabKey} not created yet.");
         }
         return uwd;
+    }
+
+    public BaseUIWindow OpenOverlayWindow(string prefabPath)
+    {
+        if (!OverlayWindows.TryGetValue(prefabPath, out var wd))
+        {
+            // If not exist, create one
+            wd = UIWindow.InstantiateWindow(prefabPath) as BaseUIWindow;
+            if (wd == null)
+            {
+                Log.Error($"Cannot get a UniqueUIWindow component from {prefabPath}!");
+                return null;
+            }
+            
+            wd.Entity.SetParent(FindCanvas().Entity,false);
+            OverlayWindows.Add(prefabPath, wd);
+            wd.OnInstantiate();
+        }
+        wd.OpenWindow();
+        return wd;
+    }
+
+    public BaseUIWindow CloseOverlayWindow(string prefabPath)
+    {
+        if (!OverlayWindows.TryGetValue(prefabPath, out var wd))
+        {
+            Log.Error($"Overlay Window {prefabPath} is not created yet!");
+            return null;
+        }
+        wd.CloseWindow();
+        return wd;
     }
 
     public override void Update()

@@ -3,7 +3,7 @@ using AO;
 /// Main UI Class for the skill slots panel. Class is managed in FightPlayerSkillSlotsManager
 /// <see cref="FightPlayerSkillSlotsManager"/>
 /// </summary>
-public class SkillSlotsPanel : BaseUniqueWindow
+public class SkillSlotsPanel : BaseUIWindow
 {
     [Serialized] private SkillSlotButton _sl1;
     [Serialized] private SkillSlotButton _sl2;

@@ -7,13 +7,25 @@ using StreamReader = AO.StreamReader;
 /// </summary>
 public partial class FightPlayer : Player
 {
+    // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
+    [Serialized] public PlayerStatus PlayerStatus = PlayerStatus.Safe;
+    [Serialized] protected FightPlayerEffectManager EffectManager; 
+    [Serialized] protected FightPlayerUI PlayerUi;
+    [Serialized] protected FightPlayerSkillTree SkillTree;
+    [Serialized] protected FightPlayerSkillSlotsManager SkillSlotsManager;
+
+    protected Circle_Collider Collider; // MAIN Collider used for bumping / damage
+    protected Box_Collider PunchCollider;
+    protected CameraControl CameraInterface;
+    
+    public Entity CollisionEntity;
+    
     #region Attributes
+    
     // SyncVars must not be set during Awake(). Do these in Start()
     protected SyncVar<int> TotalEliminations = new();
     protected SyncVar<int> TotalDamageDealt = new();
 
-    protected CameraControl CameraInterface;
-    
     protected SyncVar<int> currentHealth = new(100);
     public int CurrentHealth 
     { 
@@ -23,7 +35,6 @@ public partial class FightPlayer : Player
             if (Network.IsServer) {
                 currentHealth.Set(value);
             }
-            
         }
     }
     
@@ -67,6 +78,7 @@ public partial class FightPlayer : Player
         }
     }
 
+    // Current Max value of shield
     [Serialized] private int maxShield = 0;
     public int MaxShield
     {
@@ -79,22 +91,32 @@ public partial class FightPlayer : Player
                 CallClient_SetMaxShield(maxShield);
             }
         }
-    } // Current Max value of shield
-    
+    }
 
-    // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
-    [Serialized] public PlayerStatus PlayerStatus = PlayerStatus.Safe;
-    [Serialized] protected FightPlayerEffectManager EffectManager; 
-    [Serialized] protected FightPlayerUI PlayerUi;
-    [Serialized] protected FightPlayerSkillTree SkillTree;
-    [Serialized] protected FightPlayerSkillSlotsManager SkillSlotsManager;
-
-    protected Circle_Collider Collider; // MAIN Collider used for bumping / damage
-    protected Box_Collider PunchCollider;
-    
-    public Entity CollisionEntity;
+    private int coins = 0;
+    public int Coins
+    {
+        get { return coins; }
+        set
+        {
+            coins = value; 
+            if (Network.IsServer) 
+            {
+                Save.SetInt(this, "Coins", value);
+                CallClient_NotifyCoinUpdate(value);
+            }
+        }
+    }
 
     #endregion
+
+    /// <summary>
+    /// [Server Only] Use attribute setters to sync player save data to the client.
+    /// </summary>
+    public void ProcessSave()
+    {
+        Coins = Save.GetInt(this, "Coins", 10);
+    }
     
     #region EventFunctions
     
@@ -108,6 +130,7 @@ public partial class FightPlayer : Player
             PlayerUi = Entity.AddComponent<FightPlayerUI>();
             SkillTree = Entity.AddComponent<FightPlayerSkillTree>();
             SkillSlotsManager = Entity.AddComponent<FightPlayerSkillSlotsManager>();
+            ProcessSave();
         }
         EffectManager = Entity.GetComponent<FightPlayerEffectManager>();
         PlayerUi = Entity.GetComponent<FightPlayerUI>();
@@ -410,9 +433,7 @@ public partial class FightPlayer : Player
     }
     
     #endregion
-
-
-
+    
     #region Sub Component Getters
 
     public FightPlayerEffectManager GetEffectMgr()
@@ -525,4 +546,16 @@ public partial class FightPlayer : Player
 
     #endregion
     
+    #region Resource Management
+
+    [ClientRpc]
+    public void NotifyCoinUpdate(int c)
+    {
+        if (IsLocal)
+        {
+            Coins = c;
+        }
+    }
+
+    #endregion
 }
