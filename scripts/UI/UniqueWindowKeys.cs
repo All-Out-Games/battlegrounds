@@ -6,5 +6,5 @@ public static class UniqueWindowKeys
     public static string AbilityUnlockDialogPath = "AbilityUpgradeDialog.prefab";
     
     // Overlay Window - they are windows without close buttons. Control them through UI manager
-    public static string ResourceOverlayWindowPath = "ResourceOverlayWindowPath.prefab";
+    public static string ResourcesOverlayWindowPath = "ResourcesOverlayWindow.prefab";
 }

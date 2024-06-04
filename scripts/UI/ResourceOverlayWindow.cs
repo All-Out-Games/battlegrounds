@@ -10,10 +10,25 @@ public class ResourceOverlayWindow : BaseUIWindow
     [Serialized] private UIText _damageText;
     [Serialized] private UIText _eliminationText;
 
-    public override void OnInstantiate()
+    private Action<int> c, d, k;
+
+    public override void OnDestroy()
     {
-        base.OnInstantiate();
-        // TODO Find local player and hook up update events
+        base.OnDestroy();
+        c -= UpdateCoin;
+        d -= UpdateDamage;
+        k -= UpdateElimination;
+    }
+
+    public void HookupEvents(ref Action<int> coinUpdateEvt, ref Action<int> dmgUpdateEvt, ref Action<int> killUpdateEvt)
+    {
+        c = coinUpdateEvt;
+        d = dmgUpdateEvt;
+        k = killUpdateEvt;
+        
+        coinUpdateEvt += UpdateCoin;
+        dmgUpdateEvt += UpdateDamage;
+        killUpdateEvt += UpdateElimination;
     }
 
     public void UpdateCoin(int coin)

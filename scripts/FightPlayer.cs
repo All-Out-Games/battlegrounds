@@ -1,5 +1,6 @@
 using System.Collections;
 using AO;
+using Assembly.scripts.UI;
 using StreamReader = AO.StreamReader;
 
 /// <summary>
@@ -23,8 +24,6 @@ public partial class FightPlayer : Player
     #region Attributes
     
     // SyncVars must not be set during Awake(). Do these in Start()
-    protected SyncVar<int> TotalEliminations = new();
-    protected SyncVar<int> TotalDamageDealt = new();
 
     protected SyncVar<int> currentHealth = new(100);
     public int CurrentHealth 
@@ -93,6 +92,34 @@ public partial class FightPlayer : Player
         }
     }
 
+    private SyncVar<int> totalEliminations = new();
+
+    public int TotalEliminations
+    {
+        get { return totalEliminations.Value; }
+        set
+        {
+            if (Network.IsServer)
+            {
+                totalEliminations.Set(value);
+                Save.SetInt(this, "TotalEliminations", value);
+            }
+        }
+    }
+    private SyncVar<int> totalDamageDealt = new();
+
+    public int TotalDamageDealt
+    {
+        get { return totalDamageDealt.Value; }
+        set
+        {
+            if (Network.IsServer)
+            {
+                totalDamageDealt.Set(value);
+                Save.SetInt(this, "TotalDamageDealt", value);
+            }
+        }
+    }
     private int coins = 0;
     public int Coins
     {
@@ -116,6 +143,8 @@ public partial class FightPlayer : Player
     public void ProcessSave()
     {
         Coins = Save.GetInt(this, "Coins", 10);
+        TotalEliminations = Save.GetInt(this, "TotalEliminations");
+        TotalDamageDealt = Save.GetInt(this, "TotalDamageDealt");
     }
     
     #region EventFunctions
@@ -130,8 +159,8 @@ public partial class FightPlayer : Player
             PlayerUi = Entity.AddComponent<FightPlayerUI>();
             SkillTree = Entity.AddComponent<FightPlayerSkillTree>();
             SkillSlotsManager = Entity.AddComponent<FightPlayerSkillSlotsManager>();
-            ProcessSave();
         }
+        
         EffectManager = Entity.GetComponent<FightPlayerEffectManager>();
         PlayerUi = Entity.GetComponent<FightPlayerUI>();
         SkillTree = Entity.GetComponent<FightPlayerSkillTree>();
@@ -139,7 +168,13 @@ public partial class FightPlayer : Player
 
         //Log.Debug($"Client Awake!");
         //SkillSlotsManager.InitKeybind();
-        
+        if (IsLocal)
+        {
+            ResourceOverlayWindow resourceWindow =
+                UIManager.Instance.OpenOverlayWindow(UniqueWindowKeys.ResourcesOverlayWindowPath) as ResourceOverlayWindow;
+            // NOTE: Action is value type. You have to pass them as ref.
+            resourceWindow.HookupEvents(ref CoinUpdateEvent, ref TotalDamageUpdateEvent, ref TotalElminationUpdateEvent);
+        }
     }
 
     public override void Start()
@@ -148,15 +183,26 @@ public partial class FightPlayer : Player
         
         if (Network.IsServer)
         {
+            // DO save related things here! You cannot sync stuff in Awake
+            ProcessSave();
             SkillTree.InitializeSkillTreeComp();
             SkillTree.HandleAllSkills();
+            HookupGlobalEvents();
         }
         else
         {
             if (IsLocal)
             {
+                // Stuff related to the local player goes here. e.g. Camera control & UI
                 CameraInterface = Camera.CreateCameraControl(1);
                 CameraInterface.Zoom = 1.4f;
+                
+                // First ui update need to be triggered manually (Save reading happens before this point)
+                CoinUpdateEvent.Invoke(coins); 
+                TotalDamageUpdateEvent.Invoke(TotalDamageDealt);
+                TotalElminationUpdateEvent.Invoke(TotalEliminations);
+                totalDamageDealt.OnSync += (oldi, newi) => { TotalDamageUpdateEvent(newi); }; // Hook up sync var
+                totalEliminations.OnSync += (oldi, newi) => { TotalElminationUpdateEvent(newi); };
             }
             
         }
@@ -189,19 +235,19 @@ public partial class FightPlayer : Player
         BumpDecay();
         DashDecay();
         
-        switch (PlayerStatus)
-        {
-            case PlayerStatus.Combat:
-                break;
-            case PlayerStatus.Safe:
-                break;
-            case PlayerStatus.AFK:
-                break;
-            case PlayerStatus.Spectating:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        // switch (PlayerStatus)
+        // {
+        //     case PlayerStatus.Combat:
+        //         break;
+        //     case PlayerStatus.Safe:
+        //         break;
+        //     case PlayerStatus.AFK:
+        //         break;
+        //     case PlayerStatus.Spectating:
+        //         break;
+        //     default:
+        //         throw new ArgumentOutOfRangeException();
+        // }
     }
 
     public override void LateUpdate()
@@ -281,7 +327,7 @@ public partial class FightPlayer : Player
 
         if (Network.IsServer) {
             CallClient_DamageReaction(CurrentHealth, damage, info); // All Client side damage reaction goes here
-            
+            FightClubGameManager.Instance.PlayerDamageEvent(source, this, damage);
             // Server only death routine (client-side handled in CallClient_TakeDamage)
             if (CurrentHealth <= 0)
             {
@@ -546,16 +592,4 @@ public partial class FightPlayer : Player
 
     #endregion
     
-    #region Resource Management
-
-    [ClientRpc]
-    public void NotifyCoinUpdate(int c)
-    {
-        if (IsLocal)
-        {
-            Coins = c;
-        }
-    }
-
-    #endregion
 }

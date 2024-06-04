@@ -12,22 +12,6 @@ public partial class FightPlayer
             HandleSkillSlotInput();
         }
     }
-
-    protected void UseSkillSlot(SkillSlot slot)
-    {
-        if (slot.IsUsable())
-        {
-            slot.UseSkill();
-        }
-        else if (slot.IsEmpty())
-        {
-            UIManager.Instance.SetPopup($"Slot {slot.GetMainKey()}, Is EMPTY!", 2.0f, this);
-        }
-        else
-        {
-            UIManager.Instance.SetPopup($"Slot {slot.GetMainKey()}, Key {slot.GetCurrentSkillKey()} Is NOT usable", 2.0f, this);
-        }
-    }
     
     
     #region Input Handling

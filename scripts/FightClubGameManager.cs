@@ -57,6 +57,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     {
         PlayerTeleportEvent += OnPlayerTeleport;
         PlayerEliminationEvent += OnPlayerElimination;
+        PlayerDamageEvent += OnPlayerDamage;
     }
 
     public override void Update() 
@@ -68,6 +69,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     {
         PlayerTeleportEvent -= OnPlayerTeleport;
         PlayerEliminationEvent -= OnPlayerElimination;
+        PlayerDamageEvent -= OnPlayerDamage;
     }
 
     public void OnPlayerJoin(Player player) 
@@ -167,9 +169,9 @@ public class FightClubGameManager : System<FightClubGameManager> {
         UIManager.CallClient_SetGlobalPopup($"{killer.Name} killed {victim.Name}!", 2.5f);
     }
 
-    public void OnPlayerDamage(FightPlayer killer, FightPlayer victim)
+    public void OnPlayerDamage(FightPlayer killer, FightPlayer victim, int amount)
     {
-        
+        Log.Debug($"{killer.Name} damaged {victim.Name} by {amount}");
     }
     
     #endregion
