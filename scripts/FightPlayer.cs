@@ -210,10 +210,10 @@ public partial class FightPlayer : Player
         var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
         CollisionEntity = collisionPrefab.Instantiate();
         CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;
-        CollisionEntity.LocalScale = new Vector2(1.01f, 1.01f);
+        CollisionEntity.LocalScale = new Vector2(1.5f, 1.5f); // Make players easier to hit by giving them Michelin Man hitbox
         CollisionEntity.SetParent(Entity, false);
         CollisionEntity.LocalPosition =
-            new Vector2(CollisionEntity.LocalPosition.X, CollisionEntity.LocalPosition.Y + 0.5f);
+            new Vector2(CollisionEntity.LocalPosition.X, CollisionEntity.LocalPosition.Y - 0.5f);
         Collider = CollisionEntity.GetComponent<Circle_Collider>();
 
         var punchColliderEntity = CollisionEntity.TryGetChildByName("PunchCollider");

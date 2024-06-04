@@ -52,6 +52,9 @@ public partial class EffectPunch : FightEffect
             var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
                 EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayers().ToArray(), out rc);
 
+            /*hit = Physics.Raycast(Entity.Position, FightPlayer.GetPunchDirection(),
+                EffectConfig.PunchConfig.PunchRange, out rc);*/
+
             if (rc.Entity != null)
             {
                 FightPlayer other = rc.Entity.GetComponent<FightPlayer>();

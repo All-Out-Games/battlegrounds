@@ -10,24 +10,20 @@ public class ResourceOverlayWindow : BaseUIWindow
     [Serialized] private UIText _coinText;
     [Serialized] private UIText _damageText;
     [Serialized] private UIText _eliminationText;
-
-    private Action<int> c, d, k;
-    private Coroutine CoroutineC, CoroutineD, CoroutineK;
+    
+    private Coroutine _coroutineC;
 
     public override void OnDestroy()
     {
         base.OnDestroy();
-        c -= UpdateCoin;
-        d -= UpdateDamage;
-        k -= UpdateElimination;
+        _localPlayer.CoinUpdateEvent -= UpdateCoin;
+        _localPlayer.TotalDamageUpdateEvent -= UpdateDamage;
+        _localPlayer.TotalElminationUpdateEvent -= UpdateElimination;
     }
 
     public void HookupEvents(ref Action<int> coinUpdateEvt, ref Action<int> dmgUpdateEvt, ref Action<int> killUpdateEvt)
     {
-        c = coinUpdateEvt;
-        d = dmgUpdateEvt;
-        k = killUpdateEvt;
-        
+        _localPlayer = (FightPlayer)Network.LocalPlayer;
         coinUpdateEvt += UpdateCoin;
         dmgUpdateEvt += UpdateDamage;
         killUpdateEvt += UpdateElimination;
@@ -36,15 +32,15 @@ public class ResourceOverlayWindow : BaseUIWindow
     public void UpdateCoin(int coin)
     {
         _coinText.Text = coin.ToString();
-        if (CoroutineC == null || CoroutineC.Finished)
+        if (_coroutineC == null || _coroutineC.Finished)
         {
-            CoroutineC = Coroutine.Start(this.Entity, TextChangeEmphasize(_coinText, 0.1f, 0.15f,
+            _coroutineC = Coroutine.Start(this.Entity, TextChangeEmphasize(_coinText, 0.1f, 0.15f,
                 64f, 32f));
         }
         else
         {
-            Coroutine.ActiveCoroutines.Remove(CoroutineC);
-            CoroutineC = Coroutine.Start(this.Entity, TextChangeEmphasize(_coinText, 0.1f, 0.15f,
+            Coroutine.ActiveCoroutines.Remove(_coroutineC);
+            _coroutineC = Coroutine.Start(this.Entity, TextChangeEmphasize(_coinText, 0.1f, 0.15f,
                 64f, 32f));
         }
     }
@@ -59,7 +55,7 @@ public class ResourceOverlayWindow : BaseUIWindow
         _eliminationText.Text = kills.ToString();
     }
 
-    protected IEnumerator TextChangeEmphasize(UIText txt, float expandTime, float shrinkTime, float expandSize,
+    public static IEnumerator TextChangeEmphasize(UIText txt, float expandTime, float shrinkTime, float expandSize,
         float originalSize)
     {
         float timer = 0;
