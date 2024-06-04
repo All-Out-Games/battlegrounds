@@ -165,21 +165,6 @@ public partial class UIManager : System<UIManager>
         // Admin menus
         if ( Network.LocalPlayer != null && Network.LocalPlayer.IsAdmin)
         {
-            // Draw the score
-            {
-                var topBarRect = UI.ScreenRect.CutTop(80f);
-                var currencyRect = topBarRect.CutLeft(225f).Offset(550f, -10f);
-                UI.Image(currencyRect, Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png"), Vector4.White);
-                UI.Text(currencyRect, $"Score: {_scoreTxt}", new UI.TextSettings() {Font = _defaultFont,Size = 40, Color = Vector4.LightGreen, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
-                // Draw resources
-                var resourceRect = topBarRect.CutLeft(225f).Offset(550f, -10f);
-                UI.Image(resourceRect, Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png"), Vector4.White);
-                UI.Text(resourceRect, $"Material: {_resourceTxt}", new UI.TextSettings() {Font = _defaultFont, Size = 40, Color = Vector4.Green, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
-                // Draw money
-                var moneyRect = topBarRect.CutLeft(225f).Offset(550f, -10f);
-                UI.Image(moneyRect, Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png"), Vector4.White);
-                UI.Text(moneyRect, $"Money: {_moneyTxt}", new UI.TextSettings() { Font = _defaultFont, Size = 40, Color = Vector4.LightGreen, VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center });
-            }
 
 
             // Draw the side buttons

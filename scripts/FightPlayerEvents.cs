@@ -46,6 +46,7 @@ public partial class FightPlayer
             if (source == this)
             {
                 TotalDamageDealt += amt;
+                Coins += 1;
             }
         };
 
@@ -54,6 +55,12 @@ public partial class FightPlayer
             if (source == this)
             {
                 TotalEliminations += 1;
+                Coins += 20; // Kills award 20 coins
+            }
+
+            if (victim == this)
+            {
+                Coins += 10; // Death award 10 coins
             }
         };
     }
