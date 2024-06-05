@@ -1,5 +1,6 @@
 using System.Collections;
 using AO;
+using Assembly.scripts.SkillSlots.Abilities;
 using Assembly.scripts.UI;
 using StreamReader = AO.StreamReader;
 
@@ -231,7 +232,6 @@ public partial class FightPlayer : Player
 
     public override void Update()
     {
-        //ControllerUpdate();
         BumpDecay();
         DashDecay();
         
@@ -546,7 +546,10 @@ public partial class FightPlayer : Player
         return PlayerStatus == PlayerStatus.Combat;
     }
     
-
+    public FightAbility GetFightAbility<T>()
+    {
+        return GetAbility<T>() as FightAbility;
+    }
     #endregion
 
     #region Zone Management

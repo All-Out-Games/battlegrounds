@@ -5,7 +5,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
 {
 
     private bool _localDrawAbility;
-    private List<Ability> ActiveAbilities = new List<Ability>();
+    private List<FightAbility> ActiveAbilities = new List<FightAbility>();
     public bool AllSilent;
     
     public override void Update()
@@ -30,25 +30,14 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         if (_player.IsLocal)
         {
             SkillSlotsPanelEnable(false);
-            ActiveAbilities.Add(_player.GetAbility<AbilityPunch>());
-            ActiveAbilities.Add(_player.GetAbility<AbilityRollOut>());
-            ActiveAbilities.Add(_player.GetAbility<AbilityShoulderCrash>());
-            ActiveAbilities.Add(_player.GetAbility<AbilityShield>());
-            ActiveAbilities.Add(_player.GetAbility<AbilitySpoonThrow>());
+            // TODO: Ability book & Load Slot from save
+            ActiveAbilities.Add(_player.GetFightAbility<AbilityPunch>());
+            ActiveAbilities.Add(_player.GetFightAbility<AbilityRollOut>());
+            ActiveAbilities.Add(_player.GetFightAbility<AbilityShoulderCrash>());
+            ActiveAbilities.Add(_player.GetFightAbility<AbilityShield>());
+            ActiveAbilities.Add(_player.GetFightAbility<AbilitySpoonThrow>());
+            ActiveAbilities.Add(_player.GetFightAbility<FightAbility>());
         }
-    }
-    
-
-    [ClientRpc]
-    public void SilentAllSlot(bool silent)
-    {
-        AllSilent = silent;
-    }
-    
-
-    public FightPlayer GetPlayer()
-    {
-        return _player;
     }
 
     public void SkillSlotsPanelEnable(bool enable)
