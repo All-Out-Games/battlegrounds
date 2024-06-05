@@ -1,8 +1,8 @@
 10
-257698037761
-200370435554127 1715705384708943700
+227633266689
+57796981350347 1717608852097321000
 {
-  "name": "Title",
+  "name": "TabName",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,45 +13,19 @@
     "X": 1,
     "Y": 1
   },
-  "sibling_index": 1,
+  "sibling_index": 6,
   "parent": "199008852283556:1715704740019608500"
 },
 {
   "cid": 1,
-  "aoid": "200380536351936:1715705389491520800",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIRect",
-  "data": {
-    "min": {
-      "X": 0.1199999973177910,
-      "Y": 0.8799999952316284
-    },
-    "max": {
-      "X": 0.8799999952316284,
-      "Y": 1
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
-    }
-  }
-},
-{
-  "cid": 3,
-  "aoid": "200845977675713:1715705609871033400",
+  "aoid": "57817889433622:1717608862568117800",
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "Ability Vendor",
+    "text": "Defensive",
     "settings": {
-      "font_id": "$AO/fonts/Asap-ExtraBold-Fixed.ttf",
-      "size": 80,
+      "font_id": "",
+      "size": 36,
       "color": {
         "X": 1,
         "Y": 1,
@@ -89,5 +63,31 @@
       "line_height_multiplier": 1
     },
     "push_text_rect": false
+  }
+},
+{
+  "cid": 2,
+  "aoid": "57822438770216:1717608864846431900",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0.0500000007450581,
+      "Y": 0.0900000035762787
+    },
+    "max": {
+      "X": 0.2099999934434891,
+      "Y": 0.0399999991059303
+    },
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
   }
 }

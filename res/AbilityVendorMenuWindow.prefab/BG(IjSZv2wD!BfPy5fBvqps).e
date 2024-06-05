@@ -30,8 +30,8 @@
       "W": 1
     },
     "fit_aspect": false,
-    "fit_aspect_kind": "Fit_Aspect::AUTO",
-    "fit_aspect_anchor": "UIFitAspectAnchor::CENTER"
+    "fit_aspect_kind": 0,
+    "fit_aspect_anchor": 0
   }
 },
 {

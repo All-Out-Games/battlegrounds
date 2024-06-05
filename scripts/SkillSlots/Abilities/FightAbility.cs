@@ -17,7 +17,8 @@ public class FightAbility : Ability
     }
     public override bool CanUse()
     {
-        return true;
+        FightPlayer = (FightPlayer)Player;
+        return FightPlayer.SkillCastGeneralCheck() && FightPlayer.GetSkillTree().SkillLevelDict[SkillKey] > 0;
     }
 
     public override bool CanTarget(Player player)

@@ -10,4 +10,6 @@ public class AbilityShoulderCrash : FightAbility
     public override bool MonitorEffectDuration => false;
     public override TargettingMode TargettingMode => TargettingMode.Line;
     public override float MaxDistance => 5f;
+    
+    public override float Cooldown => 7.0f;
 }

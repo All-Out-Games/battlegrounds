@@ -92,8 +92,11 @@
       },
       "click_sound": "",
       "click_sound_speed": 1,
+      "stay_hot_while_active": false,
+      "return_to_center_to_cancel": false,
       "keybind": 0
-    }
+    },
+    "interactable": true
   }
 },
 {

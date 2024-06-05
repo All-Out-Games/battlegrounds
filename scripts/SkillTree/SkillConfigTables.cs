@@ -174,4 +174,14 @@ public static partial class SkillConfig
         SkillTreeTabs.Stealth,
         SkillTreeTabs.Psionic
     };
+
+    public static readonly Dictionary<SkillTreeTabs, string> STTabsNameQueryDict =
+        new Dictionary<SkillTreeTabs, string>()
+        {
+            {SkillTreeTabs.Basic, "Basic"},
+            {SkillTreeTabs.Brawler, "Brawler"},
+            {SkillTreeTabs.Defensive, "Defensive"},
+            {SkillTreeTabs.Stealth, "Stealth"},
+            {SkillTreeTabs.Psionic, "Psionic"}
+        };
 }

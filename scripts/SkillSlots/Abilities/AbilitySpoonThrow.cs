@@ -11,4 +11,6 @@ public class AbilitySpoonThrow : FightAbility
     public override TargettingMode TargettingMode => TargettingMode.Line;
     public override float MaxDistance => 15f;
     public override int MaxTargets => 1;
+    
+    public override float Cooldown => 3.0f;
 }

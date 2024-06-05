@@ -7,6 +7,7 @@ public class AbilityVendorWindow : UniqueUIWindow
     [Serialized] public Entity AbilityNode; // The bg image for the scrollview. Add Ability Items as its children.
     [Serialized] public UIButton NextButton;
     [Serialized] public UIButton PrevButton;
+    [Serialized] public UIText AbilityTabName; // the name of tab. Query from SkillTreeConfig
     
     protected Dictionary<SkillConfig.SkillTreeTabs, float> TabScrollHeight; // Cached total scroll height of each tab.
     protected SkillConfig.SkillTreeTabs CurrentTab = SkillConfig.SkillTreeTabs.Basic;
@@ -121,7 +122,6 @@ public class AbilityVendorWindow : UniqueUIWindow
         // Just adjust all skill nodes status
         foreach (var kv in PlayerSkillTree.SkillLevelDict)
         {
-            // TODO: Update ability node status
             UpdateSkillNode(kv.Key, kv.Value);
         }
     }
@@ -143,6 +143,7 @@ public class AbilityVendorWindow : UniqueUIWindow
     private void UpdateSkillTreeTab(SkillConfig.SkillTreeTabs tab = SkillConfig.SkillTreeTabs.Basic)
     {
         CurrentTab = tab;
+        AbilityTabName.Text = SkillConfig.STTabsNameQueryDict[tab];
         foreach (var kv in AbilityItems)
         {
             // a. Enable items in tab
