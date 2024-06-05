@@ -14,7 +14,7 @@ public class AbilityPunch : FightAbility
     public override bool CanUse()
     {
         FightPlayer = (FightPlayer)Player;
-        return !FightPlayer.SkillCastGeneralCheck() && !FightPlayer.HasEffect<EffectRollOut>();
+        return FightPlayer.SkillCastGeneralCheck();
     }
 
     public override void OnActivate(Player targetPlayer, Vector2 positionOrDirection, float magnitude)
