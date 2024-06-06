@@ -550,6 +550,11 @@ public partial class FightPlayer : Player
     {
         return GetAbility<T>() as FightAbility;
     }
+
+    public FightAbility GetFightAbility(Type t)
+    {
+        return AbilityInstances.FirstOrDefault<Ability>((Func<Ability, bool>) (a => a.GetType() == t)) as FightAbility;
+    }
     #endregion
 
     #region Zone Management

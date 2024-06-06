@@ -6,6 +6,7 @@ namespace Assembly.scripts.SkillSlots.Abilities;
 public class FightAbility : Ability
 {
     public static string DefaultIconPath = "$AO/allouticon1.png";
+    public static string DefaultSkillKey = "Empty";
     
     public FightPlayer FightPlayer;
     public virtual string SkillKey => "Empty";

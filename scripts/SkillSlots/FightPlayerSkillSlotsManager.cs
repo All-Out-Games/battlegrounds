@@ -6,6 +6,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
 
     private bool _localDrawAbility;
     private List<FightAbility> ActiveAbilities = new List<FightAbility>();
+    [Serialized] private string[] _equippedSkillKeys = new string[6];
     public bool AllSilent;
     
     public override void Update()
@@ -27,17 +28,28 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
 
     public override void Start()
     {
+        
+        if (Network.IsServer)
+        {
+            _equippedSkillKeys[0] = "Punch";
+        
+            for (int i = 1; i < 6; i++)
+            {
+                CallClient_SyncEquippedSkills(i, Save.GetString(_player, $"SkillSlot{i}", "Empty"));
+            }
+        }
+        
         if (_player.IsLocal)
         {
             SkillSlotsPanelEnable(false);
             // TODO: Ability book & Load Slot from save
             ActiveAbilities.Add(_player.GetFightAbility<AbilityPunch>());
-            ActiveAbilities.Add(_player.GetFightAbility<AbilityRollOut>());
-            ActiveAbilities.Add(_player.GetFightAbility<AbilityShoulderCrash>());
-            ActiveAbilities.Add(_player.GetFightAbility<AbilityShield>());
-            ActiveAbilities.Add(_player.GetFightAbility<AbilitySpoonThrow>());
-            ActiveAbilities.Add(_player.GetFightAbility<FightAbility>());
+            for (int i = 1; i < 6; i++)
+            {
+                ActiveAbilities.Add(GetAbilityInstance(FightAbility.AbilityQueryDict[_equippedSkillKeys[i]]));
+            }
         }
+        
     }
 
     private Ability[] GetAbilityArray()
@@ -59,14 +71,29 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         }
     }
 
-    public void RemoveSlot(int index)
+    public FightAbility GetAbilityInstance(Type f)
     {
-        ReplaceSlot<FightAbility>(index); // Replace with an empty ability
+        return _player.GetFightAbility(f);
+    }
+    
+    public void ReplaceSlot(int index, FightAbility faInstanc)
+    {
+        ActiveAbilities[index] = faInstanc;
     }
 
-    public void ReplaceSlot<T>(int index) where T : FightAbility
+    [ServerRpc]
+    public void SetSavedSkillSlot(int index, string skillKey)
     {
-        ActiveAbilities[index] = _player.GetFightAbility<T>();
+        if(Network.IsServer) Save.SetString(_player, $"SkillSlot{index}", skillKey);
+    }
+
+    [ClientRpc] 
+    public void SyncEquippedSkills(int index, string skillKey)
+    {
+        if (_player.IsLocal)
+        {
+            _equippedSkillKeys[index] = skillKey;
+        }
     }
 
     public List<FightAbility> GetCurrentAbilities()
