@@ -1,6 +1,7 @@
 // Definition of skills and related data structs
 
 using AO;
+using Assembly.scripts.SkillSlots.Abilities;
 
 public static partial class SkillConfig
 {
@@ -70,6 +71,7 @@ public static partial class SkillConfig
 
         // Keys are unique for each node
         public string SkillKey;
+        public string IconPath;
         public string[] ChildrenNodeKeys;
         public string[] ParentNodeKeys;
         
@@ -93,5 +95,27 @@ public static partial class SkillConfig
             return ParentNodeKeys ?? Array.Empty<string>();
         }
     }
-    
+
+    public static string GetIconPath(string key)
+    {
+        if (key == "Empty")
+        {
+            return FightAbility.DefaultIconPath;
+        }
+        string path = STConfigQueryDict[key].IconPath;
+        return path == String.Empty ? FightAbility.DefaultIconPath : path;
+    }
+
+    public static SkillTreeNodeConfig GetConfig(string skillKey)
+    {
+        if (STConfigQueryDict.TryGetValue(skillKey, out var cfg))
+        {
+            return cfg;
+        }
+        else
+        {
+            Log.Error($"{skillKey} is not found in config!");
+            throw new KeyNotFoundException($"{skillKey} is not found in config!");
+        }
+    }
 }

@@ -20,6 +20,7 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(420,30), // This will be set to the item's offset value
         SkillKey = "Punch",
+        IconPath = "ability_icon_tmp/Punch_Tmp.png",
         ParentNodeKeys = new string[]{},
         ChildrenNodeKeys = new string[] {"HealthBoost", "AttackBoost"},
     };
@@ -36,6 +37,7 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(450,30),
         SkillKey = "ShoulderCrash",
+        IconPath = "ability_icon_tmp/ShoulderCrash_Tmp.png",
         ParentNodeKeys = new string[]{},
         ChildrenNodeKeys = new string[]{},
     };
@@ -79,11 +81,12 @@ public static partial class SkillConfig
     {
         DescriptionTextKey = "Boost your speed and enable you to crash into other players",
         MaximumLevel = 1,
-        NType = NodeType.AttrBoost,
+        NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Defensive,
         UpgradeCost = 0,
         UIPosition = new Vector2(770,330),
         SkillKey = "RollOut",
+        IconPath = "ability_icon_tmp/RollOut_Tmp.png",
         ParentNodeKeys =  new string[]{"Shield"},
         ChildrenNodeKeys = new string[]{},
     };
@@ -116,6 +119,7 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(450,30),
         SkillKey = "Shield",
+        IconPath = "ability_icon_tmp/Shield_Tmp.png",
         ParentNodeKeys = new string [] {},
         ChildrenNodeKeys = new string[] {"RollOut"},
     };
@@ -132,6 +136,7 @@ public static partial class SkillConfig
         UpgradeCost = 0,
         UIPosition = new Vector2(450, 30),
         SkillKey = "SpoonThrow",
+        IconPath = "ability_icon_tmp/SpoonThrow_Tmp.png",
         ParentNodeKeys = new string[] {},
         ChildrenNodeKeys = new string[]{},
     };

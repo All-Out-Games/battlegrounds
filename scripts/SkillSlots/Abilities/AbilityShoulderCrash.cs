@@ -4,7 +4,6 @@ using AO;
 public class AbilityShoulderCrash : FightAbility
 {
     public override string SkillKey => "ShoulderCrash";
-    public override string SkillIconPath => "ability_icon_tmp/ShoulderCrash_Tmp.png";
 
     public override Type Effect => typeof(EffectShoulderCrash);
     public override bool MonitorEffectDuration => false;

@@ -9,12 +9,12 @@ public class AbilityBookWindow : UniqueUIWindow
     [Serialized] private UIButton NextButton;
     [Serialized] private UIButton PrevButton;
     
-    [Serialized] private UIImage Icon0; // Always punch. Cannot be changed
-    [Serialized] private UIImage Icon1;
-    [Serialized] private UIImage Icon2;
-    [Serialized] private UIImage Icon3;
-    [Serialized] private UIImage Icon4;
-    [Serialized] private UIImage Icon5;
+    [Serialized] private UIButton Icon0; // Always punch. Cannot be changed
+    [Serialized] private UIButton Icon1;
+    [Serialized] private UIButton Icon2;
+    [Serialized] private UIButton Icon3;
+    [Serialized] private UIButton Icon4;
+    [Serialized] private UIButton Icon5;
 
     [Serialized] private UIText AbilityText0;
     [Serialized] private UIText AbilityText1;
@@ -23,19 +23,40 @@ public class AbilityBookWindow : UniqueUIWindow
     [Serialized] private UIText AbilityText4;
     [Serialized] private UIText AbilityText5;
 
-    private UIDirectionalLayout _skillList;
+    [Serialized] private UIDirectionalLayout _skillList;
     private Dictionary<string, AbilityBookItem> _bookItems; // [skillkey : AbilityBookItem]
-    private string AbilityBookItemPrefabPath = "AbilityBookItem.prefab";
+    private string _abilityBookItemPrefabPath = "AbilityBookItem.prefab";
 
     private FightPlayerSkillSlotsManager _slotsMgr;
-    protected SkillConfig.SkillTreeTabs CurrentTab = SkillConfig.SkillTreeTabs.Basic;
-    protected int CurrentTabIndex = 0;
-    protected int TabAmount = 0;
+    private FightPlayerSkillTree _skillTree;
+    private SkillConfig.SkillTreeTabs _currentTab = SkillConfig.SkillTreeTabs.Basic;
+    private int _currentTabIndex = 0;
+    private int _tabAmount = 0;
+    private string _selectedSkillKey; // selected key in the skillList
 
     public override void OnInstantiate()
     {
         base.OnInstantiate();
-        _slotsMgr ??= Network.LocalPlayer.Entity.GetComponent<FightPlayer>().GetSkillSlots();
+        FightPlayer fp = Network.LocalPlayer.Entity.GetComponent<FightPlayer>();
+        _slotsMgr ??= fp.GetSkillSlots();
+        _skillTree ??= fp.GetSkillTree();
+
+        Entity layoutEntity = _skillList.Entity;
+        Prefab itemPrefab = Assets.GetAsset<Prefab>(_abilityBookItemPrefabPath);
+        foreach (string key in SkillConfig.GetAllSkillKeys())
+        {
+            SkillConfig.SkillTreeNodeConfig cfg = SkillConfig.GetConfig(key);
+            if (cfg.NType == SkillConfig.NodeType.SkillUnlock) // Create nodes for all active skills, but only activate when they are unlocked.
+            {
+                AbilityBookItem itm = itemPrefab.Instantiate().GetComponent<AbilityBookItem>();
+                itm.Initialize(this);
+                itm.SetSkillName(key);
+                itm.SetIcon(Assets.GetAsset<Texture>(SkillConfig.GetIconPath(key)));
+                
+                itm.Entity.SetParent(layoutEntity, false);
+                Log.Debug($"{key} item Created!");
+            }
+        }
     }
 
     public override void Start()
@@ -45,46 +66,46 @@ public class AbilityBookWindow : UniqueUIWindow
         
         // Fill Skill Slots on the UI with current abilities
         FightAbility punch = faList[0];
-        Icon0.Sprite = punch.Icon;
+        Icon0.Settings = Icon0.Settings with { Sprite = punch.Icon };
         AbilityText0.Text = punch.SkillKey;
         FightAbility ab1 = faList[1];
-        Icon1.Sprite = ab1.Icon;
+        Icon1.Settings = Icon1.Settings with { Sprite = ab1.Icon };
         AbilityText1.Text = ab1.SkillKey;
         FightAbility ab2 = faList[2];
-        Icon2.Sprite = ab2.Icon;
+        Icon2.Settings = Icon2.Settings with { Sprite = ab2.Icon };
         AbilityText2.Text = ab2.SkillKey;
         FightAbility ab3 = faList[3];
-        Icon3.Sprite = ab3.Icon;
+        Icon3.Settings = Icon3.Settings with { Sprite = ab3.Icon };
         AbilityText3.Text = ab3.SkillKey;
         FightAbility ab4 = faList[4];
-        Icon4.Sprite = ab4.Icon;
+        Icon4.Settings = Icon4.Settings with { Sprite = ab4.Icon };
         AbilityText4.Text = ab4.SkillKey;
         FightAbility ab5 = faList[5];
-        Icon5.Sprite = ab5.Icon;
+        Icon5.Settings = Icon5.Settings with { Sprite = ab5.Icon };
         AbilityText5.Text = ab5.SkillKey;
 
         // Instantiate all ability book items
-
+        
     }
 
     private void PreviousTab()
     {
-        CurrentTabIndex -= 1;
-        if (CurrentTabIndex == -1)
+        _currentTabIndex -= 1;
+        if (_currentTabIndex == -1)
         {
-            CurrentTabIndex = TabAmount - 1;
+            _currentTabIndex = _tabAmount - 1;
         }
-        UpdateSkillTreeTab(SkillConfig.STConfigTabsList[CurrentTabIndex]);
+        UpdateSkillTreeTab(SkillConfig.STConfigTabsList[_currentTabIndex]);
     }
 
     private void NextTab()
     {
-        CurrentTabIndex += 1;
-        if (CurrentTabIndex >= TabAmount)
+        _currentTabIndex += 1;
+        if (_currentTabIndex >= _tabAmount)
         {
-            CurrentTabIndex = 0;
+            _currentTabIndex = 0;
         }
-        UpdateSkillTreeTab(SkillConfig.STConfigTabsList[CurrentTabIndex]);
+        UpdateSkillTreeTab(SkillConfig.STConfigTabsList[_currentTabIndex]);
     }
 
     private void UpdateSkillTreeTab(SkillConfig.SkillTreeTabs tab)

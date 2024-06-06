@@ -5,9 +5,11 @@ namespace Assembly.scripts.SkillSlots.Abilities;
 
 public class FightAbility : Ability
 {
+    public static string DefaultIconPath = "$AO/allouticon1.png";
+    
     public FightPlayer FightPlayer;
     public virtual string SkillKey => "Empty";
-    public virtual string SkillIconPath => "$AO/allouticon1.png"; // TODO Get an lock icon somewhere?
+    public virtual string SkillIconPath => SkillConfig.GetIconPath(SkillKey); // TODO Get an lock icon somewhere?
 
     public sealed override Texture Icon => Assets.GetAsset<Texture>(SkillIconPath);
 
