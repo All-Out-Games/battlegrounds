@@ -6,8 +6,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
 
     private bool _localDrawAbility;
     private List<FightAbility> ActiveAbilities = new List<FightAbility>();
-    [Serialized] private string[] _equippedSkillKeys = new string[6];
-    public bool AllSilent;
+    private string[] _equippedSkillKeys = new string[6];
     
     public override void Update()
     {
@@ -28,11 +27,9 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
 
     public override void Start()
     {
-        
         if (Network.IsServer)
         {
             _equippedSkillKeys[0] = "Punch";
-        
             for (int i = 1; i < 6; i++)
             {
                 CallClient_SyncEquippedSkills(i, Save.GetString(_player, $"SkillSlot{i}", "Empty"));
@@ -90,10 +87,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     [ClientRpc] 
     public void SyncEquippedSkills(int index, string skillKey)
     {
-        if (_player.IsLocal)
-        {
-            _equippedSkillKeys[index] = skillKey;
-        }
+        _equippedSkillKeys[index] = skillKey;
     }
 
     public List<FightAbility> GetCurrentAbilities()
