@@ -1,3 +1,4 @@
+AbilityBook.prefab - .ao - 6661f644d7f18c22a1140a9c - 9408766222952160348
 AbilityItem.prefab - .ao - 6643f5634d5b99636ac7a9a4 - 14427433616163832665
 AbilityUpgradeDialog.prefab - .ao - 6647dbfca2a326d825267e81 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 6660a2c7d7f18c22a1140a92 - 14180256252234443626

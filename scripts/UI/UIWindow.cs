@@ -1,5 +1,8 @@
 using AO;
 
+/// <summary>
+/// Base abstract class of all UI Windows
+/// </summary>
 public abstract class UIWindow : Component
 {
     public Action<UIWindow, Player> OnWindowOpen;

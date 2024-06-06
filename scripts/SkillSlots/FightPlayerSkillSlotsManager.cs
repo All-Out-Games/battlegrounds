@@ -16,7 +16,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             {
                 _player.DrawDefaultAbilityUI(new Player.AbilityDrawOptions()
                 {
-                    Abilities = ActiveAbilities.ToArray(),
+                    Abilities = GetAbilityArray(),
                     AbilityElementSize = 100
                 });
             }
@@ -40,6 +40,16 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         }
     }
 
+    private Ability[] GetAbilityArray()
+    {
+        Ability[] abi = new Ability[ActiveAbilities.Count];
+        for (int i = 0; i < ActiveAbilities.Count; i++)
+        {
+            abi[i] = ActiveAbilities[i];
+        }
+        return abi;
+    }
+
     public void SkillSlotsPanelEnable(bool enable)
     {
         if (_player.IsLocal)
@@ -47,5 +57,20 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             TestServerRPC.LogSomethingOnServer($"Set slot panel status to {enable}, compID = {Id}");
             _localDrawAbility = enable;
         }
+    }
+
+    public void RemoveSlot(int index)
+    {
+        ReplaceSlot<FightAbility>(index); // Replace with an empty ability
+    }
+
+    public void ReplaceSlot<T>(int index) where T : FightAbility
+    {
+        ActiveAbilities[index] = _player.GetFightAbility<T>();
+    }
+
+    public List<FightAbility> GetCurrentAbilities()
+    {
+        return ActiveAbilities;
     }
 }

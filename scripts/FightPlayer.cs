@@ -546,7 +546,7 @@ public partial class FightPlayer : Player
         return PlayerStatus == PlayerStatus.Combat;
     }
     
-    public FightAbility GetFightAbility<T>()
+    public FightAbility GetFightAbility<T>() where T : Ability
     {
         return GetAbility<T>() as FightAbility;
     }

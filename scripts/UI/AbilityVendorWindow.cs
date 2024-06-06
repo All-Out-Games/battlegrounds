@@ -34,10 +34,10 @@ public class AbilityVendorWindow : UniqueUIWindow
 
     public override void OnInstantiate()
     {
+        base.OnInstantiate();
         //PlayerSkillTree ??= ((FightPlayer)Network.LocalPlayer).GetSkillTree();
         PlayerSkillTree ??= (Network.LocalPlayer.Entity.GetComponent<FightPlayer>()).GetSkillTree();
-        Log.Warn($"Local Component ID {PlayerSkillTree.Id}, LocalID {PlayerSkillTree.Entity.Id}");
-        // This is called before Start()
+        //Log.Warn($"Local Component ID {PlayerSkillTree.Id}, LocalID {PlayerSkillTree.Entity.Id}");
         if (PlayerSkillTree.Initialized)
         {
             PlayerSkillTree.SkillUpgradeUIEvent += UpdateSkillNode;
@@ -113,7 +113,6 @@ public class AbilityVendorWindow : UniqueUIWindow
     /// <summary>
     /// The first update function, after player skill dict fetched
     /// </summary>
-    /// <param name="window"></param>
     /// <param name="localPlayer"></param>
     public void InitializeSkillTreeItem(FightPlayer localPlayer)
     {

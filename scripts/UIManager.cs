@@ -197,6 +197,19 @@ public partial class UIManager : System<UIManager>
                     TestServerRPC.CallServer_AddBumpToNetworkID(player.Entity.NetworkId, new Vector2(120, 0));
                 }
 
+                sideBarRect.CutTop(10);
+                
+                var buttonRect3 = sideBarRect.CutTop(100);
+                if (UI.Button(buttonRect3, $"Ability Book",
+                        new UI.ButtonSettings()
+                            { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
+                        _defaultTextSettings).Clicked)
+                {
+                    var player = (FightPlayer)Network.LocalPlayer;
+                    OpenUniqueUIWindow(UniqueWindowKeys.AbilityBookPath);
+                }
+                
+                
                 // Spacing
                 sideBarRect.CutTop(10);
                 
@@ -207,8 +220,10 @@ public partial class UIManager : System<UIManager>
                         _defaultTextSettings).Clicked)
                 {
                     var player = (FightPlayer)Network.LocalPlayer;
-                    OpenUniqueUIWindow("AbilityVendorMenuWindow.prefab");
+                    OpenUniqueUIWindow(UniqueWindowKeys.AbilityVendorPath);
                 }
+                
+                
             }
         }
 
