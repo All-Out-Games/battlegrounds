@@ -39,7 +39,7 @@ public static partial class SkillConfig
         SkillKey = "ShoulderCrash",
         IconPath = "ability_icon_tmp/ShoulderCrash_Tmp.png",
         ParentNodeKeys = new string[]{},
-        ChildrenNodeKeys = new string[]{},
+        ChildrenNodeKeys = new string[]{"GroundStomp"},
     };
     
     /// <summary>
@@ -140,6 +140,20 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[] {},
         ChildrenNodeKeys = new string[]{},
     };
+    
+    public static readonly SkillTreeNodeConfig GroundStompConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Stomp The ground and damage nearby enemies",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Brawler,
+        UpgradeCost = 10,
+        UIPosition = new Vector2(730, 230),
+        SkillKey = "GroundStomp",
+        IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
+        ParentNodeKeys = new string[] {"ShoulderCrash"},
+        ChildrenNodeKeys = new string[]{},
+    };
 
     #endregion
     
@@ -156,13 +170,14 @@ public static partial class SkillConfig
             {"RollOut", RollOutNodeConfig},
             {"Punch2", PunchTwoConfig},
             {"Shield", ShieldConfig},
-            {"SpoonThrow", SpoonThrowConfig}
+            {"SpoonThrow", SpoonThrowConfig},
+            {"GroundStomp", GroundStompConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
     public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
     
-    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "ShoulderCrash", "Shield", "SpoonThrow"};
+    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "ShoulderCrash", "Shield", "SpoonThrow","GroundStomp"};
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     

@@ -7,6 +7,8 @@ BroccoliProjectile.prefab - .ao - 665a014a87d80516fc66d1ed - 5879604858190104310
 FatPlayerCollision.prefab - .ao - 66426d27a214e8c7a135d8b7 - 17567100292640013128
 ResourcesOverlayWindow.prefab - .ao - 665f4be4d7f18c22a11409aa - 4484872491460916377
 SkillSlotsPanel.prefab - .ao - 6650e827bbb4cc59c69fd102 - 11546600357276263640
+ability_icon_tmp/GroundStomp_Tmp.png - .ao - 66639229d7f18c22a1140ac5 - 6153841723021127104
+ability_icon_tmp/GroundStomp_Tmp.png - .ao.ios - 66639229d7f18c22a1140ac6 - 6090531938772023533
 ability_icon_tmp/Punch_Tmp.png - .ao - 6658c99087d80516fc66cbd3 - 9586459572575858944
 ability_icon_tmp/Punch_Tmp.png - .ao.ios - 6658c99087d80516fc66cbd0 - 14622739680200241684
 ability_icon_tmp/RollOut_Tmp.png - .ao - 6658c99087d80516fc66cbd2 - 2105135652315996454

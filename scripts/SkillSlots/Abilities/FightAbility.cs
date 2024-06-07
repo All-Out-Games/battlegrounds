@@ -39,7 +39,8 @@ public class FightAbility : Ability
         {SC.RollOutNodeConfig.SkillKey, typeof(AbilityRollOut)},
         {SC.ShieldConfig.SkillKey, typeof(AbilityShield)},
         {SC.ShoulderCrashNodeConfig.SkillKey, typeof(AbilityShoulderCrash)},
-        {SC.SpoonThrowConfig.SkillKey, typeof(AbilitySpoonThrow)}
+        {SC.SpoonThrowConfig.SkillKey, typeof(AbilitySpoonThrow)},
+        {SC.GroundStompConfig.SkillKey, typeof(AbilityGroundStomp)}
     };
 }
 

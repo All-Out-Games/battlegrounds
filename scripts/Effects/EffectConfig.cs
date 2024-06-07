@@ -162,4 +162,34 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region Cfg: GroundStomp
+
+    public struct GroundStompConfig
+    {
+        public static int StompDamageBase = -2;
+        
+        public static float StompAnimationTime = 0.6f; // Entire duration of the punch animation
+        public static float StompActivationTime = 0.25f;  // Delay time before activating the collider
+
+
+        public int StompDamage = 0;
+        public float StompRadius = 4;
+        
+        public GroundStompConfig()
+        {
+        
+        }
+    }
+
+    public static GroundStompConfig GetPlayerGroundStompConfig(int atk = 0)
+    {
+        GroundStompConfig cfg = new GroundStompConfig()
+        {
+            StompDamage = atk + GroundStompConfig.StompDamageBase
+        };
+        return cfg;
+    }
+
+    #endregion
 }

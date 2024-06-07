@@ -61,7 +61,6 @@ public partial class EffectPunch : FightEffect
                 
                 FightPlayer.DamageReactionInfo info = new FightPlayer.DamageReactionInfo();
                 other.TakeDamage(Config.PunchDamage, FightPlayer, info);
-                // TODO: Player dealt damage to others event (for reward and stuff)
             }
             Log.Debug($"Shin: Falcon Punch! Dmg = {Config.PunchDamage}");
         }
