@@ -20,8 +20,6 @@ public class AbilityItem : Component
     
     protected void OpenUpgradeDialog()
     {
-        // TODO: After click, popup a dialog to ask player if they want the upgrade
-        Log.Debug($"{Config.SkillKey} clicked in the skill tree");
         switch (Status)
         {
             case NodeStatus.Purchased:
@@ -66,19 +64,27 @@ public class AbilityItem : Component
         {
             Status = NodeStatus.Attainable;
             CostText.Text = $"Cost: {Config.UpgradeCost}";
+            ItemButton.Interactable = true;
         }
         // Otherwise...
         else
         {
             Status = NodeStatus.Locked;
-            CostText.Text = "Need Prerequisite";
-            // TODO: No APIs to disable UI buttons yet
+            
+            ItemButton.Interactable = false;
         }
         
     }
 
     public bool CheckAttainable(FightPlayerSkillTree skillTree)
     {
+        if (!skillTree.CheckAffordable(Config.UpgradeCost))
+        {
+            // Not enough money
+            CostText.Text = $"Need {Config.UpgradeCost} Coins";
+            return false;
+        }
+        
         bool attainable = true;
         foreach (string k in Config.GetParentNodeKeys())
         {
@@ -87,6 +93,11 @@ public class AbilityItem : Component
                 attainable = false;
                 break;
             }
+        }
+
+        if (!attainable)
+        {
+            CostText.Text = "Need Prerequisite";
         }
 
         return attainable;

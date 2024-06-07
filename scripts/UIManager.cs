@@ -62,6 +62,20 @@ public partial class UIManager : System<UIManager>
         mgr.PopupRemainingTime = time;
     }
 
+    [ClientRpc]
+    public static void SetPlayerPopup(ulong netId, string txt, float time)
+    {
+        if (Network.IsClient)
+        {
+            if (Entity.FindByNetworkId(netId).GetComponent<FightPlayer>().IsLocal)
+            {
+                UIManager mgr = Instance;
+                mgr.PopupTxt = txt;
+                mgr.PopupRemainingTime = time;
+            }
+        }
+    }
+
     public UniqueUIWindow OpenUniqueUIWindow(string prefabPath)
     {
         // Try get existing window
@@ -105,6 +119,18 @@ public partial class UIManager : System<UIManager>
         return uwd;
     }
 
+    public void CloseAllUniqueWindow()
+    {
+        foreach (var window in UniqueUiWindows)
+        {
+            if (window.Value.IsActive)
+            {
+                window.Value.CloseWindow();
+            }
+        }
+        return;
+    }
+
     public BaseUIWindow OpenOverlayWindow(string prefabPath)
     {
         if (!OverlayWindows.TryGetValue(prefabPath, out var wd))
@@ -125,8 +151,19 @@ public partial class UIManager : System<UIManager>
         return wd;
     }
 
-    public BaseUIWindow CloseOverlayWindow(string prefabPath)
+    public BaseUIWindow CloseOverlayWindow(string prefabPath = null)
     {
+        if (prefabPath == null)
+        {
+            foreach (var window in OverlayWindows)
+            {
+                if (window.Value.IsActive)
+                {
+                    window.Value.CloseWindow();
+                }
+            }
+            return null;
+        }
         if (!OverlayWindows.TryGetValue(prefabPath, out var wd))
         {
             Log.Error($"Overlay Window {prefabPath} is not created yet!");

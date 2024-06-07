@@ -29,7 +29,7 @@ public class AbilityVendorWindow : UniqueUIWindow
         CreateAllSkillItems();
         UpdateSkillTreeTab();
         
-        InitializeSkillTreeItem(Network.LocalPlayer as FightPlayer);
+        UpdateAllSkillTreeItems(Network.LocalPlayer as FightPlayer);
     }
 
     public override void OnInstantiate()
@@ -50,6 +50,18 @@ public class AbilityVendorWindow : UniqueUIWindow
         PlayerSkillTree.SkillUpgradeUIEvent -= UpdateSkillNode;
         base.OnDestroy();
     }
+
+    public override void OpenWindow()
+    {
+        base.OpenWindow();
+        if (TabAmount > 0)
+        {
+            // Flush update, excl. the instantiation. [This function need to be called after Start()]
+            UpdateAllSkillTreeItems(Network.LocalPlayer as FightPlayer);
+        }
+        
+    }
+
 
     /// <summary>
     /// Create and connect all skill nodes that we currently have in the game.
@@ -114,7 +126,7 @@ public class AbilityVendorWindow : UniqueUIWindow
     /// The first update function, after player skill dict fetched
     /// </summary>
     /// <param name="localPlayer"></param>
-    public void InitializeSkillTreeItem(FightPlayer localPlayer)
+    public void UpdateAllSkillTreeItems(FightPlayer localPlayer)
     {
         PlayerSkillTree ??= localPlayer.GetSkillTree();
         // We have all skill nodes at this point (after player initialization)

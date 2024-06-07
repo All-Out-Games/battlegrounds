@@ -17,8 +17,12 @@ ability_icon_tmp/ShoulderCrash_Tmp.png - .ao - 6658c98f87d80516fc66cbc8 - 146789
 ability_icon_tmp/ShoulderCrash_Tmp.png - .ao.ios - 6658c98f87d80516fc66cbc9 - 13677896990409462428
 ability_icon_tmp/SpoonThrow_Tmp.png - .ao - 6658c99087d80516fc66cbcc - 12173738952403561832
 ability_icon_tmp/SpoonThrow_Tmp.png - .ao.ios - 6658c99087d80516fc66cbce - 6099970576132887541
+environment/CentralHub/HallShelf.png - .ao - 6663761fd7f18c22a1140abc - 14908720648814724207
+environment/CentralHub/HallShelf.png - .ao.ios - 6663761fd7f18c22a1140abd - 18245072393616940440
 environment/CentralHub/Platform_Large.png - .ao - 664e3b33a2a326d825267fb8 - 12033806716084652446
 environment/CentralHub/Platform_Large.png - .ao.ios - 664e3b33a2a326d825267fb7 - 8479110350304822805
+environment/CentralHub/template.png - .ao - 666373ddd7f18c22a1140ab9 - 3127691123396243458
+environment/CentralHub/template.png - .ao.ios - 666373ddd7f18c22a1140ab8 - 6031614937890817520
 environment/PvP/ground.png - .ao - 664e2986a2a326d825267fa9 - 3941755338451764949
 environment/PvP/ground.png - .ao.ios - 664e2986a2a326d825267fa8 - 9257480414347845745
 environment/PvP/light_ring.png - .ao - 664e2986a2a326d825267fa7 - 5267325222286349184

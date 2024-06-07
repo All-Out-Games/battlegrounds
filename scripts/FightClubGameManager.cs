@@ -191,8 +191,8 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public void RunChatCommand(Player p, string command)
     {
         // TODO
-        var parts = command.ToLowerInvariant().Split(' ');
-        var cmd = parts[0];
+        var parts = command.Split(' ');
+        var cmd = parts[0].ToLowerInvariant();
         FightPlayer player = (FightPlayer)p;
         switch (cmd)
         {
@@ -205,7 +205,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
                     return;
                 }
 
-                var target = Player.AllPlayers.FirstOrDefault(p => p.Name.ToLowerInvariant() == parts[1]);
+                var target = Player.AllPlayers.FirstOrDefault(p => p.Name == parts[1]);
                 if (parts[1] == "self" || parts[1] == "me")
                 {
                     target = player;
@@ -227,20 +227,36 @@ public class FightClubGameManager : System<FightClubGameManager> {
                         }
 
                         var fightTarget = (FightPlayer)target;
-                        //fatTarget.Coins += amount;
+                        fightTarget.Coins += amount;
+                        Chat.SendMessage(target, $"Coins Given = {amount}");
                         return;
                     }
+                    default:
+                        Chat.SendMessage(player, $"The item {parts[2]} is not found to be granted");
+                        break;
                 }
 
                 break;
-            case "giveability":
+            case "requestability":
                 // Unlock ability by {skillkey}
-                break;
-            case "giveabilityforced":
-                // Force unlock
+                if (parts.Length != 2)
+                {
+                    Chat.SendMessage(player, "Usage: /requestability <SkillKey>");
+                    return;
+                }
+                string key = parts[1];
+                player.GetSkillTree().RequestUpgradeSkill(key);
                 break;
             case "depriveability":
                 // Remove a skill from player
+                if (!CheckAdmin(p)) return;
+                if (parts.Length != 2)
+                {
+                    Chat.SendMessage(player, "Usage: /depriveability <SkillKey>");
+                    return;
+                }
+                key = parts[1];
+                player.GetSkillTree().DepriveSkill(key);
                 break;
         }
     }

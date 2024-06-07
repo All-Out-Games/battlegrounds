@@ -1,0 +1,80 @@
+10
+227633266689
+36341083635957 1717793673228865000
+{
+  "name": "AbilityVendor",
+  "local_enabled": true,
+  "local_position": {
+    "X": -1.1479666233062744,
+    "Y": 1.5764625072479248
+  },
+  "local_rotation": 0,
+  "local_scale": {
+    "X": 0.2500000000000000,
+    "Y": 0.2500000000000000
+  },
+  "sibling_index": 3,
+  "parent": "359905312717597:1716331881724713300",
+  "spawn_as_networked_entity": true,
+  "network_id": 2
+},
+{
+  "cid": 1,
+  "aoid": "36341083804784:1717793673228931800",
+  "component_type": "Internal_Component",
+  "internal_component_type": "Sprite_Renderer",
+  "data": {
+    "texture": "environment/CentralHub/template.png",
+    "depth_offset": 0,
+    "tint": {
+      "X": 1,
+      "Y": 1,
+      "Z": 1,
+      "W": 1
+    },
+    "layer": 0,
+    "wait_for_load": false,
+    "wrap": false,
+    "mask_in_shadow": false
+  }
+},
+{
+  "cid": 2,
+  "aoid": "36991757912748:1717793933915613200",
+  "component_type": "Internal_Component",
+  "internal_component_type": "Interactable",
+  "data": {
+    "prompt_offset": {
+      "X": 0,
+      "Y": 1
+    },
+    "text": "Ability Vendor"
+  }
+},
+{
+  "cid": 3,
+  "aoid": "37006873513662:1717793939971541500",
+  "component_type": "Internal_Component",
+  "internal_component_type": "Circle_Collider",
+  "data": {
+    "size": 3,
+    "offset": {
+      "X": 0,
+      "Y": 0
+    },
+    "is_trigger": true,
+    "density": 1,
+    "friction": 0.2000000029802322,
+    "restitution": 0,
+    "restitution_threshold": 1
+  }
+},
+{
+  "cid": 4,
+  "aoid": "37153518500894:1717793998723526200",
+  "component_type": "Mono_Component",
+  "mono_component_type": "UniqueWindowInteractable",
+  "data": {
+    "WindowPrefabPath": "AbilityVendorMenuWindow.prefab"
+  }
+}

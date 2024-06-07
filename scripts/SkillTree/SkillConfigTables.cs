@@ -34,7 +34,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 0,
+        UpgradeCost = 10,
         UIPosition = new Vector2(450,30),
         SkillKey = "ShoulderCrash",
         IconPath = "ability_icon_tmp/ShoulderCrash_Tmp.png",

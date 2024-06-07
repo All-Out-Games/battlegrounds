@@ -46,6 +46,11 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
         {
             // Get parent nodes and check if they are unlocked
             SkillConfig.SkillTreeNodeConfig cfg = SkillConfig.STConfigQueryDict[skillKey];
+            if (_player.Coins < cfg.UpgradeCost)
+            {
+                UIManager.CallClient_SetPlayerPopup(_player.Entity.NetworkId,$"You don't have enough coin! {cfg.UpgradeCost} needed!", 2f);
+                return;
+            }
             foreach (string key in cfg.GetParentNodeKeys())
             {
                 if (SkillLevelDict[key] == 0)
@@ -58,6 +63,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             if (UpgradeSkill(skillKey, cfg.MaximumLevel))
             {
                 Log.Info($"{skillKey} Upgrade Complete!");
+                _player.Coins -= cfg.UpgradeCost;
             }
         }
     }
@@ -119,6 +125,10 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                 RemoveSkill(skillKey);
                 Save.SetInt(_player, skillKey, 0);
                 CallClient_SyncSkill(skillKey, 0);
+            }
+            else
+            {
+                Log.Error($"SkillKey {skillKey} not found");
             }
         }
     }
@@ -266,7 +276,10 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
         
     }
 
-
+    public bool CheckAffordable(int cost)
+    {
+        return cost < _player.Coins;
+    }
 
     /// <summary>
     /// [Client & Server]

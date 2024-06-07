@@ -133,6 +133,8 @@ public class AbilityBookWindow : UniqueUIWindow
         Icon3.OnClicked = null;
         Icon4.OnClicked = null;
         Icon5.OnClicked = null;
+
+        OnWindowOpen = null;
     }
 
     private void PreviousTab()
@@ -179,6 +181,7 @@ public class AbilityBookWindow : UniqueUIWindow
             _slotsMgr.ReplaceSlot(i, _slotsMgr.GetAbilityInstance(f));
             _slotsMgr.CallServer_SetSavedSkillSlot(i, _equippedSkillKey[i]);
         }
+        CloseWindow();
     }
 
     private void OnSkillEquip(int idx)
@@ -217,7 +220,7 @@ public class AbilityBookWindow : UniqueUIWindow
         {
             // a. Enable items in tab
             var item = kv.Value;
-            if (item.NTab == tab)
+            if (item.NTab == tab && _skillTree.GetSkillLevel(item.SkillKey) > 0)
             {
                 item.Entity.LocalEnabled = true;
                 haveItemsFlag = true;
