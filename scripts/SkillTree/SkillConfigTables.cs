@@ -144,7 +144,7 @@ public static partial class SkillConfig
         SkillKey = "ShoulderCrash",
         IconPath = "ability_icon_tmp/ShoulderCrash_Tmp.png",
         ParentNodeKeys = new string[]{},
-        ChildrenNodeKeys = new string[]{"GroundStomp", "Rage" },
+        ChildrenNodeKeys = new string[]{"GroundStomp", "Rage", "DoublePunch" },
     };
     
     public static readonly SkillTreeNodeConfig GroundStompConfig = new SkillTreeNodeConfig()
@@ -163,7 +163,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig RageConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Stomp The ground and damage nearby enemies",
+        DescriptionTextKey = "Temporarily increase your attack power",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
@@ -171,6 +171,20 @@ public static partial class SkillConfig
         UIPosition = new Vector2(450, 230),
         SkillKey = "Rage",
         IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
+        ParentNodeKeys = new string[] { "ShoulderCrash" },
+        ChildrenNodeKeys = new string[] { },
+    };
+
+    public static readonly SkillTreeNodeConfig DoublePunchConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Punch to the front for two times in quick succession",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Brawler,
+        UpgradeCost = 10,
+        UIPosition = new Vector2(170, 230),
+        SkillKey = "DoublePunch",
+        IconPath = "ability_icon_tmp/Punch_Tmp.png",
         ParentNodeKeys = new string[] { "ShoulderCrash" },
         ChildrenNodeKeys = new string[] { },
     };
@@ -194,7 +208,8 @@ public static partial class SkillConfig
             // Brawler
             {"ShoulderCrash", ShoulderCrashNodeConfig},
             {"GroundStomp", GroundStompConfig},
-            {"Rage", RageConfig}
+            {"Rage", RageConfig},
+            {"DoublePunch", DoublePunchConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -202,7 +217,7 @@ public static partial class SkillConfig
     
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "Shield", "SpoonThrow",
         // Brawler
-        "ShoulderCrash", "GroundStomp", "Rage"};
+        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch"};
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     

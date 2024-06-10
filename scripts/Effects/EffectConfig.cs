@@ -220,4 +220,30 @@ public static class EffectConfig
     
 
     #endregion
+
+    #region Cfg: DoublePunch
+
+    public struct DoublePunchConfig
+    {
+        public static int BaseDmg = 2;
+        public static float Cooldown = 4f;
+        public static float PunchAnimationTime = 0.5f; 
+        public static float PunchActivationTime = 0.25f;
+        public static float PunchRange = 2;
+
+        public int PunchDamage = BaseDmg;
+        public float BumpStrength = 35;
+
+        public DoublePunchConfig()
+        {
+            
+        }
+
+        public static DoublePunchConfig GetDefault(int attack)
+        {
+            return new DoublePunchConfig() with { PunchDamage = BaseDmg + attack / 2};
+        }
+    }
+
+    #endregion
 }

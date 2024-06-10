@@ -3,12 +3,11 @@ using Assembly.scripts.Effects.ActiveSkills;
 
 namespace Assembly.scripts.SkillSlots.Abilities;
 
-public class AbilityGroundStomp : FightAbility
+public class AbilityDoublePunch : FightAbility
 {
-    public override string SkillKey => "GroundStomp";
-    public override Type Effect => typeof(EffectGroundStomp);
+    public override string SkillKey => "DoublePunch";
+    public override Type Effect => typeof(EffectDoublePunch);
     public override bool MonitorEffectDuration => false;
     public override TargettingMode TargettingMode => TargettingMode.Self;
-    
     
 }

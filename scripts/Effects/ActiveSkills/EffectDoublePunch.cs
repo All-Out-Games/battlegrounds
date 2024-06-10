@@ -1,19 +1,20 @@
+﻿namespace Assembly.scripts.Effects.ActiveSkills;
 using System.Collections;
 using AO;
 
-
-public partial class EffectPunch : FightEffect
+public class EffectDoublePunch : FightEffect
 {
-    protected EffectConfig.PunchConfig Config;
+    protected EffectConfig.DoublePunchConfig Config;
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => true;
+
     
     public override void OnEffectStart()
     {
         base.OnEffectStart();
         
-        AssignConfig(EffectConfig.GetPlayerPunchConfig(1, FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.DoublePunchConfig.GetDefault(FightPlayer.CurrentAttack));
         
         Punch();
     }
@@ -23,9 +24,9 @@ public partial class EffectPunch : FightEffect
         
     }
     
-    public void AssignConfig(EffectConfig.PunchConfig cfg)
+    public void AssignConfig(EffectConfig.DoublePunchConfig cfg)
     {
-        DurationRemaining = EffectConfig.PunchConfig.PunchAnimationTime;
+        DurationRemaining = EffectConfig.DoublePunchConfig.PunchAnimationTime * 2;
         Config = cfg;
     }
     
@@ -62,26 +63,8 @@ public partial class EffectPunch : FightEffect
                 FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
                 other.TakeDamage(Config.PunchDamage, FightPlayer, info);
             }
-            Log.Debug($"Shin: Falcon Punch! Dmg = {Config.PunchDamage}");
         }
         
         //FightPlayer.AddPlayerPunchCollisionFunction(OnPunchCollisionEnter);
     }
-
-    protected void OnPunchCollisionEnter(Entity other)
-    {
-        // NOT IN USE; Collider's on enter function will not function properly when activated without moving
-        FightPlayer otherPlayer = other.GetComponent<FightPlayer>();
-        if (otherPlayer != null)
-        {
-            if (Network.IsServer)
-            {
-                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
-                otherPlayer.TakeDamage(Config.PunchDamage, FightPlayer, info);
-            }
-
-        }
-    }
-
-
 }

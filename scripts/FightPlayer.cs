@@ -304,7 +304,7 @@ public partial class FightPlayer : Player
     /// <param name="damage"></param>
     /// <param name="source"></param>
     /// <param name="info"></param>
-    public void TakeDamage(int damage, FightPlayer source, DamageReactionInfo info)
+    public void TakeDamage(int damage, FightPlayer source, DamageInfo info)
     {
         if (CurrentHealth <= 0) return; // Avoid damaging the dead
         
@@ -339,7 +339,7 @@ public partial class FightPlayer : Player
     }
     
     [ClientRpc]
-    public void DamageReaction(int health, int damage, DamageReactionInfo info)
+    public void DamageReaction(int health, int damage, DamageInfo info)
     {
         // DO NOT use CurrentHealth SyncVar in this frame
         // It might not arrive yet at this point. Trust the info sent from the triggering function on server (i.e. the parameters) here

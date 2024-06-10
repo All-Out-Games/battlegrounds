@@ -11,11 +11,11 @@ public partial class FightPlayer
 
     #region Custom Data Pass to Client
 
-    public struct DamageReactionInfo
+    public struct DamageInfo
     {
         public bool ShieldBroken = false;
 
-        public DamageReactionInfo()
+        public DamageInfo()
         {
             
         }
@@ -43,24 +43,24 @@ public partial class FightPlayer
         // Hook up elimination event and damage event
         FightClubGameManager.Instance.PlayerDamageEvent += (source, victim, amt) =>
         {
-            if (source == this)
+            if (source == this && victim != this)
             {
                 TotalDamageDealt += amt;
-                Coins += 1;
+                Coins += 5;
             }
         };
 
         FightClubGameManager.Instance.PlayerEliminationEvent += (source, victim) =>
         {
-            if (source == this)
+            if (source == this && victim != this)
             {
                 TotalEliminations += 1;
-                Coins += 20; // Kills award 20 coins
+                Coins += 30; // Kills award 20 coins
             }
 
             if (victim == this)
             {
-                Coins += 10; // Death award 10 coins
+                Coins += 15; // Death award 10 coins
             }
         };
     }

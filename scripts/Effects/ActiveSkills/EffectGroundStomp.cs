@@ -61,7 +61,7 @@ public class EffectGroundStomp : FightEffect
                     FightPlayer other = entity.GetComponent<FightPlayer>();
                     if (other != null)
                     {
-                        FightPlayer.DamageReactionInfo info = new FightPlayer.DamageReactionInfo();
+                        FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
                         other.TakeDamage(Config.StompDamage, FightPlayer, info);
                     }
                 }
