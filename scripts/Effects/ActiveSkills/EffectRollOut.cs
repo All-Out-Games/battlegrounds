@@ -21,7 +21,7 @@ public sealed partial class EffectRollOut : FightEffect
     {
         base.OnEffectStart();
         
-        AssignConfig(EffectConfig.GetPlayerRollOutConfig(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.RollOutConfig.GetDefault(FightPlayer.CurrentAttack));
         
         DurationRemaining = _config.Duration;
         
@@ -38,7 +38,7 @@ public sealed partial class EffectRollOut : FightEffect
     {
         base.NetworkDeserialize(reader);
         //AssignConfig(EffectConfig.GetPlayerRollOutConfig(FightPlayer.CurrentAttack));
-        AssignConfig(EffectConfig.GetPlayerRollOutConfig(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.RollOutConfig.GetDefault(FightPlayer.CurrentAttack));
         FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
         FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
     }

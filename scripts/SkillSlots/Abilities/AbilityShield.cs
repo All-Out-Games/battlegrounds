@@ -9,5 +9,5 @@ public class AbilityShield : FightAbility
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
     
-    public override float Cooldown => 5.0f;
+    public override float Cooldown => EffectConfig.ShieldConfig.Cooldown;
 }

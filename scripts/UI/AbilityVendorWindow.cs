@@ -82,7 +82,11 @@ public class AbilityVendorWindow : UniqueUIWindow
                 break;
             }
 
-            //ItemSanityCheck(cfg);
+            if (Network.LocalPlayer.IsAdmin)
+            {
+                // We run a sanity check function for Admin players to see if there's parent/children node misaligned.
+                ItemSanityCheck(cfg);
+            }
             
             item.InitializeWithConfig(cfg);
             item.Entity.SetParent(AbilityNode, false);

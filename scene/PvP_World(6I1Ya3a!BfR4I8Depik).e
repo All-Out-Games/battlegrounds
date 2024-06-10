@@ -22,7 +22,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/PvP/ground.png",
-    "depth_offset": 0,
+    "depth_offset": 10,
     "tint": {
       "X": 1,
       "Y": 1,

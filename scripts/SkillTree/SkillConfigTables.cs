@@ -6,7 +6,7 @@ public static partial class SkillConfig
     // You MUST define node config and add it to the query dict.
     
     // [Add Skill] item 1: Config Entry
-    #region Node Configs
+    #region Node Configs : Basic
 
     /// <summary>
     /// Punch node
@@ -24,24 +24,7 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[]{},
         ChildrenNodeKeys = new string[] {"HealthBoost", "AttackBoost"},
     };
-    
-    /// <summary>
-    /// ShoulderCrash node
-    /// </summary>
-    public static readonly SkillTreeNodeConfig ShoulderCrashNodeConfig = new SkillTreeNodeConfig()
-    {
-        DescriptionTextKey = "Dash to a direction and deals damage and knockback",
-        MaximumLevel = 1,
-        NType = NodeType.SkillUnlock,
-        NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 10,
-        UIPosition = new Vector2(450,30),
-        SkillKey = "ShoulderCrash",
-        IconPath = "ability_icon_tmp/ShoulderCrash_Tmp.png",
-        ParentNodeKeys = new string[]{},
-        ChildrenNodeKeys = new string[]{"GroundStomp"},
-    };
-    
+
     /// <summary>
     /// HealthBoost node
     /// </summary>
@@ -141,6 +124,29 @@ public static partial class SkillConfig
         ChildrenNodeKeys = new string[]{},
     };
     
+    
+
+    #endregion
+
+    #region NodeConfig: Brawler
+
+    /// <summary>
+    /// ShoulderCrash node
+    /// </summary>
+    public static readonly SkillTreeNodeConfig ShoulderCrashNodeConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Dash to a direction and deals damage and knockback",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Brawler,
+        UpgradeCost = 10,
+        UIPosition = new Vector2(450,30),
+        SkillKey = "ShoulderCrash",
+        IconPath = "ability_icon_tmp/ShoulderCrash_Tmp.png",
+        ParentNodeKeys = new string[]{},
+        ChildrenNodeKeys = new string[]{"GroundStomp", "Rage" },
+    };
+    
     public static readonly SkillTreeNodeConfig GroundStompConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Stomp The ground and damage nearby enemies",
@@ -155,6 +161,20 @@ public static partial class SkillConfig
         ChildrenNodeKeys = new string[]{},
     };
 
+    public static readonly SkillTreeNodeConfig RageConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Stomp The ground and damage nearby enemies",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Brawler,
+        UpgradeCost = 10,
+        UIPosition = new Vector2(450, 230),
+        SkillKey = "Rage",
+        IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
+        ParentNodeKeys = new string[] { "ShoulderCrash" },
+        ChildrenNodeKeys = new string[] { },
+    };
+
     #endregion
     
     // [Add Skill] item 2: Query Entry
@@ -163,21 +183,26 @@ public static partial class SkillConfig
     public static readonly Dictionary<string, SkillTreeNodeConfig> STConfigQueryDict =
         new Dictionary<string, SkillTreeNodeConfig>()
         {
+            // Basic
             {"Punch", PunchNodeConfig},
-            {"ShoulderCrash", ShoulderCrashNodeConfig},
             {"HealthBoost", HealthBoostNodeConfig},
             {"AttackBoost", AttackBoostNodeConfig},
             {"RollOut", RollOutNodeConfig},
             {"Punch2", PunchTwoConfig},
             {"Shield", ShieldConfig},
             {"SpoonThrow", SpoonThrowConfig},
-            {"GroundStomp", GroundStompConfig}
+            // Brawler
+            {"ShoulderCrash", ShoulderCrashNodeConfig},
+            {"GroundStomp", GroundStompConfig},
+            {"Rage", RageConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
     public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
     
-    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "ShoulderCrash", "Shield", "SpoonThrow","GroundStomp"};
+    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "Shield", "SpoonThrow",
+        // Brawler
+        "ShoulderCrash", "GroundStomp", "Rage"};
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     

@@ -14,7 +14,7 @@ public sealed class EffectShoulderCrash : FightEffect
     public override void OnEffectStart()
     {
         base.OnEffectStart();
-        AssignConfig(EffectConfig.GetPlayerShoulderCrashConfig(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.ShoulderCrashConfig.GetDefault(FightPlayer.CurrentAttack));
         DurationRemaining = _config.DashDuration;
         FightPlayer.AddPlayerCollisionFunction(OnShoulderCrashCollision);
 

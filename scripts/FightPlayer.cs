@@ -497,6 +497,11 @@ public partial class FightPlayer : Player
         return SkillSlotsManager;
     }
 
+    public FightPlayerUI GetPlayerUIComp()
+    {
+        return PlayerUi;
+    }
+
     #endregion
 
     #region Collision

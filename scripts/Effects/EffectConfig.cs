@@ -12,29 +12,32 @@ public static class EffectConfig
     public struct RollOutConfig
     {
         public static int BumpDmgBase = 9;
-
+        public static float Cooldown = 7f;
+        
         public float Duration = 5f;
         public int ContactDamage = 5;
         public float SpeedBuffMultiplier = 1.35f;
         public float BumpStrength = 35f;
-        public float Cooldown = 10f;
+        
         
 
         public RollOutConfig()
         {
         }
-    }
-
-    public static RollOutConfig GetPlayerRollOutConfig(int attack)
-    {
-        RollOutConfig cfg = new RollOutConfig
+        
+        public static RollOutConfig GetDefault(int attack)
         {
-            // Modify the config on the server side in this function based on parameters
-            ContactDamage = RollOutConfig.BumpDmgBase + attack
-        };
+            RollOutConfig cfg = new RollOutConfig
+            {
+                // Modify the config on the server side in this function based on parameters
+                ContactDamage = RollOutConfig.BumpDmgBase + attack
+            };
 
-        return cfg;
+            return cfg;
+        }
     }
+
+
     
 
     #endregion
@@ -75,29 +78,31 @@ public static class EffectConfig
     public struct ShoulderCrashConfig
     {
         public static int BumpDmgBase = 9;
-
+        public static float Cooldown = 8f;
+        
         public float DashDuration = 0.5f;
         public float DashSpeed = 275f;
         
         public int ContactDamage = 5;
         public float BumpStrength = 140f;
-        public float Cooldown = 8f;
+        
         public ShoulderCrashConfig()
         {
             
         }
 
 
+        public static ShoulderCrashConfig GetDefault(int attack)
+        {
+            ShoulderCrashConfig cfg = new ShoulderCrashConfig
+            {
+                ContactDamage = attack + ShoulderCrashConfig.BumpDmgBase
+            };
+            return cfg;
+        }
     }
 
-    public static ShoulderCrashConfig GetPlayerShoulderCrashConfig(int attack)
-    {
-        ShoulderCrashConfig cfg = new ShoulderCrashConfig
-        {
-            ContactDamage = attack + ShoulderCrashConfig.BumpDmgBase
-        };
-        return cfg;
-    }
+    
     #endregion
 
     #region Cfg: Shield
@@ -105,20 +110,20 @@ public static class EffectConfig
     public struct ShieldConfig
     {
         public static int ShieldAmtBase = 20;
+        public static float Cooldown = 8f;
         
         public float Duration = 8f;
-        public float Cooldown = 8f;
         public int ShieldAmt = ShieldAmtBase;
 
         public ShieldConfig()
         {
             
         }
-    }
-
-    public static ShieldConfig GetPlayerShieldConfig()
-    {
-        return new ShieldConfig();
+        
+        public static ShieldConfig GetDefault()
+        {
+            return new ShieldConfig();
+        }
     }
 
     #endregion
@@ -190,6 +195,29 @@ public static class EffectConfig
         };
         return cfg;
     }
+
+    #endregion
+
+    #region cfg: Rage
+
+    public struct RageConfig
+    {
+        public static int AtkBoostBase = 6;
+        public static float Cooldown = 7f;
+        public float Duration = 5f;
+        public int AtkBoost;
+
+        public RageConfig()
+        {
+            
+        }
+
+        public static RageConfig GetDefault()
+        {
+            return new RageConfig() with {AtkBoost = AtkBoostBase};
+        }
+    }
+    
 
     #endregion
 }

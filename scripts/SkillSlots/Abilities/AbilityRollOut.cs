@@ -9,5 +9,5 @@ public class AbilityRollOut : FightAbility
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
 
-    public override float Cooldown => 8.0f;
+    public override float Cooldown => EffectConfig.RollOutConfig.Cooldown;
 }

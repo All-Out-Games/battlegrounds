@@ -16,7 +16,7 @@ public class EffectShield : FightEffect
     {
         base.OnEffectStart();
         
-        AssignConfig(EffectConfig.GetPlayerShieldConfig());
+        AssignConfig(EffectConfig.ShieldConfig.GetDefault());
         DurationRemaining = Config.Duration;
         
         FightPlayer.MaxShield = Config.ShieldAmt;
