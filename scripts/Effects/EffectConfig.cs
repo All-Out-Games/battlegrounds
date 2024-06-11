@@ -227,12 +227,12 @@ public static class EffectConfig
     {
         public static int BaseDmg = 2;
         public static float Cooldown = 4f;
-        public static float PunchAnimationTime = 0.5f; 
-        public static float PunchActivationTime = 0.25f;
+        public static float PunchAnimationTime = 0.4f; // A bit quicker than normal punch
+        public static float PunchActivationTime = 0.2f;
         public static float PunchRange = 2;
 
         public int PunchDamage = BaseDmg;
-        public float BumpStrength = 35;
+        public float BumpStrength = 70;
 
         public DoublePunchConfig()
         {
@@ -241,7 +241,7 @@ public static class EffectConfig
 
         public static DoublePunchConfig GetDefault(int attack)
         {
-            return new DoublePunchConfig() with { PunchDamage = BaseDmg + attack / 2};
+            return new DoublePunchConfig() with { PunchDamage = BaseDmg + attack};
         }
     }
 

@@ -41,7 +41,7 @@ public class EffectProjectileThrow : FightEffect
         //Entity proj = AO.Assets.GetAsset<Prefab>(Config.ProjectilePrefabKey).Instantiate();
 
         Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
-            $"{FightPlayer.Id}_Spoon",
+            $"{FightPlayer.Id}_{Config.ProjectilePrefabKey}",
             FightPlayer.Entity.Position, AbilityPositionOrDirection);
         //proj.Position = Entity.Position;
         Projectile projComp = proj.GetComponent<Projectile>();

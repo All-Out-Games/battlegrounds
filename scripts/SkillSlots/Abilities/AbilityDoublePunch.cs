@@ -9,5 +9,5 @@ public class AbilityDoublePunch : FightAbility
     public override Type Effect => typeof(EffectDoublePunch);
     public override bool MonitorEffectDuration => false;
     public override TargettingMode TargettingMode => TargettingMode.Self;
-    
+    public override float Cooldown => EffectConfig.DoublePunchConfig.Cooldown;
 }

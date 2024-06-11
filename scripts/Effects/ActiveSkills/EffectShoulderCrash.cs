@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.Effects;
 using StreamReader = AO.StreamReader;
 
 public sealed class EffectShoulderCrash : FightEffect
@@ -15,20 +16,21 @@ public sealed class EffectShoulderCrash : FightEffect
     {
         base.OnEffectStart();
         AssignConfig(EffectConfig.ShoulderCrashConfig.GetDefault(FightPlayer.CurrentAttack));
-        DurationRemaining = _config.DashDuration;
+        DurationRemaining = _config.DashDuration + 0.1f;
         FightPlayer.AddPlayerCollisionFunction(OnShoulderCrashCollision);
 
         Vector2 dir = GetDashDirection();
         FightPlayer.SetFacingDirection(dir.X > 0);
         FightPlayer.AddDash(dir * _config.DashSpeed, _config.DashDuration);
-        FightPlayer.GetEffectMgr().AddEffect<EffectNoMovement>(FightPlayer, _config.DashDuration + 0.2f);
+        // The player is invincible and not allowed to input movement during the dash
+        FightPlayer.GetEffectMgr().AddEffect<EffectNoMovementWithInvincibility>(FightPlayer, DurationRemaining);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         FightPlayer.RemovePlayerCollisionFunction(OnShoulderCrashCollision);
         _interactedEntity = null;
-        FightPlayer.GetEffectMgr().RemoveEffect<EffectNoMovement>(false);
+        FightPlayer.GetEffectMgr().RemoveEffect<EffectNoMovementWithInvincibility>(false);
     }
 
 
