@@ -286,7 +286,8 @@ public static class EffectConfig
         public static readonly float RoarAnimationTime = 0.9f;
         public static readonly float RoarActivationTime = 0.5f;
         public static readonly int RoarDmgBase = -2;
-
+        
+        public float StunTime = 0.8f;
         public float RoarRadius = 3;
         public int RoarDamage = 0;
 

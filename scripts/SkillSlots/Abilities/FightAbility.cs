@@ -43,7 +43,8 @@ public class FightAbility : Ability
         {SC.GroundStompConfig.SkillKey, typeof(AbilityGroundStomp)},
         {SC.RageConfig.SkillKey, typeof(AbilityRage)},
         {SC.DoublePunchConfig.SkillKey, typeof(AbilityDoublePunch)},
-        {SC.SelfDestructConfig.SkillKey, typeof(AbilitySelfDestruct)}
+        {SC.SelfDestructConfig.SkillKey, typeof(AbilitySelfDestruct)},
+        {SC.BattleCryConfig.SkillKey, typeof(AbilityBattleCry)}
     };
 }
 

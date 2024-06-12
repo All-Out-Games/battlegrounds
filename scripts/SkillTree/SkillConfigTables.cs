@@ -172,7 +172,7 @@ public static partial class SkillConfig
         SkillKey = "Rage",
         IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
         ParentNodeKeys = new string[] { "ShoulderCrash" },
-        ChildrenNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "BattleCry" },
     };
 
     public static readonly SkillTreeNodeConfig DoublePunchConfig = new SkillTreeNodeConfig()
@@ -203,6 +203,20 @@ public static partial class SkillConfig
         ChildrenNodeKeys = new string[] { },
     };
 
+    public static readonly SkillTreeNodeConfig BattleCryConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Release a big blast at the cost of damaging yourself",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Brawler,
+        UpgradeCost = 10,
+        UIPosition = new Vector2(450, 430),
+        SkillKey = "BattleCry",
+        IconPath = "ability_icon_tmp/RollOut_Tmp.png",
+        ParentNodeKeys = new string[] { "Rage" },
+        ChildrenNodeKeys = new string[] {  },
+    };
+
     #endregion
     
     // [Add Skill] item 2: Query Entry
@@ -224,7 +238,8 @@ public static partial class SkillConfig
             {"GroundStomp", GroundStompConfig},
             {"Rage", RageConfig},
             {"DoublePunch", DoublePunchConfig},
-            {"SelfDestruct", SelfDestructConfig}
+            {"SelfDestruct", SelfDestructConfig},
+            {"BattleCry", BattleCryConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -232,7 +247,7 @@ public static partial class SkillConfig
     
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "Shield", "SpoonThrow",
         // Brawler
-        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct"};
+        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry"};
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     
