@@ -246,4 +246,30 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region Cfg: Self Destruct
+
+    public struct SelfDestructConfig
+    {
+        public static int BaseDmg = 10;
+        public static int BaseSelfDmg = 12;
+        public static float Cooldown = 10f;
+        public static float ActivationTime = 0.5f;
+        public static float BlastRange = 8f;
+        public static float BumpStrength = 140f;
+
+        public int BlastDamage;
+        public int SelfDamage;
+
+        public static SelfDestructConfig GetDefault(int attack)
+        {
+            return new SelfDestructConfig()
+            {
+                BlastDamage = BaseDmg + attack,
+                SelfDamage = BaseSelfDmg
+            };
+        }
+    }
+
+    #endregion
 }

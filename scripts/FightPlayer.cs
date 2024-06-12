@@ -350,12 +350,18 @@ public partial class FightPlayer : Player
         
         if (health <= 0)
         {
+            // If the damage caused a death...
             Log.Debug("Death Triggered By RPC");
             PlayerDeath();
         }
         else
         {
-            SetAnimTrigger("flinch");
+            // Normal damage route
+            if (info.Flinch)
+            {
+                SetAnimTrigger("flinch");
+            }
+            
         }
     }
 

@@ -76,7 +76,7 @@ public class EffectDoublePunch : FightEffect
                     // Bumping Punch
                     other.TakeDamage(Config.PunchDamage, FightPlayer, info);
                     Vector2 bumpDir = other.Entity.Position - FightPlayer.Entity.Position;
-                    other.AddBump(bumpDir * Config.BumpStrength, false);
+                    other.AddBumpFrom(FightPlayer, bumpDir * Config.BumpStrength, false);
                 }
                 
             }

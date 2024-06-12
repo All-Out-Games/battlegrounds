@@ -186,6 +186,20 @@ public static partial class SkillConfig
         SkillKey = "DoublePunch",
         IconPath = "ability_icon_tmp/Punch_Tmp.png",
         ParentNodeKeys = new string[] { "ShoulderCrash" },
+        ChildrenNodeKeys = new string[] { "SelfDestruct" },
+    };
+
+    public static readonly SkillTreeNodeConfig SelfDestructConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Release a big blast at the cost of damaging yourself",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Brawler,
+        UpgradeCost = 10,
+        UIPosition = new Vector2(170, 430),
+        SkillKey = "SelfDestruct",
+        IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
+        ParentNodeKeys = new string[] { "DoublePunch" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -209,7 +223,8 @@ public static partial class SkillConfig
             {"ShoulderCrash", ShoulderCrashNodeConfig},
             {"GroundStomp", GroundStompConfig},
             {"Rage", RageConfig},
-            {"DoublePunch", DoublePunchConfig}
+            {"DoublePunch", DoublePunchConfig},
+            {"SelfDestruct", SelfDestructConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -217,12 +232,13 @@ public static partial class SkillConfig
     
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "Shield", "SpoonThrow",
         // Brawler
-        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch"};
+        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct"};
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     
     public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() {  };
     
+    // [Add Skill] Item 4: Go to FightAbility.cs, add the association between skillKey and type of ability.
     
     
     // This affects how many pages appear on the ability book and ability vendor. Each page will have a tag that classifies the items.

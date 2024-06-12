@@ -41,6 +41,7 @@ public sealed partial class EffectRollOut : FightEffect
         AssignConfig(EffectConfig.RollOutConfig.GetDefault(FightPlayer.CurrentAttack));
         FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
         FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
+        
     }
 
 

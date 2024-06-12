@@ -14,7 +14,7 @@ public partial class FightPlayer
     public struct DamageInfo
     {
         public bool ShieldBroken = false;
-
+        public bool Flinch = true; // Some damage might not cause the flinch animation e.g. self destruct
         public DamageInfo()
         {
             
