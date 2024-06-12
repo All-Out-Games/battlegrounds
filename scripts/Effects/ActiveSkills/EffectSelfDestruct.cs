@@ -42,7 +42,7 @@ public class EffectSelfDestruct : FightEffect
                     FightPlayer other = entity.GetComponent<FightPlayer>();
                     if (other != null)
                     {
-                        FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
+                        FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() { DmgType = DamageType.AOE};
                         other.TakeDamage(Config.BlastDamage, FightPlayer, info);
                         
                         Vector2 bumpDir = other.Entity.Position - FightPlayer.Entity.Position;

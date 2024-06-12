@@ -60,7 +60,7 @@ public class EffectProjectileThrow : FightEffect
             {
                 // TODO： check player status here (do not damage spectators) Player status seems to be synced incorrectly
                 WhiteList.Add(player.Entity);
-                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
+                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() { DmgType = DamageType.Ranged };
                 player.TakeDamage(Config.Damage, FightPlayer, info);
                 proj.Destroy();
             }

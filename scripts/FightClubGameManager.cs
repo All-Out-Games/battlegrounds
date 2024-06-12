@@ -1,17 +1,6 @@
 
 using AO;
 
-#region Gameplay Enums
-
-public enum PlayerStatus
-{
-    Combat,
-    Safe,
-    AFK,
-    Spectating
-}
-
-#endregion
 public class FightClubGameManager : System<FightClubGameManager> {
 
     #region Attributes

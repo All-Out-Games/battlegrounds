@@ -10,11 +10,12 @@ public partial class FightPlayer
     public Action<int> TotalDamageUpdateEvent;
 
     #region Custom Data Pass to Client
-
+    
     public struct DamageInfo
     {
         public bool ShieldBroken = false;
         public bool Flinch = true; // Some damage might not cause the flinch animation e.g. self destruct
+        public DamageType DmgType = DamageType.Melee;
         public DamageInfo()
         {
             
@@ -46,7 +47,7 @@ public partial class FightPlayer
             if (source == this && victim != this)
             {
                 TotalDamageDealt += amt;
-                Coins += 5;
+                Coins += GlobalData.CoinForAttack;
             }
         };
 
@@ -55,12 +56,12 @@ public partial class FightPlayer
             if (source == this && victim != this)
             {
                 TotalEliminations += 1;
-                Coins += 30; // Kills award 20 coins
+                Coins += GlobalData.CoinForElimination; // Kills award 30 coins
             }
 
             if (victim == this)
             {
-                Coins += 15; // Death award 10 coins
+                Coins += GlobalData.CoinForDeath; // Death award 15 coins
             }
         };
     }

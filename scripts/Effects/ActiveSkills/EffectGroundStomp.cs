@@ -39,7 +39,7 @@ public class EffectGroundStomp : FightEffect
         if (Network.IsServer)
         {
             // Damage and broadcast animation
-            FightPlayer.CallClient_SetAnimTriggerBroadcast("punch");
+            FightPlayer.CallClient_SetAnimTriggerBroadcast("fart");
             Coroutine.Start(Entity, DelayActiveStompHitbox(EffectConfig.GroundStompConfig.StompActivationTime));
         }
     }
@@ -61,7 +61,7 @@ public class EffectGroundStomp : FightEffect
                     FightPlayer other = entity.GetComponent<FightPlayer>();
                     if (other != null)
                     {
-                        FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
+                        FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() { DmgType = DamageType.AOE};
                         other.TakeDamage(Config.StompDamage, FightPlayer, info);
                     }
                 }
