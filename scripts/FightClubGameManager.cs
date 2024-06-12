@@ -23,10 +23,6 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public Action<FightPlayer> PlayerTeleportEvent;
     public Action<FightPlayer, FightPlayer> PlayerEliminationEvent;
     public Action<FightPlayer, FightPlayer, int> PlayerDamageEvent;
-    public List<Entity> GetCombatPlayers()
-    {
-        return CombatPlayer;
-    }
 
     #endregion
     
@@ -248,6 +244,32 @@ public class FightClubGameManager : System<FightClubGameManager> {
                 player.GetSkillTree().DepriveSkill(key);
                 break;
         }
+    }
+
+    #endregion
+
+    #region Utils
+
+    public List<Entity> GetCombatPlayers()
+    {
+        return CombatPlayer;
+    }
+
+    public List<FightPlayer> OverlapCircleForCombatPlayers(Vector2 center, float radius)
+    {
+        List<FightPlayer> hitPlayers = new List<FightPlayer>();
+        foreach (var entity in CombatPlayer)
+        {
+            if (Vector2.Distance(center, entity.Position) < radius)
+            {
+                FightPlayer other = entity.GetComponent<FightPlayer>();
+                if (other != null)
+                {
+                    hitPlayers.Add(other);
+                }
+            }
+        }
+        return hitPlayers;
     }
 
     #endregion

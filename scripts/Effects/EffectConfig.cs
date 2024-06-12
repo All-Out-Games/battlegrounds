@@ -109,8 +109,8 @@ public static class EffectConfig
 
     public struct ShieldConfig
     {
-        public static int ShieldAmtBase = 20;
-        public static float Cooldown = 8f;
+        public static readonly int ShieldAmtBase = 20;
+        public static readonly float Cooldown = 8f;
         
         public float Duration = 8f;
         public int ShieldAmt = ShieldAmtBase;
@@ -130,14 +130,17 @@ public static class EffectConfig
 
     #region Cfg: Ranged Projectile
 
+    /// <summary>
+    /// Projectile logic is self-contained, therefore this effect for throwing stuff can be reused.
+    /// </summary>
     public struct ProjectileConfig
     {
-        public static int ProjectileDamageBase = 5;
-        
-        public float Range = 30f;
+        public static readonly int SpoonDamageBase = 5;
+        public static readonly int SpoonThrowCooldown = 3;
+        public static readonly float SpoonRange = 10f;
+        public static float SpoonLifetime = 2f;
+
         public float Speed = 15f;
-        
-        public float Cooldown = 8f;
         public float ProjectileLifetime = 2f;
         public float ThrowAnimationLength = 0.3f; // You can use this as delay (or use animation event) to spawn the projectile
         public int Damage = 0;
@@ -160,8 +163,9 @@ public static class EffectConfig
     {
         ProjectileConfig cfg = new ProjectileConfig()
         {
-            Damage = ProjectileConfig.ProjectileDamageBase + attack,
-            ProjectilePrefabKey = "BroccoliProjectile.prefab"
+            Damage = ProjectileConfig.SpoonDamageBase + attack,
+            ProjectilePrefabKey = "BroccoliProjectile.prefab",
+            ProjectileLifetime = ProjectileConfig.SpoonLifetime
         };
         return cfg;
     }
@@ -172,11 +176,10 @@ public static class EffectConfig
 
     public struct GroundStompConfig
     {
-        public static int StompDamageBase = -2;
-        
-        public static float StompAnimationTime = 0.6f; // Entire duration of the punch animation
-        public static float StompActivationTime = 0.25f;  // Delay time before activating the collider
-
+        public static readonly int StompDamageBase = 1;
+        public static readonly float StompAnimationTime = 0.6f; // Entire duration of the punch animation
+        public static readonly float StompActivationTime = 0.25f;  // Delay time before activating the collider
+        public static readonly float Cooldown = 5f;
 
         public int StompDamage = 0;
         public float StompRadius = 4;
@@ -185,16 +188,18 @@ public static class EffectConfig
         {
         
         }
+
+        public static GroundStompConfig GetDefault(int atk)
+        {
+            GroundStompConfig cfg = new GroundStompConfig()
+            {
+                StompDamage = atk + GroundStompConfig.StompDamageBase
+            };
+            return cfg;
+        }
     }
 
-    public static GroundStompConfig GetPlayerGroundStompConfig(int atk = 0)
-    {
-        GroundStompConfig cfg = new GroundStompConfig()
-        {
-            StompDamage = atk + GroundStompConfig.StompDamageBase
-        };
-        return cfg;
-    }
+
 
     #endregion
 
@@ -268,6 +273,32 @@ public static class EffectConfig
                 BlastDamage = BaseDmg + attack,
                 SelfDamage = BaseSelfDmg
             };
+        }
+    }
+
+    #endregion
+
+    #region cfg: BattleCry
+
+    public struct BattleCryConfig
+    {
+        public static readonly float Cooldown = 7f;
+        public static readonly float RoarAnimationTime = 0.9f;
+        public static readonly float RoarActivationTime = 0.5f;
+        public static readonly int RoarDmgBase = -2;
+
+        public float RoarRadius = 3;
+        public int RoarDamage = 0;
+
+        public BattleCryConfig()
+        {
+            
+        }
+
+        public static BattleCryConfig GetDefault(int atk)
+        {
+            var cfg = new BattleCryConfig() {RoarDamage = atk + RoarDmgBase};
+            return cfg;
         }
     }
 

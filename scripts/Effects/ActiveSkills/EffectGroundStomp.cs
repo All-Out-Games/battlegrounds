@@ -8,12 +8,13 @@ public class EffectGroundStomp : FightEffect
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => true;
+    public override bool FreezePlayer => true;
 
     protected EffectConfig.GroundStompConfig Config;
     public override void OnEffectStart()
     {
         base.OnEffectStart();
-        AssignConfig(EffectConfig.GetPlayerGroundStompConfig(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.GroundStompConfig.GetDefault(FightPlayer.CurrentAttack));
 
         Stomp();
     }
@@ -49,22 +50,16 @@ public class EffectGroundStomp : FightEffect
         yield return new WaitForSeconds(delayTime);
         if (Network.IsServer)
         {
-            Log.Debug($"STOMP! Dmg = {Config.StompDamage}");
-            var cbPlayers = FightClubGameManager.Instance.GetCombatPlayers();
+            //Log.Debug($"STOMP! Dmg = {Config.StompDamage}");
             Vector2 selfPos = FightPlayer.Entity.Position;
-            foreach (var entity in cbPlayers)
+
+            var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, Config.StompRadius);
+            foreach (var other in cbPlayers)
             {
-                if(entity.NetworkId == FightPlayer.Entity.NetworkId) continue;
+                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() { DmgType = DamageType.AOE};
+                if(other.Entity.NetworkId == FightPlayer.Entity.NetworkId) continue;
                 
-                if (Vector2.Distance(selfPos, entity.Position) < Config.StompRadius)
-                {
-                    FightPlayer other = entity.GetComponent<FightPlayer>();
-                    if (other != null)
-                    {
-                        FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() { DmgType = DamageType.AOE};
-                        other.TakeDamage(Config.StompDamage, FightPlayer, info);
-                    }
-                }
+                other.TakeDamage(Config.StompDamage, FightPlayer, info);
             }
         }
         

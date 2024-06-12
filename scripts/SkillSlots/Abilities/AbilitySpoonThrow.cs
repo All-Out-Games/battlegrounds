@@ -8,8 +8,8 @@ public class AbilitySpoonThrow : FightAbility
     public override Type Effect => typeof(EffectProjectileThrow);
     public override bool MonitorEffectDuration => false;
     public override TargettingMode TargettingMode => TargettingMode.Line;
-    public override float MaxDistance => 15f;
+    public override float MaxDistance => EffectConfig.ProjectileConfig.SpoonRange;
     public override int MaxTargets => 1;
     
-    public override float Cooldown => 3.0f;
+    public override float Cooldown => EffectConfig.ProjectileConfig.SpoonThrowCooldown;
 }

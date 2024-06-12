@@ -13,7 +13,6 @@ public class EffectSelfDestruct : FightEffect
     {
         base.OnEffectStart();
         AssignConfig(EffectConfig.SelfDestructConfig.GetDefault(FightPlayer.CurrentAttack));
-        DurationRemaining = EffectConfig.SelfDestructConfig.ActivationTime;
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -24,6 +23,7 @@ public class EffectSelfDestruct : FightEffect
     protected void AssignConfig(EffectConfig.SelfDestructConfig cfg)
     {
         Config = cfg;
+        DurationRemaining = EffectConfig.SelfDestructConfig.ActivationTime;
     }
 
     private void KnockingBlast()
@@ -31,28 +31,26 @@ public class EffectSelfDestruct : FightEffect
         if (Network.IsServer)
         {
             Log.Debug($"STOMP! Dmg = {Config.BlastDamage}");
-            var cbPlayers = FightClubGameManager.Instance.GetCombatPlayers();
             Vector2 selfPos = FightPlayer.Entity.Position;
-            foreach (var entity in cbPlayers)
+            var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.SelfDestructConfig.BlastRange);
+            
+            foreach (var fp in cbPlayers)
             {
-                if(entity.NetworkId == FightPlayer.Entity.NetworkId) continue;
-                
-                if (Vector2.Distance(selfPos, entity.Position) < EffectConfig.SelfDestructConfig.BlastRange)
+                if (fp.Entity.NetworkId == FightPlayer.Entity.NetworkId)
                 {
-                    FightPlayer other = entity.GetComponent<FightPlayer>();
-                    if (other != null)
-                    {
-                        FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() { DmgType = DamageType.AOE};
-                        other.TakeDamage(Config.BlastDamage, FightPlayer, info);
+                    // Self damage
+                    FightPlayer.DamageInfo selfDmgInfo = new FightPlayer.DamageInfo() with { Flinch = false};
+                    FightPlayer.TakeDamage(Config.SelfDamage, FightPlayer, selfDmgInfo);
+                }
+                else
+                {
+                    FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() { DmgType = DamageType.AOE};
+                    fp.TakeDamage(Config.BlastDamage, FightPlayer, info);
                         
-                        Vector2 bumpDir = other.Entity.Position - FightPlayer.Entity.Position;
-                        other.AddBumpFrom(FightPlayer, bumpDir * EffectConfig.SelfDestructConfig.BumpStrength, false);
-                    }
+                    Vector2 bumpDir = fp.Entity.Position - selfPos;
+                    fp.AddBumpFrom(FightPlayer, bumpDir * EffectConfig.SelfDestructConfig.BumpStrength, false);
                 }
             }
-
-            FightPlayer.DamageInfo selfDmgInfo = new FightPlayer.DamageInfo() with { Flinch = false};
-            FightPlayer.TakeDamage(Config.SelfDamage, FightPlayer, selfDmgInfo);
         }
     }
 }
