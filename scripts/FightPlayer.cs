@@ -552,7 +552,6 @@ public partial class FightPlayer : Player
     public void SwitchStatus(int statusInt)
     {
         PlayerStatus status = (PlayerStatus)statusInt;
-        FightClubGameManager.Instance.RemovePlayerFromCurrentZone(this); // Remove player from zone first
         PlayerStatus = status;
         if (status == PlayerStatus.Combat)
         {
