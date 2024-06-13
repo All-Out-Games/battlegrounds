@@ -1,4 +1,4 @@
-namespace Assembly.scripts.SkillSlots.Abilities;
+
 using AO;
 
 public class AbilitySpoonThrow : FightAbility

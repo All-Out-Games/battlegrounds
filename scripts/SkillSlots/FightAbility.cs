@@ -1,7 +1,6 @@
 using AO;
 using SC = SkillConfig;
-
-namespace Assembly.scripts.SkillSlots.Abilities;
+using Assembly.scripts.Effects.ActiveSkills;
 
 public class FightAbility : Ability
 {

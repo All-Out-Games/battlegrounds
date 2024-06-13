@@ -2,6 +2,15 @@
 using System.Collections;
 using AO;
 
+public class AbilityDoublePunch : FightAbility
+{
+    public override string SkillKey => "DoublePunch";
+    public override Type Effect => typeof(EffectDoublePunch);
+    public override bool MonitorEffectDuration => false;
+    public override TargettingMode TargettingMode => TargettingMode.Self;
+    public override float Cooldown => EffectConfig.DoublePunchConfig.Cooldown;
+}
+
 public class EffectDoublePunch : FightEffect
 {
     protected EffectConfig.DoublePunchConfig Config;

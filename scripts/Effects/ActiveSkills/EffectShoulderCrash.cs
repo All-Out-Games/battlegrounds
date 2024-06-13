@@ -1,7 +1,17 @@
 ﻿using AO;
 using Assembly.scripts.Effects;
-using StreamReader = AO.StreamReader;
 
+public class AbilityShoulderCrash : FightAbility
+{
+    public override string SkillKey => "ShoulderCrash";
+
+    public override Type Effect => typeof(EffectShoulderCrash);
+    public override bool MonitorEffectDuration => false;
+    public override TargettingMode TargettingMode => TargettingMode.Line;
+    public override float MaxDistance => 5f;
+    
+    public override float Cooldown => EffectConfig.ShoulderCrashConfig.Cooldown;
+}
 public sealed class EffectShoulderCrash : FightEffect
 {
     private EffectConfig.ShoulderCrashConfig _config;

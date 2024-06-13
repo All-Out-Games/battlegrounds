@@ -5,8 +5,8 @@
   "name": "AbilityBook",
   "local_enabled": true,
   "local_position": {
-    "X": 1.5299577713012695,
-    "Y": 0.9595623016357422
+    "X": -0.0110563635826111,
+    "Y": -1.2174853086471558
   },
   "local_rotation": 0,
   "local_scale": {
@@ -44,7 +44,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Circle_Collider",
   "data": {
-    "size": 0.7500000000000000,
+    "size": 1,
     "offset": {
       "X": 0,
       "Y": 0

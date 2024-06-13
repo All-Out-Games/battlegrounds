@@ -1,8 +1,16 @@
 using System.Collections;
 using AO;
 
+public class AbilityPunch : FightAbility
+{
+    public override string SkillKey => "Punch";
+    public override Type Effect => typeof(EffectPunch);
+    public override bool MonitorEffectDuration => false;
+    public override TargettingMode TargettingMode => TargettingMode.Self;
+    
+}
 
-public partial class EffectPunch : FightEffect
+public class EffectPunch : FightEffect
 {
     protected EffectConfig.PunchConfig Config;
     public override bool IsActiveEffect => false;

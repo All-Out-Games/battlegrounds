@@ -1,6 +1,18 @@
 ﻿using AO;
 using StreamReader = AO.StreamReader;
 
+
+public class AbilityRollOut : FightAbility
+{
+    public override string SkillKey => "RollOut";
+    
+    public override Type Effect => typeof(EffectRollOut);
+    public override bool MonitorEffectDuration => true;
+    public override TargettingMode TargettingMode => TargettingMode.Self;
+
+    public override float Cooldown => EffectConfig.RollOutConfig.Cooldown;
+}
+
 public sealed partial class EffectRollOut : FightEffect
 {
     private EffectConfig.RollOutConfig _config;

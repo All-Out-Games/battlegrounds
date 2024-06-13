@@ -42,30 +42,29 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     [ServerRpc]
     public void RequestUpgradeSkill(string skillKey)
     {
-        if (Network.IsServer)
+
+        if (!SkillConfig.STConfigQueryDict.TryGetValue(skillKey, out var cfg)) return;
+        // Get parent nodes and check if they are unlocked
+        if (_player.Coins < cfg.UpgradeCost)
         {
-            // Get parent nodes and check if they are unlocked
-            SkillConfig.SkillTreeNodeConfig cfg = SkillConfig.STConfigQueryDict[skillKey];
-            if (_player.Coins < cfg.UpgradeCost)
+            UIManager.CallClient_SetPlayerPopup(_player.Entity.NetworkId,$"You don't have enough coin! {cfg.UpgradeCost} needed!", 2f);
+            return;
+        }
+        foreach (string key in cfg.GetParentNodeKeys())
+        {
+            if (SkillLevelDict[key] == 0)
             {
-                UIManager.CallClient_SetPlayerPopup(_player.Entity.NetworkId,$"You don't have enough coin! {cfg.UpgradeCost} needed!", 2f);
+                Log.Error($"The parent nodes of {skillKey} are not unlocked yet!");
                 return;
             }
-            foreach (string key in cfg.GetParentNodeKeys())
-            {
-                if (SkillLevelDict[key] == 0)
-                {
-                    Log.Error($"The parent nodes of {skillKey} are not unlocked yet!");
-                    return;
-                }
-            }
-
-            if (UpgradeSkill(skillKey, cfg.MaximumLevel))
-            {
-                Log.Info($"{skillKey} Upgrade Complete!");
-                _player.Coins -= cfg.UpgradeCost;
-            }
         }
+
+        if (UpgradeSkill(skillKey, cfg.MaximumLevel))
+        {
+            Log.Info($"{skillKey} Upgrade Complete!");
+            _player.Coins -= cfg.UpgradeCost;
+        }
+        
     }
     
     /// <summary>

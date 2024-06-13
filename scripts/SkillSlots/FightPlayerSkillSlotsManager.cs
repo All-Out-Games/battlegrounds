@@ -1,5 +1,4 @@
 using AO;
-using Assembly.scripts.SkillSlots.Abilities;
 
 public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
 {
@@ -81,6 +80,10 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     [ServerRpc]
     public void SetSavedSkillSlot(int index, string skillKey)
     {
+        if (index < 0 || index > 5 || !SkillConfig.GetAllSkillKeys().Contains(skillKey))
+        {
+            return;
+        }
         if(Network.IsServer) Save.SetString(_player, $"SkillSlot{index}", skillKey);
     }
 

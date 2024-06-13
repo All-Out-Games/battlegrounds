@@ -1,6 +1,16 @@
 ﻿using AO;
 using StreamReader = AO.StreamReader;
 
+public class AbilityShield : FightAbility
+{
+    public override string SkillKey => "Shield";
+
+    public override Type Effect => typeof(EffectShield);
+    public override bool MonitorEffectDuration => true;
+    public override TargettingMode TargettingMode => TargettingMode.Self;
+    
+    public override float Cooldown => EffectConfig.ShieldConfig.Cooldown;
+}
 /// <summary>
 /// Base class of a shield ability.
 /// Shield abilities will overwrite each other. Only one of them may exist on a player.

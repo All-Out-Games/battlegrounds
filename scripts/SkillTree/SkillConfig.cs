@@ -1,7 +1,6 @@
 // Definition of skills and related data structs
 
 using AO;
-using Assembly.scripts.SkillSlots.Abilities;
 
 public static partial class SkillConfig
 {
