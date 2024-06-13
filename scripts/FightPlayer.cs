@@ -27,7 +27,7 @@ public partial class FightPlayer : Player
     
     // SyncVars must not be set during Awake(). Do these in Start()
 
-    protected SyncVar<int> currentHealth = new(100);
+    private SyncVar<int> currentHealth = new(100);
     public int CurrentHealth 
     { 
         get => currentHealth.Value;
@@ -38,8 +38,8 @@ public partial class FightPlayer : Player
             }
         }
     }
-    
-    protected SyncVar<int> currentAttack = new(10);
+
+    private SyncVar<int> currentAttack = new(10);
     public int CurrentAttack
     {
         get { return currentAttack.Value; }
@@ -51,7 +51,7 @@ public partial class FightPlayer : Player
         }
     }
 
-    protected SyncVar<int> maxHealth = new(100);
+    private SyncVar<int> maxHealth = new(100);
     public int MaxHealth
     {
         get { return maxHealth.Value; }
@@ -65,31 +65,29 @@ public partial class FightPlayer : Player
     }
 
     // Shields are temporary values. We do not sync them using syncvars.
-    [Serialized] private int currentShield = 0;
+    private SyncVar<int> currentShield = new(0);
     public int CurrentShield
     {
         get { return currentShield; }
         set
         {
-            currentShield = value;
             if (Network.IsServer)
             {
-                CallClient_SetShield(currentShield);
+                currentShield.Set(value);
             }
         }
     }
 
     // Current Max value of shield
-    [Serialized] private int maxShield = 0;
+    private SyncVar<int> maxShield = new(0);
     public int MaxShield
     {
-        get { return maxShield; }
+        get { return maxShield.Value; }
         set
         {
-            maxShield = value;
             if (Network.IsServer)
             {
-                CallClient_SetMaxShield(maxShield);
+                maxShield.Set(value);
             }
         }
     }
@@ -257,22 +255,9 @@ public partial class FightPlayer : Player
 
     #region Health, Damage, Respawn
     
-
-    [ClientRpc]
-    public void SetShield(int shield)
-    {
-        currentShield = shield;
-    }
-
-    [ClientRpc]
-    public void SetMaxShield(int shield)
-    {
-        maxShield = shield;
-    }
-
     /// <summary>
-    /// [Server Only] The damage function on the server side.
-    /// TODO: Damage type and source + OnDamage Event for effects to register
+    /// [Server & Client, Contains server-only logic] 
+    /// The damage function.
     /// </summary>
     /// <param name="damage"></param>
     /// <param name="source"></param>
