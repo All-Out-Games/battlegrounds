@@ -72,13 +72,9 @@ public sealed class EffectShoulderCrash : FightEffect
             }
             Vector2 bumpDir = other.Position - Entity.Position;
             var add = bumpDir * _config.BumpStrength;
-            if (Network.IsServer)
-            {
-                otherPlayer.AddBumpFrom(FightPlayer, add, false);
-                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
-                otherPlayer.TakeDamage(_config.ContactDamage, FightPlayer, info);
-            }
-
+            otherPlayer.AddBumpFrom(FightPlayer, add, false);
+            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
+            otherPlayer.TakeDamage(_config.ContactDamage, FightPlayer, info);
         }
     }
 }

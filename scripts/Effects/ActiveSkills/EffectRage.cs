@@ -47,5 +47,12 @@ public class EffectRage : FightEffect
     {
         Config = cfg;
     }
-    
+
+    public override void NetworkDeserialize(StreamReader reader)
+    {
+        base.NetworkDeserialize(reader);
+        PlayerUI = FightPlayer.GetPlayerUIComp();
+        PlayerUI.AddAura("Rage_Aura.prefab", 1.0f);
+    }
+
 }

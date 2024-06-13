@@ -42,55 +42,43 @@ public class EffectDoublePunch : FightEffect
     public void DoublePunch()
     {
         // The first punch stuns the enemy if hit. The second punch knock them back
-        if (FightPlayer.IsLocal)
-        {
-            FightPlayer.SetAnimTrigger("punch"); // Animation can be done locally first...
-        }
-        if (Network.IsServer)
-        {
-            // Damage and broadcast animation
-            FightPlayer.CallClient_SetAnimTriggerBroadcast("punch");
-            Coroutine.Start(Entity, DelayActivePunchHitbox(EffectConfig.DoublePunchConfig.PunchActivationTime));
-        }
-        // Run a delayed second punch on both client/server
+        FightPlayer.SetAnimTrigger("punch"); 
+        Coroutine.Start(Entity, DelayActivePunchHitbox(EffectConfig.DoublePunchConfig.PunchActivationTime));
         Coroutine.Start(Entity, SecondPunch(EffectConfig.DoublePunchConfig.PunchAnimationTime));
     }
 
     IEnumerator DelayActivePunchHitbox(float delayTime, int punchType = 0)
     {
         yield return new WaitForSeconds(delayTime);
-        if (Network.IsServer)
+        Physics.RaycastHit rc;
+        var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
+            EffectConfig.DoublePunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersAsEntities(), out rc);
+
+        /*hit = Physics.Raycast(Entity.Position, FightPlayer.GetPunchDirection(),
+            EffectConfig.PunchConfig.PunchRange, out rc);*/
+
+        if (hit && rc.Entity != null)
         {
-            Physics.RaycastHit rc;
-            var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
-                EffectConfig.DoublePunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersAsEntities(), out rc);
+            FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
+                
+            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
 
-            /*hit = Physics.Raycast(Entity.Position, FightPlayer.GetPunchDirection(),
-                EffectConfig.PunchConfig.PunchRange, out rc);*/
-
-            if (hit && rc.Entity != null)
+            if (punchType == 0)
             {
-                FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
-                
-                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
-
-                if (punchType == 0)
-                {
-                    // Stunning Punch
-                    other.TakeDamage(Config.PunchDamage, FightPlayer, info);
-                    other.GetEffectMgr().CallClient_AddStun(FightPlayer.Entity.NetworkId, EffectConfig.DoublePunchConfig.PunchAnimationTime);
-                }
-                else
-                {
-                    // Bumping Punch
-                    other.TakeDamage(Config.PunchDamage, FightPlayer, info);
-                    Vector2 bumpDir = other.Entity.Position - FightPlayer.Entity.Position;
-                    other.AddBumpFrom(FightPlayer, bumpDir * Config.BumpStrength, false);
-                }
-                
+                // Stunning Punch
+                other.TakeDamage(Config.PunchDamage, FightPlayer, info);
+                other.GetEffectMgr().AddStun(FightPlayer.Entity, EffectConfig.DoublePunchConfig.PunchAnimationTime);
             }
-            
+            else
+            {
+                // Bumping Punch
+                other.TakeDamage(Config.PunchDamage, FightPlayer, info);
+                Vector2 bumpDir = other.Entity.Position - FightPlayer.Entity.Position;
+                other.AddBumpFrom(FightPlayer, bumpDir * Config.BumpStrength, false);
+            }
+                
         }
+
         
         //FightPlayer.AddPlayerPunchCollisionFunction(OnPunchCollisionEnter);
     }
@@ -98,14 +86,7 @@ public class EffectDoublePunch : FightEffect
     IEnumerator SecondPunch(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        if (FightPlayer.IsLocal)
-        {
-            FightPlayer.SetAnimTrigger("punch"); // Animation can be done locally first...
-        }
-        if (Network.IsServer)
-        {
-            FightPlayer.CallClient_SetAnimTriggerBroadcast("punch");
-            Coroutine.Start(Entity, DelayActivePunchHitbox(EffectConfig.DoublePunchConfig.PunchActivationTime, 1));
-        }
+        FightPlayer.SetAnimTrigger("punch"); // Animation can be done locally first...
+        Coroutine.Start(Entity, DelayActivePunchHitbox(EffectConfig.DoublePunchConfig.PunchActivationTime, 1));
     }
 }

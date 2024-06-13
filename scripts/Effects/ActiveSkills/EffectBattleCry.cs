@@ -41,40 +41,28 @@ public class EffectBattleCry : FightEffect
 
     private void BattleCry()
     {
-        if (FightPlayer.IsLocal)
-        {
-            // TODO: Get some real animation
-            FightPlayer.SetAnimTrigger("wave"); // Animation can be done locally first...
-        }
-        if (Network.IsServer)
-        {
-            // Damage and broadcast animation
-            FightPlayer.CallClient_SetAnimTriggerBroadcast("wave");
-            Coroutine.Start(Entity, DelayActiveBattleCry(EffectConfig.BattleCryConfig.RoarActivationTime));
-        }
+        FightPlayer.SetAnimTrigger("wave"); // Animation can be done locally first...
+        Coroutine.Start(Entity, DelayActiveBattleCry(EffectConfig.BattleCryConfig.RoarActivationTime));
     }
 
     IEnumerator DelayActiveBattleCry(float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (Network.IsServer)
-        {
-            Log.Debug($"ROAR! Dmg = {Config.RoarDamage}");
-            Vector2 selfPos = FightPlayer.Entity.Position;
-            var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, Config.RoarRadius);
+        Log.Debug($"ROAR! Dmg = {Config.RoarDamage}");
+        Vector2 selfPos = FightPlayer.Entity.Position;
+        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, Config.RoarRadius);
             
-            foreach (var fp in cbPlayers)
+        foreach (var fp in cbPlayers)
+        {
+            if (fp.Entity.NetworkId == FightPlayer.Entity.NetworkId)
             {
-                if (fp.Entity.NetworkId == FightPlayer.Entity.NetworkId)
-                {
-                    continue;
-                }
-
-                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo { DmgType = DamageType.AOE};
-                fp.TakeDamage(Config.RoarDamage, FightPlayer, info);
-                fp.GetEffectMgr().CallClient_AddStun(FightPlayer.Entity.NetworkId, Config.StunTime);
-
+                continue;
             }
+
+            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo { DmgType = DamageType.AOE};
+            fp.TakeDamage(Config.RoarDamage, FightPlayer, info);
+            fp.GetEffectMgr().AddStun(FightPlayer.Entity, Config.StunTime);
+
         }
     }
 }

@@ -39,41 +39,25 @@ public class EffectPunch : FightEffect
     
     public void Punch()
     {
-        if (FightPlayer.IsLocal)
-        {
-            FightPlayer.SetAnimTrigger("punch"); // Animation can be done locally first...
-        }
-        if (Network.IsServer)
-        {
-            // Damage and broadcast animation
-            FightPlayer.CallClient_SetAnimTriggerBroadcast("punch");
-            Coroutine.Start(Entity, DelayActivePunchHitbox(EffectConfig.PunchConfig.PunchActivationTime));
-        }
+        FightPlayer.SetAnimTrigger("punch"); // Animation can be done locally first...
+        //FightPlayer.CallClient_SetAnimTriggerBroadcast("punch");
+        Coroutine.Start(Entity, DelayActivePunchHitbox(EffectConfig.PunchConfig.PunchActivationTime));
     }
 
     IEnumerator DelayActivePunchHitbox(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        if (Network.IsServer)
+        Physics.RaycastHit rc;
+        var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
+            EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersAsEntities(), out rc);
+
+        if (rc.Entity != null)
         {
-            Physics.RaycastHit rc;
-            var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
-                EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersAsEntities(), out rc);
-
-            /*hit = Physics.Raycast(Entity.Position, FightPlayer.GetPunchDirection(),
-                EffectConfig.PunchConfig.PunchRange, out rc);*/
-
-            if (rc.Entity != null)
-            {
-                FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
+            FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
                 
-                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
-                other.TakeDamage(Config.PunchDamage, FightPlayer, info);
-            }
-            Log.Debug($"Shin: Falcon Punch! Dmg = {Config.PunchDamage}");
+            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
+            other.TakeDamage(Config.PunchDamage, FightPlayer, info);
         }
-        
-        //FightPlayer.AddPlayerPunchCollisionFunction(OnPunchCollisionEnter);
     }
 
     protected void OnPunchCollisionEnter(Entity other)
@@ -82,12 +66,8 @@ public class EffectPunch : FightEffect
         FightPlayer otherPlayer = other.GetComponent<FightPlayer>();
         if (otherPlayer != null)
         {
-            if (Network.IsServer)
-            {
-                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
-                otherPlayer.TakeDamage(Config.PunchDamage, FightPlayer, info);
-            }
-
+            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
+            otherPlayer.TakeDamage(Config.PunchDamage, FightPlayer, info);
         }
     }
 

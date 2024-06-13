@@ -265,32 +265,32 @@ public partial class FightPlayer : Player
     public void TakeDamage(int damage, FightPlayer source, DamageInfo info)
     {
         if (CurrentHealth <= 0) return; // Avoid damaging the dead
+        DamageReaction(CurrentHealth, damage, info);  // All Client side damage reaction goes here
         
-        if (CurrentShield > 0)
-        {
-            CurrentShield -= damage;
-            if (CurrentShield <= 0)
-            {
-                // Shield is not enough
-                CurrentHealth += CurrentShield;
-                CurrentShield = 0;
-                info.ShieldBroken = true;
-            }
-        }
-        else
-        {
-            CurrentHealth -= damage;
-        }
-        
-
         if (Network.IsServer) {
-            CallClient_DamageReaction(CurrentHealth, damage, info); // All Client side damage reaction goes here
+            // Actual damage stuff
+            if (CurrentShield > 0)
+            {
+                CurrentShield -= damage;
+                if (CurrentShield <= 0)
+                {
+                    // Shield is not enough
+                    CurrentHealth += CurrentShield;
+                    CurrentShield = 0;
+                    info.ShieldBroken = true;
+                }
+            }
+            else
+            {
+                CurrentHealth -= damage;
+            }
+
             FightClubGameManager.Instance.PlayerDamageEvent(source, this, damage);
-            // Server only death routine (client-side handled in CallClient_TakeDamage)
             if (CurrentHealth <= 0)
             {
                 //Coroutine.Start(this.Entity, PlayerRespawnCoroutine());
                 FightClubGameManager.Instance.PlayerEliminationEvent.Invoke(source, this);
+                CallClient_DamageReaction(CurrentHealth, damage, info); // Server will need to dispatch death event
             }
         }
         
@@ -396,11 +396,7 @@ public partial class FightPlayer : Player
     
     public void AddBumpFrom(FightPlayer caster, Vector2 add, bool reset)
     {
-        if (Network.IsServer)
-        {
-            CallClient_AddBump(add,reset);
-        }
-        
+        AddBump(add, reset);
     }
     
     // Dash
