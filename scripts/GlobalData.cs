@@ -20,11 +20,15 @@ public enum DamageType
 
 public static class GlobalData
 {
+    public static float RespawnTime = 3f;
+    
     #region Coins Related
 
     public static int CoinForAttack = 10;
     public static int CoinForElimination = 30;
     public static int CoinForDeath = 15;
+
+    
 
     #endregion
 }

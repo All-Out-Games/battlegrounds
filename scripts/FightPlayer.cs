@@ -15,6 +15,8 @@ public partial class FightPlayer : Player
     [Serialized] protected FightPlayerSkillTree SkillTree;
     [Serialized] protected FightPlayerSkillSlotsManager SkillSlotsManager;
 
+    public SyncVar<PlayerStatus> test = new SyncVar<PlayerStatus>(PlayerStatus.Safe);
+
     protected Circle_Collider Collider; // MAIN Collider used for bumping / damage
     protected Box_Collider PunchCollider;
     protected CameraControl CameraInterface;
@@ -269,19 +271,6 @@ public partial class FightPlayer : Player
     
 
     #region Health, Damage, Respawn
-
-    [ClientRpc]
-    public void DoRespawn()
-    {
-        ClearAllEffects();
-        // Teleport player to safe zone and get full health
-        if (Network.IsServer)
-        {
-            CallClient_SwitchStatus((int)PlayerStatus.Safe); 
-        }
-        
-        CurrentHealth = MaxHealth;
-    }
     
 
     [ClientRpc]
@@ -330,7 +319,7 @@ public partial class FightPlayer : Player
             // Server only death routine (client-side handled in CallClient_TakeDamage)
             if (CurrentHealth <= 0)
             {
-                Coroutine.Start(this.Entity, PlayerRespawnCoroutine());
+                //Coroutine.Start(this.Entity, PlayerRespawnCoroutine());
                 FightClubGameManager.Instance.PlayerEliminationEvent.Invoke(source, this);
             }
         }
@@ -366,22 +355,12 @@ public partial class FightPlayer : Player
 
     
     /// <summary>
-    /// The coroutine is [Server Only]. It counts down for a few seconds and trigger respawn on both sides.
-    /// </summary>
-    /// <returns></returns>
-    protected IEnumerator PlayerRespawnCoroutine()
-    {
-        yield return new WaitForSeconds(3f);
-        CallClient_DoRespawn();
-    }
-
-    /// <summary>
     /// [Server & Client]
     /// </summary>
     protected void PlayerDeath()
     {
         ClearAllEffects();
-        EffectManager.AddEffect<EffectDeath>(null, null, null); // TODO: Change caster to damage source?
+        EffectManager.AddEffect<EffectDeath>(null, GlobalData.RespawnTime, null);
     }
     
     #endregion
@@ -434,7 +413,7 @@ public partial class FightPlayer : Player
     {
         if (!reset)
         {
-            Log.Info("Adding Movement Limitations");
+            //Log.Info("Adding Movement Limitations");
             EffectManager.AddEffect<EffectNoMovement>(null, 0.75f);
         }
         
