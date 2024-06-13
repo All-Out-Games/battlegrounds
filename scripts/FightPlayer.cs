@@ -188,7 +188,6 @@ public partial class FightPlayer : Player
             // DO save related things here! You cannot sync stuff in Awake
             ProcessSave();
             SkillTree.InitializeSkillTreeComp();
-            SkillTree.HandleAllSkills();
             HookupGlobalEvents();
         }
         else
@@ -235,20 +234,6 @@ public partial class FightPlayer : Player
     {
         BumpDecay();
         DashDecay();
-        
-        // switch (PlayerStatus)
-        // {
-        //     case PlayerStatus.Combat:
-        //         break;
-        //     case PlayerStatus.Safe:
-        //         break;
-        //     case PlayerStatus.AFK:
-        //         break;
-        //     case PlayerStatus.Spectating:
-        //         break;
-        //     default:
-        //         throw new ArgumentOutOfRangeException();
-        // }
     }
 
     public override void LateUpdate()

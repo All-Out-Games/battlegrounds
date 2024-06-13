@@ -1,4 +1,5 @@
 using AO;
+using Assembly.scripts.SceneObjects;
 
 
 public class EffectProjectileThrow : FightEffect
@@ -44,27 +45,12 @@ public class EffectProjectileThrow : FightEffect
             $"{FightPlayer.Id}_{Config.ProjectilePrefabKey}",
             FightPlayer.Entity.Position, AbilityPositionOrDirection);
         //proj.Position = Entity.Position;
+        
         Projectile projComp = proj.GetComponent<Projectile>();
         projComp.Speed = Config.Speed;
         projComp.Lifetime = Config.ProjectileLifetime;
-        
-        projComp.OnHit = (other, predicted) =>
-        {
-            if (WhiteList.Contains(other))
-            {
-                return;
-            }
-            Log.Debug($"Hit {other.Name} !");
-            FightPlayer player = other.GetComponent<FightPlayer>();
-            if (player != null)
-            {
-                // TODO： check player status here (do not damage spectators) Player status seems to be synced incorrectly
-                WhiteList.Add(player.Entity);
-                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() { DmgType = DamageType.Ranged };
-                player.TakeDamage(Config.Damage, FightPlayer, info);
-                proj.Destroy();
-            }
-        };
+        BaseProjectile supplementProjectileComp = proj.GetComponent<BaseProjectile>();
+        supplementProjectileComp.InitializeProjectile(FightPlayer, Config.Damage, false);
     }
 
 

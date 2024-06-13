@@ -183,6 +183,45 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                 SkillLevelDict[skillKey] = lvl;
                 // CallClient_SyncSkill(skillKey, lvl); // DO NOT Sync skills here on the server. The initial sync happens in HandleAllSkills()
             }
+            
+            // After fetching save, we sync those to the client and handle the skill effects
+            
+            Action<string> handleSkillWithSync = (key) =>
+            {
+                int lvl = SkillLevelDict[key];
+                HandleSkill(key, lvl);
+                CallClient_SyncSkill(key, lvl);
+            };
+            // Phase 0: Default unlock for all players
+            UpgradeSkill("Punch", 1);
+            
+            // Phase 1: Attr Boosts (and passives, which are essentially permanent effects)
+            foreach (string abKey in SkillConfig.AttrBoostSkills)
+            {
+                handleSkillWithSync(abKey);
+            }
+        
+            // Phase 2: Active Skill Unlocks
+        
+            foreach (string asKey in SkillConfig.ActiveSkills)
+            {
+                handleSkillWithSync(asKey);
+            }
+        
+            // Phase 3: Active Skill Replacements
+
+            foreach (string rpKey in SkillConfig.ReplacementSkills)
+            {
+                handleSkillWithSync(rpKey);
+            }
+        
+            // Phase 4: Active Skill Enhancements
+            foreach (var sbKey in SkillConfig.SkillEnhanceSkills)
+            {
+                handleSkillWithSync(sbKey);
+            }
+            
+            Initialized.Set(true);
         }
     }
 
@@ -221,56 +260,6 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
         if (level != 0)
         {
             AddSkill(skillKey, level);
-        }
-        
-    }
-
-    /// <summary>
-    /// [Server Only]
-    /// Called in player start. Activate effects in 4 passes for the player.
-    /// </summary>
-    public void HandleAllSkills()
-    {
-        // The order here must be enforced due to skill enhancements must have their main skill (e.g. FireFist -> Punch)
-        // unlocked to work.
-        if (Network.IsServer)
-        {
-            Action<string> handleSkillWithSync = (key) =>
-            {
-                int lvl = SkillLevelDict[key];
-                HandleSkill(key, lvl);
-                CallClient_SyncSkill(key, lvl);
-            };
-            // Phase 0: Default unlock for all players
-            UpgradeSkill("Punch", 1);
-            
-            // Phase 1: Attr Boosts (and passives, which are essentially permanent effects)
-            foreach (string abKey in SkillConfig.AttrBoostSkills)
-            {
-                handleSkillWithSync(abKey);
-            }
-        
-            // Phase 2: Active Skill Unlocks
-        
-            foreach (string asKey in SkillConfig.ActiveSkills)
-            {
-                handleSkillWithSync(asKey);
-            }
-        
-            // Phase 3: Active Skill Replacements
-
-            foreach (string rpKey in SkillConfig.ReplacementSkills)
-            {
-                handleSkillWithSync(rpKey);
-            }
-        
-            // Phase 4: Active Skill Enhancements
-            foreach (var sbKey in SkillConfig.SkillEnhanceSkills)
-            {
-                handleSkillWithSync(sbKey);
-            }
-            
-            Initialized.Set(true);
         }
         
     }

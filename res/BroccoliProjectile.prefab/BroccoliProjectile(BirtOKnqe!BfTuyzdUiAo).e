@@ -55,7 +55,15 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Projectile",
   "data": {
-    "speed": 15
+    "speed": 15,
+    "direction": {
+      "X": 0,
+      "Y": 0
+    },
+    "start_position": {
+      "X": 0,
+      "Y": 0
+    }
   }
 },
 {
@@ -77,5 +85,16 @@
     "friction": 0.2000000029802322,
     "restitution": 0,
     "restitution_threshold": 1
+  }
+},
+{
+  "cid": 3,
+  "aoid": "94434217271882:1718316174562233500",
+  "component_type": "Mono_Component",
+  "mono_component_type": "SpoonProjectile",
+  "data": {
+    "Damage": 0,
+    "Pierce": false,
+    "Owner": "0:0"
   }
 }

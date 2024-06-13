@@ -27,11 +27,7 @@ public class ZoneTeleporter : Component
             spineAnimator.SpineInstance.SetAnimation("idle", true);
         }
     }
-
-    public override void Update()
-    {
-        
-    }
+    
 
     public void OnInteract(Player p)
     {

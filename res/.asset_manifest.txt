@@ -3,7 +3,7 @@ AbilityBookItem.prefab - .ao - 66622b07d7f18c22a1140ab0 - 8105871847217317263
 AbilityItem.prefab - .ao - 6643f5634d5b99636ac7a9a4 - 14427433616163832665
 AbilityUpgradeDialog.prefab - .ao - 6647dbfca2a326d825267e81 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 6660a2c7d7f18c22a1140a92 - 14180256252234443626
-BroccoliProjectile.prefab - .ao - 665a014a87d80516fc66d1ed - 5879604858190104310
+BroccoliProjectile.prefab - .ao - 666b71d2d7f18c22a1140d42 - 5129262647641696432
 FatPlayerCollision.prefab - .ao - 66426d27a214e8c7a135d8b7 - 17567100292640013128
 Rage_Aura.prefab - .ao - 66675639d7f18c22a1140af6 - 1815137123894366964
 ResourcesOverlayWindow.prefab - .ao - 665f4be4d7f18c22a11409aa - 4484872491460916377
