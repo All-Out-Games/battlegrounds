@@ -19,7 +19,12 @@ public abstract class FightEffect : AEffect
         FightPlayer = (FightPlayer)Player;
         //Log.Debug("FightEffect Start");
     }
-    
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        
+    }
+
     public override void OnEffectUpdate()
     {
         

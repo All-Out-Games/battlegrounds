@@ -24,7 +24,7 @@ public class EffectPunch : FightEffect
         base.OnEffectStart();
         
         AssignConfig(EffectConfig.GetPlayerPunchConfig(1, FightPlayer.CurrentAttack));
-        FightPlayer.SetAnimTrigger("punch"); // Animation can be done locally first...
+        FightPlayer.SetAnimTrigger("punch"); 
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -34,7 +34,7 @@ public class EffectPunch : FightEffect
 
     public override void OnEffectUpdate()
     {
-        if (!Activated && ElapsedTime > EffectConfig.PunchConfig.PunchActivationTime)
+        if (Util.OneTime(ElapsedTime > EffectConfig.PunchConfig.PunchActivationTime, ref Activated))
         {
             Punch();
             Activated = true;

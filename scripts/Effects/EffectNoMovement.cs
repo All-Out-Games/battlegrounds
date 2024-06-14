@@ -10,7 +10,7 @@ public partial class EffectNoMovement : FightEffect
     
     public override void OnEffectStart()
     {
-        FightPlayer = (FightPlayer)Player;
+        base.OnEffectStart();
         FightPlayer.AddSpeedModifier(0f);
     }
 

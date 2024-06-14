@@ -43,7 +43,8 @@ public class FightAbility : Ability
         {SC.RageConfig.SkillKey, typeof(AbilityRage)},
         {SC.DoublePunchConfig.SkillKey, typeof(AbilityDoublePunch)},
         {SC.SelfDestructConfig.SkillKey, typeof(AbilitySelfDestruct)},
-        {SC.BattleCryConfig.SkillKey, typeof(AbilityBattleCry)}
+        {SC.BattleCryConfig.SkillKey, typeof(AbilityBattleCry)},
+        {SC.ClawSlashConfig.SkillKey, typeof(AbilityClawSlash)}
     };
 }
 

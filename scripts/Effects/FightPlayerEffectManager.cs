@@ -59,15 +59,30 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
         }
     }
 
+    public void AddBleed(Entity caster, float duration, int dps)
+    {
+        if (Network.IsServer)
+        {
+            CallClient_AddBleedInternal(caster, duration, dps);
+        }
+    }
+
     [ClientRpc]
     public void AddNoMovementInternal(Entity caster, float duration)
     {
-        _player.AddEffect<EffectNoMovement>(caster.GetComponent<FightPlayer>(), duration < 0 ? null : duration);
+        _player.AddEffect<EffectNoMovement>(caster.GetComponent<FightPlayer>(), duration);
     }
     
     [ClientRpc]
     public void AddStunInternal(Entity caster, float duration)
     {
-        _player.AddEffect<EffectStun>(caster.GetComponent<FightPlayer>(), duration < 0 ? null : duration);
+        _player.AddEffect<EffectStun>(caster.GetComponent<FightPlayer>(), duration);
+    }
+
+    [ClientRpc]
+    public void AddBleedInternal(Entity caster, float duration, int dps)
+    {
+        _player.AddEffect<EffectBleed>(caster.GetComponent<FightPlayer>(), duration,
+            bleed => { bleed.PerSecondDmg = dps;});
     }
 }

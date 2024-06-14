@@ -50,7 +50,6 @@ public class EffectGroundStomp : FightEffect
     
     public void Stomp()
     {
-        
         Vector2 selfPos = FightPlayer.Entity.Position;
 
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, Config.StompRadius);

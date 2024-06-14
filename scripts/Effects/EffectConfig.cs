@@ -304,4 +304,32 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region cfg: ClawSlash
+
+    public struct ClawSlashConfig
+    {
+        public static readonly float Cooldown = 5f;
+        public static readonly float SlashAnimationTime = 0.6f;
+        public static readonly float SlashActivationTime = 0.25f;
+        public static readonly int SlashDmgBase = 1;
+        public static readonly float SlashRadius = 2;
+
+        public float BleedTime = 5f;
+        public int BleedDmg = 1;
+        public int SlashDamage = 1;
+
+        public ClawSlashConfig()
+        {
+            
+        }
+
+        public static ClawSlashConfig GetDefault(int atk)
+        {
+            var cfg = new ClawSlashConfig() { SlashDamage = SlashDmgBase + atk };
+            return cfg;
+        }
+    }
+
+    #endregion
 }

@@ -171,6 +171,10 @@ public class FightClubGameManager : System<FightClubGameManager> {
         return fightPlayers;
     }
 
+    // Difference:
+    // Collision Entity we created on the player is considerably larger, they should be used for ray-cast based abilities to make them easier to hit
+    // For AoE's just use the player's default collider.
+    
     public Entity[] GetCombatPlayersAsEntities()
     {
         return GetCombatPlayers().Select(item => item.Entity).ToArray();

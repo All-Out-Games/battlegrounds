@@ -186,7 +186,7 @@ public static partial class SkillConfig
         SkillKey = "DoublePunch",
         IconPath = "ability_icon_tmp/Punch_Tmp.png",
         ParentNodeKeys = new string[] { "ShoulderCrash" },
-        ChildrenNodeKeys = new string[] { "SelfDestruct" },
+        ChildrenNodeKeys = new string[] { "SelfDestruct", "ClawSlash" },
     };
 
     public static readonly SkillTreeNodeConfig SelfDestructConfig = new SkillTreeNodeConfig()
@@ -196,7 +196,7 @@ public static partial class SkillConfig
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 10,
-        UIPosition = new Vector2(170, 430),
+        UIPosition = new Vector2(240, 430),
         SkillKey = "SelfDestruct",
         IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
         ParentNodeKeys = new string[] { "DoublePunch" },
@@ -214,6 +214,20 @@ public static partial class SkillConfig
         SkillKey = "BattleCry",
         IconPath = "ability_icon_tmp/RollOut_Tmp.png",
         ParentNodeKeys = new string[] { "Rage" },
+        ChildrenNodeKeys = new string[] {  },
+    };
+    
+    public static readonly SkillTreeNodeConfig ClawSlashConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Release a big blast at the cost of damaging yourself",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Brawler,
+        UpgradeCost = 10,
+        UIPosition = new Vector2(10, 430),
+        SkillKey = "ClawSlash",
+        IconPath = "ability_icon_tmp/RollOut_Tmp.png",
+        ParentNodeKeys = new string[] { "DoublePunch" },
         ChildrenNodeKeys = new string[] {  },
     };
 
@@ -239,7 +253,8 @@ public static partial class SkillConfig
             {"Rage", RageConfig},
             {"DoublePunch", DoublePunchConfig},
             {"SelfDestruct", SelfDestructConfig},
-            {"BattleCry", BattleCryConfig}
+            {"BattleCry", BattleCryConfig},
+            {"ClawSlash", ClawSlashConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -247,7 +262,7 @@ public static partial class SkillConfig
     
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "Shield", "SpoonThrow",
         // Brawler
-        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry"};
+        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash"};
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     
