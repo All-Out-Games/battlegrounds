@@ -15,8 +15,7 @@
   },
   "sibling_index": 2,
   "parent": "359905312717597:1716331881724713300",
-  "spawn_as_networked_entity": true,
-  "network_id": 5
+  "spawn_as_networked_entity": true
 },
 {
   "cid": 1,

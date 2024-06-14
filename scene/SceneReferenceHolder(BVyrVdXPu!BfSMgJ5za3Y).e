@@ -14,8 +14,7 @@
     "Y": 1
   },
   "sibling_index": 3,
-  "spawn_as_networked_entity": true,
-  "network_id": 3
+  "spawn_as_networked_entity": true
 },
 {
   "cid": 1,

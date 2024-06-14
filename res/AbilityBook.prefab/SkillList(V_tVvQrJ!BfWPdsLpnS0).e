@@ -41,4 +41,20 @@
       "Y": 0
     }
   }
+},
+{
+  "cid": 2,
+  "aoid": "53770010602841:1718403184107438900",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIScrollView",
+  "data": {
+    "vertical": true,
+    "horizontal": false,
+    "content_inset": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    }
+  }
 }
