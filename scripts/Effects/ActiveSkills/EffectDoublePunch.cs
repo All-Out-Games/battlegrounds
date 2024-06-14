@@ -18,33 +18,93 @@ public class EffectDoublePunch : FightEffect
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => true;
 
-    
+    protected List<Tuple<float, string>> EventTimeline;
     public override void OnEffectStart()
     {
         base.OnEffectStart();
         
         AssignConfig(EffectConfig.DoublePunchConfig.GetDefault(FightPlayer.CurrentAttack));
+
+        EventTimeline = new List<Tuple<float, string>>();
         
-        DoublePunch();
+        EventTimeline.Add(new(0, "PunchAnimation"));
+        EventTimeline.Add(new(EffectConfig.DoublePunchConfig.PunchActivationTime, "FirstPunch"));
+        EventTimeline.Add(new(EffectConfig.DoublePunchConfig.PunchAnimationTime, "PunchAnimation"));
+        EventTimeline.Add(new(EffectConfig.DoublePunchConfig.PunchActivationTime + EffectConfig.DoublePunchConfig.PunchAnimationTime, "SecondPunch"));
+
+        EventTimeline = EventTimeline.OrderBy(tuple => tuple.Item1).ToList();
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         
     }
-    
+
+    public override void OnEffectUpdate()
+    {
+        if (EventTimeline.Count > 0)
+        {
+            if (ElapsedTime > EventTimeline[0].Item1)
+            {
+                ProcessEvent(EventTimeline[0].Item2);
+            }
+        }
+    }
+
+    protected void ProcessEvent(string evt)
+    {
+        switch (evt)
+        {
+            case "PunchAnimation":
+                FightPlayer.SetAnimTrigger("punch");
+                break;
+            case "FirstPunch":
+                DoublePunch(1);
+                break;
+            case "SecondPunch":
+                DoublePunch(2);
+                break;
+        }
+        EventTimeline.RemoveAt(0);
+    }
+
     public void AssignConfig(EffectConfig.DoublePunchConfig cfg)
     {
         DurationRemaining = EffectConfig.DoublePunchConfig.PunchAnimationTime * 2;
         Config = cfg;
     }
     
-    public void DoublePunch()
+    public void DoublePunch(int punchType)
     {
         // The first punch stuns the enemy if hit. The second punch knock them back
-        FightPlayer.SetAnimTrigger("punch"); 
-        Coroutine.Start(Entity, DelayActivePunchHitbox(EffectConfig.DoublePunchConfig.PunchActivationTime));
-        Coroutine.Start(Entity, SecondPunch(EffectConfig.DoublePunchConfig.PunchAnimationTime));
+        Physics.RaycastHit rc;
+        var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
+            EffectConfig.DoublePunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(), out rc);
+
+        /*hit = Physics.Raycast(Entity.Position, FightPlayer.GetPunchDirection(),
+            EffectConfig.PunchConfig.PunchRange, out rc);*/
+
+        if (hit && rc.Entity != null)
+        {
+            PlayerCollisionChild other = rc.Entity.GetComponent<PlayerCollisionChild>();
+                
+            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
+
+            if (punchType == 1)
+            {
+                // Stunning Punch
+                other.Player.TakeDamage(Config.PunchDamage, FightPlayer, info);
+                other.Player.GetEffectMgr().AddStun(FightPlayer.Entity, EffectConfig.DoublePunchConfig.PunchAnimationTime);
+            }
+            else
+            {
+                // Bumping Punch
+                other.Player.TakeDamage(Config.PunchDamage, FightPlayer, info);
+                Vector2 bumpDir = other.Entity.Position - FightPlayer.Entity.Position;
+                other.Player.AddBumpFrom(FightPlayer, bumpDir * Config.BumpStrength, false);
+            }
+                
+        }
     }
 
     IEnumerator DelayActivePunchHitbox(float delayTime, int punchType = 0)
@@ -57,7 +117,7 @@ public class EffectDoublePunch : FightEffect
         /*hit = Physics.Raycast(Entity.Position, FightPlayer.GetPunchDirection(),
             EffectConfig.PunchConfig.PunchRange, out rc);*/
 
-        if (hit && rc.Entity != null)
+        if (hit)
         {
             FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
                 

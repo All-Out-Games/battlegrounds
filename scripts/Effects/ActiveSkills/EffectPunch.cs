@@ -53,7 +53,7 @@ public class EffectPunch : FightEffect
         var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
             EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(), out rc);
 
-        if (rc.Entity != null)
+        if (hit)
         {
             Log.Debug($"{rc.Entity.Name}");
             var other = rc.Entity.GetComponent<PlayerCollisionChild>();
