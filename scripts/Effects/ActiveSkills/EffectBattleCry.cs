@@ -20,16 +20,28 @@ public class EffectBattleCry : FightEffect
     public override bool FreezePlayer => true;
 
     protected EffectConfig.BattleCryConfig Config;
+    protected bool Activated = false;
     public override void OnEffectStart()
     {
         base.OnEffectStart();
         AssignConfig(EffectConfig.BattleCryConfig.GetDefault(FightPlayer.CurrentAttack));
 
-        BattleCry();
+        FightPlayer.SetAnimTrigger("wave"); 
+        
     }
     
     public override void OnEffectEnd(bool interrupt)
     {
+        
+    }
+
+    public override void OnEffectUpdate()
+    {
+        if (!Activated && ElapsedTime > EffectConfig.BattleCryConfig.RoarActivationTime)
+        {
+            BattleCry();
+            Activated = true;
+        }
         
     }
 
@@ -41,14 +53,6 @@ public class EffectBattleCry : FightEffect
 
     private void BattleCry()
     {
-        FightPlayer.SetAnimTrigger("wave"); // Animation can be done locally first...
-        Coroutine.Start(Entity, DelayActiveBattleCry(EffectConfig.BattleCryConfig.RoarActivationTime));
-    }
-
-    IEnumerator DelayActiveBattleCry(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Log.Debug($"ROAR! Dmg = {Config.RoarDamage}");
         Vector2 selfPos = FightPlayer.Entity.Position;
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, Config.RoarRadius);
             
@@ -65,4 +69,5 @@ public class EffectBattleCry : FightEffect
 
         }
     }
+    
 }

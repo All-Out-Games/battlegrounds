@@ -19,7 +19,7 @@ public class EffectSelfDestruct : FightEffect
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => false;
-
+    
     public override void OnEffectStart()
     {
         base.OnEffectStart();
@@ -30,6 +30,7 @@ public class EffectSelfDestruct : FightEffect
     {
         KnockingBlast();
     }
+    
 
     protected void AssignConfig(EffectConfig.SelfDestructConfig cfg)
     {
@@ -39,7 +40,6 @@ public class EffectSelfDestruct : FightEffect
 
     private void KnockingBlast()
     {
-        Log.Debug($"STOMP! Dmg = {Config.BlastDamage}");
         Vector2 selfPos = FightPlayer.Entity.Position;
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.SelfDestructConfig.BlastRange);
             

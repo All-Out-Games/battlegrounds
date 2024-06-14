@@ -46,7 +46,6 @@ public class UniqueWindowInteractable : Component
     protected void LeaveVendor(Entity pEntity)
     {
         FightPlayer fightPlayer = pEntity.GetComponent<FightPlayer>();
-        Log.Debug("2");
         if (fightPlayer is { IsLocal: true })
         {
             UIManager.Instance.CloseAllUniqueWindow();

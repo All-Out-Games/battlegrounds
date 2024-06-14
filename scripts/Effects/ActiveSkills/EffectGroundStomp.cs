@@ -20,17 +20,26 @@ public class EffectGroundStomp : FightEffect
     public override bool FreezePlayer => true;
 
     protected EffectConfig.GroundStompConfig Config;
+    protected bool Stomped = false;
     public override void OnEffectStart()
     {
         base.OnEffectStart();
         AssignConfig(EffectConfig.GroundStompConfig.GetDefault(FightPlayer.CurrentAttack));
-
-        Stomp();
+        FightPlayer.SetAnimTrigger("fart");
     }
     
     public override void OnEffectEnd(bool interrupt)
     {
         
+    }
+
+    public override void OnEffectUpdate()
+    {
+        if (!Stomped && ElapsedTime > EffectConfig.GroundStompConfig.StompActivationTime)
+        {
+            Stomp();
+            Stomped = true;
+        }
     }
 
     public void AssignConfig(EffectConfig.GroundStompConfig cfg)
@@ -41,14 +50,7 @@ public class EffectGroundStomp : FightEffect
     
     public void Stomp()
     {
-        FightPlayer.SetAnimTrigger("fart");
-        Coroutine.Start(Entity, DelayActiveStompHitbox(EffectConfig.GroundStompConfig.StompActivationTime));
-    }
-    
-    IEnumerator DelayActiveStompHitbox(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-        //Log.Debug($"STOMP! Dmg = {Config.StompDamage}");
+        
         Vector2 selfPos = FightPlayer.Entity.Position;
 
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, Config.StompRadius);
@@ -59,8 +61,7 @@ public class EffectGroundStomp : FightEffect
                 
             other.TakeDamage(Config.StompDamage, FightPlayer, info);
         }
-        
-        //FightPlayer.AddPlayerPunchCollisionFunction(OnPunchCollisionEnter);
     }
+    
     
 }

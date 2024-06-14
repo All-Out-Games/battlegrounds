@@ -4,7 +4,7 @@ AbilityItem.prefab - .ao - 6643f5634d5b99636ac7a9a4 - 14427433616163832665
 AbilityUpgradeDialog.prefab - .ao - 6647dbfca2a326d825267e81 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 6660a2c7d7f18c22a1140a92 - 14180256252234443626
 BroccoliProjectile.prefab - .ao - 666b71d2d7f18c22a1140d42 - 5129262647641696432
-FatPlayerCollision.prefab - .ao - 66426d27a214e8c7a135d8b7 - 17567100292640013128
+FatPlayerCollision.prefab - .ao - 666c8f92d7f18c22a1141616 - 15909775696421813938
 Rage_Aura.prefab - .ao - 66675639d7f18c22a1140af6 - 1815137123894366964
 ResourcesOverlayWindow.prefab - .ao - 665f4be4d7f18c22a11409aa - 4484872491460916377
 SceneProps_tmp/aura_circle.png - .ao - 666741efd7f18c22a1140ae8 - 10293273442432679734

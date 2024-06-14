@@ -16,21 +16,31 @@ public class EffectPunch : FightEffect
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => true;
+
+    protected bool Activated = false;
     
     public override void OnEffectStart()
     {
         base.OnEffectStart();
         
         AssignConfig(EffectConfig.GetPlayerPunchConfig(1, FightPlayer.CurrentAttack));
-        
-        Punch();
+        FightPlayer.SetAnimTrigger("punch"); // Animation can be done locally first...
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         
     }
-    
+
+    public override void OnEffectUpdate()
+    {
+        if (!Activated && ElapsedTime > EffectConfig.PunchConfig.PunchActivationTime)
+        {
+            Punch();
+            Activated = true;
+        }
+    }
+
     public void AssignConfig(EffectConfig.PunchConfig cfg)
     {
         DurationRemaining = EffectConfig.PunchConfig.PunchAnimationTime;
@@ -39,37 +49,23 @@ public class EffectPunch : FightEffect
     
     public void Punch()
     {
-        FightPlayer.SetAnimTrigger("punch"); // Animation can be done locally first...
-        //FightPlayer.CallClient_SetAnimTriggerBroadcast("punch");
-        Coroutine.Start(Entity, DelayActivePunchHitbox(EffectConfig.PunchConfig.PunchActivationTime));
-    }
-
-    IEnumerator DelayActivePunchHitbox(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
         Physics.RaycastHit rc;
         var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
-            EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersAsEntities(), out rc);
+            EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(), out rc);
 
         if (rc.Entity != null)
         {
-            FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
-                
-            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
-            other.TakeDamage(Config.PunchDamage, FightPlayer, info);
+            Log.Debug($"{rc.Entity.Name}");
+            var other = rc.Entity.GetComponent<PlayerCollisionChild>();
+            if (other != null)
+            {
+                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
+                other.Player.TakeDamage(Config.PunchDamage, FightPlayer, info);
+            }
+            
         }
     }
-
-    protected void OnPunchCollisionEnter(Entity other)
-    {
-        // NOT IN USE; Collider's on enter function will not function properly when activated without moving
-        FightPlayer otherPlayer = other.GetComponent<FightPlayer>();
-        if (otherPlayer != null)
-        {
-            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
-            otherPlayer.TakeDamage(Config.PunchDamage, FightPlayer, info);
-        }
-    }
+    
 
 
 }

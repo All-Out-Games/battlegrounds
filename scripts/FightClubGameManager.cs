@@ -176,6 +176,11 @@ public class FightClubGameManager : System<FightClubGameManager> {
         return GetCombatPlayers().Select(item => item.Entity).ToArray();
     }
 
+    public Entity[] GetCombatPlayersCollisionEntities()
+    {
+        return GetCombatPlayers().Select(item => item.CollisionEntity).ToArray();
+    }
+
     public List<FightPlayer> OverlapCircleForCombatPlayers(Vector2 center, float radius)
     {
         List<FightPlayer> hitPlayers = new List<FightPlayer>();

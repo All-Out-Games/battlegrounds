@@ -21,7 +21,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Circle_Collider",
   "data": {
-    "size": 1.2000000476837158,
+    "size": 0.8000000119209290,
     "offset": {
       "X": 0,
       "Y": 0
