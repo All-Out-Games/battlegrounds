@@ -59,8 +59,8 @@ public class EffectPunch : FightEffect
             var other = rc.Entity.GetComponent<PlayerCollisionChild>();
             if (other != null)
             {
-                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
-                other.Player.TakeDamage(Config.PunchDamage, FightPlayer, info);
+                FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
+                other.Player.TakeDamage(FightPlayer, info);
             }
             
         }

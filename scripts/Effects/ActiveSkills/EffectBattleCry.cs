@@ -63,9 +63,10 @@ public class EffectBattleCry : FightEffect
                 continue;
             }
 
-            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo { DmgType = DamageType.AOE};
-            fp.TakeDamage(Config.RoarDamage, FightPlayer, info);
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.RoarDamage, DamageType.AOE);
+            fp.TakeDamage(FightPlayer, info);
             fp.GetEffectMgr().AddStun(FightPlayer.Entity, Config.StunTime);
+            // TODO: Screen shake
 
         }
     }

@@ -266,7 +266,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
 
     public bool CheckAffordable(int cost)
     {
-        return cost < _player.Coins;
+        return cost <= _player.Coins;
     }
 
     /// <summary>

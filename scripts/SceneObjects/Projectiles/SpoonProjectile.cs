@@ -12,8 +12,8 @@ public class SpoonProjectile : BaseProjectile
         {
             if (Network.IsServer)
             {
-                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() { DmgType = DamageType.Ranged };
-                fp.TakeDamage(Damage, Owner, info);
+                FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
+                fp.TakeDamage(Owner, info);
             }
             if (!Pierce)
             {

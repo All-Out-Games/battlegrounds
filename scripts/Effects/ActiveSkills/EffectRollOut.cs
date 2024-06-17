@@ -78,8 +78,8 @@ public sealed partial class EffectRollOut : FightEffect
             Vector2 bumpDir = other.Position - Entity.Position;
             var add = bumpDir * _config.BumpStrength;
             otherPlayer.AddBumpFrom(FightPlayer, add, false);
-            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() ;
-            otherPlayer.TakeDamage(_config.ContactDamage, FightPlayer, info);
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage);
+            otherPlayer.TakeDamage( FightPlayer, info);
 
         }
     }

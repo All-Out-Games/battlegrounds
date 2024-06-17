@@ -48,13 +48,13 @@ public class EffectSelfDestruct : FightEffect
             if (fp.Entity.NetworkId == FightPlayer.Entity.NetworkId)
             {
                 // Self damage
-                FightPlayer.DamageInfo selfDmgInfo = new FightPlayer.DamageInfo() with { Flinch = false};
-                FightPlayer.TakeDamage(Config.SelfDamage, FightPlayer, selfDmgInfo);
+                FightPlayer.DamageInfo selfDmgInfo = FightPlayer.DamageInfo.CreateSelfDamageInfo(Config.SelfDamage);
+                FightPlayer.TakeDamage(FightPlayer, selfDmgInfo);
             }
             else
             {
-                FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() { DmgType = DamageType.AOE};
-                fp.TakeDamage(Config.BlastDamage, FightPlayer, info);
+                FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.BlastDamage, DamageType.AOE);
+                fp.TakeDamage(FightPlayer, info);
                         
                 Vector2 bumpDir = fp.Entity.Position - selfPos;
                 fp.AddBumpFrom(FightPlayer, bumpDir * EffectConfig.SelfDestructConfig.BumpStrength, false);

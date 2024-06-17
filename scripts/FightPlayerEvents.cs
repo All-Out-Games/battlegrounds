@@ -13,10 +13,52 @@ public partial class FightPlayer
     
     public struct DamageInfo
     {
-        public bool ShieldBroken = false;
-        public bool Flinch = true; // Some damage might not cause the flinch animation e.g. self destruct
+        // Server Only Data
         public DamageType DmgType = DamageType.Melee;
+        public bool AwardCoin = true;
+        
+        // Client & Server Data
+        public DamageReactionInfo ReactionInfo = new DamageReactionInfo(); 
         public DamageInfo()
+        {
+            
+        }
+
+        /// <summary>
+        /// Default settings. Melee damage.
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static DamageInfo CreateDamageInfo(int amount, DamageType type = DamageType.Melee)
+        {
+            DamageInfo info = new DamageInfo();
+            info.ReactionInfo.Amount = amount;
+            info.DmgType = DamageType.Melee;
+            return info;
+        }
+
+        /// <summary>
+        /// Does not trigger damage reaction, does not reward coins.
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public static DamageInfo CreateSelfDamageInfo(int amount)
+        {
+            DamageInfo info = CreateDamageInfo(amount, DamageType.None);
+            info.AwardCoin = false;
+            info.ReactionInfo.Flinch = false;
+            return info;
+        }
+    }
+
+    public struct DamageReactionInfo
+    {
+        public bool ShieldBroken = false;
+        public bool Flinch = true;
+        public int Amount = 0;
+
+        public DamageReactionInfo()
         {
             
         }

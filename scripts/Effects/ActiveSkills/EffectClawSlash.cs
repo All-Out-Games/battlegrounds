@@ -54,10 +54,10 @@ public class EffectClawSlash : FightEffect
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.ClawSlashConfig.SlashRadius);
         foreach (var other in cbPlayers)
         {
-            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() { DmgType = DamageType.Melee};
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlashDamage);
             if(other.Entity.NetworkId == FightPlayer.Entity.NetworkId) continue;
                 
-            other.TakeDamage(_config.SlashDamage, FightPlayer, info);
+            other.TakeDamage(FightPlayer, info);
             other.GetEffectMgr().AddBleed(FightPlayer.Entity, _config.BleedTime, _config.BleedDmg);
         }
     }

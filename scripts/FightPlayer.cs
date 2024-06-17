@@ -262,10 +262,12 @@ public partial class FightPlayer : Player
     /// <param name="damage"></param>
     /// <param name="source"></param>
     /// <param name="info"></param>
-    public void TakeDamage(int damage, FightPlayer source, DamageInfo info)
+    public void TakeDamage(FightPlayer source, DamageInfo info)
     {
         if (CurrentHealth <= 0) return; // Avoid damaging the dead
-        DamageReaction(CurrentHealth, damage, info);  // All Client side damage reaction goes here
+
+        int damage = info.ReactionInfo.Amount;
+        DamageReaction(CurrentHealth, info);  // All Client side damage reaction goes here
         
         if (Network.IsServer) {
             // Actual damage stuff
@@ -277,7 +279,7 @@ public partial class FightPlayer : Player
                     // Shield is not enough
                     CurrentHealth += CurrentShield;
                     CurrentShield = 0;
-                    info.ShieldBroken = true;
+                    info.ReactionInfo.ShieldBroken = true;
                 }
             }
             else
@@ -286,22 +288,24 @@ public partial class FightPlayer : Player
             }
 
             FightClubGameManager.Instance.PlayerDamageEvent(source, this, damage);
+            
+            // Player Death
             if (CurrentHealth <= 0)
             {
                 //Coroutine.Start(this.Entity, PlayerRespawnCoroutine());
                 FightClubGameManager.Instance.PlayerEliminationEvent.Invoke(source, this);
-                CallClient_DamageReaction(CurrentHealth, damage, info); // Server will need to dispatch death event
+                CallClient_DamageReaction(CurrentHealth, info); // Use this line to dispatch death event (client is not authorized to do actual damage)
             }
         }
         
     }
     
     [ClientRpc]
-    public void DamageReaction(int health, int damage, DamageInfo info)
+    public void DamageReaction(int health, DamageInfo info)
     {
         // DO NOT use CurrentHealth SyncVar in this frame
         // It might not arrive yet at this point. Trust the info sent from the triggering function on server (i.e. the parameters) here
-        if (info.ShieldBroken)
+        if (info.ReactionInfo.ShieldBroken)
         {
             ShieldBreakEvent?.Invoke();
         }
@@ -315,7 +319,7 @@ public partial class FightPlayer : Player
         else
         {
             // Normal damage route
-            if (info.Flinch)
+            if (info.ReactionInfo.Flinch)
             {
                 SetAnimTrigger("flinch");
             }

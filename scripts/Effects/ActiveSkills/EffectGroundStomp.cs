@@ -52,13 +52,14 @@ public class EffectGroundStomp : FightEffect
     {
         Vector2 selfPos = FightPlayer.Entity.Position;
 
+        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.StompDamage, DamageType.AOE);
+        
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, Config.StompRadius);
         foreach (var other in cbPlayers)
         {
-            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo() { DmgType = DamageType.AOE};
             if(other.Entity.NetworkId == FightPlayer.Entity.NetworkId) continue;
                 
-            other.TakeDamage(Config.StompDamage, FightPlayer, info);
+            other.TakeDamage(FightPlayer, info);
         }
     }
     

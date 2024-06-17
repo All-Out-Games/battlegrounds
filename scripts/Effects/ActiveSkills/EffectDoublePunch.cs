@@ -87,19 +87,19 @@ public class EffectDoublePunch : FightEffect
         if (hit && rc.Entity != null)
         {
             PlayerCollisionChild other = rc.Entity.GetComponent<PlayerCollisionChild>();
-                
-            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
+
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
 
             if (punchType == 1)
             {
                 // Stunning Punch
-                other.Player.TakeDamage(Config.PunchDamage, FightPlayer, info);
+                other.Player.TakeDamage(FightPlayer, info);
                 other.Player.GetEffectMgr().AddStun(FightPlayer.Entity, EffectConfig.DoublePunchConfig.PunchAnimationTime);
             }
             else
             {
                 // Bumping Punch
-                other.Player.TakeDamage(Config.PunchDamage, FightPlayer, info);
+                other.Player.TakeDamage(FightPlayer, info);
                 Vector2 bumpDir = other.Entity.Position - FightPlayer.Entity.Position;
                 other.Player.AddBumpFrom(FightPlayer, bumpDir * Config.BumpStrength, false);
             }
@@ -107,46 +107,4 @@ public class EffectDoublePunch : FightEffect
         }
     }
 
-    IEnumerator DelayActivePunchHitbox(float delayTime, int punchType = 0)
-    {
-        yield return new WaitForSeconds(delayTime);
-        Physics.RaycastHit rc;
-        var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
-            EffectConfig.DoublePunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersAsEntities(), out rc);
-
-        /*hit = Physics.Raycast(Entity.Position, FightPlayer.GetPunchDirection(),
-            EffectConfig.PunchConfig.PunchRange, out rc);*/
-
-        if (hit)
-        {
-            FightPlayer other = rc.Entity.GetComponent<FightPlayer>();
-                
-            FightPlayer.DamageInfo info = new FightPlayer.DamageInfo();
-
-            if (punchType == 0)
-            {
-                // Stunning Punch
-                other.TakeDamage(Config.PunchDamage, FightPlayer, info);
-                other.GetEffectMgr().AddStun(FightPlayer.Entity, EffectConfig.DoublePunchConfig.PunchAnimationTime);
-            }
-            else
-            {
-                // Bumping Punch
-                other.TakeDamage(Config.PunchDamage, FightPlayer, info);
-                Vector2 bumpDir = other.Entity.Position - FightPlayer.Entity.Position;
-                other.AddBumpFrom(FightPlayer, bumpDir * Config.BumpStrength, false);
-            }
-                
-        }
-
-        
-        //FightPlayer.AddPlayerPunchCollisionFunction(OnPunchCollisionEnter);
-    }
-
-    IEnumerator SecondPunch(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-        FightPlayer.SetAnimTrigger("punch"); // Animation can be done locally first...
-        Coroutine.Start(Entity, DelayActivePunchHitbox(EffectConfig.DoublePunchConfig.PunchActivationTime, 1));
-    }
 }
