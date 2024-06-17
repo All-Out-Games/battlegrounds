@@ -13,6 +13,7 @@ public enum DamageType
     Melee, // Default
     Ranged, // Projectile
     AOE, // Blasts
+    Heal,
     None // NONE type will not trigger damage-type related reactions
 }
 

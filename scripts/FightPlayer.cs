@@ -287,8 +287,8 @@ public partial class FightPlayer : Player
                 CurrentHealth -= damage;
             }
 
-            FightClubGameManager.Instance.PlayerDamageEvent(source, this, damage);
-            
+            FightClubGameManager.Instance.PlayerDamageEvent.Invoke(source, this, info);
+            CallClient_NotifyReceiveDamage(source.Entity, info);
             // Player Death
             if (CurrentHealth <= 0)
             {
@@ -387,7 +387,6 @@ public partial class FightPlayer : Player
     {
         if (!reset)
         {
-            //Log.Info("Adding Movement Limitations");
             EffectManager.AddEffect<EffectNoMovement>(null, 0.75f);
         }
         

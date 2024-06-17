@@ -158,7 +158,7 @@ public static partial class SkillConfig
         SkillKey = "GroundStomp",
         IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
         ParentNodeKeys = new string[] {"ShoulderCrash"},
-        ChildrenNodeKeys = new string[]{},
+        ChildrenNodeKeys = new string[]{"LeapSlam"},
     };
 
     public static readonly SkillTreeNodeConfig RageConfig = new SkillTreeNodeConfig()
@@ -219,7 +219,7 @@ public static partial class SkillConfig
     
     public static readonly SkillTreeNodeConfig ClawSlashConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Release a big blast at the cost of damaging yourself",
+        DescriptionTextKey = "Slash your enemies and make them bleed",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
@@ -228,6 +228,20 @@ public static partial class SkillConfig
         SkillKey = "ClawSlash",
         IconPath = "ability_icon_tmp/RollOut_Tmp.png",
         ParentNodeKeys = new string[] { "DoublePunch" },
+        ChildrenNodeKeys = new string[] {  },
+    };
+    
+    public static readonly SkillTreeNodeConfig LeapSlamConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Leap and slam the ground",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Brawler,
+        UpgradeCost = 10,
+        UIPosition = new Vector2(730, 430),
+        SkillKey = "LeapSlam",
+        IconPath = "ability_icon_tmp/RollOut_Tmp.png",
+        ParentNodeKeys = new string[] { "GroundStomp" },
         ChildrenNodeKeys = new string[] {  },
     };
 
@@ -254,7 +268,8 @@ public static partial class SkillConfig
             {"DoublePunch", DoublePunchConfig},
             {"SelfDestruct", SelfDestructConfig},
             {"BattleCry", BattleCryConfig},
-            {"ClawSlash", ClawSlashConfig}
+            {"ClawSlash", ClawSlashConfig},
+            {"LeapSlam", LeapSlamConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -262,7 +277,7 @@ public static partial class SkillConfig
     
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "Shield", "SpoonThrow",
         // Brawler
-        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash"};
+        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam"};
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     

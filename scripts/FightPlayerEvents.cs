@@ -9,6 +9,11 @@ public partial class FightPlayer
     public Action<int> TotalElminationUpdateEvent;
     public Action<int> TotalDamageUpdateEvent;
 
+    // Reserved for effects related to post-damage (e.g. after elimination, add damage)
+    public Action<FightPlayer, DamageInfo> OnDealDamage; // Triggered in global damage event. Will contain the ACTUAL damage dealt (i.e. the damage info might be modified by some effects like parry)
+    public Action<FightPlayer, DamageInfo> OnReceiveDamage; // Triggered in CallClient_TakeDamage
+    public Action OnElimination; // Triggered in global elimination event;
+
     #region Custom Data Pass to Client
     
     public struct DamageInfo
@@ -79,17 +84,37 @@ public partial class FightPlayer
         }
     }
 
+    [ClientRpc]
+    public void NotifyDealDamage(DamageInfo info)
+    {
+        OnDealDamage?.Invoke(this, info);
+    }
+
+    [ClientRpc]
+    public void NotifyReceiveDamage(Entity source, DamageInfo info)
+    {
+        OnReceiveDamage?.Invoke(source.GetComponent<FightPlayer>(), info);
+    }
+
     #endregion
 
+    /// <summary>
+    /// Subscribe to global damage & elimination events. Note that these events are client only.
+    /// </summary>
     private void HookupGlobalEvents()
     {
         // Hook up elimination event and damage event
-        FightClubGameManager.Instance.PlayerDamageEvent += (source, victim, amt) =>
+        FightClubGameManager.Instance.PlayerDamageEvent += (source, victim, info) =>
         {
-            if (source == this && victim != this)
+            if (source == this && victim != this && info.DmgType != DamageType.Heal)
             {
-                TotalDamageDealt += amt;
-                Coins += GlobalData.CoinForAttack;
+                TotalDamageDealt += info.ReactionInfo.Amount;
+                if (info.AwardCoin)
+                {
+                    Coins += GlobalData.CoinForAttack;
+                }
+                // Send a callback. This need to reach client & server
+                source.CallClient_NotifyDealDamage(info);
             }
         };
 

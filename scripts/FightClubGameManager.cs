@@ -10,7 +10,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     // Server Only Event. Client Related events should go in FightPlayerEvents, and be sent to the player client.
     public Action<FightPlayer> PlayerTeleportEvent;
     public Action<FightPlayer, FightPlayer> PlayerEliminationEvent;
-    public Action<FightPlayer, FightPlayer, int> PlayerDamageEvent;
+    public Action<FightPlayer, FightPlayer, FightPlayer.DamageInfo> PlayerDamageEvent;
 
     #endregion
     
@@ -24,7 +24,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     {
         PlayerTeleportEvent += OnPlayerTeleport;
         PlayerEliminationEvent += OnPlayerElimination;
-        PlayerDamageEvent += OnPlayerDamage;
+        //PlayerDamageEvent += OnPlayerDamage;
     }
 
     public override void Update() 
@@ -36,7 +36,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     {
         PlayerTeleportEvent -= OnPlayerTeleport;
         PlayerEliminationEvent -= OnPlayerElimination;
-        PlayerDamageEvent -= OnPlayerDamage;
+        //PlayerDamageEvent -= OnPlayerDamage;
     }
 
     public void OnPlayerJoin(Player player) 
@@ -65,9 +65,9 @@ public class FightClubGameManager : System<FightClubGameManager> {
         UIManager.CallClient_SetGlobalPopup($"{killer.Name} killed {victim.Name}!", 2.5f);
     }
 
-    public void OnPlayerDamage(FightPlayer killer, FightPlayer victim, int amount)
+    public void OnPlayerDamage(FightPlayer killer, FightPlayer victim, FightPlayer.DamageInfo info)
     {
-        Log.Debug($"{killer.Name} damaged {victim.Name} by {amount}");
+        Log.Debug($"{killer.Name} damaged {victim.Name} by {info.ReactionInfo.Amount}");
     }
     
     #endregion

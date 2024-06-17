@@ -18,7 +18,7 @@ public sealed class EffectShoulderCrash : FightEffect
     private List<Entity> _interactedEntity = new List<Entity>();
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
-    public override bool IsValidTarget => true;
+    public override bool IsValidTarget => false;
     
     
 
@@ -52,8 +52,6 @@ public sealed class EffectShoulderCrash : FightEffect
 
     protected Vector2 GetDashDirection()
     {
-        //Log.Debug(FightPlayer.LastInputs.ToString());
-        // Use input direction if we have one; use face direction otherwise.
         return AbilityPositionOrDirection.Normalized;
     }
     

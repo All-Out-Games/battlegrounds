@@ -10,14 +10,10 @@ public class SpoonProjectile : BaseProjectile
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
         if (fp != null)
         {
-            if (Network.IsServer)
-            {
-                FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
-                fp.TakeDamage(Owner, info);
-            }
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
+            fp.TakeDamage(Owner, info);
             if (!Pierce)
             {
-                Log.Debug("Projectile Destroy");
                 Entity.Destroy();
             }
         

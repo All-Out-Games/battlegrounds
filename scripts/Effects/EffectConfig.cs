@@ -332,4 +332,35 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region cfg: LeapSlam
+
+    public struct LeapSlamConfig
+    {
+        public static int SlamDamageBase = 10;
+        public static float Cooldown = 12f;
+        
+        public float DashDuration = 0.4f;
+        public float SlamDuration = 0.1f;
+
+        public int SlamDamage = 5;
+        public float BumpStrength = 280f;
+        
+        public LeapSlamConfig()
+        {
+            
+        }
+
+
+        public static LeapSlamConfig GetDefault(int attack)
+        {
+            LeapSlamConfig cfg = new LeapSlamConfig
+            {
+                SlamDamage = SlamDamageBase + attack
+            };
+            return cfg;
+        }
+    }
+
+    #endregion
 }
