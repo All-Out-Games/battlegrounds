@@ -45,7 +45,8 @@ public class FightAbility : Ability
         {SC.SelfDestructConfig.SkillKey, typeof(AbilitySelfDestruct)},
         {SC.BattleCryConfig.SkillKey, typeof(AbilityBattleCry)},
         {SC.ClawSlashConfig.SkillKey, typeof(AbilityClawSlash)},
-        {SC.LeapSlamConfig.SkillKey, typeof(AbilityLeapSlam)}
+        {SC.LeapSlamConfig.SkillKey, typeof(AbilityLeapSlam)},
+        {SC.BefuddleConfig.SkillKey, typeof(AbilityBefuddle)}
     };
 }
 

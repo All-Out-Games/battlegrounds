@@ -136,9 +136,16 @@ public static class EffectConfig
     public struct ProjectileConfig
     {
         public static readonly int SpoonDamageBase = 5;
-        public static readonly int SpoonThrowCooldown = 3;
+        public static readonly float SpoonThrowCooldown = 3;
         public static readonly float SpoonRange = 10f;
-        public static float SpoonLifetime = 2f;
+        public static readonly float SpoonLifetime = 2f;
+
+        public static readonly int BefuddleDamageBase = 1;
+        public static readonly float BefuddleCooldown = 7;
+        public static readonly float BefuddleRange = 10f;
+        public static readonly float BefuddleLifetime = 1f;
+        public static readonly float BefuddleConfusionTime = 2.75f;
+        public static readonly float BefuddleConfusionIntensity = 75f;
 
         public float Speed = 15f;
         public float ProjectileLifetime = 2f;
@@ -151,24 +158,38 @@ public static class EffectConfig
         {
             
         }
+        
+        /// <summary>
+        /// Projectile config can be reused, you can make it timed / ranged in your effect codes
+        /// Here the default config is for the spoon throw skill
+        /// </summary>
+        /// <param name="attack"></param>
+        /// <returns></returns>
+        public static ProjectileConfig GetPlayerSpoonThrowConfig(int attack)
+        {
+            ProjectileConfig cfg = new ProjectileConfig()
+            {
+                Damage = ProjectileConfig.SpoonDamageBase + attack,
+                ProjectilePrefabKey = "BroccoliProjectile.prefab",
+                ProjectileLifetime = ProjectileConfig.SpoonLifetime
+            };
+            return cfg;
+        }
+
+        public static ProjectileConfig GetPlayerBefuddleConfig(int attack)
+        {
+            ProjectileConfig cfg = new ProjectileConfig()
+            {
+                Damage = BefuddleDamageBase + attack,
+                ProjectilePrefabKey = "BefuddleProjectile.prefab",
+                ProjectileLifetime = BefuddleLifetime,
+                Speed = BefuddleRange / BefuddleLifetime
+            };
+            return cfg;
+        }
     }
 
-    /// <summary>
-    /// Projectile config can be reused, you can make it timed / ranged in your effect codes
-    /// Here the default config is for the spoon throw skill
-    /// </summary>
-    /// <param name="attack"></param>
-    /// <returns></returns>
-    public static ProjectileConfig GetPlayerSpoonThrowConfig(int attack)
-    {
-        ProjectileConfig cfg = new ProjectileConfig()
-        {
-            Damage = ProjectileConfig.SpoonDamageBase + attack,
-            ProjectilePrefabKey = "BroccoliProjectile.prefab",
-            ProjectileLifetime = ProjectileConfig.SpoonLifetime
-        };
-        return cfg;
-    }
+
 
     #endregion
 

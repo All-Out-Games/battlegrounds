@@ -1,6 +1,18 @@
 using AO;
 using Assembly.scripts.SceneObjects;
+namespace Assembly.scripts.Effects.ActiveSkills;
+public class AbilitySpoonThrow : FightAbility
+{
+    public override string SkillKey => "SpoonThrow";
 
+    public override Type Effect => typeof(EffectProjectileThrow);
+    public override bool MonitorEffectDuration => false;
+    public override TargettingMode TargettingMode => TargettingMode.Line;
+    public override float MaxDistance => EffectConfig.ProjectileConfig.SpoonRange;
+    public override int MaxTargets => 1;
+    
+    public override float Cooldown => EffectConfig.ProjectileConfig.SpoonThrowCooldown;
+}
 
 public class EffectProjectileThrow : FightEffect
 {
@@ -18,7 +30,7 @@ public class EffectProjectileThrow : FightEffect
         WhiteList = new List<Entity>();
         WhiteList.Add(FightPlayer.Entity);
         
-        AssignConfig(EffectConfig.GetPlayerSpoonThrowConfig(FightPlayer.CurrentAttack));
+        AssignConfig();
         DurationRemaining = Config.ThrowAnimationLength;
     }
 
@@ -28,9 +40,9 @@ public class EffectProjectileThrow : FightEffect
         ProjectileThrow();
     }
 
-    public virtual void AssignConfig(EffectConfig.ProjectileConfig cfg)
+    public virtual void AssignConfig()
     {
-        Config = cfg;
+        Config = EffectConfig.ProjectileConfig.GetPlayerSpoonThrowConfig(FightPlayer.CurrentAttack);
     }
     
     public virtual void ProjectileThrow()
@@ -39,13 +51,16 @@ public class EffectProjectileThrow : FightEffect
         // However, you should try to build the logic of the projectile within itself
         // i.e. inherit the Projectile component and put it on your prefab.
 
-        //Entity proj = AO.Assets.GetAsset<Prefab>(Config.ProjectilePrefabKey).Instantiate();
-
         Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
             $"{FightPlayer.Id}_{Config.ProjectilePrefabKey}",
             FightPlayer.Entity.Position, AbilityPositionOrDirection);
         //proj.Position = Entity.Position;
-        
+        InitializeProjectile(proj);
+    }
+
+    protected virtual void InitializeProjectile(Entity proj)
+    {
+        // Default Projectile (Spoon)
         Projectile projComp = proj.GetComponent<Projectile>();
         projComp.Speed = Config.Speed;
         projComp.Lifetime = Config.ProjectileLifetime;

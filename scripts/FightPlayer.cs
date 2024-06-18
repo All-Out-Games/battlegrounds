@@ -419,6 +419,7 @@ public partial class FightPlayer : Player
     [ClientRpc]
     public void AddDash(Vector2 add, float duration)
     {
+        SetFacingDirection(add.X > 0);
         Dash = add;
         DashRemainingDuration = duration;
     }

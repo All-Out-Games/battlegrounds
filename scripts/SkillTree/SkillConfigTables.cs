@@ -106,23 +106,7 @@ public static partial class SkillConfig
         ParentNodeKeys = new string [] {},
         ChildrenNodeKeys = new string[] {"RollOut"},
     };
-
-    /// <summary>
-    /// Spoon Throw
-    /// </summary>
-    public static readonly SkillTreeNodeConfig SpoonThrowConfig = new SkillTreeNodeConfig()
-    {
-        DescriptionTextKey = "Throw a spoon towards aiming position",
-        MaximumLevel = 1,
-        NType = NodeType.SkillUnlock,
-        NTab = SkillTreeTabs.Psionic,
-        UpgradeCost = 0,
-        UIPosition = new Vector2(450, 30),
-        SkillKey = "SpoonThrow",
-        IconPath = "ability_icon_tmp/SpoonThrow_Tmp.png",
-        ParentNodeKeys = new string[] {},
-        ChildrenNodeKeys = new string[]{},
-    };
+    
     
     
 
@@ -246,6 +230,44 @@ public static partial class SkillConfig
     };
 
     #endregion
+
+    #region NodeConfig: Psionic
+
+    /// <summary>
+    /// Spoon Throw
+    /// </summary>
+    public static readonly SkillTreeNodeConfig SpoonThrowConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Throw a spoon towards aiming position",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Psionic,
+        UpgradeCost = 0,
+        UIPosition = new Vector2(450, 30),
+        SkillKey = "SpoonThrow",
+        IconPath = "ability_icon_tmp/SpoonThrow_Tmp.png",
+        ParentNodeKeys = new string[] {},
+        ChildrenNodeKeys = new string[]{},
+    };
+    
+    /// <summary>
+    /// Spoon Throw
+    /// </summary>
+    public static readonly SkillTreeNodeConfig BefuddleConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Throw a bird that confuses enemy movement on contact",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Psionic,
+        UpgradeCost = 0,
+        UIPosition = new Vector2(450, 230),
+        SkillKey = "Befuddle",
+        IconPath = "ability_icon_tmp/Befuddle_Tmp.png",
+        ParentNodeKeys = new string[] {},
+        ChildrenNodeKeys = new string[]{},
+    };
+
+    #endregion
     
     // [Add Skill] item 2: Query Entry
     // MUST ADD for each new skill. This connects the unique skill key to their node config.
@@ -260,7 +282,6 @@ public static partial class SkillConfig
             {"RollOut", RollOutNodeConfig},
             {"Punch2", PunchTwoConfig},
             {"Shield", ShieldConfig},
-            {"SpoonThrow", SpoonThrowConfig},
             // Brawler
             {"ShoulderCrash", ShoulderCrashNodeConfig},
             {"GroundStomp", GroundStompConfig},
@@ -269,15 +290,21 @@ public static partial class SkillConfig
             {"SelfDestruct", SelfDestructConfig},
             {"BattleCry", BattleCryConfig},
             {"ClawSlash", ClawSlashConfig},
-            {"LeapSlam", LeapSlamConfig}
+            {"LeapSlam", LeapSlamConfig},
+            // Psionic
+            {"SpoonThrow", SpoonThrowConfig},
+            {"Befuddle", BefuddleConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
     public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
     
-    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "Shield", "SpoonThrow",
+    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "Shield", 
         // Brawler
-        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam"};
+        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam",
+        // Psionic
+        "SpoonThrow", "Befuddle"
+    };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     

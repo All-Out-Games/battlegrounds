@@ -3,6 +3,7 @@ AbilityBookItem.prefab - .ao - 66622b07d7f18c22a1140ab0 - 8105871847217317263
 AbilityItem.prefab - .ao - 6643f5634d5b99636ac7a9a4 - 14427433616163832665
 AbilityUpgradeDialog.prefab - .ao - 6647dbfca2a326d825267e81 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 6660a2c7d7f18c22a1140a92 - 14180256252234443626
+BefuddleProjectile.prefab - .ao - 667201210b1e3d2f089ae7e7 - 15850830237510690507
 BroccoliProjectile.prefab - .ao - 666b71d2d7f18c22a1140d42 - 5129262647641696432
 ClawSwipe.prefab - .ao - 6671ef540b1e3d2f089ae7d7 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 666c8f92d7f18c22a1141616 - 15909775696421813938
@@ -18,6 +19,8 @@ VFX/ClawSwipe/claw_swipe_BAT003.spine - .ao - 6671eec10b1e3d2f089ae7d4 - 4634519
 VFX/SelfDestructExplosion/explosion_big.png - .ao - 6671c7560b1e3d2f089ae7b2 - 9127105229977764723
 VFX/SelfDestructExplosion/explosion_big.png - .ao.ios - 6671c7570b1e3d2f089ae7b4 - 2340973987058875720
 VFX/SelfDestructExplosion/explosion_big.spine - .ao - 6671c7560b1e3d2f089ae7b1 - 16862651109100273494
+ability_icon_tmp/Befuddle_Tmp.png - .ao - 6672020d0b1e3d2f089ae7ee - 16873724532494154655
+ability_icon_tmp/Befuddle_Tmp.png - .ao.ios - 6672020d0b1e3d2f089ae7ed - 10152828531997449758
 ability_icon_tmp/GroundStomp_Tmp.png - .ao - 66639229d7f18c22a1140ac5 - 6153841723021127104
 ability_icon_tmp/GroundStomp_Tmp.png - .ao.ios - 66639229d7f18c22a1140ac6 - 6090531938772023533
 ability_icon_tmp/Punch_Tmp.png - .ao - 6658c99087d80516fc66cbd3 - 9586459572575858944
@@ -49,5 +52,7 @@ environment/gold.png - .ao.ios - 664e651aa2a326d825267fda - 14993547085893853238
 environment/portal/cosmicPortal.png - .ao - 664e651ba2a326d825267fe0 - 3995821800800756657
 environment/portal/cosmicPortal.png - .ao.ios - 664e651aa2a326d825267fdb - 4722501650766168214
 environment/portal/cosmicPortal.spine - .ao - 664e651aa2a326d825267fd9 - 9083999045970940274
+projectile/TwitterProjectile.png - .ao - 667201210b1e3d2f089ae7e9 - 16873724532494154655
+projectile/TwitterProjectile.png - .ao.ios - 667201210b1e3d2f089ae7e8 - 10152828531997449758
 projectile/broccoli.png - .ao - 6656296f60923cfc467fd9b9 - 11812411699987569959
 projectile/broccoli.png - .ao.ios - 6656296f60923cfc467fd9b8 - 13405905846631228871
