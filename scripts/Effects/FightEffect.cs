@@ -8,8 +8,8 @@ using StreamReader = AO.StreamReader;
 public abstract class FightEffect : AEffect
 {
     protected FightPlayer FightPlayer;
-    
 
+    protected int InterruptLevel;
     /// <summary>
     /// Get the owner as FightPlayer & the slot the skill has been triggered from.
     /// If you want to use these fields you must call base.OnEffectStart!
@@ -27,6 +27,11 @@ public abstract class FightEffect : AEffect
     public override void OnEffectUpdate()
     {
         
+    }
+
+    public virtual bool TryInterrupt(int incoming)
+    {
+        return incoming > InterruptLevel;
     }
 
     /// <summary>
