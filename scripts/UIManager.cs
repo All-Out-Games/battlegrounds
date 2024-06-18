@@ -237,13 +237,15 @@ public partial class UIManager : System<UIManager>
                 sideBarRect.CutTop(10);
                 
                 var buttonRect3 = sideBarRect.CutTop(100);
-                if (UI.Button(buttonRect3, $"Ability Book",
+                if (UI.Button(buttonRect3, $"Boom Effect",
                         new UI.ButtonSettings()
                             { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
                         _defaultTextSettings).Clicked)
                 {
                     var player = (FightPlayer)Network.LocalPlayer;
-                    OpenUniqueUIWindow(UniqueWindowKeys.AbilityBookPath);
+                    Prefab explosion = Assets.GetAsset<Prefab>("SelfDestructExplosion.prefab");
+                    Entity expEntity = explosion.Instantiate();
+                    expEntity.SetParent(player.Entity, false);
                 }
                 
                 

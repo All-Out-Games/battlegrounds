@@ -1,0 +1,62 @@
+explosion_big.png
+	size: 1944, 1944
+	filter: Linear, Linear
+	scale: 0.5
+A
+	bounds: 1808, 609, 122, 140
+B
+	bounds: 1411, 429, 115, 132
+	rotate: 90
+BOOM
+	bounds: 1058, 436, 347, 108
+K
+	bounds: 1654, 609, 129, 150
+M
+	bounds: 1808, 477, 128, 126
+O1
+	bounds: 6, 401, 110, 113
+	rotate: 90
+O2
+	bounds: 125, 402, 109, 109
+big_ring
+	bounds: 6, 1333, 739, 605
+	offsets: 6, 7, 751, 619
+circle_fade
+	bounds: 580, 449, 472, 436
+circle_glow
+	bounds: 580, 891, 472, 436
+cloud
+	bounds: 1058, 845, 189, 189
+explosion_flare
+	bounds: 1350, 1341, 597, 588
+	offsets: 0, 0, 597, 589
+	rotate: 90
+flare
+	bounds: 1058, 550, 590, 209
+	offsets: 4, 0, 598, 209
+glow
+	bounds: 1350, 765, 570, 570
+	offsets: 14, 14, 598, 598
+ground_fissure
+	bounds: 1058, 1040, 292, 236
+	offsets: 6, 6, 303, 248
+	rotate: 90
+ground_fissure_glow
+	bounds: 1654, 477, 148, 126
+	offsets: 2, 1, 152, 129
+ground_glow
+	bounds: 6, 835, 568, 492
+	offsets: 14, 15, 596, 518
+halftone_explosion
+	bounds: 751, 1338, 593, 600
+	offsets: 0, 5, 595, 605
+ribbon
+	bounds: 6, 517, 291, 312
+	offsets: 10, 11, 309, 327
+ribbon2
+	bounds: 303, 433, 396, 210
+	offsets: 11, 51, 420, 270
+	rotate: 90
+spark_particle_B
+	bounds: 1549, 367, 111, 104
+	offsets: 3, 3, 118, 111
