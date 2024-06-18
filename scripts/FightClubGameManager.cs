@@ -154,6 +154,17 @@ public class FightClubGameManager : System<FightClubGameManager> {
                 key = parts[1];
                 player.GetSkillTree().DepriveSkill(key);
                 break;
+            case "serverspawn":
+                // Spawn something at player position
+                if (!CheckAdmin(p)) return;
+                if (parts.Length != 2)
+                {
+                    Chat.SendMessage(player, "Usage: /serverspawn <PrefabPath.prefab>");
+                    return;
+                }
+                key = parts[1];
+                ServerSpawn(key, player.Entity.Position);
+                break;
         }
     }
 
@@ -199,6 +210,26 @@ public class FightClubGameManager : System<FightClubGameManager> {
             }
         }
         return hitPlayers;
+    }
+
+    public void ServerSpawn(string prefabPath, Vector2 position, Action<Entity> afterSpawn = null)
+    {
+        if (Network.IsServer)
+        {
+            Prefab pf = Assets.GetAsset<Prefab>(prefabPath);
+            if (pf == null)
+            {
+                Log.Error($"{prefabPath} does not exist!");
+                return;
+            }
+            Entity expEntity = pf.Instantiate();
+            expEntity.Position = position;
+            Network.Spawn(expEntity);
+            if (afterSpawn != null)
+            {
+                afterSpawn(expEntity);
+            }
+        }
     }
 
     #endregion

@@ -210,7 +210,7 @@ public partial class UIManager : System<UIManager>
                 var sideBarRect = UI.ScreenRect.LeftCenterRect().Grow(330, 100, 330, 0).Offset(5, 0);
 
                 var buttonRect = sideBarRect.CutTop(100);
-                if (UI.Button(buttonRect, $"Dash", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
+                if (UI.Button(buttonRect, $"Unused", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
                         _defaultTextSettings).Clicked)
                 {
                     var player = (FightPlayer)Network.LocalPlayer;
@@ -218,7 +218,7 @@ public partial class UIManager : System<UIManager>
                     Vector2 dashDir = player.LastInputs.Length < 0.001
                         ? (player.GetFacingDirection() ? Vector2.Right : Vector2.Left)
                          : player.LastInputs;
-                    TestServerRPC.CallServer_AddDashToNetworkID(player.Entity.NetworkId, dashDir * 250f, 0.5f);
+                    
                 }
 
                 // Spacing
@@ -237,15 +237,12 @@ public partial class UIManager : System<UIManager>
                 sideBarRect.CutTop(10);
                 
                 var buttonRect3 = sideBarRect.CutTop(100);
-                if (UI.Button(buttonRect3, $"Boom Effect",
+                if (UI.Button(buttonRect3, $"Unused",
                         new UI.ButtonSettings()
                             { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
                         _defaultTextSettings).Clicked)
                 {
-                    var player = (FightPlayer)Network.LocalPlayer;
-                    Prefab explosion = Assets.GetAsset<Prefab>("SelfDestructExplosion.prefab");
-                    Entity expEntity = explosion.Instantiate();
-                    expEntity.SetParent(player.Entity, false);
+                    
                 }
                 
                 

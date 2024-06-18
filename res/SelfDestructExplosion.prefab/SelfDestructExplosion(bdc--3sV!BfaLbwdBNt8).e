@@ -1,6 +1,6 @@
 11
 219043332097
-115168708295379 1718733841037056500
+120771259104021 1718736493759224700
 {
   "name": "SelfDestructExplosion",
   "local_enabled": true,
@@ -10,14 +10,14 @@
   },
   "local_rotation": 0,
   "local_scale": {
-    "X": 1,
-    "Y": 1
+    "X": 0.5000000000000000,
+    "Y": 0.5000000000000000
   },
   "spawn_as_networked_entity": true
 },
 {
   "cid": 1,
-  "aoid": "115204928294406:1718733858186672100",
+  "aoid": "120771260050594:1718736493759672800",
   "component_type": "Internal_Component",
   "internal_component_type": "Spine_Animator",
   "data": {
@@ -27,19 +27,23 @@
     ],
     "depth_offset": 0,
     "skeleton_scale": {
-      "X": 1,
-      "Y": 1
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000
     }
   }
 },
 {
   "cid": 2,
-  "aoid": "116695728742282:1718734564057896600",
+  "aoid": "120984462125624:1718736594707596400",
   "component_type": "Mono_Component",
   "mono_component_type": "BaseVFX",
   "data": {
-    "StartAnimationStr": "Boom",
+    "StartAnimationStr": [
+      "Boom",
+      "Kaboom"
+    ],
     "Loop": false,
-    "Animator": "115204928294406:1718733858186672100"
+    "Animator": "120771260050594:1718736493759672800",
+    "EntityLifeTime": 2.5000000000000000
   }
 }
