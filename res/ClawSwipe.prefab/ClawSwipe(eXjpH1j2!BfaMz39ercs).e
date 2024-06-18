@@ -1,12 +1,12 @@
 11
 219043332097
-120771259104021 1718736493759224700
+133560214182134 1718742549133965100
 {
-  "name": "SelfDestructExplosion",
+  "name": "ClawSwipe",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+    "X": 2.4460542201995850,
+    "Y": -3.9565215110778809
   },
   "local_rotation": 0,
   "local_scale": {
@@ -17,33 +17,32 @@
 },
 {
   "cid": 1,
-  "aoid": "120771260050594:1718736493759672800",
+  "aoid": "133560215032735:1718742549134367300",
   "component_type": "Internal_Component",
   "internal_component_type": "Spine_Animator",
   "data": {
-    "skeleton_data_asset": "VFX/SelfDestructExplosion/explosion_big.spine",
+    "skeleton_data_asset": "VFX/ClawSwipe/claw_swipe_BAT003.spine",
     "ordered_skins": [
-      "default"
+
     ],
     "depth_offset": 0,
     "skeleton_scale": {
-      "X": 0.5000000000000000,
-      "Y": 0.5000000000000000
+      "X": 1,
+      "Y": 1
     }
   }
 },
 {
   "cid": 2,
-  "aoid": "120984462125624:1718736594707596400",
+  "aoid": "133592911862336:1718742564615816900",
   "component_type": "Mono_Component",
   "mono_component_type": "BaseVFX",
   "data": {
     "StartAnimationStr": [
-      "Boom",
-      "Kaboom"
+      "slice"
     ],
     "Loop": false,
-    "Animator": "120771260050594:1718736493759672800",
-    "EntityLifeTime": 2.5000000000000000
+    "Animator": "133560215032735:1718742549134367300",
+    "EntityLifeTime": 2
   }
 }

@@ -224,11 +224,13 @@ public class FightClubGameManager : System<FightClubGameManager> {
             }
             Entity expEntity = pf.Instantiate();
             expEntity.Position = position;
-            Network.Spawn(expEntity);
             if (afterSpawn != null)
             {
                 afterSpawn(expEntity);
             }
+            
+            Network.Spawn(expEntity);
+            
         }
     }
 

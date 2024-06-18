@@ -1,4 +1,6 @@
 ﻿using AO;
+using Assembly.scripts.VFX;
+using Assembly.scripts.Zones;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
 
@@ -25,7 +27,7 @@ public class EffectClawSlash : FightEffect
     {
         base.OnEffectStart();
         AssignConfig(EffectConfig.ClawSlashConfig.GetDefault(FightPlayer.CurrentAttack));
-        FightPlayer.SetAnimTrigger("punch"); 
+        //FightPlayer.SetAnimTrigger("punch"); 
     }
 
     public override void OnEffectUpdate()
@@ -50,6 +52,10 @@ public class EffectClawSlash : FightEffect
     public void Slash()
     {
         Vector2 selfPos = FightPlayer.Entity.Position + AbilityPositionOrDirection * EffectConfig.ClawSlashConfig.SlashRadius;
+        FightClubGameManager.Instance.ServerSpawn(VFXPrefabKeys.ClawSlashVFXPath, selfPos, entity =>
+        {
+            entity.LocalRotation = FightClubUtils.AngleBetween(Vector2.Left, AbilityPositionOrDirection);
+        });
 
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.ClawSlashConfig.SlashRadius);
         foreach (var other in cbPlayers)

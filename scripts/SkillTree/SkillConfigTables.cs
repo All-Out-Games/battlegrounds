@@ -237,7 +237,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 10,
+        UpgradeCost = 999999,
         UIPosition = new Vector2(730, 430),
         SkillKey = "LeapSlam",
         IconPath = "ability_icon_tmp/RollOut_Tmp.png",

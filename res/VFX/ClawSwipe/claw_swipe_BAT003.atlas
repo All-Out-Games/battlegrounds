@@ -1,0 +1,24 @@
+claw_swipe_BAT003.png
+	size: 1024, 1024
+	filter: Linear, Linear
+swipe_VFX/swipe_claw
+	bounds: 605, 814, 88, 111
+	offsets: 4, 5, 96, 121
+	rotate: 90
+swipe_VFX/swipe_red
+	bounds: 303, 302, 299, 298
+swipe_VFX/swipe_white1
+	bounds: 604, 301, 299, 298
+	offsets: 5, 5, 309, 308
+	rotate: 90
+swipe_VFX/swipe_white2
+	bounds: 2, 603, 300, 299
+	offsets: 4, 3, 308, 306
+swipe_VFX/swipe_white3
+	bounds: 304, 602, 300, 299
+	offsets: 4, 3, 308, 306
+	rotate: 90
+swipe_VFX/swipe_white4
+	bounds: 2, 301, 300, 299
+	offsets: 4, 3, 308, 306
+	rotate: 90

@@ -16,6 +16,7 @@ public class BaseVFX : Component
     {
         base.Awake();
         Animator = Entity.GetComponent<Spine_Animator>();
+        
         //Animator.DepthOffset = 3;
     }
 
@@ -30,6 +31,7 @@ public class BaseVFX : Component
     {
         if (Util.OneTime(LifeTime > EntityLifeTime, ref LifeTimeEnded))
         {
+            if(Network.IsServer) Network.Despawn(Entity);
             Entity.Destroy();
             //Log.Warn($"Entity {Entity.Name} Destroyed!");
         }

@@ -1,4 +1,6 @@
 using AO;
+using Assembly.scripts.VFX;
+
 namespace Assembly.scripts.Effects.ActiveSkills;
 
 
@@ -29,6 +31,7 @@ public class EffectSelfDestruct : FightEffect
     public override void OnEffectEnd(bool interrupt)
     {
         KnockingBlast();
+        FightClubGameManager.Instance.ServerSpawn(VFXPrefabKeys.SelfDestructExplosionPath, FightPlayer.Entity.Position);
     }
     
 
