@@ -31,7 +31,7 @@ public class EffectShield : FightEffect
         
         FightPlayer.MaxShield = Config.ShieldAmt;
         FightPlayer.CurrentShield = Config.ShieldAmt;
-        FightPlayer.ShieldBreakEvent += PrematureBreak;
+        FightPlayer.OnReceiveDamage += OnDamageReaction;
     }
 
     public void AssignConfig(EffectConfig.ShieldConfig cfg)
@@ -39,33 +39,28 @@ public class EffectShield : FightEffect
         Config = cfg;
     }
 
+    public override void OnEffectEnd(bool interrupt)
+    {
+        if (interrupt)
+        {
+            Log.Warn("Shield Premature Removal!");
+        }
+        FightPlayer.CurrentShield = 0;
+        FightPlayer.MaxShield = 0;
+        FightPlayer.OnReceiveDamage -= OnDamageReaction;
+    }
+
     public override void NetworkDeserialize(StreamReader reader)
     {
         base.NetworkDeserialize(reader);
-        FightPlayer.ShieldBreakEvent += PrematureBreak;
+        FightPlayer.OnReceiveDamage += OnDamageReaction;
     }
 
-    public override void OnEffectEnd(bool interrupt)
+    protected void OnDamageReaction(FightPlayer source, FightPlayer.DamageInfo info)
     {
-        FightPlayer.CurrentShield = 0;
-        FightPlayer.MaxShield = 0;
-        FightPlayer.ShieldBreakEvent -= PrematureBreak;
-    }
-
-    protected void PrematureBreak()
-    {
-        Log.Debug("Shield was broken!");
-        FightPlayer.GetEffectMgr().RemoveEffect<EffectShield>(true);
-    }
-
-    public static void RemoveShieldEffect(FightPlayer fightPlayer)
-    {
-        EffectShield otherShield;
-        fightPlayer.TryGetEffect(out otherShield);
-        if (otherShield != null)
+        if (info.ReactionInfo.ShieldBroken)
         {
-            // Overwrite existing effects
-            fightPlayer.GetEffectMgr().RemoveEffect<EffectShield>(true);
+            FightPlayer.RemoveEffect<EffectShield>(true);
         }
     }
 

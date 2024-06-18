@@ -267,7 +267,6 @@ public partial class FightPlayer : Player
         if (CurrentHealth <= 0) return; // Avoid damaging the dead
 
         int damage = info.ReactionInfo.Amount;
-        DamageReaction(CurrentHealth, info);  // All Client side damage reaction goes here
         
         if (Network.IsServer) {
             // Actual damage stuff
@@ -288,42 +287,24 @@ public partial class FightPlayer : Player
             }
 
             FightClubGameManager.Instance.PlayerDamageEvent.Invoke(source, this, info);
-            CallClient_NotifyReceiveDamage(source.Entity, info);
+            CallClient_NotifyReceiveDamage(source.Entity, info); // This info is reliable (server dispatched)
             // Player Death
             if (CurrentHealth <= 0)
             {
                 //Coroutine.Start(this.Entity, PlayerRespawnCoroutine());
                 FightClubGameManager.Instance.PlayerEliminationEvent.Invoke(source, this);
-                CallClient_DamageReaction(CurrentHealth, info); // Use this line to dispatch death event (client is not authorized to do actual damage)
+                CallClient_PlayerDeath();
+                return;
             }
         }
-        
+        DamageReaction(CurrentHealth, info);  // All Client side damage reaction goes here
     }
     
-    [ClientRpc]
     public void DamageReaction(int health, DamageInfo info)
     {
-        // DO NOT use CurrentHealth SyncVar in this frame
-        // It might not arrive yet at this point. Trust the info sent from the triggering function on server (i.e. the parameters) here
-        if (info.ReactionInfo.ShieldBroken)
+        if (info.ReactionInfo.Flinch)
         {
-            ShieldBreakEvent?.Invoke();
-        }
-        
-        if (health <= 0)
-        {
-            // If the damage caused a death...
-            Log.Debug("Death Triggered By RPC");
-            PlayerDeath();
-        }
-        else
-        {
-            // Normal damage route
-            if (info.ReactionInfo.Flinch)
-            {
-                SetAnimTrigger("flinch");
-            }
-            
+            SetAnimTrigger("flinch");
         }
     }
 
@@ -331,7 +312,8 @@ public partial class FightPlayer : Player
     /// <summary>
     /// [Server & Client]
     /// </summary>
-    protected void PlayerDeath()
+    [ClientRpc]
+    public void PlayerDeath()
     {
         ClearAllEffects();
         EffectManager.AddEffect<EffectDeath>(null, GlobalData.RespawnTime, null);

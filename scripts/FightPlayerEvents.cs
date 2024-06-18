@@ -4,7 +4,6 @@
 
 public partial class FightPlayer
 {
-    public Action ShieldBreakEvent;
     public Action<int> CoinUpdateEvent;
     public Action<int> TotalElminationUpdateEvent;
     public Action<int> TotalDamageUpdateEvent;
