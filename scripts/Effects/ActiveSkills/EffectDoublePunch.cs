@@ -79,7 +79,7 @@ public class EffectDoublePunch : FightEffect
         // The first punch stuns the enemy if hit. The second punch knock them back
         Physics.RaycastHit rc;
         var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
-            EffectConfig.DoublePunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(), out rc);
+            EffectConfig.DoublePunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(),new Entity[]{ }, out rc);
 
         /*hit = Physics.Raycast(Entity.Position, FightPlayer.GetPunchDirection(),
             EffectConfig.PunchConfig.PunchRange, out rc);*/
