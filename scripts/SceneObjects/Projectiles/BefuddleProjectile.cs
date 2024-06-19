@@ -13,7 +13,7 @@ public class BefuddleProjectile : BaseProjectile
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
         if (fp != null)
         {
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged) with {InterruptLevel = FightPlayer.DamageInfo.StunInterruptLevel};
             info.ReactionInfo.Flinch = false;
             fp.TakeDamage(Owner, info);
             fp.AddEffect<EffectConfusion>(Owner, ConfusionTime, confusion => confusion.ConfusionIntensity = ConfusionIntensity);

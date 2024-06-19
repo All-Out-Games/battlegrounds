@@ -9,7 +9,7 @@ public abstract class FightEffect : AEffect
 {
     protected FightPlayer FightPlayer;
 
-    protected int InterruptLevel;
+    protected virtual int InterruptLevel => 0;
     /// <summary>
     /// Get the owner as FightPlayer & the slot the skill has been triggered from.
     /// If you want to use these fields you must call base.OnEffectStart!
@@ -29,9 +29,33 @@ public abstract class FightEffect : AEffect
         
     }
 
-    public virtual bool TryInterrupt(int incoming)
+    public virtual bool Interruptable(int incoming)
     {
-        return incoming > InterruptLevel;
+        return incoming >= InterruptLevel;
+    }
+
+    /// <summary>
+    /// Subscribe this function to FightPlayer.OnReceiveDamage if you need some effect to react to damage.
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="info"></param>
+    protected virtual void OnDamageEvent(FightPlayer source, FightPlayer.DamageInfo info)
+    {
+        // Default behavior: Compare interruption level
+        
+        if (InterruptLevel == 0 || info.InterruptLevel == 0)
+        {
+            // ILv = 0 means uninterruptible by any damage. You shouldn't subscribe in this case anyway
+            return;
+        }
+
+        // You can override Interruptable() to use specific interruption level (e.g. only interruptable by ILv = 10001)
+        // Or override this function to implement more complex behavior.
+        if (Interruptable(info.InterruptLevel))
+        {
+            FightPlayer.RemoveEffect(this, true);
+        }
+        
     }
 
     /// <summary>

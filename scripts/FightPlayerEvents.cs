@@ -17,9 +17,10 @@ public partial class FightPlayer
     
     public struct DamageInfo
     {
-        // Server Only Data
+        // Server Authoratative Data
         public DamageType DmgType = DamageType.Melee;
         public bool AwardCoin = true;
+        public int InterruptLevel = 0;
         
         // Client & Server Data
         public DamageReactionInfo ReactionInfo = new DamageReactionInfo(); 
@@ -28,17 +29,22 @@ public partial class FightPlayer
             
         }
 
+        public static int KnockBackInterruptLevel = 2000;
+        public static int StunInterruptLevel = 5000;
+
         /// <summary>
         /// Default settings. Melee damage.
         /// </summary>
         /// <param name="amount"></param>
         /// <param name="type"></param>
+        /// <param name="interruptLv">Interruption level. 0 means doesn't interrupt anything.</param>
         /// <returns></returns>
-        public static DamageInfo CreateDamageInfo(int amount, DamageType type = DamageType.Melee)
+        public static DamageInfo CreateDamageInfo(int amount, DamageType type = DamageType.Melee, int interruptLv = 1000)
         {
             DamageInfo info = new DamageInfo();
             info.ReactionInfo.Amount = amount;
             info.DmgType = DamageType.Melee;
+            info.InterruptLevel = interruptLv;
             return info;
         }
 
@@ -49,7 +55,21 @@ public partial class FightPlayer
         /// <returns></returns>
         public static DamageInfo CreateSelfDamageInfo(int amount)
         {
-            DamageInfo info = CreateDamageInfo(amount, DamageType.None);
+            DamageInfo info = CreateDamageInfo(amount, DamageType.None, 0);
+            info.AwardCoin = false;
+            info.ReactionInfo.Flinch = false;
+            return info;
+        }
+
+        public static DamageInfo CreateHealInfo(int amount)
+        {
+            if(amount < 0) Log.Error("You don't need to input a negative amount for healing. This function will do that for you.");
+            else
+            {
+                amount = -amount;
+            }
+
+            DamageInfo info = CreateDamageInfo(amount, DamageType.Heal, 0);
             info.AwardCoin = false;
             info.ReactionInfo.Flinch = false;
             return info;
@@ -112,7 +132,7 @@ public partial class FightPlayer
                 {
                     Coins += GlobalData.CoinForAttack;
                 }
-                // Send a callback. This need to reach client & server
+                // Send a callback to the source of damage. This need to reach client & server
                 source.CallClient_NotifyDealDamage(info);
             }
         };

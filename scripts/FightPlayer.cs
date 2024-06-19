@@ -283,7 +283,7 @@ public partial class FightPlayer : Player
             }
             else
             {
-                CurrentHealth -= damage;
+                CurrentHealth = CurrentHealth - damage > MaxHealth ? MaxHealth : CurrentHealth - damage;
             }
 
             FightClubGameManager.Instance.PlayerDamageEvent.Invoke(source, this, info);

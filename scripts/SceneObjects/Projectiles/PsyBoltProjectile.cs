@@ -12,7 +12,7 @@ public class PsyBoltProjectile : BaseProjectile
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
         if (fp != null)
         {
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged) with {InterruptLevel = 2000};
             fp.TakeDamage(Owner, info);
             Vector2 dir = other.Position - Entity.Position;
             fp.AddBumpFrom(Owner, dir * KnockBackStrength, false);

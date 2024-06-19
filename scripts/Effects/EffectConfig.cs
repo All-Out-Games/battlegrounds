@@ -110,7 +110,7 @@ public static class EffectConfig
     public struct ShieldConfig
     {
         public static readonly int ShieldAmtBase = 20;
-        public static readonly float Cooldown = 8f;
+        public static readonly float Cooldown = 6f;
         
         public float Duration = 8f;
         public int ShieldAmt = ShieldAmtBase;
@@ -298,10 +298,10 @@ public static class EffectConfig
 
     public struct SelfDestructConfig
     {
-        public static int BaseDmg = 10;
-        public static int BaseSelfDmg = 12;
-        public static float Cooldown = 10f;
-        public static float ActivationTime = 0.5f;
+        public static int BaseDmg = 12;
+        public static int BaseSelfDmg = 10;
+        public static float Cooldown = 11f;
+        public static float ActivationTime = 1f;
         public static float BlastRange = 8f;
         public static float BumpStrength = 140f;
 
@@ -402,6 +402,17 @@ public static class EffectConfig
             };
             return cfg;
         }
+    }
+
+    #endregion
+
+    #region cfg: SelfHeal
+
+    public struct SelfHealConfig
+    {
+        public static readonly int HealAmtBase = 30;
+        public static readonly float ChannelTime = 2.4f;
+        public static readonly float Cooldown = 7f;
     }
 
     #endregion

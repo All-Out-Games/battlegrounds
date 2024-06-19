@@ -71,7 +71,7 @@ public sealed class EffectShoulderCrash : FightEffect
             Vector2 bumpDir = other.Position - Entity.Position;
             var add = bumpDir * _config.BumpStrength;
             otherPlayer.AddBumpFrom(FightPlayer, add, false);
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage);
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage) with{ InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel};
             otherPlayer.TakeDamage(FightPlayer, info);
         }
     }

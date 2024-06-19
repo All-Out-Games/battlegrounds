@@ -63,7 +63,7 @@ public class EffectBattleCry : FightEffect
                 continue;
             }
 
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.RoarDamage, DamageType.AOE);
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.RoarDamage, DamageType.AOE) with {InterruptLevel = FightPlayer.DamageInfo.StunInterruptLevel};
             fp.TakeDamage(FightPlayer, info);
             fp.GetEffectMgr().AddStun(FightPlayer.Entity, Config.StunTime);
             // TODO: Screen shake

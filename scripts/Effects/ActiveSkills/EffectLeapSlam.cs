@@ -52,6 +52,7 @@ public class EffectLeapSlam : FightEffect
     public override void OnEffectUpdate()
     {
         // TODO: Currently we are unable to set player Entity Position on the server (It works fine for other entities)
+        // The effect is UNFINISHED and NOT WORKING
         FightPlayer.Entity.Position = Vector2.Lerp(_originPosition, _dirPosition, DurationProgress01);
         if (Util.OneTime(ElapsedTime > _config.DashDuration, ref _slammed))
         {

@@ -19,6 +19,7 @@ public sealed partial class EffectRollOut : FightEffect
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => false;
     public override bool IsValidTarget => true;
+    protected override int InterruptLevel => FightPlayer.DamageInfo.StunInterruptLevel;
 
     /// <summary>
     /// Call this function before adding the created Effect instance to the player!
@@ -44,6 +45,8 @@ public sealed partial class EffectRollOut : FightEffect
         {
             UIManager.Instance.SetPopup("You are Rollin! Bump other players with extra speed!", 3f, FightPlayer);
         }
+
+        FightPlayer.OnReceiveDamage += OnDamageEvent;
     }
 
     public override void NetworkDeserialize(StreamReader reader)
@@ -54,6 +57,8 @@ public sealed partial class EffectRollOut : FightEffect
         FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
         FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
         
+        FightPlayer.OnReceiveDamage += OnDamageEvent;
+        
     }
 
 
@@ -61,6 +66,8 @@ public sealed partial class EffectRollOut : FightEffect
     {
         FightPlayer.RemoveSpeedModifier(_config.SpeedBuffMultiplier);
         FightPlayer.RemovePlayerCollisionFunction(OnRolloutCollision);
+        
+        FightPlayer.OnReceiveDamage -= OnDamageEvent;
     }
     
     
@@ -78,7 +85,7 @@ public sealed partial class EffectRollOut : FightEffect
             Vector2 bumpDir = other.Position - Entity.Position;
             var add = bumpDir * _config.BumpStrength;
             otherPlayer.AddBumpFrom(FightPlayer, add, false);
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage);
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage) with {InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel};
             otherPlayer.TakeDamage( FightPlayer, info);
 
         }

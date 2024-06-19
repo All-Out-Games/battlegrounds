@@ -30,7 +30,13 @@ public class FightAbility : Ability
         return true;
     }
 
-    
+    public override void OnActivate(Player targetPlayer, Vector2 positionOrDirection, float magnitude)
+    {
+        // TODO: SkillActivationInfo
+        base.OnActivate(targetPlayer, positionOrDirection, magnitude);
+    }
+
+
     public static readonly Dictionary<string, Type> AbilityQueryDict = new Dictionary<string, Type>()
     {
         {"Empty", typeof(FightAbility)},
@@ -47,7 +53,8 @@ public class FightAbility : Ability
         {SC.ClawSlashConfig.SkillKey, typeof(AbilityClawSlash)},
         {SC.LeapSlamConfig.SkillKey, typeof(AbilityLeapSlam)},
         {SC.BefuddleConfig.SkillKey, typeof(AbilityBefuddle)},
-        {SC.PsyboltConfig.SkillKey, typeof(AbilityPsybolt)}
+        {SC.PsyboltConfig.SkillKey, typeof(AbilityPsybolt)},
+        {SC.SelfHealConfig.SkillKey, typeof(AbilitySelfHeal)}
     };
 }
 

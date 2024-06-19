@@ -31,7 +31,7 @@ public class EffectShield : FightEffect
         
         FightPlayer.MaxShield = Config.ShieldAmt;
         FightPlayer.CurrentShield = Config.ShieldAmt;
-        FightPlayer.OnReceiveDamage += OnDamageReaction;
+        FightPlayer.OnReceiveDamage += OnDamageEvent;
     }
 
     public void AssignConfig(EffectConfig.ShieldConfig cfg)
@@ -47,16 +47,16 @@ public class EffectShield : FightEffect
         }
         FightPlayer.CurrentShield = 0;
         FightPlayer.MaxShield = 0;
-        FightPlayer.OnReceiveDamage -= OnDamageReaction;
+        FightPlayer.OnReceiveDamage -= OnDamageEvent;
     }
 
     public override void NetworkDeserialize(StreamReader reader)
     {
         base.NetworkDeserialize(reader);
-        FightPlayer.OnReceiveDamage += OnDamageReaction;
+        FightPlayer.OnReceiveDamage += OnDamageEvent;
     }
-
-    protected void OnDamageReaction(FightPlayer source, FightPlayer.DamageInfo info)
+    
+    protected override void OnDamageEvent(FightPlayer source, FightPlayer.DamageInfo info)
     {
         if (info.ReactionInfo.ShieldBroken)
         {

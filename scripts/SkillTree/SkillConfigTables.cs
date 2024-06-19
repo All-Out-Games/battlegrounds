@@ -247,7 +247,7 @@ public static partial class SkillConfig
         SkillKey = "SpoonThrow",
         IconPath = "ability_icon_tmp/SpoonThrow_Tmp.png",
         ParentNodeKeys = new string[] {},
-        ChildrenNodeKeys = new string[]{"Befuddle", "Psybolt"},
+        ChildrenNodeKeys = new string[]{"Befuddle", "Psybolt", "SelfHeal"},
     };
     
     /// <summary>
@@ -283,6 +283,23 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[] {"SpoonThrow"},
         ChildrenNodeKeys = new string[]{},
     };
+    
+    /// <summary>
+    /// SelfHeal
+    /// </summary>
+    public static readonly SkillTreeNodeConfig SelfHealConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Sit down and channel healing energy, restore a lot of health upon successful channel",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Psionic,
+        UpgradeCost = 0,
+        UIPosition = new Vector2(730, 230),
+        SkillKey = "SelfHeal",
+        IconPath = "ability_icon_tmp/Shield_Tmp.png",
+        ParentNodeKeys = new string[] {"SpoonThrow"},
+        ChildrenNodeKeys = new string[]{},
+    };
 
     #endregion
     
@@ -311,7 +328,8 @@ public static partial class SkillConfig
             // Psionic
             {"SpoonThrow", SpoonThrowConfig},
             {"Befuddle", BefuddleConfig},
-            {"Psybolt", PsyboltConfig}
+            {"Psybolt", PsyboltConfig},
+            {"SelfHeal", SelfHealConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -321,7 +339,7 @@ public static partial class SkillConfig
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam",
         // Psionic
-        "SpoonThrow", "Befuddle", "Psybolt"
+        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
