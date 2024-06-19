@@ -9,7 +9,7 @@ public class FightAbility : Ability
     
     public FightPlayer FightPlayer;
     public virtual string SkillKey => "Empty";
-    public virtual string SkillIconPath => SkillConfig.GetIconPath(SkillKey); // TODO Get an lock icon somewhere?
+    public virtual string SkillIconPath => SkillConfig.GetIconPath(SkillKey); 
 
     public sealed override Texture Icon => Assets.GetAsset<Texture>(SkillIconPath);
 
@@ -46,7 +46,8 @@ public class FightAbility : Ability
         {SC.BattleCryConfig.SkillKey, typeof(AbilityBattleCry)},
         {SC.ClawSlashConfig.SkillKey, typeof(AbilityClawSlash)},
         {SC.LeapSlamConfig.SkillKey, typeof(AbilityLeapSlam)},
-        {SC.BefuddleConfig.SkillKey, typeof(AbilityBefuddle)}
+        {SC.BefuddleConfig.SkillKey, typeof(AbilityBefuddle)},
+        {SC.PsyboltConfig.SkillKey, typeof(AbilityPsybolt)}
     };
 }
 

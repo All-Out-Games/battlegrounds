@@ -135,17 +135,26 @@ public static class EffectConfig
     /// </summary>
     public struct ProjectileConfig
     {
-        public static readonly int SpoonDamageBase = 5;
-        public static readonly float SpoonThrowCooldown = 3;
+        // Spoon
+        public static readonly int SpoonDamageBase = 3;
+        public static readonly float SpoonThrowCooldown = 3f;
         public static readonly float SpoonRange = 10f;
-        public static readonly float SpoonLifetime = 2f;
+        public static readonly float SpoonLifetime = 0.6f;
 
+        // Befuddle
         public static readonly int BefuddleDamageBase = 1;
         public static readonly float BefuddleCooldown = 7;
         public static readonly float BefuddleRange = 10f;
         public static readonly float BefuddleLifetime = 1f;
         public static readonly float BefuddleConfusionTime = 2.75f;
         public static readonly float BefuddleConfusionIntensity = 75f;
+        
+        // PsyBolt
+        public static readonly int PsyboltDamageBase = 6;
+        public static readonly float PsyboltCooldown = 4.5f;
+        public static readonly float PsyboltRange = 10f;
+        public static readonly float PsyboltLifeTime = 1f;
+        public static readonly float PsyboltKnockbackStrength = 165f;
 
         public float Speed = 15f;
         public float ProjectileLifetime = 2f;
@@ -169,9 +178,9 @@ public static class EffectConfig
         {
             ProjectileConfig cfg = new ProjectileConfig()
             {
-                Damage = ProjectileConfig.SpoonDamageBase + attack,
+                Damage = SpoonDamageBase + attack,
                 ProjectilePrefabKey = "BroccoliProjectile.prefab",
-                ProjectileLifetime = ProjectileConfig.SpoonLifetime
+                ProjectileLifetime = SpoonLifetime
             };
             return cfg;
         }
@@ -184,6 +193,18 @@ public static class EffectConfig
                 ProjectilePrefabKey = "BefuddleProjectile.prefab",
                 ProjectileLifetime = BefuddleLifetime,
                 Speed = BefuddleRange / BefuddleLifetime
+            };
+            return cfg;
+        }
+
+        public static ProjectileConfig GetPlayerPsyboltConfig(int attack)
+        {
+            ProjectileConfig cfg = new ProjectileConfig()
+            {
+                Damage = PsyboltDamageBase + attack,
+                ProjectilePrefabKey = "PsyboltProjectile.prefab",
+                ProjectileLifetime = PsyboltLifeTime,
+                Speed = PsyboltRange / PsyboltLifeTime
             };
             return cfg;
         }

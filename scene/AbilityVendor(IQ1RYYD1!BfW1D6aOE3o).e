@@ -48,7 +48,8 @@
       "X": 0,
       "Y": 1
     },
-    "text": "Ability Vendor"
+    "text": "Ability Vendor",
+    "radius": 2
   }
 },
 {

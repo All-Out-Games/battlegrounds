@@ -18,7 +18,7 @@ public static partial class SkillConfig
         NType = NodeType.SkillReplace,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 0,
-        UIPosition = new Vector2(420,30), // This will be set to the item's offset value
+        UIPosition = new Vector2(450,30), // This will be set to the item's offset value
         SkillKey = "Punch",
         IconPath = "ability_icon_tmp/Punch_Tmp.png",
         ParentNodeKeys = new string[]{},
@@ -67,7 +67,7 @@ public static partial class SkillConfig
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Defensive,
         UpgradeCost = 0,
-        UIPosition = new Vector2(770,330),
+        UIPosition = new Vector2(750,330),
         SkillKey = "RollOut",
         IconPath = "ability_icon_tmp/RollOut_Tmp.png",
         ParentNodeKeys =  new string[]{"Shield"},
@@ -247,11 +247,11 @@ public static partial class SkillConfig
         SkillKey = "SpoonThrow",
         IconPath = "ability_icon_tmp/SpoonThrow_Tmp.png",
         ParentNodeKeys = new string[] {},
-        ChildrenNodeKeys = new string[]{},
+        ChildrenNodeKeys = new string[]{"Befuddle", "Psybolt"},
     };
     
     /// <summary>
-    /// Spoon Throw
+    /// Befuddle
     /// </summary>
     public static readonly SkillTreeNodeConfig BefuddleConfig = new SkillTreeNodeConfig()
     {
@@ -263,7 +263,24 @@ public static partial class SkillConfig
         UIPosition = new Vector2(450, 230),
         SkillKey = "Befuddle",
         IconPath = "ability_icon_tmp/Befuddle_Tmp.png",
-        ParentNodeKeys = new string[] {},
+        ParentNodeKeys = new string[] {"SpoonThrow"},
+        ChildrenNodeKeys = new string[]{},
+    };
+    
+    /// <summary>
+    /// Psybolt
+    /// </summary>
+    public static readonly SkillTreeNodeConfig PsyboltConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Throw a bolt that knocks back enemy",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Psionic,
+        UpgradeCost = 0,
+        UIPosition = new Vector2(110, 230),
+        SkillKey = "Psybolt",
+        IconPath = "ability_icon_tmp/Befuddle_Tmp.png",
+        ParentNodeKeys = new string[] {"SpoonThrow"},
         ChildrenNodeKeys = new string[]{},
     };
 
@@ -293,7 +310,8 @@ public static partial class SkillConfig
             {"LeapSlam", LeapSlamConfig},
             // Psionic
             {"SpoonThrow", SpoonThrowConfig},
-            {"Befuddle", BefuddleConfig}
+            {"Befuddle", BefuddleConfig},
+            {"Psybolt", PsyboltConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -303,7 +321,7 @@ public static partial class SkillConfig
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam",
         // Psionic
-        "SpoonThrow", "Befuddle"
+        "SpoonThrow", "Befuddle", "Psybolt"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};

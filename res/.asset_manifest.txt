@@ -7,6 +7,7 @@ BefuddleProjectile.prefab - .ao - 667201210b1e3d2f089ae7e7 - 1585083023751069050
 BroccoliProjectile.prefab - .ao - 666b71d2d7f18c22a1140d42 - 5129262647641696432
 ClawSwipe.prefab - .ao - 6671ef540b1e3d2f089ae7d7 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 666c8f92d7f18c22a1141616 - 15909775696421813938
+PsyboltProjectile.prefab - .ao - 667352aa0b1e3d2f089ae814 - 4161595620992275702
 Rage_Aura.prefab - .ao - 66675639d7f18c22a1140af6 - 1815137123894366964
 ResourcesOverlayWindow.prefab - .ao - 665f4be4d7f18c22a11409aa - 4484872491460916377
 SceneProps_tmp/aura_circle.png - .ao - 666741efd7f18c22a1140ae8 - 10293273442432679734
@@ -56,3 +57,5 @@ projectile/TwitterProjectile.png - .ao - 667201210b1e3d2f089ae7e9 - 168737245324
 projectile/TwitterProjectile.png - .ao.ios - 667201210b1e3d2f089ae7e8 - 10152828531997449758
 projectile/broccoli.png - .ao - 6656296f60923cfc467fd9b9 - 11812411699987569959
 projectile/broccoli.png - .ao.ios - 6656296f60923cfc467fd9b8 - 13405905846631228871
+projectile/popcorn3.png - .ao - 667350e60b1e3d2f089ae80c - 1803048306196291329
+projectile/popcorn3.png - .ao.ios - 667350e60b1e3d2f089ae80e - 10194851684871747838

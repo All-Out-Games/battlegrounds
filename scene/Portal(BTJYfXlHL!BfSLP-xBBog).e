@@ -44,7 +44,8 @@
       "X": 0,
       "Y": 1
     },
-    "text": "CentralHub"
+    "text": "CentralHub",
+    "radius": 2
   }
 },
 {

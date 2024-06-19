@@ -65,7 +65,8 @@
       "X": 0,
       "Y": 1
     },
-    "text": "Ability Book"
+    "text": "Ability Book",
+    "radius": 2
   }
 },
 {

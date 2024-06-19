@@ -45,7 +45,8 @@
       "X": 0,
       "Y": 1
     },
-    "text": "PvPZone"
+    "text": "PvPZone",
+    "radius": 2
   }
 },
 {
