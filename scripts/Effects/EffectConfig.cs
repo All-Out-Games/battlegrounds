@@ -410,9 +410,22 @@ public static class EffectConfig
 
     public struct SelfHealConfig
     {
-        public static readonly int HealAmtBase = 30;
+        public static readonly int HealAmtBase = 35;
         public static readonly float ChannelTime = 2.4f;
         public static readonly float Cooldown = 7f;
+        public static readonly string FxPath = "";
+    }
+
+    #endregion
+
+    #region cfg: Regenerate
+
+    public struct RegenerateConfig
+    {
+        public static readonly int PerSecondHeal = 3;
+        public static readonly float HealTime = 6f;
+        public static readonly float Cooldown = 6f;
+        public static readonly string FxPath = "RegenerationAura.prefab";
     }
 
     #endregion

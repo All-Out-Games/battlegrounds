@@ -34,7 +34,7 @@ public static partial class SkillConfig
         MaximumLevel = 5,
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
-        UpgradeCost = 0,
+        UpgradeCost = 100,
         UIPosition = new Vector2(730,230),
         SkillKey = "HealthBoost",
         ParentNodeKeys = new string [] {"Punch"},
@@ -50,7 +50,7 @@ public static partial class SkillConfig
         MaximumLevel = 5,
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
-        UpgradeCost = 0,
+        UpgradeCost = 100,
         UIPosition = new Vector2(110,230),
         SkillKey = "AttackBoost",
         ParentNodeKeys = new string[] {"Punch"},
@@ -66,7 +66,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Defensive,
-        UpgradeCost = 0,
+        UpgradeCost = 100,
         UIPosition = new Vector2(750,330),
         SkillKey = "RollOut",
         IconPath = "ability_icon_tmp/RollOut_Tmp.png",
@@ -83,7 +83,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillReplace,
         NTab = SkillTreeTabs.Basic,
-        UpgradeCost = 0,
+        UpgradeCost = 100,
         UIPosition = new Vector2(450,430),
         SkillKey = "Punch2",
         ParentNodeKeys = new string [] {"AttackBoost", "HealthBoost"},
@@ -99,7 +99,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Defensive,
-        UpgradeCost = 0,
+        UpgradeCost = 100,
         UIPosition = new Vector2(450,30),
         SkillKey = "Shield",
         IconPath = "ability_icon_tmp/Shield_Tmp.png",
@@ -123,7 +123,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 10,
+        UpgradeCost = 100,
         UIPosition = new Vector2(450,30),
         SkillKey = "ShoulderCrash",
         IconPath = "ability_icon_tmp/ShoulderCrash_Tmp.png",
@@ -137,7 +137,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 10,
+        UpgradeCost = 200,
         UIPosition = new Vector2(730, 230),
         SkillKey = "GroundStomp",
         IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
@@ -151,7 +151,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 10,
+        UpgradeCost = 200,
         UIPosition = new Vector2(450, 230),
         SkillKey = "Rage",
         IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
@@ -165,7 +165,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 10,
+        UpgradeCost = 200,
         UIPosition = new Vector2(170, 230),
         SkillKey = "DoublePunch",
         IconPath = "ability_icon_tmp/Punch_Tmp.png",
@@ -179,7 +179,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 10,
+        UpgradeCost = 200,
         UIPosition = new Vector2(240, 430),
         SkillKey = "SelfDestruct",
         IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
@@ -193,7 +193,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 10,
+        UpgradeCost = 200,
         UIPosition = new Vector2(450, 430),
         SkillKey = "BattleCry",
         IconPath = "ability_icon_tmp/RollOut_Tmp.png",
@@ -207,7 +207,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 10,
+        UpgradeCost = 200,
         UIPosition = new Vector2(10, 430),
         SkillKey = "ClawSlash",
         IconPath = "ability_icon_tmp/RollOut_Tmp.png",
@@ -242,7 +242,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
-        UpgradeCost = 0,
+        UpgradeCost = 100,
         UIPosition = new Vector2(450, 30),
         SkillKey = "SpoonThrow",
         IconPath = "ability_icon_tmp/SpoonThrow_Tmp.png",
@@ -259,7 +259,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
-        UpgradeCost = 0,
+        UpgradeCost = 100,
         UIPosition = new Vector2(450, 230),
         SkillKey = "Befuddle",
         IconPath = "ability_icon_tmp/Befuddle_Tmp.png",
@@ -276,7 +276,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
-        UpgradeCost = 0,
+        UpgradeCost = 100,
         UIPosition = new Vector2(110, 230),
         SkillKey = "Psybolt",
         IconPath = "ability_icon_tmp/Befuddle_Tmp.png",
@@ -293,11 +293,28 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
-        UpgradeCost = 0,
+        UpgradeCost = 100,
         UIPosition = new Vector2(730, 230),
         SkillKey = "SelfHeal",
         IconPath = "ability_icon_tmp/Shield_Tmp.png",
         ParentNodeKeys = new string[] {"SpoonThrow"},
+        ChildrenNodeKeys = new string[]{"Regeneration"},
+    };
+    
+    /// <summary>
+    /// SelfHeal
+    /// </summary>
+    public static readonly SkillTreeNodeConfig RegenerationConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Regenerate small amount of health over time",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Psionic,
+        UpgradeCost = 100,
+        UIPosition = new Vector2(730, 430),
+        SkillKey = "Regeneration",
+        IconPath = "ability_icon_tmp/Shield_Tmp.png",
+        ParentNodeKeys = new string[] {"SelfHeal"},
         ChildrenNodeKeys = new string[]{},
     };
 
@@ -329,7 +346,8 @@ public static partial class SkillConfig
             {"SpoonThrow", SpoonThrowConfig},
             {"Befuddle", BefuddleConfig},
             {"Psybolt", PsyboltConfig},
-            {"SelfHeal", SelfHealConfig}
+            {"SelfHeal", SelfHealConfig},
+            {"Regeneration", RegenerationConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -339,7 +357,7 @@ public static partial class SkillConfig
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam",
         // Psionic
-        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal"
+        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};

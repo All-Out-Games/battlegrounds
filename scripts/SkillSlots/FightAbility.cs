@@ -54,7 +54,8 @@ public class FightAbility : Ability
         {SC.LeapSlamConfig.SkillKey, typeof(AbilityLeapSlam)},
         {SC.BefuddleConfig.SkillKey, typeof(AbilityBefuddle)},
         {SC.PsyboltConfig.SkillKey, typeof(AbilityPsybolt)},
-        {SC.SelfHealConfig.SkillKey, typeof(AbilitySelfHeal)}
+        {SC.SelfHealConfig.SkillKey, typeof(AbilitySelfHeal)},
+        {SC.RegenerationConfig.SkillKey, typeof(AbilityRegeneration)}
     };
 }
 
