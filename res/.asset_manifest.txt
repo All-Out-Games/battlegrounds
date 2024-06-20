@@ -7,6 +7,8 @@ BefuddleProjectile.prefab - .ao - 667201210b1e3d2f089ae7e7 - 1585083023751069050
 BroccoliProjectile.prefab - .ao - 666b71d2d7f18c22a1140d42 - 5129262647641696432
 ClawSwipe.prefab - .ao - 6671ef540b1e3d2f089ae7d7 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 666c8f92d7f18c22a1141616 - 15909775696421813938
+PsionicBeamGroundFissue.prefab - .ao - 6674a55ff2e0da1ffcd23e65 - 6060544460007990298
+PsionicBeamGroundFissueEnd.prefab - .ao - 6674a55ff2e0da1ffcd23e64 - 9947869729590302411
 PsyboltProjectile.prefab - .ao - 667352aa0b1e3d2f089ae814 - 4161595620992275702
 Rage_Aura.prefab - .ao - 66675639d7f18c22a1140af6 - 1815137123894366964
 RegenerationAura.prefab - .ao - 66745f44f2e0da1ffcd23950 - 11219147230462838904

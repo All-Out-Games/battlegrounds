@@ -446,16 +446,19 @@ public static class EffectConfig
     public struct PsionicBeamConfig
     {
         public static readonly float Cooldown = 1f;
-        public static readonly float MinimumRange = 2f;
+        public static readonly float MinimumRange = 4f;
         public static readonly float MaximumRange = 8f;
         public static readonly float Degrees = 15f; // Half the entire angle
         public static readonly int PsionicBeamDmgBase = 3;
         public static readonly float CarveTime = 0.4f;
         
         
-        public static readonly float BeamCarveInterval = 0.1f; // Length of each interval. Calculate total intervals at runtime
+        public static readonly float BeamCarveInterval = 0.3f; // Length of each interval. Calculate total intervals at runtime
         public static readonly float CarveFadeTime = 0.6f;
-        public static readonly float EyeOffsetY = 0.8f;
+        public static readonly float EyeOffsetY = 0.7f;
+
+        public static readonly string FissueEndPrefabPath = "PsionicBeamGroundFissueEnd.prefab";
+        public static readonly string FissuePrefabPath = "PsionicBeamGroundFissue.prefab";
         
         
         public int Damage;

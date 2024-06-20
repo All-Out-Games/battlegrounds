@@ -203,10 +203,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
         {
             if (Vector2.Distance(center, other.Entity.Position) < radius)
             {
-                if (other != null)
-                {
-                    hitPlayers.Add(other);
-                }
+                hitPlayers.Add(other);
             }
         }
         return hitPlayers;
