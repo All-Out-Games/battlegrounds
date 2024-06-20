@@ -18,6 +18,10 @@ SkillSlotsPanel.prefab - .ao - 6650e827bbb4cc59c69fd102 - 11546600357276263640
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao - 6671eec10b1e3d2f089ae7d1 - 16085789866035322621
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao.ios - 6671eec10b1e3d2f089ae7d0 - 13006039638534950330
 VFX/ClawSwipe/claw_swipe_BAT003.spine - .ao - 6671eec10b1e3d2f089ae7d4 - 4634519565438313527
+VFX/PsionicBeam/ground_fissue_end.png - .ao - 66748cd3f2e0da1ffcd23bdf - 184583796234163889
+VFX/PsionicBeam/ground_fissue_end.png - .ao.ios - 66748cd3f2e0da1ffcd23bdc - 12478492516126473111
+VFX/PsionicBeam/ground_fissue_repeatable.png - .ao - 66748cd3f2e0da1ffcd23bdb - 18402468940375142426
+VFX/PsionicBeam/ground_fissue_repeatable.png - .ao.ios - 66748cd3f2e0da1ffcd23bda - 8883747129289483461
 VFX/SelfDestructExplosion/explosion_big.png - .ao - 6671c7560b1e3d2f089ae7b2 - 9127105229977764723
 VFX/SelfDestructExplosion/explosion_big.png - .ao.ios - 6671c7570b1e3d2f089ae7b4 - 2340973987058875720
 VFX/SelfDestructExplosion/explosion_big.spine - .ao - 6671c7560b1e3d2f089ae7b1 - 16862651109100273494

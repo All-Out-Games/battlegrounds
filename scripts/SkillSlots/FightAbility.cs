@@ -61,7 +61,8 @@ public class FightAbility : Ability
         {SC.PsyboltConfig.SkillKey, typeof(AbilityPsybolt)},
         {SC.SelfHealConfig.SkillKey, typeof(AbilitySelfHeal)},
         {SC.RegenerationConfig.SkillKey, typeof(AbilityRegeneration)},
-        {SC.HypnotizeConfig.SkillKey, typeof(AbilityHypnotize)}
+        {SC.HypnotizeConfig.SkillKey, typeof(AbilityHypnotize)},
+        {SC.PsionicBeamConfig.SkillKey, typeof(AbilityPsionicBeam)}
     };
 }
 

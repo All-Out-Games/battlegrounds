@@ -281,7 +281,7 @@ public static partial class SkillConfig
         SkillKey = "Psybolt",
         IconPath = "ability_icon_tmp/Befuddle_Tmp.png",
         ParentNodeKeys = new string[] {"SpoonThrow"},
-        ChildrenNodeKeys = new string[]{},
+        ChildrenNodeKeys = new string[]{"PsionicBeam"},
     };
     
     /// <summary>
@@ -333,6 +333,21 @@ public static partial class SkillConfig
         ChildrenNodeKeys = new string[]{},
 
     };
+    
+    public static readonly SkillTreeNodeConfig PsionicBeamConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Beam a small area in front of you with dark energy",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Psionic,
+        UpgradeCost = 200,
+        UIPosition = new Vector2(10, 430),
+        SkillKey = "PsionicBeam",
+        IconPath = String.Empty,
+        ParentNodeKeys = new string[] {"Psybolt"},
+        ChildrenNodeKeys = new string[]{},
+
+    };
 
     #endregion
     
@@ -364,7 +379,8 @@ public static partial class SkillConfig
             {"Psybolt", PsyboltConfig},
             {"SelfHeal", SelfHealConfig},
             {"Regeneration", RegenerationConfig},
-            {"Hypnotize", HypnotizeConfig}
+            {"Hypnotize", HypnotizeConfig},
+            {"PsionicBeam", PsionicBeamConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -374,7 +390,7 @@ public static partial class SkillConfig
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam",
         // Psionic
-        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize"
+        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize","PsionicBeam"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};

@@ -10,4 +10,10 @@ public static class FightClubUtils
 
         return AOMath.ToDegrees((float)Math.Atan2(sin, cos));
     }
+
+    public static Vector2 PolarCirclePoint(Vector2 c, float r, float theta)
+    {
+        Vector2 result = c + new Vector2(float.Cos(AOMath.ToRadians(theta)), float.Sin(AOMath.ToRadians(theta))) * r;
+        return result;
+    }
 }
