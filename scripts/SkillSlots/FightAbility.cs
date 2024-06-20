@@ -32,7 +32,7 @@ public class FightAbility : Ability
 
     protected bool GenericCanTarget(FightPlayer player)
     {
-        return !(player.CurrentHealth > 0);
+        return player.CurrentHealth > 0;
     }
 
     public override void OnActivate(Player targetPlayer, Vector2 positionOrDirection, float magnitude)
