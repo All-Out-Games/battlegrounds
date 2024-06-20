@@ -62,6 +62,7 @@ public class AbilityBookWindow : UniqueUIWindow
                 itm.Initialize(this, cfg.NTab);
                 itm.SetSkillName(key);
                 itm.SetIcon(Assets.GetAsset<Texture>(SkillConfig.GetIconPath(key)));
+                //Log.Error($"Icon for Key {key} : {SkillConfig.GetIconPath(key)}");
                 
                 itm.Entity.SetParent(layoutEntity, false);
                 _bookItems.Add(key, itm);

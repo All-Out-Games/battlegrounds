@@ -429,4 +429,15 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region cfg: Hypnotize
+
+    public struct HypnotizeConfig
+    {
+        public static readonly float HypnotizeTime = 2.5f;
+        public static readonly float HypnotizeRange = 2f;
+        public static readonly float Cooldown = 8f;
+    }
+
+    #endregion
 }

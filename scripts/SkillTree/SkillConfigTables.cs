@@ -264,7 +264,7 @@ public static partial class SkillConfig
         SkillKey = "Befuddle",
         IconPath = "ability_icon_tmp/Befuddle_Tmp.png",
         ParentNodeKeys = new string[] {"SpoonThrow"},
-        ChildrenNodeKeys = new string[]{},
+        ChildrenNodeKeys = new string[]{"Hypnotize"},
     };
     
     /// <summary>
@@ -277,7 +277,7 @@ public static partial class SkillConfig
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
         UpgradeCost = 100,
-        UIPosition = new Vector2(110, 230),
+        UIPosition = new Vector2(170, 230),
         SkillKey = "Psybolt",
         IconPath = "ability_icon_tmp/Befuddle_Tmp.png",
         ParentNodeKeys = new string[] {"SpoonThrow"},
@@ -302,7 +302,7 @@ public static partial class SkillConfig
     };
     
     /// <summary>
-    /// SelfHeal
+    /// Regenerate
     /// </summary>
     public static readonly SkillTreeNodeConfig RegenerationConfig = new SkillTreeNodeConfig()
     {
@@ -310,12 +310,28 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
-        UpgradeCost = 100,
+        UpgradeCost = 200,
         UIPosition = new Vector2(730, 430),
         SkillKey = "Regeneration",
         IconPath = "ability_icon_tmp/Shield_Tmp.png",
         ParentNodeKeys = new string[] {"SelfHeal"},
         ChildrenNodeKeys = new string[]{},
+    };
+
+
+    public static readonly SkillTreeNodeConfig HypnotizeConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Regenerate small amount of health over time",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Psionic,
+        UpgradeCost = 200,
+        UIPosition = new Vector2(450, 430),
+        SkillKey = "Hypnotize",
+        IconPath = String.Empty,
+        ParentNodeKeys = new string[] {"Befuddle"},
+        ChildrenNodeKeys = new string[]{},
+
     };
 
     #endregion
@@ -347,7 +363,8 @@ public static partial class SkillConfig
             {"Befuddle", BefuddleConfig},
             {"Psybolt", PsyboltConfig},
             {"SelfHeal", SelfHealConfig},
-            {"Regeneration", RegenerationConfig}
+            {"Regeneration", RegenerationConfig},
+            {"Hypnotize", HypnotizeConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -357,7 +374,7 @@ public static partial class SkillConfig
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam",
         // Psionic
-        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration"
+        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};

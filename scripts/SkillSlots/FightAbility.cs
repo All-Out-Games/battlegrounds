@@ -30,6 +30,11 @@ public class FightAbility : Ability
         return true;
     }
 
+    protected bool GenericCanTarget(FightPlayer player)
+    {
+        return !(player.CurrentHealth > 0);
+    }
+
     public override void OnActivate(Player targetPlayer, Vector2 positionOrDirection, float magnitude)
     {
         // TODO: SkillActivationInfo
@@ -55,7 +60,8 @@ public class FightAbility : Ability
         {SC.BefuddleConfig.SkillKey, typeof(AbilityBefuddle)},
         {SC.PsyboltConfig.SkillKey, typeof(AbilityPsybolt)},
         {SC.SelfHealConfig.SkillKey, typeof(AbilitySelfHeal)},
-        {SC.RegenerationConfig.SkillKey, typeof(AbilityRegeneration)}
+        {SC.RegenerationConfig.SkillKey, typeof(AbilityRegeneration)},
+        {SC.HypnotizeConfig.SkillKey, typeof(AbilityHypnotize)}
     };
 }
 
