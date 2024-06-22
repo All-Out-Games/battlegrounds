@@ -1,0 +1,237 @@
+BAT003_projectile.png
+	size: 2180, 252
+	filter: Linear, Linear
+images/fire_hit/glow
+	bounds: 831, 81, 167, 168
+	offsets: 3, 3, 173, 173
+images/fire_hit/particle_A
+	bounds: 1717, 5, 35, 31
+	offsets: 1, 1, 37, 33
+images/fire_hit/particle_B
+	bounds: 1855, 14, 37, 26
+	offsets: 1, 1, 39, 28
+images/fire_hit/particle_C
+	bounds: 632, 10, 31, 15
+	offsets: 1, 1, 33, 17
+	rotate: 90
+images/fire_hit/particle_D
+	bounds: 2160, 39, 21, 17
+	offsets: 1, 1, 23, 19
+	rotate: 90
+images/fire_hit/particle_E
+	bounds: 786, 4, 39, 48
+	offsets: 1, 1, 41, 50
+images/fire_hit/shockwave_A
+	bounds: 1903, 50, 77, 88
+	offsets: 1, 1, 79, 90
+images/fire_hit/shockwave_B
+	bounds: 2146, 161, 61, 14
+	offsets: 1, 1, 63, 16
+	rotate: 90
+images/fire_hit/shockwave_C
+	bounds: 2046, 121, 53, 55
+	offsets: 1, 1, 55, 57
+images/fire_hit/shockwave_D
+	bounds: 1999, 9, 51, 63
+	offsets: 1, 1, 53, 65
+	rotate: 90
+images/fire_hit/shockwave_E
+	bounds: 1244, 4, 62, 16
+	offsets: 1, 1, 64, 18
+images/fire_hit/shockwave_circle
+	bounds: 1396, 4, 94, 94
+	offsets: 1, 1, 96, 96
+images/fire_hit/spark
+	bounds: 1717, 39, 95, 99
+	offsets: 1, 1, 97, 101
+images/hit_vfx/glow
+	bounds: 653, 55, 175, 175
+	offsets: 11, 11, 197, 197
+images/hit_vfx/particle_A
+	bounds: 2102, 116, 44, 42
+	offsets: 1, 1, 46, 44
+images/hit_vfx/particle_B
+	bounds: 1367, 5, 24, 20
+	offsets: 1, 1, 26, 22
+images/hit_vfx/particle_C
+	bounds: 1018, 3, 18, 7
+	offsets: 1, 1, 20, 9
+images/hit_vfx/particle_D
+	bounds: 1493, 10, 8, 44
+	offsets: 1, 1, 10, 46
+images/hit_vfx/particle_E
+	bounds: 1855, 3, 18, 8
+	offsets: 1, 1, 20, 10
+images/hit_vfx/shockwave_A
+	bounds: 2046, 63, 55, 53
+	offsets: 1, 1, 57, 55
+	rotate: 90
+images/hit_vfx/shockwave_B
+	bounds: 1244, 23, 67, 74
+	offsets: 1, 1, 69, 76
+images/hit_vfx/shockwave_C
+	bounds: 1991, 141, 77, 52
+	offsets: 1, 1, 79, 54
+	rotate: 90
+images/hit_vfx/shockwave_D
+	bounds: 2101, 179, 42, 60
+	offsets: 1, 1, 44, 62
+images/hit_vfx/sparkle
+	bounds: 831, 11, 67, 114
+	offsets: 1, 1, 69, 115
+	rotate: 90
+images/ice_hit/glow
+	bounds: 258, 44, 205, 205
+	offsets: 11, 11, 227, 227
+images/ice_hit/particles_A
+	bounds: 1493, 57, 12, 41
+	offsets: 1, 1, 14, 43
+images/ice_hit/particles_B
+	bounds: 1876, 3, 16, 8
+	offsets: 1, 1, 18, 10
+images/ice_hit/particles_C
+	bounds: 948, 3, 36, 12
+	offsets: 1, 1, 38, 14
+images/ice_hit/particles_D
+	bounds: 2149, 63, 17, 46
+	offsets: 1, 1, 19, 48
+images/ice_hit/particles_E
+	bounds: 987, 4, 28, 6
+	offsets: 1, 1, 30, 8
+images/ice_hit/particles_F
+	bounds: 2149, 112, 41, 16
+	offsets: 1, 1, 43, 18
+	rotate: 90
+images/ice_hit/shockwave_A
+	bounds: 948, 18, 46, 60
+	offsets: 1, 1, 48, 62
+images/ice_hit/shockwave_B
+	bounds: 590, 3, 39, 38
+	offsets: 1, 1, 41, 40
+images/ice_hit/shockwave_C
+	bounds: 1755, 9, 40, 27
+	offsets: 1, 1, 42, 29
+images/ice_hit/shockwave_D
+	bounds: 2065, 3, 57, 47
+	offsets: 1, 1, 59, 49
+	rotate: 90
+images/ice_hit/shockwave_E
+	bounds: 2102, 63, 50, 44
+	offsets: 1, 1, 52, 46
+	rotate: 90
+images/ice_hit/spark
+	bounds: 387, 4, 37, 87
+	offsets: 1, 1, 39, 88
+	rotate: 90
+images/projectiles/kunai
+	bounds: 1319, 28, 221, 74
+	offsets: 1, 1, 223, 76
+	rotate: 90
+images/projectiles/kunai_vfx_A
+	bounds: 77, 3, 93, 11
+	offsets: 7, 1, 101, 13
+images/projectiles/kunai_vfx_B
+	bounds: 77, 17, 139, 11
+	offsets: 1, 1, 141, 13
+images/projectiles/kunai_vfx_C
+	bounds: 173, 3, 53, 11
+	offsets: 1, 1, 55, 13
+images/projectiles/psychic_particle_A
+	bounds: 1815, 4, 37, 36
+	offsets: 2, 2, 41, 40
+images/projectiles/psychic_particle_B
+	bounds: 229, 4, 24, 24
+	offsets: 2, 2, 28, 28
+images/projectiles/psychic_particle_C
+	bounds: 2115, 18, 42, 42
+	offsets: 2, 2, 46, 46
+images/projectiles/psychic_vfx
+	bounds: 3, 31, 252, 218
+	offsets: 4, 4, 261, 227
+images/projectiles/shuriken
+	bounds: 1001, 85, 164, 164
+	offsets: 1, 1, 166, 166
+images/projectiles/shuriken_vfx_A
+	bounds: 477, 6, 52, 35
+	offsets: 1, 1, 56, 37
+images/projectiles/shuriken_vfx_B
+	bounds: 1903, 6, 41, 93
+	offsets: 1, 1, 44, 95
+	rotate: 90
+images/projectiles/shuriken_vfx_C
+	bounds: 3, 5, 23, 71
+	offsets: 1, 0, 25, 72
+	rotate: 90
+images/projectiles/shuriken_vfx_D
+	bounds: 1815, 43, 95, 85
+	offsets: 3, 1, 99, 87
+	rotate: 90
+images/projectiles/spoon
+	bounds: 1396, 101, 148, 110
+	offsets: 1, 1, 150, 112
+	rotate: 90
+images/psybolt/bolt_1
+	bounds: 1001, 13, 240, 69
+	offsets: 3, 2, 245, 73
+images/psybolt/bolt_2
+	bounds: 1509, 8, 241, 66
+	offsets: 2, 2, 245, 70
+	rotate: 90
+images/psybolt/bolt_3
+	bounds: 1647, 13, 236, 67
+	offsets: 3, 2, 241, 71
+	rotate: 90
+images/psybolt/bolt_4
+	bounds: 1578, 9, 240, 66
+	offsets: 2, 2, 244, 70
+	rotate: 90
+images/psybolt/head_glow
+	bounds: 1168, 100, 149, 148
+	offsets: 14, 15, 178, 178
+	rotate: 90
+images/psybolt/hit/glow
+	bounds: 466, 44, 186, 184
+	offsets: 17, 17, 221, 219
+	rotate: 90
+images/psybolt/hit/particle_A
+	bounds: 2115, 5, 39, 10
+	offsets: 1, 1, 41, 12
+images/psybolt/hit/particle_B
+	bounds: 2146, 225, 22, 20
+	offsets: 1, 1, 24, 22
+	rotate: 90
+images/psybolt/hit/particle_C
+	bounds: 532, 11, 55, 30
+	offsets: 1, 1, 57, 32
+images/psybolt/hit/particle_D
+	bounds: 1314, 7, 18, 50
+	offsets: 1, 1, 20, 51
+	rotate: 90
+images/psybolt/hit/particle_E
+	bounds: 1798, 12, 5, 24
+	offsets: 1, 1, 7, 26
+images/psybolt/hit/shockwave_A
+	bounds: 1827, 141, 92, 84
+	offsets: 2, 2, 96, 88
+	rotate: 90
+images/psybolt/hit/shockwave_B
+	bounds: 1914, 141, 74, 89
+	offsets: 2, 2, 78, 93
+images/psybolt/hit/shockwave_C
+	bounds: 1983, 63, 75, 60
+	offsets: 2, 2, 80, 64
+	rotate: 90
+images/psybolt/hit/shockwave_start
+	bounds: 1717, 141, 107, 108
+	offsets: 2, 2, 111, 112
+images/psybolt/hit/spark
+	bounds: 2046, 179, 52, 53
+	offsets: 1, 1, 54, 55
+images/psybolt/ring_back
+	bounds: 258, 6, 35, 126
+	offsets: 2, 2, 39, 130
+	rotate: 90
+images/psybolt/ring_front
+	bounds: 653, 7, 45, 130
+	offsets: 2, 2, 49, 133
+	rotate: 90

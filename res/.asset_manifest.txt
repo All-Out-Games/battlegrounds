@@ -3,10 +3,11 @@ AbilityBookItem.prefab - .ao - 66622b07d7f18c22a1140ab0 - 8105871847217317263
 AbilityItem.prefab - .ao - 6643f5634d5b99636ac7a9a4 - 14427433616163832665
 AbilityUpgradeDialog.prefab - .ao - 6647dbfca2a326d825267e81 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 6660a2c7d7f18c22a1140a92 - 14180256252234443626
-BefuddleProjectile.prefab - .ao - 667201210b1e3d2f089ae7e7 - 15850830237510690507
+BefuddleProjectile.prefab - .ao - 6675e725f2e0da1ffcd23e82 - 6990652969476779402
 BroccoliProjectile.prefab - .ao - 666b71d2d7f18c22a1140d42 - 5129262647641696432
 ClawSwipe.prefab - .ao - 6671ef540b1e3d2f089ae7d7 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 666c8f92d7f18c22a1141616 - 15909775696421813938
+HitVfx.prefab - .ao - 6675e658f2e0da1ffcd23e7f - 9364149976474600941
 PsionicBeamGroundFissue.prefab - .ao - 6674a55ff2e0da1ffcd23e65 - 6060544460007990298
 PsionicBeamGroundFissueEnd.prefab - .ao - 6674a55ff2e0da1ffcd23e64 - 9947869729590302411
 PsyboltProjectile.prefab - .ao - 667352aa0b1e3d2f089ae814 - 4161595620992275702
@@ -17,6 +18,7 @@ SceneProps_tmp/aura_circle.png - .ao - 666741efd7f18c22a1140ae8 - 10293273442432
 SceneProps_tmp/aura_circle.png - .ao.ios - 666741efd7f18c22a1140ae9 - 4712178218859138718
 SelfDestructExplosion.prefab - .ao - 6671ebe60b1e3d2f089ae7cd - 15730315220489123347
 SkillSlotsPanel.prefab - .ao - 6650e827bbb4cc59c69fd102 - 11546600357276263640
+SpoonProjectile.prefab - .ao - 6675e658f2e0da1ffcd23e7e - 12342670774966987832
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao - 6671eec10b1e3d2f089ae7d1 - 16085789866035322621
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao.ios - 6671eec10b1e3d2f089ae7d0 - 13006039638534950330
 VFX/ClawSwipe/claw_swipe_BAT003.spine - .ao - 6671eec10b1e3d2f089ae7d4 - 4634519565438313527
@@ -60,6 +62,9 @@ environment/gold.png - .ao.ios - 664e651aa2a326d825267fda - 14993547085893853238
 environment/portal/cosmicPortal.png - .ao - 664e651ba2a326d825267fe0 - 3995821800800756657
 environment/portal/cosmicPortal.png - .ao.ios - 664e651aa2a326d825267fdb - 4722501650766168214
 environment/portal/cosmicPortal.spine - .ao - 664e651aa2a326d825267fd9 - 9083999045970940274
+projectile/BAT003_Projectile/BAT003_projectile.png - .ao - 6675d3b5f2e0da1ffcd23e6e - 8698776939411441091
+projectile/BAT003_Projectile/BAT003_projectile.png - .ao.ios - 6675d3b5f2e0da1ffcd23e6d - 13689035272585891771
+projectile/BAT003_Projectile/BAT003_projectile.spine - .ao - 6675d3b6f2e0da1ffcd23e72 - 17446277854452097558
 projectile/TwitterProjectile.png - .ao - 667201210b1e3d2f089ae7e9 - 16873724532494154655
 projectile/TwitterProjectile.png - .ao.ios - 667201210b1e3d2f089ae7e8 - 10152828531997449758
 projectile/broccoli.png - .ao - 6656296f60923cfc467fd9b9 - 11812411699987569959

@@ -179,7 +179,7 @@ public static class EffectConfig
             ProjectileConfig cfg = new ProjectileConfig()
             {
                 Damage = SpoonDamageBase + attack,
-                ProjectilePrefabKey = "BroccoliProjectile.prefab",
+                ProjectilePrefabKey = "SpoonProjectile.prefab",
                 ProjectileLifetime = SpoonLifetime
             };
             return cfg;

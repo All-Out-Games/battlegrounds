@@ -21,6 +21,7 @@ public class EffectBefuddle : EffectProjectileThrow
     {
         Config = EffectConfig.ProjectileConfig.GetPlayerBefuddleConfig(FightPlayer.CurrentAttack);
     }
+    
 
     protected override void InitializeProjectile(Entity proj)
     {
