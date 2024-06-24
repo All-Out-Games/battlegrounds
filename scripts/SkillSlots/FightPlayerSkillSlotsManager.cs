@@ -31,14 +31,13 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             _equippedSkillKeys[0] = "Punch";
             for (int i = 1; i < 6; i++)
             {
-                CallClient_SyncEquippedSkills(i, Save.GetString(_player, $"SkillSlot{i}", "Empty"));
+                CallClient_SyncEquippedSkills(i, Save.GetString(_player, $"SkillSlot{i}", "Empty")); // Send equipped skills from save to player
             }
         }
         
         if (_player.IsLocal)
         {
             SkillSlotsPanelEnable(false);
-            // TODO: Ability book & Load Slot from save
             ActiveAbilities.Add(_player.GetFightAbility<AbilityPunch>());
             for (int i = 1; i < 6; i++)
             {
@@ -70,6 +69,19 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     public FightAbility GetAbilityInstance(Type f)
     {
         return _player.GetFightAbility(f);
+    }
+
+    public int GetAbilityIndex(Type f)
+    {
+        var abi = _player.GetFightAbility(f);
+        for (int i = 1; i < ActiveAbilities.Count; i++)
+        {
+            if (ActiveAbilities[i] == abi)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
     
     public void ReplaceSlot(int index, FightAbility faInstanc)

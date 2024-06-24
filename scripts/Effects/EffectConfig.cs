@@ -470,4 +470,27 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region PsyThrow
+
+    public struct PsyThrowConfig
+    {
+        public static readonly float Cooldown = 7f;
+        public static readonly float Range = 8f;
+        public static readonly float ThrowRange = 12f;
+        public static readonly float ThrowStrength = 180f;
+        public static readonly float GrabTime = 1.5f;
+        public static readonly int DmgBase = 3;
+        public static readonly float SelfDmgModifier = 0.5f; // If you throw the enemy to yourself, you take half the damage.
+
+        public int Damage;
+        public int SelfDamage;
+
+        public static PsyThrowConfig GetDefault(int atk)
+        {
+            return new PsyThrowConfig() { Damage = atk + DmgBase, SelfDamage = (int)((atk + DmgBase) * SelfDmgModifier) };
+        }
+    }
+
+    #endregion
 }

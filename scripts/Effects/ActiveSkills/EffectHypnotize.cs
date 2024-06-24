@@ -26,7 +26,6 @@ public class EffectHypnotize : EffectStun
 {
     public override bool IsActiveEffect => false;
     protected override int InterruptLevel => 1000;
-    public override bool BlockAbilityActivation => true;
 
     public override void OnEffectStart()
     {

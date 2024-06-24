@@ -73,9 +73,6 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     [ClientRpc]
     public void UnlockAdder(int level, string skillKey)
     {
-        // TODO: TryFindEmptySlot
-        // If the slot is edited by player, we don't automatically replace it
-        // We'll equip the newly acquired skill automatically if the slot is untouched.
         
     }
 

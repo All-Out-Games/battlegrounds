@@ -348,6 +348,21 @@ public static partial class SkillConfig
         ChildrenNodeKeys = new string[]{},
 
     };
+    
+    public static readonly SkillTreeNodeConfig PsyThrowConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Grab and throw your enemy",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Psionic,
+        UpgradeCost = 200,
+        UIPosition = new Vector2(240, 430),
+        SkillKey = "PsyThrow",
+        IconPath = "ability_icon_tmp/PsyThrowGrab_Tmp.png",
+        ParentNodeKeys = new string[] {"Psybolt"},
+        ChildrenNodeKeys = new string[]{},
+
+    };
 
     #endregion
     
@@ -380,7 +395,8 @@ public static partial class SkillConfig
             {"SelfHeal", SelfHealConfig},
             {"Regeneration", RegenerationConfig},
             {"Hypnotize", HypnotizeConfig},
-            {"PsionicBeam", PsionicBeamConfig}
+            {"PsionicBeam", PsionicBeamConfig},
+            {"PsyThrow", PsyThrowConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -390,7 +406,7 @@ public static partial class SkillConfig
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam",
         // Psionic
-        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize","PsionicBeam"
+        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize","PsionicBeam", "PsyThrow"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
