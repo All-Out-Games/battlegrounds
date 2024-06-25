@@ -28,6 +28,7 @@ public class EffectPsionicBeam : FightEffect
     private float _angleHigh;
     private Vector2 _eyePos;
     private float _rayLength;
+    private List<Entity> _interactedEntities;
     
     // Carve Trail
     private float _nextCarveTick = 0;
@@ -54,8 +55,8 @@ public class EffectPsionicBeam : FightEffect
     {
         base.OnEffectStart();
         AssignConfig(EffectConfig.PsionicBeamConfig.GetDefault(FightPlayer.CurrentAttack));
-        
-        
+        FightPlayer.SetFacingDirection(AbilityPositionOrDirection.X >= 0);
+        _interactedEntities = new List<Entity>();
         
         float targetAngle = FightClubUtils.AngleBetween(Vector2.Right,AbilityPositionOrDirection);
         _angleHigh = targetAngle + EffectConfig.PsionicBeamConfig.Degrees;
@@ -81,6 +82,8 @@ public class EffectPsionicBeam : FightEffect
         _tickTime = EffectConfig.PsionicBeamConfig.CarveTime / repeatTimes;
         _repeatTimes = (int)repeatTimes + 1;
 
+        //Log.Warn($"R: {_repeatTimes}"); // 8-15 ticks
+        
         // First carve starts here, others are in OnEffectUpdate
         _currentAngle = _angleLow;
         CarveGround(); 
@@ -101,18 +104,13 @@ public class EffectPsionicBeam : FightEffect
         
         // Debug
         
-        IM.PushZ(-1);
-        DebugLine(FightClubUtils.PolarCirclePoint(_eyePos, _rayLength, _angleLow), Vector4.Blue);
-        DebugLine(FightClubUtils.PolarCirclePoint(_eyePos, _rayLength, _angleHigh), Vector4.Red);
-        DebugLine(_rayEnd, Vector4.White);
-        IM.PopZ();
+        // IM.PushZ(-1);
+        // DebugLine(FightClubUtils.PolarCirclePoint(_eyePos, _rayLength, _angleLow), Vector4.Blue);
+        // DebugLine(FightClubUtils.PolarCirclePoint(_eyePos, _rayLength, _angleHigh), Vector4.Red);
+        // DebugLine(_rayEnd, Vector4.White);
+        // IM.PopZ();
     }
-
-    public override void OnEffectEnd(bool interrupt)
-    {
-        base.OnEffectEnd(interrupt);
-        BeamDamage();
-    }
+    
 
     private void DebugLine(Vector2 point, Vector4 color)
     {
@@ -124,26 +122,28 @@ public class EffectPsionicBeam : FightEffect
 
     private void BeamDamage()
     {
-        List<FightPlayer> fpInRadius =
-            FightClubGameManager.Instance.OverlapCircleForCombatPlayers(_eyePos, _rayLength);
-        foreach (var fp in fpInRadius)
+        //corvin 2064485000-8032
+        var fpInRadius =
+            FightClubGameManager.Instance.GetCombatPlayersCollisionEntities();
+        if (AO.Physics.RaycastWithWhitelist(_eyePos, _rayEnd - _eyePos, _rayLength, fpInRadius, new Entity[] { },
+                out Physics.RaycastHit hit))
         {
-            if (fp != FightPlayer)
+            if (_interactedEntities.Contains(hit.Entity))
             {
-                Vector2 fpVector = fp.Entity.Position - _eyePos;
-                //Log.Warn($"Angle1 = {FightClubUtils.AngleBetween(Vector2.Right, fpVector)}");
-                //Log.Warn($"Low {_angleLow}, High {_angleHigh}");
-                float angle1 = FightClubUtils.AngleBetween(Vector2.Right, fpVector);
-                if (angle1 > _angleLow && angle1 < _angleHigh)
-                {
-                    FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_cfg.Damage, DamageType.Ranged);
-                    fp.TakeDamage(FightPlayer, info);
-                    
-                    var hit = VFXPrefabs.PsionicBeamHitVFX.Instantiate();
-                    hit.Position = fp.Entity.Position - fpVector * 0.01f;
-                }
+                return;
             }
+            _interactedEntities.Add(hit.Entity);
             
+            PlayerCollisionChild fp = hit.Entity.GetComponent<PlayerCollisionChild>();
+            if (fp != null && fp.Player != FightPlayer)
+            {
+                FightPlayer.DamageInfo info =
+                    FightPlayer.DamageInfo.CreateDamageInfo(_cfg.Damage, DamageType.Ranged);
+                fp.Player.TakeDamage(FightPlayer, info);
+
+                var hitVfx = VFXPrefabs.PsionicBeamHitVFX.Instantiate();
+                hitVfx.Position = hit.point;
+            }
         }
     }
 
@@ -151,6 +151,7 @@ public class EffectPsionicBeam : FightEffect
     {
         _rayEnd = FightClubUtils.PolarCirclePoint(_eyePos, _rayLength, _currentAngle);
         _vfx.SetBonePosition("end", _rayEnd - _eyePos);
+        BeamDamage();
         
         if (Network.IsClient)
         {
