@@ -455,6 +455,7 @@ public static class EffectConfig
         
         public static readonly float BeamCarveInterval = 0.3f; // Length of each interval. Calculate total intervals at runtime
         public static readonly float CarveFadeTime = 0.6f;
+        public static readonly float EyeOffsetX = -1.5f;
         public static readonly float EyeOffsetY = 0.7f;
 
         public static readonly string FissueEndPrefabPath = "PsionicBeamGroundFissueEnd.prefab";

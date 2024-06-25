@@ -31,11 +31,16 @@ public class BaseVFX : Component
     {
         if (Util.OneTime(LifeTime > EntityLifeTime, ref LifeTimeEnded))
         {
-            if(Network.IsServer) Network.Despawn(Entity);
-            Entity.Destroy();
+            Despawn();
             //Log.Warn($"Entity {Entity.Name} Destroyed!");
         }
 
         LifeTime += Time.DeltaTime;
+    }
+
+    public void Despawn()
+    {
+        if(Network.IsServer) Network.Despawn(Entity);
+        Entity.Destroy();
     }
 }

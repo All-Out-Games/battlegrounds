@@ -11,6 +11,7 @@ HitVfx.prefab - .ao - 6675e658f2e0da1ffcd23e7f - 9364149976474600941
 PsionicBeamExplosion.prefab - .ao - 667b1023f2e0da1ffcd23ea2 - 13710752620973719839
 PsionicBeamGroundFissue.prefab - .ao - 6674a55ff2e0da1ffcd23e65 - 6060544460007990298
 PsionicBeamGroundFissueEnd.prefab - .ao - 6674a55ff2e0da1ffcd23e64 - 9947869729590302411
+PsionicRay.prefab - .ao - 667b320bf2e0da1ffcd23ea4 - 14816483831825167967
 PsyboltProjectile.prefab - .ao - 66798b6ef2e0da1ffcd23e84 - 10042724373902008997
 Rage_Aura.prefab - .ao - 66675639d7f18c22a1140af6 - 1815137123894366964
 RegenerationAura.prefab - .ao - 66745f44f2e0da1ffcd23950 - 11219147230462838904

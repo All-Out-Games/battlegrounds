@@ -41,7 +41,7 @@ public class FightAbility : Ability
         // TODO: SkillActivationInfo
         base.OnActivate(targetPlayer, positionOrDirection, magnitude);
         FightPlayer = (FightPlayer)Player;
-        FightPlayer.OnSkillActivate(FightPlayer.SkillActivationInfo.GetActivationInfo(Interruptlevel, SkillKey));
+        FightPlayer.OnSkillActivate?.Invoke(FightPlayer.SkillActivationInfo.GetActivationInfo(Interruptlevel, SkillKey));
     }
 
 

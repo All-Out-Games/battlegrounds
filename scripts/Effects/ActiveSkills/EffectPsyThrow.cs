@@ -133,16 +133,21 @@ public class EffectPsyThrowLaunch : FightEffect
             FightPlayer.GetEffectMgr().AddNoMovement(Caster.Entity, 1f);
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(0) with {InterruptLevel = 0}; // Cause a flinch with no dmg
             FightPlayer.TakeDamage(Caster as FightPlayer, info);
+            
             DurationRemaining = 1f;
             _interactedEntities = new List<Entity>() {FightPlayer.Entity, FightPlayer.CollisionEntity};
-            
-            FightPlayer.AddPlayerCollisionFunction(OnThrowCollision);
+            AssignConfig(EffectConfig.PsyThrowConfig.GetDefault(FightPlayer.CurrentAttack));
         }
         else
         {
             FightPlayer.RemoveEffect<EffectPsyThrowLaunch>(true);
         }
-        
+        FightPlayer.AddPlayerCollisionFunction(OnThrowCollision);
+    }
+
+    private void AssignConfig(EffectConfig.PsyThrowConfig cfg)
+    {
+        _config = cfg;
     }
 
     public override void NetworkDeserialize(StreamReader reader)
@@ -154,10 +159,7 @@ public class EffectPsyThrowLaunch : FightEffect
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        if (!interrupt)
-        {
-            FightPlayer.RemovePlayerCollisionFunction(OnThrowCollision);
-        }
+        FightPlayer.RemovePlayerCollisionFunction(OnThrowCollision);
     }
 
     protected void OnThrowCollision(Entity other)

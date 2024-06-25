@@ -11,10 +11,12 @@ public static class VFXPrefabKeys
     
     public static string HitVfxPath = "HitVfx.prefab";
     public static string PsionicBeamExplosionPath = "PsionicBeamExplosion.prefab";
+    public static string PsionicRayPath = "PsionicRay.prefab";
 }
 
 public static class VFXPrefabs
 {
     public static Prefab HitVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.HitVfxPath);
     public static Prefab PsionicBeamHitVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.PsionicBeamExplosionPath);
+    public static Prefab PsionicRayVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.PsionicRayPath);
 }
