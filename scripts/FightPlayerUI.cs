@@ -6,10 +6,21 @@ using AO;
 /// </summary>
 public class FightPlayerUI : FightPlayerComponent
 {
+    private List<string> _hideUIReasons = new List<string>();
+
+    public void AddPlayerUIInvisibleReason(string reason)
+    {
+        _hideUIReasons.Add(reason);
+    }
+    
+    public void RemovePlayerUIInvisibleReason(string reason)
+    {
+        _hideUIReasons.Remove(reason);
+    }
     public override void Update()
     {
         Rect healthRect;
-        if (_player.CurrentHealth > 0)
+        if (_player.CurrentHealth > 0 && _hideUIReasons.Count == 0)
         {
             healthRect = DrawHealthBar();
             if (_player.CurrentShield > 0)

@@ -33,6 +33,8 @@ ability_icon_tmp/Befuddle_Tmp.png - .ao - 6672020d0b1e3d2f089ae7ee - 16873724532
 ability_icon_tmp/Befuddle_Tmp.png - .ao.ios - 6672020d0b1e3d2f089ae7ed - 10152828531997449758
 ability_icon_tmp/GroundStomp_Tmp.png - .ao - 66639229d7f18c22a1140ac5 - 6153841723021127104
 ability_icon_tmp/GroundStomp_Tmp.png - .ao.ios - 66639229d7f18c22a1140ac6 - 6090531938772023533
+ability_icon_tmp/Invisibility_tmp.png - .ao - 667af457f2e0da1ffcd23e8e - 4341639155047186754
+ability_icon_tmp/Invisibility_tmp.png - .ao.ios - 667af457f2e0da1ffcd23e8f - 5416779629453921970
 ability_icon_tmp/PsyThrowGrab_Tmp.png - .ao - 6679b603f2e0da1ffcd23e87 - 1297453190228747540
 ability_icon_tmp/PsyThrowGrab_Tmp.png - .ao.ios - 6679b603f2e0da1ffcd23e8a - 4864899655034689247
 ability_icon_tmp/PsyThrow_Tmp.png - .ao - 6679b603f2e0da1ffcd23e88 - 13942550092457171743

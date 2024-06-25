@@ -376,8 +376,8 @@ public static partial class SkillConfig
         NTab = SkillTreeTabs.Stealth,
         UpgradeCost = 50,
         UIPosition = new Vector2(450, 30),
-        SkillKey = "PsyThrow",
-        IconPath = "ability_icon_tmp/Invisibility_Tmp.png",
+        SkillKey = "Invisibility",
+        IconPath = "ability_icon_tmp/Invisibility_tmp.png",
         ParentNodeKeys = new string[] {},
         ChildrenNodeKeys = new string[]{},
 
@@ -417,7 +417,7 @@ public static partial class SkillConfig
             {"PsionicBeam", PsionicBeamConfig},
             {"PsyThrow", PsyThrowConfig},
             // Stealth
-            {"Inivisibility", InvisibilityConfig}
+            {"Invisibility", InvisibilityConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here

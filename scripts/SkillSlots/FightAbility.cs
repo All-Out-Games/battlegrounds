@@ -10,6 +10,7 @@ public class FightAbility : Ability
     public FightPlayer FightPlayer;
     public virtual string SkillKey => "Empty";
     public virtual string SkillIconPath => SkillConfig.GetIconPath(SkillKey);
+    public virtual int Interruptlevel => 1;
 
     public sealed override Texture Icon => Assets.GetAsset<Texture>(SkillIconPath);
 
@@ -39,6 +40,8 @@ public class FightAbility : Ability
     {
         // TODO: SkillActivationInfo
         base.OnActivate(targetPlayer, positionOrDirection, magnitude);
+        FightPlayer = (FightPlayer)Player;
+        FightPlayer.OnSkillActivate(FightPlayer.SkillActivationInfo.GetActivationInfo(Interruptlevel, SkillKey));
     }
 
 

@@ -12,6 +12,7 @@ public partial class FightPlayer
     public Action<FightPlayer, DamageInfo> OnDealDamage; // Triggered in global damage event. Will contain the ACTUAL damage dealt (i.e. the damage info might be modified by some effects like parry)
     public Action<FightPlayer, DamageInfo> OnReceiveDamage; // Triggered in CallClient_TakeDamage
     public Action OnElimination; // Triggered in global elimination event;
+    public Action<SkillActivationInfo> OnSkillActivate;
 
     #region Custom Data Pass to Client
     
@@ -90,8 +91,13 @@ public partial class FightPlayer
     
     public struct SkillActivationInfo
     {
-        public int interruptionLevel;
-        
+        public int InterruptLevel; // Generic Interruption
+        public string SkillKey; // Specific Interruption
+
+        public static SkillActivationInfo GetActivationInfo(int level, string skillKey)
+        {
+            return new SkillActivationInfo() { InterruptLevel = level, SkillKey = skillKey };
+        }
     }
 
     #endregion
