@@ -281,7 +281,7 @@ public static partial class SkillConfig
         SkillKey = "Psybolt",
         IconPath = "ability_icon_tmp/Befuddle_Tmp.png",
         ParentNodeKeys = new string[] {"SpoonThrow"},
-        ChildrenNodeKeys = new string[]{"PsionicBeam"},
+        ChildrenNodeKeys = new string[]{"PsionicBeam", "PsyThrow"},
     };
     
     /// <summary>
@@ -365,6 +365,25 @@ public static partial class SkillConfig
     };
 
     #endregion
+
+    #region Stealth
+
+    public static readonly SkillTreeNodeConfig InvisibilityConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Become Invisible for a short period",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Stealth,
+        UpgradeCost = 50,
+        UIPosition = new Vector2(450, 30),
+        SkillKey = "PsyThrow",
+        IconPath = "ability_icon_tmp/Invisibility_Tmp.png",
+        ParentNodeKeys = new string[] {},
+        ChildrenNodeKeys = new string[]{},
+
+    };
+
+    #endregion
     
     // [Add Skill] item 2: Query Entry
     // MUST ADD for each new skill. This connects the unique skill key to their node config.
@@ -396,7 +415,9 @@ public static partial class SkillConfig
             {"Regeneration", RegenerationConfig},
             {"Hypnotize", HypnotizeConfig},
             {"PsionicBeam", PsionicBeamConfig},
-            {"PsyThrow", PsyThrowConfig}
+            {"PsyThrow", PsyThrowConfig},
+            // Stealth
+            {"Inivisibility", InvisibilityConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -406,7 +427,9 @@ public static partial class SkillConfig
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam",
         // Psionic
-        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize","PsionicBeam", "PsyThrow"
+        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize","PsionicBeam", "PsyThrow",
+        // Stealth
+        "Invisibility"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};

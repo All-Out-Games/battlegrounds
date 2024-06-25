@@ -87,6 +87,12 @@ public partial class FightPlayer
             
         }
     }
+    
+    public struct SkillActivationInfo
+    {
+        public int interruptionLevel;
+        
+    }
 
     #endregion
     

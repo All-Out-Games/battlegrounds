@@ -9,7 +9,7 @@ public class FightAbility : Ability
     
     public FightPlayer FightPlayer;
     public virtual string SkillKey => "Empty";
-    public virtual string SkillIconPath => SkillConfig.GetIconPath(SkillKey); 
+    public virtual string SkillIconPath => SkillConfig.GetIconPath(SkillKey);
 
     public sealed override Texture Icon => Assets.GetAsset<Texture>(SkillIconPath);
 
@@ -63,7 +63,8 @@ public class FightAbility : Ability
         {SC.RegenerationConfig.SkillKey, typeof(AbilityRegeneration)},
         {SC.HypnotizeConfig.SkillKey, typeof(AbilityHypnotize)},
         {SC.PsionicBeamConfig.SkillKey, typeof(AbilityPsionicBeam)},
-        {SC.PsyThrowConfig.SkillKey, typeof(AbilityPsyThrow)}
+        {SC.PsyThrowConfig.SkillKey, typeof(AbilityPsyThrow)},
+        {SC.InvisibilityConfig.SkillKey, typeof(AbilityInvisible)}
     };
 }
 

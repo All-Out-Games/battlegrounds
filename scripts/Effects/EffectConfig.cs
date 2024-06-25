@@ -471,7 +471,7 @@ public static class EffectConfig
 
     #endregion
 
-    #region PsyThrow
+    #region cfg: PsyThrow
 
     public struct PsyThrowConfig
     {
@@ -490,6 +490,16 @@ public static class EffectConfig
         {
             return new PsyThrowConfig() { Damage = atk + DmgBase, SelfDamage = (int)((atk + DmgBase) * SelfDmgModifier) };
         }
+    }
+
+    #endregion
+
+    #region cfg: Invisibility
+
+    public struct InvisibilityConfig
+    {
+        public static readonly float Cooldown = 6f;
+        public static readonly float InvisTime = 4f;
     }
 
     #endregion

@@ -405,14 +405,8 @@ public partial class FightPlayer : Player
         Dash = add;
         DashRemainingDuration = duration;
     }
-
-    public void AddDash_Server(Vector2 add, float duration)
-    {
-        if (Network.IsServer)
-        {
-            CallClient_AddDash(add, duration);
-        }
-    }
+    
+    
     
     #endregion
     
@@ -539,5 +533,13 @@ public partial class FightPlayer : Player
     }
 
     #endregion
-    
+
+    public void AddScreenShake(float intensity, float duration)
+    {
+        if (IsLocal)
+        {
+            CameraInterface.Shake(intensity, duration);
+        }
+        
+    }
 }
