@@ -8,6 +8,7 @@ BroccoliProjectile.prefab - .ao - 666b71d2d7f18c22a1140d42 - 5129262647641696432
 ClawSwipe.prefab - .ao - 6671ef540b1e3d2f089ae7d7 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 666c8f92d7f18c22a1141616 - 15909775696421813938
 HitVfx.prefab - .ao - 6675e658f2e0da1ffcd23e7f - 9364149976474600941
+PsionicBeamExplosion.prefab - .ao - 667b1023f2e0da1ffcd23ea2 - 13710752620973719839
 PsionicBeamGroundFissue.prefab - .ao - 6674a55ff2e0da1ffcd23e65 - 6060544460007990298
 PsionicBeamGroundFissueEnd.prefab - .ao - 6674a55ff2e0da1ffcd23e64 - 9947869729590302411
 PsyboltProjectile.prefab - .ao - 66798b6ef2e0da1ffcd23e84 - 10042724373902008997
@@ -22,6 +23,12 @@ SpoonProjectile.prefab - .ao - 6675e658f2e0da1ffcd23e7e - 12342670774966987832
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao - 6671eec10b1e3d2f089ae7d1 - 16085789866035322621
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao.ios - 6671eec10b1e3d2f089ae7d0 - 13006039638534950330
 VFX/ClawSwipe/claw_swipe_BAT003.spine - .ao - 6671eec10b1e3d2f089ae7d4 - 4634519565438313527
+VFX/PsionicBeam/BAT003_psionic_beam.png - .ao - 667b0fcff2e0da1ffcd23e98 - 426287856886850636
+VFX/PsionicBeam/BAT003_psionic_beam.png - .ao.ios - 667b0fcff2e0da1ffcd23e9c - 17295227018773824201
+VFX/PsionicBeam/BAT003_psionic_beam.spine - .ao - 667b0fcef2e0da1ffcd23e92 - 2839898317802474231
+VFX/PsionicBeam/BAT003_psionic_explosion.png - .ao - 667b0fcef2e0da1ffcd23e94 - 17845117229915561677
+VFX/PsionicBeam/BAT003_psionic_explosion.png - .ao.ios - 667b0fcef2e0da1ffcd23e93 - 12959094175265962661
+VFX/PsionicBeam/BAT003_psionic_explosion.spine - .ao - 667b0fcef2e0da1ffcd23e96 - 7319311105469346434
 VFX/PsionicBeam/ground_fissue_end.png - .ao - 66748cd3f2e0da1ffcd23bdf - 184583796234163889
 VFX/PsionicBeam/ground_fissue_end.png - .ao.ios - 66748cd3f2e0da1ffcd23bdc - 12478492516126473111
 VFX/PsionicBeam/ground_fissue_repeatable.png - .ao - 66748cd3f2e0da1ffcd23bdb - 18402468940375142426

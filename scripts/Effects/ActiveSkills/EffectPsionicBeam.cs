@@ -1,5 +1,7 @@
 using System.Collections;
 using AO;
+using Assembly.scripts.VFX;
+
 namespace Assembly.scripts.Effects.ActiveSkills;
 
 
@@ -130,6 +132,9 @@ public class EffectPsionicBeam : FightEffect
                 {
                     FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_cfg.Damage, DamageType.Ranged);
                     fp.TakeDamage(FightPlayer, info);
+                    
+                    var hit = VFXPrefabs.PsionicBeamHitVFX.Instantiate();
+                    hit.Position = fp.Entity.Position - fpVector * 0.01f;
                 }
             }
             

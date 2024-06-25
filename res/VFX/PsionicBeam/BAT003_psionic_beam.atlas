@@ -1,0 +1,41 @@
+BAT003_psionic_beam.png
+	size: 412, 940
+	filter: Linear, Linear
+beam/drop_particle_A
+	bounds: 389, 117, 13, 74
+	offsets: 1, 1, 15, 76
+beam/end
+	bounds: 3, 106, 202, 203
+	offsets: 2, 2, 206, 207
+	rotate: 90
+beam/light_shafts
+	bounds: 3, 613, 284, 324
+	offsets: 29, 25, 333, 380
+beam/middle_section
+	bounds: 289, 193, 744, 120
+	offsets: 1, 0, 746, 120
+	rotate: 90
+beam/pointy_particle
+	bounds: 3, 15, 31, 179
+	offsets: 1, 1, 33, 181
+	rotate: 90
+beam/red_glow
+	bounds: 3, 311, 299, 269
+	offsets: 14, 15, 327, 299
+	rotate: 90
+beam/ring_back
+	bounds: 3, 49, 54, 173
+	offsets: 2, 2, 58, 176
+	rotate: 90
+beam/ring_front
+	bounds: 337, 20, 49, 171
+	offsets: 2, 2, 53, 175
+beam/round_particle_A
+	bounds: 248, 3, 60, 60
+	offsets: 3, 3, 66, 66
+beam/round_particle_B
+	bounds: 185, 3, 60, 60
+	offsets: 3, 3, 66, 66
+beam/start
+	bounds: 209, 66, 125, 125
+	offsets: 1, 2, 128, 129
