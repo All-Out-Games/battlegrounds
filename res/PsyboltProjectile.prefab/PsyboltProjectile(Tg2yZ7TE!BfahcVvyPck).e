@@ -16,23 +16,15 @@
   "spawn_as_networked_entity": true
 },
 {
-  "cid": 1,
-  "aoid": "85820735657166:1718833290826246600",
+  "cid": 5,
+  "aoid": "86877723534317:1718833820167077100",
   "component_type": "Internal_Component",
-  "internal_component_type": "Sprite_Renderer",
+  "internal_component_type": "Rigidbody",
   "data": {
-    "texture": "projectile/popcorn3.png",
-    "depth_offset": 0,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "layer": 0,
-    "wait_for_load": false,
-    "wrap": false,
-    "mask_in_shadow": false
+    "angular_damping": 0,
+    "linear_damping": 0,
+    "gravity_scale": 1,
+    "fixed_rotation": false
   }
 },
 {
@@ -85,14 +77,19 @@
   }
 },
 {
-  "cid": 5,
-  "aoid": "86877723534317:1718833820167077100",
+  "cid": 1,
+  "aoid": "105780078939401:1719421063910734200",
   "component_type": "Internal_Component",
-  "internal_component_type": "Rigidbody",
+  "internal_component_type": "Spine_Animator",
   "data": {
-    "angular_damping": 0,
-    "linear_damping": 0,
-    "gravity_scale": 1,
-    "fixed_rotation": false
+    "skeleton_data_asset": "projectile/BAT003_Projectile/BAT003_projectile.spine",
+    "ordered_skins": [
+      "pysbolt"
+    ],
+    "depth_offset": 0.5000000000000000,
+    "skeleton_scale": {
+      "X": 1,
+      "Y": 1
+    }
   }
 }

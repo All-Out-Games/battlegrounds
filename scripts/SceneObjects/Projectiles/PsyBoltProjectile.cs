@@ -6,6 +6,23 @@ public class PsyBoltProjectile : BaseProjectile
 {
     public float KnockBackStrength = 20f;
     
+    private Spine_Animator _animator;
+    public override void Start()
+    {
+        base.Start();
+        _animator = Entity.GetComponent<Spine_Animator>();
+        if (_animator != null)
+        {
+            var instance = _animator.SpineInstance;
+            instance.SetSkin("psybolt");
+            instance.EnableSkin("psybolt");
+            instance.SetAnimation("fly_straight", true);
+        }
+        else
+        {
+            Log.Error("No Animator Found on projectile");
+        }
+    }
     protected override void DoProjectileEffect(Entity other, bool predicted)
     {
         
