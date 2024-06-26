@@ -2,16 +2,21 @@ using AO;
 
 namespace Assembly.scripts.VFX;
 
-public class BaseVFX : Component
+
+public class VFX : Component
 {
-    [Serialized] protected string[] StartAnimationStr;
     [Serialized] protected bool Loop;
     [Serialized] protected Spine_Animator Animator;
-    
     [Serialized] protected float EntityLifeTime;
     protected bool LifeTimeEnded;
     protected float LifeTime;
-
+    
+    public void Despawn()
+    {
+        if(Network.IsServer) Network.Despawn(Entity);
+        Entity.Destroy();
+    }
+    
     public override void Awake()
     {
         base.Awake();
@@ -19,6 +24,10 @@ public class BaseVFX : Component
         
         //Animator.DepthOffset = 3;
     }
+}
+public class BaseVFX : VFX
+{
+    [Serialized] protected string[] StartAnimationStr; // Random Play
 
     public override void Start()
     {
@@ -37,10 +46,30 @@ public class BaseVFX : Component
 
         LifeTime += Time.DeltaTime;
     }
+}
 
-    public void Despawn()
+public class SelectionVFX : VFX
+{
+    protected bool Started;
+
+    public void StartVFX(string selectionKey, bool loop)
     {
-        if(Network.IsServer) Network.Despawn(Entity);
-        Entity.Destroy();
+        Loop = loop;
+        Animator.SpineInstance.SetAnimation(selectionKey, Loop);
+        Started = true;
+    }
+    
+    public override void Update()
+    {
+        if (Started)
+        {
+            if (Util.OneTime(LifeTime > EntityLifeTime, ref LifeTimeEnded))
+            {
+                Despawn();
+                //Log.Warn($"Entity {Entity.Name} Destroyed!");
+            }
+
+            LifeTime += Time.DeltaTime;
+        }
     }
 }
