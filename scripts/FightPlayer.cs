@@ -232,6 +232,10 @@ public partial class FightPlayer : Player
     {
         BumpDecay();
         DashDecay();
+        if (Network.IsServer && PlayerStatus != PlayerStatus.Combat)
+        {
+            PeriodicalHeal(Time.DeltaTime);
+        }
     }
 
     public override void LateUpdate()
@@ -540,6 +544,25 @@ public partial class FightPlayer : Player
         {
             CameraInterface.Shake(intensity, duration);
         }
-        
+    }
+
+    private float _healTimer;
+    
+    /// <summary>
+    /// Server Only, Safezone heal
+    /// </summary>
+    /// <param name="deltaTime"></param>
+    public void PeriodicalHeal(float deltaTime)
+    {
+        if (CurrentHealth >= MaxHealth)
+        {
+            return;
+        }
+        _healTimer += deltaTime;
+        if (_healTimer > 1)
+        {
+            TakeDamage(this, DamageInfo.CreateHealInfo(10));
+            _healTimer = 0;
+        }
     }
 }
