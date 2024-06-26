@@ -22,7 +22,7 @@ public class AbilityUnlockDialog : UniqueUIWindow
     {
         Config = cfg;
         OnDialogReturn = callback;
-        MainTxt.Text = $"Confirm Update {cfg.SkillKey}?";
+        MainTxt.Text = "Buy?";
 
         ConfirmBtn.OnClicked += OnConfirm;
         ConfirmBtn.OnClicked += CloseWindow;

@@ -26,8 +26,9 @@ public class PsyBoltProjectile : BaseProjectile
     protected override void DoProjectileEffect(Entity other, bool predicted)
     {
         
+        
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
-        if (fp != null)
+        if (fp is { CurrentHealth: > 0 })
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged) with {InterruptLevel = 2000};
             fp.TakeDamage(Owner, info);

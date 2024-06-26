@@ -352,8 +352,8 @@ public static class EffectConfig
     public struct ClawSlashConfig
     {
         public static readonly float Cooldown = 5f;
-        public static readonly float SlashAnimationTime = 0.6f;
-        public static readonly float SlashActivationTime = 0.25f;
+        public static readonly float SlashAnimationTime = 0.25f;
+        public static readonly float SlashActivationTime = 0.05f;
         public static readonly int SlashDmgBase = 1;
         public static readonly float SlashRadius = 2;
 
@@ -445,7 +445,7 @@ public static class EffectConfig
 
     public struct PsionicBeamConfig
     {
-        public static readonly float Cooldown = 1f;
+        public static readonly float Cooldown = 6f;
         public static readonly float MinimumRange = 4f;
         public static readonly float MaximumRange = 8f;
         public static readonly float Degrees = 15f; // Half the entire angle
@@ -480,7 +480,7 @@ public static class EffectConfig
         public static readonly float Range = 8f;
         public static readonly float ThrowRange = 12f;
         public static readonly float ThrowStrength = 180f;
-        public static readonly float GrabTime = 1.5f;
+        public static readonly float GrabTime = 3f;
         public static readonly int DmgBase = 3;
         public static readonly float SelfDmgModifier = 0.5f; // If you throw the enemy to yourself, you take half the damage.
 

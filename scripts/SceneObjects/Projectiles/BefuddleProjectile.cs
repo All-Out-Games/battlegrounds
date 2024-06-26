@@ -11,7 +11,7 @@ public class BefuddleProjectile : BaseProjectile
     {
         
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
-        if (fp != null)
+        if (fp is { CurrentHealth: > 0 })
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged) with {InterruptLevel = FightPlayer.DamageInfo.StunInterruptLevel};
             info.ReactionInfo.Flinch = false;
@@ -21,7 +21,6 @@ public class BefuddleProjectile : BaseProjectile
             {
                 Entity.Destroy();
             }
-        
         }
     }
 }

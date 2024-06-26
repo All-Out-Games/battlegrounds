@@ -200,68 +200,68 @@ public partial class UIManager : System<UIManager>
         }
         
         // Admin menus
-        if ( Network.LocalPlayer != null && Network.LocalPlayer.IsAdmin)
-        {
-
-
-            // Draw the side buttons
-            {
-
-                var sideBarRect = UI.ScreenRect.LeftCenterRect().Grow(330, 100, 330, 0).Offset(5, 0);
-
-                var buttonRect = sideBarRect.CutTop(100);
-                if (UI.Button(buttonRect, $"Unused", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
-                        _defaultTextSettings).Clicked)
-                {
-                    var player = (FightPlayer)Network.LocalPlayer;
-                    Log.Debug("Dash!");
-                    Vector2 dashDir = player.LastInputs.Length < 0.001
-                        ? (player.GetFacingDirection() ? Vector2.Right : Vector2.Left)
-                         : player.LastInputs;
-                    
-                }
-
-                // Spacing
-                sideBarRect.CutTop(10);
-
-                var buttonRect2 = sideBarRect.CutTop(100);
-                if (UI.Button(buttonRect2, $"Add BUMP", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
-                        _defaultTextSettings).Clicked)
-                {
-                    var player = (FightPlayer)Network.LocalPlayer;
-                    Log.Info("Adding A bump!");
-                    player.AddBump(new Vector2(20, 0), false);  // Add 
-                    TestServerRPC.CallServer_AddBumpToNetworkID(player.Entity.NetworkId, new Vector2(120, 0));
-                }
-
-                sideBarRect.CutTop(10);
-                
-                var buttonRect3 = sideBarRect.CutTop(100);
-                if (UI.Button(buttonRect3, $"Unused",
-                        new UI.ButtonSettings()
-                            { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
-                        _defaultTextSettings).Clicked)
-                {
-                    
-                }
-                
-                
-                // Spacing
-                sideBarRect.CutTop(10);
-                
-                var buttonRect4 = sideBarRect.CutTop(100);
-                if (UI.Button(buttonRect4, $"Ability Vendor",
-                        new UI.ButtonSettings()
-                            { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
-                        _defaultTextSettings).Clicked)
-                {
-                    var player = (FightPlayer)Network.LocalPlayer;
-                    OpenUniqueUIWindow(UniqueWindowKeys.AbilityVendorPath);
-                }
-                
-                
-            }
-        }
+        // if ( Network.LocalPlayer != null && Network.LocalPlayer.IsAdmin)
+        // {
+        //
+        //
+        //     // Draw the side buttons
+        //     {
+        //
+        //         var sideBarRect = UI.ScreenRect.LeftCenterRect().Grow(330, 100, 330, 0).Offset(5, 0);
+        //
+        //         var buttonRect = sideBarRect.CutTop(100);
+        //         if (UI.Button(buttonRect, $"Unused", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
+        //                 _defaultTextSettings).Clicked)
+        //         {
+        //             var player = (FightPlayer)Network.LocalPlayer;
+        //             Log.Debug("Dash!");
+        //             Vector2 dashDir = player.LastInputs.Length < 0.001
+        //                 ? (player.GetFacingDirection() ? Vector2.Right : Vector2.Left)
+        //                  : player.LastInputs;
+        //             
+        //         }
+        //
+        //         // Spacing
+        //         sideBarRect.CutTop(10);
+        //
+        //         var buttonRect2 = sideBarRect.CutTop(100);
+        //         if (UI.Button(buttonRect2, $"Add BUMP", new UI.ButtonSettings() { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") }, 
+        //                 _defaultTextSettings).Clicked)
+        //         {
+        //             var player = (FightPlayer)Network.LocalPlayer;
+        //             Log.Info("Adding A bump!");
+        //             player.AddBump(new Vector2(20, 0), false);  // Add 
+        //             TestServerRPC.CallServer_AddBumpToNetworkID(player.Entity.NetworkId, new Vector2(120, 0));
+        //         }
+        //
+        //         sideBarRect.CutTop(10);
+        //         
+        //         var buttonRect3 = sideBarRect.CutTop(100);
+        //         if (UI.Button(buttonRect3, $"Unused",
+        //                 new UI.ButtonSettings()
+        //                     { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
+        //                 _defaultTextSettings).Clicked)
+        //         {
+        //             
+        //         }
+        //         
+        //         
+        //         // Spacing
+        //         sideBarRect.CutTop(10);
+        //         
+        //         var buttonRect4 = sideBarRect.CutTop(100);
+        //         if (UI.Button(buttonRect4, $"Ability Vendor",
+        //                 new UI.ButtonSettings()
+        //                     { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") },
+        //                 _defaultTextSettings).Clicked)
+        //         {
+        //             var player = (FightPlayer)Network.LocalPlayer;
+        //             OpenUniqueUIWindow(UniqueWindowKeys.AbilityVendorPath);
+        //         }
+        //         
+        //         
+        //     }
+        // }
 
         
         
