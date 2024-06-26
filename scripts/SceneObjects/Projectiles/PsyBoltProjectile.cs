@@ -25,8 +25,6 @@ public class PsyBoltProjectile : BaseProjectile
     }
     protected override void DoProjectileEffect(Entity other, bool predicted)
     {
-        
-        
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
         if (fp is { CurrentHealth: > 0 })
         {

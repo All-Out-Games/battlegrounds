@@ -1,4 +1,4 @@
-10
+11
 219043332097
 23553647592408 1718043080128997000
 {
@@ -13,9 +13,7 @@
     "X": 1,
     "Y": 1
   },
-  "sibling_index": 0,
-  "spawn_as_networked_entity": true,
-  "network_id": 1
+  "spawn_as_networked_entity": true
 },
 {
   "cid": 1,
@@ -35,5 +33,14 @@
     "wait_for_load": false,
     "wrap": false,
     "mask_in_shadow": false
+  }
+},
+{
+  "cid": 2,
+  "aoid": "151194188879558:1719443807352926400",
+  "component_type": "Mono_Component",
+  "mono_component_type": "AttachmentObject",
+  "data": {
+    "EntityLifeTime": 5
   }
 }

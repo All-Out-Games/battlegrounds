@@ -78,6 +78,7 @@ public class EffectPsyThrowReady : FightEffect
     public override bool IsActiveEffect => false;
     public override List<Type> AbilityWhitelist => Wl;
     private static readonly List<Type> Wl = new List<Type>() { typeof(AbilityPsyThrowLaunch) };
+    public override bool BlockAbilityActivation => true;
 
     private int _originalIndex = -1;
     public override void OnEffectStart()

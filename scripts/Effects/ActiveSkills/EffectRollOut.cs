@@ -76,7 +76,7 @@ public sealed partial class EffectRollOut : FightEffect
     protected void OnRolloutCollision(Entity other)
     {
         FightPlayer otherPlayer = other.GetComponent<FightPlayer>();
-        if (otherPlayer != null && otherPlayer != FightPlayer)
+        if (otherPlayer != null)
         {
             if(otherPlayer.HasEffect<EffectNoMovement>())
             {

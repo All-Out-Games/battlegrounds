@@ -425,7 +425,6 @@ public static class EffectConfig
         public static readonly int PerSecondHeal = 3;
         public static readonly float HealTime = 6f;
         public static readonly float Cooldown = 6f;
-        public static readonly string FxPath = "RegenerationAura.prefab";
     }
 
     #endregion

@@ -56,46 +56,5 @@ public class FightPlayerUI : FightPlayerComponent
         var shieldPercentRect = shieldRect.SubRect(0, 0, shieldPercent, 1, 0, 0, 0, 0);
         UI.Image(shieldPercentRect, null, Vector4.LightBlue);
     }
-
-    #region Aura management
-
-    /// <summary>
-    /// Manage player aura here. Aura animations probably should go to the prefab not here.
-    /// Note: Auras should be added/removed in Effect system, therefore no need to use RPCs.
-    /// </summary>
-    
-    private Dictionary<string, Entity> _auraEntities = new Dictionary<string, Entity>();
-
-    private Vector2 _auraOffset = new Vector2(0, -0.05f);
-    
-    public void AddAura(string prefabPath, float size)
-    {
-        if (_auraEntities.ContainsKey(prefabPath))
-        {
-            Log.Error("You cannot have two identical Auras!");
-            return;
-        }
-        
-        Entity aura = Assets.GetAsset<Prefab>(prefabPath).Instantiate();
-        aura.SetParent(_player.Entity, false);
-        aura.LocalPosition = _auraOffset;
-        aura.LocalScale *= size;
-
-        _auraEntities[prefabPath] = aura;
-    }
-
-    public void RemoveAura(string prefabPath)
-    {
-        if (!_auraEntities.ContainsKey(prefabPath))
-        {
-            Log.Error($"Aura to be removed {prefabPath} NOT FOUND");
-            return;
-        }
-
-        _auraEntities.Remove(prefabPath, out Entity aura);
-        aura.Destroy();
-    }
-
-    #endregion
     
 }

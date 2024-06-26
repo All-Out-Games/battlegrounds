@@ -12,8 +12,7 @@
   "local_scale": {
     "X": 1,
     "Y": 1
-  },
-  "next_sibling": "6516230759398:1718902588422301500"
+  }
 },
 {
   "cid": 1,
@@ -33,5 +32,14 @@
     "wait_for_load": false,
     "wrap": false,
     "mask_in_shadow": false
+  }
+},
+{
+  "cid": 2,
+  "aoid": "148186084679396:1719442300890638100",
+  "component_type": "Mono_Component",
+  "mono_component_type": "AttachmentObject",
+  "data": {
+    "EntityLifeTime": 5
   }
 }

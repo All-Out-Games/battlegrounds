@@ -13,7 +13,7 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     // [Effects] PART 1
     // Wrappers for player API
 
-    public bool AddEffect<T>(Player caster, float? duration = null, Action<T> preInit = null) where T : AEffect
+    public bool  AddEffect<T>(Player caster, float? duration = null, Action<T> preInit = null) where T : AEffect
     {
         var eff = _player.AddEffect<T>(caster, duration, preInit);
         return eff != null;

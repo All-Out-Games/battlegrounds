@@ -1,4 +1,5 @@
 using AO;
+using Assembly.scripts.VFX;
 using StreamReader = AO.StreamReader;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -24,6 +25,8 @@ public class EffectRegeneration : FightEffect
     protected float NextDmgTick = 0;
     protected bool Ticked = false;
     protected FightPlayerUI PlayerUI;
+
+    private AttachmentObject _aura;
     
     public override void OnEffectStart()
     {
@@ -37,7 +40,7 @@ public class EffectRegeneration : FightEffect
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        PlayerUI.RemoveAura(EffectConfig.RegenerateConfig.FxPath);
+        _aura.Despawn();
     }
 
     public override void OnEffectUpdate()
@@ -64,7 +67,8 @@ public class EffectRegeneration : FightEffect
 
     private void AddAura()
     {
-        PlayerUI = FightPlayer.GetPlayerUIComp();
-        PlayerUI.AddAura(EffectConfig.RegenerateConfig.FxPath, 0.85f);
+        Prefab auraPrefab = VFXPrefabs.RegenerationAura;
+        _aura = auraPrefab.Instantiate().GetComponent<AttachmentObject>();
+        _aura.Spawn(FightPlayer.Entity,new Vector2(0, -0.05f), false, DurationRemaining);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Assembly.scripts.Effects.ActiveSkills;
+﻿using Assembly.scripts.VFX;
+
+namespace Assembly.scripts.Effects.ActiveSkills;
 using AO;
 
 public class AbilityRage : FightAbility
@@ -19,6 +21,8 @@ public class EffectRage : FightEffect
     public override bool BlockAbilityActivation => false;
     public override bool IsValidTarget => true;
 
+    private AttachmentObject _aura;
+
     // General Atk boost buff
     protected EffectConfig.RageConfig Config;
 
@@ -33,14 +37,14 @@ public class EffectRage : FightEffect
         FightPlayer.CurrentAttack += Config.AtkBoost;
         DurationRemaining = Config.Duration;
         
-        PlayerUI.AddAura("Rage_Aura.prefab", 1.0f);
+        AddAura();
         
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         FightPlayer.CurrentAttack -= Config.AtkBoost;
-        PlayerUI.RemoveAura("Rage_Aura.prefab");
+        _aura.Despawn();
     }
 
     protected void AssignConfig(EffectConfig.RageConfig cfg)
@@ -52,7 +56,14 @@ public class EffectRage : FightEffect
     {
         base.NetworkDeserialize(reader);
         PlayerUI = FightPlayer.GetPlayerUIComp();
-        PlayerUI.AddAura("Rage_Aura.prefab", 1.0f);
+        AddAura();
+    }
+    
+    private void AddAura()
+    {
+        Prefab auraPrefab = VFXPrefabs.RageAura;
+        _aura = auraPrefab.Instantiate().GetComponent<AttachmentObject>();
+        _aura.Spawn(FightPlayer.Entity,new Vector2(0, -0.05f), false, DurationRemaining);
     }
 
 }

@@ -110,7 +110,16 @@ public class EffectPsionicBeam : FightEffect
         // DebugLine(_rayEnd, Vector4.White);
         // IM.PopZ();
     }
-    
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        if (_vfx != null)
+        {
+            _vfx.Despawn();
+        }
+    }
+
 
     private void DebugLine(Vector2 point, Vector4 color)
     {
@@ -122,7 +131,6 @@ public class EffectPsionicBeam : FightEffect
 
     private void BeamDamage()
     {
-        //corvin 2064485000-8032
         var fpInRadius =
             FightClubGameManager.Instance.GetCombatPlayersCollisionEntities();
         if (AO.Physics.RaycastWithWhitelist(_eyePos, _rayEnd - _eyePos, _rayLength, fpInRadius, new Entity[] { },
@@ -174,8 +182,6 @@ public class EffectPsionicBeam : FightEffect
                 fissue = _fissueEndPrefab.Instantiate();
                 fissue.Position = _rayEnd;
                 fissue.Rotation = _currentAngle - 180;
-                
-                _vfx.Despawn();
             }
 
             Coroutine.Start(FightPlayer.Entity, FissureDissipate(fissue, EffectConfig.PsionicBeamConfig.CarveFadeTime));
