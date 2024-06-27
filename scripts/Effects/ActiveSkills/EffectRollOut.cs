@@ -47,6 +47,7 @@ public sealed partial class EffectRollOut : FightEffect
         }
 
         FightPlayer.OnReceiveDamage += OnDamageEvent;
+        FightPlayer.RegisterPreDamageEvent(this);
     }
 
     public override void NetworkDeserialize(StreamReader reader)
@@ -58,7 +59,7 @@ public sealed partial class EffectRollOut : FightEffect
         FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
         
         FightPlayer.OnReceiveDamage += OnDamageEvent;
-        
+        FightPlayer.RegisterPreDamageEvent(this);
     }
 
 
@@ -68,6 +69,7 @@ public sealed partial class EffectRollOut : FightEffect
         FightPlayer.RemovePlayerCollisionFunction(OnRolloutCollision);
         
         FightPlayer.OnReceiveDamage -= OnDamageEvent;
+        FightPlayer.RemovePreDamageEvent(this);
     }
     
     
@@ -78,7 +80,7 @@ public sealed partial class EffectRollOut : FightEffect
         FightPlayer otherPlayer = other.GetComponent<FightPlayer>();
         if (otherPlayer != null)
         {
-            if(otherPlayer.HasEffect<EffectNoMovement>())
+            if(otherPlayer == FightPlayer || otherPlayer.HasEffect<EffectNoMovement>())
             {
                 return;
             }
@@ -90,4 +92,11 @@ public sealed partial class EffectRollOut : FightEffect
 
         }
     }
+
+    public override void PreDamageMod(ref FightPlayer.DamageInfo info)
+    {
+        base.PreDamageMod(ref info);
+        info.ReactionInfo.Flinch = false;
+    }
+    
 }

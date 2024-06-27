@@ -17,7 +17,7 @@ public partial class FightPlayer : Player
 
     public SyncVar<PlayerStatus> test = new SyncVar<PlayerStatus>(PlayerStatus.Safe);
 
-    protected Circle_Collider Collider; // MAIN Collider used for bumping / damage
+    protected Circle_Collider Collider; // MAIN Collider used for damage
     protected Box_Collider PunchCollider;
     protected CameraControl CameraInterface;
     
@@ -175,6 +175,8 @@ public partial class FightPlayer : Player
             // NOTE: Action is value type. You have to pass them as ref.
             resourceWindow.HookupEvents(ref CoinUpdateEvent, ref TotalDamageUpdateEvent, ref TotalElminationUpdateEvent);
         }
+
+        _preDamageEffects = new List<FightEffect>();
     }
 
     public override void Start()
@@ -263,13 +265,18 @@ public partial class FightPlayer : Player
     /// [Server & Client, Contains server-only logic] 
     /// The damage function.
     /// </summary>
-    /// <param name="damage"></param>
     /// <param name="source"></param>
     /// <param name="info"></param>
     public void TakeDamage(FightPlayer source, DamageInfo info)
     {
         if (CurrentHealth <= 0) return; // Avoid damaging the dead
-
+        
+        // Pre-damage event, chained invoke
+        foreach (var pfe in _preDamageEffects)
+        {
+            pfe.PreDamageMod(ref info);
+        }
+        
         int damage = info.ReactionInfo.Amount;
         
         if (Network.IsServer) {

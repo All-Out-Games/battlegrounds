@@ -59,6 +59,16 @@ public abstract class FightEffect : AEffect
     }
 
     /// <summary>
+    /// Register this effect instance using FightPlayer.RegisterPreDamageEvent and this function will be called in TakeDamage
+    /// You can modify the damage event received, namely remove the flinch or reduce the damage
+    /// </summary>
+    /// <param name="info"></param>
+    public virtual void PreDamageMod(ref FightPlayer.DamageInfo info)
+    {
+        
+    }
+
+    /// <summary>
     /// This function handles join-in-progress stuff. When a new player joins, all existing effects will be synced to them
     /// but the OnEffectStart function won't be called! We need to do things that ensures the OnEffectEnd function will be called error-free
     /// Do you need to actually sync the effect?
@@ -72,6 +82,5 @@ public abstract class FightEffect : AEffect
     {
         base.NetworkDeserialize(reader);
         FightPlayer = (FightPlayer)Player;
-        //Log.Debug("FightEffect Deserialize");
     }
 }

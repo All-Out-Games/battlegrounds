@@ -38,7 +38,6 @@ public class FightAbility : Ability
 
     public override void OnActivate(Player targetPlayer, Vector2 positionOrDirection, float magnitude)
     {
-        // TODO: SkillActivationInfo
         base.OnActivate(targetPlayer, positionOrDirection, magnitude);
         FightPlayer = (FightPlayer)Player;
         FightPlayer.OnSkillActivate?.Invoke(FightPlayer.SkillActivationInfo.GetActivationInfo(Interruptlevel, SkillKey));

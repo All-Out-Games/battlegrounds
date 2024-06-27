@@ -15,6 +15,7 @@ public class AbilityVendorWindow : UniqueUIWindow
     protected int TabAmount = 0;
 
     protected FightPlayerSkillTree PlayerSkillTree;
+    protected FightPlayer LocalPlayer;
     protected Dictionary<string, AbilityItem> AbilityItems = new();
     protected static string AbilityItemPath = "AbilityItem.prefab";
     public override void Start()
@@ -29,25 +30,25 @@ public class AbilityVendorWindow : UniqueUIWindow
         CreateAllSkillItems();
         UpdateSkillTreeTab();
         
-        UpdateAllSkillTreeItems(Network.LocalPlayer as FightPlayer);
+        InitializeTreeItems(Network.LocalPlayer as FightPlayer);
     }
 
     public override void OnInstantiate()
     {
         base.OnInstantiate();
-        //PlayerSkillTree ??= ((FightPlayer)Network.LocalPlayer).GetSkillTree();
-        PlayerSkillTree ??= (Network.LocalPlayer.Entity.GetComponent<FightPlayer>()).GetSkillTree();
+        LocalPlayer = Network.LocalPlayer.Entity.GetComponent<FightPlayer>();
+        PlayerSkillTree ??= LocalPlayer.GetSkillTree();
         //Log.Warn($"Local Component ID {PlayerSkillTree.Id}, LocalID {PlayerSkillTree.Entity.Id}");
         if (PlayerSkillTree.Initialized)
         {
-            PlayerSkillTree.SkillUpgradeUIEvent += UpdateSkillNode;
+            LocalPlayer.CoinUpdateEvent += UpdateAllSkillNode;
         }
         
     }
 
     public override void OnDestroy()
     {
-        PlayerSkillTree.SkillUpgradeUIEvent -= UpdateSkillNode;
+        LocalPlayer.CoinUpdateEvent -= UpdateAllSkillNode;
         base.OnDestroy();
     }
 
@@ -57,7 +58,7 @@ public class AbilityVendorWindow : UniqueUIWindow
         if (TabAmount > 0)
         {
             // Flush update, excl. the instantiation. [This function need to be called after Start()]
-            UpdateAllSkillTreeItems(Network.LocalPlayer as FightPlayer);
+            InitializeTreeItems(Network.LocalPlayer as FightPlayer);
         }
         
     }
@@ -130,24 +131,25 @@ public class AbilityVendorWindow : UniqueUIWindow
     /// The first update function, after player skill dict fetched
     /// </summary>
     /// <param name="localPlayer"></param>
-    public void UpdateAllSkillTreeItems(FightPlayer localPlayer)
+    public void InitializeTreeItems(FightPlayer localPlayer)
     {
+        LocalPlayer ??= localPlayer;
         PlayerSkillTree ??= localPlayer.GetSkillTree();
         // We have all skill nodes at this point (after player initialization)
         // Just adjust all skill nodes status
-        foreach (var kv in PlayerSkillTree.SkillLevelDict)
-        {
-            UpdateSkillNode(kv.Key, kv.Value);
-        }
+        UpdateAllSkillNode(0);
     }
+    
 
-    protected void UpdateSkillNode(string skillKey, int level)
+    protected void UpdateAllSkillNode(int _)
     {
-        // When a skill is updated, we want to update it as well as its children
-        AbilityItems[skillKey].UpdateItem(PlayerSkillTree);
-        foreach (string childKey in SkillConfig.STConfigQueryDict[skillKey].GetChildrenNodeKeys())
+        if (LocalPlayer.PlayerStatus == PlayerStatus.Combat)
         {
-            AbilityItems[childKey].UpdateItem(PlayerSkillTree);
+            return;
+        }
+        foreach (var item in AbilityItems)
+        {
+            item.Value.UpdateItem(PlayerSkillTree);
         }
     }
 

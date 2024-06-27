@@ -10,10 +10,12 @@ public partial class FightPlayer
 
     // Reserved for effects related to post-damage (e.g. after elimination, add damage)
     public Action<FightPlayer, DamageInfo> OnDealDamage; // Triggered in global damage event. Will contain the ACTUAL damage dealt (i.e. the damage info might be modified by some effects like parry)
-    public Action<FightPlayer, DamageInfo> OnReceiveDamage; // Triggered in CallClient_TakeDamage
+    public Action<FightPlayer, DamageInfo> OnReceiveDamage; // Triggered in CallClient_TakeDamage, after you receive damage
     public Action OnElimination; // Triggered in global elimination event;
     public Action<SkillActivationInfo> OnSkillActivate;
 
+    private List<FightEffect> _preDamageEffects;
+    
     #region Custom Data Pass to Client
     
     public struct DamageInfo
@@ -162,5 +164,15 @@ public partial class FightPlayer
                 Coins += GlobalData.CoinForDeath; // Death award 15 coins
             }
         };
+    }
+
+    public void RegisterPreDamageEvent(FightEffect pfe)
+    {
+        _preDamageEffects.Add(pfe);
+    }
+
+    public void RemovePreDamageEvent(FightEffect pfe)
+    {
+        _preDamageEffects.Remove(pfe);
     }
 }
