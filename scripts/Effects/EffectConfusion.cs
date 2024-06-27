@@ -23,10 +23,17 @@ public class EffectConfusion : EffectStun
         }
     }
 
+    public override void OnEffectStart()
+    {
+        base.OnEffectStart();
+        FightStateMachine.SetBool("confusion", true);
+    }
+
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.AddDash(Vector2.Zero, 0);
+        FightStateMachine.SetBool("confusion", false);
     }
 
     public void Confuse()

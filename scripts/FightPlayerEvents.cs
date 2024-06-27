@@ -24,6 +24,7 @@ public partial class FightPlayer
         public DamageType DmgType = DamageType.Melee;
         public bool AwardCoin = true;
         public int InterruptLevel = 0;
+        public ulong SourceNetworkId;
         
         // Client & Server Data
         public DamageReactionInfo ReactionInfo = new DamageReactionInfo(); 

@@ -11,6 +11,7 @@ public partial class FightPlayer
         var aoLayer = SpineAnimator.SpineInstance.StateMachine.TryGetLayerByName("main");
         var aoIdleState = aoLayer.TryGetStateByName("Idle");
         var aoRunState = aoLayer.TryGetStateByName("Run_Fast");
+        var aoMovingBool = SpineAnimator.SpineInstance.StateMachine.TryGetVariableByName("moving");
         var idleState = fightLayer.CreateState("__CLEAR_TRACK__", 0, true);
         fightLayer.SetInitialState(idleState);
         
@@ -25,12 +26,25 @@ public partial class FightPlayer
         
         // SelfDestruct
         var selfDestructTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("self_destruct", StateMachineVariableKind.TRIGGER);
-        var selfDestructEndTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("self_destruct_end", StateMachineVariableKind.TRIGGER);
 
         var selfDestructState = aoLayer.CreateState("BAT_003/self_destruct", 0, false);
 
         aoLayer.CreateGlobalTransition(selfDestructState).CreateTriggerCondition(selfDestructTrigger);
         aoLayer.CreateTransition(selfDestructState, aoIdleState, true);
+        
+        // Confusion
+        var confusionBool = SpineAnimator.SpineInstance.StateMachine.CreateVariable("confusion", StateMachineVariableKind.BOOLEAN);
+        var confusionRunState = aoLayer.CreateState("BAT_003/Run_confused", 0, true);
+        var confusionIdleState = aoLayer.CreateState("BAT_003/idle_confused", 0, true);
+
+        aoLayer.CreateTransition(aoRunState, confusionRunState, false).CreateBoolCondition(confusionBool, true);
+        aoLayer.CreateTransition(confusionRunState, aoRunState, false).CreateBoolCondition(confusionBool, false);
+        
+        aoLayer.CreateTransition(confusionRunState, confusionIdleState, false).CreateBoolCondition(aoMovingBool, false);
+        aoLayer.CreateTransition(confusionIdleState, confusionRunState, false).CreateBoolCondition(aoMovingBool, true);
+        
+        aoLayer.CreateTransition(aoIdleState, confusionIdleState, false).CreateBoolCondition(confusionBool, true);
+        aoLayer.CreateTransition(confusionIdleState, aoIdleState, false).CreateBoolCondition(confusionBool, false);
 
     }
 }

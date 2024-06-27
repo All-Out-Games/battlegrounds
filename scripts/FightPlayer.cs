@@ -272,12 +272,14 @@ public partial class FightPlayer : Player
     public void TakeDamage(FightPlayer source, DamageInfo info)
     {
         if (CurrentHealth <= 0) return; // Avoid damaging the dead
+        info.SourceNetworkId = source.Entity.NetworkId;
         
         // Pre-damage event, chained invoke
         foreach (var pfe in _preDamageEffects)
         {
             pfe.PreDamageMod(ref info);
         }
+        
         
         int damage = info.ReactionInfo.Amount;
         
