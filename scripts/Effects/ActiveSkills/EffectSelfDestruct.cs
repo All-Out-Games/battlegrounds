@@ -25,11 +25,14 @@ public class EffectSelfDestruct : FightEffect
     public override void OnEffectStart()
     {
         base.OnEffectStart();
+        FightStateMachine.SetTrigger("self_destruct");
         AssignConfig(EffectConfig.SelfDestructConfig.GetDefault(FightPlayer.CurrentAttack));
+        FightPlayer.AddEffect<EffectNoMovementWithInvincibility>(FightPlayer,DurationRemaining);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
+        FightPlayer.RemoveEffect<EffectNoMovementWithInvincibility>(false); // Remove this so that the invincibility does not cover self damage
         KnockingBlast();
         FightClubGameManager.Instance.ServerSpawn(VFXPrefabKeys.SelfDestructExplosionPath, FightPlayer.Entity.Position);
     }
@@ -38,7 +41,7 @@ public class EffectSelfDestruct : FightEffect
     protected void AssignConfig(EffectConfig.SelfDestructConfig cfg)
     {
         Config = cfg;
-        DurationRemaining = EffectConfig.SelfDestructConfig.ActivationTime;
+        DurationRemaining = MainLayer.GetCurrentStateLength();
     }
 
     private void KnockingBlast()
@@ -60,7 +63,7 @@ public class EffectSelfDestruct : FightEffect
                 fp.TakeDamage(FightPlayer, info);
                         
                 Vector2 bumpDir = fp.Entity.Position - selfPos;
-                fp.AddBumpFrom(FightPlayer, bumpDir * EffectConfig.SelfDestructConfig.BumpStrength, false);
+                fp.AddBumpFrom(FightPlayer, bumpDir.Normalized * EffectConfig.SelfDestructConfig.BumpStrength, false);
             }
         }
     }

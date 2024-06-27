@@ -301,7 +301,6 @@ public static class EffectConfig
         public static int BaseDmg = 12;
         public static int BaseSelfDmg = 10;
         public static float Cooldown = 11f;
-        public static float ActivationTime = 1f;
         public static float BlastRange = 8f;
         public static float BumpStrength = 140f;
 

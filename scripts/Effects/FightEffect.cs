@@ -8,6 +8,10 @@ using StreamReader = AO.StreamReader;
 public abstract class FightEffect : AEffect
 {
     protected FightPlayer FightPlayer;
+    
+    protected StateMachineLayer FightLayer;
+    protected StateMachineLayer MainLayer;
+    protected StateMachine FightStateMachine;
 
     protected virtual int InterruptLevel => 0;
     /// <summary>
@@ -17,6 +21,9 @@ public abstract class FightEffect : AEffect
     public override void OnEffectStart()
     {
         FightPlayer = (FightPlayer)Player;
+        FightStateMachine = Player.SpineAnimator.SpineInstance.StateMachine;
+        MainLayer = FightStateMachine.TryGetLayerByName("main");
+        FightLayer = FightStateMachine.TryGetLayerByName("fight_layer");
     }
 
     public override void OnEffectEnd(bool interrupt)

@@ -210,6 +210,12 @@ public class FightClubGameManager : System<FightClubGameManager> {
         return hitPlayers;
     }
 
+    /// <summary>
+    /// Spawns a networked prefab. client prediction included.
+    /// </summary>
+    /// <param name="prefabPath"></param>
+    /// <param name="position"></param>
+    /// <param name="afterSpawn"></param>
     public void ServerSpawn(string prefabPath, Vector2 position, Action<Entity> afterSpawn = null)
     {
         if (Network.IsServer)
@@ -226,9 +232,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
             {
                 afterSpawn(expEntity);
             }
-            
             Network.Spawn(expEntity);
-            
         }
     }
 

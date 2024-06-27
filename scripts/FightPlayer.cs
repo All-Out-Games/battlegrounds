@@ -228,6 +228,8 @@ public partial class FightPlayer : Player
             Log.Error("Shin: Punch Collider NOT FOUND");
         }
         
+        // See FightPlayerAnimation.cs
+        InitializeStateMachine();
     }
 
     public override void Update()
