@@ -92,6 +92,7 @@ public class EffectPsyThrowReady : FightEffect
             slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityPsyThrowLaunch)));
             // FightPlayer.CurrentTargettingAbility = slotsMgr.GetAbilityInstance(typeof(AbilityPsyThrowLaunch));
             // TODO: Cannot immediately target the grabbed target
+            FightPlayer.ActivateAbility<AbilityPsyThrowLaunch>();
         }
         else
         {
