@@ -1,5 +1,8 @@
 // Fill in the actual configs in this file.
 using AO;
+using SC = SkillConfig;
+using Assembly.scripts.Effects.ActiveSkills;
+
 public static partial class SkillConfig
 {
     // NOTE: The query dictionary (SkillKey : NodeConfig) is defined at the bottom of this file as 'STConfigQueryDict'
@@ -379,6 +382,21 @@ public static partial class SkillConfig
         SkillKey = "Invisibility",
         IconPath = "ability_icon_tmp/Invisibility_tmp.png",
         ParentNodeKeys = new string[] {},
+        ChildrenNodeKeys = new string[]{"LightFeet"},
+
+    };
+    
+    public static readonly SkillTreeNodeConfig LightFeetConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Become Invisible for a short period",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Stealth,
+        UpgradeCost = 150,
+        UIPosition = new Vector2(170, 30),
+        SkillKey = "LightFeet",
+        IconPath = "ability_icon_tmp/LightFeet_tmp.png",
+        ParentNodeKeys = new string[] {"Invisibility"},
         ChildrenNodeKeys = new string[]{},
 
     };
@@ -417,7 +435,8 @@ public static partial class SkillConfig
             {"PsionicBeam", PsionicBeamConfig},
             {"PsyThrow", PsyThrowConfig},
             // Stealth
-            {"Invisibility", InvisibilityConfig}
+            {"Invisibility", InvisibilityConfig},
+            {"LightFeet", LightFeetConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -429,14 +448,12 @@ public static partial class SkillConfig
         // Psionic
         "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize","PsionicBeam", "PsyThrow",
         // Stealth
-        "Invisibility"
+        "Invisibility","LightFeet"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
     
     public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() {  };
-    
-    // [Add Skill] Item 4: Go to FightAbility.cs, add the association between skillKey and type of ability.
     
     
     // This affects how many pages appear on the ability book and ability vendor. Each page will have a tag that classifies the items.
@@ -458,4 +475,35 @@ public static partial class SkillConfig
             {SkillTreeTabs.Stealth, "Stealth"},
             {SkillTreeTabs.Psionic, "Psionic"}
         };
+}
+
+// [Add Skill] Item 4: Add the association between skillKey and type of ability.
+
+public partial class FightAbility
+{
+    public static readonly Dictionary<string, Type> AbilityQueryDict = new Dictionary<string, Type>()
+    {
+        {"Empty", typeof(FightAbility)},
+        {SC.PunchNodeConfig.SkillKey, typeof(AbilityPunch)},
+        {SC.RollOutNodeConfig.SkillKey, typeof(AbilityRollOut)},
+        {SC.ShieldConfig.SkillKey, typeof(AbilityShield)},
+        {SC.ShoulderCrashNodeConfig.SkillKey, typeof(AbilityShoulderCrash)},
+        {SC.SpoonThrowConfig.SkillKey, typeof(AbilitySpoonThrow)},
+        {SC.GroundStompConfig.SkillKey, typeof(AbilityGroundStomp)},
+        {SC.RageConfig.SkillKey, typeof(AbilityRage)},
+        {SC.DoublePunchConfig.SkillKey, typeof(AbilityDoublePunch)},
+        {SC.SelfDestructConfig.SkillKey, typeof(AbilitySelfDestruct)},
+        {SC.BattleCryConfig.SkillKey, typeof(AbilityBattleCry)},
+        {SC.ClawSlashConfig.SkillKey, typeof(AbilityClawSlash)},
+        {SC.LeapSlamConfig.SkillKey, typeof(AbilityLeapSlam)},
+        {SC.BefuddleConfig.SkillKey, typeof(AbilityBefuddle)},
+        {SC.PsyboltConfig.SkillKey, typeof(AbilityPsybolt)},
+        {SC.SelfHealConfig.SkillKey, typeof(AbilitySelfHeal)},
+        {SC.RegenerationConfig.SkillKey, typeof(AbilityRegeneration)},
+        {SC.HypnotizeConfig.SkillKey, typeof(AbilityHypnotize)},
+        {SC.PsionicBeamConfig.SkillKey, typeof(AbilityPsionicBeam)},
+        {SC.PsyThrowConfig.SkillKey, typeof(AbilityPsyThrow)},
+        {SC.InvisibilityConfig.SkillKey, typeof(AbilityInvisible)},
+        {SC.LightFeetConfig.SkillKey, typeof(AbilityLightFeet)}
+    };
 }

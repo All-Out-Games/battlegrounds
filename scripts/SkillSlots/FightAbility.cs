@@ -1,8 +1,7 @@
 using AO;
-using SC = SkillConfig;
 using Assembly.scripts.Effects.ActiveSkills;
 
-public class FightAbility : Ability
+public partial class FightAbility : Ability
 {
     public static string DefaultIconPath = "$AO/allouticon1.png";
     public static string DefaultSkillKey = "Empty";
@@ -42,31 +41,6 @@ public class FightAbility : Ability
         FightPlayer = (FightPlayer)Player;
         FightPlayer.OnSkillActivate?.Invoke(FightPlayer.SkillActivationInfo.GetActivationInfo(Interruptlevel, SkillKey));
     }
-
-
-    public static readonly Dictionary<string, Type> AbilityQueryDict = new Dictionary<string, Type>()
-    {
-        {"Empty", typeof(FightAbility)},
-        {SC.PunchNodeConfig.SkillKey, typeof(AbilityPunch)},
-        {SC.RollOutNodeConfig.SkillKey, typeof(AbilityRollOut)},
-        {SC.ShieldConfig.SkillKey, typeof(AbilityShield)},
-        {SC.ShoulderCrashNodeConfig.SkillKey, typeof(AbilityShoulderCrash)},
-        {SC.SpoonThrowConfig.SkillKey, typeof(AbilitySpoonThrow)},
-        {SC.GroundStompConfig.SkillKey, typeof(AbilityGroundStomp)},
-        {SC.RageConfig.SkillKey, typeof(AbilityRage)},
-        {SC.DoublePunchConfig.SkillKey, typeof(AbilityDoublePunch)},
-        {SC.SelfDestructConfig.SkillKey, typeof(AbilitySelfDestruct)},
-        {SC.BattleCryConfig.SkillKey, typeof(AbilityBattleCry)},
-        {SC.ClawSlashConfig.SkillKey, typeof(AbilityClawSlash)},
-        {SC.LeapSlamConfig.SkillKey, typeof(AbilityLeapSlam)},
-        {SC.BefuddleConfig.SkillKey, typeof(AbilityBefuddle)},
-        {SC.PsyboltConfig.SkillKey, typeof(AbilityPsybolt)},
-        {SC.SelfHealConfig.SkillKey, typeof(AbilitySelfHeal)},
-        {SC.RegenerationConfig.SkillKey, typeof(AbilityRegeneration)},
-        {SC.HypnotizeConfig.SkillKey, typeof(AbilityHypnotize)},
-        {SC.PsionicBeamConfig.SkillKey, typeof(AbilityPsionicBeam)},
-        {SC.PsyThrowConfig.SkillKey, typeof(AbilityPsyThrow)},
-        {SC.InvisibilityConfig.SkillKey, typeof(AbilityInvisible)}
-    };
+    
 }
 

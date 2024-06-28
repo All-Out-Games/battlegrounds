@@ -160,7 +160,7 @@ public partial class FightPlayer
                 Coins += GlobalData.CoinForElimination; // Kills award 30 coins
             }
 
-            if (victim == this)
+            if (victim == this && source != this)
             {
                 Coins += GlobalData.CoinForDeath; // Death award 15 coins
             }

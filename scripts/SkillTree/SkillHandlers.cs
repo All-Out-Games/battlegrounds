@@ -48,7 +48,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     
     public void RemoveSkill(string skillKey)
     {
-        return; // Shin: Design redundancy. Currently not useful. When skills become upgradable we'll need to use this
+        return; // Shin: Design redundancy. They will be useful once Stat-boost passives are added.
         if (Network.IsServer)
         {
             MethodInfo skillRemover = SkillTreeCompType.GetMethod($"CallClient_{skillKey}_Remover");
@@ -79,8 +79,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     [ClientRpc]
     public void ReplacementAdder(int level, string skillKey, string slotKey)
     {
-        // TODO
-        //_player.GetSkillSlots().UpdateSlot(slotKey, level, skillKey);
+        
     }
 
     [ClientRpc]

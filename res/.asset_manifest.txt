@@ -40,12 +40,16 @@ VFX/PsionicBeam/ground_fissue_repeatable.png - .ao.ios - 66748cd3f2e0da1ffcd23bd
 VFX/SelfDestructExplosion/explosion_big.png - .ao - 6671c7560b1e3d2f089ae7b2 - 9127105229977764723
 VFX/SelfDestructExplosion/explosion_big.png - .ao.ios - 6671c7570b1e3d2f089ae7b4 - 2340973987058875720
 VFX/SelfDestructExplosion/explosion_big.spine - .ao - 6671c7560b1e3d2f089ae7b1 - 16862651109100273494
+ability_icon_tmp/BearTrap_tmp.png - .ao - 667f06a1b45eb9e8339bdd1f - 5898372421903878382
+ability_icon_tmp/BearTrap_tmp.png - .ao.ios - 667f06a1b45eb9e8339bdd1b - 4060270655151576253
 ability_icon_tmp/Befuddle_Tmp.png - .ao - 6672020d0b1e3d2f089ae7ee - 16873724532494154655
 ability_icon_tmp/Befuddle_Tmp.png - .ao.ios - 6672020d0b1e3d2f089ae7ed - 10152828531997449758
 ability_icon_tmp/GroundStomp_Tmp.png - .ao - 66639229d7f18c22a1140ac5 - 6153841723021127104
 ability_icon_tmp/GroundStomp_Tmp.png - .ao.ios - 66639229d7f18c22a1140ac6 - 6090531938772023533
 ability_icon_tmp/Invisibility_tmp.png - .ao - 667af457f2e0da1ffcd23e8e - 4341639155047186754
 ability_icon_tmp/Invisibility_tmp.png - .ao.ios - 667af457f2e0da1ffcd23e8f - 5416779629453921970
+ability_icon_tmp/LightFeet_tmp.png - .ao - 667f06a1b45eb9e8339bdd1d - 7136647617012916567
+ability_icon_tmp/LightFeet_tmp.png - .ao.ios - 667f06a0b45eb9e8339bdd17 - 9747745450785620664
 ability_icon_tmp/PsyThrowGrab_Tmp.png - .ao - 6679b603f2e0da1ffcd23e87 - 1297453190228747540
 ability_icon_tmp/PsyThrowGrab_Tmp.png - .ao.ios - 6679b603f2e0da1ffcd23e8a - 4864899655034689247
 ability_icon_tmp/PsyThrow_Tmp.png - .ao - 6679b603f2e0da1ffcd23e88 - 13942550092457171743
@@ -58,6 +62,8 @@ ability_icon_tmp/Shield_Tmp.png - .ao - 6658c98f87d80516fc66cbc3 - 6644885699981
 ability_icon_tmp/Shield_Tmp.png - .ao.ios - 6658c98f87d80516fc66cbc5 - 1037402639623906319
 ability_icon_tmp/ShoulderCrash_Tmp.png - .ao - 6658c98f87d80516fc66cbc8 - 14678946013662840281
 ability_icon_tmp/ShoulderCrash_Tmp.png - .ao.ios - 6658c98f87d80516fc66cbc9 - 13677896990409462428
+ability_icon_tmp/Shuriken_tmp.png - .ao - 667f06a1b45eb9e8339bdd19 - 6537618578272691673
+ability_icon_tmp/Shuriken_tmp.png - .ao.ios - 667f06a0b45eb9e8339bdd18 - 5623790097114792283
 ability_icon_tmp/SpoonThrow_Tmp.png - .ao - 6658c99087d80516fc66cbcc - 12173738952403561832
 ability_icon_tmp/SpoonThrow_Tmp.png - .ao.ios - 6658c99087d80516fc66cbce - 6099970576132887541
 environment/CentralHub/HallShelf.png - .ao - 6663761fd7f18c22a1140abc - 14908720648814724207

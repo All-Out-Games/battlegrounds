@@ -503,4 +503,16 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region cfg: LightFeet
+
+    public struct LightFeetConfig
+    {
+        public static float SpeedModifier = 1.3f;
+        public static float Cooldown = 5f;
+        public static float BoostTime = 5f;
+
+    }
+
+    #endregion
 }
