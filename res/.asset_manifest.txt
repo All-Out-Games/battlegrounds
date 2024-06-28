@@ -15,6 +15,7 @@ PsionicBeamExplosion.prefab - .ao - 667b1023f2e0da1ffcd23ea2 - 13710752620973719
 PsionicBeamGroundFissue.prefab - .ao - 6674a55ff2e0da1ffcd23e65 - 6060544460007990298
 PsionicBeamGroundFissueEnd.prefab - .ao - 6674a55ff2e0da1ffcd23e64 - 9947869729590302411
 PsionicRay.prefab - .ao - 667b320bf2e0da1ffcd23ea4 - 14816483831825167967
+PsyboltHitVFX.prefab - .ao - 667f3212b45eb9e8339bdd27 - 3380845811398256885
 PsyboltProjectile.prefab - .ao - 667c48f1f2e0da1ffcd23eab - 12382924361178526717
 Rage_Aura.prefab - .ao - 667ca166b45eb9e8339bdbad - 17674612195471058141
 RegenerationAura.prefab - .ao - 667c9b8ab45eb9e8339bdbab - 4626569113267099519
@@ -22,6 +23,7 @@ ResourcesOverlayWindow.prefab - .ao - 665f4be4d7f18c22a11409aa - 448487249146091
 SceneProps_tmp/aura_circle.png - .ao - 666741efd7f18c22a1140ae8 - 10293273442432679734
 SceneProps_tmp/aura_circle.png - .ao.ios - 666741efd7f18c22a1140ae9 - 4712178218859138718
 SelfDestructExplosion.prefab - .ao - 6671ebe60b1e3d2f089ae7cd - 15730315220489123347
+ShurikenProjectile.prefab - .ao - 667f2cd7b45eb9e8339bdd25 - 8814019105862819238
 SkillSlotsPanel.prefab - .ao - 6650e827bbb4cc59c69fd102 - 11546600357276263640
 SpoonProjectile.prefab - .ao - 6675e658f2e0da1ffcd23e7e - 12342670774966987832
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao - 6671eec10b1e3d2f089ae7d1 - 16085789866035322621

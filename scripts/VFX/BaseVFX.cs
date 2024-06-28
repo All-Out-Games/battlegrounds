@@ -6,7 +6,7 @@ namespace Assembly.scripts.VFX;
 public class VFX : Component
 {
     [Serialized] protected bool Loop;
-    [Serialized] protected Spine_Animator Animator;
+    [Serialized] public Spine_Animator Animator;
     [Serialized] protected float EntityLifeTime;
     protected bool LifeTimeEnded;
     protected float LifeTime;
@@ -27,7 +27,7 @@ public class VFX : Component
 }
 public class BaseVFX : VFX
 {
-    [Serialized] protected string[] StartAnimationStr; // Random Play
+    [Serialized] public string[] StartAnimationStr; // Random Play
 
     public override void Start()
     {

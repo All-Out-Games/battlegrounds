@@ -147,7 +147,7 @@ public static class EffectConfig
         public static readonly float BefuddleRange = 10f;
         public static readonly float BefuddleLifetime = 1f;
         public static readonly float BefuddleConfusionTime = 2.75f;
-        public static readonly float BefuddleConfusionIntensity = 75f;
+        public static readonly float BefuddleConfusionIntensity = 75f; // Higher will make player walk faster in confused state
         
         // PsyBolt
         public static readonly int PsyboltDamageBase = 6;
@@ -155,12 +155,18 @@ public static class EffectConfig
         public static readonly float PsyboltRange = 10f;
         public static readonly float PsyboltLifeTime = 1f;
         public static readonly float PsyboltKnockbackStrength = 165f;
+        
+        // Shuriken
+        public static readonly int ShurikenDamageBase = 5;
+        public static readonly float ShurikenBackDamageModifier = 1.5f;
+        public static readonly float ShurikenCooldown = 4.5f;
+        public static readonly float ShurikenRange = 6f;
+        public static readonly float ShurikenLifetime = 0.5f;
 
         public float Speed = 15f;
         public float ProjectileLifetime = 2f;
         public float ThrowAnimationLength = 0.3f; // You can use this as delay (or use animation event) to spawn the projectile
         public int Damage = 0;
-
         public string ProjectilePrefabKey;
 
         public ProjectileConfig()
@@ -205,6 +211,18 @@ public static class EffectConfig
                 ProjectilePrefabKey = "PsyboltProjectile.prefab",
                 ProjectileLifetime = PsyboltLifeTime,
                 Speed = PsyboltRange / PsyboltLifeTime
+            };
+            return cfg;
+        }
+
+        public static ProjectileConfig GetPlayerShurikenConfig(int attack)
+        {
+            ProjectileConfig cfg = new ProjectileConfig()
+            {
+                Damage = ShurikenDamageBase + attack,
+                ProjectilePrefabKey = "ShurikenProjectile.prefab",
+                ProjectileLifetime = ShurikenLifetime,
+                Speed = ShurikenRange / ShurikenLifetime
             };
             return cfg;
         }

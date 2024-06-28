@@ -388,17 +388,31 @@ public static partial class SkillConfig
     
     public static readonly SkillTreeNodeConfig LightFeetConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Become Invisible for a short period",
+        DescriptionTextKey = "Increase movement speed temporarily",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
         UpgradeCost = 150,
-        UIPosition = new Vector2(170, 30),
+        UIPosition = new Vector2(450, 230),
         SkillKey = "LightFeet",
         IconPath = "ability_icon_tmp/LightFeet_tmp.png",
         ParentNodeKeys = new string[] {"Invisibility"},
-        ChildrenNodeKeys = new string[]{},
+        ChildrenNodeKeys = new string[]{"Shuriken"},
 
+    };
+
+    public static readonly SkillTreeNodeConfig ShurikenConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Throw a shuriken which deals more damage if you struck the back of an enemy",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Stealth,
+        UpgradeCost = 250,
+        UIPosition = new Vector2(450, 430),
+        SkillKey = "Shuriken",
+        IconPath = "ability_icon_tmp/Shuriken_tmp.png",
+        ParentNodeKeys = new string[] { "LightFeet" },
+        ChildrenNodeKeys = new string[] { },
     };
 
     #endregion
@@ -436,7 +450,8 @@ public static partial class SkillConfig
             {"PsyThrow", PsyThrowConfig},
             // Stealth
             {"Invisibility", InvisibilityConfig},
-            {"LightFeet", LightFeetConfig}
+            {"LightFeet", LightFeetConfig},
+            {"Shuriken", ShurikenConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -448,7 +463,7 @@ public static partial class SkillConfig
         // Psionic
         "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize","PsionicBeam", "PsyThrow",
         // Stealth
-        "Invisibility","LightFeet"
+        "Invisibility","LightFeet", "Shuriken"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
@@ -504,6 +519,7 @@ public partial class FightAbility
         {SC.PsionicBeamConfig.SkillKey, typeof(AbilityPsionicBeam)},
         {SC.PsyThrowConfig.SkillKey, typeof(AbilityPsyThrow)},
         {SC.InvisibilityConfig.SkillKey, typeof(AbilityInvisible)},
-        {SC.LightFeetConfig.SkillKey, typeof(AbilityLightFeet)}
+        {SC.LightFeetConfig.SkillKey, typeof(AbilityLightFeet)},
+        {SC.ShurikenConfig.SkillKey, typeof(AbilityShuriken)}
     };
 }

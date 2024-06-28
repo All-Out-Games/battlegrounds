@@ -211,7 +211,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     }
 
     /// <summary>
-    /// Spawns a networked prefab. client prediction included.
+    /// Spawns a networked prefab.
     /// </summary>
     /// <param name="prefabPath"></param>
     /// <param name="position"></param>
@@ -233,6 +233,22 @@ public class FightClubGameManager : System<FightClubGameManager> {
                 afterSpawn(expEntity);
             }
             Network.Spawn(expEntity);
+        }
+    }
+
+    public void ClientSpawn(string prefabPath, Vector2 position, Action<Entity> afterSpawn = null)
+    {
+        Prefab pf = Assets.GetAsset<Prefab>(prefabPath);
+        if (pf == null)
+        {
+            Log.Error($"{prefabPath} does not exist!");
+            return;
+        }
+        Entity expEntity = pf.Instantiate();
+        expEntity.Position = position;
+        if (afterSpawn != null)
+        {
+            afterSpawn(expEntity);
         }
     }
 
