@@ -31,11 +31,7 @@ public class ShurikenProjectile : BaseProjectile
         if (fp is { CurrentHealth: > 0 })
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
-            if (predicted)
-            {
-                info.ReactionInfo.Flinch = false;
-            }
-            
+
             Vector2 dir = other.Position - Entity.Position;
             if (Vector2.Dot(dir, fp.GetFacingDirection() ? Vector2.Right : Vector2.Left) >= 0)
             {
@@ -47,7 +43,13 @@ public class ShurikenProjectile : BaseProjectile
             {
                 Entity.Destroy();
             }
-            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.HitVfxPath, Vector2.Lerp(other.Position, Entity.Position, 0.5f));
+            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.HitVfxPath, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
+                entity =>
+                {
+                    SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
+                    vfx.StartVFX("hit_generic", false);
+                }
+                );
         }
     }
 }

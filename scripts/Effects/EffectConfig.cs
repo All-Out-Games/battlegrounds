@@ -533,4 +533,18 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region cfg: BearTrap
+
+    public struct BearTrapConfig
+    {
+        public static float TrapHoldTime = 3f;
+        public static int TrapBaseDamage = 2;
+        public static float TrapLifeTime = 20f;
+
+        public static string TrapPrefabPath = "BearTrap.prefab";
+        
+    }
+
+    #endregion
 }

@@ -10,7 +10,7 @@ FatPlayerCollision.prefab - .ao - 666c8f92d7f18c22a1141616 - 1590977569642181393
 FightPlayerRig/playercharacter.png - .ao - 667de4d9b45eb9e8339bdc37 - 17407570598291956317
 FightPlayerRig/playercharacter.png - .ao.ios - 667de4d9b45eb9e8339bdc36 - 11441572607467883533
 FightPlayerRig/playercharacter.spine - .ao - 667de4d9b45eb9e8339bdc35 - 5025274262689305068
-HitVfx.prefab - .ao - 6675e658f2e0da1ffcd23e7f - 9364149976474600941
+HitVfx.prefab - .ao - 667f38e8b45eb9e8339bdd29 - 5146642717615886720
 PsionicBeamExplosion.prefab - .ao - 667b1023f2e0da1ffcd23ea2 - 13710752620973719839
 PsionicBeamGroundFissue.prefab - .ao - 6674a55ff2e0da1ffcd23e65 - 6060544460007990298
 PsionicBeamGroundFissueEnd.prefab - .ao - 6674a55ff2e0da1ffcd23e64 - 9947869729590302411

@@ -33,15 +33,12 @@
 },
 {
   "cid": 2,
-  "aoid": "30713438432631:1718998574635943000",
+  "aoid": "51210223820199:1719613573550277700",
   "component_type": "Mono_Component",
-  "mono_component_type": "BaseVFX",
+  "mono_component_type": "SelectionVFX",
   "data": {
-    "StartAnimationStr": [
-      "hit_generic"
-    ],
     "Loop": false,
-    "Animator": "30702195795296:1718998570131679700",
+    "Animator": "0:0",
     "EntityLifeTime": 1.2000000476837158
   }
 }

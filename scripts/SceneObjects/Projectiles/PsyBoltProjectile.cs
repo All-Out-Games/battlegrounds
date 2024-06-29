@@ -31,11 +31,7 @@ public class PsyBoltProjectile : BaseProjectile
         if (fp is { CurrentHealth: > 0 })
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged) with {InterruptLevel = 2000};
-            if (predicted)
-            {
-                info.ReactionInfo.Flinch = false;
-            }
-            
+
             fp.TakeDamage(Owner, info);
             Vector2 dir = other.Position - Entity.Position;
             fp.AddBumpFrom(Owner, dir * KnockBackStrength, false);
@@ -48,9 +44,10 @@ public class PsyBoltProjectile : BaseProjectile
             FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.HitVfxPath, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
                 entity =>
                 {
-                    BaseVFX vfx = entity.GetComponent<BaseVFX>();
-                    vfx.StartAnimationStr[0] = "hit_psybolt";
-                });
+                    SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
+                    vfx.StartVFX("hit_psybolt", false);
+                }
+            );
         }
     }
 }
