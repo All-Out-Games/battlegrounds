@@ -12,7 +12,8 @@
   "local_scale": {
     "X": 1,
     "Y": 1
-  }
+  },
+  "spawn_as_networked_entity": true
 },
 {
   "cid": 1,
@@ -57,6 +58,10 @@
   "data": {
     "TriggerCollider": "59827397374439:1719617025943161600",
     "Animator": "59804925535505:1719617016940021600",
+    "EntityLifeTime": 0,
+    "LifeTimeEnded": false,
+    "LifeTime": 0,
+    "Owner": "0:0",
     "Snapped": false
   }
 }

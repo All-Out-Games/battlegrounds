@@ -29,6 +29,8 @@ public class OwnedTrigger : Component
         
         InteractedEntities.Add(entity);
         
+        Log.Debug($"Entity {entity.Name} enters.");
+        
         FightPlayer fp = entity.GetComponent<FightPlayer>();
         if (fp != null && fp != Owner)
         {
@@ -85,9 +87,9 @@ public class OwnedTrigger : Component
 
     public void Despawn()
     {
-        if(Network.IsServer) Network.Despawn(Entity);
+        Log.Debug($"Despawn called for {Entity.Name}");
         Entity.Destroy();
-        
+        if(Network.IsServer) Network.Despawn(Entity);
     }
     
 }

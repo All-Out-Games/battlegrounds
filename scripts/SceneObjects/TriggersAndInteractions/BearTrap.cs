@@ -9,16 +9,16 @@ public class BearTrap : OwnedTrigger
     [Serialized] public bool Snapped;
     protected override void OnOtherPlayerEnter(FightPlayer fp)
     {
-        if(Snapped) return;
-        
-        base.OnOtherPlayerEnter(fp);
-        if (!Owner.IsLocal)
+        if (Snapped)
         {
-            Animator.LocalEnabled = true;
+            Log.Error("This trap already snapped!");
+            return;
         }
+        Log.Error("SNAP!!");
+        base.OnOtherPlayerEnter(fp);
+        Animator.SpineInstance.ColorMultiplier = new Vector4(1,1,1, 1);
         Animator.SpineInstance.StateMachine.SetTrigger("snap");
         Snapped = true;
-
         fp.AddEffect<EffectBearTrapSnare>(Owner);
     }
 
@@ -36,6 +36,7 @@ public class BearTrap : OwnedTrigger
         var snapCloseState = mainLayer.CreateState("snap_close", 0, false);
         var disappearState = mainLayer.CreateState("dissappear", 0, false);
         var disappearClosedState = mainLayer.CreateState("dissappear_closed", 0, false);
+        var emptyState = mainLayer.CreateState("__CLEAR_TRACK__", 0, false);
 
         var snapTrigger = stateMachine.CreateVariable("snap", StateMachineVariableKind.TRIGGER);
         var disappearTrigger = stateMachine.CreateVariable("expire", StateMachineVariableKind.TRIGGER);
@@ -45,6 +46,9 @@ public class BearTrap : OwnedTrigger
         mainLayer.CreateTransition(idleState, snapCloseState, false).CreateTriggerCondition(snapTrigger);
         mainLayer.CreateGlobalTransition(disappearState).CreateTriggerCondition(disappearTrigger);
         mainLayer.CreateTransition(snapCloseState, disappearClosedState, true);
+
+        mainLayer.CreateTransition(disappearState, emptyState, true);
+        mainLayer.CreateTransition(disappearClosedState, emptyState, true);
         
         Animator.SpineInstance.SetStateMachine(stateMachine, Entity);
         Animator.OnAnimationEnd += OnAnimationEnd;
@@ -58,6 +62,7 @@ public class BearTrap : OwnedTrigger
 
     public void OnAnimationEnd(string anim)
     {
+        Log.Debug($"Animation End {anim}");
         if (anim == "dissappear" || anim == "dissappear_closed")
         {
             Animator.LocalEnabled = true;
@@ -68,16 +73,15 @@ public class BearTrap : OwnedTrigger
         {
             //var spr = Entity.GetComponent<Sprite_Renderer>();
             //Log.Warn($" Is there a renderer? {spr != null}"); // No
-            if (!Owner.IsLocal)
+            /*if (!Owner.IsLocal)
             {
                 Animator.SpineInstance.ColorMultiplier = new Vector4(1,1,1, 0); // Hide for non-local player
-            }
+            }*/
         }
     }
 
     protected override void OnLifeTimeRunOut()
     {
-        Animator.LocalEnabled = true;
         Animator.SpineInstance.StateMachine.SetTrigger("expire");
     }
 }
