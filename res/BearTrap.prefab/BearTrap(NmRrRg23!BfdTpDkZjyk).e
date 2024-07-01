@@ -12,8 +12,7 @@
   "local_scale": {
     "X": 1,
     "Y": 1
-  },
-  "previous_sibling": "377316458197998:1716489394196426200"
+  }
 },
 {
   "cid": 1,
@@ -56,7 +55,7 @@
   "component_type": "Mono_Component",
   "mono_component_type": "BearTrap",
   "data": {
-    "TriggerCollider": "0:0",
+    "TriggerCollider": "59827397374439:1719617025943161600",
     "Animator": "59804925535505:1719617016940021600",
     "Snapped": false
   }

@@ -3,7 +3,7 @@ AbilityBookItem.prefab - .ao - 66622b07d7f18c22a1140ab0 - 8105871847217317263
 AbilityItem.prefab - .ao - 6643f5634d5b99636ac7a9a4 - 14427433616163832665
 AbilityUpgradeDialog.prefab - .ao - 6647dbfca2a326d825267e81 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 6660a2c7d7f18c22a1140a92 - 14180256252234443626
-BearTrap.prefab - .ao - 6682f109b45eb9e8339be50e - 10165865885336097214
+BearTrap.prefab - .ao - 6682f479b45eb9e8339be511 - 14831779066719318587
 BefuddleProjectile.prefab - .ao - 6675e725f2e0da1ffcd23e82 - 6990652969476779402
 BroccoliProjectile.prefab - .ao - 666b71d2d7f18c22a1140d42 - 5129262647641696432
 ClawSwipe.prefab - .ao - 6671ef540b1e3d2f089ae7d7 - 1804017453416592716

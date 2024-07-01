@@ -7,14 +7,15 @@ namespace Assembly.scripts.SceneObjects.TriggersAndInteractions;
 /// </summary>
 public class OwnedTrigger : Component
 {
-    [Serialized] protected Collider TriggerCollider;
+    [Serialized] protected Circle_Collider TriggerCollider;
     [Serialized] public Spine_Animator Animator;
     
-    protected float EntityLifeTime;
-    protected bool LifeTimeEnded;
-    protected float LifeTime;
+    [Serialized] protected float EntityLifeTime;
+    [Serialized] protected bool LifeTimeEnded = true;
+    [Serialized] protected float LifeTime;
 
-    protected FightPlayer Owner;
+    [Serialized] protected FightPlayer Owner;
+    
     protected List<Entity> InteractedEntities;
 
     protected virtual void OnOtherPlayerEnter(FightPlayer fp)
@@ -46,6 +47,7 @@ public class OwnedTrigger : Component
         EntityLifeTime = lifeTime;
         InteractedEntities = new List<Entity>();
         TriggerCollider.OnCollisionEnter += OnEntityEnter;
+        LifeTimeEnded = false;
     }
 
     public override void Update()
@@ -54,15 +56,15 @@ public class OwnedTrigger : Component
         if (Util.OneTime(LifeTime > EntityLifeTime, ref LifeTimeEnded))
         {
             OnLifeTimeRunOut();
-            //Log.Warn($"Entity {Entity.Name} Destroyed!");
+            Log.Debug($"LifeTime Runout called for {Entity.Name}");
         }
 
         LifeTime += Time.DeltaTime;
     }
 
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
         TriggerCollider ??= Entity.GetComponent<Circle_Collider>();
         Animator ??= Entity.GetComponent<Spine_Animator>();
         if (TriggerCollider == null)
@@ -85,6 +87,7 @@ public class OwnedTrigger : Component
     {
         if(Network.IsServer) Network.Despawn(Entity);
         Entity.Destroy();
+        
     }
     
 }

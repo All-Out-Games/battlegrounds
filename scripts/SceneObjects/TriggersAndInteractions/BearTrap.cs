@@ -29,16 +29,18 @@ public class BearTrap : OwnedTrigger
         // Make a state machine.
         var stateMachine = StateMachine.Make();
         var mainLayer = stateMachine.CreateLayer("main");
+        
 
-        var appearSetUpState = mainLayer.CreateState("appear_setup", 0, false);
+        var appearSetUpState = mainLayer.CreateState("appear_set_up", 0, false);
         var idleState = mainLayer.CreateState("idle", 0, true);
         var snapCloseState = mainLayer.CreateState("snap_close", 0, false);
-        var disappearState = mainLayer.CreateState("disappear", 0, false);
-        var disappearClosedState = mainLayer.CreateState("disappear_closed", 0, false);
+        var disappearState = mainLayer.CreateState("dissappear", 0, false);
+        var disappearClosedState = mainLayer.CreateState("dissappear_closed", 0, false);
 
         var snapTrigger = stateMachine.CreateVariable("snap", StateMachineVariableKind.TRIGGER);
         var disappearTrigger = stateMachine.CreateVariable("expire", StateMachineVariableKind.TRIGGER);
 
+        mainLayer.SetInitialState(appearSetUpState);
         mainLayer.CreateTransition(appearSetUpState, idleState, true);
         mainLayer.CreateTransition(idleState, snapCloseState, false).CreateTriggerCondition(snapTrigger);
         mainLayer.CreateGlobalTransition(disappearState).CreateTriggerCondition(disappearTrigger);
@@ -56,17 +58,19 @@ public class BearTrap : OwnedTrigger
 
     public void OnAnimationEnd(string anim)
     {
-        if (anim == "disappear" || anim == "disappear_closed")
+        if (anim == "dissappear" || anim == "dissappear_closed")
         {
             Animator.LocalEnabled = true;
             Despawn();
         }
 
-        if (anim == "appear_setup")
+        if (anim == "appear_set_up")
         {
+            //var spr = Entity.GetComponent<Sprite_Renderer>();
+            //Log.Warn($" Is there a renderer? {spr != null}"); // No
             if (!Owner.IsLocal)
             {
-                Animator.LocalEnabled = false; // Hide for non-local player
+                Animator.SpineInstance.ColorMultiplier = new Vector4(1,1,1, 0); // Hide for non-local player
             }
         }
     }

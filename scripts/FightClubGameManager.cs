@@ -218,6 +218,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     /// <param name="afterSpawn"></param>
     public void ServerSpawn(string prefabPath, Vector2 position, Action<Entity> afterSpawn = null)
     {
+        Log.Debug($"Network Spawn called for: {prefabPath} on client.");
         if (Network.IsServer)
         {
             Prefab pf = Assets.GetAsset<Prefab>(prefabPath);

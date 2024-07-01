@@ -540,7 +540,7 @@ public static class EffectConfig
     {
         public static float TrapHoldTime = 3f;
         public static int TrapBaseDamage = 2;
-        public static float TrapLifeTime = 20f;
+        public static float TrapLifeTime = 5f;
         public static float Cooldown = 6f;
 
         public static string TrapPrefabPath = "BearTrap.prefab";
