@@ -17,7 +17,7 @@ public class OwnedTrigger : Component
     protected FightPlayer Owner;
     protected List<Entity> InteractedEntities;
 
-    protected virtual void OnPlayerEnter(FightPlayer fp)
+    protected virtual void OnOtherPlayerEnter(FightPlayer fp)
     {
         
     }
@@ -31,7 +31,7 @@ public class OwnedTrigger : Component
         FightPlayer fp = entity.GetComponent<FightPlayer>();
         if (fp != null && fp != Owner)
         {
-            OnPlayerEnter(fp);
+            OnOtherPlayerEnter(fp);
         }
     }
 
@@ -40,7 +40,7 @@ public class OwnedTrigger : Component
     /// </summary>
     /// <param name="owner"></param>
     /// <param name="lifeTime"></param>
-    protected virtual void Initialization(FightPlayer owner, float lifeTime)
+    public virtual void Initialization(FightPlayer owner, float lifeTime)
     {
         Owner = owner;
         EntityLifeTime = lifeTime;
@@ -63,7 +63,7 @@ public class OwnedTrigger : Component
     public override void Start()
     {
         base.Start();
-        TriggerCollider ??= Entity.GetComponent<Collider>();
+        TriggerCollider ??= Entity.GetComponent<Circle_Collider>();
         Animator ??= Entity.GetComponent<Spine_Animator>();
         if (TriggerCollider == null)
         {

@@ -3,6 +3,7 @@ AbilityBookItem.prefab - .ao - 66622b07d7f18c22a1140ab0 - 8105871847217317263
 AbilityItem.prefab - .ao - 6643f5634d5b99636ac7a9a4 - 14427433616163832665
 AbilityUpgradeDialog.prefab - .ao - 6647dbfca2a326d825267e81 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 6660a2c7d7f18c22a1140a92 - 14180256252234443626
+BearTrap.prefab - .ao - 6682f109b45eb9e8339be50e - 10165865885336097214
 BefuddleProjectile.prefab - .ao - 6675e725f2e0da1ffcd23e82 - 6990652969476779402
 BroccoliProjectile.prefab - .ao - 666b71d2d7f18c22a1140d42 - 5129262647641696432
 ClawSwipe.prefab - .ao - 6671ef540b1e3d2f089ae7d7 - 1804017453416592716
@@ -11,6 +12,9 @@ FightPlayerRig/playercharacter.png - .ao - 667de4d9b45eb9e8339bdc37 - 1740757059
 FightPlayerRig/playercharacter.png - .ao.ios - 667de4d9b45eb9e8339bdc36 - 11441572607467883533
 FightPlayerRig/playercharacter.spine - .ao - 667de4d9b45eb9e8339bdc35 - 5025274262689305068
 HitVfx.prefab - .ao - 667f38e8b45eb9e8339bdd29 - 5146642717615886720
+Props/BearTrap/BAT003_bear_trap.png - .ao - 6682f108b45eb9e8339be50a - 12680163519278585061
+Props/BearTrap/BAT003_bear_trap.png - .ao.ios - 6682f108b45eb9e8339be50b - 7406773091814632799
+Props/BearTrap/BAT003_bear_trap.spine - .ao - 6682f108b45eb9e8339be509 - 3855122050485720892
 PsionicBeamExplosion.prefab - .ao - 667b1023f2e0da1ffcd23ea2 - 13710752620973719839
 PsionicBeamGroundFissue.prefab - .ao - 6674a55ff2e0da1ffcd23e65 - 6060544460007990298
 PsionicBeamGroundFissueEnd.prefab - .ao - 6674a55ff2e0da1ffcd23e64 - 9947869729590302411

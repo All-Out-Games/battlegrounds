@@ -412,6 +412,20 @@ public static partial class SkillConfig
         SkillKey = "Shuriken",
         IconPath = "ability_icon_tmp/Shuriken_tmp.png",
         ParentNodeKeys = new string[] { "LightFeet" },
+        ChildrenNodeKeys = new string[] { "BearTrap" },
+    };
+    
+    public static readonly SkillTreeNodeConfig BearTrapConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Setup a hidden trap to snare your enemies.",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Stealth,
+        UpgradeCost = 250,
+        UIPosition = new Vector2(450, 630),
+        SkillKey = "BearTrap",
+        IconPath = "ability_icon_tmp/BearTrap_tmp.png",
+        ParentNodeKeys = new string[] { "Shuriken" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -451,7 +465,8 @@ public static partial class SkillConfig
             // Stealth
             {"Invisibility", InvisibilityConfig},
             {"LightFeet", LightFeetConfig},
-            {"Shuriken", ShurikenConfig}
+            {"Shuriken", ShurikenConfig},
+            {"BearTrap", BearTrapConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -463,7 +478,7 @@ public static partial class SkillConfig
         // Psionic
         "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize","PsionicBeam", "PsyThrow",
         // Stealth
-        "Invisibility","LightFeet", "Shuriken"
+        "Invisibility","LightFeet", "Shuriken", "BearTrap"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
@@ -520,6 +535,7 @@ public partial class FightAbility
         {SC.PsyThrowConfig.SkillKey, typeof(AbilityPsyThrow)},
         {SC.InvisibilityConfig.SkillKey, typeof(AbilityInvisible)},
         {SC.LightFeetConfig.SkillKey, typeof(AbilityLightFeet)},
-        {SC.ShurikenConfig.SkillKey, typeof(AbilityShuriken)}
+        {SC.ShurikenConfig.SkillKey, typeof(AbilityShuriken)},
+        {SC.BearTrapConfig.SkillKey, typeof(AbilityBearTrap)}
     };
 }

@@ -541,9 +541,17 @@ public static class EffectConfig
         public static float TrapHoldTime = 3f;
         public static int TrapBaseDamage = 2;
         public static float TrapLifeTime = 20f;
+        public static float Cooldown = 6f;
 
         public static string TrapPrefabPath = "BearTrap.prefab";
-        
+
+        public int Damage;
+
+        public static BearTrapConfig GetDefault(int atk)
+        {
+            BearTrapConfig cfg = new BearTrapConfig { Damage = TrapBaseDamage + atk };
+            return cfg;
+        }
     }
 
     #endregion

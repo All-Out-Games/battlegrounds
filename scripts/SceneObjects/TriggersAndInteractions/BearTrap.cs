@@ -7,11 +7,11 @@ namespace Assembly.scripts.SceneObjects.TriggersAndInteractions;
 public class BearTrap : OwnedTrigger
 {
     [Serialized] public bool Snapped;
-    protected override void OnPlayerEnter(FightPlayer fp)
+    protected override void OnOtherPlayerEnter(FightPlayer fp)
     {
         if(Snapped) return;
         
-        base.OnPlayerEnter(fp);
+        base.OnOtherPlayerEnter(fp);
         if (!Owner.IsLocal)
         {
             Animator.LocalEnabled = true;
@@ -58,6 +58,7 @@ public class BearTrap : OwnedTrigger
     {
         if (anim == "disappear" || anim == "disappear_closed")
         {
+            Animator.LocalEnabled = true;
             Despawn();
         }
 
@@ -72,6 +73,7 @@ public class BearTrap : OwnedTrigger
 
     protected override void OnLifeTimeRunOut()
     {
+        Animator.LocalEnabled = true;
         Animator.SpineInstance.StateMachine.SetTrigger("expire");
     }
 }

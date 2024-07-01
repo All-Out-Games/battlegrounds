@@ -3,7 +3,7 @@
 59804924382647 1719617016939560100
 {
   "name": "BearTrap",
-  "local_enabled": false,
+  "local_enabled": true,
   "local_position": {
     "X": 0,
     "Y": 0
