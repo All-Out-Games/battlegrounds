@@ -239,6 +239,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
 
     public void ClientSpawn(string prefabPath, Vector2 position, Action<Entity> afterSpawn = null)
     {
+        if(Network.IsServer) return;
         Prefab pf = Assets.GetAsset<Prefab>(prefabPath);
         if (pf == null)
         {

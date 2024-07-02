@@ -15,7 +15,7 @@ public class AbilityLeapSlam : FightAbility
     public override float Cooldown => 1; //EffectConfig.LeapSlamConfig.Cooldown;
 }
 
-public class EffectLeapSlam : FightEffect
+public class EffectLeapSlam : FightEffectWithImmunity
 {
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
@@ -38,14 +38,11 @@ public class EffectLeapSlam : FightEffect
         _dirPosition = GetDashDirection();
         FightPlayer.SetFacingDirection(_dirPosition.X > 0);
         _dirPosition += FightPlayer.Entity.Position;
-
-        // The player is invincible and not allowed to input movement during the dash
-        FightPlayer.GetEffectMgr().AddEffect<EffectNoMovementWithInvincibility>(FightPlayer, DurationRemaining);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
-        FightPlayer.GetEffectMgr().RemoveEffect<EffectNoMovementWithInvincibility>(false);
+        base.OnEffectEnd(interrupt);
         FightPlayer.AddDash(Vector2.Zero, 0); // Remove Dash
     }
 

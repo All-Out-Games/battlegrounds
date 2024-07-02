@@ -28,10 +28,6 @@ public class EffectGroundStomp : FightEffect
         FightPlayer.SetAnimTrigger("fart");
     }
     
-    public override void OnEffectEnd(bool interrupt)
-    {
-        
-    }
 
     public override void OnEffectUpdate()
     {

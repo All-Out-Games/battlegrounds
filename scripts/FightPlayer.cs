@@ -493,7 +493,7 @@ public partial class FightPlayer : Player
     /// <returns></returns>
     public bool SkillCastGeneralCheck()
     {
-        return PlayerStatus == PlayerStatus.Combat && CurrentHealth <= 0;
+        return PlayerStatus == PlayerStatus.Combat && CurrentHealth > 0;
     }
     
     public FightAbility GetFightAbility<T>() where T : Ability

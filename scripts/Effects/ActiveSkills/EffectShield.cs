@@ -41,9 +41,10 @@ public class EffectShield : FightEffect
 
     public override void OnEffectEnd(bool interrupt)
     {
+        base.OnEffectEnd(interrupt);
         if (interrupt)
         {
-            Log.Warn("Shield Premature Removal!");
+            Log.Debug("Shield Premature Removal!");
         }
         FightPlayer.CurrentShield = 0;
         FightPlayer.MaxShield = 0;

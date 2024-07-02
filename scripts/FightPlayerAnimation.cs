@@ -36,6 +36,17 @@ public partial class FightPlayer
         var confusionBool = SpineAnimator.SpineInstance.StateMachine.CreateVariable("confusion", StateMachineVariableKind.BOOLEAN);
         var confusionRunState = aoLayer.CreateState("BAT_003/Run_confused", 0, true);
         var confusionIdleState = aoLayer.CreateState("BAT_003/idle_confused", 0, true);
+        
+        // Backstab - Caster
+        var backstabTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("backstab", StateMachineVariableKind.TRIGGER);
+        var backstabState = aoLayer.CreateState("BAT_003/backstab_attack", 0, false);
+        aoLayer.CreateGlobalTransition(backstabState).CreateTriggerCondition(backstabTrigger);
+        aoLayer.CreateTransition(backstabState, aoIdleState, true);
+        // Backstab - Victim
+        var backstabbedTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("backstabbed", StateMachineVariableKind.TRIGGER);
+        var backstabbedState = aoLayer.CreateState("BAT_003/backstab_victim", 0, false);
+        aoLayer.CreateGlobalTransition(backstabbedState).CreateTriggerCondition(backstabbedTrigger);
+        aoLayer.CreateTransition(backstabbedState, aoIdleState, true);
 
         aoLayer.CreateTransition(aoRunState, confusionRunState, false).CreateBoolCondition(confusionBool, true);
         aoLayer.CreateTransition(confusionRunState, aoRunState, false).CreateBoolCondition(confusionBool, false);

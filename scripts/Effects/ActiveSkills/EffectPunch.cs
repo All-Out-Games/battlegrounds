@@ -26,11 +26,7 @@ public class EffectPunch : FightEffect
         AssignConfig(EffectConfig.GetPlayerPunchConfig(1, FightPlayer.CurrentAttack));
         FightPlayer.SetAnimTrigger("punch"); 
     }
-
-    public override void OnEffectEnd(bool interrupt)
-    {
-        
-    }
+    
 
     public override void OnEffectUpdate()
     {

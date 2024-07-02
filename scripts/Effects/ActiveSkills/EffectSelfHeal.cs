@@ -22,12 +22,13 @@ public class EffectSelfHeal : FightEffect
     protected override int InterruptLevel => 1000;
     public override bool BlockAbilityActivation => true;
 
+    protected override bool PreventMovement => true;
+
     public override void OnEffectStart()
     {
         base.OnEffectStart();
         FightPlayer.OnReceiveDamage += OnDamageEvent;
         DurationRemaining = EffectConfig.SelfHealConfig.ChannelTime;
-        FightPlayer.GetEffectMgr().AddNoMovement(FightPlayer.Entity, EffectConfig.SelfHealConfig.ChannelTime);
     }
 
     public override void NetworkDeserialize(StreamReader reader)
@@ -38,13 +39,12 @@ public class EffectSelfHeal : FightEffect
 
     public override void OnEffectEnd(bool interrupt)
     {
+        base.OnEffectEnd(interrupt);
         FightPlayer.OnReceiveDamage -= OnDamageEvent;
         if (!interrupt)
         {
             FightPlayer.DamageInfo healInfo = FightPlayer.DamageInfo.CreateHealInfo(EffectConfig.SelfHealConfig.HealAmtBase);
             FightPlayer.TakeDamage(FightPlayer, healInfo);
         }
-
-        FightPlayer.RemoveEffect<EffectNoMovement>(false);
     }
 }

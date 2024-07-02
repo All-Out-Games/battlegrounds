@@ -27,14 +27,16 @@ public class EffectSelfDestruct : FightEffect
         base.OnEffectStart();
         FightStateMachine.SetTrigger("self_destruct");
         AssignConfig(EffectConfig.SelfDestructConfig.GetDefault(FightPlayer.CurrentAttack));
-        FightPlayer.AddEffect<EffectNoMovementWithInvincibility>(FightPlayer,DurationRemaining);
+        FightPlayer.AddEffect<EffectNoMovementWithImmunity>(FightPlayer,DurationRemaining);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
-        FightPlayer.RemoveEffect<EffectNoMovementWithInvincibility>(false); // Remove this so that the invincibility does not cover self damage
+        base.OnEffectEnd(interrupt);
+        
+        FightPlayer.RemoveEffect<EffectNoMovementWithImmunity>(false); // Remove this so that the invincibility does not cover self damage
         KnockingBlast();
-        FightClubGameManager.Instance.ServerSpawn(VFXPrefabKeys.SelfDestructExplosionPath, FightPlayer.Entity.Position);
+        FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.SelfDestructExplosionPath, FightPlayer.Entity.Position);
     }
     
 

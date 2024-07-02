@@ -565,4 +565,36 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region cfg: Backstab
+
+    public struct BackStabConfig
+    {
+        public static float Cooldown = 9f;
+        public static readonly float KunaiRange = 6f;
+        public static readonly float KunaiLifetime = 0.5f;
+        public static ProjectileConfig GetKunaiConfig()
+        {
+            return new ProjectileConfig()
+            {
+                Damage = 0,
+                ProjectilePrefabKey = "KunaiProjectile.prefab",
+                ProjectileLifetime = KunaiLifetime,
+                Speed = KunaiRange / KunaiLifetime
+            };
+        }
+
+        public static int BaseDmg = 8;
+        public static float DamageDelay = 0.3f;
+        public static float BackstabTime = 1.0f;
+
+        public int Damage;
+
+        public static BackStabConfig GetDefault(int atk)
+        {
+            return new BackStabConfig() { Damage = atk + BaseDmg };
+        }
+    }
+
+    #endregion
 }

@@ -12,6 +12,7 @@ FightPlayerRig/playercharacter.png - .ao - 66844262b45eb9e8339be5f7 - 1827144882
 FightPlayerRig/playercharacter.png - .ao.ios - 66844262b45eb9e8339be5f8 - 9819301785507431040
 FightPlayerRig/playercharacter.spine - .ao - 66844262b45eb9e8339be5f6 - 9459954897202087322
 HitVfx.prefab - .ao - 667f38e8b45eb9e8339bdd29 - 5146642717615886720
+KunaiProjectile.prefab - .ao - 66847185b45eb9e8339bf752 - 10521210724688615807
 Props/BearTrap/BAT003_bear_trap.png - .ao - 6682f108b45eb9e8339be50a - 12680163519278585061
 Props/BearTrap/BAT003_bear_trap.png - .ao.ios - 6682f108b45eb9e8339be50b - 7406773091814632799
 Props/BearTrap/BAT003_bear_trap.spine - .ao - 6682f108b45eb9e8339be509 - 3855122050485720892

@@ -32,7 +32,7 @@ public class EffectBattleCry : FightEffect
     
     public override void OnEffectEnd(bool interrupt)
     {
-        
+        base.OnEffectEnd(interrupt);
     }
 
     public override void OnEffectUpdate()

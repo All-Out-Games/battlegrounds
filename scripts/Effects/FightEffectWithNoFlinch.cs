@@ -1,8 +1,8 @@
-namespace Assembly.scripts.Effects;
+﻿namespace Assembly.scripts.Effects;
 
-public class EffectNoMovementWithInvincibility : EffectNoMovement
+public class FightEffectWithNoFlinch : FightEffect
 {
-    public override bool IsValidTarget => false;
+    public override bool IsActiveEffect => false;
 
     public override void OnEffectStart()
     {
@@ -19,8 +19,6 @@ public class EffectNoMovementWithInvincibility : EffectNoMovement
     public override void PreDamageMod(ref FightPlayer.DamageInfo info)
     {
         base.PreDamageMod(ref info);
-        info.ReactionInfo.Amount = 0;
         info.ReactionInfo.Flinch = false;
-        info.AwardCoin = false;
     }
 }

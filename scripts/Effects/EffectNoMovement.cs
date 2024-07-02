@@ -6,20 +6,7 @@
 /// </summary>
 public partial class EffectNoMovement : FightEffect
 {
-    
-    
-    public override void OnEffectStart()
-    {
-        base.OnEffectStart();
-        FightPlayer.AddSpeedModifier(0f);
-    }
-
-    public override void OnEffectEnd(bool interrupt)
-    {
-        FightPlayer.RemoveSpeedModifier(0f);
-    }
-
+    protected override bool PreventMovement => true;
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => false;
-    public override bool IsValidTarget => true;
 }

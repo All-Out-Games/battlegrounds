@@ -34,11 +34,7 @@ public class EffectDoublePunch : FightEffect
 
         EventTimeline = EventTimeline.OrderBy(tuple => tuple.Item1).ToList();
     }
-
-    public override void OnEffectEnd(bool interrupt)
-    {
-        
-    }
+    
 
     public override void OnEffectUpdate()
     {

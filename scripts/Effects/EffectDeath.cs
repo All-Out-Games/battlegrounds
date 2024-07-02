@@ -14,6 +14,7 @@ public class EffectDeath : FightEffect
 
     public override void OnEffectEnd(bool interrupt)
     {
+        base.OnEffectEnd(interrupt);
         FightPlayer.SetAnimTrigger("RESET");
         FightPlayer.SwitchStatus((int)PlayerStatus.Safe);
         FightPlayer.ClearAllEffects();

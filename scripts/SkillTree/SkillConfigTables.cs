@@ -412,7 +412,7 @@ public static partial class SkillConfig
         SkillKey = "Shuriken",
         IconPath = "ability_icon_tmp/Shuriken_tmp.png",
         ParentNodeKeys = new string[] { "LightFeet" },
-        ChildrenNodeKeys = new string[] { "BearTrap" },
+        ChildrenNodeKeys = new string[] { "BearTrap", "Backstab" },
     };
     
     public static readonly SkillTreeNodeConfig BearTrapConfig = new SkillTreeNodeConfig()
@@ -442,6 +442,20 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[] { "LightFeet" },
         ChildrenNodeKeys = new string[] { },
     };
+    
+    public static readonly SkillTreeNodeConfig BackstabConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Throw A Kunai and backstab the victim if it hits.",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Stealth,
+        UpgradeCost = 375,
+        UIPosition = new Vector2(230, 630),
+        SkillKey = "Backstab",
+        IconPath = "ability_icon_tmp/Backstab_tmp.png",
+        ParentNodeKeys = new string[] { "Shuriken" },
+        ChildrenNodeKeys = new string[] { },
+    };
 
     #endregion
     
@@ -455,8 +469,9 @@ public static partial class SkillConfig
             {"Punch", PunchNodeConfig},
             {"HealthBoost", HealthBoostNodeConfig},
             {"AttackBoost", AttackBoostNodeConfig},
-            {"RollOut", RollOutNodeConfig},
             {"Punch2", PunchTwoConfig},
+            // Defensive
+            {"RollOut", RollOutNodeConfig},
             {"Shield", ShieldConfig},
             // Brawler
             {"ShoulderCrash", ShoulderCrashNodeConfig},
@@ -481,7 +496,8 @@ public static partial class SkillConfig
             {"LightFeet", LightFeetConfig},
             {"Shuriken", ShurikenConfig},
             {"BearTrap", BearTrapConfig},
-            {"ShadowStep", ShadowStepConfig}
+            {"ShadowStep", ShadowStepConfig},
+            {"Backstab", BackstabConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -493,7 +509,7 @@ public static partial class SkillConfig
         // Psionic
         "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize","PsionicBeam", "PsyThrow",
         // Stealth
-        "Invisibility","LightFeet", "Shuriken", "BearTrap", "ShadowStep"
+        "Invisibility","LightFeet", "Shuriken", "BearTrap", "ShadowStep", "Backstab"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
@@ -552,6 +568,7 @@ public partial class FightAbility
         {SC.LightFeetConfig.SkillKey, typeof(AbilityLightFeet)},
         {SC.ShurikenConfig.SkillKey, typeof(AbilityShuriken)},
         {SC.BearTrapConfig.SkillKey, typeof(AbilityBearTrap)},
-        {SC.ShadowStepConfig.SkillKey, typeof(AbilityShadowStep)}
+        {SC.ShadowStepConfig.SkillKey, typeof(AbilityShadowStep)},
+        {SC.BackstabConfig.SkillKey, typeof(AbilityBackstab)}
     };
 }

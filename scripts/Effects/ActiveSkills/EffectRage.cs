@@ -43,6 +43,7 @@ public class EffectRage : FightEffect
 
     public override void OnEffectEnd(bool interrupt)
     {
+        base.OnEffectEnd(interrupt);
         FightPlayer.CurrentAttack -= Config.AtkBoost;
         _aura.Despawn();
     }

@@ -36,6 +36,7 @@ public class EffectProjectileThrow : FightEffect
 
     public override void OnEffectEnd(bool interrupt)
     {
+        base.OnEffectEnd(interrupt);
         //Log.Debug($"Projectile Prefab Key {Config.ProjectilePrefabKey}");
         ProjectileThrow();
     }

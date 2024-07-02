@@ -37,11 +37,7 @@ public class EffectClawSlash : FightEffect
             Slash();
         }
     }
-
-    public override void OnEffectEnd(bool interrupt)
-    {
-        
-    }
+    
 
     public void AssignConfig(EffectConfig.ClawSlashConfig cfg)
     {

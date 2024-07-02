@@ -7,7 +7,7 @@ public partial class FightAbility : Ability
     public static string DefaultSkillKey = "Empty";
     
     public FightPlayer FightPlayer;
-    public virtual string SkillKey => "Empty";
+    public virtual string SkillKey => DefaultSkillKey;
     public virtual string SkillIconPath => SkillConfig.GetIconPath(SkillKey);
     public virtual int Interruptlevel => 1;
 

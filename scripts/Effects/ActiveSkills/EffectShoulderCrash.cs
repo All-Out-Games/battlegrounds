@@ -12,15 +12,16 @@ public class AbilityShoulderCrash : FightAbility
     
     public override float Cooldown => EffectConfig.ShoulderCrashConfig.Cooldown;
 }
-public sealed class EffectShoulderCrash : FightEffect
+public sealed class EffectShoulderCrash : FightEffectWithImmunity
 {
     private EffectConfig.ShoulderCrashConfig _config;
     private List<Entity> _interactedEntity = new List<Entity>();
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => false;
-    
-    
+
+    protected override bool PreventMovement => true;
+
 
     public override void OnEffectStart()
     {
@@ -33,15 +34,14 @@ public sealed class EffectShoulderCrash : FightEffect
         
         FightPlayer.AddDash(dir * _config.DashSpeed, _config.DashDuration);
         // The player is invincible and not allowed to input movement during the dash
-        FightPlayer.GetEffectMgr().AddEffect<EffectNoMovementWithInvincibility>(FightPlayer, DurationRemaining);
         FightStateMachine.SetTrigger("shoulder_crash");
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
+        base.OnEffectEnd(interrupt);
         FightPlayer.RemovePlayerCollisionFunction(OnShoulderCrashCollision);
         _interactedEntity = null;
-        FightPlayer.GetEffectMgr().RemoveEffect<EffectNoMovementWithInvincibility>(false);
         FightStateMachine.SetTrigger("shoulder_crash_end");
     }
 
@@ -66,10 +66,6 @@ public sealed class EffectShoulderCrash : FightEffect
         FightPlayer otherPlayer = other.GetComponent<FightPlayer>();
         if (otherPlayer != null)
         {
-            if(otherPlayer.HasEffect<EffectNoMovement>())
-            {
-                return;
-            }
             Vector2 bumpDir = other.Position - Entity.Position;
             var add = bumpDir * _config.BumpStrength;
             otherPlayer.AddBumpFrom(FightPlayer, add, false);

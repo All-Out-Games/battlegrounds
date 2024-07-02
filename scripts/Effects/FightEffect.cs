@@ -14,6 +14,8 @@ public abstract class FightEffect : AEffect
     protected StateMachine FightStateMachine;
 
     protected virtual int InterruptLevel => 0;
+    // This is different from FreezePlayer. PreventMovement will only block movement input, but the player under such an effect is still susceptible to bumps & confusion.
+    protected virtual bool PreventMovement => false;
     /// <summary>
     /// Get the owner as FightPlayer & the slot the skill has been triggered from.
     /// If you want to use these fields you must call base.OnEffectStart!
@@ -24,11 +26,28 @@ public abstract class FightEffect : AEffect
         FightStateMachine = Player.SpineAnimator.SpineInstance.StateMachine;
         MainLayer = FightStateMachine.TryGetLayerByName("main");
         FightLayer = FightStateMachine.TryGetLayerByName("fight_layer");
+
+        if (PreventMovement)
+        {
+            FightPlayer.AddSpeedModifier(0);
+        }
+
+        if (!IsValidTarget)
+        {
+            FightPlayer.CollisionEntity.LocalEnabled = false;
+        }
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
-        
+        if (PreventMovement)
+        {
+            FightPlayer.RemoveSpeedModifier(0);
+        }
+        if (!IsValidTarget)
+        {
+            FightPlayer.CollisionEntity.LocalEnabled = true;
+        }
     }
 
     public override void OnEffectUpdate()

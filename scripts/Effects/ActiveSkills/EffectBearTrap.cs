@@ -50,6 +50,7 @@ public class EffectBearTrapSnare : FightEffect
 
     public override void OnEffectEnd(bool interrupt)
     {
+        // TODO
         base.OnEffectEnd(interrupt);
     }
 }

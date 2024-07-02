@@ -65,6 +65,8 @@ public sealed partial class EffectRollOut : FightEffect
 
     public override void OnEffectEnd(bool interrupt)
     {
+        base.OnEffectEnd(interrupt);
+        
         FightPlayer.RemoveSpeedModifier(_config.SpeedBuffMultiplier);
         FightPlayer.RemovePlayerCollisionFunction(OnRolloutCollision);
         
