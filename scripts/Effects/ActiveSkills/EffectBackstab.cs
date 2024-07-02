@@ -71,6 +71,7 @@ public class EffectBackstabCaster : EffectNoMovementWithImmunity
         Vector2 casterPos = Caster.Entity.Position - victimFp.GetFacingDirectionAsVector();
         FightPlayer.Teleport(casterPos);
         FightPlayer.SetAnimTrigger("backstab");
+        FightPlayer.SetFacingDirection(victimFp.GetFacingDirection());
     }
 }
 

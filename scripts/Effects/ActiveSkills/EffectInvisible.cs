@@ -29,6 +29,7 @@ public class EffectInvisible : FightEffect
         DurationRemaining = EffectConfig.InvisibilityConfig.InvisTime;
 
         FightPlayer.OnSkillActivate += OnSkillActivationEvent;
+        FightPlayer.OnReceiveDamage += OnDamageEvent;
     }
 
     public override void NetworkDeserialize(StreamReader reader)
@@ -37,6 +38,7 @@ public class EffectInvisible : FightEffect
         AddInvis(FightPlayer.IsLocal);
         
         FightPlayer.OnSkillActivate += OnSkillActivationEvent;
+        FightPlayer.OnReceiveDamage += OnDamageEvent;
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -45,15 +47,12 @@ public class EffectInvisible : FightEffect
         RemoveInvis(FightPlayer.IsLocal);
         
         FightPlayer.OnSkillActivate -= OnSkillActivationEvent;
+        FightPlayer.OnReceiveDamage -= OnDamageEvent;
     }
 
     private void OnSkillActivationEvent(FightPlayer.SkillActivationInfo info)
     {
-        if (info.SkillKey == _skillKey)
-        {
-            return;
-        }
-        else
+        if (info.SkillKey != _skillKey)
         {
             if (info.InterruptLevel >= InterruptLevel)
             {

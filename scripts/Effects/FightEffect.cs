@@ -16,6 +16,7 @@ public abstract class FightEffect : AEffect
     protected virtual int InterruptLevel => 0;
     // This is different from FreezePlayer. PreventMovement will only block movement input, but the player under such an effect is still susceptible to bumps & confusion.
     protected virtual bool PreventMovement => false;
+    protected virtual bool PreventDamage => false;
     /// <summary>
     /// Get the owner as FightPlayer & the slot the skill has been triggered from.
     /// If you want to use these fields you must call base.OnEffectStart!
@@ -32,7 +33,7 @@ public abstract class FightEffect : AEffect
             FightPlayer.AddSpeedModifier(0);
         }
 
-        if (!IsValidTarget)
+        if (PreventDamage)
         {
             FightPlayer.CollisionEntity.LocalEnabled = false;
         }
@@ -44,7 +45,7 @@ public abstract class FightEffect : AEffect
         {
             FightPlayer.RemoveSpeedModifier(0);
         }
-        if (!IsValidTarget)
+        if (PreventDamage)
         {
             FightPlayer.CollisionEntity.LocalEnabled = true;
         }

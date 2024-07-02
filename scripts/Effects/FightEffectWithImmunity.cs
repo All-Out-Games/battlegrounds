@@ -4,7 +4,8 @@ public class FightEffectWithImmunity : FightEffect
 {
     public override bool IsActiveEffect => false;
     public override bool IsValidTarget => false;
-
+    protected override bool PreventDamage => true;
+    
     public override void OnEffectStart()
     {
         base.OnEffectStart();
