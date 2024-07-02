@@ -8,9 +8,9 @@ BefuddleProjectile.prefab - .ao - 6675e725f2e0da1ffcd23e82 - 6990652969476779402
 BroccoliProjectile.prefab - .ao - 666b71d2d7f18c22a1140d42 - 5129262647641696432
 ClawSwipe.prefab - .ao - 6671ef540b1e3d2f089ae7d7 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 666c8f92d7f18c22a1141616 - 15909775696421813938
-FightPlayerRig/playercharacter.png - .ao - 667de4d9b45eb9e8339bdc37 - 17407570598291956317
-FightPlayerRig/playercharacter.png - .ao.ios - 667de4d9b45eb9e8339bdc36 - 11441572607467883533
-FightPlayerRig/playercharacter.spine - .ao - 667de4d9b45eb9e8339bdc35 - 5025274262689305068
+FightPlayerRig/playercharacter.png - .ao - 66844262b45eb9e8339be5f7 - 18271448823033782299
+FightPlayerRig/playercharacter.png - .ao.ios - 66844262b45eb9e8339be5f8 - 9819301785507431040
+FightPlayerRig/playercharacter.spine - .ao - 66844262b45eb9e8339be5f6 - 9459954897202087322
 HitVfx.prefab - .ao - 667f38e8b45eb9e8339bdd29 - 5146642717615886720
 Props/BearTrap/BAT003_bear_trap.png - .ao - 6682f108b45eb9e8339be50a - 12680163519278585061
 Props/BearTrap/BAT003_bear_trap.png - .ao.ios - 6682f108b45eb9e8339be50b - 7406773091814632799
@@ -27,6 +27,7 @@ ResourcesOverlayWindow.prefab - .ao - 665f4be4d7f18c22a11409aa - 448487249146091
 SceneProps_tmp/aura_circle.png - .ao - 666741efd7f18c22a1140ae8 - 10293273442432679734
 SceneProps_tmp/aura_circle.png - .ao.ios - 666741efd7f18c22a1140ae9 - 4712178218859138718
 SelfDestructExplosion.prefab - .ao - 6671ebe60b1e3d2f089ae7cd - 15730315220489123347
+ShadowStepVFX.prefab - .ao - 66844792b45eb9e8339be60e - 11550510081096301958
 ShurikenProjectile.prefab - .ao - 667f2cd7b45eb9e8339bdd25 - 8814019105862819238
 SkillSlotsPanel.prefab - .ao - 6650e827bbb4cc59c69fd102 - 11546600357276263640
 SpoonProjectile.prefab - .ao - 6675e658f2e0da1ffcd23e7e - 12342670774966987832
@@ -46,6 +47,11 @@ VFX/PsionicBeam/ground_fissue_repeatable.png - .ao.ios - 66748cd3f2e0da1ffcd23bd
 VFX/SelfDestructExplosion/explosion_big.png - .ao - 6671c7560b1e3d2f089ae7b2 - 9127105229977764723
 VFX/SelfDestructExplosion/explosion_big.png - .ao.ios - 6671c7570b1e3d2f089ae7b4 - 2340973987058875720
 VFX/SelfDestructExplosion/explosion_big.spine - .ao - 6671c7560b1e3d2f089ae7b1 - 16862651109100273494
+VFX/ShadowStep/BAT003_shadow_step.png - .ao - 66844791b45eb9e8339be60a - 3136410073315858250
+VFX/ShadowStep/BAT003_shadow_step.png - .ao.ios - 66844791b45eb9e8339be609 - 7377844580604665271
+VFX/ShadowStep/BAT003_shadow_step.spine - .ao - 66844791b45eb9e8339be608 - 8829491976503774752
+ability_icon_tmp/Backstab_tmp.png - .ao - 66844263b45eb9e8339be5fa - 4391966403771137123
+ability_icon_tmp/Backstab_tmp.png - .ao.ios - 66844263b45eb9e8339be5fd - 17177637865044245287
 ability_icon_tmp/BearTrap_tmp.png - .ao - 667f06a1b45eb9e8339bdd1f - 5898372421903878382
 ability_icon_tmp/BearTrap_tmp.png - .ao.ios - 667f06a1b45eb9e8339bdd1b - 4060270655151576253
 ability_icon_tmp/Befuddle_Tmp.png - .ao - 6672020d0b1e3d2f089ae7ee - 16873724532494154655
@@ -64,6 +70,8 @@ ability_icon_tmp/Punch_Tmp.png - .ao - 6658c99087d80516fc66cbd3 - 95864595725758
 ability_icon_tmp/Punch_Tmp.png - .ao.ios - 6658c99087d80516fc66cbd0 - 14622739680200241684
 ability_icon_tmp/RollOut_Tmp.png - .ao - 6658c99087d80516fc66cbd2 - 2105135652315996454
 ability_icon_tmp/RollOut_Tmp.png - .ao.ios - 6658c98f87d80516fc66cbc4 - 4257138724646773394
+ability_icon_tmp/ShadowStep_tmp.png - .ao - 66844263b45eb9e8339be5fe - 12976650693017652045
+ability_icon_tmp/ShadowStep_tmp.png - .ao.ios - 66844263b45eb9e8339be601 - 16108833635002748147
 ability_icon_tmp/Shield_Tmp.png - .ao - 6658c98f87d80516fc66cbc3 - 6644885699981667053
 ability_icon_tmp/Shield_Tmp.png - .ao.ios - 6658c98f87d80516fc66cbc5 - 1037402639623906319
 ability_icon_tmp/ShoulderCrash_Tmp.png - .ao - 6658c98f87d80516fc66cbc8 - 14678946013662840281
@@ -72,6 +80,8 @@ ability_icon_tmp/Shuriken_tmp.png - .ao - 667f06a1b45eb9e8339bdd19 - 65376185782
 ability_icon_tmp/Shuriken_tmp.png - .ao.ios - 667f06a0b45eb9e8339bdd18 - 5623790097114792283
 ability_icon_tmp/SpoonThrow_Tmp.png - .ao - 6658c99087d80516fc66cbcc - 12173738952403561832
 ability_icon_tmp/SpoonThrow_Tmp.png - .ao.ios - 6658c99087d80516fc66cbce - 6099970576132887541
+ability_icon_tmp/TotalDarkness_tmp.png - .ao - 66844264b45eb9e8339be602 - 9196926196021730716
+ability_icon_tmp/TotalDarkness_tmp.png - .ao.ios - 66844264b45eb9e8339be605 - 16597579585589337802
 environment/CentralHub/HallShelf.png - .ao - 6663761fd7f18c22a1140abc - 14908720648814724207
 environment/CentralHub/HallShelf.png - .ao.ios - 6663761fd7f18c22a1140abd - 18245072393616940440
 environment/CentralHub/Platform_Large.png - .ao - 664e3b33a2a326d825267fb8 - 12033806716084652446

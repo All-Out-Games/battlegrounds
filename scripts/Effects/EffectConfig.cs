@@ -555,4 +555,14 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region cfg: ShadowStep
+
+    public struct ShadowStepConfig
+    {
+        public static float Cooldown = 2f;
+        public static float MovementDistance = 4f;
+    }
+
+    #endregion
 }

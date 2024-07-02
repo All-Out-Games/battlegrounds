@@ -397,7 +397,7 @@ public static partial class SkillConfig
         SkillKey = "LightFeet",
         IconPath = "ability_icon_tmp/LightFeet_tmp.png",
         ParentNodeKeys = new string[] {"Invisibility"},
-        ChildrenNodeKeys = new string[]{"Shuriken"},
+        ChildrenNodeKeys = new string[]{"Shuriken", "ShadowStep"},
 
     };
 
@@ -421,11 +421,25 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
-        UpgradeCost = 250,
+        UpgradeCost = 375,
         UIPosition = new Vector2(450, 630),
         SkillKey = "BearTrap",
         IconPath = "ability_icon_tmp/BearTrap_tmp.png",
         ParentNodeKeys = new string[] { "Shuriken" },
+        ChildrenNodeKeys = new string[] { },
+    };
+
+    public static readonly SkillTreeNodeConfig ShadowStepConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Dash to your movement direction",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Stealth,
+        UpgradeCost = 250,
+        UIPosition = new Vector2(230, 430),
+        SkillKey = "ShadowStep",
+        IconPath = "ability_icon_tmp/ShadowStep_tmp.png",
+        ParentNodeKeys = new string[] { "LightFeet" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -466,7 +480,8 @@ public static partial class SkillConfig
             {"Invisibility", InvisibilityConfig},
             {"LightFeet", LightFeetConfig},
             {"Shuriken", ShurikenConfig},
-            {"BearTrap", BearTrapConfig}
+            {"BearTrap", BearTrapConfig},
+            {"ShadowStep", ShadowStepConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -478,7 +493,7 @@ public static partial class SkillConfig
         // Psionic
         "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize","PsionicBeam", "PsyThrow",
         // Stealth
-        "Invisibility","LightFeet", "Shuriken", "BearTrap"
+        "Invisibility","LightFeet", "Shuriken", "BearTrap", "ShadowStep"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
@@ -536,6 +551,7 @@ public partial class FightAbility
         {SC.InvisibilityConfig.SkillKey, typeof(AbilityInvisible)},
         {SC.LightFeetConfig.SkillKey, typeof(AbilityLightFeet)},
         {SC.ShurikenConfig.SkillKey, typeof(AbilityShuriken)},
-        {SC.BearTrapConfig.SkillKey, typeof(AbilityBearTrap)}
+        {SC.BearTrapConfig.SkillKey, typeof(AbilityBearTrap)},
+        {SC.ShadowStepConfig.SkillKey, typeof(AbilityShadowStep)}
     };
 }

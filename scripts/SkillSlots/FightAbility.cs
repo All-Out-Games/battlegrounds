@@ -12,12 +12,7 @@ public partial class FightAbility : Ability
     public virtual int Interruptlevel => 1;
 
     public sealed override Texture Icon => Assets.GetAsset<Texture>(SkillIconPath);
-
-    public FightAbility LoadFightAbility<T>(Player player) where T : FightAbility
-    {
-        var fa  = player.GetAbility<T>() as FightAbility; // Not very costly, it's just a GetComponent, but we still need to avoid calling this in Update() alike
-        return fa;
-    }
+    
     public override bool CanUse()
     {
         if (SkillKey == "Empty") return false;

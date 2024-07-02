@@ -50,6 +50,7 @@ public class OwnedTrigger : Component
         InteractedEntities = new List<Entity>();
         TriggerCollider.OnCollisionEnter += OnEntityEnter;
         LifeTimeEnded = false;
+        Log.Debug($"Initialized! Owner = {owner.Name}");
     }
 
     public override void Update()

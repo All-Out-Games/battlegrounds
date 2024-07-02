@@ -52,6 +52,11 @@ public class SelectionVFX : VFX
 {
     protected bool Started;
 
+    /// <summary>
+    /// Use FightClubGameManager -> ClientSpawn to spawn the vfx and call this function to select the correct animation to play.
+    /// </summary>
+    /// <param name="selectionKey"></param>
+    /// <param name="loop"></param>
     public void StartVFX(string selectionKey, bool loop)
     {
         Loop = loop;

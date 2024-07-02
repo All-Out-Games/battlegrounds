@@ -493,7 +493,7 @@ public partial class FightPlayer : Player
     /// <returns></returns>
     public bool SkillCastGeneralCheck()
     {
-        return PlayerStatus == PlayerStatus.Combat;
+        return PlayerStatus == PlayerStatus.Combat && CurrentHealth <= 0;
     }
     
     public FightAbility GetFightAbility<T>() where T : Ability
@@ -504,6 +504,11 @@ public partial class FightPlayer : Player
     public FightAbility GetFightAbility(Type t)
     {
         return AbilityInstances.FirstOrDefault<Ability>((Func<Ability, bool>) (a => a.GetType() == t)) as FightAbility;
+    }
+
+    public Vector2 GetFacingDirectionAsVector()
+    {
+        return GetFacingDirection() ? Vector2.Right : Vector2.Left;
     }
     #endregion
 
