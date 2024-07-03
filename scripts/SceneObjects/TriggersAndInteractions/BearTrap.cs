@@ -11,10 +11,9 @@ public class BearTrap : OwnedTrigger
     {
         if (Snapped)
         {
-            Log.Error("This trap already snapped!");
+            Log.Debug("This trap already snapped!");
             return;
         }
-        Log.Error("SNAP!!");
         base.OnOtherPlayerEnter(fp);
         Animator.SpineInstance.ColorMultiplier = new Vector4(1,1,1, 1);
         Animator.SpineInstance.StateMachine.SetTrigger("snap");
@@ -60,28 +59,35 @@ public class BearTrap : OwnedTrigger
         Animator.OnAnimationEnd -= OnAnimationEnd;
     }
 
+    public override void Update()
+    {
+        base.Update();
+        if (!Owner.IsLocal && !Snapped)
+        {
+            Vector4 curColor = Animator.SpineInstance.ColorMultiplier;
+            if (curColor.W <= 0)
+            {
+                return;
+            }
+            Animator.SpineInstance.ColorMultiplier = curColor with { W = curColor.W - 0.01f}; // 100 frames to go fully stealth
+        }
+    }
+
     public void OnAnimationEnd(string anim)
     {
         Log.Debug($"Animation End {anim}");
         if (anim == "dissappear" || anim == "dissappear_closed")
         {
-            Animator.LocalEnabled = true;
+            
             Despawn();
         }
-
-        if (anim == "appear_set_up")
-        {
-            //var spr = Entity.GetComponent<Sprite_Renderer>();
-            //Log.Warn($" Is there a renderer? {spr != null}"); // No
-            /*if (!Owner.IsLocal)
-            {
-                Animator.SpineInstance.ColorMultiplier = new Vector4(1,1,1, 0); // Hide for non-local player
-            }*/
-        }
+        
     }
 
     protected override void OnLifeTimeRunOut()
     {
         Animator.SpineInstance.StateMachine.SetTrigger("expire");
+        Snapped = true;
+        Animator.SpineInstance.ColorMultiplier = new Vector4(1, 1, 1, 1);
     }
 }

@@ -45,6 +45,13 @@ public partial class FightPlayer
         // Backstab - Victim
         var backstabbedTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("backstabbed", StateMachineVariableKind.TRIGGER);
         var backstabbedState = aoLayer.CreateState("BAT_003/backstab_victim", 0, false);
+        
+        // BearTrap - Victim
+        var bearTrapTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("beartrapped", StateMachineVariableKind.TRIGGER);
+        var bearTrapState = aoLayer.CreateState("BAT_003/bear_trap_full", 0, false);
+        aoLayer.CreateGlobalTransition(bearTrapState).CreateTriggerCondition(bearTrapTrigger);
+        aoLayer.CreateTransition(bearTrapState, aoIdleState, true);
+        
         aoLayer.CreateGlobalTransition(backstabbedState).CreateTriggerCondition(backstabbedTrigger);
         aoLayer.CreateTransition(backstabbedState, aoIdleState, true);
 

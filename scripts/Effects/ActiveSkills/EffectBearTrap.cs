@@ -37,20 +37,26 @@ public class EffectBearTrap: FightEffect
     }
 }
 
-public class EffectBearTrapSnare : FightEffect
+public class EffectBearTrapSnare : FightEffectWithNoFlinch
 {
     public override bool IsActiveEffect => false;
     public override bool FreezePlayer => true;
 
+    public override bool BlockAbilityActivation => true;
+
     public override void OnEffectStart()
     {
         base.OnEffectStart();
-        DurationRemaining = EffectConfig.BearTrapConfig.TrapHoldTime;
+        FightPlayer.SetAnimTrigger("beartrapped");
+        
+        
+        FightPlayer caster = Caster as FightPlayer;
+        int dmg = caster == null ? EffectConfig.BearTrapConfig.TrapBaseDamage : EffectConfig.BearTrapConfig.GetDefault(caster.CurrentAttack).Damage;
+        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(dmg);
+        info.ReactionInfo.Flinch = false;
+        FightPlayer.TakeDamage(caster, info);
+        
+        DurationRemaining = MainLayer.GetCurrentStateLength();
     }
-
-    public override void OnEffectEnd(bool interrupt)
-    {
-        // TODO
-        base.OnEffectEnd(interrupt);
-    }
+    
 }

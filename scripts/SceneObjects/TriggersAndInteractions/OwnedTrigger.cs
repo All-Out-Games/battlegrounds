@@ -11,12 +11,13 @@ public partial class OwnedTrigger : Component
     [Serialized] public Spine_Animator Animator;
     
     [Serialized] protected float EntityLifeTime;
-    [Serialized] protected bool LifeTimeEnded = true;
+    [Serialized] protected bool LifeTimeEnded;
     [Serialized] protected float LifeTime;
 
     [Serialized] protected FightPlayer Owner;
     
     protected List<Entity> InteractedEntities;
+    protected bool Initialized;
 
     protected virtual void OnOtherPlayerEnter(FightPlayer fp)
     {
@@ -50,14 +51,14 @@ public partial class OwnedTrigger : Component
         EntityLifeTime = lifeTime;
         InteractedEntities = new List<Entity>();
         TriggerCollider.OnCollisionEnter += OnEntityEnter;
-        LifeTimeEnded = false;
         Log.Debug($"Initialized! Owner = {owner.Name}");
+        Initialized = true;
     }
 
     public override void Update()
     {
         base.Update();
-        if (Util.OneTime(LifeTime > EntityLifeTime, ref LifeTimeEnded))
+        if (Initialized && Util.OneTime(LifeTime > EntityLifeTime, ref LifeTimeEnded))
         {
             OnLifeTimeRunOut();
             Log.Debug($"LifeTime Runout called for {Entity.Name}");
@@ -90,8 +91,9 @@ public partial class OwnedTrigger : Component
     public void Despawn()
     {
         Log.Debug($"Despawn called for {Entity.Name}");
-        Entity.Destroy();
         if(Network.IsServer) Network.Despawn(Entity);
+        //Entity.Destroy();
+        
     }
     
 }

@@ -538,10 +538,9 @@ public static class EffectConfig
 
     public struct BearTrapConfig
     {
-        public static float TrapHoldTime = 3f;
         public static int TrapBaseDamage = 2;
-        public static float TrapLifeTime = 5f;
-        public static float Cooldown = 6f;
+        public static float TrapLifeTime = 10f;
+        public static float Cooldown = 7f;
 
         public static string TrapPrefabPath = "BearTrap.prefab";
 
