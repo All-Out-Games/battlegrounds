@@ -440,7 +440,7 @@ public static partial class SkillConfig
         SkillKey = "ShadowStep",
         IconPath = "ability_icon_tmp/ShadowStep_tmp.png",
         ParentNodeKeys = new string[] { "LightFeet" },
-        ChildrenNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "TotalDarkness" },
     };
     
     public static readonly SkillTreeNodeConfig BackstabConfig = new SkillTreeNodeConfig()
@@ -454,6 +454,20 @@ public static partial class SkillConfig
         SkillKey = "Backstab",
         IconPath = "ability_icon_tmp/Backstab_tmp.png",
         ParentNodeKeys = new string[] { "Shuriken" },
+        ChildrenNodeKeys = new string[] { },
+    };
+
+    public static readonly SkillTreeNodeConfig TotalDarknessConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Throw A Kunai and backstab the victim if it hits.",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Stealth,
+        UpgradeCost = 375,
+        UIPosition = new Vector2(10, 630),
+        SkillKey = "TotalDarkness",
+        IconPath = "ability_icon_tmp/TotalDarkness_tmp.png",
+        ParentNodeKeys = new string[] { "ShadowStep" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -497,7 +511,8 @@ public static partial class SkillConfig
             {"Shuriken", ShurikenConfig},
             {"BearTrap", BearTrapConfig},
             {"ShadowStep", ShadowStepConfig},
-            {"Backstab", BackstabConfig}
+            {"Backstab", BackstabConfig},
+            {"TotalDarkness", TotalDarknessConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -509,7 +524,7 @@ public static partial class SkillConfig
         // Psionic
         "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize","PsionicBeam", "PsyThrow",
         // Stealth
-        "Invisibility","LightFeet", "Shuriken", "BearTrap", "ShadowStep", "Backstab"
+        "Invisibility","LightFeet", "Shuriken", "BearTrap", "ShadowStep", "Backstab","TotalDarkness"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
@@ -569,6 +584,7 @@ public partial class FightAbility
         {SC.ShurikenConfig.SkillKey, typeof(AbilityShuriken)},
         {SC.BearTrapConfig.SkillKey, typeof(AbilityBearTrap)},
         {SC.ShadowStepConfig.SkillKey, typeof(AbilityShadowStep)},
-        {SC.BackstabConfig.SkillKey, typeof(AbilityBackstab)}
+        {SC.BackstabConfig.SkillKey, typeof(AbilityBackstab)},
+        {SC.TotalDarknessConfig.SkillKey, typeof(AbilityTotalDarkness)}
     };
 }

@@ -20,4 +20,5 @@ public class SceneReferenceHolder : Component
 
     [Serialized] public Zone CentralHubZone;
     [Serialized] public Zone PvpZone;
+    [Serialized] public Entity TotalDarknessOverlay;
 }

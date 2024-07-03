@@ -36,14 +36,16 @@ public class FightPlayerUI : FightPlayerComponent
         var healthRect = UI.GetPlayerRect(_player);
         healthRect = healthRect.Grow(13, 50, 0, 50).Offset(0, -85);
 
+        UI.PushLayer(-2);
         UI.Image(healthRect, null, Vector4.Black, new UI.NineSlice());
 
         var healthPercent = _player.CurrentHealth / (float)_player.MaxHealth;
         var healthPercentRect = healthRect.SubRect(0, 0, healthPercent, 1, 0, 0, 0, 0);
         UI.Image(healthPercentRect, null, Vector4.HSVLerp(Vector4.Red, Vector4.Green, healthPercent), new UI.NineSlice());
         //UIManager.Instance.SetPopup($"Shield - {_player.CurrentShield} Max shield - {_player.MaxShield}", 0.5f, _player);
+        UI.PopLayer();
         return healthRect;
-
+        
     }
 
     protected void DrawShieldBar(Rect healthRect)

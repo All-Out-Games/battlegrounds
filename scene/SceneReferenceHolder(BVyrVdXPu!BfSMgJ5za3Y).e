@@ -23,6 +23,7 @@
   "mono_component_type": "SceneReferenceHolder",
   "data": {
     "CentralHubZone": "3111059827982:1716399395061642500",
-    "PvpZone": "3995215330322:1716399837848255900"
+    "PvpZone": "3995215330322:1716399837848255900",
+    "TotalDarknessOverlay": "170660771038913:1720032136217568700"
   }
 }

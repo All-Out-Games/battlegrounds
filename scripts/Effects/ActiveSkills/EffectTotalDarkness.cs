@@ -30,13 +30,17 @@ public class EffectTotalDarkness : FightEffect
         {
             if (fp != FightPlayer)
             {
-                fp.AddEffect<EffectBlinded>(FightPlayer, EffectConfig.TotalDarknessConfig.BlindTime);
+                if (fp.HasEffect<EffectBlinded>())
+                {
+                    fp.GetEffect<EffectBlinded>().DurationRemaining = EffectConfig.TotalDarknessConfig.BlindTime; // Refresh if already blinded
+                }
+                else
+                {
+                    fp.AddEffect<EffectBlinded>(FightPlayer, EffectConfig.TotalDarknessConfig.BlindTime);
+                }
+                
             }
         }
     }
-
-    public override void OnEffectEnd(bool interrupt)
-    {
-        base.OnEffectEnd(interrupt);
-    }
+    
 }
