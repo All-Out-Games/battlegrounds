@@ -597,4 +597,15 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region cfg: TotalDarkness
+
+    public struct TotalDarknessConfig
+    {
+        public static float Cooldown = 6f;
+        public static float Range = 6f;
+        public static float BlindTime = 4f;
+    }
+
+    #endregion
 }
