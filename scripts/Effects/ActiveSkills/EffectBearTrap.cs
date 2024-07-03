@@ -32,7 +32,7 @@ public class EffectBearTrap: FightEffect
             entity =>
             {
                 BearTrap trap = entity.GetComponent<BearTrap>();
-                trap.Initialization(FightPlayer, EffectConfig.BearTrapConfig.TrapLifeTime);
+                trap.CallClient_Initialization(FightPlayer.Entity, EffectConfig.BearTrapConfig.TrapLifeTime);
             });
     }
 }

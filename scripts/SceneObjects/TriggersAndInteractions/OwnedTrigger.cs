@@ -5,7 +5,7 @@ namespace Assembly.scripts.SceneObjects.TriggersAndInteractions;
 /// <summary>
 /// Server-spawned object in scene. 
 /// </summary>
-public class OwnedTrigger : Component
+public partial class OwnedTrigger : Component
 {
     [Serialized] protected Circle_Collider TriggerCollider;
     [Serialized] public Spine_Animator Animator;
@@ -43,9 +43,10 @@ public class OwnedTrigger : Component
     /// </summary>
     /// <param name="owner"></param>
     /// <param name="lifeTime"></param>
-    public virtual void Initialization(FightPlayer owner, float lifeTime)
+    [ClientRpc]
+    public virtual void Initialization(Entity owner, float lifeTime)
     {
-        Owner = owner;
+        Owner = owner.GetComponent<FightPlayer>();
         EntityLifeTime = lifeTime;
         InteractedEntities = new List<Entity>();
         TriggerCollider.OnCollisionEnter += OnEntityEnter;
