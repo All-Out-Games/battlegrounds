@@ -1,8 +1,11 @@
 
 using AO;
+using Assembly.scripts.Effects;
 
-public class EffectDeath : FightEffect
+public class EffectDeath : FightEffectWithImmunity
 {
+    protected override string InvincibilityReason => "Dead";
+
     public override void OnEffectStart()
     {
         base.OnEffectStart();
@@ -16,14 +19,17 @@ public class EffectDeath : FightEffect
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.SetAnimTrigger("RESET");
-        FightPlayer.SwitchStatus((int)PlayerStatus.Safe);
-        FightPlayer.ClearAllEffects();
+        FightPlayer.SwitchStatus((int)PlayerStatus.Safe); // teleport the player to central hub
         FightPlayer.CurrentHealth = FightPlayer.MaxHealth;
+        
+        FightPlayer.ClearAllEffects();
     }
 
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => false;
 
-    public override bool FreezePlayer => false;
+    protected override bool PreventMovement => true;
+
+    public override bool FreezePlayer => false; // Set to true could mess up with Teleport()
 }

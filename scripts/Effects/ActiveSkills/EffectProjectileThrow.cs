@@ -1,5 +1,7 @@
 using AO;
 using Assembly.scripts.SceneObjects;
+using Assembly.scripts.SceneObjects.Projectiles;
+
 namespace Assembly.scripts.Effects.ActiveSkills;
 public class AbilitySpoonThrow : FightAbility
 {

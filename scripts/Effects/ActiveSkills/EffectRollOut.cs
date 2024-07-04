@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts;
 using StreamReader = AO.StreamReader;
 
 
@@ -13,12 +14,11 @@ public class AbilityRollOut : FightAbility
     public override float Cooldown => EffectConfig.RollOutConfig.Cooldown;
 }
 
-public sealed partial class EffectRollOut : FightEffect
+public class EffectRollOut : FightEffect
 {
     private EffectConfig.RollOutConfig _config;
     public override bool IsActiveEffect => false;
-    public override bool BlockAbilityActivation => false;
-    public override bool IsValidTarget => true;
+    public override bool BlockAbilityActivation => true;
     protected override int InterruptLevel => FightPlayer.DamageInfo.StunInterruptLevel;
 
     /// <summary>
@@ -34,26 +34,27 @@ public sealed partial class EffectRollOut : FightEffect
     {
         base.OnEffectStart();
         
-        AssignConfig(EffectConfig.RollOutConfig.GetDefault(FightPlayer.CurrentAttack));
+        RollOutStart();
+        FightPlayer.SetAnimTrigger("rollout_start");
         
         DurationRemaining = _config.Duration;
-        
-        FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
-        FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
-
         if (FightPlayer.IsLocal)
         {
             UIManager.Instance.SetPopup("You are Rollin! Bump other players with extra speed!", 3f, FightPlayer);
         }
 
-        FightPlayer.OnReceiveDamage += OnDamageEvent;
-        FightPlayer.RegisterPreDamageEvent(this);
+        
     }
 
     public override void NetworkDeserialize(StreamReader reader)
     {
         base.NetworkDeserialize(reader);
         //AssignConfig(EffectConfig.GetPlayerRollOutConfig(FightPlayer.CurrentAttack));
+        RollOutStart();
+    }
+
+    private void RollOutStart()
+    {
         AssignConfig(EffectConfig.RollOutConfig.GetDefault(FightPlayer.CurrentAttack));
         FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
         FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
@@ -72,6 +73,15 @@ public sealed partial class EffectRollOut : FightEffect
         
         FightPlayer.OnReceiveDamage -= OnDamageEvent;
         FightPlayer.RemovePreDamageEvent(this);
+        if (interrupt)
+        {
+            FightPlayer.UnsetAnimTrigger("rollout_end");
+        }
+        else
+        {
+            FightPlayer.SetAnimTrigger("rollout_end");
+        }
+        
     }
     
     
@@ -79,8 +89,11 @@ public sealed partial class EffectRollOut : FightEffect
 
     protected void OnRolloutCollision(Entity other)
     {
-        FightPlayer otherPlayer = other.GetComponent<FightPlayer>();
-        if (otherPlayer != null)
+        Log.Debug($"Collide With {other.Name}");
+        PlayerCollisionChild pcc = other.GetComponent<PlayerCollisionChild>();
+        FightPlayer otherPlayer = pcc?.Player;
+        
+        if (otherPlayer != null && otherPlayer.Damageable())
         {
             if(otherPlayer == FightPlayer || otherPlayer.HasEffect<EffectNoMovement>())
             {

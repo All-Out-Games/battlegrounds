@@ -3,11 +3,11 @@ AbilityBookItem.prefab - .ao - 6685994db45eb9e8339c0fc2 - 8105871847217317263
 AbilityItem.prefab - .ao - 6685994db45eb9e8339c0fc3 - 14427433616163832665
 AbilityUpgradeDialog.prefab - .ao - 6685994eb45eb9e8339c0fc7 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 6685994eb45eb9e8339c0fc8 - 14180256252234443626
-BearTrap.prefab - .ao - 6685c6f8b45eb9e8339c10aa - 13247918014571345649
+BearTrap.prefab - .ao - 6685d28fb45eb9e8339c10bf - 13247918014571345649
 BefuddleProjectile.prefab - .ao - 6685994eb45eb9e8339c0fcc - 6990652969476779402
 BroccoliProjectile.prefab - .ao - 6685994fb45eb9e8339c0fce - 5129262647641696432
 ClawSwipe.prefab - .ao - 6685994fb45eb9e8339c0fd0 - 1804017453416592716
-FatPlayerCollision.prefab - .ao - 6685994fb45eb9e8339c0fd2 - 15909775696421813938
+FatPlayerCollision.prefab - .ao - 6685eac6b45eb9e8339c10dc - 9563352942612353902
 FightPlayerRig/playercharacter.png - .ao - 66859950b45eb9e8339c0fd5 - 18271448823033782299
 FightPlayerRig/playercharacter.png - .ao.ios - 66859951b45eb9e8339c0fda - 9819301785507431040
 FightPlayerRig/playercharacter.spine - .ao - 66859950b45eb9e8339c0fd7 - 9459954897202087322
@@ -32,9 +32,9 @@ ShadowStepVFX.prefab - .ao - 66859955b45eb9e8339c0ffd - 11550510081096301958
 ShurikenProjectile.prefab - .ao - 66859955b45eb9e8339c0ffe - 8814019105862819238
 SkillSlotsPanel.prefab - .ao - 66859956b45eb9e8339c1001 - 11546600357276263640
 SpoonProjectile.prefab - .ao - 66859956b45eb9e8339c1002 - 12342670774966987832
-TotalDarknessOverlay.prefab - .ao - 6685c980b45eb9e8339c10b2 - 15557225266589634022
-UI/TotalDarknessOverlay.png - .ao - 6685c980b45eb9e8339c10b3 - 5181732608959223275
-UI/TotalDarknessOverlay.png - .ao.ios - 6685c980b45eb9e8339c10b4 - 9412426728575774527
+TotalDarknessOverlay.prefab - .ao - 6685d28fb45eb9e8339c10be - 15557225266589634022
+UI/TotalDarknessOverlay.png - .ao - 6685d28fb45eb9e8339c10c0 - 5181732608959223275
+UI/TotalDarknessOverlay.png - .ao.ios - 6685d28fb45eb9e8339c10c2 - 9412426728575774527
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao - 66859956b45eb9e8339c1008 - 16085789866035322621
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao.ios - 66859957b45eb9e8339c100c - 13006039638534950330
 VFX/ClawSwipe/claw_swipe_BAT003.spine - .ao - 66859957b45eb9e8339c100b - 4634519565438313527

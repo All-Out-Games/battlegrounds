@@ -165,6 +165,24 @@ public class FightClubGameManager : System<FightClubGameManager> {
                 key = parts[1];
                 ServerSpawn(key, player.Entity.Position);
                 break;
+            case "resetplayer":
+                if (!CheckAdmin(p)) return;
+                if (parts.Length != 1)
+                {
+                    Chat.SendMessage(player, "Usage: /resetplayer");
+                    return;
+                }
+
+                player.Coins = 100;
+                FightPlayerSkillTree st = player.GetSkillTree();
+                foreach (var kv in st.SkillLevelDict)
+                {
+                    if (kv.Value > 0 && kv.Key != "Punch")
+                    {
+                        st.DepriveSkill(kv.Key);
+                    }
+                }
+                break;
         }
     }
 

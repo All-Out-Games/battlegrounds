@@ -21,6 +21,8 @@ public class EffectLeapSlam : FightEffectWithImmunity
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => false;
 
+    protected override string InvincibilityReason => "LeapSlam";
+
     private EffectConfig.LeapSlamConfig _config;
     private Vector2 _dirPosition;
     private Vector2 _originPosition;

@@ -1,5 +1,6 @@
 using System.Collections;
 using AO;
+using Assembly.scripts;
 using Assembly.scripts.UI;
 using StreamReader = AO.StreamReader;
 
@@ -14,8 +15,6 @@ public partial class FightPlayer : Player
     [Serialized] protected FightPlayerUI PlayerUi;
     [Serialized] protected FightPlayerSkillTree SkillTree;
     [Serialized] protected FightPlayerSkillSlotsManager SkillSlotsManager;
-
-    public SyncVar<PlayerStatus> test = new SyncVar<PlayerStatus>(PlayerStatus.Safe);
 
     protected Circle_Collider Collider; // MAIN Collider used for damage
     protected Box_Collider PunchCollider;
@@ -133,6 +132,27 @@ public partial class FightPlayer : Player
                 CallClient_NotifyCoinUpdate(value);
             }
         }
+    }
+
+    /// <summary>
+    /// Note: This flag doesn't actually make player immune to damage. You need to apply an effect that inherits FightEffectWithImmunity
+    /// which removes damage and flinch event from TakeDamage(). This flag is used in projectiles / traps to make them ignore invincible players.
+    /// </summary>
+    protected List<string> InvincibleReasons = new List<string>();
+
+    public bool Damageable()
+    {
+        return CurrentHealth > 0 && InvincibleReasons.Count == 0;
+    }
+
+    public void AddInvincibilityReason(string reason)
+    {
+        InvincibleReasons.Add(reason);
+    }
+
+    public void RemoveInvincibilityReason(string reason)
+    {
+        InvincibleReasons.Remove(reason);
     }
 
     #endregion
@@ -342,7 +362,10 @@ public partial class FightPlayer : Player
     private List<float> _speedMultipliers = new List<float>();
     private float GetTotalVelocityMultiplier()
     {
-        return _speedMultipliers.Count > 0 ? _speedMultipliers.Aggregate((x, y) =>  x*y ) : 1.0f;
+        float baseSpeed = PlayerStatus == PlayerStatus.Combat
+            ? GlobalData.CombatSpeedModifier
+            : GlobalData.SafeSpeedModifier;
+        return _speedMultipliers.Count > 0 ? _speedMultipliers.Aggregate((x, y) =>  x*y ) : baseSpeed;
     }
 
     public void AddSpeedModifier(float md)
@@ -475,13 +498,10 @@ public partial class FightPlayer : Player
     {
         SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
     }
-    [ClientRpc]
-    public void SetAnimTriggerBroadcast(string variableName)
+
+    public void UnsetAnimTrigger(string variableName)
     {
-        if (!IsLocal)
-        {
-            SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
-        }
+        SpineAnimator.SpineInstance.StateMachine.UnsetTrigger(variableName);
     }
 
     /// <summary>

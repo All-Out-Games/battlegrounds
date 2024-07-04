@@ -22,6 +22,8 @@ public enum DamageType
 public static class GlobalData
 {
     public static float RespawnTime = 3f;
+    public static float CombatSpeedModifier = 0.75f;
+    public static float SafeSpeedModifier = 1.25f;
     
     #region Coins Related
 

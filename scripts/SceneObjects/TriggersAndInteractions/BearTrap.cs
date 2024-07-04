@@ -15,10 +15,19 @@ public class BearTrap : OwnedTrigger
             return;
         }
         base.OnOtherPlayerEnter(fp);
-        Animator.SpineInstance.ColorMultiplier = new Vector4(1,1,1, 1);
-        Animator.SpineInstance.StateMachine.SetTrigger("snap");
-        Snapped = true;
-        fp.AddEffect<EffectBearTrapSnare>(Owner);
+        if (fp != Owner)
+        {
+            if (fp.Damageable())
+            {
+                fp.AddEffect<EffectBearTrapSnare>(Owner);
+            }
+            Animator.SpineInstance.ColorMultiplier = new Vector4(1,1,1, 1);
+            Animator.SpineInstance.StateMachine.SetTrigger("snap");
+            Snapped = true;
+            
+        }
+        
+        
     }
 
     public override void Start()

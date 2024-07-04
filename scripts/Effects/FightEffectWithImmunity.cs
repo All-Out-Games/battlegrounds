@@ -1,21 +1,32 @@
-﻿namespace Assembly.scripts.Effects;
+﻿using AO;
+
+namespace Assembly.scripts.Effects;
 
 public class FightEffectWithImmunity : FightEffect
 {
     public override bool IsActiveEffect => false;
     public override bool IsValidTarget => false;
     protected override bool PreventDamage => true;
+
+    protected virtual string InvincibilityReason => "Immunity";
     
     public override void OnEffectStart()
     {
         base.OnEffectStart();
         FightPlayer.RegisterPreDamageEvent(this);
+        FightPlayer.AddInvincibilityReason(InvincibilityReason);
+
+        if (InvincibilityReason == "Immunity")
+        {
+            Log.Warn("Warning: A Effect with Immunity doesn't override the InvincibilityReason field. You need a unique string for it!");
+        }
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.RemovePreDamageEvent(this);
+        FightPlayer.RemoveInvincibilityReason(InvincibilityReason);
     }
 
     public override void PreDamageMod(ref FightPlayer.DamageInfo info)

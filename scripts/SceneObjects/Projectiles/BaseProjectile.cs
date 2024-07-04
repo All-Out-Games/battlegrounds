@@ -1,5 +1,6 @@
 using AO;
-namespace Assembly.scripts.SceneObjects;
+
+namespace Assembly.scripts.SceneObjects.Projectiles;
 
 public class BaseProjectile : Component
 {

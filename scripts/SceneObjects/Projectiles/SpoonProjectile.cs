@@ -27,7 +27,7 @@ public class SpoonProjectile : BaseProjectile
     {
         
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
-        if (fp is { CurrentHealth: > 0 })
+        if (fp != null && fp.Damageable())
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
             fp.TakeDamage(Owner, info);

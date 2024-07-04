@@ -33,7 +33,7 @@ public partial class OwnedTrigger : Component
         Log.Debug($"Entity {entity.Name} enters.");
         
         FightPlayer fp = entity.GetComponent<FightPlayer>();
-        if (fp != null && fp != Owner)
+        if (fp != null)
         {
             OnOtherPlayerEnter(fp);
         }
