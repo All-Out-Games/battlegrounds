@@ -1,0 +1,42 @@
+BAT003_leaping_fist_slam.png
+	size: 3952, 1064
+	filter: Linear, Linear
+base impact
+	bounds: 3, 498, 773, 562
+	offsets: 2, 3, 777, 567
+debri01
+	bounds: 3747, 995, 65, 63
+	offsets: 1, 1, 67, 65
+	rotate: 90
+debri02
+	bounds: 3868, 1005, 55, 47
+	offsets: 1, 1, 57, 48
+	rotate: 90
+debri03
+	bounds: 3813, 1003, 57, 52
+	offsets: 1, 1, 59, 54
+	rotate: 90
+debri04
+	bounds: 3918, 1029, 31, 31
+	offsets: 1, 1, 33, 33
+impact F1/orange F1
+	bounds: 2267, 529, 741, 531
+	offsets: 3, 3, 746, 537
+impact F1/yellow F1
+	bounds: 779, 3, 733, 523
+	offsets: 2, 2, 737, 527
+impact F2/orange F2
+	bounds: 1523, 529, 741, 531
+	offsets: 3, 3, 746, 537
+impact F2/yellow F2
+	bounds: 3011, 11, 733, 523
+	offsets: 2, 2, 737, 527
+impact F3/orange F3
+	bounds: 779, 529, 741, 531
+	offsets: 3, 3, 746, 537
+impact F3/yellow F3
+	bounds: 3011, 537, 733, 523
+	offsets: 2, 2, 737, 527
+smash crater
+	bounds: 1515, 138, 497, 388
+	offsets: 1, 1, 499, 390

@@ -8,20 +8,23 @@ public partial class FightPlayer
     // Create your state machine here. We are going to have a sh*t ton of animations so keep this section well documented.
     private void InitializeStateMachine()
     {
+        var stateMachine = SpineAnimator.SpineInstance.StateMachine;
         // Main Layer
-        var aoLayer = SpineAnimator.SpineInstance.StateMachine.TryGetLayerByName("main");
+        var aoLayer = stateMachine.TryGetLayerByName("main");
         var aoIdleState = aoLayer.TryGetStateByName("Idle");
         var aoRunState = aoLayer.TryGetStateByName("Run_Fast");
-        var aoMovingBool = SpineAnimator.SpineInstance.StateMachine.TryGetVariableByName("moving");
+        var aoMovingBool = stateMachine.TryGetVariableByName("moving");
         
         // AL Layer
-        var fightLayer = SpineAnimator.SpineInstance.StateMachine.CreateLayer("fight_layer", 10);
+        var fightLayer = stateMachine.CreateLayer("fight_layer", 10);
         var idleState = fightLayer.CreateState("__CLEAR_TRACK__", 0, true);
         fightLayer.SetInitialState(idleState);
-        
+
+        #region Brawler
+
         // ShoulderCrash
-        var shoulderCrashTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("shoulder_crash", StateMachineVariableKind.TRIGGER);
-        var shoulderCrashEndTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("shoulder_crash_end", StateMachineVariableKind.TRIGGER);
+        var shoulderCrashTrigger = stateMachine.CreateVariable("shoulder_crash", StateMachineVariableKind.TRIGGER);
+        var shoulderCrashEndTrigger = stateMachine.CreateVariable("shoulder_crash_end", StateMachineVariableKind.TRIGGER);
         
         var shoulderCrashState = aoLayer.CreateState("BAT_003/shoulder_crash_FX", 0, true);
 
@@ -29,33 +32,56 @@ public partial class FightPlayer
         aoLayer.CreateTransition(shoulderCrashState, aoIdleState, false).CreateTriggerCondition(shoulderCrashEndTrigger);
         
         // SelfDestruct
-        var selfDestructTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("self_destruct", StateMachineVariableKind.TRIGGER);
+        var selfDestructTrigger = stateMachine.CreateVariable("self_destruct", StateMachineVariableKind.TRIGGER);
 
         var selfDestructState = aoLayer.CreateState("BAT_003/self_destruct", 0, false);
 
         aoLayer.CreateGlobalTransition(selfDestructState).CreateTriggerCondition(selfDestructTrigger);
         aoLayer.CreateTransition(selfDestructState, aoIdleState, true);
 
+        // LeapSlam
+        var leapSlamTrigger = stateMachine.CreateVariable("leapslam", StateMachineVariableKind.TRIGGER);
+        var leapSlamState = aoLayer.CreateState("BAT_003/leaping_slam", 0, false);
+        aoLayer.CreateTransition(leapSlamState, aoIdleState, true);
+        aoLayer.CreateGlobalTransition(leapSlamState).CreateTriggerCondition(leapSlamTrigger);
+        
+        // LeapSlam - Victim (knock down)
+        var knockDownTrigger = stateMachine.CreateVariable("knockdown", StateMachineVariableKind.TRIGGER);
+        var knockDownRecoverTrigger = stateMachine.CreateVariable("knockdown_end", StateMachineVariableKind.TRIGGER);
+
+        var knockDownStartState = aoLayer.CreateState("BAT_003/knocked_down", 0, false);
+        var knockDownLoopState = aoLayer.CreateState("BAT_003/knocked_down_loop", 0, true);
+        var knockDownEndState = aoLayer.CreateState("BAT_003/knocked_down_get_up", 0, false);
+        aoLayer.CreateTransition(knockDownStartState, knockDownLoopState, true);
+        aoLayer.CreateTransition(knockDownLoopState, knockDownEndState, false)
+            .CreateTriggerCondition(knockDownRecoverTrigger);
+        aoLayer.CreateTransition(knockDownEndState, aoIdleState, true);
+        aoLayer.CreateGlobalTransition(knockDownStartState).CreateTriggerCondition(knockDownTrigger);
+        
+        #endregion
+        
+
+
         // Backstab - Caster
-        var backstabTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("backstab", StateMachineVariableKind.TRIGGER);
+        var backstabTrigger = stateMachine.CreateVariable("backstab", StateMachineVariableKind.TRIGGER);
         var backstabState = aoLayer.CreateState("BAT_003/backstab_attack", 0, false);
         aoLayer.CreateGlobalTransition(backstabState).CreateTriggerCondition(backstabTrigger);
         aoLayer.CreateTransition(backstabState, aoIdleState, true);
         
         // Backstab - Victim
-        var backstabbedTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("backstabbed", StateMachineVariableKind.TRIGGER);
+        var backstabbedTrigger = stateMachine.CreateVariable("backstabbed", StateMachineVariableKind.TRIGGER);
         var backstabbedState = aoLayer.CreateState("BAT_003/backstab_victim", 0, false);
         aoLayer.CreateGlobalTransition(backstabbedState).CreateTriggerCondition(backstabbedTrigger);
         aoLayer.CreateTransition(backstabbedState, aoIdleState, true);
         
         // BearTrap - Victim
-        var bearTrapTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("beartrapped", StateMachineVariableKind.TRIGGER);
+        var bearTrapTrigger = stateMachine.CreateVariable("beartrapped", StateMachineVariableKind.TRIGGER);
         var bearTrapState = aoLayer.CreateState("BAT_003/bear_trap_full", 0, false);
         aoLayer.CreateGlobalTransition(bearTrapState).CreateTriggerCondition(bearTrapTrigger);
         aoLayer.CreateTransition(bearTrapState, aoIdleState, true);
         
         // Confusion
-        var confusionBool = SpineAnimator.SpineInstance.StateMachine.CreateVariable("confusion", StateMachineVariableKind.BOOLEAN);
+        var confusionBool = stateMachine.CreateVariable("confusion", StateMachineVariableKind.BOOLEAN);
         var confusionRunState = aoLayer.CreateState("BAT_003/Run_confused", 0, true);
         var confusionIdleState = aoLayer.CreateState("BAT_003/idle_confused", 0, true);
 
@@ -69,8 +95,8 @@ public partial class FightPlayer
         aoLayer.CreateTransition(confusionIdleState, aoIdleState, false).CreateBoolCondition(confusionBool, false);
         
         // Rollout
-        var rolloutStartTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("rollout_start", StateMachineVariableKind.TRIGGER);
-        var rolloutEndTrigger = SpineAnimator.SpineInstance.StateMachine.CreateVariable("rollout_end", StateMachineVariableKind.TRIGGER);
+        var rolloutStartTrigger = stateMachine.CreateVariable("rollout_start", StateMachineVariableKind.TRIGGER);
+        var rolloutEndTrigger = stateMachine.CreateVariable("rollout_end", StateMachineVariableKind.TRIGGER);
 
         var rolloutStartState = aoLayer.CreateState("BAT_003/rollout_start", 0, false);
         var rolloutLoopState = aoLayer.CreateState("BAT_003/rollout_loop", 0, true);
@@ -80,6 +106,9 @@ public partial class FightPlayer
         aoLayer.CreateTransition(rolloutStartState, rolloutLoopState, true);
         aoLayer.CreateTransition(rolloutLoopState, rolloutEndState, false).CreateTriggerCondition(rolloutEndTrigger);
         aoLayer.CreateTransition(rolloutEndState, aoIdleState, true);
+        
+        
+        
 
     }
 }

@@ -95,6 +95,7 @@ public class EffectDoublePunch : FightEffect
             else
             {
                 // Bumping Punch
+                info.InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel;
                 other.Player.TakeDamage(FightPlayer, info);
                 Vector2 bumpDir = other.Entity.Position - FightPlayer.Entity.Position;
                 other.Player.AddBumpFrom(FightPlayer, bumpDir * Config.BumpStrength, false);

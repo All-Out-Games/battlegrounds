@@ -396,14 +396,14 @@ public static class EffectConfig
 
     public struct LeapSlamConfig
     {
-        public static int SlamDamageBase = 10;
-        public static float Cooldown = 12f;
+        public static int SlamDamageBase = 5;
+        public static float KnockDownTime = 1f;
+        public static float Cooldown = 5f;
         
-        public float DashDuration = 0.4f;
-        public float SlamDuration = 0.1f;
 
         public int SlamDamage = 5;
-        public float BumpStrength = 280f;
+        public float SlamRadius = 3f;
+        public float BumpStrength = 150f;
         
         public LeapSlamConfig()
         {

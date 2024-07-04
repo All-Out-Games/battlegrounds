@@ -45,7 +45,8 @@
       "Y": 1
     },
     "text": "CentralHub",
-    "radius": 2
+    "radius": 2,
+    "required_hold_time": 0.6000000238418579
   }
 },
 {

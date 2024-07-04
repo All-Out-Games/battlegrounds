@@ -13,6 +13,7 @@ FightPlayerRig/playercharacter.png - .ao.ios - 66859951b45eb9e8339c0fda - 981930
 FightPlayerRig/playercharacter.spine - .ao - 66859950b45eb9e8339c0fd7 - 9459954897202087322
 HitVfx.prefab - .ao - 66859951b45eb9e8339c0fd9 - 5146642717615886720
 KunaiProjectile.prefab - .ao - 66859951b45eb9e8339c0fdd - 10521210724688615807
+LeapSlamCrater.prefab - .ao - 6686e848b45eb9e8339c1960 - 377750393543772243
 Props/BearTrap/BAT003_bear_trap.png - .ao - 66859951b45eb9e8339c0fde - 12680163519278585061
 Props/BearTrap/BAT003_bear_trap.png - .ao.ios - 66859951b45eb9e8339c0fe0 - 7406773091814632799
 Props/BearTrap/BAT003_bear_trap.spine - .ao - 66859952b45eb9e8339c0fe2 - 3855122050485720892
@@ -38,6 +39,9 @@ UI/TotalDarknessOverlay.png - .ao.ios - 6685d28fb45eb9e8339c10c2 - 9412426728575
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao - 66859956b45eb9e8339c1008 - 16085789866035322621
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao.ios - 66859957b45eb9e8339c100c - 13006039638534950330
 VFX/ClawSwipe/claw_swipe_BAT003.spine - .ao - 66859957b45eb9e8339c100b - 4634519565438313527
+VFX/LeapFistSlam/BAT003_leaping_fist_slam.png - .ao - 6686e298b45eb9e8339c195c - 7249345791989387760
+VFX/LeapFistSlam/BAT003_leaping_fist_slam.png - .ao.ios - 6686e298b45eb9e8339c195b - 16581663020375386104
+VFX/LeapFistSlam/BAT003_leaping_fist_slam.spine - .ao - 6686e298b45eb9e8339c195a - 17240551233365566934
 VFX/PsionicBeam/BAT003_psionic_beam.png - .ao - 66859957b45eb9e8339c100e - 426287856886850636
 VFX/PsionicBeam/BAT003_psionic_beam.png - .ao.ios - 66859957b45eb9e8339c1012 - 17295227018773824201
 VFX/PsionicBeam/BAT003_psionic_beam.spine - .ao - 66859957b45eb9e8339c1011 - 2839898317802474231

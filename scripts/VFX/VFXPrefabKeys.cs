@@ -15,6 +15,7 @@ public static class VFXPrefabKeys
     public static string PsionicBeamExplosionPath = "PsionicBeamExplosion.prefab";
     public static string PsionicRayPath = "PsionicRay.prefab";
     public static string ShadowStepVfxPath = "ShadowStepVFX.prefab";
+    public static string LeapSlamCraterVfxPath = "LeapSlamCrater.prefab";
     
     // Aura (AttachmentObjects)
     public static string RageAuraPath = "Rage_Aura.prefab";
@@ -27,8 +28,7 @@ public static class VFXPrefabs
     public static Prefab PsionicBeamHitVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.PsionicBeamExplosionPath);
     public static Prefab PsionicRayVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.PsionicRayPath);
     public static Prefab ShadowStepVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.ShadowStepVfxPath);
-    
-    
+
     public static Prefab RegenerationAura = Assets.GetAsset<Prefab>(VFXPrefabKeys.RegenerationAuraPath);
     public static Prefab RageAura = Assets.GetAsset<Prefab>(VFXPrefabKeys.RageAuraPath);
 }

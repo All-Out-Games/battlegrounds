@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
 
@@ -9,10 +10,10 @@ public class AbilityLeapSlam : FightAbility
 
     public override Type Effect => typeof(EffectLeapSlam);
     public override bool MonitorEffectDuration => false;
-    public override TargettingMode TargettingMode => TargettingMode.CircleAOE;
+    public override TargettingMode TargettingMode => TargettingMode.Line;
     public override float MaxDistance => 4f;
 
-    public override float Cooldown => 1; //EffectConfig.LeapSlamConfig.Cooldown;
+    public override float Cooldown =>  EffectConfig.LeapSlamConfig.Cooldown;
 }
 
 public class EffectLeapSlam : FightEffectWithImmunity
@@ -21,44 +22,46 @@ public class EffectLeapSlam : FightEffectWithImmunity
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => false;
 
+    protected override bool PreventMovement => true;
+
     protected override string InvincibilityReason => "LeapSlam";
 
     private EffectConfig.LeapSlamConfig _config;
     private Vector2 _dirPosition;
-    private Vector2 _originPosition;
     
-    private bool _slammed;
     public override void OnEffectStart()
     {
         base.OnEffectStart();
+
         FightPlayer.AddBump(Vector2.Zero, true);
-        _originPosition = FightPlayer.Entity.Position;
-        
+
         AssignConfig(EffectConfig.LeapSlamConfig.GetDefault(FightPlayer.CurrentAttack));
-        DurationRemaining = _config.DashDuration + _config.SlamDuration;
 
         _dirPosition = GetDashDirection();
         FightPlayer.SetFacingDirection(_dirPosition.X > 0);
-        _dirPosition += FightPlayer.Entity.Position;
+        FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
+        
+        FightPlayer.SetAnimTrigger("leapslam");
+        
+        DurationRemaining = MainLayer.GetCurrentStateLength();
+        FightPlayer.AddDash(_dirPosition * 100f, DurationRemaining);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        FightPlayer.AddDash(Vector2.Zero, 0); // Remove Dash
+        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
     }
 
-    public override void OnEffectUpdate()
+    public override void OnAnimationEvent(string evt)
     {
-        // TODO: Currently we are unable to set player Entity Position on the server (It works fine for other entities)
-        // The effect is UNFINISHED and NOT WORKING
-        FightPlayer.Entity.Position = Vector2.Lerp(_originPosition, _dirPosition, DurationProgress01);
-        if (Util.OneTime(ElapsedTime > _config.DashDuration, ref _slammed))
+        Log.Debug($"Event {evt}!");
+        if (evt == "Attack")
         {
-            Log.Error("SLAM!");
+            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.LeapSlamCraterVfxPath, FightPlayer.Entity.Position);
+            SlamDamage();
         }
     }
-
 
     public void AssignConfig(EffectConfig.LeapSlamConfig cfg)
     {
@@ -70,4 +73,26 @@ public class EffectLeapSlam : FightEffectWithImmunity
         return AbilityPositionOrDirection;
     }
     
+    public void SlamDamage()
+    {
+        //Log.Debug($"SLAM!");
+        Vector2 selfPos = FightPlayer.Entity.Position;
+        FightPlayer.AddDash(Vector2.Zero, 0); // Remove Dash
+        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlamDamage, DamageType.AOE, FightPlayer.DamageInfo.KnockBackInterruptLevel);
+        
+        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, _config.SlamRadius);
+        foreach (var other in cbPlayers)
+        {
+            if(other == FightPlayer) continue;
+            
+            other.TakeDamage(FightPlayer, info);
+            Vector2 dir = other.Entity.Position - selfPos;
+            other.AddBump(dir.Normalized * _config.BumpStrength, false);
+            if (Vector2.Dot(dir, other.GetFacingDirectionAsVector()) > 0)
+            {
+                other.SetFacingDirection(!other.GetFacingDirection());
+            }
+            other.AddEffect<EffectKnockDown>(FightPlayer, EffectConfig.LeapSlamConfig.KnockDownTime);
+        }
+    }
 }
