@@ -12,6 +12,6 @@ public class FightPlayerComponent : Component
     public override void Awake()
     {
         _player = Entity.GetComponent<Player>() as FightPlayer;
-        Log.Info($"Set player: {_player.Name}");
+        //Log.Info($"Set player: {_player.Name}");
     }
 }

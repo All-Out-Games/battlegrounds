@@ -20,21 +20,27 @@ public class EffectGroundStomp : FightEffect
     public override bool FreezePlayer => true;
 
     protected EffectConfig.GroundStompConfig Config;
-    protected bool Stomped = false;
     public override void OnEffectStart()
     {
         base.OnEffectStart();
         AssignConfig(EffectConfig.GroundStompConfig.GetDefault(FightPlayer.CurrentAttack));
-        FightPlayer.SetAnimTrigger("fart");
+        FightPlayer.SetAnimTrigger("groundstomp");
+        FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
+    }
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
     }
     
 
-    public override void OnEffectUpdate()
+    public override void OnAnimationEvent(string eventName)
     {
-        if (!Stomped && ElapsedTime > EffectConfig.GroundStompConfig.StompActivationTime)
+        base.OnAnimationEvent(eventName);
+        if (eventName == "Attack")
         {
             Stomp();
-            Stomped = true;
         }
     }
 

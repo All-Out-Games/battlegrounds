@@ -58,6 +58,18 @@ public partial class FightPlayer
         aoLayer.CreateTransition(knockDownEndState, aoIdleState, true);
         aoLayer.CreateGlobalTransition(knockDownStartState).CreateTriggerCondition(knockDownTrigger);
         
+        // Ground Stomp
+        var groundStompTrigger = stateMachine.CreateVariable("groundstomp", StateMachineVariableKind.TRIGGER);
+        var groundStompState = aoLayer.CreateState("BAT_003/ground_stomp", 0, false);
+        aoLayer.CreateTransition(groundStompState, aoIdleState, true);
+        aoLayer.CreateGlobalTransition(groundStompState).CreateTriggerCondition(groundStompTrigger);
+        
+        // BattleCry
+        var battleCryTrigger = stateMachine.CreateVariable("battlecry", StateMachineVariableKind.TRIGGER);
+        var battleCryState = aoLayer.CreateState("BAT_003/rage_shout", 0, false);
+        aoLayer.CreateTransition(battleCryState, aoIdleState, true);
+        aoLayer.CreateGlobalTransition(battleCryState).CreateTriggerCondition(battleCryTrigger);
+        
         #endregion
         
 

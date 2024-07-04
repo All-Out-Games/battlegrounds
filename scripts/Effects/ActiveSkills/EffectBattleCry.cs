@@ -12,11 +12,10 @@ public class AbilityBattleCry : FightAbility
     public override float Cooldown => EffectConfig.BattleCryConfig.Cooldown;
 }
 
-public class EffectBattleCry : FightEffect
+public class EffectBattleCry : FightEffectWithNoFlinch
 {
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
-    public override bool IsValidTarget => true;
     public override bool FreezePlayer => true;
 
     protected EffectConfig.BattleCryConfig Config;
@@ -26,23 +25,25 @@ public class EffectBattleCry : FightEffect
         base.OnEffectStart();
         AssignConfig(EffectConfig.BattleCryConfig.GetDefault(FightPlayer.CurrentAttack));
 
-        FightPlayer.SetAnimTrigger("wave"); 
-        
+        FightPlayer.SetAnimTrigger("battlecry");
+        DurationRemaining = MainLayer.GetCurrentStateLength();
+        FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
+
     }
     
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
+        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
     }
 
-    public override void OnEffectUpdate()
+    public override void OnAnimationEvent(string eventName)
     {
-        if (!Activated && ElapsedTime > EffectConfig.BattleCryConfig.RoarActivationTime)
+        base.OnAnimationEvent(eventName);
+        if (eventName == "Attack")
         {
             BattleCry();
-            Activated = true;
         }
-        
     }
 
     public void AssignConfig(EffectConfig.BattleCryConfig cfg)
