@@ -27,9 +27,12 @@ public class EffectShadowStep : FightEffect
         fx.Position = FightPlayer.Entity.Position;
         fx.GetComponent<SelectionVFX>()?.StartVFX("shadow_step_effect", false);
         
-        Vector2 dir = FightPlayer.Velocity.Length < 0.1f ? FightPlayer.GetFacingDirectionAsVector() : FightPlayer.Velocity.Normalized;
-        FightPlayer.Teleport(FightPlayer.Entity.Position + dir * EffectConfig.ShadowStepConfig.MovementDistance);
         DurationRemaining = 0.1f;
+        if (Network.IsServer)
+        {
+            Vector2 dir = FightPlayer.Velocity.Length < 0.1f ? FightPlayer.GetFacingDirectionAsVector() : FightPlayer.Velocity.Normalized;
+            FightPlayer.Teleport(FightPlayer.Entity.Position + dir * EffectConfig.ShadowStepConfig.MovementDistance);
+        }
         
     }
 }

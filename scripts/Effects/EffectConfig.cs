@@ -78,7 +78,7 @@ public static class EffectConfig
     public struct ShoulderCrashConfig
     {
         public static int BumpDmgBase = 9;
-        public static float Cooldown = 8f;
+        public static float Cooldown = 4f;
         
         public float DashDuration = 0.5f;
         public float DashSpeed = 275f;
