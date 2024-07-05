@@ -80,8 +80,8 @@ public static class EffectConfig
         public static int BumpDmgBase = 9;
         public static float Cooldown = 4f;
         
-        public float DashDuration = 0.5f;
-        public float DashSpeed = 275f;
+        public float DashDuration = 1f;
+        public float DashSpeed = 200f;
         
         public int ContactDamage = 5;
         public float BumpStrength = 140f;
@@ -267,8 +267,8 @@ public static class EffectConfig
     public struct RageConfig
     {
         public static int AtkBoostBase = 6;
-        public static float Cooldown = 7f;
-        public float Duration = 5f;
+        public static float Cooldown = 4f;
+        public static float Duration = 5f;
         public int AtkBoost;
 
         public RageConfig()
@@ -278,7 +278,7 @@ public static class EffectConfig
 
         public static RageConfig GetDefault()
         {
-            return new RageConfig() with {AtkBoost = AtkBoostBase};
+            return new RageConfig { AtkBoost = AtkBoostBase };
         }
     }
     
@@ -292,7 +292,6 @@ public static class EffectConfig
         public static int BaseDmg = 2;
         public static float Cooldown = 3f;
         public static float PunchAnimationTime = 0.4f; // A bit quicker than normal punch
-        public static float PunchActivationTime = 0.2f;
         public static float PunchRange = 2;
 
         public int PunchDamage = BaseDmg;
@@ -342,7 +341,6 @@ public static class EffectConfig
     {
         public static readonly float Cooldown = 7f;
         public static readonly float RoarAnimationTime = 0.9f;
-        public static readonly float RoarActivationTime = 0.5f;
         public static readonly int RoarDmgBase = -2;
         
         public float StunTime = 0.8f;

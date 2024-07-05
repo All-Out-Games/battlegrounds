@@ -1,4 +1,5 @@
 using System.Collections;
+using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
 using AO;
@@ -28,7 +29,6 @@ public class EffectBattleCry : FightEffectWithNoFlinch
         FightPlayer.SetAnimTrigger("battlecry");
         DurationRemaining = MainLayer.GetCurrentStateLength();
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
-
     }
     
     public override void OnEffectEnd(bool interrupt)
@@ -42,6 +42,7 @@ public class EffectBattleCry : FightEffectWithNoFlinch
         base.OnAnimationEvent(eventName);
         if (eventName == "Attack")
         {
+            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.BattleCryVfxPath, FightPlayer.Entity.Position);
             BattleCry();
         }
     }
@@ -65,10 +66,26 @@ public class EffectBattleCry : FightEffectWithNoFlinch
             }
 
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.RoarDamage, DamageType.AOE) with {InterruptLevel = FightPlayer.DamageInfo.StunInterruptLevel};
+            info.ReactionInfo.Flinch = false;
             fp.TakeDamage(FightPlayer, info);
-            fp.GetEffectMgr().AddStun(FightPlayer.Entity, Config.StunTime);
+            fp.GetEffectMgr().AddBattleCryStun(FightPlayer.Entity, Config.StunTime);
             fp.AddScreenShake(1f,0.5f);
         }
     }
     
+}
+
+public class EffectBattleCryStun : EffectStun
+{
+    public override void OnEffectStart()
+    {
+        base.OnEffectStart();
+        FightPlayer.SetAnimTrigger("battlecry_stun");
+    }
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        FightPlayer.SetAnimTrigger("RESET");
+    }
 }

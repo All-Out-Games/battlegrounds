@@ -1,0 +1,9 @@
+BAT003_rage_aura.png
+	size: 100, 192
+	filter: Linear, Linear
+losevote_angrycloud
+	bounds: 3, 3, 92, 81
+	offsets: 1, 1, 94, 83
+rage
+	bounds: 3, 87, 92, 102
+	offsets: 1, 1, 94, 104

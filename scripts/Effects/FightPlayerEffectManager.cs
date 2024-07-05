@@ -1,5 +1,6 @@
 ﻿using AO;
 using Assembly.scripts.Effects;
+using Assembly.scripts.Effects.ActiveSkills;
 
 
 /// <summary>
@@ -26,7 +27,7 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     
     //[Effects] PART 2
     // Addon effects
-    // Some effects inflicted by other players need to be called as ClientRPCs as the damage happens on the server only but the effects need to be on both sides
+    // Some effects (typically debuffs) inflicted by other players need to be called as ClientRPCs
     
     
     
@@ -66,6 +67,22 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
         }
     }
 
+    public void AddBattleCryStun(Entity caster, float duration)
+    {
+        if (Network.IsServer)
+        {
+            CallClient_AddBattleCryStunInternal(caster, duration);
+        }
+    }
+
+    public void AddLeapSlamKnockdown(Entity caster, float duration)
+    {
+        if (Network.IsServer)
+        {
+            CallClient_AddLeapSlamKnockdownInternal(caster, duration);
+        }
+    }
+
     [ClientRpc]
     public void AddNoMovementInternal(Entity caster, float duration)
     {
@@ -83,5 +100,18 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     {
         _player.AddEffect<EffectBleed>(caster.GetComponent<FightPlayer>(), duration,
             bleed => { bleed.PerSecondDmg = dps;});
+    }
+
+
+    [ClientRpc]
+    public void AddLeapSlamKnockdownInternal(Entity caster, float duration)
+    {
+        _player.AddEffect<EffectKnockDown>(caster.GetComponent<FightPlayer>(), duration);
+    }
+
+    [ClientRpc]
+    public void AddBattleCryStunInternal(Entity caster, float duration)
+    {
+        _player.AddEffect<EffectBattleCryStun>(caster.GetComponent<FightPlayer>(), duration);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
 using AO;
@@ -40,6 +41,7 @@ public class EffectGroundStomp : FightEffect
         base.OnAnimationEvent(eventName);
         if (eventName == "Attack")
         {
+            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.LeapSlamCraterVfxPath, FightPlayer.Entity.Position);
             Stomp();
         }
     }

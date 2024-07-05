@@ -16,6 +16,7 @@ public static class VFXPrefabKeys
     public static string PsionicRayPath = "PsionicRay.prefab";
     public static string ShadowStepVfxPath = "ShadowStepVFX.prefab";
     public static string LeapSlamCraterVfxPath = "LeapSlamCrater.prefab";
+    public static string BattleCryVfxPath = "BattleCry_Shockwave.prefab";
     
     // Aura (AttachmentObjects)
     public static string RageAuraPath = "Rage_Aura.prefab";

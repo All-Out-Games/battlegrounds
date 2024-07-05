@@ -92,7 +92,55 @@ public class EffectLeapSlam : FightEffectWithImmunity
             {
                 other.SetFacingDirection(!other.GetFacingDirection());
             }
-            other.AddEffect<EffectKnockDown>(FightPlayer, EffectConfig.LeapSlamConfig.KnockDownTime);
+
+            //other.AddEffect<EffectKnockDown>(FightPlayer, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
+            other.GetEffectMgr().AddLeapSlamKnockdown(FightPlayer.Entity, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
         }
+    }
+}
+
+public class EffectKnockDown : FightEffectWithNoFlinch
+{
+    
+    protected override bool PreventMovement => true;
+    public override bool BlockAbilityActivation => true;
+
+    protected override int InterruptLevel => FightPlayer.DamageInfo.KnockBackInterruptLevel;
+
+    private bool _gettingup = false;
+
+    public override void OnEffectStart()
+    {
+        base.OnEffectStart();
+        FightPlayer.SetAnimTrigger("sentfly");
+        FightPlayer.SpineAnimator.OnAnimationEnd += OnAnimationEnd;
+        FightPlayer.OnReceiveDamage += OnDamageEvent;
+    }
+    
+    public void OnAnimationEnd(string ani)
+    {
+        if (ani == "BAT_003/sent_flying_land")
+        {
+            FightPlayer.RemoveEffect<EffectKnockDown>(false);
+        }
+
+    }
+
+    public override void OnEffectUpdate()
+    {
+        base.OnEffectUpdate();
+        if (Util.OneTime(ElapsedTime > EffectConfig.LeapSlamConfig.KnockDownTime, ref _gettingup))
+        {
+            FightPlayer.SetAnimTrigger("sentfly_end");
+        }
+    }
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        FightPlayer.OnReceiveDamage -= OnDamageEvent;
+        FightPlayer.SpineAnimator.OnAnimationEnd -= OnAnimationEnd;
+        FightPlayer.SetAnimTrigger("RESET");
+        //FightPlayer.SetAnimTrigger("knockdown_end");
     }
 }

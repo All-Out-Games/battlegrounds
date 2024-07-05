@@ -3,6 +3,7 @@ AbilityBookItem.prefab - .ao - 6685994db45eb9e8339c0fc2 - 8105871847217317263
 AbilityItem.prefab - .ao - 6685994db45eb9e8339c0fc3 - 14427433616163832665
 AbilityUpgradeDialog.prefab - .ao - 6685994eb45eb9e8339c0fc7 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 6685994eb45eb9e8339c0fc8 - 14180256252234443626
+BattleCry_Shockwave.prefab - .ao - 668863d8b45eb9e8339c1985 - 3209635888150171771
 BearTrap.prefab - .ao - 6685d28fb45eb9e8339c10bf - 13247918014571345649
 BefuddleProjectile.prefab - .ao - 6685994eb45eb9e8339c0fcc - 6990652969476779402
 BroccoliProjectile.prefab - .ao - 6685994fb45eb9e8339c0fce - 5129262647641696432
@@ -10,10 +11,10 @@ ClawSwipe.prefab - .ao - 6685994fb45eb9e8339c0fd0 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 6685eac6b45eb9e8339c10dc - 9563352942612353902
 FightPlayerRig/playercharacter.png - .ao - 66882379b45eb9e8339c196d - 12341957791123925338
 FightPlayerRig/playercharacter.png - .ao.ios - 66882379b45eb9e8339c196e - 11252140177409781943
-FightPlayerRig/playercharacter.spine - .ao - 66882379b45eb9e8339c196c - 12629345299725267526
+FightPlayerRig/playercharacter.spine - .ao - 6688635db45eb9e8339c197b - 7186871632394599919
 HitVfx.prefab - .ao - 66859951b45eb9e8339c0fd9 - 5146642717615886720
 KunaiProjectile.prefab - .ao - 66859951b45eb9e8339c0fdd - 10521210724688615807
-LeapSlamCrater.prefab - .ao - 6686e848b45eb9e8339c1960 - 377750393543772243
+LeapSlamCrater.prefab - .ao - 66887635b45eb9e8339c199f - 17071262920097834050
 Props/BearTrap/BAT003_bear_trap.png - .ao - 66859951b45eb9e8339c0fde - 12680163519278585061
 Props/BearTrap/BAT003_bear_trap.png - .ao.ios - 66859951b45eb9e8339c0fe0 - 7406773091814632799
 Props/BearTrap/BAT003_bear_trap.spine - .ao - 66859952b45eb9e8339c0fe2 - 3855122050485720892
@@ -23,7 +24,7 @@ PsionicBeamGroundFissueEnd.prefab - .ao - 66859953b45eb9e8339c0fe8 - 99478697295
 PsionicRay.prefab - .ao - 66859953b45eb9e8339c0fea - 14816483831825167967
 PsyboltHitVFX.prefab - .ao - 66859953b45eb9e8339c0fee - 3380845811398256885
 PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
-Rage_Aura.prefab - .ao - 66859954b45eb9e8339c0ff1 - 17674612195471058141
+Rage_Aura.prefab - .ao - 668874e4b45eb9e8339c199d - 10064755062212462064
 RegenerationAura.prefab - .ao - 66859954b45eb9e8339c0ff2 - 4626569113267099519
 ResourcesOverlayWindow.prefab - .ao - 66859954b45eb9e8339c0ff4 - 4484872491460916377
 SceneProps_tmp/aura_circle.png - .ao - 66859954b45eb9e8339c0ff6 - 10293273442432679734
@@ -36,6 +37,9 @@ SpoonProjectile.prefab - .ao - 66859956b45eb9e8339c1002 - 12342670774966987832
 TotalDarknessOverlay.prefab - .ao - 6685d28fb45eb9e8339c10be - 15557225266589634022
 UI/TotalDarknessOverlay.png - .ao - 6685d28fb45eb9e8339c10c0 - 5181732608959223275
 UI/TotalDarknessOverlay.png - .ao.ios - 6685d28fb45eb9e8339c10c2 - 9412426728575774527
+VFX/BattleCry/BAT003_rage_shout.png - .ao - 6688635db45eb9e8339c197a - 8184286953345935315
+VFX/BattleCry/BAT003_rage_shout.png - .ao.ios - 6688635eb45eb9e8339c197d - 11676586159697808582
+VFX/BattleCry/BAT003_rage_shout.spine - .ao - 6688635eb45eb9e8339c197f - 8586428170126510517
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao - 66859956b45eb9e8339c1008 - 16085789866035322621
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao.ios - 66859957b45eb9e8339c100c - 13006039638534950330
 VFX/ClawSwipe/claw_swipe_BAT003.spine - .ao - 66859957b45eb9e8339c100b - 4634519565438313527
@@ -52,6 +56,9 @@ VFX/PsionicBeam/ground_fissue_end.png - .ao - 66859959b45eb9e8339c101c - 1845837
 VFX/PsionicBeam/ground_fissue_end.png - .ao.ios - 66859959b45eb9e8339c101d - 15513267816251898037
 VFX/PsionicBeam/ground_fissue_repeatable.png - .ao - 66859959b45eb9e8339c101e - 18402468940375142426
 VFX/PsionicBeam/ground_fissue_repeatable.png - .ao.ios - 66859959b45eb9e8339c1020 - 13654114360436386903
+VFX/Rage/BAT003_rage_aura.png - .ao - 66887266b45eb9e8339c1988 - 14705765686604039898
+VFX/Rage/BAT003_rage_aura.png - .ao.ios - 66887266b45eb9e8339c1989 - 7051823717306977319
+VFX/Rage/BAT003_rage_aura.spine - .ao - 66887266b45eb9e8339c1987 - 6864493465351779149
 VFX/SelfDestructExplosion/explosion_big.png - .ao - 6685995ab45eb9e8339c1023 - 9127105229977764723
 VFX/SelfDestructExplosion/explosion_big.png - .ao.ios - 6685995ab45eb9e8339c1025 - 2340973987058875720
 VFX/SelfDestructExplosion/explosion_big.spine - .ao - 6685995ab45eb9e8339c1026 - 16862651109100273494

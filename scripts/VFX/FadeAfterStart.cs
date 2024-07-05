@@ -47,6 +47,9 @@ public class FadeAfterStart : Component
         {
             Log.Warn("FadeAfterStart: Fade time must be more than persist time!");
         }
+
+        if (FadeTime < 0.1f) FadeTime = 0.1f;
+        if (PersistTime < 0) PersistTime = 0;
     }
 
     public override void Update()
@@ -72,5 +75,11 @@ public class FadeAfterStart : Component
             Sprite.Tint = Sprite.Tint with { W = progress10 };
         }
         
+    }
+
+    public void SetPersistFadeTime(float persistTime, float fadeTime)
+    {
+        PersistTime = persistTime;
+        FadeTime = fadeTime;
     }
 }

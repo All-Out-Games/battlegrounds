@@ -21,7 +21,7 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
     public override bool IsValidTarget => false;
 
     protected override bool PreventMovement => true;
-    protected override string InvincibilityReason => "LeapSlam";
+    protected override string InvincibilityReason => "ShoulderCrash";
 
 
     public override void OnEffectStart()

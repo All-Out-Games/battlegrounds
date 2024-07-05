@@ -139,6 +139,7 @@ public partial class FightPlayer : Player
     /// which removes damage and flinch event from TakeDamage(). This flag is used in projectiles / traps to make them ignore invincible players.
     /// </summary>
     protected List<string> InvincibleReasons = new List<string>();
+    
 
     public bool Damageable()
     {

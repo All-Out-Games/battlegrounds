@@ -45,18 +45,16 @@ public partial class FightPlayer
         aoLayer.CreateTransition(leapSlamState, aoIdleState, true);
         aoLayer.CreateGlobalTransition(leapSlamState).CreateTriggerCondition(leapSlamTrigger);
         
-        // LeapSlam - Victim (knock down)
-        var knockDownTrigger = stateMachine.CreateVariable("knockdown", StateMachineVariableKind.TRIGGER);
-        var knockDownRecoverTrigger = stateMachine.CreateVariable("knockdown_end", StateMachineVariableKind.TRIGGER);
+        // LeapSlam - Victim (sent flying)
+        var sentFlyTrigger = stateMachine.CreateVariable("sentfly", StateMachineVariableKind.TRIGGER);
+        var sentFlyRecoverTrigger = stateMachine.CreateVariable("sentfly_end", StateMachineVariableKind.TRIGGER);
+        
+        var sentFlyLoopState = aoLayer.CreateState("BAT_003/sent_flying_loop", 0, true);
+        var sentFlyEndState = aoLayer.CreateState("BAT_003/sent_flying_land", 0, false);
 
-        var knockDownStartState = aoLayer.CreateState("BAT_003/knocked_down", 0, false);
-        var knockDownLoopState = aoLayer.CreateState("BAT_003/knocked_down_loop", 0, true);
-        var knockDownEndState = aoLayer.CreateState("BAT_003/knocked_down_get_up", 0, false);
-        aoLayer.CreateTransition(knockDownStartState, knockDownLoopState, true);
-        aoLayer.CreateTransition(knockDownLoopState, knockDownEndState, false)
-            .CreateTriggerCondition(knockDownRecoverTrigger);
-        aoLayer.CreateTransition(knockDownEndState, aoIdleState, true);
-        aoLayer.CreateGlobalTransition(knockDownStartState).CreateTriggerCondition(knockDownTrigger);
+        aoLayer.CreateGlobalTransition(sentFlyLoopState).CreateTriggerCondition(sentFlyTrigger);
+        aoLayer.CreateTransition(sentFlyLoopState, sentFlyEndState, false).CreateTriggerCondition(sentFlyRecoverTrigger);
+        aoLayer.CreateTransition(sentFlyEndState, aoIdleState, true);
         
         // Ground Stomp
         var groundStompTrigger = stateMachine.CreateVariable("groundstomp", StateMachineVariableKind.TRIGGER);
@@ -66,10 +64,14 @@ public partial class FightPlayer
         
         // BattleCry
         var battleCryTrigger = stateMachine.CreateVariable("battlecry", StateMachineVariableKind.TRIGGER);
-        var battleCryState = aoLayer.CreateState("BAT_003/rage_shout", 0, false);
+        var battleCryState = aoLayer.CreateState("BAT_003/battle_cry", 0, false);
         aoLayer.CreateTransition(battleCryState, aoIdleState, true);
         aoLayer.CreateGlobalTransition(battleCryState).CreateTriggerCondition(battleCryTrigger);
-        
+        // Battle Cry victim
+        var battleCryStunTrigger = stateMachine.CreateVariable("battlecry_stun", StateMachineVariableKind.TRIGGER);
+        var battleCryStunState = aoLayer.CreateState("BAT_003/battle_cry_stunned", 0, true);
+        aoLayer.CreateGlobalTransition(battleCryStunState).CreateTriggerCondition(battleCryStunTrigger);
+
         // ClawSlash
         var clawSlashTrigger = stateMachine.CreateVariable("clawslash", StateMachineVariableKind.TRIGGER);
         var clawSlashState = aoLayer.CreateState("BAT_003/claw_swipe_mIK", 0, false);
@@ -82,6 +84,11 @@ public partial class FightPlayer
         fightLayer.CreateTransition(idleState, doublePunchState, false).CreateTriggerCondition(doublePunchTrigger);
         fightLayer.CreateTransition(doublePunchState, idleState, true);
         
+        // Rage
+        var rageTrigger = stateMachine.CreateVariable("rage_stomp", StateMachineVariableKind.TRIGGER);
+        var rageState = aoLayer.CreateState("BAT_003/rage_stomp", 0, false);
+        aoLayer.CreateGlobalTransition(rageState).CreateTriggerCondition(rageTrigger);
+        aoLayer.CreateTransition(rageState, aoIdleState, true);
         #endregion
         
 
@@ -132,6 +139,18 @@ public partial class FightPlayer
         aoLayer.CreateTransition(rolloutEndState, aoIdleState, true);
         
         
+        // Knocked Down (Unused)
+        var knockDownTrigger = stateMachine.CreateVariable("knockdown", StateMachineVariableKind.TRIGGER);
+        var knockDownRecoverTrigger = stateMachine.CreateVariable("knockdown_end", StateMachineVariableKind.TRIGGER);
+
+        var knockDownStartState = aoLayer.CreateState("BAT_003/knocked_down", 0, false);
+        var knockDownLoopState = aoLayer.CreateState("BAT_003/knocked_down_loop", 0, true);
+        var knockDownEndState = aoLayer.CreateState("BAT_003/knocked_down_get_up", 0, false);
+        aoLayer.CreateTransition(knockDownStartState, knockDownLoopState, true);
+        aoLayer.CreateTransition(knockDownLoopState, knockDownEndState, false)
+            .CreateTriggerCondition(knockDownRecoverTrigger);
+        aoLayer.CreateTransition(knockDownEndState, aoIdleState, true);
+        aoLayer.CreateGlobalTransition(knockDownStartState).CreateTriggerCondition(knockDownTrigger);
         
 
     }

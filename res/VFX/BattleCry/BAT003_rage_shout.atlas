@@ -1,0 +1,12 @@
+BAT003_rage_shout.png
+	size: 772, 2116
+	filter: Linear, Linear
+soundwave1
+	bounds: 3, 1377, 755, 733
+	offsets: 4, 3, 762, 739
+soundwave2
+	bounds: 3, 3, 763, 676
+	offsets: 3, 3, 769, 681
+soundwave3
+	bounds: 3, 682, 746, 692
+	offsets: 3, 3, 752, 698
