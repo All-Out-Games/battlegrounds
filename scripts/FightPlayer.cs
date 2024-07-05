@@ -493,17 +493,6 @@ public partial class FightPlayer : Player
 
     #region Actions
 
-    
-    public void SetAnimTrigger(string variableName)
-    {
-        SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
-    }
-
-    public void UnsetAnimTrigger(string variableName)
-    {
-        SpineAnimator.SpineInstance.StateMachine.UnsetTrigger(variableName);
-    }
-
     /// <summary>
     /// [Server Only]
     /// Put all general conditions of casting an active skill here.

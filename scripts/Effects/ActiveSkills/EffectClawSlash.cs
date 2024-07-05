@@ -26,8 +26,9 @@ public class EffectClawSlash : FightEffect
     {
         base.OnEffectStart();
         AssignConfig(EffectConfig.ClawSlashConfig.GetDefault(FightPlayer.CurrentAttack));
-        FightPlayer.SetMouseIKEnabled(true);
+
         FightPlayer.SetAnimTrigger("clawslash");
+        FightPlayer.SetMouseIKPosition(AbilityPositionOrDirection);
         DurationRemaining = MainLayer.GetCurrentStateLength();
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
     }
@@ -37,7 +38,6 @@ public class EffectClawSlash : FightEffect
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
-        FightPlayer.SetMouseIKEnabled(false);
     }
 
     public override void OnAnimationEvent(string eventName)

@@ -76,6 +76,12 @@ public partial class FightPlayer
         aoLayer.CreateGlobalTransition(clawSlashState).CreateTriggerCondition(clawSlashTrigger);
         aoLayer.CreateTransition(clawSlashState, aoIdleState, true);
         
+        // DoublePunch
+        var doublePunchTrigger = stateMachine.CreateVariable("doublepunch", StateMachineVariableKind.TRIGGER);
+        var doublePunchState = fightLayer.CreateState("BAT_003/punch_double_AL", 0, false);
+        fightLayer.CreateTransition(idleState, doublePunchState, false).CreateTriggerCondition(doublePunchTrigger);
+        fightLayer.CreateTransition(doublePunchState, idleState, true);
+        
         #endregion
         
 
@@ -128,5 +134,27 @@ public partial class FightPlayer
         
         
 
+    }
+    
+    
+    
+    public void SetAnimTrigger(string variableName)
+    {
+        SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
+    }
+
+    public void UnsetAnimTrigger(string variableName)
+    {
+        SpineAnimator.SpineInstance.StateMachine.UnsetTrigger(variableName);
+    }
+
+    public void SetBonePosition(string bone, Vector2 pos)
+    {
+        SpineAnimator.SpineInstance.SetBonePosition(bone, pos);
+    }
+
+    public void SetMouseIKPosition(Vector2 pos)
+    {
+        SetBonePosition("AIM", pos);
     }
 }

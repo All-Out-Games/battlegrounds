@@ -18,50 +18,30 @@ public class EffectDoublePunch : FightEffect
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => true;
 
-    protected List<Tuple<float, string>> EventTimeline;
+    private int _punchIndex;
     public override void OnEffectStart()
     {
         base.OnEffectStart();
         
         AssignConfig(EffectConfig.DoublePunchConfig.GetDefault(FightPlayer.CurrentAttack));
-
-        EventTimeline = new List<Tuple<float, string>>();
-        
-        EventTimeline.Add(new(0, "PunchAnimation"));
-        EventTimeline.Add(new(EffectConfig.DoublePunchConfig.PunchActivationTime, "FirstPunch"));
-        EventTimeline.Add(new(EffectConfig.DoublePunchConfig.PunchAnimationTime, "PunchAnimation"));
-        EventTimeline.Add(new(EffectConfig.DoublePunchConfig.PunchActivationTime + EffectConfig.DoublePunchConfig.PunchAnimationTime, "SecondPunch"));
-
-        EventTimeline = EventTimeline.OrderBy(tuple => tuple.Item1).ToList();
-    }
-    
-
-    public override void OnEffectUpdate()
-    {
-        if (EventTimeline.Count > 0)
-        {
-            if (ElapsedTime > EventTimeline[0].Item1)
-            {
-                ProcessEvent(EventTimeline[0].Item2);
-            }
-        }
+        FightPlayer.SetAnimTrigger("doublepunch");
+        FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
     }
 
-    protected void ProcessEvent(string evt)
+    public override void OnEffectEnd(bool interrupt)
     {
-        switch (evt)
+        base.OnEffectEnd(interrupt);
+        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
+    }
+
+    public override void OnAnimationEvent(string eventName)
+    {
+        base.OnAnimationEvent(eventName);
+        if (eventName == "Attack")
         {
-            case "PunchAnimation":
-                FightPlayer.SetAnimTrigger("punch");
-                break;
-            case "FirstPunch":
-                DoublePunch(1);
-                break;
-            case "SecondPunch":
-                DoublePunch(2);
-                break;
+            _punchIndex++;
+            DoublePunch(_punchIndex);
         }
-        EventTimeline.RemoveAt(0);
     }
 
     public void AssignConfig(EffectConfig.DoublePunchConfig cfg)

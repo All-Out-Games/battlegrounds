@@ -238,8 +238,7 @@ public static class EffectConfig
     {
         public static readonly int StompDamageBase = 1;
         public static readonly float StompAnimationTime = 0.6f; // Entire duration of the punch animation
-        public static readonly float StompActivationTime = 0.25f;  // Delay time before activating the collider
-        public static readonly float Cooldown = 5f;
+        public static readonly float Cooldown = 4f;
 
         public int StompDamage = 0;
         public float StompRadius = 4;
@@ -253,7 +252,7 @@ public static class EffectConfig
         {
             GroundStompConfig cfg = new GroundStompConfig()
             {
-                StompDamage = atk + GroundStompConfig.StompDamageBase
+                StompDamage = atk + StompDamageBase
             };
             return cfg;
         }
@@ -291,7 +290,7 @@ public static class EffectConfig
     public struct DoublePunchConfig
     {
         public static int BaseDmg = 2;
-        public static float Cooldown = 4f;
+        public static float Cooldown = 3f;
         public static float PunchAnimationTime = 0.4f; // A bit quicker than normal punch
         public static float PunchActivationTime = 0.2f;
         public static float PunchRange = 2;
@@ -398,7 +397,7 @@ public static class EffectConfig
     {
         public static int SlamDamageBase = 5;
         public static float KnockDownTime = 1f;
-        public static float Cooldown = 5f;
+        public static float Cooldown = 7f;
         
 
         public int SlamDamage = 5;
