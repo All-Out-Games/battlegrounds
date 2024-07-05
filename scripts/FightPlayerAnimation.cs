@@ -70,6 +70,12 @@ public partial class FightPlayer
         aoLayer.CreateTransition(battleCryState, aoIdleState, true);
         aoLayer.CreateGlobalTransition(battleCryState).CreateTriggerCondition(battleCryTrigger);
         
+        // ClawSlash
+        var clawSlashTrigger = stateMachine.CreateVariable("clawslash", StateMachineVariableKind.TRIGGER);
+        var clawSlashState = aoLayer.CreateState("BAT_003/claw_swipe_mIK", 0, false);
+        aoLayer.CreateGlobalTransition(clawSlashState).CreateTriggerCondition(clawSlashTrigger);
+        aoLayer.CreateTransition(clawSlashState, aoIdleState, true);
+        
         #endregion
         
 

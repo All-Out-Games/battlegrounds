@@ -8,9 +8,9 @@ BefuddleProjectile.prefab - .ao - 6685994eb45eb9e8339c0fcc - 6990652969476779402
 BroccoliProjectile.prefab - .ao - 6685994fb45eb9e8339c0fce - 5129262647641696432
 ClawSwipe.prefab - .ao - 6685994fb45eb9e8339c0fd0 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 6685eac6b45eb9e8339c10dc - 9563352942612353902
-FightPlayerRig/playercharacter.png - .ao - 66859950b45eb9e8339c0fd5 - 18271448823033782299
-FightPlayerRig/playercharacter.png - .ao.ios - 66859951b45eb9e8339c0fda - 9819301785507431040
-FightPlayerRig/playercharacter.spine - .ao - 66859950b45eb9e8339c0fd7 - 9459954897202087322
+FightPlayerRig/playercharacter.png - .ao - 66882379b45eb9e8339c196d - 12341957791123925338
+FightPlayerRig/playercharacter.png - .ao.ios - 66882379b45eb9e8339c196e - 11252140177409781943
+FightPlayerRig/playercharacter.spine - .ao - 66882379b45eb9e8339c196c - 12629345299725267526
 HitVfx.prefab - .ao - 66859951b45eb9e8339c0fd9 - 5146642717615886720
 KunaiProjectile.prefab - .ao - 66859951b45eb9e8339c0fdd - 10521210724688615807
 LeapSlamCrater.prefab - .ao - 6686e848b45eb9e8339c1960 - 377750393543772243

@@ -19,25 +19,37 @@ public class EffectClawSlash : FightEffect
 {
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
-
-    private bool _slash = false;
+    
     private EffectConfig.ClawSlashConfig _config;
 
     public override void OnEffectStart()
     {
         base.OnEffectStart();
         AssignConfig(EffectConfig.ClawSlashConfig.GetDefault(FightPlayer.CurrentAttack));
-        //FightPlayer.SetAnimTrigger("punch"); 
+        FightPlayer.SetMouseIKEnabled(true);
+        FightPlayer.SetAnimTrigger("clawslash");
+        DurationRemaining = MainLayer.GetCurrentStateLength();
+        FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
+    }
+    
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
+        FightPlayer.SetMouseIKEnabled(false);
     }
 
-    public override void OnEffectUpdate()
+    public override void OnAnimationEvent(string eventName)
     {
-        if (Util.OneTime(ElapsedTime > EffectConfig.ClawSlashConfig.SlashActivationTime, ref _slash))
+        base.OnAnimationEvent(eventName);
+        Log.Warn($"{eventName} Triggered");
+        if (eventName == "Attack")
         {
             Slash();
         }
     }
-    
+
 
     public void AssignConfig(EffectConfig.ClawSlashConfig cfg)
     {
@@ -48,7 +60,7 @@ public class EffectClawSlash : FightEffect
     public void Slash()
     {
         Vector2 selfPos = FightPlayer.Entity.Position + AbilityPositionOrDirection * EffectConfig.ClawSlashConfig.SlashRadius;
-        FightClubGameManager.Instance.ServerSpawn(VFXPrefabKeys.ClawSlashVFXPath, selfPos, entity =>
+        FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.ClawSlashVFXPath, selfPos, entity =>
         {
             entity.LocalRotation = FightClubUtils.AngleBetween(Vector2.Left, AbilityPositionOrDirection);
         });
