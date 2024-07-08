@@ -14,7 +14,9 @@ public abstract class FightEffect : AEffect
     protected StateMachine FightStateMachine;
 
     protected virtual int InterruptLevel => 0;
+    
     // This is different from FreezePlayer. PreventMovement will only block movement input, but the player under such an effect is still susceptible to bumps & confusion.
+    // Only the initial values work for these two fields!
     protected virtual bool PreventMovement => false;
     protected virtual bool PreventDamage => false;
     /// <summary>

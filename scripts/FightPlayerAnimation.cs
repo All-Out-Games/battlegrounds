@@ -146,6 +146,20 @@ public partial class FightPlayer
         aoLayer.CreateTransition(selfHealStartState, selfHealLoopState, true);
         aoLayer.CreateTransition(selfHealLoopState, selfHealEndState, false).CreateTriggerCondition(selfHealEndTrigger);
         aoLayer.CreateTransition(selfHealEndState, aoIdleState, true);
+        
+        // PsyThrow - Caster
+        var psyThrowTrigger = stateMachine.CreateVariable("psythrow_attack", StateMachineVariableKind.TRIGGER);
+        var psyThrowAttackTrigger =
+            stateMachine.CreateVariable("psythrow_attack_throw", StateMachineVariableKind.TRIGGER);
+        var psyThrowStartState = aoLayer.CreateState("BAT_003/psythrow_attack_start", 0, false);
+        var psyThrowHeldState = aoLayer.CreateState("BAT_003/psythrow_attack_loop_AL", 0, true);
+        var psyThrowEndState = aoLayer.CreateState("BAT_003/psythrow_attack_throw", 0, false);
+
+        aoLayer.CreateTransition(psyThrowStartState, psyThrowEndState, false)
+            .CreateTriggerCondition(psyThrowAttackTrigger);
+        aoLayer.CreateTransition(psyThrowHeldState, psyThrowEndState, false)
+            .CreateTriggerCondition(psyThrowAttackTrigger);
+        aoLayer.CreateGlobalTransition(psyThrowStartState).CreateTriggerCondition(psyThrowTrigger);
 
         #endregion
 

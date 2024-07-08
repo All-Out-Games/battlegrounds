@@ -24,7 +24,7 @@ public class AbilityPsyThrowLaunch : FightAbility
     public override string SkillIconPath => "ability_icon_tmp/PsyThrow_Tmp.png"; // TODO
 
     public override Type Effect => typeof(EffectPsyThrowLaunch);
-    public override bool MonitorEffectDuration => true;
+    public override bool MonitorEffectDuration => false;
     public override TargettingMode TargettingMode => TargettingMode.DirectionOnNearest;
     public override float MaxDistance => EffectConfig.PsyThrowConfig.ThrowRange;
     public override int MaxTargets => 1;
@@ -58,7 +58,7 @@ public class EffectPsyThrow : EffectStun
         UIManager.CallClient_SetPlayerPopup(FightPlayer.Entity.NetworkId, $"You are grabbed by {Caster.Entity.Name}!", 1f);
         if (_casterFp != null)
         {
-            _casterFp.AddEffect<EffectPsyThrowReady>();
+            _casterFp.AddEffect<EffectPsyThrowReady>(FightPlayer, DurationRemaining);
         }
     }
 
@@ -79,8 +79,10 @@ public class EffectPsyThrowReady : FightEffect
     public override List<Type> AbilityWhitelist => Wl;
     private static readonly List<Type> Wl = new List<Type>() { typeof(AbilityPsyThrowLaunch) };
     public override bool BlockAbilityActivation => true;
+    
 
     private int _originalIndex = -1;
+    
     public override void OnEffectStart()
     {
         base.OnEffectStart();
@@ -90,9 +92,6 @@ public class EffectPsyThrowReady : FightEffect
         if (_originalIndex > 0)
         {
             slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityPsyThrowLaunch)));
-            // FightPlayer.CurrentTargettingAbility = slotsMgr.GetAbilityInstance(typeof(AbilityPsyThrowLaunch));
-            // TODO: Cannot immediately target the grabbed target
-            FightPlayer.ActivateAbility<AbilityPsyThrowLaunch>();
         }
         else
         {
@@ -114,6 +113,16 @@ public class EffectPsyThrowReady : FightEffect
         {
             Log.Error("PsyThrow: Skill Replacement Error! The player does not have the primary skill equipped.");
         }
+
+        if (!interrupt)
+        {
+            // If this effect is not interrupted, the grabber hasn't choose a direction to throw their victim.
+            // So, we throw the victim toward the grabber automatically.
+            Caster?.AddEffect<EffectPsyThrowLaunch>(FightPlayer, 1f, launch =>
+            {
+                launch.AbilityPositionOrDirection = (FightPlayer.Entity.Position - Caster.Entity.Position).Normalized;
+            });
+        }
     }
 }
 
@@ -131,39 +140,31 @@ public class EffectPsyThrowLaunch : FightEffect
         base.OnEffectStart();
         if (FightPlayer.HasEffect<EffectPsyThrow>())
         {
-            FightPlayer.AddBump(AbilityPositionOrDirection * EffectConfig.PsyThrowConfig.ThrowStrength, false);
-            FightPlayer.GetEffectMgr().AddNoMovement(Caster.Entity, 1f);
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(0) with {InterruptLevel = 0}; // Cause a flinch with no dmg
-            FightPlayer.TakeDamage(Caster as FightPlayer, info);
+            Caster.RemoveEffect<EffectPsyThrowReady>(true);
             
+            FightPlayer.AddBump(AbilityPositionOrDirection * EffectConfig.PsyThrowConfig.ThrowStrength, false);
+            
+            //FightPlayer.GetEffectMgr().AddNoMovement(Caster.Entity, 1f);
             DurationRemaining = 1f;
+            
             _interactedEntities = new List<Entity>() {FightPlayer.Entity, FightPlayer.CollisionEntity};
             AssignConfig(EffectConfig.PsyThrowConfig.GetDefault(FightPlayer.CurrentAttack));
+            
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage) with {InterruptLevel = 0};
+            info.ReactionInfo.Flinch = false;
+            FightPlayer.TakeDamage(Caster as FightPlayer, info);
         }
         else
         {
             FightPlayer.RemoveEffect<EffectPsyThrowLaunch>(true);
         }
-        FightPlayer.AddPlayerCollisionFunction(OnThrowCollision);
     }
 
     private void AssignConfig(EffectConfig.PsyThrowConfig cfg)
     {
         _config = cfg;
     }
-
-    public override void NetworkDeserialize(StreamReader reader)
-    {
-        base.NetworkDeserialize(reader);
-        FightPlayer.AddPlayerCollisionFunction(OnThrowCollision);
-    }
-
-    public override void OnEffectEnd(bool interrupt)
-    {
-        base.OnEffectEnd(interrupt);
-        FightPlayer.RemovePlayerCollisionFunction(OnThrowCollision);
-    }
-
+    
     protected void OnThrowCollision(Entity other)
     {
         if(_interactedEntities.Contains(other)) return;
@@ -177,8 +178,6 @@ public class EffectPsyThrowLaunch : FightEffect
             
             info.ReactionInfo.Amount = other.NetworkId == Caster.Entity.NetworkId ? _config.SelfDamage : _config.Damage;
             otherPlayer.Player.TakeDamage(Caster as FightPlayer, info);
-            
-            
         }
     }
 }

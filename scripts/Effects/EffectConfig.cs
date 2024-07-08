@@ -496,7 +496,7 @@ public static class EffectConfig
         public static readonly float Range = 8f;
         public static readonly float ThrowRange = 12f;
         public static readonly float ThrowStrength = 180f;
-        public static readonly float GrabTime = 3f;
+        public static readonly float GrabTime = 2f;
         public static readonly int DmgBase = 3;
         public static readonly float SelfDmgModifier = 0.5f; // If you throw the enemy to yourself, you take half the damage.
 
