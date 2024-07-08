@@ -44,11 +44,14 @@ public class AbilityPsyThrowLaunch : FightAbility
 
 
 
-public class EffectPsyThrow : EffectStun
+public class EffectPsyThrow : FightEffectWithNoFlinch
 {
     public override bool IsActiveEffect => false;
 
     private FightPlayer _casterFp;
+
+    protected override bool PreventMovement => true;
+    public override bool BlockAbilityActivation => true;
 
     public override void OnEffectStart()
     {
@@ -58,8 +61,9 @@ public class EffectPsyThrow : EffectStun
         UIManager.CallClient_SetPlayerPopup(FightPlayer.Entity.NetworkId, $"You are grabbed by {Caster.Entity.Name}!", 1f);
         if (_casterFp != null)
         {
-            _casterFp.AddEffect<EffectPsyThrowReady>(FightPlayer, DurationRemaining);
+            _casterFp.AddEffect<EffectPsyThrowReady>(FightPlayer, DurationRemaining-0.2f); // Let this effect expire slightly earlier to trigger auto-throw
         }
+        FightPlayer.SetAnimTrigger("psythrow_grabbed");
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -72,7 +76,7 @@ public class EffectPsyThrow : EffectStun
     }
 }
 
-public class EffectPsyThrowReady : FightEffect
+public class EffectPsyThrowReady : FightEffectWithNoFlinch
 {
     // Temporarily replace the caster's throw ability so that they can launch the grabbed player
     public override bool IsActiveEffect => false;
@@ -97,6 +101,8 @@ public class EffectPsyThrowReady : FightEffect
         {
             Log.Error("PsyThrow: Skill Replacement Error! The player does not have the primary skill equipped.");
         }
+        FightPlayer.UnsetAnimTrigger("psythrow_attack_throw");
+        FightPlayer.SetAnimTrigger("psythrow_attack");
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -123,10 +129,11 @@ public class EffectPsyThrowReady : FightEffect
                 launch.AbilityPositionOrDirection = (FightPlayer.Entity.Position - Caster.Entity.Position).Normalized;
             });
         }
+        FightPlayer.SetAnimTrigger("psythrow_attack_throw");
     }
 }
 
-public class EffectPsyThrowLaunch : FightEffect
+public class EffectPsyThrowLaunch : FightEffectWithNoFlinch
 {
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
@@ -153,11 +160,21 @@ public class EffectPsyThrowLaunch : FightEffect
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage) with {InterruptLevel = 0};
             info.ReactionInfo.Flinch = false;
             FightPlayer.TakeDamage(Caster as FightPlayer, info);
+            
+            FightPlayer.UnsetAnimTrigger("sentfly_end");
+            FightPlayer.SetAnimTrigger("sentfly");
         }
         else
         {
             FightPlayer.RemoveEffect<EffectPsyThrowLaunch>(true);
         }
+    }
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        FightPlayer.SetAnimTrigger("sentfly_end");
+        FightPlayer.AddEffect<EffectGenericPostActionDelay>();
     }
 
     private void AssignConfig(EffectConfig.PsyThrowConfig cfg)

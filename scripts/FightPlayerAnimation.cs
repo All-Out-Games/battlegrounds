@@ -45,7 +45,7 @@ public partial class FightPlayer
         aoLayer.CreateTransition(leapSlamState, aoIdleState, true);
         aoLayer.CreateGlobalTransition(leapSlamState).CreateTriggerCondition(leapSlamTrigger);
         
-        // LeapSlam - Victim (sent flying)
+        // LeapSlam - Victim (sent flying) [Also used for PsyThrow Victim]
         var sentFlyTrigger = stateMachine.CreateVariable("sentfly", StateMachineVariableKind.TRIGGER);
         var sentFlyRecoverTrigger = stateMachine.CreateVariable("sentfly_end", StateMachineVariableKind.TRIGGER);
         
@@ -151,15 +151,28 @@ public partial class FightPlayer
         var psyThrowTrigger = stateMachine.CreateVariable("psythrow_attack", StateMachineVariableKind.TRIGGER);
         var psyThrowAttackTrigger =
             stateMachine.CreateVariable("psythrow_attack_throw", StateMachineVariableKind.TRIGGER);
-        var psyThrowStartState = aoLayer.CreateState("BAT_003/psythrow_attack_start", 0, false);
-        var psyThrowHeldState = aoLayer.CreateState("BAT_003/psythrow_attack_loop_AL", 0, true);
-        var psyThrowEndState = aoLayer.CreateState("BAT_003/psythrow_attack_throw", 0, false);
+        var psyThrowStartState = fightLayer.CreateState("BAT_003/psythrow_attack_start_AL", 0, false);
+        var psyThrowHeldState = fightLayer.CreateState("BAT_003/psythrow_attack_loop_AL", 0, true);
+        var psyThrowEndState = fightLayer.CreateState("BAT_003/psythrow_attack_throw_AL", 0, false);
 
-        aoLayer.CreateTransition(psyThrowStartState, psyThrowEndState, false)
+        fightLayer.CreateTransition(psyThrowStartState, psyThrowEndState, false)
             .CreateTriggerCondition(psyThrowAttackTrigger);
-        aoLayer.CreateTransition(psyThrowHeldState, psyThrowEndState, false)
+        fightLayer.CreateTransition(psyThrowHeldState, psyThrowEndState, false)
             .CreateTriggerCondition(psyThrowAttackTrigger);
-        aoLayer.CreateGlobalTransition(psyThrowStartState).CreateTriggerCondition(psyThrowTrigger);
+        fightLayer.CreateGlobalTransition(psyThrowStartState).CreateTriggerCondition(psyThrowTrigger);
+        fightLayer.CreateTransition(psyThrowEndState, idleState, true);
+        
+        // PsyThrow - Victim
+        var psyThrowGrabbedTrigger = stateMachine.CreateVariable("psythrow_grabbed", StateMachineVariableKind.TRIGGER);
+        var psyThrowLaunchedTrigger =
+            stateMachine.CreateVariable("psythrow_launched", StateMachineVariableKind.TRIGGER);
+        var psyThrowGrabbedState = aoLayer.CreateState("BAT_003/psythrow_victim_start", 0, false);
+        var psyThrowGrabbedLoopState = aoLayer.CreateState("BAT_003/psythrow_victim_loop", 0, true);
+
+        aoLayer.CreateGlobalTransition(psyThrowGrabbedState).CreateTriggerCondition(psyThrowGrabbedTrigger);
+        aoLayer.CreateTransition(psyThrowGrabbedState, psyThrowGrabbedLoopState, true);
+
+        aoLayer.CreateTransition(psyThrowGrabbedLoopState, aoIdleState, false).CreateTriggerCondition(sentFlyRecoverTrigger);
 
         #endregion
 

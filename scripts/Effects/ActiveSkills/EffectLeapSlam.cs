@@ -112,6 +112,7 @@ public class EffectKnockDown : FightEffectWithNoFlinch
     public override void OnEffectStart()
     {
         base.OnEffectStart();
+        FightPlayer.UnsetAnimTrigger("sentfly_end");
         FightPlayer.SetAnimTrigger("sentfly");
         FightPlayer.SpineAnimator.OnAnimationEnd += OnAnimationEnd;
         FightPlayer.OnReceiveDamage += OnDamageEvent;
