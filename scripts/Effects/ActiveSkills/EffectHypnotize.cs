@@ -21,28 +21,64 @@ public class AbilityHypnotize : FightAbility
     }
 }
 
-
-public class EffectHypnotize : EffectStun
+public class EffectHypnotizeCaster : FightEffect
 {
     public override bool IsActiveEffect => false;
-    protected override int InterruptLevel => 1000;
+
+    public override bool BlockAbilityActivation => true;
+
+    protected override bool PreventMovement => true;
 
     public override void OnEffectStart()
     {
         base.OnEffectStart();
+        FightPlayer.SetAnimTrigger("hypnotize");
+        DurationRemaining = MainLayer.GetCurrentStateLength();
+    }
+}
+
+public class EffectHypnotize : FightEffectWithNoFlinch
+{
+    public override bool IsActiveEffect => false;
+    protected override int InterruptLevel => 1000;
+
+    protected override bool PreventMovement => true;
+
+    public override bool BlockAbilityActivation => true;
+
+    public override void OnEffectStart()
+    {
+        base.OnEffectStart();
+        FightPlayer.SetAnimTrigger("knockdown");
         FightPlayer.OnReceiveDamage += OnDamageEvent;
         DurationRemaining = EffectConfig.HypnotizeConfig.HypnotizeTime;
+
+        Caster.AddEffect<EffectHypnotizeCaster>();
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.OnReceiveDamage -= OnDamageEvent;
+        FightPlayer.SetAnimTrigger("knockdown_end");
+        FightPlayer.AddEffect<EffectHypnotizeGetUp>();
     }
 
     public override void NetworkDeserialize(StreamReader reader)
     {
         base.NetworkDeserialize(reader);
         FightPlayer.OnReceiveDamage += OnDamageEvent;
+    }
+}
+
+public class EffectHypnotizeGetUp : FightEffectWithNoFlinch
+{
+    protected override bool PreventMovement => true;
+    public override bool BlockAbilityActivation => true;
+
+    public override void OnEffectStart()
+    {
+        base.OnEffectStart();
+        DurationRemaining = MainLayer.GetCurrentStateLength();
     }
 }

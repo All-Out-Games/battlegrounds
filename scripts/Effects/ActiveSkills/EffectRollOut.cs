@@ -55,6 +55,7 @@ public class EffectRollOut : FightEffect
 
     private void RollOutStart()
     {
+        FightPlayer.UnsetAnimTrigger("rollout_end");
         AssignConfig(EffectConfig.RollOutConfig.GetDefault(FightPlayer.CurrentAttack));
         FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
         FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);

@@ -118,6 +118,12 @@ public partial class FightPlayer
         var psyboltState = aoLayer.CreateState("BAT_003/psybolt", 0, false);
         aoLayer.CreateGlobalTransition(psyboltState).CreateTriggerCondition(psyboltTrigger);
         aoLayer.CreateTransition(psyboltState, aoIdleState, true);
+        
+        // Hypnotize
+        var hypnotizeTrigger = stateMachine.CreateVariable("hypnotize", StateMachineVariableKind.TRIGGER);
+        var hypnotizeState = aoLayer.CreateState("BAT_003/hypnotize", 0, false);
+        aoLayer.CreateGlobalTransition(hypnotizeState).CreateTriggerCondition(hypnotizeTrigger);
+        aoLayer.CreateTransition(hypnotizeState, aoIdleState, true);
 
         #endregion
 
@@ -155,7 +161,7 @@ public partial class FightPlayer
         aoLayer.CreateTransition(rolloutEndState, aoIdleState, true);
         
         
-        // Knocked Down (Unused)
+        // Knocked Down (Used as placeholder for hypnotize)
         var knockDownTrigger = stateMachine.CreateVariable("knockdown", StateMachineVariableKind.TRIGGER);
         var knockDownRecoverTrigger = stateMachine.CreateVariable("knockdown_end", StateMachineVariableKind.TRIGGER);
 
