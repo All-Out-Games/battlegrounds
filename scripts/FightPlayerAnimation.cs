@@ -90,7 +90,36 @@ public partial class FightPlayer
         aoLayer.CreateGlobalTransition(rageState).CreateTriggerCondition(rageTrigger);
         aoLayer.CreateTransition(rageState, aoIdleState, true);
         #endregion
+
+        #region Psionic
+
+        // Confusion
+        var confusionBool = stateMachine.CreateVariable("confusion", StateMachineVariableKind.BOOLEAN);
+        var confusionRunState = aoLayer.CreateState("BAT_003/Run_confused", 0, true);
+        var confusionIdleState = aoLayer.CreateState("BAT_003/idle_confused", 0, true);
+
+        aoLayer.CreateTransition(aoRunState, confusionRunState, false).CreateBoolCondition(confusionBool, true);
+        aoLayer.CreateTransition(confusionRunState, aoRunState, false).CreateBoolCondition(confusionBool, false);
         
+        aoLayer.CreateTransition(confusionRunState, confusionIdleState, false).CreateBoolCondition(aoMovingBool, false);
+        aoLayer.CreateTransition(confusionIdleState, confusionRunState, false).CreateBoolCondition(aoMovingBool, true);
+        
+        aoLayer.CreateTransition(aoIdleState, confusionIdleState, false).CreateBoolCondition(confusionBool, true);
+        aoLayer.CreateTransition(confusionIdleState, aoIdleState, false).CreateBoolCondition(confusionBool, false);
+        
+        // Projectile Throw
+        var throwTrigger = stateMachine.CreateVariable("throw", StateMachineVariableKind.TRIGGER);
+        var throwState = fightLayer.CreateState("BAT_003/throw_weapon_AL_mIK", 0, false);
+        fightLayer.CreateGlobalTransition(throwState).CreateTriggerCondition(throwTrigger);
+        fightLayer.CreateTransition(throwState, idleState, true);
+        
+        // Psybolt
+        var psyboltTrigger = stateMachine.CreateVariable("psybolt", StateMachineVariableKind.TRIGGER);
+        var psyboltState = aoLayer.CreateState("BAT_003/psybolt", 0, false);
+        aoLayer.CreateGlobalTransition(psyboltState).CreateTriggerCondition(psyboltTrigger);
+        aoLayer.CreateTransition(psyboltState, aoIdleState, true);
+
+        #endregion
 
 
         // Backstab - Caster
@@ -111,19 +140,6 @@ public partial class FightPlayer
         aoLayer.CreateGlobalTransition(bearTrapState).CreateTriggerCondition(bearTrapTrigger);
         aoLayer.CreateTransition(bearTrapState, aoIdleState, true);
         
-        // Confusion
-        var confusionBool = stateMachine.CreateVariable("confusion", StateMachineVariableKind.BOOLEAN);
-        var confusionRunState = aoLayer.CreateState("BAT_003/Run_confused", 0, true);
-        var confusionIdleState = aoLayer.CreateState("BAT_003/idle_confused", 0, true);
-
-        aoLayer.CreateTransition(aoRunState, confusionRunState, false).CreateBoolCondition(confusionBool, true);
-        aoLayer.CreateTransition(confusionRunState, aoRunState, false).CreateBoolCondition(confusionBool, false);
-        
-        aoLayer.CreateTransition(confusionRunState, confusionIdleState, false).CreateBoolCondition(aoMovingBool, false);
-        aoLayer.CreateTransition(confusionIdleState, confusionRunState, false).CreateBoolCondition(aoMovingBool, true);
-        
-        aoLayer.CreateTransition(aoIdleState, confusionIdleState, false).CreateBoolCondition(confusionBool, true);
-        aoLayer.CreateTransition(confusionIdleState, aoIdleState, false).CreateBoolCondition(confusionBool, false);
         
         // Rollout
         var rolloutStartTrigger = stateMachine.CreateVariable("rollout_start", StateMachineVariableKind.TRIGGER);

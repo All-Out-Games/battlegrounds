@@ -19,6 +19,12 @@ public class AbilityPsybolt : FightAbility
 
 public class EffectPsybolt : EffectProjectileThrow
 {
+    public override void OnEffectStart()
+    {
+        base.OnEffectStart();
+        DurationRemaining = MainLayer.GetCurrentStateLength();
+    }
+
     public override void AssignConfig()
     {
         Config = EffectConfig.ProjectileConfig.GetPlayerPsyboltConfig(FightPlayer.CurrentAttack);

@@ -168,6 +168,7 @@ public static class EffectConfig
         public float ThrowAnimationLength = 0.3f; // You can use this as delay (or use animation event) to spawn the projectile
         public int Damage = 0;
         public string ProjectilePrefabKey;
+        public string ThrowTrigger = "throw";
 
         public ProjectileConfig()
         {
@@ -186,7 +187,7 @@ public static class EffectConfig
             {
                 Damage = SpoonDamageBase + attack,
                 ProjectilePrefabKey = "SpoonProjectile.prefab",
-                ProjectileLifetime = SpoonLifetime
+                ProjectileLifetime = SpoonLifetime,
             };
             return cfg;
         }
@@ -210,7 +211,8 @@ public static class EffectConfig
                 Damage = PsyboltDamageBase + attack,
                 ProjectilePrefabKey = "PsyboltProjectile.prefab",
                 ProjectileLifetime = PsyboltLifeTime,
-                Speed = PsyboltRange / PsyboltLifeTime
+                Speed = PsyboltRange / PsyboltLifeTime,
+                ThrowTrigger = "psybolt"
             };
             return cfg;
         }

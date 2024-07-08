@@ -33,14 +33,26 @@ public class EffectProjectileThrow : FightEffect
         WhiteList.Add(FightPlayer.Entity);
         
         AssignConfig();
-        DurationRemaining = Config.ThrowAnimationLength;
+        FightPlayer.SetAnimTrigger(Config.ThrowTrigger);
+        FightPlayer.SetMouseIKPosition(AbilityPositionOrDirection);
+        DurationRemaining = FightLayer.GetCurrentStateLength();
+        FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        //Log.Debug($"Projectile Prefab Key {Config.ProjectilePrefabKey}");
-        ProjectileThrow();
+        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
+        FightPlayer.SetAnimTrigger("RESET");
+    }
+
+    public override void OnAnimationEvent(string eventName)
+    {
+        base.OnAnimationEvent(eventName);
+        if (eventName == "Attack")
+        {
+            ProjectileThrow();
+        }
     }
 
     public virtual void AssignConfig()
@@ -55,7 +67,7 @@ public class EffectProjectileThrow : FightEffect
         // i.e. inherit the Projectile component and put it on your prefab.
 
         Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
-            $"{FightPlayer.Id}_{Config.ProjectilePrefabKey}",
+            $"{FightPlayer.Id}_{Config.ProjectilePrefabKey}_{Random.Shared.NextInt64()}",
             FightPlayer.Entity.Position, AbilityPositionOrDirection);
         //proj.Position = Entity.Position;
         InitializeProjectile(proj);
