@@ -5,7 +5,6 @@ public class PlayerCollisionChild : DamageableObject
 {
     public FightPlayer Player;
 
-
     public override void TakeDamage(FightPlayer source, FightPlayer.DamageInfo info)
     {
         Player.TakeDamage(source, info);

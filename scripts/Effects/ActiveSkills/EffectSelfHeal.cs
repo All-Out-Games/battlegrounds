@@ -29,6 +29,8 @@ public class EffectSelfHeal : FightEffect
         base.OnEffectStart();
         FightPlayer.OnReceiveDamage += OnDamageEvent;
         DurationRemaining = EffectConfig.SelfHealConfig.ChannelTime;
+        FightPlayer.UnsetAnimTrigger("selfheal_end");
+        FightPlayer.SetAnimTrigger("selfheal");
     }
 
     public override void NetworkDeserialize(StreamReader reader)
@@ -45,6 +47,8 @@ public class EffectSelfHeal : FightEffect
         {
             FightPlayer.DamageInfo healInfo = FightPlayer.DamageInfo.CreateHealInfo(EffectConfig.SelfHealConfig.HealAmtBase);
             FightPlayer.TakeDamage(FightPlayer, healInfo);
+            FightPlayer.SetAnimTrigger("selfheal_end");
+            FightPlayer.AddEffect<EffectGenericPostActionDelay>();
         }
     }
 }

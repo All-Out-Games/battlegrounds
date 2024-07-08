@@ -135,6 +135,17 @@ public partial class FightPlayer
         aoLayer.CreateTransition(psiBeamState, psiBeamEndState, false).CreateTriggerCondition(psiBeamEndTrigger);
         aoLayer.CreateTransition(psiBeamEndState, aoIdleState, true);
         
+        // Self heal
+        var selfHealTrigger = stateMachine.CreateVariable("selfheal", StateMachineVariableKind.TRIGGER);
+        var selfHealEndTrigger = stateMachine.CreateVariable("selfheal_end", StateMachineVariableKind.TRIGGER);
+        var selfHealStartState = aoLayer.CreateState("BAT_003/self_heal_start", 0, false);
+        var selfHealLoopState = aoLayer.CreateState("BAT_003/self_heal_loop", 0, false);
+        var selfHealEndState = aoLayer.CreateState("BAT_003/self_heal_end", 0, false);
+
+        aoLayer.CreateGlobalTransition(selfHealStartState).CreateTriggerCondition(selfHealTrigger);
+        aoLayer.CreateTransition(selfHealStartState, selfHealLoopState, true);
+        aoLayer.CreateTransition(selfHealLoopState, selfHealEndState, false).CreateTriggerCondition(selfHealEndTrigger);
+        aoLayer.CreateTransition(selfHealEndState, aoIdleState, true);
 
         #endregion
 
