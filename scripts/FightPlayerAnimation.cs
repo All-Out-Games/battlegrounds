@@ -124,6 +124,17 @@ public partial class FightPlayer
         var hypnotizeState = aoLayer.CreateState("BAT_003/hypnotize", 0, false);
         aoLayer.CreateGlobalTransition(hypnotizeState).CreateTriggerCondition(hypnotizeTrigger);
         aoLayer.CreateTransition(hypnotizeState, aoIdleState, true);
+        
+        // Psionic beam
+        var psiBeamTrigger = stateMachine.CreateVariable("psibeam", StateMachineVariableKind.TRIGGER);
+        var psiBeamEndTrigger = stateMachine.CreateVariable("psibeam_end", StateMachineVariableKind.TRIGGER);
+        var psiBeamState = aoLayer.CreateState("BAT_003/psionic_beam_loop", 0, true);
+        var psiBeamEndState = aoLayer.CreateState("BAT_003/psionic_beam_end", 0, false);
+
+        aoLayer.CreateGlobalTransition(psiBeamState).CreateTriggerCondition(psiBeamTrigger);
+        aoLayer.CreateTransition(psiBeamState, psiBeamEndState, false).CreateTriggerCondition(psiBeamEndTrigger);
+        aoLayer.CreateTransition(psiBeamEndState, aoIdleState, true);
+        
 
         #endregion
 

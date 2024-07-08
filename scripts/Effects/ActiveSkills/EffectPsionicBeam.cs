@@ -56,6 +56,8 @@ public class EffectPsionicBeam : FightEffect
         base.OnEffectStart();
         AssignConfig(EffectConfig.PsionicBeamConfig.GetDefault(FightPlayer.CurrentAttack));
         FightPlayer.SetFacingDirection(AbilityPositionOrDirection.X >= 0);
+        FightPlayer.UnsetAnimTrigger("psibeam_end");
+        FightPlayer.SetAnimTrigger("psibeam");
         _interactedEntities = new List<Entity>();
         
         float targetAngle = FightClubUtils.AngleBetween(Vector2.Right,AbilityPositionOrDirection);
@@ -118,6 +120,8 @@ public class EffectPsionicBeam : FightEffect
         {
             _vfx.Despawn();
         }
+        FightPlayer.SetAnimTrigger("psibeam_end");
+        FightPlayer.AddEffect<EffectGenericPostActionDelay>();
     }
 
 

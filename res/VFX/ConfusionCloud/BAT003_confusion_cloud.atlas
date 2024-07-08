@@ -1,0 +1,23 @@
+BAT003_confusion_cloud.png
+	size: 460, 112
+	filter: Linear, Linear
+cloud1
+	bounds: 3, 4, 140, 105
+	offsets: 2, 2, 144, 109
+cloud2
+	bounds: 146, 3, 106, 125
+	offsets: 2, 2, 110, 129
+	rotate: 90
+cloud3
+	bounds: 367, 54, 46, 55
+	offsets: 2, 2, 50, 58
+cloud4
+	bounds: 274, 17, 90, 92
+	offsets: 2, 3, 94, 97
+cloud5
+	bounds: 416, 54, 40, 46
+	offsets: 2, 3, 44, 51
+question mark ball
+	bounds: 367, 11, 40, 57
+	offsets: 1, 1, 42, 59
+	rotate: 90

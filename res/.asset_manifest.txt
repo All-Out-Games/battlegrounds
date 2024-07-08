@@ -5,7 +5,8 @@ AbilityUpgradeDialog.prefab - .ao - 6685994eb45eb9e8339c0fc7 - 16855350947188284
 AbilityVendorMenuWindow.prefab - .ao - 6685994eb45eb9e8339c0fc8 - 14180256252234443626
 BattleCry_Shockwave.prefab - .ao - 668863d8b45eb9e8339c1985 - 3209635888150171771
 BearTrap.prefab - .ao - 6685d28fb45eb9e8339c10bf - 13247918014571345649
-BefuddleProjectile.prefab - .ao - 6685994eb45eb9e8339c0fcc - 6990652969476779402
+BefuddleProjectile.prefab - .ao - 668c5245b45eb9e8339c1a0a - 8271891606478035943
+BloodVFX.prefab - .ao - 668c54ebb45eb9e8339c1a11 - 2289728732398408107
 BroccoliProjectile.prefab - .ao - 6685994fb45eb9e8339c0fce - 5129262647641696432
 ClawSwipe.prefab - .ao - 6685994fb45eb9e8339c0fd0 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 6685eac6b45eb9e8339c10dc - 9563352942612353902
@@ -40,9 +41,15 @@ UI/TotalDarknessOverlay.png - .ao.ios - 6685d28fb45eb9e8339c10c2 - 9412426728575
 VFX/BattleCry/BAT003_rage_shout.png - .ao - 6688635db45eb9e8339c197a - 8184286953345935315
 VFX/BattleCry/BAT003_rage_shout.png - .ao.ios - 6688635eb45eb9e8339c197d - 11676586159697808582
 VFX/BattleCry/BAT003_rage_shout.spine - .ao - 6688635eb45eb9e8339c197f - 8586428170126510517
+VFX/BloodSplurt/BAT003_blood_splurt.png - .ao - 668c5245b45eb9e8339c1a0b - 13731627886340868010
+VFX/BloodSplurt/BAT003_blood_splurt.png - .ao.ios - 668c5245b45eb9e8339c1a0e - 12807973026559683747
+VFX/BloodSplurt/BAT003_blood_splurt.spine - .ao - 668c5244b45eb9e8339c1a03 - 10525665101837137214
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao - 66859956b45eb9e8339c1008 - 16085789866035322621
 VFX/ClawSwipe/claw_swipe_BAT003.png - .ao.ios - 66859957b45eb9e8339c100c - 13006039638534950330
 VFX/ClawSwipe/claw_swipe_BAT003.spine - .ao - 66859957b45eb9e8339c100b - 4634519565438313527
+VFX/ConfusionCloud/BAT003_confusion_cloud.png - .ao - 668c5244b45eb9e8339c1a04 - 18166753006273343602
+VFX/ConfusionCloud/BAT003_confusion_cloud.png - .ao.ios - 668c5244b45eb9e8339c1a05 - 10208111526865825595
+VFX/ConfusionCloud/BAT003_confusion_cloud.spine - .ao - 668c5245b45eb9e8339c1a08 - 2286745736354345695
 VFX/LeapFistSlam/BAT003_leaping_fist_slam.png - .ao - 6686e298b45eb9e8339c195c - 7249345791989387760
 VFX/LeapFistSlam/BAT003_leaping_fist_slam.png - .ao.ios - 6686e298b45eb9e8339c195b - 16581663020375386104
 VFX/LeapFistSlam/BAT003_leaping_fist_slam.spine - .ao - 6686e298b45eb9e8339c195a - 17240551233365566934

@@ -7,6 +7,24 @@ public class BefuddleProjectile : BaseProjectile
 {
     public float ConfusionTime = 3f;
     public float ConfusionIntensity = 125f;
+
+    private Spine_Animator _animator;
+
+    public override void Start()
+    {
+        base.Start();
+        _animator = Entity.GetComponent<Spine_Animator>();
+        if (_animator != null)
+        {
+            var instance = _animator.SpineInstance;
+            instance.SetAnimation("flying_loop", true);
+        }
+        else
+        {
+            Log.Error("No Animator Found on projectile");
+        }
+    }
+
     protected override void DoProjectileEffect(Entity other, bool predicted)
     {
         
@@ -21,6 +39,8 @@ public class BefuddleProjectile : BaseProjectile
             {
                 Entity.Destroy();
             }
+
+            _animator.SpineInstance.SetAnimation("hit", false);
         }
     }
 }

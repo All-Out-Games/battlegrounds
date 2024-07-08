@@ -10,29 +10,21 @@
   },
   "local_rotation": 0,
   "local_scale": {
-    "X": 0.5000000000000000,
-    "Y": 0.5000000000000000
+    "X": 0.4999998211860657,
+    "Y": 0.4999998211860657
   },
   "spawn_as_networked_entity": true
 },
 {
-  "cid": 1,
-  "aoid": "142603893020640:1718746831177654500",
+  "cid": 6,
+  "aoid": "142742298702782:1718746896710629800",
   "component_type": "Internal_Component",
-  "internal_component_type": "Sprite_Renderer",
+  "internal_component_type": "Rigidbody",
   "data": {
-    "texture": "projectile/TwitterProjectile.png",
-    "depth_offset": 0,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "layer": 0,
-    "wait_for_load": false,
-    "wrap": false,
-    "mask_in_shadow": false
+    "angular_damping": 0,
+    "linear_damping": 0,
+    "gravity_scale": 1,
+    "fixed_rotation": false
   }
 },
 {
@@ -70,8 +62,8 @@
   "internal_component_type": "Box_Collider",
   "data": {
     "size": {
-      "X": 2,
-      "Y": 2
+      "X": 2.6126511096954346,
+      "Y": 2.5642814636230469
     },
     "offset": {
       "X": 0,
@@ -85,14 +77,19 @@
   }
 },
 {
-  "cid": 6,
-  "aoid": "142742298702782:1718746896710629800",
+  "cid": 1,
+  "aoid": "45635518915896:1720471772593663800",
   "component_type": "Internal_Component",
-  "internal_component_type": "Rigidbody",
+  "internal_component_type": "Spine_Animator",
   "data": {
-    "angular_damping": 0,
-    "linear_damping": 0,
-    "gravity_scale": 1,
-    "fixed_rotation": false
+    "skeleton_data_asset": "VFX/ConfusionCloud/BAT003_confusion_cloud.spine",
+    "ordered_skins": [
+
+    ],
+    "depth_offset": 0.5000000000000000,
+    "skeleton_scale": {
+      "X": 1,
+      "Y": 1
+    }
   }
 }

@@ -61,24 +61,12 @@ public class EffectHypnotize : FightEffectWithNoFlinch
         base.OnEffectEnd(interrupt);
         FightPlayer.OnReceiveDamage -= OnDamageEvent;
         FightPlayer.SetAnimTrigger("knockdown_end");
-        FightPlayer.AddEffect<EffectHypnotizeGetUp>();
+        FightPlayer.AddEffect<EffectGenericPostActionDelay>();
     }
 
     public override void NetworkDeserialize(StreamReader reader)
     {
         base.NetworkDeserialize(reader);
         FightPlayer.OnReceiveDamage += OnDamageEvent;
-    }
-}
-
-public class EffectHypnotizeGetUp : FightEffectWithNoFlinch
-{
-    protected override bool PreventMovement => true;
-    public override bool BlockAbilityActivation => true;
-
-    public override void OnEffectStart()
-    {
-        base.OnEffectStart();
-        DurationRemaining = MainLayer.GetCurrentStateLength();
     }
 }

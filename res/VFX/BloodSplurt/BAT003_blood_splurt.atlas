@@ -1,0 +1,6 @@
+BAT003_blood_splurt.png
+	size: 36, 48
+	filter: Linear, Linear
+blood droplet
+	bounds: 3, 3, 28, 41
+	offsets: 1, 1, 30, 43
