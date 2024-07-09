@@ -22,9 +22,11 @@ public class EffectPunch : FightEffect
     public override void OnEffectStart()
     {
         base.OnEffectStart();
+        Vector2 punchAim = Entity.Position + FightPlayer.GetPunchDirection();
+        FightPlayer.SetMouseIKPosition(punchAim);
         
-        AssignConfig(EffectConfig.GetPlayerPunchConfig(1, FightPlayer.CurrentAttack));
-        FightPlayer.SetAnimTrigger("punch"); 
+        AssignConfig(EffectConfig.GetPlayerPunchConfig(FightPlayer.PunchLevel, FightPlayer.CurrentAttack));
+        FightPlayer.SetAnimTrigger(Config.AnimationTrigger); ;
     }
     
 
@@ -42,13 +44,15 @@ public class EffectPunch : FightEffect
         DurationRemaining = EffectConfig.PunchConfig.PunchAnimationTime;
         Config = cfg;
     }
-    
     public void Punch()
     {
         Physics.RaycastHit rc;
+
+        
         var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
             EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(), new Entity[]{ },out rc);
 
+        
         if (hit)
         {
             Log.Debug($"{rc.Entity.Name}");

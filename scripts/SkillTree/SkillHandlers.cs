@@ -13,7 +13,11 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     {
         if (Network.IsServer)
         {
-            SkillConfig.SkillTreeNodeConfig cfg = SkillConfig.STConfigQueryDict[skillKey];
+            if (!SkillConfig.STConfigQueryDict.TryGetValue(skillKey, out SkillConfig.SkillTreeNodeConfig cfg))
+            {
+                Log.Error($"{skillKey} not found in STConfig!");
+                return;
+            }
             if (cfg.NeedSpecialHandler)
             {
                 // Special handlers will be called using Reflection
@@ -48,17 +52,29 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     
     public void RemoveSkill(string skillKey)
     {
-        return; // Shin: Design redundancy. They will be useful once Stat-boost passives are added.
         if (Network.IsServer)
         {
-            MethodInfo skillRemover = SkillTreeCompType.GetMethod($"CallClient_{skillKey}_Remover");
-            if (skillRemover == null)
+            if (!SkillConfig.STConfigQueryDict.TryGetValue(skillKey, out SkillConfig.SkillTreeNodeConfig cfg))
             {
-                Log.Error($"SkillRemover for {skillKey} was not found in SkillHandlers.cs!");
+                Log.Error($"{skillKey} not found in STConfig!");
                 return;
             }
 
-            skillRemover.Invoke(this, BindingFlags.Public | BindingFlags.Instance, null, new object[] {}, null);
+            if (cfg.NeedRemover)
+            {
+                switch (cfg.NType)
+                {
+                    case SkillConfig.NodeType.SkillUnlock:
+                        // Nothing need to be done as of now. The skill tree will remove the skill from dictionary and they can no longer be casted
+                        break;
+                    case SkillConfig.NodeType.SkillReplace:
+                        CallClient_ReplacementRemover(skillKey); // Currently, punch are the only slot that need replacement
+                        break;
+                    case SkillConfig.NodeType.AttrBoost: // Only handles single stat buff. If we need multiple stats write a special handler for that
+                        CallClient_StatRemover(skillKey, cfg.Buff);
+                        break;
+                }
+            }
         }
     }
     
@@ -68,7 +84,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     // Reflection will be used to call these functions
     // Note that FightPlayerComponent provides access to player directly (call attribute _player)
 
-    #region Generic Adders
+    #region Generic Handlers
 
     [ClientRpc]
     public void UnlockAdder(int level, string skillKey)
@@ -79,13 +95,66 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     [ClientRpc]
     public void ReplacementAdder(int level, string skillKey, string slotKey)
     {
-        
+        if (slotKey == "Punch")
+        {
+            if (skillKey == "Punch")
+            {
+                if (_player.PunchLevel < 1)
+                {
+                    _player.PunchLevel = 1;
+                }
+            }
+            else if (skillKey == "Punch2")
+            {
+                if (_player.PunchLevel < 2)
+                {
+                    _player.PunchLevel = 2;
+                }
+            }
+            else if (skillKey == "Punch3")
+            {
+                if (_player.PunchLevel < 3)
+                {
+                    _player.PunchLevel = 3;
+                }
+            }
+        }
     }
 
     [ClientRpc]
     public void StatAdder(int level, string skillKey, SkillConfig.StatBuff buff)
     {
         // TODO
+    }
+
+    [ClientRpc]
+    public void ReplacementRemover(string skillKey)
+    {
+        if (skillKey == "Punch")
+        {
+            Log.Error("You shouldn't remove punch! Your punch level is now set to 1");
+            _player.PunchLevel = 1;
+        }
+        else if (skillKey == "Punch2")
+        {
+            if (_player.PunchLevel > 1)
+            {
+                _player.PunchLevel = 1;
+            }
+        }
+        else if (skillKey == "Punch3")
+        {
+            if (_player.PunchLevel > 2)
+            {
+                _player.PunchLevel = 2;
+            }
+        }
+    }
+
+    [ClientRpc]
+    public void StatRemover(string skillKey, SkillConfig.StatBuff buff)
+    {
+        
     }
 
     #endregion

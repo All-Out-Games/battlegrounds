@@ -122,7 +122,7 @@ public partial class FightPlayer : Player
     private int coins = 0;
     public int Coins
     {
-        get { return coins; }
+        get => coins;
         set
         {
             coins = value; 
@@ -130,6 +130,20 @@ public partial class FightPlayer : Player
             {
                 Save.SetInt(this, "Coins", value);
                 CallClient_NotifyCoinUpdate(value);
+            }
+        }
+    }
+
+    private SyncVar<int> _punchLvl = new(1);
+
+    public int PunchLevel
+    {
+        get => _punchLvl;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _punchLvl.Set(value);
             }
         }
     }

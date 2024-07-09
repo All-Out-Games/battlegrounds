@@ -54,6 +54,7 @@ public static class EffectConfig
         
         
         public int PunchDamage = 5;
+        public string AnimationTrigger = "punch";
         
         
         public PunchConfig()
@@ -66,7 +67,8 @@ public static class EffectConfig
     {
         PunchConfig cfg = new PunchConfig
         {
-            PunchDamage = PunchConfig.PunchDmgGrowth * level + PunchConfig.PunchDmgBase + atk
+            PunchDamage = PunchConfig.PunchDmgGrowth * level + PunchConfig.PunchDmgBase + atk,
+            AnimationTrigger = $"punch{level}"
         };
         return cfg;
     }
