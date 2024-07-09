@@ -164,8 +164,6 @@ public partial class FightPlayer
         
         // PsyThrow - Victim
         var psyThrowGrabbedTrigger = stateMachine.CreateVariable("psythrow_grabbed", StateMachineVariableKind.TRIGGER);
-        var psyThrowLaunchedTrigger =
-            stateMachine.CreateVariable("psythrow_launched", StateMachineVariableKind.TRIGGER);
         var psyThrowGrabbedState = aoLayer.CreateState("BAT_003/psythrow_victim_start", 0, false);
         var psyThrowGrabbedLoopState = aoLayer.CreateState("BAT_003/psythrow_victim_loop", 0, true);
 

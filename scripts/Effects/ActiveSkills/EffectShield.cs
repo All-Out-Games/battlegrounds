@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.VFX;
 using StreamReader = AO.StreamReader;
 
 public class AbilityShield : FightAbility
@@ -22,6 +23,8 @@ public class EffectShield : FightEffect
     public override bool BlockAbilityActivation => false;
     public override bool IsValidTarget => true;
 
+    protected ShieldVFX ShieldVfx;
+
     public override void OnEffectStart()
     {
         base.OnEffectStart();
@@ -32,6 +35,9 @@ public class EffectShield : FightEffect
         FightPlayer.MaxShield = Config.ShieldAmt;
         FightPlayer.CurrentShield = Config.ShieldAmt;
         FightPlayer.OnReceiveDamage += OnDamageEvent;
+
+        AddShieldFx();
+        
     }
 
     public void AssignConfig(EffectConfig.ShieldConfig cfg)
@@ -42,9 +48,15 @@ public class EffectShield : FightEffect
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
+        ShieldVfx.Broken = true;
         if (interrupt)
         {
             Log.Debug("Shield Premature Removal!");
+            ShieldVfx.SetAnimTrigger("break");
+        }
+        else
+        {
+            ShieldVfx.SetAnimTrigger("disappear");
         }
         FightPlayer.CurrentShield = 0;
         FightPlayer.MaxShield = 0;
@@ -54,6 +66,7 @@ public class EffectShield : FightEffect
     public override void NetworkDeserialize(StreamReader reader)
     {
         base.NetworkDeserialize(reader);
+        AddShieldFx();
         FightPlayer.OnReceiveDamage += OnDamageEvent;
     }
     
@@ -63,6 +76,17 @@ public class EffectShield : FightEffect
         {
             FightPlayer.RemoveEffect<EffectShield>(true);
         }
+        else
+        {
+            ShieldVfx.SetAnimTrigger("hit");
+        }
+    }
+
+    protected virtual void AddShieldFx()
+    {
+        ShieldVfx = VFXPrefabs.ShieldFx.Instantiate().GetComponent<ShieldVFX>();
+        ShieldVfx.Spawn(FightPlayer.Entity, new Vector2(0, 0.22f), false, 1);
+        ShieldVfx.SetAnimTrigger("appear");
     }
 
 }

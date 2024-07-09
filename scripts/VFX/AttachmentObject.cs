@@ -10,22 +10,27 @@ public class AttachmentObject : Component
     [Serialized] protected float EntityLifeTime;
     protected bool LifeTimeEnded;
     protected float LifeTime;
+    protected bool Networked;
     
     public void Despawn()
     {
-        if(Network.IsServer) Network.Despawn(Entity);
+        if(Network.IsServer && Networked) Network.Despawn(Entity);
         Entity.Destroy();
     }
 
     // Call after instantiate
     public void Spawn(Entity playerEntity, Vector2 offset, bool networked, float lifetime)
     {
+        Networked = networked;
         Entity.Position = playerEntity.Position + offset;
         Entity.SetParent(playerEntity, true);
         EntityLifeTime = lifetime;
-        if (networked)
+        if (Network.IsServer && networked)
         {
-            Network.Spawn(Entity);
+            Network.Spawn(Entity); 
+            // Note: Most of the time you don't need networked = true
+            // Because Effects are synced automatically and they will spawn the attachment object, if they need one.
+            // See EffectRage.cs for example
         }
     }
 

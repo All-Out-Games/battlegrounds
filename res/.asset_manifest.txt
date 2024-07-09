@@ -32,6 +32,7 @@ SceneProps_tmp/aura_circle.png - .ao - 66859954b45eb9e8339c0ff6 - 10293273442432
 SceneProps_tmp/aura_circle.png - .ao.ios - 66859955b45eb9e8339c0ff8 - 4712178218859138718
 SelfDestructExplosion.prefab - .ao - 66859955b45eb9e8339c0ffa - 15730315220489123347
 ShadowStepVFX.prefab - .ao - 66859955b45eb9e8339c0ffd - 11550510081096301958
+Shield_FX.prefab - .ao - 668da456b45eb9e8339c1a79 - 15592104913674173733
 ShurikenProjectile.prefab - .ao - 66859955b45eb9e8339c0ffe - 8814019105862819238
 SkillSlotsPanel.prefab - .ao - 66859956b45eb9e8339c1001 - 11546600357276263640
 SpoonProjectile.prefab - .ao - 66859956b45eb9e8339c1002 - 12342670774966987832
@@ -72,6 +73,9 @@ VFX/SelfDestructExplosion/explosion_big.spine - .ao - 6685995ab45eb9e8339c1026 -
 VFX/ShadowStep/BAT003_shadow_step.png - .ao - 6685995bb45eb9e8339c1028 - 3136410073315858250
 VFX/ShadowStep/BAT003_shadow_step.png - .ao.ios - 6685995bb45eb9e8339c102e - 7377844580604665271
 VFX/ShadowStep/BAT003_shadow_step.spine - .ao - 6685995bb45eb9e8339c102c - 8829491976503774752
+VFX/Shield/BAT003_shields.png - .ao - 668d8847b45eb9e8339c1a70 - 3641356142537919237
+VFX/Shield/BAT003_shields.png - .ao.ios - 668d8847b45eb9e8339c1a71 - 12968563510881937512
+VFX/Shield/BAT003_shields.spine - .ao - 668d8847b45eb9e8339c1a6f - 2176913794819811108
 ability_icon_tmp/Backstab_tmp.png - .ao - 6685995bb45eb9e8339c102d - 4391966403771137123
 ability_icon_tmp/Backstab_tmp.png - .ao.ios - 6685995cb45eb9e8339c1031 - 17177637865044245287
 ability_icon_tmp/BearTrap_tmp.png - .ao - 6685995cb45eb9e8339c1032 - 5898372421903878382
