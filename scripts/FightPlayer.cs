@@ -59,6 +59,7 @@ public partial class FightPlayer : Player
             if (Network.IsServer)
             {
                 maxHealth.Set(value);
+                currentHealth.Set(value); // If max health changed, always recover the player to full
             }
         }
     }

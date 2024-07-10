@@ -73,6 +73,84 @@ public static partial class SkillConfig
     };
     
     /// <summary>
+    /// Punch2 node
+    /// </summary>
+    public static readonly SkillTreeNodeConfig PunchTwoConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Upgrade your punch to be more powerful",
+        MaximumLevel = 1,
+        NeedRemover = true,
+        NType = NodeType.SkillReplace,
+        NTab = SkillTreeTabs.Basic,
+        UpgradeCost = 300,
+        UIPosition = new Vector2(450,430),
+        SkillKey = "Punch2",
+        ParentNodeKeys = new string [] {"AttackBoost", "HealthBoost"},
+        ChildrenNodeKeys = new string[] {"AttackBoost2", "HealthBoost2"},
+    };
+    
+    /// <summary>
+    /// HealthBoost node
+    /// </summary>
+    public static readonly SkillTreeNodeConfig HealthBoost2NodeConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Boost the player's health",
+        MaximumLevel = 1,
+        NeedRemover = true,
+        NType = NodeType.AttrBoost,
+        NTab = SkillTreeTabs.Basic,
+        UpgradeCost = 200,
+        UIPosition = new Vector2(730,630),
+        SkillKey = "HealthBoost2",
+        ParentNodeKeys = new string [] {"Punch2"},
+        ChildrenNodeKeys = new string[] {"Punch3"},
+        Buff = new StatBuff
+        {
+            BoostType = StatType.MaxHealth,
+            BoostValue = 15
+        }
+    };
+    
+    /// <summary>
+    /// AttackBoost node
+    /// </summary>
+    public static readonly SkillTreeNodeConfig AttackBoost2NodeConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Boost the player's attack",
+        MaximumLevel = 1,
+        NeedRemover = true,
+        NType = NodeType.AttrBoost,
+        NTab = SkillTreeTabs.Basic,
+        UpgradeCost = 200,
+        UIPosition = new Vector2(110,630),
+        SkillKey = "AttackBoost2",
+        ParentNodeKeys = new string[] {"Punch2"},
+        ChildrenNodeKeys = new string[] {"Punch3"},
+        Buff = new StatBuff
+        {
+            BoostType = StatType.AttackPower,
+            BoostValue = 3
+        }
+    };
+    
+    /// <summary>
+    /// Punch3 node
+    /// </summary>
+    public static readonly SkillTreeNodeConfig PunchThreeConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Upgrade your punch to be more powerful",
+        MaximumLevel = 1,
+        NeedRemover = true,
+        NType = NodeType.SkillReplace,
+        NTab = SkillTreeTabs.Basic,
+        UpgradeCost = 350,
+        UIPosition = new Vector2(450,830),
+        SkillKey = "Punch3",
+        ParentNodeKeys = new string [] {"AttackBoost2", "HealthBoost2"},
+        ChildrenNodeKeys = new string[] {},
+    };
+    
+    /// <summary>
     /// RollOut node
     /// </summary>
     public static readonly SkillTreeNodeConfig RollOutNodeConfig = new SkillTreeNodeConfig()
@@ -87,23 +165,6 @@ public static partial class SkillConfig
         IconPath = "ability_icon_tmp/RollOut_Tmp.png",
         ParentNodeKeys =  new string[]{"Shield"},
         ChildrenNodeKeys = new string[]{},
-    };
-    
-    /// <summary>
-    /// Punch2 node
-    /// </summary>
-    public static readonly SkillTreeNodeConfig PunchTwoConfig = new SkillTreeNodeConfig()
-    {
-        DescriptionTextKey = "Upgrade your punch to be more powerful",
-        MaximumLevel = 1,
-        NeedRemover = true,
-        NType = NodeType.SkillReplace,
-        NTab = SkillTreeTabs.Basic,
-        UpgradeCost = 100,
-        UIPosition = new Vector2(450,430),
-        SkillKey = "Punch2",
-        ParentNodeKeys = new string [] {"AttackBoost", "HealthBoost"},
-        ChildrenNodeKeys = new string[] {},
     };
     
     /// <summary>
@@ -497,6 +558,9 @@ public static partial class SkillConfig
             {"HealthBoost", HealthBoostNodeConfig},
             {"AttackBoost", AttackBoostNodeConfig},
             {"Punch2", PunchTwoConfig},
+            {"HealthBoost2", HealthBoost2NodeConfig}, 
+            {"AttackBoost2", AttackBoost2NodeConfig},
+            {"Punch3", PunchThreeConfig},
             // Defensive
             {"RollOut", RollOutNodeConfig},
             {"Shield", ShieldConfig},
@@ -529,7 +593,7 @@ public static partial class SkillConfig
         };
 
     // [Add Skill] Item 3: Put Classification Here
-    public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost"};
+    public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost", "HealthBoost2", "AttackBoost2"};
     
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "Shield", 
         // Brawler
@@ -540,7 +604,7 @@ public static partial class SkillConfig
         "Invisibility","LightFeet", "Shuriken", "BearTrap", "ShadowStep", "Backstab","TotalDarkness"
     };
 
-    public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2"};
+    public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2", "Punch3"};
     
     public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() {  };
     
@@ -567,6 +631,7 @@ public static partial class SkillConfig
 }
 
 // [Add Skill] Item 4: Add the association between skillKey and type of ability.
+// Only active skills (skillkeys associated with an ability) need this. 
 
 public partial class FightAbility
 {

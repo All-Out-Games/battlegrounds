@@ -23,7 +23,8 @@ public class EffectPunch : FightEffect
     {
         base.OnEffectStart();
         Vector2 punchAim = Entity.Position + FightPlayer.GetPunchDirection();
-        FightPlayer.SetMouseIKPosition(punchAim);
+        FightPlayer.SetMouseIKPosition(punchAim.Normalized);
+        Log.Debug($"AIM Bone pos {punchAim}, dir = {FightPlayer.GetPunchDirection()}");
         
         AssignConfig(EffectConfig.GetPlayerPunchConfig(FightPlayer.PunchLevel, FightPlayer.CurrentAttack));
         FightPlayer.SetAnimTrigger(Config.AnimationTrigger); ;
@@ -46,6 +47,7 @@ public class EffectPunch : FightEffect
     }
     public void Punch()
     {
+        Log.Debug($"Punch! Dmg: {Config.PunchDamage}");
         Physics.RaycastHit rc;
 
         

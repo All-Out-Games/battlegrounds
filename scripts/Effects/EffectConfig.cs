@@ -345,10 +345,10 @@ public static class EffectConfig
     {
         public static readonly float Cooldown = 7f;
         public static readonly float RoarAnimationTime = 0.9f;
-        public static readonly int RoarDmgBase = -2;
+        public static readonly int RoarDmgBase = 0;
         
         public float StunTime = 0.8f;
-        public float RoarRadius = 3;
+        public float RoarRadius = 5;
         public int RoarDamage = 0;
 
         public BattleCryConfig()

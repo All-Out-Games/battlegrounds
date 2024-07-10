@@ -76,7 +76,11 @@ public static partial class SkillConfig
         
         // Special Handler needed - If this is marked True, a special handler will be called when the skill is added
         public bool NeedSpecialHandler;
-        public bool NeedRemover; // Depending on NodeType, a remover will be called from server, in case this skill is removed.
+        /// <summary>
+        /// Depending on NodeType, a remover will be called from server, in case this skill is removed.
+        /// It should be true for stat boosts and punch upgrades, false (default) for others
+        /// </summary>
+        public bool NeedRemover; 
         
         // Stat Type. Fill this if this is a stat buff node. This can only buff one stat, if need multiple or other custom data, implement special handler
         public StatBuff Buff;
