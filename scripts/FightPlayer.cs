@@ -91,41 +91,41 @@ public partial class FightPlayer : Player
         }
     }
 
-    private SyncVar<int> totalEliminations = new();
+    private SyncVar<int> _totalEliminations = new();
 
     public int TotalEliminations
     {
-        get { return totalEliminations.Value; }
+        get { return _totalEliminations.Value; }
         set
         {
             if (Network.IsServer)
             {
-                totalEliminations.Set(value);
+                _totalEliminations.Set(value);
                 Save.SetInt(this, "TotalEliminations", value);
             }
         }
     }
-    private SyncVar<int> totalDamageDealt = new();
+    private SyncVar<int> _totalDamageDealt = new();
 
     public int TotalDamageDealt
     {
-        get { return totalDamageDealt.Value; }
+        get { return _totalDamageDealt.Value; }
         set
         {
             if (Network.IsServer)
             {
-                totalDamageDealt.Set(value);
+                _totalDamageDealt.Set(value);
                 Save.SetInt(this, "TotalDamageDealt", value);
             }
         }
     }
-    private int coins = 0;
+    private int _coins = 0;
     public int Coins
     {
-        get => coins;
+        get => _coins;
         set
         {
-            coins = value; 
+            _coins = value; 
             if (Network.IsServer) 
             {
                 Save.SetInt(this, "Coins", value);
@@ -144,6 +144,20 @@ public partial class FightPlayer : Player
             if (Network.IsServer)
             {
                 _punchLvl.Set(value);
+            }
+        }
+    }
+
+    private SyncVar<int> _combatSpeedPercentage = new(100);
+
+    public int CombatSpeedPercentage
+    {
+        get => _combatSpeedPercentage;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _combatSpeedPercentage.Set(value);
             }
         }
     }
@@ -234,11 +248,11 @@ public partial class FightPlayer : Player
                 CameraInterface.Zoom = 1.4f;
                 
                 // First ui update need to be triggered manually (Save reading happens before this point)
-                CoinUpdateEvent.Invoke(coins); 
+                CoinUpdateEvent.Invoke(_coins); 
                 TotalDamageUpdateEvent.Invoke(TotalDamageDealt);
                 TotalElminationUpdateEvent.Invoke(TotalEliminations);
-                totalDamageDealt.OnSync += (oldi, newi) => { TotalDamageUpdateEvent(newi); }; // Hook up sync var
-                totalEliminations.OnSync += (oldi, newi) => { TotalElminationUpdateEvent(newi); };
+                _totalDamageDealt.OnSync += (oldi, newi) => { TotalDamageUpdateEvent(newi); }; // Hook up sync var
+                _totalEliminations.OnSync += (oldi, newi) => { TotalElminationUpdateEvent(newi); };
             }
             
         }
@@ -378,7 +392,7 @@ public partial class FightPlayer : Player
     private float GetTotalVelocityMultiplier()
     {
         float baseSpeed = PlayerStatus == PlayerStatus.Combat
-            ? GlobalData.CombatSpeedModifier
+            ? GlobalData.CombatSpeedModifier * _combatSpeedPercentage / 100f
             : GlobalData.SafeSpeedModifier;
         return _speedMultipliers.Count > 0 ? _speedMultipliers.Aggregate((x, y) =>  x*y ) : baseSpeed;
     }

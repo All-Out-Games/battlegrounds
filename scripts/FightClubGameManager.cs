@@ -203,7 +203,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
                 
                 Chat.SendMessage(player, $"Player {target.Name}: PunchLevel = {fp.PunchLevel}, " +
                                          $"PunchDmg = {EffectConfig.GetPlayerPunchConfig(fp.PunchLevel, fp.CurrentAttack).PunchDamage}");
-                Chat.SendMessage(player, $"atk = {fp.CurrentAttack}, mhp = {fp.MaxHealth}");
+                Chat.SendMessage(player, $"atk = {fp.CurrentAttack}, mhp = {fp.MaxHealth}, spd = {fp.CombatSpeedPercentage}");
                 break;
         }
     }

@@ -13,6 +13,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     {
         if (Network.IsServer)
         {
+            Log.Debug($"AddSkill Called. {skillKey} = Lv. {level}");
             if (!SkillConfig.STConfigQueryDict.TryGetValue(skillKey, out SkillConfig.SkillTreeNodeConfig cfg))
             {
                 Log.Error($"{skillKey} not found in STConfig!");
@@ -35,7 +36,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                 switch (cfg.NType)
                 {
                     case SkillConfig.NodeType.SkillUnlock:
-                        CallClient_UnlockAdder(level, skillKey);
+                        CallClient_UnlockAdder(level, skillKey); 
                         break;
                     case SkillConfig.NodeType.SkillReplace:
                         CallClient_ReplacementAdder(level, skillKey, "Punch"); // Currently, punch are the only slot that need replacement
@@ -54,6 +55,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     {
         if (Network.IsServer)
         {
+            Log.Debug($"RemoveSkill Called. {skillKey} ");
             if (!SkillConfig.STConfigQueryDict.TryGetValue(skillKey, out SkillConfig.SkillTreeNodeConfig cfg))
             {
                 Log.Error($"{skillKey} not found in STConfig!");
@@ -124,7 +126,20 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     [ClientRpc]
     public void StatAdder(int level, string skillKey, SkillConfig.StatBuff buff)
     {
-        // TODO
+        switch (buff.BoostType)
+        {
+            case SkillConfig.StatType.AttackPower:
+                _player.CurrentAttack += buff.BoostValue;
+                break;
+            case SkillConfig.StatType.MaxHealth:
+                _player.MaxHealth += buff.BoostValue;
+                break;
+            case SkillConfig.StatType.BaseSpeed:
+                _player.CombatSpeedPercentage += buff.BoostValue;
+                break;
+            case SkillConfig.StatType.None:
+                break;
+        }
     }
 
     [ClientRpc]
@@ -154,7 +169,20 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     [ClientRpc]
     public void StatRemover(string skillKey, SkillConfig.StatBuff buff)
     {
-        
+        switch (buff.BoostType)
+        {
+            case SkillConfig.StatType.AttackPower:
+                _player.CurrentAttack -= buff.BoostValue;
+                break;
+            case SkillConfig.StatType.MaxHealth:
+                _player.MaxHealth -= buff.BoostValue;
+                break;
+            case SkillConfig.StatType.BaseSpeed:
+                _player.CombatSpeedPercentage -= buff.BoostValue;
+                break;
+            case SkillConfig.StatType.None:
+                break;
+        }
     }
 
     #endregion

@@ -245,17 +245,13 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     }
     
     /// <summary>
-    /// [Server Only] Execute the handler of the skill
+    /// [Server Only] Execute the handler of the skill (Initialization from Save data)
     /// </summary>
     /// <param name="skillKey"> Key (ID) of the skill </param>
     /// <param name="level">The active level of the skill we are handling</param>
     public void HandleSkill(string skillKey, int level)
     {
         Log.Debug($"Skill Level Handled on Server. {skillKey} = {level}");
-        if (SkillLevelDict[skillKey] != 0)
-        {
-            RemoveSkill(skillKey);
-        }
         SkillLevelDict[skillKey] = level;
         if (level != 0)
         {

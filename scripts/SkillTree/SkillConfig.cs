@@ -33,7 +33,7 @@ public static partial class SkillConfig
     public struct StatBuff
     {
         public StatType BoostType;
-        public float BoostValue;
+        public int BoostValue;
     }
     
     // These are keys to skills, which associate the skill node to the logics in skill tree nodes.

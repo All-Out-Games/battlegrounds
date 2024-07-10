@@ -43,6 +43,11 @@ public static partial class SkillConfig
         SkillKey = "HealthBoost",
         ParentNodeKeys = new string [] {"Punch"},
         ChildrenNodeKeys = new string[] {"Punch2"},
+        Buff = new StatBuff
+        {
+            BoostType = StatType.MaxHealth,
+            BoostValue = 10
+        }
     };
     
     /// <summary>
@@ -60,6 +65,11 @@ public static partial class SkillConfig
         SkillKey = "AttackBoost",
         ParentNodeKeys = new string[] {"Punch"},
         ChildrenNodeKeys = new string[] {"Punch2"},
+        Buff = new StatBuff
+        {
+            BoostType = StatType.AttackPower,
+            BoostValue = 2
+        }
     };
     
     /// <summary>
