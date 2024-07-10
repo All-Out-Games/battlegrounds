@@ -12,7 +12,7 @@ ClawSwipe.prefab - .ao - 6685994fb45eb9e8339c0fd0 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 6685eac6b45eb9e8339c10dc - 9563352942612353902
 FightPlayerRig/playercharacter.png - .ao - 668c6ecab45eb9e8339c1a1c - 13580176801984649393
 FightPlayerRig/playercharacter.png - .ao.ios - 668c6ecab45eb9e8339c1a1b - 5691610558711331661
-FightPlayerRig/playercharacter.spine - .ao - 668c6ecab45eb9e8339c1a1a - 2291936030224754964
+FightPlayerRig/playercharacter.spine - .ao - 668eee56b45eb9e8339c1a8f - 14289920907941107317
 HitVfx.prefab - .ao - 66859951b45eb9e8339c0fd9 - 5146642717615886720
 KunaiProjectile.prefab - .ao - 66859951b45eb9e8339c0fdd - 10521210724688615807
 LeapSlamCrater.prefab - .ao - 66887635b45eb9e8339c199f - 17071262920097834050

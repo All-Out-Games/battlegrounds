@@ -34,7 +34,7 @@ public class EffectProjectileThrow : FightEffect
         
         AssignConfig();
         FightPlayer.SetAnimTrigger(Config.ThrowTrigger);
-        FightPlayer.SetMouseIKPosition(AbilityPositionOrDirection);
+        //FightPlayer.SetMouseIKPosition(AbilityPositionOrDirection);
         DurationRemaining = FightLayer.GetCurrentStateLength();
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
     }
@@ -43,7 +43,6 @@ public class EffectProjectileThrow : FightEffect
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
-        FightPlayer.SetAnimTrigger("RESET");
     }
 
     public override void OnAnimationEvent(string eventName)

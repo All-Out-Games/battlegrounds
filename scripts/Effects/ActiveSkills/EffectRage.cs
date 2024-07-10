@@ -28,6 +28,8 @@ public class EffectRageCast : FightEffectWithNoFlinch
         
         _animDuration = MainLayer.GetCurrentStateLength();
         DurationRemaining = _animDuration + EffectConfig.RageConfig.Duration;
+        
+        FightPlayer.AddSpeedModifier(0.0f);
     }
 
     public override void OnEffectUpdate()
@@ -36,6 +38,7 @@ public class EffectRageCast : FightEffectWithNoFlinch
         if (Util.OneTime(ElapsedTime > _animDuration, ref _casted))
         {
             FightPlayer.AddEffect<EffectRage>(FightPlayer, EffectConfig.RageConfig.Duration);
+            FightPlayer.RemoveSpeedModifier(0.0f);
         }
     }
     
