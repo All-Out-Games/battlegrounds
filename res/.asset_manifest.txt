@@ -6,6 +6,7 @@ AbilityVendorMenuWindow.prefab - .ao - 6685994eb45eb9e8339c0fc8 - 14180256252234
 BattleCry_Shockwave.prefab - .ao - 668863d8b45eb9e8339c1985 - 3209635888150171771
 BearTrap.prefab - .ao - 6685d28fb45eb9e8339c10bf - 13247918014571345649
 BefuddleProjectile.prefab - .ao - 668c5245b45eb9e8339c1a0a - 8271891606478035943
+Befuddle_Hit.prefab - .ao - 668f066db45eb9e8339c1a91 - 14051898403497016725
 BloodVFX.prefab - .ao - 668c54ebb45eb9e8339c1a11 - 2289728732398408107
 BroccoliProjectile.prefab - .ao - 6685994fb45eb9e8339c0fce - 5129262647641696432
 ClawSwipe.prefab - .ao - 6685994fb45eb9e8339c0fd0 - 1804017453416592716

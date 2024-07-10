@@ -133,6 +133,12 @@ public partial class FightPlayer
         fightLayer.CreateGlobalTransition(throwState).CreateTriggerCondition(throwTrigger);
         fightLayer.CreateTransition(throwState, idleState, true);
         
+        // Confusion Ball Throw
+        var befuddleTrigger = stateMachine.CreateVariable("befuddle_throw", StateMachineVariableKind.TRIGGER);
+        var befuddleState = fightLayer.CreateState("BAT_003/confusion_ball_AL_mIK", 0, false);
+        fightLayer.CreateGlobalTransition(befuddleState).CreateTriggerCondition(befuddleTrigger);
+        fightLayer.CreateTransition(befuddleState, idleState, true);
+        
         // Psybolt
         var psyboltTrigger = stateMachine.CreateVariable("psybolt", StateMachineVariableKind.TRIGGER);
         var psyboltState = aoLayer.CreateState("BAT_003/psybolt", 0, false);

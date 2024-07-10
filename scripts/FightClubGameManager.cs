@@ -292,6 +292,17 @@ public class FightClubGameManager : System<FightClubGameManager> {
             afterSpawn(expEntity);
         }
     }
+    
+    public void ClientSpawn(Prefab prefab, Vector2 position, Action<Entity> afterSpawn = null)
+    {
+        if(Network.IsServer) return;
+        Entity expEntity = prefab.Instantiate();
+        expEntity.Position = position;
+        if (afterSpawn != null)
+        {
+            afterSpawn(expEntity);
+        }
+    }
 
     #endregion
 }

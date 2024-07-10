@@ -201,7 +201,8 @@ public static class EffectConfig
                 Damage = BefuddleDamageBase + attack,
                 ProjectilePrefabKey = "BefuddleProjectile.prefab",
                 ProjectileLifetime = BefuddleLifetime,
-                Speed = BefuddleRange / BefuddleLifetime
+                Speed = BefuddleRange / BefuddleLifetime,
+                ThrowTrigger = "befuddle_throw"
             };
             return cfg;
         }

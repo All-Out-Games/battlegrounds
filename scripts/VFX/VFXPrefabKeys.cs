@@ -12,6 +12,7 @@ public static class VFXPrefabKeys
     // VFX
     
     public static string HitVfxPath = "HitVfx.prefab";
+    public static string BefuddleHitVfxPath = "Befuddle_Hit.prefab";
     public static string PsionicBeamExplosionPath = "PsionicBeamExplosion.prefab";
     public static string PsionicRayPath = "PsionicRay.prefab";
     public static string ShadowStepVfxPath = "ShadowStepVFX.prefab";
@@ -28,6 +29,7 @@ public static class VFXPrefabKeys
 public static class VFXPrefabs
 {
     public static Prefab HitVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.HitVfxPath);
+    public static Prefab BefuddleHitVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.BefuddleHitVfxPath);
     public static Prefab PsionicBeamHitVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.PsionicBeamExplosionPath);
     public static Prefab PsionicRayVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.PsionicRayPath);
     public static Prefab ShadowStepVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.ShadowStepVfxPath);

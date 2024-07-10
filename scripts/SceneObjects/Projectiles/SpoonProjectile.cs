@@ -35,7 +35,7 @@ public class SpoonProjectile : BaseProjectile
             {
                 Entity.Destroy();
             }
-            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.HitVfxPath, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
+            FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.HitVFX, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
                 entity =>
                 {
                     SelectionVFX vfx = entity.GetComponent<SelectionVFX>();

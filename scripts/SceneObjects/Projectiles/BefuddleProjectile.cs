@@ -1,5 +1,6 @@
 using AO;
 using Assembly.scripts.Effects;
+using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.SceneObjects.Projectiles;
 
@@ -39,8 +40,13 @@ public class BefuddleProjectile : BaseProjectile
             {
                 Entity.Destroy();
             }
-
-            _animator.SpineInstance.SetAnimation("hit", false);
+            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.BefuddleHitVfxPath, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
+                entity =>
+                {
+                    SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
+                    vfx.StartVFX("hit_psybolt", false);
+                }
+            );
         }
     }
 }
