@@ -172,8 +172,6 @@ public class FightClubGameManager : System<FightClubGameManager> {
                     Chat.SendMessage(player, "Usage: /resetplayer");
                     return;
                 }
-
-                player.Coins = 100;
                 FightPlayerSkillTree st = player.GetSkillTree();
                 foreach (var kv in st.SkillLevelDict)
                 {
@@ -182,6 +180,30 @@ public class FightClubGameManager : System<FightClubGameManager> {
                         st.DepriveSkill(kv.Key);
                     }
                 }
+                player.Coins = 100;
+                break;
+            case "fetchstat":
+                //if (!CheckAdmin(p)) return;
+                if (parts.Length != 2)
+                {
+                    Chat.SendMessage(player, "Usage: /fetchstat <playerid>");
+                    return;
+                }
+                target = Player.AllPlayers.FirstOrDefault(p => p.Name == parts[1]);
+                if (parts[1] == "self" || parts[1] == "me")
+                {
+                    target = player;
+                }
+                FightPlayer fp = target as FightPlayer;
+                if (fp == null)
+                {
+                    Chat.SendMessage(player, $"Fetchstat failed, player {parts[1]} not found.");
+                    return;
+                }
+                
+                Chat.SendMessage(player, $"Player {target.Name}: PunchLevel = {fp.PunchLevel}, " +
+                                         $"PunchDmg = {EffectConfig.GetPlayerPunchConfig(fp.PunchLevel, fp.CurrentAttack).PunchDamage}");
+                Chat.SendMessage(player, $"atk = {fp.CurrentAttack}, mhp = {fp.MaxHealth}");
                 break;
         }
     }

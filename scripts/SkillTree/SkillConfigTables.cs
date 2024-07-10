@@ -34,7 +34,8 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig HealthBoostNodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Boost the player's health",
-        MaximumLevel = 5,
+        MaximumLevel = 1,
+        NeedRemover = true,
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 100,
@@ -50,7 +51,8 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig AttackBoostNodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Boost the player's attack",
-        MaximumLevel = 5,
+        MaximumLevel = 1,
+        NeedRemover = true,
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 100,
@@ -82,8 +84,9 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig PunchTwoConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Boost your speed and enable you to crash into other players",
+        DescriptionTextKey = "Upgrade your punch to be more powerful",
         MaximumLevel = 1,
+        NeedRemover = true,
         NType = NodeType.SkillReplace,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 100,
