@@ -543,6 +543,7 @@ public static class EffectConfig
         public static int TrapBaseDamage = 2;
         public static float TrapLifeTime = 10f;
         public static float Cooldown = 7f;
+        public static float MaxSetupDistance = 4; 
 
         public static string TrapPrefabPath = "BearTrap.prefab";
 

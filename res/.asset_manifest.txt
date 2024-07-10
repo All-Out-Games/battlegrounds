@@ -34,7 +34,7 @@ SceneProps_tmp/aura_circle.png - .ao.ios - 66859955b45eb9e8339c0ff8 - 4712178218
 SelfDestructExplosion.prefab - .ao - 66859955b45eb9e8339c0ffa - 15730315220489123347
 ShadowStepVFX.prefab - .ao - 66859955b45eb9e8339c0ffd - 11550510081096301958
 Shield_FX.prefab - .ao - 668da456b45eb9e8339c1a79 - 15592104913674173733
-ShurikenProjectile.prefab - .ao - 66859955b45eb9e8339c0ffe - 8814019105862819238
+ShurikenProjectile.prefab - .ao - 668f1467b45eb9e8339c1aa3 - 8548912423477914444
 SkillSlotsPanel.prefab - .ao - 66859956b45eb9e8339c1001 - 11546600357276263640
 SpoonProjectile.prefab - .ao - 66859956b45eb9e8339c1002 - 12342670774966987832
 TotalDarknessOverlay.prefab - .ao - 6685d28fb45eb9e8339c10be - 15557225266589634022

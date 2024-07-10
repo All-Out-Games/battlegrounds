@@ -9,9 +9,11 @@ public class AbilityBearTrap : FightAbility
     
     public override Type Effect => typeof(EffectBearTrap);
     public override bool MonitorEffectDuration => false;
-    public override TargettingMode TargettingMode => TargettingMode.Self;
+    public override TargettingMode TargettingMode => TargettingMode.CircleAOE;
 
     public override float Cooldown => EffectConfig.BearTrapConfig.Cooldown;
+
+    public override float MaxDistance => EffectConfig.BearTrapConfig.MaxSetupDistance;
 }
 
 public class EffectBearTrap: FightEffect
@@ -28,7 +30,7 @@ public class EffectBearTrap: FightEffect
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        FightClubGameManager.Instance.ServerSpawn(EffectConfig.BearTrapConfig.TrapPrefabPath, FightPlayer.Entity.Position,
+        FightClubGameManager.Instance.ServerSpawn(EffectConfig.BearTrapConfig.TrapPrefabPath, FightPlayer.Entity.Position + AbilityPositionOrDirection * EffectConfig.BearTrapConfig.MaxSetupDistance,
             entity =>
             {
                 BearTrap trap = entity.GetComponent<BearTrap>();
