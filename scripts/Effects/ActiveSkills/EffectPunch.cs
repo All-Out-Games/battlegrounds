@@ -24,7 +24,7 @@ public class EffectPunch : FightEffect
         base.OnEffectStart();
         Vector2 punchAim = Entity.Position + FightPlayer.GetPunchDirection();
         FightPlayer.SetMouseIKPosition(punchAim.Normalized);
-        Log.Debug($"AIM Bone pos {punchAim}, dir = {FightPlayer.GetPunchDirection()}");
+        //Log.Debug($"AIM Bone pos {punchAim}, dir = {FightPlayer.GetPunchDirection()}");
         
         AssignConfig(EffectConfig.GetPlayerPunchConfig(FightPlayer.PunchLevel, FightPlayer.CurrentAttack));
         FightPlayer.SetAnimTrigger(Config.AnimationTrigger); ;

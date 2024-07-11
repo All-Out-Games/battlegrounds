@@ -24,9 +24,8 @@ public class EffectRegeneration : FightEffect
     public int PerSecondHeal = 0;
     protected float NextDmgTick = 0;
     protected bool Ticked = false;
-    protected FightPlayerUI PlayerUI;
 
-    private AttachmentObject _aura;
+    private RegenerationVFX _aura;
     
     public override void OnEffectStart()
     {
@@ -40,7 +39,7 @@ public class EffectRegeneration : FightEffect
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        _aura.Despawn();
+        _aura.SetAnimTrigger("disappear");
     }
 
     public override void OnEffectUpdate()
@@ -68,7 +67,8 @@ public class EffectRegeneration : FightEffect
     private void AddAura()
     {
         Prefab auraPrefab = VFXPrefabs.RegenerationAura;
-        _aura = auraPrefab.Instantiate().GetComponent<AttachmentObject>();
-        _aura.Spawn(FightPlayer.Entity,new Vector2(0, -0.05f), false, DurationRemaining);
+        _aura = auraPrefab.Instantiate().GetComponent<RegenerationVFX>();
+        _aura.Spawn(FightPlayer.Entity,new Vector2(0, 0.05f), false, DurationRemaining + 1);
+        _aura.SetAnimTrigger("appear");
     }
 }
