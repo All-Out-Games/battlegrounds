@@ -52,7 +52,7 @@ public class EffectBackstab : EffectNoMovement
     }
 }
 
-public class EffectBackstabCaster : EffectNoMovementWithImmunity
+public class EffectBackstabCaster : FightEffectWithImmunity
 {
     // This effect will teleport the caster of the Kunai to the back of the victim
     public override bool IsActiveEffect => false;
