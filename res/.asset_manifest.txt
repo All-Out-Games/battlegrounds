@@ -165,8 +165,8 @@ VFX/PsionicBeam/ground_fissue_repeatable.png - .ao.ios - 66859959b45eb9e8339c102
 VFX/Rage/BAT003_rage_aura.png - .ao - 66887266b45eb9e8339c1988 - 14705765686604039898
 VFX/Rage/BAT003_rage_aura.png - .ao.ios - 66887266b45eb9e8339c1989 - 7051823717306977319
 VFX/Rage/BAT003_rage_aura.spine - .ao - 66887266b45eb9e8339c1987 - 6864493465351779149
-VFX/Regeneration/BAT003_heal_regeneration.png - .ao - 668f192db45eb9e8339c1aa6 - 8310093293676244233
-VFX/Regeneration/BAT003_heal_regeneration.png - .ao.ios - 668f192db45eb9e8339c1aa7 - 17210281479431333930
+VFX/Regeneration/BAT003_heal_regeneration.png - .ao - 66905176b45eb9e8339c1bed - 177533965691857131
+VFX/Regeneration/BAT003_heal_regeneration.png - .ao.ios - 66905176b45eb9e8339c1bec - 5171621529596769104
 VFX/Regeneration/BAT003_heal_regeneration.spine - .ao - 66904ebdb45eb9e8339c1bea - 10740259273625355223
 VFX/SelfDestructExplosion/explosion_big.png - .ao - 6685995ab45eb9e8339c1023 - 9127105229977764723
 VFX/SelfDestructExplosion/explosion_big.png - .ao.ios - 6685995ab45eb9e8339c1025 - 2340973987058875720
