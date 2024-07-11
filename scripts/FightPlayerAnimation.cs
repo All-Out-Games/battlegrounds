@@ -24,17 +24,17 @@ public partial class FightPlayer
 
         
         var punch1Trigger = stateMachine.CreateVariable("punch1", StateMachineVariableKind.TRIGGER);
-        var punch1State = fightLayer.CreateState("BAT_003/punch_small_AL_mIK", 0, false);
+        var punch1State = fightLayer.CreateState("BAT_003/punch_small_AL", 0, false);
         fightLayer.CreateTransition(idleState, punch1State, false).CreateTriggerCondition(punch1Trigger);
         fightLayer.CreateTransition(punch1State, idleState, true);
         
         var punch2Trigger = stateMachine.CreateVariable("punch2", StateMachineVariableKind.TRIGGER);
-        var punch2State = fightLayer.CreateState("BAT_003/punch_strong_AL_mIK", 0, false);
+        var punch2State = fightLayer.CreateState("BAT_003/punch_strong_AL", 0, false);
         fightLayer.CreateTransition(idleState, punch2State, false).CreateTriggerCondition(punch2Trigger);
         fightLayer.CreateTransition(punch2State, idleState, true);
         
         var punch3Trigger = stateMachine.CreateVariable("punch3", StateMachineVariableKind.TRIGGER);
-        var punch3State = fightLayer.CreateState("BAT_003/punch_strongest_AL_mIK", 0, false);
+        var punch3State = fightLayer.CreateState("BAT_003/punch_strongest_AL", 0, false);
         fightLayer.CreateTransition(idleState, punch3State, false).CreateTriggerCondition(punch3Trigger);
         fightLayer.CreateTransition(punch3State, idleState, true);
 

@@ -16,14 +16,14 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig PunchNodeConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Punch Forward and deals 1.0x damage",
+        DescriptionTextKey = "Punch and deals damage",
+        IconPath = "AbilityIcon_Merged/basic/punch.png",
         MaximumLevel = 1,
         NType = NodeType.SkillReplace,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 0,
         UIPosition = new Vector2(450,30), // This will be set to the item's offset value
         SkillKey = "Punch",
-        IconPath = "ability_icon_tmp/Punch_Tmp.png",
         ParentNodeKeys = new string[]{},
         ChildrenNodeKeys = new string[] {"HealthBoost", "AttackBoost"},
     };
@@ -35,6 +35,7 @@ public static partial class SkillConfig
     {
         DescriptionTextKey = "Boost the player's health",
         MaximumLevel = 1,
+        IconPath = "AbilityIcon_Merged/basic/health_boost.png",
         NeedRemover = true,
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
@@ -56,6 +57,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig AttackBoostNodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Boost the player's attack",
+        IconPath = "AbilityIcon_Merged/basic/attack_boost.png",
         MaximumLevel = 1,
         NeedRemover = true,
         NType = NodeType.AttrBoost,
@@ -78,6 +80,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PunchTwoConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Upgrade your punch to be more powerful",
+        IconPath = "AbilityIcon_Merged/basic/punch_2.png",
         MaximumLevel = 1,
         NeedRemover = true,
         NType = NodeType.SkillReplace,
@@ -95,6 +98,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig HealthBoost2NodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Boost the player's health",
+        IconPath = "AbilityIcon_Merged/basic/health_boost_2.png",
         MaximumLevel = 1,
         NeedRemover = true,
         NType = NodeType.AttrBoost,
@@ -117,6 +121,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig AttackBoost2NodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Boost the player's attack",
+        IconPath = "AbilityIcon_Merged/basic/attack_boost.png",
         MaximumLevel = 1,
         NeedRemover = true,
         NType = NodeType.AttrBoost,
@@ -139,6 +144,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PunchThreeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Upgrade your punch to be more powerful",
+        IconPath = "AbilityIcon_Merged/basic/punch_3.png",
         MaximumLevel = 1,
         NeedRemover = true,
         NType = NodeType.SkillReplace,
@@ -162,7 +168,7 @@ public static partial class SkillConfig
         UpgradeCost = 100,
         UIPosition = new Vector2(750,330),
         SkillKey = "RollOut",
-        IconPath = "ability_icon_tmp/RollOut_Tmp.png",
+        IconPath = "AbilityIcon_Merged/defense/rollout.png",
         ParentNodeKeys =  new string[]{"Shield"},
         ChildrenNodeKeys = new string[]{},
     };
@@ -179,7 +185,7 @@ public static partial class SkillConfig
         UpgradeCost = 100,
         UIPosition = new Vector2(450,30),
         SkillKey = "Shield",
-        IconPath = "ability_icon_tmp/Shield_Tmp.png",
+        IconPath = "AbilityIcon_Merged/defense/shield.png",
         ParentNodeKeys = new string [] {},
         ChildrenNodeKeys = new string[] {"RollOut"},
     };
@@ -203,7 +209,7 @@ public static partial class SkillConfig
         UpgradeCost = 100,
         UIPosition = new Vector2(450,30),
         SkillKey = "ShoulderCrash",
-        IconPath = "ability_icon_tmp/ShoulderCrash_Tmp.png",
+        IconPath = "AbilityIcon_Merged/brawler/shoulder_crash.png",
         ParentNodeKeys = new string[]{},
         ChildrenNodeKeys = new string[]{"GroundStomp", "Rage", "DoublePunch" },
     };
@@ -211,13 +217,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig GroundStompConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Stomp The ground and damage nearby enemies",
+        IconPath = "AbilityIcon_Merged/brawler/ground_stomp.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 200,
         UIPosition = new Vector2(730, 230),
         SkillKey = "GroundStomp",
-        IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
         ParentNodeKeys = new string[] {"ShoulderCrash"},
         ChildrenNodeKeys = new string[]{"LeapSlam"},
     };
@@ -225,13 +231,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig RageConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Temporarily increase your attack power",
+        IconPath = "AbilityIcon_Merged/brawler/rage.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 200,
         UIPosition = new Vector2(450, 230),
         SkillKey = "Rage",
-        IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
         ParentNodeKeys = new string[] { "ShoulderCrash" },
         ChildrenNodeKeys = new string[] { "BattleCry" },
     };
@@ -239,13 +245,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig DoublePunchConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Punch to the front for two times in quick succession",
+        IconPath = "AbilityIcon_Merged/brawler/double_punch.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 200,
         UIPosition = new Vector2(170, 230),
         SkillKey = "DoublePunch",
-        IconPath = "ability_icon_tmp/Punch_Tmp.png",
         ParentNodeKeys = new string[] { "ShoulderCrash" },
         ChildrenNodeKeys = new string[] { "SelfDestruct", "ClawSlash" },
     };
@@ -253,13 +259,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig SelfDestructConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Release a big blast at the cost of damaging yourself",
+        IconPath = "AbilityIcon_Merged/brawler/self_destruct.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 200,
         UIPosition = new Vector2(240, 430),
         SkillKey = "SelfDestruct",
-        IconPath = "ability_icon_tmp/GroundStomp_Tmp.png",
         ParentNodeKeys = new string[] { "DoublePunch" },
         ChildrenNodeKeys = new string[] { },
     };
@@ -267,13 +273,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig BattleCryConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Release a big blast at the cost of damaging yourself",
+        IconPath = "AbilityIcon_Merged/brawler/battle_cry.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 200,
         UIPosition = new Vector2(450, 430),
         SkillKey = "BattleCry",
-        IconPath = "ability_icon_tmp/RollOut_Tmp.png",
         ParentNodeKeys = new string[] { "Rage" },
         ChildrenNodeKeys = new string[] {  },
     };
@@ -281,13 +287,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig ClawSlashConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Slash your enemies and make them bleed",
+        IconPath = "AbilityIcon_Merged/brawler/claw_slash.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 200,
         UIPosition = new Vector2(10, 430),
         SkillKey = "ClawSlash",
-        IconPath = "ability_icon_tmp/RollOut_Tmp.png",
         ParentNodeKeys = new string[] { "DoublePunch" },
         ChildrenNodeKeys = new string[] {  },
     };
@@ -295,13 +301,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig LeapSlamConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Leap and slam the ground",
+        IconPath = "AbilityIcon_Merged/brawler/leaping_fist_slam.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 375,
         UIPosition = new Vector2(730, 430),
         SkillKey = "LeapSlam",
-        IconPath = "ability_icon_tmp/RollOut_Tmp.png",
         ParentNodeKeys = new string[] { "GroundStomp" },
         ChildrenNodeKeys = new string[] {  },
     };
@@ -316,13 +322,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig SpoonThrowConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Throw a spoon towards aiming position",
+        IconPath = "AbilityIcon_Merged/psionic/spoon_throw.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
         UpgradeCost = 100,
         UIPosition = new Vector2(450, 30),
         SkillKey = "SpoonThrow",
-        IconPath = "ability_icon_tmp/SpoonThrow_Tmp.png",
         ParentNodeKeys = new string[] {},
         ChildrenNodeKeys = new string[]{"Befuddle", "Psybolt", "SelfHeal"},
     };
@@ -333,13 +339,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig BefuddleConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Throw a bird that confuses enemy movement on contact",
+        IconPath = "AbilityIcon_Merged/psionic/befuddle.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
         UpgradeCost = 100,
         UIPosition = new Vector2(450, 230),
         SkillKey = "Befuddle",
-        IconPath = "ability_icon_tmp/Befuddle_Tmp.png",
         ParentNodeKeys = new string[] {"SpoonThrow"},
         ChildrenNodeKeys = new string[]{"Hypnotize"},
     };
@@ -350,13 +356,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PsyboltConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Throw a bolt that knocks back enemy",
+        IconPath = "AbilityIcon_Merged/psionic/psybolt.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
         UpgradeCost = 100,
         UIPosition = new Vector2(170, 230),
         SkillKey = "Psybolt",
-        IconPath = "ability_icon_tmp/Befuddle_Tmp.png",
         ParentNodeKeys = new string[] {"SpoonThrow"},
         ChildrenNodeKeys = new string[]{"PsionicBeam", "PsyThrow"},
     };
@@ -367,13 +373,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig SelfHealConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Sit down and channel healing energy, restore a lot of health upon successful channel",
+        IconPath = "AbilityIcon_Merged/psionic/self_heal.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
         UpgradeCost = 100,
         UIPosition = new Vector2(730, 230),
         SkillKey = "SelfHeal",
-        IconPath = "ability_icon_tmp/Shield_Tmp.png",
         ParentNodeKeys = new string[] {"SpoonThrow"},
         ChildrenNodeKeys = new string[]{"Regeneration"},
     };
@@ -384,13 +390,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig RegenerationConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Regenerate small amount of health over time",
+        IconPath = "AbilityIcon_Merged/psionic/regeneration.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
         UpgradeCost = 200,
         UIPosition = new Vector2(730, 430),
         SkillKey = "Regeneration",
-        IconPath = "ability_icon_tmp/Shield_Tmp.png",
         ParentNodeKeys = new string[] {"SelfHeal"},
         ChildrenNodeKeys = new string[]{},
     };
@@ -399,13 +405,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig HypnotizeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Regenerate small amount of health over time",
+        IconPath = "AbilityIcon_Merged/psionic/hypnotize.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
         UpgradeCost = 200,
         UIPosition = new Vector2(450, 430),
         SkillKey = "Hypnotize",
-        IconPath = String.Empty,
         ParentNodeKeys = new string[] {"Befuddle"},
         ChildrenNodeKeys = new string[]{},
 
@@ -414,13 +420,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PsionicBeamConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Beam a small area in front of you with dark energy",
+        IconPath = "AbilityIcon_Merged/psionic/psionic_beam.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
         UpgradeCost = 200,
         UIPosition = new Vector2(10, 430),
         SkillKey = "PsionicBeam",
-        IconPath = String.Empty,
         ParentNodeKeys = new string[] {"Psybolt"},
         ChildrenNodeKeys = new string[]{},
 
@@ -429,13 +435,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PsyThrowConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Grab and throw your enemy",
+        IconPath = "AbilityIcon_Merged/psionic/psythrow.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
         UpgradeCost = 200,
         UIPosition = new Vector2(240, 430),
         SkillKey = "PsyThrow",
-        IconPath = "ability_icon_tmp/PsyThrowGrab_Tmp.png",
         ParentNodeKeys = new string[] {"Psybolt"},
         ChildrenNodeKeys = new string[]{},
 
@@ -448,13 +454,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig InvisibilityConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Become Invisible for a short period",
+        IconPath = "AbilityIcon_Merged/stealth/invisibility.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
         UpgradeCost = 50,
         UIPosition = new Vector2(450, 30),
         SkillKey = "Invisibility",
-        IconPath = "ability_icon_tmp/Invisibility_tmp.png",
         ParentNodeKeys = new string[] {},
         ChildrenNodeKeys = new string[]{"LightFeet"},
 
@@ -463,13 +469,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig LightFeetConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Increase movement speed temporarily",
+        IconPath = "AbilityIcon_Merged/stealth/light_feet.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
         UpgradeCost = 150,
         UIPosition = new Vector2(450, 230),
         SkillKey = "LightFeet",
-        IconPath = "ability_icon_tmp/LightFeet_tmp.png",
         ParentNodeKeys = new string[] {"Invisibility"},
         ChildrenNodeKeys = new string[]{"Shuriken", "ShadowStep"},
 
@@ -478,13 +484,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig ShurikenConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Throw a shuriken which deals more damage if you struck the back of an enemy",
+        IconPath = "AbilityIcon_Merged/stealth/shuriken.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
         UpgradeCost = 250,
         UIPosition = new Vector2(450, 430),
         SkillKey = "Shuriken",
-        IconPath = "ability_icon_tmp/Shuriken_tmp.png",
         ParentNodeKeys = new string[] { "LightFeet" },
         ChildrenNodeKeys = new string[] { "BearTrap", "Backstab" },
     };
@@ -493,12 +499,12 @@ public static partial class SkillConfig
     {
         DescriptionTextKey = "Setup a hidden trap to snare your enemies.",
         MaximumLevel = 1,
+        IconPath = "AbilityIcon_Merged/stealth/bear_trap.png",
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
         UpgradeCost = 375,
         UIPosition = new Vector2(450, 630),
         SkillKey = "BearTrap",
-        IconPath = "ability_icon_tmp/BearTrap_tmp.png",
         ParentNodeKeys = new string[] { "Shuriken" },
         ChildrenNodeKeys = new string[] { },
     };
@@ -506,13 +512,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig ShadowStepConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Dash to your movement direction",
+        IconPath = "AbilityIcon_Merged/stealth/shadow_step.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
         UpgradeCost = 250,
         UIPosition = new Vector2(230, 430),
         SkillKey = "ShadowStep",
-        IconPath = "ability_icon_tmp/ShadowStep_tmp.png",
         ParentNodeKeys = new string[] { "LightFeet" },
         ChildrenNodeKeys = new string[] { "TotalDarkness" },
     };
@@ -520,13 +526,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig BackstabConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Throw A Kunai and backstab the victim if it hits.",
+        IconPath = "AbilityIcon_Merged/stealth/backstab.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
         UpgradeCost = 375,
         UIPosition = new Vector2(230, 630),
         SkillKey = "Backstab",
-        IconPath = "ability_icon_tmp/Backstab_tmp.png",
         ParentNodeKeys = new string[] { "Shuriken" },
         ChildrenNodeKeys = new string[] { },
     };
@@ -534,13 +540,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig TotalDarknessConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Throw A Kunai and backstab the victim if it hits.",
+        IconPath = "AbilityIcon_Merged/stealth/total_darkness.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
         UpgradeCost = 375,
         UIPosition = new Vector2(10, 630),
         SkillKey = "TotalDarkness",
-        IconPath = "ability_icon_tmp/TotalDarkness_tmp.png",
         ParentNodeKeys = new string[] { "ShadowStep" },
         ChildrenNodeKeys = new string[] { },
     };

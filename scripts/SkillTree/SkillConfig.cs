@@ -110,6 +110,15 @@ public static partial class SkillConfig
         return path == String.Empty ? FightAbility.DefaultIconPath : path;
     }
 
+    public static string GetPunchAbilityIconPath(int punchLevel)
+    {
+        if (punchLevel == 1)
+        {
+            return GetIconPath("Punch");
+        }
+        return GetIconPath($"Punch{punchLevel}");
+    }
+
     public static SkillTreeNodeConfig GetConfig(string skillKey)
     {
         if (STConfigQueryDict.TryGetValue(skillKey, out var cfg))

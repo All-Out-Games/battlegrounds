@@ -7,7 +7,15 @@ public class AbilityPunch : FightAbility
     public override Type Effect => typeof(EffectPunch);
     public override bool MonitorEffectDuration => false;
     public override TargettingMode TargettingMode => TargettingMode.Self;
-    
+
+    public override string SkillIconPath
+    {
+        get
+        {
+            FightPlayer ??= Network.LocalPlayer as FightPlayer;
+            return FightPlayer == null ? SkillConfig.GetPunchAbilityIconPath(1) : SkillConfig.GetPunchAbilityIconPath(FightPlayer.PunchLevel);
+        }
+    }
 }
 
 public class EffectPunch : FightEffect

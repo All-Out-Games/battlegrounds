@@ -21,7 +21,7 @@ public class AbilityPsyThrow : FightAbility
 public class AbilityPsyThrowLaunch : FightAbility
 {
     public override string SkillKey => AbilityPsyThrow.LaunchSkillKey;
-    public override string SkillIconPath => "ability_icon_tmp/PsyThrow_Tmp.png"; // TODO
+    public override string SkillIconPath => "AbilityIcon_Merged/psionic/psythrow_launch.png";
 
     public override Type Effect => typeof(EffectPsyThrowLaunch);
     public override bool MonitorEffectDuration => false;
