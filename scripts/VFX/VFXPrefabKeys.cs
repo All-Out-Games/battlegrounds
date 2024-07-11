@@ -18,12 +18,14 @@ public static class VFXPrefabKeys
     public static string ShadowStepVfxPath = "ShadowStepVFX.prefab";
     public static string LeapSlamCraterVfxPath = "LeapSlamCrater.prefab";
     public static string BattleCryVfxPath = "BattleCry_Shockwave.prefab";
+    public static string InvisibilityVfxPath = "Invisibility_VFX.prefab";
     
     // Aura (AttachmentObjects)
     public static string RageAuraPath = "Rage_Aura.prefab";
     public static string RegenerationAuraPath = "RegenerationAura.prefab";
     public static string BloodSplurtPath = "BloodVFX.prefab";
     public static string ShieldVFXPath = "Shield_FX.prefab";
+    public static string InvisibilityAuraPath = "Invisibility_Aura.prefab";
 }
 
 public static class VFXPrefabs
@@ -33,9 +35,11 @@ public static class VFXPrefabs
     public static Prefab PsionicBeamHitVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.PsionicBeamExplosionPath);
     public static Prefab PsionicRayVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.PsionicRayPath);
     public static Prefab ShadowStepVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.ShadowStepVfxPath);
+    public static Prefab InvisibilityVFX = Assets.GetAsset<Prefab>(VFXPrefabKeys.InvisibilityVfxPath);
 
     public static Prefab RegenerationAura = Assets.GetAsset<Prefab>(VFXPrefabKeys.RegenerationAuraPath);
     public static Prefab RageAura = Assets.GetAsset<Prefab>(VFXPrefabKeys.RageAuraPath);
+    public static Prefab InvisibilityAura = Assets.GetAsset<Prefab>(VFXPrefabKeys.InvisibilityAuraPath);
     public static Prefab BloodSplurt = Assets.GetAsset<Prefab>(VFXPrefabKeys.BloodSplurtPath);
     public static Prefab ShieldFx = Assets.GetAsset<Prefab>(VFXPrefabKeys.ShieldVFXPath);
 }

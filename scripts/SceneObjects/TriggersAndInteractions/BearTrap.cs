@@ -7,14 +7,10 @@ namespace Assembly.scripts.SceneObjects.TriggersAndInteractions;
 public class BearTrap : OwnedTrigger
 {
     [Serialized] public bool Snapped;
-    protected bool Armed;
+    [Serialized] protected bool Armed;
+    [Serialized] protected float TrapArmTime;
     protected override void OnOtherPlayerEnter(FightPlayer fp)
     {
-        if (Snapped)
-        {
-            Log.Debug("This trap already snapped!");
-            return;
-        }
         base.OnOtherPlayerEnter(fp);
         if (fp != Owner)
         {
@@ -72,17 +68,23 @@ public class BearTrap : OwnedTrigger
     public override void Update()
     {
         base.Update();
-        if (!Owner.IsLocal && !Armed && !Snapped)
+        if (Util.OneTime(TimeElapsed > TrapArmTime, ref Armed))
+        {
+            Log.Warn("Trap Armed!");
+        }
+        
+        if (!Owner.IsLocal && !Snapped)
         {
             Vector4 curColor = Animator.SpineInstance.ColorMultiplier;
             if (curColor.W <= 0)
             {
                 curColor.W = 0;
-                Armed = true;
                 return;
             }
             Animator.SpineInstance.ColorMultiplier = curColor with { W = curColor.W - 0.01f}; // 100 frames to go fully stealth
         }
+
+        
     }
 
     public void OnAnimationEnd(string anim)
@@ -105,11 +107,19 @@ public class BearTrap : OwnedTrigger
 
     protected override void OnEntityEnter(Entity entity)
     {
-        if (!Armed)
+        if (!Armed || Snapped)
         {
             // When setup animation is not completed. Trap will not trigger.
             return;
         }
         base.OnEntityEnter(entity);
+    }
+
+    public override void Initialization(Entity owner, float lifeTime)
+    {
+        base.Initialization(owner, lifeTime);
+        TrapArmTime = EffectConfig.BearTrapConfig.TrapArmTime;
+        Armed = false;
+        Snapped = false;
     }
 }

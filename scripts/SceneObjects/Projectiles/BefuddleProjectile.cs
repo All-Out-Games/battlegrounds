@@ -40,7 +40,7 @@ public class BefuddleProjectile : BaseProjectile
             {
                 Entity.Destroy();
             }
-            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.BefuddleHitVfxPath, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
+            FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.BefuddleHitVFX, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
                 entity =>
                 {
                     SelectionVFX vfx = entity.GetComponent<SelectionVFX>();

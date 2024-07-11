@@ -65,12 +65,12 @@ public class ShieldVFX : AttachmentObject
     {
         if(!Broken) return;
         
-        if (Util.OneTime(LifeTime > EntityLifeTime, ref LifeTimeEnded))
+        if (Util.OneTime(TimeElapsed > EntityLifeTime, ref LifeTimeEnded))
         {
             Despawn();
             //Log.Warn($"Entity {Entity.Name} Destroyed!");
         }
 
-        LifeTime += Time.DeltaTime;
+        TimeElapsed += Time.DeltaTime;
     }
 }

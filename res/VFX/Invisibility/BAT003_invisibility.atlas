@@ -1,0 +1,52 @@
+BAT003_invisibility.png
+	size: 528, 612
+	filter: Linear, Linear
+PlayerCharacter
+	bounds: 3, 81, 520, 527
+	offsets: 21, 8, 566, 541
+smallStar01
+	bounds: 135, 3, 24, 26
+	offsets: 2, 3, 28, 32
+	rotate: 90
+smallStar02
+	bounds: 494, 25, 24, 26
+	offsets: 2, 3, 28, 32
+	rotate: 90
+smallStar03
+	bounds: 465, 25, 24, 26
+	offsets: 2, 3, 28, 32
+	rotate: 90
+smallStar04
+	bounds: 492, 52, 24, 26
+	offsets: 2, 3, 28, 32
+smallStar05
+	bounds: 465, 52, 24, 26
+	offsets: 2, 3, 28, 32
+star01
+	bounds: 399, 30, 48, 63
+	offsets: 5, 9, 57, 81
+	rotate: 90
+star02
+	bounds: 333, 30, 48, 63
+	offsets: 5, 9, 57, 81
+	rotate: 90
+star03
+	bounds: 267, 30, 48, 63
+	offsets: 5, 9, 57, 81
+	rotate: 90
+star04
+	bounds: 69, 29, 49, 63
+	offsets: 4, 9, 57, 81
+	rotate: 90
+star05
+	bounds: 3, 29, 49, 63
+	offsets: 4, 9, 57, 81
+	rotate: 90
+star06
+	bounds: 201, 30, 48, 63
+	offsets: 5, 9, 57, 81
+	rotate: 90
+star07
+	bounds: 135, 30, 48, 63
+	offsets: 5, 9, 57, 81
+	rotate: 90

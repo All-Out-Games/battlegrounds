@@ -15,6 +15,8 @@ FightPlayerRig/playercharacter.png - .ao - 668c6ecab45eb9e8339c1a1c - 1358017680
 FightPlayerRig/playercharacter.png - .ao.ios - 668c6ecab45eb9e8339c1a1b - 5691610558711331661
 FightPlayerRig/playercharacter.spine - .ao - 668eee56b45eb9e8339c1a8f - 14289920907941107317
 HitVfx.prefab - .ao - 66859951b45eb9e8339c0fd9 - 5146642717615886720
+Invisibility_Aura.prefab - .ao - 668f23a2b45eb9e8339c1adf - 14758703216106953386
+Invisibility_VFX.prefab - .ao - 668f1f66b45eb9e8339c1ac6 - 16172691625342551677
 KunaiProjectile.prefab - .ao - 66859951b45eb9e8339c0fdd - 10521210724688615807
 LeapSlamCrater.prefab - .ao - 66887635b45eb9e8339c199f - 17071262920097834050
 Props/BearTrap/BAT003_bear_trap.png - .ao - 66859951b45eb9e8339c0fde - 12680163519278585061
@@ -52,6 +54,9 @@ VFX/ClawSwipe/claw_swipe_BAT003.spine - .ao - 66859957b45eb9e8339c100b - 4634519
 VFX/ConfusionCloud/BAT003_confusion_cloud.png - .ao - 668c5244b45eb9e8339c1a04 - 18166753006273343602
 VFX/ConfusionCloud/BAT003_confusion_cloud.png - .ao.ios - 668c5244b45eb9e8339c1a05 - 10208111526865825595
 VFX/ConfusionCloud/BAT003_confusion_cloud.spine - .ao - 668c5245b45eb9e8339c1a08 - 2286745736354345695
+VFX/Invisibility/BAT003_invisibility.png - .ao - 668f192db45eb9e8339c1aa5 - 7390149352479389265
+VFX/Invisibility/BAT003_invisibility.png - .ao.ios - 668f192eb45eb9e8339c1aac - 12607793643640717960
+VFX/Invisibility/BAT003_invisibility.spine - .ao - 668f192eb45eb9e8339c1aa9 - 702127567757875386
 VFX/LeapFistSlam/BAT003_leaping_fist_slam.png - .ao - 6686e298b45eb9e8339c195c - 7249345791989387760
 VFX/LeapFistSlam/BAT003_leaping_fist_slam.png - .ao.ios - 6686e298b45eb9e8339c195b - 16581663020375386104
 VFX/LeapFistSlam/BAT003_leaping_fist_slam.spine - .ao - 6686e298b45eb9e8339c195a - 17240551233365566934
@@ -68,6 +73,9 @@ VFX/PsionicBeam/ground_fissue_repeatable.png - .ao.ios - 66859959b45eb9e8339c102
 VFX/Rage/BAT003_rage_aura.png - .ao - 66887266b45eb9e8339c1988 - 14705765686604039898
 VFX/Rage/BAT003_rage_aura.png - .ao.ios - 66887266b45eb9e8339c1989 - 7051823717306977319
 VFX/Rage/BAT003_rage_aura.spine - .ao - 66887266b45eb9e8339c1987 - 6864493465351779149
+VFX/Regeneration/BAT003_heal_regeneration.png - .ao - 668f192db45eb9e8339c1aa6 - 8310093293676244233
+VFX/Regeneration/BAT003_heal_regeneration.png - .ao.ios - 668f192db45eb9e8339c1aa7 - 17210281479431333930
+VFX/Regeneration/BAT003_heal_regeneration.spine - .ao - 668f1f0fb45eb9e8339c1abf - 10137452493996495023
 VFX/SelfDestructExplosion/explosion_big.png - .ao - 6685995ab45eb9e8339c1023 - 9127105229977764723
 VFX/SelfDestructExplosion/explosion_big.png - .ao.ios - 6685995ab45eb9e8339c1025 - 2340973987058875720
 VFX/SelfDestructExplosion/explosion_big.spine - .ao - 6685995ab45eb9e8339c1026 - 16862651109100273494

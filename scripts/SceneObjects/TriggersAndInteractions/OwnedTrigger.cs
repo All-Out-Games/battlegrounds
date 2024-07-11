@@ -12,7 +12,7 @@ public partial class OwnedTrigger : Component
     
     [Serialized] protected float EntityLifeTime;
     [Serialized] protected bool LifeTimeEnded;
-    [Serialized] protected float LifeTime;
+    [Serialized] protected float TimeElapsed;
 
     [Serialized] protected FightPlayer Owner;
     
@@ -58,13 +58,13 @@ public partial class OwnedTrigger : Component
     public override void Update()
     {
         base.Update();
-        if (Initialized && Util.OneTime(LifeTime > EntityLifeTime, ref LifeTimeEnded))
+        if (Initialized && Util.OneTime(TimeElapsed > EntityLifeTime, ref LifeTimeEnded))
         {
             OnLifeTimeRunOut();
             Log.Debug($"LifeTime Runout called for {Entity.Name}");
         }
 
-        LifeTime += Time.DeltaTime;
+        TimeElapsed += Time.DeltaTime;
     }
 
     public override void Awake()

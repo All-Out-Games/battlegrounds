@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.VFX;
 using StreamReader = AO.StreamReader;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -21,13 +22,14 @@ public class EffectInvisible : FightEffect
     protected override int InterruptLevel => 1; // Interrupted by any damage or skill activation
 
     private string _skillKey = "Invisibility";
+
+    private AttachmentObject _aura;
     public override void OnEffectStart()
     {
         base.OnEffectStart();
+        DurationRemaining = EffectConfig.InvisibilityConfig.InvisTime;
         AddInvis(FightPlayer.IsLocal);
         
-        DurationRemaining = EffectConfig.InvisibilityConfig.InvisTime;
-
         FightPlayer.OnSkillActivate += OnSkillActivationEvent;
         FightPlayer.OnReceiveDamage += OnDamageEvent;
     }
@@ -66,13 +68,17 @@ public class EffectInvisible : FightEffect
         if (!local)
         {
             FightPlayer.AddInvisibilityReason(_skillKey);
+            FightPlayer.AddNameInvisibilityReason(_skillKey);
             FightPlayer.GetPlayerUIComp().AddPlayerUIInvisibleReason(_skillKey);
+
+            var invisFX = VFXPrefabs.InvisibilityVFX.Instantiate(); // This thing will despawn itself shortly after
+            invisFX.Position = FightPlayer.Entity.Position;
         }
         else
         {
+            AddLocalAura();
             UIManager.Instance.SetPopup("You are invisible! Other players cannot see you", 1.5f, FightPlayer);
         }
-        FightPlayer.AddNameInvisibilityReason(_skillKey);
     }
 
     private void RemoveInvis(bool local)
@@ -81,9 +87,25 @@ public class EffectInvisible : FightEffect
         {
             FightPlayer.RemoveInvisibilityReason(_skillKey);
             FightPlayer.GetPlayerUIComp().RemovePlayerUIInvisibleReason(_skillKey);
+            FightPlayer.RemoveNameInvisibilityReason(_skillKey);
         }
-        FightPlayer.RemoveNameInvisibilityReason(_skillKey);
+        else
+        {
+            _aura.Despawn();
+        }
     }
     
+    private void AddLocalAura()
+    {
+        Prefab auraPrefab = VFXPrefabs.InvisibilityAura;
+        _aura = auraPrefab.Instantiate().GetComponent<AttachmentObject>();
+        _aura.Spawn(FightPlayer.Entity,new Vector2(0f, -0.2f), false, DurationRemaining);
+
+        var auraFade = _aura.Entity.GetComponent<FadeAfterStart>();
+        if (auraFade != null)
+        {
+            auraFade.SetPersistFadeTime(DurationRemaining-1.0f, DurationRemaining-0.5f);
+        }
+    }
     
 }

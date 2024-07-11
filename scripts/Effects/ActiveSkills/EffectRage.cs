@@ -51,6 +51,7 @@ public class EffectRage : FightEffect
     public override bool BlockAbilityActivation => false;
 
     private AttachmentObject _aura;
+    private Spine_Animator _auraAnimator;
 
     // General Atk boost buff
     protected EffectConfig.RageConfig Config;
@@ -88,6 +89,7 @@ public class EffectRage : FightEffect
     {
         Prefab auraPrefab = VFXPrefabs.RageAura;
         _aura = auraPrefab.Instantiate().GetComponent<AttachmentObject>();
+        _auraAnimator = _aura.Entity.GetComponent<Spine_Animator>();
         _aura.Spawn(FightPlayer.Entity,new Vector2(-0.3f, 0.9f), false, DurationRemaining);
 
         var auraFade = _aura.Entity.GetComponent<FadeAfterStart>();
@@ -98,4 +100,17 @@ public class EffectRage : FightEffect
         
     }
 
+    public override void OnEffectUpdate()
+    {
+        base.OnEffectUpdate();
+        if (FightPlayer.SpineAnimator.LocalEnabled)
+        {
+            _auraAnimator.LocalEnabled = true;
+        }
+        else
+        {
+            _auraAnimator.LocalEnabled = false;
+        }
+        
+    }
 }

@@ -9,7 +9,7 @@ public class AttachmentObject : Component
     // After the lifetime, it will destroy itself.
     [Serialized] protected float EntityLifeTime;
     protected bool LifeTimeEnded;
-    protected float LifeTime;
+    protected float TimeElapsed;
     protected bool Networked;
     
     public void Despawn()
@@ -37,12 +37,12 @@ public class AttachmentObject : Component
     public override void Update()
     {
         base.Update();
-        if (Util.OneTime(LifeTime > EntityLifeTime, ref LifeTimeEnded))
+        if (Util.OneTime(TimeElapsed > EntityLifeTime, ref LifeTimeEnded))
         {
             Despawn();
-            //Log.Warn($"Entity {Entity.Name} Destroyed!");
+            Log.Warn($"Entity {Entity.Name} Destroyed!, Lifetime = {EntityLifeTime}");
         }
 
-        LifeTime += Time.DeltaTime;
+        TimeElapsed += Time.DeltaTime;
     }
 }
