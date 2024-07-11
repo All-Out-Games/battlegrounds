@@ -31,7 +31,8 @@
     "skeleton_scale": {
       "X": 1,
       "Y": 1
-    }
+    },
+    "mask_in_shadow": false
   }
 },
 {

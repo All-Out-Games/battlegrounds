@@ -17,25 +17,27 @@ public partial class FightPlayer
         
         // AL Layer
         var fightLayer = stateMachine.CreateLayer("fight_layer", 10);
-        var idleState = fightLayer.CreateState("BAT_003/neutralize_AL", 0, true);
+        var idleState = fightLayer.CreateState("BAT_003/neutralize_AL", 0, false);
+        var emptyState = fightLayer.CreateState("__CLEAR_TRACK__", 0, true);
         fightLayer.SetInitialState(idleState);
+        fightLayer.CreateTransition(idleState, emptyState, true);
 
         #region Basic Punch
 
         
         var punch1Trigger = stateMachine.CreateVariable("punch1", StateMachineVariableKind.TRIGGER);
         var punch1State = fightLayer.CreateState("BAT_003/punch_small_AL", 0, false);
-        fightLayer.CreateTransition(idleState, punch1State, false).CreateTriggerCondition(punch1Trigger);
+        fightLayer.CreateGlobalTransition(punch1State).CreateTriggerCondition(punch1Trigger);
         fightLayer.CreateTransition(punch1State, idleState, true);
         
         var punch2Trigger = stateMachine.CreateVariable("punch2", StateMachineVariableKind.TRIGGER);
         var punch2State = fightLayer.CreateState("BAT_003/punch_strong_AL", 0, false);
-        fightLayer.CreateTransition(idleState, punch2State, false).CreateTriggerCondition(punch2Trigger);
+        fightLayer.CreateGlobalTransition(punch2State).CreateTriggerCondition(punch2Trigger);
         fightLayer.CreateTransition(punch2State, idleState, true);
         
         var punch3Trigger = stateMachine.CreateVariable("punch3", StateMachineVariableKind.TRIGGER);
         var punch3State = fightLayer.CreateState("BAT_003/punch_strongest_AL", 0, false);
-        fightLayer.CreateTransition(idleState, punch3State, false).CreateTriggerCondition(punch3Trigger);
+        fightLayer.CreateGlobalTransition(punch3State).CreateTriggerCondition(punch3Trigger);
         fightLayer.CreateTransition(punch3State, idleState, true);
 
         #endregion
@@ -98,7 +100,7 @@ public partial class FightPlayer
         aoLayer.CreateGlobalTransition(clawSlashState).CreateTriggerCondition(clawSlashTrigger);
         aoLayer.CreateTransition(clawSlashState, aoIdleState, true);
         
-        // DoublePunch
+        // TODO: DoublePunch
         var doublePunchTrigger = stateMachine.CreateVariable("doublepunch", StateMachineVariableKind.TRIGGER);
         var doublePunchState = fightLayer.CreateState("BAT_003/punch_double_AL", 0, false);
         fightLayer.CreateTransition(idleState, doublePunchState, false).CreateTriggerCondition(doublePunchTrigger);

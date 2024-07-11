@@ -98,14 +98,14 @@ AbilityVendorMenuWindow.prefab - .ao - 6685994eb45eb9e8339c0fc8 - 14180256252234
 BattleCry_Shockwave.prefab - .ao - 668863d8b45eb9e8339c1985 - 3209635888150171771
 BearTrap.prefab - .ao - 6685d28fb45eb9e8339c10bf - 13247918014571345649
 BefuddleProjectile.prefab - .ao - 668c5245b45eb9e8339c1a0a - 8271891606478035943
-Befuddle_Hit.prefab - .ao - 668f066db45eb9e8339c1a91 - 14051898403497016725
+Befuddle_Hit.prefab - .ao - 66904de1b45eb9e8339c1be8 - 9947058021191885588
 BloodVFX.prefab - .ao - 668c54ebb45eb9e8339c1a11 - 2289728732398408107
 BroccoliProjectile.prefab - .ao - 6685994fb45eb9e8339c0fce - 5129262647641696432
 ClawSwipe.prefab - .ao - 6685994fb45eb9e8339c0fd0 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 6685eac6b45eb9e8339c10dc - 9563352942612353902
 FightPlayerRig/playercharacter.png - .ao - 668c6ecab45eb9e8339c1a1c - 13580176801984649393
 FightPlayerRig/playercharacter.png - .ao.ios - 668c6ecab45eb9e8339c1a1b - 5691610558711331661
-FightPlayerRig/playercharacter.spine - .ao - 66903765b45eb9e8339c1ba4 - 10162590231418400755
+FightPlayerRig/playercharacter.spine - .ao - 66904cdcb45eb9e8339c1be6 - 16879706103525844329
 HitVfx.prefab - .ao - 66859951b45eb9e8339c0fd9 - 5146642717615886720
 Invisibility_Aura.prefab - .ao - 668f23a2b45eb9e8339c1adf - 14758703216106953386
 Invisibility_VFX.prefab - .ao - 668f1f66b45eb9e8339c1ac6 - 16172691625342551677
@@ -167,7 +167,7 @@ VFX/Rage/BAT003_rage_aura.png - .ao.ios - 66887266b45eb9e8339c1989 - 70518237173
 VFX/Rage/BAT003_rage_aura.spine - .ao - 66887266b45eb9e8339c1987 - 6864493465351779149
 VFX/Regeneration/BAT003_heal_regeneration.png - .ao - 668f192db45eb9e8339c1aa6 - 8310093293676244233
 VFX/Regeneration/BAT003_heal_regeneration.png - .ao.ios - 668f192db45eb9e8339c1aa7 - 17210281479431333930
-VFX/Regeneration/BAT003_heal_regeneration.spine - .ao - 668f1f0fb45eb9e8339c1abf - 10137452493996495023
+VFX/Regeneration/BAT003_heal_regeneration.spine - .ao - 66904ebdb45eb9e8339c1bea - 10740259273625355223
 VFX/SelfDestructExplosion/explosion_big.png - .ao - 6685995ab45eb9e8339c1023 - 9127105229977764723
 VFX/SelfDestructExplosion/explosion_big.png - .ao.ios - 6685995ab45eb9e8339c1025 - 2340973987058875720
 VFX/SelfDestructExplosion/explosion_big.spine - .ao - 6685995ab45eb9e8339c1026 - 16862651109100273494

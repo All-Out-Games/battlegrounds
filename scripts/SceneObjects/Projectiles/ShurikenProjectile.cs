@@ -36,6 +36,7 @@ public class ShurikenProjectile : BaseProjectile
             if (Vector2.Dot(dir, fp.GetFacingDirection() ? Vector2.Right : Vector2.Left) >= 0)
             {
                 info.ReactionInfo.Amount = (int) float.Floor(Damage * BackDamageMultiplier);
+                info.DamageNumberColor = new Vector4(1, 0.68f, 0, 1); // Orange
             }
             fp.TakeDamage(Owner, info);
             

@@ -1,5 +1,6 @@
 using System.Collections;
 using AO;
+using Assembly.scripts;
 
 public class AbilityPunch : FightAbility
 {
@@ -66,11 +67,12 @@ public class EffectPunch : FightEffect
         if (hit)
         {
             Log.Debug($"{rc.Entity.Name}");
-            var other = rc.Entity.GetComponent<PlayerCollisionChild>();
+            var other = rc.Entity.GetComponent<DamageableObject>();
             if (other != null)
             {
                 FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
-                other.Player.TakeDamage(FightPlayer, info);
+                // other.Player.TakeDamage(FightPlayer, info);
+                other.TakeDamage(FightPlayer, info);
             }
             
         }

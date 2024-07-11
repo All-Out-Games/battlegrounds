@@ -25,6 +25,8 @@ public partial class FightPlayer
         public bool AwardCoin = true;
         public int InterruptLevel = 0;
         public ulong SourceNetworkId;
+        public bool SpawnDamageNumber = true;
+        public Vector4 DamageNumberColor = Vector4.Red;
         
         // Client & Server Data
         public DamageReactionInfo ReactionInfo = new DamageReactionInfo(); 
@@ -75,6 +77,7 @@ public partial class FightPlayer
 
             DamageInfo info = CreateDamageInfo(amount, DamageType.Heal, 0);
             info.AwardCoin = false;
+            info.DamageNumberColor = Vector4.Green;
             info.ReactionInfo.Flinch = false;
             return info;
         }
@@ -128,6 +131,7 @@ public partial class FightPlayer
     public void NotifyReceiveDamage(Entity source, DamageInfo info)
     {
         OnReceiveDamage?.Invoke(source.GetComponent<FightPlayer>(), info);
+        FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, info.DamageNumberColor, int.Abs(info.ReactionInfo.Amount).ToString());
     }
 
     #endregion

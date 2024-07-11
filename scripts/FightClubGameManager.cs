@@ -1,11 +1,13 @@
 
 using AO;
+using Assembly.scripts.UI;
 
 public class FightClubGameManager : System<FightClubGameManager> {
 
     #region Attributes
     
     public static SceneReferenceHolder References;
+    public static int DamageNumberLayer = 5;
 
     // Server Only Event. Client Related events should go in FightPlayerEvents, and be sent to the player client.
     public Action<FightPlayer> PlayerTeleportEvent;
@@ -302,6 +304,18 @@ public class FightClubGameManager : System<FightClubGameManager> {
         {
             afterSpawn(expEntity);
         }
+    }
+    
+    public List<DamageNumbers> ActiveDamageNumbers = new();
+    
+    public void SpawnDamageNumber(Vector2 worldPosition, Vector4 color, string text)
+    {
+        var searchResult = new DamageNumbers();
+        searchResult.Text = text;
+        searchResult.Position = worldPosition;
+        searchResult.Color = color;
+        searchResult.T = 0;
+        ActiveDamageNumbers.Add(searchResult);
     }
 
     #endregion

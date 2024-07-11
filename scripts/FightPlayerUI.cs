@@ -1,4 +1,6 @@
 using AO;
+using Assembly.scripts;
+using Assembly.scripts.UI;
 
 /// <summary>
 /// This component manages world space player UI.
@@ -29,6 +31,11 @@ public class FightPlayerUI : FightPlayerComponent
             }
         }
 
+        if (_player.IsLocal && _player.PlayerStatus == PlayerStatus.Combat)
+        {
+            DrawDamageNumber();
+        }
+
     }
 
     protected Rect DrawHealthBar()
@@ -57,6 +64,45 @@ public class FightPlayerUI : FightPlayerComponent
         float shieldPercent = _player.CurrentShield / (float)_player.MaxShield;
         var shieldPercentRect = shieldRect.SubRect(0, 0, shieldPercent, 1, 0, 0, 0, 0);
         UI.Image(shieldPercentRect, null, Vector4.LightBlue);
+    }
+
+    protected void DrawDamageNumber()
+    {
+        using var _1 = UI.PUSH_CONTEXT(UI.Context.WORLD);
+        using var _2 = UI.PUSH_LAYER(FightClubGameManager.DamageNumberLayer);
+
+        var ts = new UI.TextSettings()
+        {
+            Font = UI.Fonts.BarlowBold,
+            Size = 0.7f,
+            Color = Vector4.White,
+            DropShadowColor = new Vector4(0f, 0f, 0f, 1f),
+            DropShadowOffset = new Vector2(0f, -3f),
+            HorizontalAlignment = UI.HorizontalAlignment.Center,
+            VerticalAlignment = UI.VerticalAlignment.Center,
+            WordWrap = false,
+            WordWrapOffset = 0,
+            Outline = true,
+            OutlineThickness = 3,
+        };
+
+        List<DamageNumbers> numbers = FightClubGameManager.Instance.ActiveDamageNumbers;
+        for (int i = numbers.Count-1; i >= 0; i -= 1)
+        {
+            var result = numbers[i];
+            result.T += Time.DeltaTime * 0.5f;
+            if (result.T >= 1)
+            {
+                numbers.UnorderedRemoveAt(i);
+                continue;
+            }
+            var pos = result.Position;
+            pos.Y += AOMath.Lerp(0, 0.5f, Ease.OutQuart(result.T));
+            var rect = new Rect(pos, pos);
+            var color01 = Ease.FadeInAndOut(0.1f, 1, result.T);
+            ts.Color = new Vector4(0, 0, 0, 0).LerpTo(result.Color, color01);
+            UI.Text(rect, result.Text, ts);
+        }
     }
     
 }
