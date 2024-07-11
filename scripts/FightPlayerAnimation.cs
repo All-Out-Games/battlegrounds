@@ -17,7 +17,7 @@ public partial class FightPlayer
         
         // AL Layer
         var fightLayer = stateMachine.CreateLayer("fight_layer", 10);
-        var idleState = fightLayer.CreateState("BAT_003/empty", 0, true);
+        var idleState = fightLayer.CreateState("BAT_003/neutralize_AL", 0, true);
         fightLayer.SetInitialState(idleState);
 
         #region Basic Punch
