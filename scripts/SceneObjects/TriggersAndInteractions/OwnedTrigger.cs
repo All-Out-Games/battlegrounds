@@ -5,7 +5,7 @@ namespace Assembly.scripts.SceneObjects.TriggersAndInteractions;
 /// <summary>
 /// Server-spawned object in scene. 
 /// </summary>
-public partial class OwnedTrigger : Component
+public partial class OwnedTrigger : OwnedObjectComponent
 {
     [Serialized] protected Circle_Collider TriggerCollider;
     [Serialized] public Spine_Animator Animator;
@@ -13,8 +13,7 @@ public partial class OwnedTrigger : Component
     [Serialized] protected float EntityLifeTime;
     [Serialized] protected bool LifeTimeEnded;
     [Serialized] protected float TimeElapsed;
-
-    [Serialized] protected FightPlayer Owner;
+    
     
     protected List<Entity> InteractedEntities;
     protected bool Initialized;
@@ -92,8 +91,14 @@ public partial class OwnedTrigger : Component
     {
         Log.Debug($"Despawn called for {Entity.Name}");
         if(Network.IsServer) Network.Despawn(Entity);
-        //Entity.Destroy();
+        Entity.Destroy();
         
     }
-    
+
+    public override void OnOwnerLeave(FightPlayer player)
+    {
+        // When the owner quits, despawn the owned stuff
+        LocalEnabled = false;
+        Despawn();
+    }
 }

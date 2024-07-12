@@ -14,6 +14,8 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public Action<FightPlayer, FightPlayer> PlayerEliminationEvent;
     public Action<FightPlayer, FightPlayer, FightPlayer.DamageInfo> PlayerDamageEvent;
 
+    public Action<FightPlayer> PlayerLeaveEvent;
+
     #endregion
     
 
@@ -48,7 +50,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
 
     public void OnPlayerLeave(FightPlayer player)
     {
-        Log.Info("Player left!");
+        PlayerLeaveEvent?.Invoke(player);
     }
 
     #region Server Events

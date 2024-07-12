@@ -68,6 +68,11 @@ public class BearTrap : OwnedTrigger
     public override void Update()
     {
         base.Update();
+        if (Owner == null)
+        {
+            Log.Warn($"Did not find owner of owned object for {Entity.Name}!");
+            return;
+        }
         if (Util.OneTime(TimeElapsed > TrapArmTime, ref Armed))
         {
             Log.Warn("Trap Armed!");

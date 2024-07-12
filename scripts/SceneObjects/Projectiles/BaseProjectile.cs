@@ -2,7 +2,7 @@ using AO;
 
 namespace Assembly.scripts.SceneObjects.Projectiles;
 
-public class BaseProjectile : Component
+public class BaseProjectile : OwnedObjectComponent
 {
     protected Projectile EngineProjectile;
 
@@ -10,7 +10,11 @@ public class BaseProjectile : Component
 
     [Serialized] protected int Damage = 0;
     [Serialized] protected bool Pierce = false;
-    [Serialized] protected FightPlayer Owner;
+
+    public override void OnOwnerLeave(FightPlayer player)
+    {
+        //LocalEnabled = false;
+    }
 
     public override void Start()
     {
