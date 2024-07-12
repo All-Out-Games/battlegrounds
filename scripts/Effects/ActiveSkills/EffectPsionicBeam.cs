@@ -16,11 +16,12 @@ public class AbilityPsionicBeam : FightAbility
     public override float Cooldown => EffectConfig.PsionicBeamConfig.Cooldown;
 }
 
-public class EffectPsionicBeam : FightEffect
+public class EffectPsionicBeam : FightEffectWithNoFlinch
 {
     public override bool IsActiveEffect => false;
     public override bool FreezePlayer => true;
     public override bool BlockAbilityActivation => true;
+    
 
     private EffectConfig.PsionicBeamConfig _cfg;
     

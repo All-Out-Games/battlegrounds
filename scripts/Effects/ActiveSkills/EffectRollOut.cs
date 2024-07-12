@@ -17,7 +17,7 @@ public class AbilityRollOut : FightAbility
 public class EffectRollOut : FightEffect
 {
     private EffectConfig.RollOutConfig _config;
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
     protected override int InterruptLevel => FightPlayer.DamageInfo.StunInterruptLevel;
 

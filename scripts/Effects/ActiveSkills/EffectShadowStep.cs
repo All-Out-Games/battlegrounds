@@ -16,7 +16,7 @@ public class AbilityShadowStep : FightAbility
 
 public class EffectShadowStep : FightEffect
 {
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
 
     public override bool BlockAbilityActivation => true;
 

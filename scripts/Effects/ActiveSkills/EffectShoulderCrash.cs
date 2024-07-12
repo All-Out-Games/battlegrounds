@@ -16,7 +16,7 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
 {
     private EffectConfig.ShoulderCrashConfig _config;
     private List<Entity> _interactedEntity = new List<Entity>();
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => false;
 

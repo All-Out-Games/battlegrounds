@@ -18,7 +18,7 @@ public class AbilitySelfHeal : FightAbility
 
 public class EffectSelfHeal : FightEffect
 {
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
     protected override int InterruptLevel => 1000;
     public override bool BlockAbilityActivation => true;
 

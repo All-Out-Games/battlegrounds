@@ -23,7 +23,7 @@ public class AbilityHypnotize : FightAbility
 
 public class EffectHypnotizeCaster : FightEffect
 {
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
 
     public override bool BlockAbilityActivation => true;
 
@@ -39,7 +39,7 @@ public class EffectHypnotizeCaster : FightEffect
 
 public class EffectHypnotize : FightEffectWithNoFlinch
 {
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
     protected override int InterruptLevel => 1000;
 
     protected override bool PreventMovement => true;

@@ -46,7 +46,7 @@ public class AbilityPsyThrowLaunch : FightAbility
 
 public class EffectPsyThrow : FightEffectWithNoFlinch
 {
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
 
     private FightPlayer _casterFp;
 
@@ -79,7 +79,7 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
 public class EffectPsyThrowReady : FightEffectWithNoFlinch
 {
     // Temporarily replace the caster's throw ability so that they can launch the grabbed player
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
     public override List<Type> AbilityWhitelist => Wl;
     private static readonly List<Type> Wl = new List<Type>() { typeof(AbilityPsyThrowLaunch) };
     public override bool BlockAbilityActivation => true;
@@ -135,6 +135,7 @@ public class EffectPsyThrowReady : FightEffectWithNoFlinch
 
 public class EffectPsyThrowLaunch : FightEffectWithNoFlinch
 {
+    // Casted on the victim of psythrow
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
 

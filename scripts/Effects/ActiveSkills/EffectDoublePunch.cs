@@ -14,7 +14,7 @@ public class AbilityDoublePunch : FightAbility
 public class EffectDoublePunch : FightEffect
 {
     protected EffectConfig.DoublePunchConfig Config;
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => true;
 

@@ -14,7 +14,7 @@ public class AbilityTotalDarkness : FightAbility
 
 public class EffectTotalDarkness : FightEffect
 {
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
 
 
     public override void OnEffectStart()

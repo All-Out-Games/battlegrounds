@@ -15,7 +15,7 @@ public class AbilityGroundStomp : FightAbility
 
 public class EffectGroundStomp : FightEffect
 {
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => true;
     public override bool FreezePlayer => true;

@@ -103,6 +103,8 @@ public class EffectKnockDown : FightEffectWithNoFlinch
 {
     
     protected override bool PreventMovement => true;
+
+    public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
 
     protected override int InterruptLevel => FightPlayer.DamageInfo.KnockBackInterruptLevel;

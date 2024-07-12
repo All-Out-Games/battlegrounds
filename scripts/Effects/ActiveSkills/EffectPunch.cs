@@ -22,7 +22,7 @@ public class AbilityPunch : FightAbility
 public class EffectPunch : FightEffect
 {
     protected EffectConfig.PunchConfig Config;
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => true;
 
