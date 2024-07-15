@@ -50,6 +50,7 @@ public class EffectLeapSlam : FightEffectWithImmunity
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
+        FightPlayer.SetFacingDirection(_dirPosition.X > 0);
         FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
     }
 
@@ -60,6 +61,7 @@ public class EffectLeapSlam : FightEffectWithImmunity
         {
             FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.LeapSlamCraterVfxPath, FightPlayer.Entity.Position);
             SlamDamage();
+            FightPlayer.SetFacingDirection(_dirPosition.X > 0);
         }
     }
 

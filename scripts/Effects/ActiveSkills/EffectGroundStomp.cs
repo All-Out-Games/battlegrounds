@@ -13,7 +13,7 @@ public class AbilityGroundStomp : FightAbility
     public override float Cooldown => EffectConfig.GroundStompConfig.Cooldown;
 }
 
-public class EffectGroundStomp : FightEffect
+public class EffectGroundStomp : FightEffectWithNoFlinch
 {
     public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
@@ -24,8 +24,8 @@ public class EffectGroundStomp : FightEffect
     public override void OnEffectStart()
     {
         base.OnEffectStart();
-        AssignConfig(EffectConfig.GroundStompConfig.GetDefault(FightPlayer.CurrentAttack));
         FightPlayer.SetAnimTrigger("groundstomp");
+        AssignConfig(EffectConfig.GroundStompConfig.GetDefault(FightPlayer.CurrentAttack));
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
     }
 
@@ -49,7 +49,7 @@ public class EffectGroundStomp : FightEffect
     public void AssignConfig(EffectConfig.GroundStompConfig cfg)
     {
         Config = cfg;
-        DurationRemaining = EffectConfig.GroundStompConfig.StompAnimationTime;
+        DurationRemaining = MainLayer.GetCurrentStateLength();
     }
     
     public void Stomp()
