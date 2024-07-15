@@ -32,7 +32,7 @@
       "Z": 1,
       "W": 1
     },
-    "layer": -3,
+    "layer": 0,
     "wait_for_load": false,
     "wrap": false,
     "mask_in_shadow": false

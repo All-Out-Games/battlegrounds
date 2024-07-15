@@ -1,37 +1,35 @@
 11
-210453397505
-9242812323918 1721074471168353500
+158913789953
+36924864318713 1721085561739259800
 {
-  "name": "BG.png",
+  "name": "Palm_Shadow.png",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+    "X": 0.4481124877929688,
+    "Y": -2.5393028259277344
   },
   "local_rotation": 0,
   "local_scale": {
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "26687063042234:1721081460054130700",
-  "next_sibling": "35176150793127:1721084861132550100",
-  "parent": "359905312717597:1716331881724713300"
+  "parent": "36924848744825:1721085561733019600"
 },
 {
   "cid": 1,
-  "aoid": "9242813617306:1721074471168870400",
+  "aoid": "36924913122897:1721085561758813000",
   "component_type": "Internal_Component",
   "internal_component_type": "Sprite_Renderer",
   "data": {
-    "texture": "environment/CentralHub/BG.png",
-    "depth_offset": 15,
+    "texture": "environment/CentralHub/Palm_Shadow.png",
+    "depth_offset": 0,
     "tint": {
       "X": 1,
       "Y": 1,
       "Z": 1,
       "W": 1
     },
-    "layer": -5,
+    "layer": -1,
     "wait_for_load": false,
     "wrap": false,
     "mask_in_shadow": false
