@@ -21,6 +21,8 @@ public class EffectRageCast : FightEffectWithNoFlinch
     private float _animDuration = 1f;
     private bool _casted;
 
+    public override bool IsActiveEffect => true;
+
     public override void OnEffectStart()
     {
         base.OnEffectStart();

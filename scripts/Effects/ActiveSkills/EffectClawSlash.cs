@@ -32,6 +32,7 @@ public class EffectClawSlash : FightEffect
         DurationRemaining = MainLayer.GetCurrentStateLength();
         Log.Debug($"Current Animation = {DurationRemaining}, Current State = {MainLayer.CurrentState.Name}");
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
+        
     }
     
 
