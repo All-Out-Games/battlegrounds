@@ -3,15 +3,15 @@
 11198096959298 1716403445063905600
 {
   "name": "HubEdge",
-  "local_enabled": true,
+  "local_enabled": false,
   "local_position": {
     "X": 0,
     "Y": 0
   },
   "local_rotation": 0,
   "local_scale": {
-    "X": 0.9999999403953552,
-    "Y": 1
+    "X": 8,
+    "Y": 8
   },
   "previous_sibling": "3995215294054:1716399837848237700",
   "next_sibling": "365682631791051:1716483885753440800",

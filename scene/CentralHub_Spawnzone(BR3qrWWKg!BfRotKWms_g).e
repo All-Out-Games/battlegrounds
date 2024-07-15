@@ -5,15 +5,15 @@
   "name": "CentralHub_Spawnzone",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+    "X": -1.7397449016571045,
+    "Y": -4.0437326431274414
   },
   "local_rotation": 0,
   "local_scale": {
     "X": 4,
     "Y": 4
   },
-  "next_sibling": "10214414044086:1716402952433790600",
+  "next_sibling": "24862830943085:1721080729191568800",
   "parent": "359905312717597:1716331881724713300",
   "spawn_as_networked_entity": true
 },

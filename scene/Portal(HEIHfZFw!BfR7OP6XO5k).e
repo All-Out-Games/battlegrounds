@@ -5,13 +5,13 @@
   "name": "Portal",
   "local_enabled": true,
   "local_position": {
-    "X": -0.0061837732791901,
-    "Y": -1.5919245481491089
+    "X": -1.6919794082641602,
+    "Y": -8.1192588806152344
   },
   "local_rotation": 0,
   "local_scale": {
-    "X": 0.0500000007450581,
-    "Y": 0.0500000007450581
+    "X": 0.3000000119209290,
+    "Y": 0.3000000119209290
   },
   "previous_sibling": "10214414044086:1716402952433790600",
   "next_sibling": "36341083635957:1717793673228865000",
@@ -24,9 +24,9 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Spine_Animator",
   "data": {
-    "skeleton_data_asset": "environment/portal/cosmicPortal.spine",
+    "skeleton_data_asset": "environment/CentralHub/Portals/animation/BAT003_portals.spine",
     "ordered_skins": [
-
+      "swords"
     ],
     "depth_offset": 0,
     "skeleton_scale": {

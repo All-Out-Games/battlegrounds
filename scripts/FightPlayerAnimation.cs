@@ -143,9 +143,9 @@ public partial class FightPlayer
         
         // Psybolt
         var psyboltTrigger = stateMachine.CreateVariable("psybolt", StateMachineVariableKind.TRIGGER);
-        var psyboltState = aoLayer.CreateState("BAT_003/psybolt", 0, false);
-        aoLayer.CreateGlobalTransition(psyboltState).CreateTriggerCondition(psyboltTrigger);
-        aoLayer.CreateTransition(psyboltState, aoIdleState, true);
+        var psyboltState = fightLayer.CreateState("BAT_003/psybolt_AL", 0, false);
+        fightLayer.CreateGlobalTransition(psyboltState).CreateTriggerCondition(psyboltTrigger);
+        fightLayer.CreateTransition(psyboltState, idleState, true);
         
         // Hypnotize
         var hypnotizeTrigger = stateMachine.CreateVariable("hypnotize", StateMachineVariableKind.TRIGGER);

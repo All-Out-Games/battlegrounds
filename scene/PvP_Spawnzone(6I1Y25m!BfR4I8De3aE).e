@@ -5,8 +5,8 @@
   "name": "PvP_Spawnzone",
   "local_enabled": true,
   "local_position": {
-    "X": 4.0660042762756348,
-    "Y": 0.0960459783673286
+    "X": 1.0380249023437500,
+    "Y": -5.3198394775390625
   },
   "local_rotation": 0,
   "local_scale": {
