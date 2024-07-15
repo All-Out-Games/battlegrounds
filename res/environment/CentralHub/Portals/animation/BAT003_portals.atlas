@@ -1,0 +1,26 @@
+BAT003_portals.png
+	size: 2820, 848
+	filter: Linear, Linear
+Portal1_base
+	bounds: 3, 102, 832, 740
+	offsets: 1, 1, 834, 742
+Portal1_swirl1
+	bounds: 1517, 269, 573, 547
+	offsets: 1, 1, 575, 549
+	rotate: 90
+Portal1_swirl2
+	bounds: 838, 71, 771, 676
+	offsets: 1, 2, 773, 679
+	rotate: 90
+Portal1_symbol
+	bounds: 1517, 3, 263, 330
+	offsets: 1, 1, 265, 332
+	rotate: 90
+Portal2_symbol
+	bounds: 2457, 269, 405, 360
+	offsets: 1, 1, 407, 362
+	rotate: 90
+Portal3_symbol
+	bounds: 2067, 269, 415, 387
+	offsets: 1, 1, 417, 389
+	rotate: 90
