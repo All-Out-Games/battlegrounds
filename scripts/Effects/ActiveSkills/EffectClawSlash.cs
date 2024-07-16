@@ -28,7 +28,7 @@ public class EffectClawSlash : FightEffect
         AssignConfig(EffectConfig.ClawSlashConfig.GetDefault(FightPlayer.CurrentAttack));
 
         FightPlayer.SetAnimTrigger("clawslash");
-        FightPlayer.SetMouseIKPosition(AbilityPositionOrDirection);
+        FightPlayer.SetAimTarget(AbilityPositionOrDirection + FightPlayer.Entity.Position);
         DurationRemaining = MainLayer.GetCurrentStateLength();
         Log.Debug($"Current Animation = {DurationRemaining}, Current State = {MainLayer.CurrentState.Name}");
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;

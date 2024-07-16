@@ -345,6 +345,7 @@ public partial class FightPlayer : Player
                     CurrentShield = 0;
                     info.ReactionInfo.ShieldBroken = true;
                 }
+                info.DamageNumberColor = Vector4.LightBlue;
             }
             else
             {
@@ -514,9 +515,15 @@ public partial class FightPlayer : Player
         Collider.OnCollisionEnter -= collisionFunc;
     }
 
+    /// <summary>
+    /// Auto aim towards the closest player, if no other players are detected, punch forward.
+    /// </summary>
+    /// <returns></returns>
     public Vector2 GetPunchDirection()
     {
-        return PunchCollider.Entity.Position - Entity.Position;
+        var proximityPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, EffectConfig.PunchConfig.PunchTargetRange);
+        proximityPlayers.Remove(this);
+        return proximityPlayers.Count > 0 ? proximityPlayers[0].Entity.Position - Entity.Position : PunchCollider.Entity.Position - Entity.Position;
     }
 
     #endregion

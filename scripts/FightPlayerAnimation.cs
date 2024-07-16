@@ -26,17 +26,17 @@ public partial class FightPlayer
 
         
         var punch1Trigger = stateMachine.CreateVariable("punch1", StateMachineVariableKind.TRIGGER);
-        var punch1State = fightLayer.CreateState("BAT_003/punch_small_AL", 0, false);
+        var punch1State = fightLayer.CreateState("BAT_003/punch_small_AL_mIK", 0, false);
         fightLayer.CreateGlobalTransition(punch1State).CreateTriggerCondition(punch1Trigger);
         fightLayer.CreateTransition(punch1State, idleState, true);
         
         var punch2Trigger = stateMachine.CreateVariable("punch2", StateMachineVariableKind.TRIGGER);
-        var punch2State = fightLayer.CreateState("BAT_003/punch_strong_AL", 0, false);
+        var punch2State = fightLayer.CreateState("BAT_003/punch_strong_AL_mIK", 0, false);
         fightLayer.CreateGlobalTransition(punch2State).CreateTriggerCondition(punch2Trigger);
         fightLayer.CreateTransition(punch2State, idleState, true);
         
         var punch3Trigger = stateMachine.CreateVariable("punch3", StateMachineVariableKind.TRIGGER);
-        var punch3State = fightLayer.CreateState("BAT_003/punch_strongest_AL", 0, false);
+        var punch3State = fightLayer.CreateState("BAT_003/punch_strongest_AL_mIK", 0, false);
         fightLayer.CreateGlobalTransition(punch3State).CreateTriggerCondition(punch3Trigger);
         fightLayer.CreateTransition(punch3State, idleState, true);
 
@@ -100,9 +100,9 @@ public partial class FightPlayer
         aoLayer.CreateGlobalTransition(clawSlashState).CreateTriggerCondition(clawSlashTrigger);
         aoLayer.CreateTransition(clawSlashState, aoIdleState, true);
         
-        // TODO: DoublePunch
+        // double punch
         var doublePunchTrigger = stateMachine.CreateVariable("doublepunch", StateMachineVariableKind.TRIGGER);
-        var doublePunchState = fightLayer.CreateState("BAT_003/punch_double_AL", 0, false);
+        var doublePunchState = fightLayer.CreateState("BAT_003/punch_double_AL_mIK", 0, false);
         fightLayer.CreateTransition(idleState, doublePunchState, false).CreateTriggerCondition(doublePunchTrigger);
         fightLayer.CreateTransition(doublePunchState, idleState, true);
         
@@ -267,10 +267,5 @@ public partial class FightPlayer
     public void SetBonePosition(string bone, Vector2 pos)
     {
         SpineAnimator.SpineInstance.SetBonePosition(bone, pos);
-    }
-
-    public void SetMouseIKPosition(Vector2 pos)
-    {
-        SetBonePosition("AIM", pos);
     }
 }

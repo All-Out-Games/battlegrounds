@@ -14,12 +14,28 @@ public class AbilityRollOut : FightAbility
     public override float Cooldown => EffectConfig.RollOutConfig.Cooldown;
 }
 
+public class AbilityRollOutCancel : FightAbility
+{
+    public override string SkillKey => "RollOutCancel";
+    public override bool CanUse() => Player.HasEffect<EffectRollOut>();
+
+    public override Type Effect => typeof(EffectRollOutCancel);
+
+    public override TargettingMode TargettingMode => TargettingMode.Self;
+    
+    public override string SkillIconPath => "AbilityIcon_Merged/defense/rollout_cancel.png";
+}
+
 public class EffectRollOut : FightEffect
 {
     private EffectConfig.RollOutConfig _config;
     public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
     protected override int InterruptLevel => FightPlayer.DamageInfo.StunInterruptLevel;
+
+    private static readonly List<Type> Wl = new List<Type>() { typeof(AbilityRollOutCancel) };
+    public override List<Type> AbilityWhitelist => Wl;
+    private int _originalIndex = -1;
 
     /// <summary>
     /// Call this function before adding the created Effect instance to the player!
@@ -33,6 +49,18 @@ public class EffectRollOut : FightEffect
     public override void OnEffectStart()
     {
         base.OnEffectStart();
+        
+        var slotsMgr = FightPlayer.GetSkillSlots();
+        var f = typeof(AbilityRollOut);
+        _originalIndex = slotsMgr.GetAbilityIndex(f);
+        if (_originalIndex > 0)
+        {
+            slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityRollOutCancel)));
+        }
+        else
+        {
+            Log.Error("PsyThrow: Skill Replacement Error! The player does not have the primary skill equipped.");
+        }
         
         RollOutStart();
         FightPlayer.SetAnimTrigger("rollout_start");
@@ -83,6 +111,12 @@ public class EffectRollOut : FightEffect
             FightPlayer.SetAnimTrigger("rollout_end");
         }
         
+        if (_originalIndex > 0)
+        {
+            var slotsMgr = FightPlayer.GetSkillSlots();
+            slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityRollOut)));
+        }
+        
     }
     
     
@@ -113,6 +147,21 @@ public class EffectRollOut : FightEffect
     {
         base.PreDamageMod(ref info);
         info.ReactionInfo.Flinch = false;
+    }
+    
+}
+
+public class EffectRollOutCancel : FightEffect
+{
+    public override bool IsActiveEffect => false;
+
+    public override bool BlockAbilityActivation => true;
+
+    public override void OnEffectStart()
+    {
+        base.OnEffectStart();
+        FightPlayer.RemoveEffect<EffectRollOut>(false);
+        DurationRemaining = 0.2f;
     }
     
 }

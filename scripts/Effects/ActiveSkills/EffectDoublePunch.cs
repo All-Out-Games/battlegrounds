@@ -19,11 +19,14 @@ public class EffectDoublePunch : FightEffect
     public override bool IsValidTarget => true;
 
     private int _punchIndex;
+
+    private Vector2 punchDir;
     public override void OnEffectStart()
     {
         base.OnEffectStart();
         
         AssignConfig(EffectConfig.DoublePunchConfig.GetDefault(FightPlayer.CurrentAttack));
+        
         FightPlayer.SetAnimTrigger("doublepunch");
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
     }
@@ -53,35 +56,49 @@ public class EffectDoublePunch : FightEffect
     public void DoublePunch(int punchType)
     {
         // The first punch stuns the enemy if hit. The second punch knock them back
+        
+        // Re-adjust aiming
+        punchDir = FightPlayer.GetPunchDirection();
+        FightPlayer.SetAimTarget(Entity.Position + punchDir);
+        
+        
         Physics.RaycastHit rc;
         var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
             EffectConfig.DoublePunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(),new Entity[]{ }, out rc);
 
+
+
         /*hit = Physics.Raycast(Entity.Position, FightPlayer.GetPunchDirection(),
             EffectConfig.PunchConfig.PunchRange, out rc);*/
 
-        if (hit && rc.Entity != null)
+        if (hit)
         {
-            PlayerCollisionChild other = rc.Entity.GetComponent<PlayerCollisionChild>();
-
+            // Damage
+            DamageableObject other = rc.Entity.GetComponent<DamageableObject>();
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
 
-            if (punchType == 1)
+            other.TakeDamage(FightPlayer, info);
+            
+            // Effect
+            if (other is PlayerCollisionChild fdb)
             {
-                // Stunning Punch
-                other.Player.TakeDamage(FightPlayer, info);
-                other.Player.GetEffectMgr().AddStun(FightPlayer.Entity, EffectConfig.DoublePunchConfig.PunchAnimationTime);
+                if (punchType == 1)
+                {
+                    // Stunning Punch
+                    fdb.Player.GetEffectMgr().AddStun(FightPlayer.Entity, EffectConfig.DoublePunchConfig.PunchAnimationTime);
+                }
+                else
+                {
+                    // Bumping Punch
+                    info.InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel;
+                    fdb.Player.TakeDamage(FightPlayer, info);
+                    Vector2 bumpDir = other.Entity.Position - FightPlayer.Entity.Position;
+                    fdb.Player.AddBumpFrom(FightPlayer, bumpDir * Config.BumpStrength, false);
+                }
             }
-            else
-            {
-                // Bumping Punch
-                info.InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel;
-                other.Player.TakeDamage(FightPlayer, info);
-                Vector2 bumpDir = other.Entity.Position - FightPlayer.Entity.Position;
-                other.Player.AddBumpFrom(FightPlayer, bumpDir * Config.BumpStrength, false);
-            }
-                
         }
     }
+    
+    
 
 }

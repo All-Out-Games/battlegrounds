@@ -38,6 +38,8 @@ AbilityIcon_Merged/defense/parry.png - .ao - 669018e3b45eb9e8339c1b24 - 14398996
 AbilityIcon_Merged/defense/parry.png - .ao.ios - 669018e4b45eb9e8339c1b26 - 9031559978773488030
 AbilityIcon_Merged/defense/rollout.png - .ao - 669018e4b45eb9e8339c1b29 - 17182561129861632260
 AbilityIcon_Merged/defense/rollout.png - .ao.ios - 669018e4b45eb9e8339c1b2a - 10589756320943779350
+AbilityIcon_Merged/defense/rollout_cancel.png - .ao - 6696a863b45eb9e8339c1e5e - 22373981974105986
+AbilityIcon_Merged/defense/rollout_cancel.png - .ao.ios - 6696a863b45eb9e8339c1e5f - 5605029459240412518
 AbilityIcon_Merged/defense/shield.png - .ao - 669018e4b45eb9e8339c1b2c - 10321268672431166139
 AbilityIcon_Merged/defense/shield.png - .ao.ios - 669018e5b45eb9e8339c1b2e - 16492990876011395663
 AbilityIcon_Merged/defense/spike_guard.png - .ao - 669018e5b45eb9e8339c1b30 - 15336424467900854187
@@ -102,7 +104,7 @@ Befuddle_Hit.prefab - .ao - 66904de1b45eb9e8339c1be8 - 9947058021191885588
 BloodVFX.prefab - .ao - 668c54ebb45eb9e8339c1a11 - 2289728732398408107
 BroccoliProjectile.prefab - .ao - 6685994fb45eb9e8339c0fce - 5129262647641696432
 ClawSwipe.prefab - .ao - 6685994fb45eb9e8339c0fd0 - 1804017453416592716
-FatPlayerCollision.prefab - .ao - 6685eac6b45eb9e8339c10dc - 9563352942612353902
+FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
 FightPlayerRig/playercharacter.png - .ao - 668c6ecab45eb9e8339c1a1c - 13580176801984649393
 FightPlayerRig/playercharacter.png - .ao.ios - 668c6ecab45eb9e8339c1a1b - 5691610558711331661
 FightPlayerRig/playercharacter.spine - .ao - 6695a0cbb45eb9e8339c1e55 - 6535533322894837979

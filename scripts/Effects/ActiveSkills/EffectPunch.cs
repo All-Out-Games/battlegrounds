@@ -27,14 +27,13 @@ public class EffectPunch : FightEffect
     public override bool IsValidTarget => true;
 
     protected bool Activated = false;
+
+    protected Vector2 punchDir;
     
     public override void OnEffectStart()
     {
         base.OnEffectStart();
-        Vector2 punchAim = Entity.Position + FightPlayer.GetPunchDirection();
-        FightPlayer.SetMouseIKPosition(punchAim.Normalized);
-        //Log.Debug($"AIM Bone pos {punchAim}, dir = {FightPlayer.GetPunchDirection()}");
-        
+
         AssignConfig(EffectConfig.GetPlayerPunchConfig(FightPlayer.PunchLevel, FightPlayer.CurrentAttack));
         FightPlayer.SetAnimTrigger(Config.AnimationTrigger); ;
     }
@@ -58,15 +57,18 @@ public class EffectPunch : FightEffect
     {
         Log.Debug($"Punch! Dmg: {Config.PunchDamage}");
         Physics.RaycastHit rc;
+        
+        // Re-adjust aiming
+        punchDir = FightPlayer.GetPunchDirection();
+        FightPlayer.SetAimTarget(Entity.Position + punchDir);
 
         
-        var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
+        var hit = Physics.RaycastWithWhitelist(Entity.Position, punchDir.Normalized,
             EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(), new Entity[]{ },out rc);
 
         
-        if (hit)
+        if (hit) // If players are too close, always hit
         {
-            Log.Debug($"{rc.Entity.Name}");
             var other = rc.Entity.GetComponent<DamageableObject>();
             if (other != null)
             {
@@ -74,7 +76,24 @@ public class EffectPunch : FightEffect
                 // other.Player.TakeDamage(FightPlayer, info);
                 other.TakeDamage(FightPlayer, info);
             }
-            
+        }
+        else
+        {
+            // Damage the object anyways if they are very very close, if no rays hit
+            var closeTargets =
+                FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position,
+                    EffectConfig.PunchConfig.PunchMustHitRange);
+            closeTargets.Remove(FightPlayer);
+            Log.Warn($"{closeTargets.Count}");
+            if (closeTargets.Count > 0)
+            {
+                foreach (var fp in closeTargets)
+                {
+                    FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
+                    // other.Player.TakeDamage(FightPlayer, info);
+                    fp.TakeDamage(FightPlayer, info);
+                }
+            }
         }
     }
     
