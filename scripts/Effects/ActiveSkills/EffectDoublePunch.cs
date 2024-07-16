@@ -73,12 +73,8 @@ public class EffectDoublePunch : FightEffect
 
         if (hit)
         {
-            // Damage
             DamageableObject other = rc.Entity.GetComponent<DamageableObject>();
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
-
-            other.TakeDamage(FightPlayer, info);
-            
             // Effect
             if (other is PlayerCollisionChild fdb)
             {
@@ -91,11 +87,12 @@ public class EffectDoublePunch : FightEffect
                 {
                     // Bumping Punch
                     info.InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel;
-                    fdb.Player.TakeDamage(FightPlayer, info);
                     Vector2 bumpDir = other.Entity.Position - FightPlayer.Entity.Position;
                     fdb.Player.AddBumpFrom(FightPlayer, bumpDir * Config.BumpStrength, false);
                 }
             }
+            // Damage
+            other.TakeDamage(FightPlayer, info);
         }
     }
     

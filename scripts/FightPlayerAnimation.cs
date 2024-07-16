@@ -103,7 +103,7 @@ public partial class FightPlayer
         // double punch
         var doublePunchTrigger = stateMachine.CreateVariable("doublepunch", StateMachineVariableKind.TRIGGER);
         var doublePunchState = fightLayer.CreateState("BAT_003/punch_double_AL_mIK", 0, false);
-        fightLayer.CreateTransition(idleState, doublePunchState, false).CreateTriggerCondition(doublePunchTrigger);
+        fightLayer.CreateGlobalTransition(doublePunchState).CreateTriggerCondition(doublePunchTrigger);
         fightLayer.CreateTransition(doublePunchState, idleState, true);
         
         // Rage
