@@ -66,7 +66,7 @@ public class EffectProjectileThrow : FightEffect
         // i.e. inherit the Projectile component and put it on your prefab.
 
         Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
-            $"{FightPlayer.Id}_{Config.ProjectilePrefabKey}_{Random.Shared.NextInt64()}",
+            $"{Config.ProjectilePrefabKey}",
             FightPlayer.Entity.Position, AbilityPositionOrDirection);
         //proj.Position = Entity.Position;
         InitializeProjectile(proj);

@@ -3,7 +3,7 @@ using Assembly.scripts.Effects.ActiveSkills;
 
 namespace Assembly.scripts.SceneObjects.Projectiles;
 
-public class BackstabKunaiProjectile : BaseProjectile
+public partial class BackstabKunaiProjectile : BaseProjectile
 {
     private Spine_Animator _animator;
     public override void Start()
@@ -24,16 +24,25 @@ public class BackstabKunaiProjectile : BaseProjectile
     }
     protected override void DoProjectileEffect(Entity other, bool predicted)
     {
-        
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
         if (fp is { CurrentHealth: > 0 })
         {
-            fp.AddEffect<EffectBackstab>(Owner, EffectConfig.BackStabConfig.BackstabTime);
-            Owner.AddEffect<EffectBackstabCaster>(fp, EffectConfig.BackStabConfig.BackstabTime);
+            if (Network.IsServer)
+            {
+                CallClient_BackstabPlayer(Owner, fp);
+            }
+
             if (!Pierce)
             {
                 Entity.Destroy();
             }
         }
+    }
+
+    [ClientRpc]
+    public static void BackstabPlayer(FightPlayer shooter, FightPlayer target)
+    {
+        target.AddEffect<EffectBackstab>(shooter, EffectConfig.BackStabConfig.BackstabTime);
+        shooter.AddEffect<EffectBackstabCaster>(target, EffectConfig.BackStabConfig.BackstabTime);
     }
 }

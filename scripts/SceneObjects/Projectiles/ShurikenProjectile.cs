@@ -30,27 +30,30 @@ public class ShurikenProjectile : BaseProjectile
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
         if (fp != null && fp.Damageable())
         {
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
-
-            Vector2 dir = other.Position - Entity.Position;
-            if (Vector2.Dot(dir, fp.GetFacingDirection() ? Vector2.Right : Vector2.Left) >= 0)
+            if (!predicted)
             {
-                info.ReactionInfo.Amount = (int) float.Floor(Damage * BackDamageMultiplier);
-                info.DamageNumberColor = new Vector4(1, 0.68f, 0, 1); // Orange
+                FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
+                Vector2 dir = other.Position - Entity.Position;
+                if (Vector2.Dot(dir, fp.GetFacingDirection() ? Vector2.Right : Vector2.Left) >= 0)
+                {
+                    info.ReactionInfo.Amount = (int) float.Floor(Damage * BackDamageMultiplier);
+                    info.DamageNumberColor = new Vector4(1, 0.68f, 0, 1); // Orange
+                }
+                fp.TakeDamage(Owner, info);
             }
-            fp.TakeDamage(Owner, info);
             
             if (!Pierce)
             {
                 Entity.Destroy();
             }
+
             FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.HitVFX, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
                 entity =>
                 {
                     SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
                     vfx.StartVFX("hit_generic", false);
                 }
-                );
+            );
         }
     }
 }

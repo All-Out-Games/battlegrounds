@@ -19,7 +19,7 @@ public class EffectBackstab : EffectNoMovement
 {
     // This effect triggers after the kunai hits
     // Play the victim animation and takes damage from the caster
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
     public override bool FreezePlayer => true;
 
@@ -55,7 +55,7 @@ public class EffectBackstab : EffectNoMovement
 public class EffectBackstabCaster : FightEffectWithImmunity
 {
     // This effect will teleport the caster of the Kunai to the back of the victim
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
     public override bool FreezePlayer => true;
 
