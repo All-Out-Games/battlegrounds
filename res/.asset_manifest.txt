@@ -134,6 +134,48 @@ ShurikenProjectile.prefab - .ao - 668f1467b45eb9e8339c1aa3 - 8548912423477914444
 SkillSlotsPanel.prefab - .ao - 66859956b45eb9e8339c1001 - 11546600357276263640
 SpoonProjectile.prefab - .ao - 66859956b45eb9e8339c1002 - 12342670774966987832
 TotalDarknessOverlay.prefab - .ao - 6685d28fb45eb9e8339c10be - 15557225266589634022
+UI/AbilityBook/Ability Info/buy_button/buy_button.png - .ao - 66980c24b45eb9e8339c1eac - 7538570100970345996
+UI/AbilityBook/Ability Info/buy_button/buy_button.png - .ao.ios - 66980c24b45eb9e8339c1ea9 - 8936797385379769912
+UI/AbilityBook/Ability Info/buy_button/buy_button_pressed.png - .ao - 66980c25b45eb9e8339c1eae - 8842457802621290964
+UI/AbilityBook/Ability Info/buy_button/buy_button_pressed.png - .ao.ios - 66980c21b45eb9e8339c1e86 - 13556471441862785745
+UI/AbilityBook/Ability Info/buy_button/coin.png - .ao - 66980c21b45eb9e8339c1e88 - 11624752413983746055
+UI/AbilityBook/Ability Info/buy_button/coin.png - .ao.ios - 66980c21b45eb9e8339c1e87 - 4770797039157068933
+UI/AbilityBook/Ability Info/buy_button/ref_buy_button.png - .ao - 66980c22b45eb9e8339c1e8b - 2832021025129020506
+UI/AbilityBook/Ability Info/buy_button/ref_buy_button.png - .ao.ios - 66980c22b45eb9e8339c1e8c - 10096654000900296864
+UI/AbilityBook/Ability Info/dots.png - .ao - 66980c22b45eb9e8339c1e8e - 65547184168074027
+UI/AbilityBook/Ability Info/dots.png - .ao.ios - 66980c22b45eb9e8339c1e91 - 17379789703467711456
+UI/AbilityBook/Ability Info/gif_size.png - .ao - 66980c22b45eb9e8339c1e92 - 11287108916457537289
+UI/AbilityBook/Ability Info/gif_size.png - .ao.ios - 66980c23b45eb9e8339c1e94 - 5057353461833892206
+UI/AbilityBook/Ability Info/info_window_basic.png - .ao - 66980c23b45eb9e8339c1e97 - 4091398313484202725
+UI/AbilityBook/Ability Info/info_window_basic.png - .ao.ios - 66980c23b45eb9e8339c1e98 - 2345723292714746776
+UI/AbilityBook/Ability Info/info_window_brawler.png - .ao - 66980c23b45eb9e8339c1e9a - 10813103962854711783
+UI/AbilityBook/Ability Info/info_window_brawler.png - .ao.ios - 66980c23b45eb9e8339c1e9d - 6062194584242442091
+UI/AbilityBook/Ability Info/info_window_defense.png - .ao - 66980c23b45eb9e8339c1e9e - 12353020772069945664
+UI/AbilityBook/Ability Info/info_window_defense.png - .ao.ios - 66980c23b45eb9e8339c1ea0 - 2396572382151500807
+UI/AbilityBook/Ability Info/info_window_elemental.png - .ao - 66980c24b45eb9e8339c1ea3 - 804994490205165063
+UI/AbilityBook/Ability Info/info_window_elemental.png - .ao.ios - 66980c24b45eb9e8339c1ea4 - 12227457526135704847
+UI/AbilityBook/Ability Info/info_window_psionic.png - .ao - 66980c24b45eb9e8339c1ea6 - 10165077238012870131
+UI/AbilityBook/Ability Info/info_window_psionic.png - .ao.ios - 66980c24b45eb9e8339c1eab - 12825306632419067718
+UI/AbilityBook/Ability Info/info_window_stealth.png - .ao - 66980c25b45eb9e8339c1eb0 - 13822126790901330180
+UI/AbilityBook/Ability Info/info_window_stealth.png - .ao.ios - 66980c25b45eb9e8339c1eb2 - 16496746303969839227
+UI/AbilityBook/Ability Info/quit_cross_button.png - .ao - 66980c25b45eb9e8339c1eb4 - 14276186581092289154
+UI/AbilityBook/Ability Info/quit_cross_button.png - .ao.ios - 66980c25b45eb9e8339c1eb6 - 2433836538577453822
+UI/AbilityBook/Ability Info/stat_box.png - .ao - 66980c25b45eb9e8339c1eb8 - 1417181120794910076
+UI/AbilityBook/Ability Info/stat_box.png - .ao.ios - 66980c25b45eb9e8339c1eba - 11575032633384371209
+UI/AbilityBook/Loadout/backing.png - .ao - 66980c26b45eb9e8339c1ebc - 17030304089208481494
+UI/AbilityBook/Loadout/backing.png - .ao.ios - 66980c26b45eb9e8339c1ec0 - 389817314402835061
+UI/AbilityBook/Loadout/fonts.png - .ao - 66980c26b45eb9e8339c1ebf - 13289568894560486926
+UI/AbilityBook/Loadout/fonts.png - .ao.ios - 66980c26b45eb9e8339c1ec2 - 13005077644969167369
+UI/AbilityBook/Loadout/ref_loadout.png - .ao - 66980c26b45eb9e8339c1ec5 - 1733040818531980786
+UI/AbilityBook/Loadout/ref_loadout.png - .ao.ios - 66980c26b45eb9e8339c1ec6 - 13338987152114980692
+UI/AbilityBook/Loadout/remove_button.png - .ao - 66980c27b45eb9e8339c1ec8 - 3873445529538621434
+UI/AbilityBook/Loadout/remove_button.png - .ao.ios - 66980c27b45eb9e8339c1ecb - 13951060062166251081
+UI/AbilityBook/Loadout/remove_button_pressed.png - .ao - 66980c27b45eb9e8339c1ecc - 7522878969742904305
+UI/AbilityBook/Loadout/remove_button_pressed.png - .ao.ios - 66980c27b45eb9e8339c1ecf - 1136675010547592018
+UI/AbilityBook/Loadout/swap_button.png - .ao - 66980c27b45eb9e8339c1ed0 - 14565262553519031122
+UI/AbilityBook/Loadout/swap_button.png - .ao.ios - 66980c28b45eb9e8339c1ed3 - 12839305475677817601
+UI/AbilityBook/Loadout/swap_button_pressed.png - .ao - 66980c28b45eb9e8339c1ed5 - 3461816073410609109
+UI/AbilityBook/Loadout/swap_button_pressed.png - .ao.ios - 66980c28b45eb9e8339c1ed6 - 10234977647442393302
 UI/TotalDarknessOverlay.png - .ao - 6685d28fb45eb9e8339c10c0 - 5181732608959223275
 UI/TotalDarknessOverlay.png - .ao.ios - 6685d28fb45eb9e8339c10c2 - 9412426728575774527
 VFX/BattleCry/BAT003_rage_shout.png - .ao - 6688635db45eb9e8339c197a - 8184286953345935315

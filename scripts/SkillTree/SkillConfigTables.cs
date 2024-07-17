@@ -7,8 +7,9 @@ public static partial class SkillConfig
 {
     // NOTE: The query dictionary (SkillKey : NodeConfig) is defined at the bottom of this file as 'STConfigQueryDict'
     // You MUST define node config and add it to the query dict.
-    
+
     // [Add Skill] item 1: Config Entry
+
     #region Node Configs : Basic
 
     /// <summary>
@@ -22,10 +23,10 @@ public static partial class SkillConfig
         NType = NodeType.SkillReplace,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 0,
-        UIPosition = new Vector2(450,30), // This will be set to the item's offset value
+        UIPosition = new Vector2(450, 30), // This will be set to the item's offset value
         SkillKey = "Punch",
-        ParentNodeKeys = new string[]{},
-        ChildrenNodeKeys = new string[] {"HealthBoost", "AttackBoost"},
+        ParentNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "HealthBoost", "AttackBoost" },
     };
 
     /// <summary>
@@ -40,17 +41,17 @@ public static partial class SkillConfig
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 100,
-        UIPosition = new Vector2(730,230),
+        UIPosition = new Vector2(730, 230),
         SkillKey = "HealthBoost",
-        ParentNodeKeys = new string [] {"Punch"},
-        ChildrenNodeKeys = new string[] {"Punch2"},
+        ParentNodeKeys = new string[] { "Punch" },
+        ChildrenNodeKeys = new string[] { "Punch2" },
         Buff = new StatBuff
         {
             BoostType = StatType.MaxHealth,
             BoostValue = 10
         }
     };
-    
+
     /// <summary>
     /// AttackBoost node
     /// </summary>
@@ -63,17 +64,17 @@ public static partial class SkillConfig
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 100,
-        UIPosition = new Vector2(110,230),
+        UIPosition = new Vector2(110, 230),
         SkillKey = "AttackBoost",
-        ParentNodeKeys = new string[] {"Punch"},
-        ChildrenNodeKeys = new string[] {"Punch2"},
+        ParentNodeKeys = new string[] { "Punch" },
+        ChildrenNodeKeys = new string[] { "Punch2" },
         Buff = new StatBuff
         {
             BoostType = StatType.AttackPower,
             BoostValue = 2
         }
     };
-    
+
     /// <summary>
     /// Punch2 node
     /// </summary>
@@ -86,12 +87,12 @@ public static partial class SkillConfig
         NType = NodeType.SkillReplace,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 300,
-        UIPosition = new Vector2(450,430),
+        UIPosition = new Vector2(450, 430),
         SkillKey = "Punch2",
-        ParentNodeKeys = new string [] {"AttackBoost", "HealthBoost"},
-        ChildrenNodeKeys = new string[] {"AttackBoost2", "HealthBoost2"},
+        ParentNodeKeys = new string[] { "AttackBoost", "HealthBoost" },
+        ChildrenNodeKeys = new string[] { "AttackBoost2", "HealthBoost2" },
     };
-    
+
     /// <summary>
     /// HealthBoost node
     /// </summary>
@@ -104,17 +105,17 @@ public static partial class SkillConfig
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 200,
-        UIPosition = new Vector2(730,630),
+        UIPosition = new Vector2(730, 630),
         SkillKey = "HealthBoost2",
-        ParentNodeKeys = new string [] {"Punch2"},
-        ChildrenNodeKeys = new string[] {"Punch3"},
+        ParentNodeKeys = new string[] { "Punch2" },
+        ChildrenNodeKeys = new string[] { "Punch3" },
         Buff = new StatBuff
         {
             BoostType = StatType.MaxHealth,
             BoostValue = 15
         }
     };
-    
+
     /// <summary>
     /// AttackBoost node
     /// </summary>
@@ -127,17 +128,17 @@ public static partial class SkillConfig
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 200,
-        UIPosition = new Vector2(110,630),
+        UIPosition = new Vector2(110, 630),
         SkillKey = "AttackBoost2",
-        ParentNodeKeys = new string[] {"Punch2"},
-        ChildrenNodeKeys = new string[] {"Punch3"},
+        ParentNodeKeys = new string[] { "Punch2" },
+        ChildrenNodeKeys = new string[] { "Punch3" },
         Buff = new StatBuff
         {
             BoostType = StatType.AttackPower,
             BoostValue = 3
         }
     };
-    
+
     /// <summary>
     /// Punch3 node
     /// </summary>
@@ -150,12 +151,12 @@ public static partial class SkillConfig
         NType = NodeType.SkillReplace,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 350,
-        UIPosition = new Vector2(450,830),
+        UIPosition = new Vector2(450, 830),
         SkillKey = "Punch3",
-        ParentNodeKeys = new string [] {"AttackBoost2", "HealthBoost2"},
-        ChildrenNodeKeys = new string[] {},
+        ParentNodeKeys = new string[] { "AttackBoost2", "HealthBoost2" },
+        ChildrenNodeKeys = new string[] { },
     };
-    
+
     /// <summary>
     /// RollOut node
     /// </summary>
@@ -166,13 +167,13 @@ public static partial class SkillConfig
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Defensive,
         UpgradeCost = 100,
-        UIPosition = new Vector2(750,330),
+        UIPosition = new Vector2(750, 330),
         SkillKey = "RollOut",
         IconPath = "AbilityIcon_Merged/defense/rollout.png",
-        ParentNodeKeys =  new string[]{"Shield"},
-        ChildrenNodeKeys = new string[]{},
+        ParentNodeKeys = new string[] { "Shield" },
+        ChildrenNodeKeys = new string[] { },
     };
-    
+
     /// <summary>
     /// Shield node
     /// </summary>
@@ -183,15 +184,15 @@ public static partial class SkillConfig
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Defensive,
         UpgradeCost = 100,
-        UIPosition = new Vector2(450,30),
+        UIPosition = new Vector2(450, 30),
         SkillKey = "Shield",
         IconPath = "AbilityIcon_Merged/defense/shield.png",
-        ParentNodeKeys = new string [] {},
-        ChildrenNodeKeys = new string[] {"RollOut"},
+        ParentNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "RollOut" },
     };
-    
-    
-    
+
+
+
 
     #endregion
 
@@ -207,13 +208,13 @@ public static partial class SkillConfig
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 100,
-        UIPosition = new Vector2(450,30),
+        UIPosition = new Vector2(450, 30),
         SkillKey = "ShoulderCrash",
         IconPath = "AbilityIcon_Merged/brawler/shoulder_crash.png",
-        ParentNodeKeys = new string[]{},
-        ChildrenNodeKeys = new string[]{"GroundStomp", "Rage", "DoublePunch" },
+        ParentNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "GroundStomp", "Rage", "DoublePunch" },
     };
-    
+
     public static readonly SkillTreeNodeConfig GroundStompConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Stomp The ground and damage nearby enemies",
@@ -224,8 +225,8 @@ public static partial class SkillConfig
         UpgradeCost = 200,
         UIPosition = new Vector2(730, 230),
         SkillKey = "GroundStomp",
-        ParentNodeKeys = new string[] {"ShoulderCrash"},
-        ChildrenNodeKeys = new string[]{"LeapSlam"},
+        ParentNodeKeys = new string[] { "ShoulderCrash" },
+        ChildrenNodeKeys = new string[] { "LeapSlam" },
     };
 
     public static readonly SkillTreeNodeConfig RageConfig = new SkillTreeNodeConfig()
@@ -281,9 +282,9 @@ public static partial class SkillConfig
         UIPosition = new Vector2(450, 430),
         SkillKey = "BattleCry",
         ParentNodeKeys = new string[] { "Rage" },
-        ChildrenNodeKeys = new string[] {  },
+        ChildrenNodeKeys = new string[] { },
     };
-    
+
     public static readonly SkillTreeNodeConfig ClawSlashConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Slash your enemies and make them bleed",
@@ -295,9 +296,9 @@ public static partial class SkillConfig
         UIPosition = new Vector2(10, 430),
         SkillKey = "ClawSlash",
         ParentNodeKeys = new string[] { "DoublePunch" },
-        ChildrenNodeKeys = new string[] {  },
+        ChildrenNodeKeys = new string[] { },
     };
-    
+
     public static readonly SkillTreeNodeConfig LeapSlamConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Leap and slam the ground",
@@ -309,7 +310,7 @@ public static partial class SkillConfig
         UIPosition = new Vector2(730, 430),
         SkillKey = "LeapSlam",
         ParentNodeKeys = new string[] { "GroundStomp" },
-        ChildrenNodeKeys = new string[] {  },
+        ChildrenNodeKeys = new string[] { },
     };
 
     #endregion
@@ -329,10 +330,10 @@ public static partial class SkillConfig
         UpgradeCost = 100,
         UIPosition = new Vector2(450, 30),
         SkillKey = "SpoonThrow",
-        ParentNodeKeys = new string[] {},
-        ChildrenNodeKeys = new string[]{"Befuddle", "Psybolt", "SelfHeal"},
+        ParentNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "Befuddle", "Psybolt", "SelfHeal" },
     };
-    
+
     /// <summary>
     /// Befuddle
     /// </summary>
@@ -346,10 +347,10 @@ public static partial class SkillConfig
         UpgradeCost = 100,
         UIPosition = new Vector2(450, 230),
         SkillKey = "Befuddle",
-        ParentNodeKeys = new string[] {"SpoonThrow"},
-        ChildrenNodeKeys = new string[]{"Hypnotize"},
+        ParentNodeKeys = new string[] { "SpoonThrow" },
+        ChildrenNodeKeys = new string[] { "Hypnotize" },
     };
-    
+
     /// <summary>
     /// Psybolt
     /// </summary>
@@ -363,10 +364,10 @@ public static partial class SkillConfig
         UpgradeCost = 100,
         UIPosition = new Vector2(170, 230),
         SkillKey = "Psybolt",
-        ParentNodeKeys = new string[] {"SpoonThrow"},
-        ChildrenNodeKeys = new string[]{"PsionicBeam", "PsyThrow"},
+        ParentNodeKeys = new string[] { "SpoonThrow" },
+        ChildrenNodeKeys = new string[] { "PsionicBeam", "PsyThrow" },
     };
-    
+
     /// <summary>
     /// SelfHeal
     /// </summary>
@@ -380,10 +381,10 @@ public static partial class SkillConfig
         UpgradeCost = 100,
         UIPosition = new Vector2(730, 230),
         SkillKey = "SelfHeal",
-        ParentNodeKeys = new string[] {"SpoonThrow"},
-        ChildrenNodeKeys = new string[]{"Regeneration"},
+        ParentNodeKeys = new string[] { "SpoonThrow" },
+        ChildrenNodeKeys = new string[] { "Regeneration" },
     };
-    
+
     /// <summary>
     /// Regenerate
     /// </summary>
@@ -397,8 +398,8 @@ public static partial class SkillConfig
         UpgradeCost = 200,
         UIPosition = new Vector2(730, 430),
         SkillKey = "Regeneration",
-        ParentNodeKeys = new string[] {"SelfHeal"},
-        ChildrenNodeKeys = new string[]{},
+        ParentNodeKeys = new string[] { "SelfHeal" },
+        ChildrenNodeKeys = new string[] { },
     };
 
 
@@ -412,11 +413,11 @@ public static partial class SkillConfig
         UpgradeCost = 200,
         UIPosition = new Vector2(450, 430),
         SkillKey = "Hypnotize",
-        ParentNodeKeys = new string[] {"Befuddle"},
-        ChildrenNodeKeys = new string[]{},
+        ParentNodeKeys = new string[] { "Befuddle" },
+        ChildrenNodeKeys = new string[] { },
 
     };
-    
+
     public static readonly SkillTreeNodeConfig PsionicBeamConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Beam a small area in front of you with dark energy",
@@ -427,11 +428,11 @@ public static partial class SkillConfig
         UpgradeCost = 200,
         UIPosition = new Vector2(10, 430),
         SkillKey = "PsionicBeam",
-        ParentNodeKeys = new string[] {"Psybolt"},
-        ChildrenNodeKeys = new string[]{},
+        ParentNodeKeys = new string[] { "Psybolt" },
+        ChildrenNodeKeys = new string[] { },
 
     };
-    
+
     public static readonly SkillTreeNodeConfig PsyThrowConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Grab and throw your enemy",
@@ -442,8 +443,8 @@ public static partial class SkillConfig
         UpgradeCost = 200,
         UIPosition = new Vector2(240, 430),
         SkillKey = "PsyThrow",
-        ParentNodeKeys = new string[] {"Psybolt"},
-        ChildrenNodeKeys = new string[]{},
+        ParentNodeKeys = new string[] { "Psybolt" },
+        ChildrenNodeKeys = new string[] { },
 
     };
 
@@ -461,11 +462,11 @@ public static partial class SkillConfig
         UpgradeCost = 50,
         UIPosition = new Vector2(450, 30),
         SkillKey = "Invisibility",
-        ParentNodeKeys = new string[] {},
-        ChildrenNodeKeys = new string[]{"LightFeet"},
+        ParentNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "LightFeet" },
 
     };
-    
+
     public static readonly SkillTreeNodeConfig LightFeetConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Increase movement speed temporarily",
@@ -476,8 +477,8 @@ public static partial class SkillConfig
         UpgradeCost = 150,
         UIPosition = new Vector2(450, 230),
         SkillKey = "LightFeet",
-        ParentNodeKeys = new string[] {"Invisibility"},
-        ChildrenNodeKeys = new string[]{"Shuriken", "ShadowStep"},
+        ParentNodeKeys = new string[] { "Invisibility" },
+        ChildrenNodeKeys = new string[] { "Shuriken", "ShadowStep" },
 
     };
 
@@ -494,7 +495,7 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[] { "LightFeet" },
         ChildrenNodeKeys = new string[] { "BearTrap", "Backstab" },
     };
-    
+
     public static readonly SkillTreeNodeConfig BearTrapConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Setup a hidden trap to snare your enemies.",
@@ -522,7 +523,7 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[] { "LightFeet" },
         ChildrenNodeKeys = new string[] { "TotalDarkness" },
     };
-    
+
     public static readonly SkillTreeNodeConfig BackstabConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Throw A Kunai and backstab the victim if it hits.",
@@ -552,7 +553,7 @@ public static partial class SkillConfig
     };
 
     #endregion
-    
+
     // [Add Skill] item 2: Query Entry
     // MUST ADD for each new skill. This connects the unique skill key to their node config.
     // The standard format is {"[SkillKey]", "[SkillKey]Config"}
@@ -560,80 +561,62 @@ public static partial class SkillConfig
         new Dictionary<string, SkillTreeNodeConfig>()
         {
             // Basic
-            {"Punch", PunchNodeConfig},
-            {"HealthBoost", HealthBoostNodeConfig},
-            {"AttackBoost", AttackBoostNodeConfig},
-            {"Punch2", PunchTwoConfig},
-            {"HealthBoost2", HealthBoost2NodeConfig}, 
-            {"AttackBoost2", AttackBoost2NodeConfig},
-            {"Punch3", PunchThreeConfig},
+            { "Punch", PunchNodeConfig },
+            { "HealthBoost", HealthBoostNodeConfig },
+            { "AttackBoost", AttackBoostNodeConfig },
+            { "Punch2", PunchTwoConfig },
+            { "HealthBoost2", HealthBoost2NodeConfig },
+            { "AttackBoost2", AttackBoost2NodeConfig },
+            { "Punch3", PunchThreeConfig },
             // Defensive
-            {"RollOut", RollOutNodeConfig},
-            {"Shield", ShieldConfig},
+            { "RollOut", RollOutNodeConfig },
+            { "Shield", ShieldConfig },
             // Brawler
-            {"ShoulderCrash", ShoulderCrashNodeConfig},
-            {"GroundStomp", GroundStompConfig},
-            {"Rage", RageConfig},
-            {"DoublePunch", DoublePunchConfig},
-            {"SelfDestruct", SelfDestructConfig},
-            {"BattleCry", BattleCryConfig},
-            {"ClawSlash", ClawSlashConfig},
-            {"LeapSlam", LeapSlamConfig},
+            { "ShoulderCrash", ShoulderCrashNodeConfig },
+            { "GroundStomp", GroundStompConfig },
+            { "Rage", RageConfig },
+            { "DoublePunch", DoublePunchConfig },
+            { "SelfDestruct", SelfDestructConfig },
+            { "BattleCry", BattleCryConfig },
+            { "ClawSlash", ClawSlashConfig },
+            { "LeapSlam", LeapSlamConfig },
             // Psionic
-            {"SpoonThrow", SpoonThrowConfig},
-            {"Befuddle", BefuddleConfig},
-            {"Psybolt", PsyboltConfig},
-            {"SelfHeal", SelfHealConfig},
-            {"Regeneration", RegenerationConfig},
-            {"Hypnotize", HypnotizeConfig},
-            {"PsionicBeam", PsionicBeamConfig},
-            {"PsyThrow", PsyThrowConfig},
+            { "SpoonThrow", SpoonThrowConfig },
+            { "Befuddle", BefuddleConfig },
+            { "Psybolt", PsyboltConfig },
+            { "SelfHeal", SelfHealConfig },
+            { "Regeneration", RegenerationConfig },
+            { "Hypnotize", HypnotizeConfig },
+            { "PsionicBeam", PsionicBeamConfig },
+            { "PsyThrow", PsyThrowConfig },
             // Stealth
-            {"Invisibility", InvisibilityConfig},
-            {"LightFeet", LightFeetConfig},
-            {"Shuriken", ShurikenConfig},
-            {"BearTrap", BearTrapConfig},
-            {"ShadowStep", ShadowStepConfig},
-            {"Backstab", BackstabConfig},
-            {"TotalDarkness", TotalDarknessConfig}
+            { "Invisibility", InvisibilityConfig },
+            { "LightFeet", LightFeetConfig },
+            { "Shuriken", ShurikenConfig },
+            { "BearTrap", BearTrapConfig },
+            { "ShadowStep", ShadowStepConfig },
+            { "Backstab", BackstabConfig },
+            { "TotalDarkness", TotalDarknessConfig }
         };
 
     // [Add Skill] Item 3: Put Classification Here
-    public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>() { "HealthBoost", "AttackBoost", "HealthBoost2", "AttackBoost2"};
-    
-    public static readonly HashSet<string> ActiveSkills = new HashSet<string>() {"Punch", "RollOut", "Shield", 
+    public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>()
+        { "HealthBoost", "AttackBoost", "HealthBoost2", "AttackBoost2" };
+
+    public static readonly HashSet<string> ActiveSkills = new HashSet<string>()
+    {
+        "Punch", "RollOut", "Shield",
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam",
         // Psionic
-        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize","PsionicBeam", "PsyThrow",
+        "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize", "PsionicBeam", "PsyThrow",
         // Stealth
-        "Invisibility","LightFeet", "Shuriken", "BearTrap", "ShadowStep", "Backstab","TotalDarkness"
+        "Invisibility", "LightFeet", "Shuriken", "BearTrap", "ShadowStep", "Backstab", "TotalDarkness"
     };
 
-    public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() {"Punch2", "Punch3"};
-    
-    public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() {  };
-    
-    
-    // This affects how many pages appear on the ability book and ability vendor. Each page will have a tag that classifies the items.
-    public static readonly List<SkillTreeTabs> STConfigTabsList = new List<SkillTreeTabs>()
-    {
-        SkillTreeTabs.Basic,
-        SkillTreeTabs.Brawler,
-        SkillTreeTabs.Defensive,
-        SkillTreeTabs.Stealth,
-        SkillTreeTabs.Psionic
-    };
+    public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "Punch2", "Punch3" };
 
-    public static readonly Dictionary<SkillTreeTabs, string> STTabsNameQueryDict =
-        new Dictionary<SkillTreeTabs, string>()
-        {
-            {SkillTreeTabs.Basic, "Basic"},
-            {SkillTreeTabs.Brawler, "Brawler"},
-            {SkillTreeTabs.Defensive, "Defensive"},
-            {SkillTreeTabs.Stealth, "Stealth"},
-            {SkillTreeTabs.Psionic, "Psionic"}
-        };
+    public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() { };
 }
 
 // [Add Skill] Item 4: Add the association between skillKey and type of ability.
