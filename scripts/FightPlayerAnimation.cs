@@ -188,8 +188,6 @@ public partial class FightPlayer
 
         fightLayer.CreateTransition(psyThrowStartState, psyThrowEndState, false)
             .CreateTriggerCondition(psyThrowAttackTrigger);
-        fightLayer.CreateTransition(psyThrowHeldState, psyThrowEndState, false)
-            .CreateTriggerCondition(psyThrowAttackTrigger);
         fightLayer.CreateGlobalTransition(psyThrowStartState).CreateTriggerCondition(psyThrowTrigger);
         fightLayer.CreateTransition(psyThrowEndState, idleState, true);
         

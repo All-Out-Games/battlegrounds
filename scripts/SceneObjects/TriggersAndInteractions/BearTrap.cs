@@ -27,6 +27,15 @@ public class BearTrap : OwnedTrigger
         
     }
 
+    public override void Awake()
+    {
+        base.Awake();
+        // Transparent when deployed. Display only for owner
+        Vector4 curColor = Animator.SpineInstance.ColorMultiplier;
+        curColor.W = 0;
+        Animator.SpineInstance.ColorMultiplier = curColor;
+    }
+
     public override void Start()
     {
         base.Start();
@@ -57,6 +66,14 @@ public class BearTrap : OwnedTrigger
         
         Animator.SpineInstance.SetStateMachine(stateMachine, Entity);
         Animator.OnAnimationEnd += OnAnimationEnd;
+        
+        // Stealth for non local player
+        if (Owner.IsLocal)
+        {
+            Vector4 curColor = Animator.SpineInstance.ColorMultiplier;
+            curColor.W = 1;
+            Animator.SpineInstance.ColorMultiplier = curColor;
+        }
     }
 
     public override void OnDestroy()
@@ -76,17 +93,6 @@ public class BearTrap : OwnedTrigger
         if (Util.OneTime(TimeElapsed > TrapArmTime, ref Armed))
         {
             Log.Warn("Trap Armed!");
-        }
-        
-        if (!Owner.IsLocal && !Snapped)
-        {
-            Vector4 curColor = Animator.SpineInstance.ColorMultiplier;
-            if (curColor.W <= 0)
-            {
-                curColor.W = 0;
-                return;
-            }
-            Animator.SpineInstance.ColorMultiplier = curColor with { W = curColor.W - 0.01f}; // 100 frames to go fully stealth
         }
 
         
