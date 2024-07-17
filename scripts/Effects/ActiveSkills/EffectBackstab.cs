@@ -38,6 +38,7 @@ public class EffectBackstab : EffectNoMovement
         }
         FightPlayer.SetAnimTrigger("backstabbed");
     }
+    
 
     public override void OnEffectUpdate()
     {
@@ -59,6 +60,8 @@ public class EffectBackstabCaster : FightEffectWithImmunity
     public override bool BlockAbilityActivation => true;
     public override bool FreezePlayer => true;
 
+    protected override string InvincibilityReason => "BacstabCast";
+
     public override void OnEffectStart()
     {
         base.OnEffectStart();
@@ -72,7 +75,14 @@ public class EffectBackstabCaster : FightEffectWithImmunity
         FightPlayer.Teleport(casterPos);
         FightPlayer.SetAnimTrigger("RESET");
         FightPlayer.SetAnimTrigger("backstab");
+        DurationRemaining = MainLayer.GetCurrentStateLength();
         FightPlayer.SetFacingDirection(victimFp.GetFacingDirection());
+    }
+    
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        FightPlayer.SetAnimTrigger("RESET");
     }
 }
 

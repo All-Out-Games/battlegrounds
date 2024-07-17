@@ -32,4 +32,30 @@
     "fit_aspect_kind": 0,
     "fit_aspect_anchor": 0
   }
+},
+{
+  "cid": 2,
+  "aoid": "270391618181899:1721247457651574200",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0,
+      "Y": 0.6000000238418579
+    },
+    "max": {
+      "X": 0.5500000119209290,
+      "Y": 1
+    },
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
+  }
 }
