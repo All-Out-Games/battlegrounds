@@ -9,6 +9,7 @@ public partial class FightPlayer
     private void InitializeStateMachine()
     {
         var stateMachine = SpineAnimator.SpineInstance.StateMachine;
+        var resetTrigger = stateMachine.TryGetVariableByName("RESET");
         // Main Layer
         var aoLayer = stateMachine.TryGetLayerByName("main");
         var aoIdleState = aoLayer.TryGetStateByName("Idle");
@@ -19,8 +20,10 @@ public partial class FightPlayer
         var fightLayer = stateMachine.CreateLayer("fight_layer", 10);
         var idleState = fightLayer.CreateState("BAT_003/neutralize_AL", 0, false);
         var emptyState = fightLayer.CreateState("__CLEAR_TRACK__", 0, true);
+        
         fightLayer.SetInitialState(idleState);
         fightLayer.CreateTransition(idleState, emptyState, true);
+        fightLayer.CreateGlobalTransition(idleState).CreateTriggerCondition(resetTrigger);
 
         #region Basic Punch
 
