@@ -1,8 +1,8 @@
 11
-98784247809
-263836898709102 1721244354092751600
+42949672961
+283163462520131 1721253504923366000
 {
-  "name": "QuitBtn",
+  "name": "AbilityBtn_5",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,13 +13,38 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "263051604403914:1721243982267980300",
-  "next_sibling": "265267721060794:1721245031565121400",
-  "parent": "262563033661396:1721243750937250600"
+  "next_sibling": "285090208244669:1721254417207822500",
+  "parent": "274591750818026:1721249446349755800"
+},
+{
+  "cid": 2,
+  "aoid": "283163471270450:1721253504927509100",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0,
+      "Y": 0.5000000000000000
+    },
+    "max": {
+      "X": 1,
+      "Y": 1
+    },
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
+  }
 },
 {
   "cid": 1,
-  "aoid": "263845628938523:1721244358226381100",
+  "aoid": "287030401669662:1721255335859558200",
   "component_type": "Internal_Component",
   "internal_component_type": "UIButton",
   "data": {
@@ -61,7 +86,7 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "UI/AbilityBook/AbilityInfo/quit_cross_button.png",
+      "sprite": "AbilityIcon_Merged/basic/punch.png",
       "sprite_hovered": "",
       "sprite_pressed": "$AO/new/icons/ability icons/punch.png",
       "sprite_padding": {
@@ -98,31 +123,5 @@
       "keybind": 0
     },
     "interactable": true
-  }
-},
-{
-  "cid": 2,
-  "aoid": "263927964363680:1721244397210938100",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIRect",
-  "data": {
-    "min": {
-      "X": 0.9300000071525574,
-      "Y": 0.8299999833106995
-    },
-    "max": {
-      "X": 0.9700000286102295,
-      "Y": 0.9300000071525574
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
-    }
   }
 }

@@ -2,7 +2,7 @@
 64424509441
 274591750818026 1721249446349755800
 {
-  "name": "AbilityBtn_5",
+  "name": "AbilityGrp_5",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -17,24 +17,6 @@
   "parent": "265267721060794:1721245031565121400"
 },
 {
-  "cid": 1,
-  "aoid": "274591754844733:1721249446351662200",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIImage",
-  "data": {
-    "sprite": "AbilityIcon_Merged/basic/punch.png",
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "fit_aspect": true,
-    "fit_aspect_kind": 0,
-    "fit_aspect_anchor": 0
-  }
-},
-{
   "cid": 2,
   "aoid": "274591759240331:1721249446353743500",
   "component_type": "Internal_Component",
@@ -42,11 +24,11 @@
   "data": {
     "min": {
       "X": 0.8299999833106995,
-      "Y": 0.3899999856948853
+      "Y": 0
     },
     "max": {
       "X": 0.9399999976158142,
-      "Y": 0.7900000214576721
+      "Y": 0.8000000119209290
     },
     "insets": {
       "X": 0,

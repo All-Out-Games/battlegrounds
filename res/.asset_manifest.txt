@@ -107,7 +107,7 @@ ClawSwipe.prefab - .ao - 6685994fb45eb9e8339c0fd0 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
 FightPlayerRig/playercharacter.png - .ao - 668c6ecab45eb9e8339c1a1c - 13580176801984649393
 FightPlayerRig/playercharacter.png - .ao.ios - 668c6ecab45eb9e8339c1a1b - 5691610558711331661
-FightPlayerRig/playercharacter.spine - .ao - 66983224b45eb9e8339c2133 - 12502013907412756689
+FightPlayerRig/playercharacter.spine - .ao - 6698448fb45eb9e8339c216d - 6535533322894837979
 HitVfx.prefab - .ao - 66859951b45eb9e8339c0fd9 - 5146642717615886720
 Invisibility_Aura.prefab - .ao - 668f23a2b45eb9e8339c1adf - 14758703216106953386
 Invisibility_VFX.prefab - .ao - 668f1f66b45eb9e8339c1ac6 - 16172691625342551677
@@ -176,6 +176,8 @@ UI/AbilityBook/Loadout/swap_button.png - .ao - 66980c27b45eb9e8339c1ed0 - 145652
 UI/AbilityBook/Loadout/swap_button.png - .ao.ios - 66980c28b45eb9e8339c1ed3 - 12839305475677817601
 UI/AbilityBook/Loadout/swap_button_pressed.png - .ao - 66980c28b45eb9e8339c1ed5 - 3461816073410609109
 UI/AbilityBook/Loadout/swap_button_pressed.png - .ao.ios - 66980c28b45eb9e8339c1ed6 - 10234977647442393302
+UI/AbilityBook/unlocked_abilities_backing.png - .ao - 6698448fb45eb9e8339c216b - 6228886176968818049
+UI/AbilityBook/unlocked_abilities_backing.png - .ao.ios - 6698448fb45eb9e8339c216c - 17333421952143542693
 UI/SkillTree/Brawler.png - .ao - 669816ecb45eb9e8339c1f0a - 9998387097734776475
 UI/SkillTree/Brawler.png - .ao.ios - 669816ecb45eb9e8339c1f0c - 14977146293914380219
 UI/SkillTree/ability_backing.png - .ao - 669816ecb45eb9e8339c1f0f - 15250342353867512298
@@ -184,8 +186,12 @@ UI/SkillTree/ability_mask.png - .ao - 669816edb45eb9e8339c1f15 - 485338844558177
 UI/SkillTree/ability_mask.png - .ao.ios - 669816edb45eb9e8339c1f14 - 1255693538349121572
 UI/SkillTree/arrow.png - .ao - 669816edb45eb9e8339c1f16 - 9400947614137981350
 UI/SkillTree/arrow.png - .ao.ios - 669816edb45eb9e8339c1f1b - 1250626726506771537
+UI/SkillTree/arrow_f.png - .ao - 6698534cb45eb9e8339c2171 - 14185999417616605819
+UI/SkillTree/arrow_f.png - .ao.ios - 6698534cb45eb9e8339c2172 - 12162042920717217506
 UI/SkillTree/arrow_press.png - .ao - 669816edb45eb9e8339c1f1a - 2466949422623938332
 UI/SkillTree/arrow_press.png - .ao.ios - 669816edb45eb9e8339c1f1c - 679430853245924119
+UI/SkillTree/arrow_press_f.png - .ao - 6698534cb45eb9e8339c2173 - 16630083985413487803
+UI/SkillTree/arrow_press_f.png - .ao.ios - 6698534db45eb9e8339c2177 - 14601393345599966932
 UI/SkillTree/big_skill_tree_icons/basic.png - .ao - 669816eeb45eb9e8339c1f1f - 13212934266066841783
 UI/SkillTree/big_skill_tree_icons/basic.png - .ao.ios - 669816eeb45eb9e8339c1f21 - 5663402784389504234
 UI/SkillTree/big_skill_tree_icons/brawler.png - .ao - 669816eeb45eb9e8339c1f22 - 8445912276260222189

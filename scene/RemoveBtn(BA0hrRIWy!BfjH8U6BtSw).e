@@ -1,8 +1,8 @@
 11
-98784247809
-263836898709102 1721244354092751600
+532575944705
+285084548892082 1721254414528206000
 {
-  "name": "QuitBtn",
+  "name": "RemoveBtn",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,13 +13,39 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "263051604403914:1721243982267980300",
-  "next_sibling": "265267721060794:1721245031565121400",
-  "parent": "262563033661396:1721243750937250600"
+  "previous_sibling": "285084562886736:1721254414534832600",
+  "next_sibling": "285084544650369:1721254414526197800",
+  "parent": "285084540627482:1721254414524292900"
 },
 {
   "cid": 1,
-  "aoid": "263845628938523:1721244358226381100",
+  "aoid": "285084571900376:1721254414539100000",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0,
+      "Y": 0.0500000007450581
+    },
+    "max": {
+      "X": 1,
+      "Y": 0.2500000000000000
+    },
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
+  }
+},
+{
+  "cid": 2,
+  "aoid": "285084575948399:1721254414541016800",
   "component_type": "Internal_Component",
   "internal_component_type": "UIButton",
   "data": {
@@ -61,9 +87,9 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "UI/AbilityBook/AbilityInfo/quit_cross_button.png",
+      "sprite": "UI/AbilityBook/Loadout/remove_button.png",
       "sprite_hovered": "",
-      "sprite_pressed": "$AO/new/icons/ability icons/punch.png",
+      "sprite_pressed": "UI/AbilityBook/Loadout/remove_button_pressed.png",
       "sprite_padding": {
         "X": 0,
         "Y": 0,
@@ -98,31 +124,5 @@
       "keybind": 0
     },
     "interactable": true
-  }
-},
-{
-  "cid": 2,
-  "aoid": "263927964363680:1721244397210938100",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIRect",
-  "data": {
-    "min": {
-      "X": 0.9300000071525574,
-      "Y": 0.8299999833106995
-    },
-    "max": {
-      "X": 0.9700000286102295,
-      "Y": 0.9300000071525574
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
-    }
   }
 }
