@@ -67,6 +67,7 @@
       "Y": 1
     },
     "text": "Ability Book",
+    "hold_text": "",
     "radius": 2,
     "required_hold_time": 0.6000000238418579
   }

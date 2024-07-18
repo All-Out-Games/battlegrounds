@@ -1,0 +1,44 @@
+11
+4294967299
+149043304333576 1721334840958468600
+{
+  "name": "ClickEnableGroup",
+  "local_enabled": false,
+  "local_position": {
+    "X": 0,
+    "Y": 0
+  },
+  "local_rotation": 0,
+  "local_scale": {
+    "X": 1,
+    "Y": 1
+  },
+  "previous_sibling": "149043323300845:1721334840967449000",
+  "parent": "149043296617429:1721334840954815100"
+},
+{
+  "cid": 1,
+  "aoid": "149043341010566:1721334840975834200",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0,
+      "Y": 0
+    },
+    "max": {
+      "X": 1,
+      "Y": 0.8000000119209290
+    },
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
+  }
+}

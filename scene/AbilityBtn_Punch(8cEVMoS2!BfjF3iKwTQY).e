@@ -13,27 +13,8 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "264702807220406:1721244764087109400",
-  "next_sibling": "266836205081950:1721245774218173500",
+  "next_sibling": "148931329574992:1721334787940117400",
   "parent": "265267721060794:1721245031565121400"
-},
-{
-  "cid": 1,
-  "aoid": "265822108363829:1721245294058979800",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIImage",
-  "data": {
-    "sprite": "AbilityIcon_Merged/basic/punch.png",
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "fit_aspect": true,
-    "fit_aspect_kind": 0,
-    "fit_aspect_anchor": 0
-  }
 },
 {
   "cid": 2,
@@ -42,12 +23,12 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.1000000014901161,
-      "Y": 0.3899999856948853
+      "X": 0.0500000007450581,
+      "Y": 0
     },
     "max": {
-      "X": 0.2099999934434891,
-      "Y": 0.7900000214576721
+      "X": 0.1599999964237213,
+      "Y": 1
     },
     "insets": {
       "X": 0,

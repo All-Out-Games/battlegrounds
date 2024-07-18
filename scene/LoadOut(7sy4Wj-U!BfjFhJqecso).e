@@ -14,25 +14,7 @@
     "Y": 1
   },
   "next_sibling": "285385635102269:1721254557087894100",
-  "parent": "262493446113353:1721243717988617600"
-},
-{
-  "cid": 1,
-  "aoid": "262584895210715:1721243761288358000",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIImage",
-  "data": {
-    "sprite": "UI/AbilityBook/Loadout/backing.png",
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "fit_aspect": false,
-    "fit_aspect_kind": 0,
-    "fit_aspect_anchor": 0
-  }
+  "parent": "146222836706279:1721333505509789400"
 },
 {
   "cid": 2,
@@ -45,7 +27,7 @@
       "Y": 0.6000000238418579
     },
     "max": {
-      "X": 0.5500000119209290,
+      "X": 1,
       "Y": 1
     },
     "insets": {
