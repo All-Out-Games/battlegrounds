@@ -3,7 +3,7 @@
 149135595865803 1721334884657110400
 {
   "name": "ClickEnableGroup",
-  "local_enabled": true,
+  "local_enabled": false,
   "local_position": {
     "X": 0,
     "Y": 0

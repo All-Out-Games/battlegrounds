@@ -3,7 +3,7 @@ using Assembly.scripts.Effects.ActiveSkills;
 
 public partial class FightAbility : Ability
 {
-    public static string DefaultIconPath = "$AO/allouticon1.png";
+    public static string DefaultIconPath = "$AO/new/Player Inventory/abilities_inventory_bar/inv_square_empty_25.png";
     public static string DefaultSkillKey = "Empty";
     
     public FightPlayer FightPlayer;
