@@ -16,4 +16,20 @@ public static class FightClubUtils
         Vector2 result = c + new Vector2(float.Cos(AOMath.ToRadians(theta)), float.Sin(AOMath.ToRadians(theta))) * r;
         return result;
     }
+
+    /// <summary>
+    /// Set btn texture (same sprite for normal / pressed)
+    /// </summary>
+    /// <param name="btn"></param>
+    /// <param name="texPath"></param>
+    public static void SetButtonTexture(UIButton btn, string texPath)
+    {
+        Texture tex = Assets.GetAsset<Texture>(texPath);
+        if (tex == null)
+        {
+            Log.Error($"{texPath} Texture not found!");
+            return;
+        }
+        btn.Settings = btn.Settings with { Sprite = tex, SpritePressed = tex};
+    }
 }

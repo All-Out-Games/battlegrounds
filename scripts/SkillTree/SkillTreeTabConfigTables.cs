@@ -22,7 +22,8 @@ public partial class SkillConfig
         SkillTreeTabs.Brawler,
         SkillTreeTabs.Defensive,
         SkillTreeTabs.Stealth,
-        SkillTreeTabs.Psionic
+        SkillTreeTabs.Psionic,
+        SkillTreeTabs.Elemental
     };
 
     public static readonly Dictionary<SkillTreeTabs, string> STTabsNameQueryDict =
@@ -32,7 +33,8 @@ public partial class SkillConfig
             {SkillTreeTabs.Brawler, "Brawler"},
             {SkillTreeTabs.Defensive, "Defensive"},
             {SkillTreeTabs.Stealth, "Stealth"},
-            {SkillTreeTabs.Psionic, "Psionic"}
+            {SkillTreeTabs.Psionic, "Psionic"},
+            {SkillTreeTabs.Elemental, "Elemental"}
         };
     
     #region Tab Configs
@@ -86,17 +88,28 @@ public partial class SkillConfig
         TreeIcon = "UI/SkillTree/small_skill_tree_icons/psionic.png",
         TreeIconPressed = "UI/SkillTree/small_skill_tree_icons/psionic.png"
     };
+    
+    public static readonly SkillTreeTabConfig ElementalTabConfig = new SkillTreeTabConfig()
+    {
+        Tab = SkillTreeTabs.Elemental,
+        TabName = "Elemental",
+        SkillPageBg = "UI/SkillTree/skill_page_Element.png",
+        InfoScreenBg = "UI/AbilityBook/AbilityInfo/info_window_element.png",
+        TreeIcon = "UI/SkillTree/small_skill_tree_icons/element.png",
+        TreeIconPressed = "UI/SkillTree/small_skill_tree_icons/element.png"
+    };
 
     #endregion
 
-    public static readonly Dictionary<SkillTreeTabs, SkillTreeTabConfig> STTabQuryDict =
+    public static readonly Dictionary<SkillTreeTabs, SkillTreeTabConfig> STTabQueryDict =
         new Dictionary<SkillTreeTabs, SkillTreeTabConfig>()
         {
             {SkillTreeTabs.Basic, BasicTreeTabConfig},
             {SkillTreeTabs.Brawler, BrawlerTreeTabConfig},
             {SkillTreeTabs.Defensive, DefensiveTabConfig},
             {SkillTreeTabs.Stealth, StealthTabConfig},
-            {SkillTreeTabs.Psionic, PsionicTabConfig}
+            {SkillTreeTabs.Psionic, PsionicTabConfig},
+            {SkillTreeTabs.Elemental, ElementalTabConfig}
         };
 
 

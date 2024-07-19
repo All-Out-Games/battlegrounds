@@ -95,6 +95,7 @@ AbilityIcon_Merged/stealth/speed_boost.png - .ao.ios - 669018f2b45eb9e8339c1b94 
 AbilityIcon_Merged/stealth/total_darkness.png - .ao - 669018f2b45eb9e8339c1b96 - 17869216149905270405
 AbilityIcon_Merged/stealth/total_darkness.png - .ao.ios - 669018f2b45eb9e8339c1b98 - 16344759447653552677
 AbilityItem.prefab - .ao - 6685994db45eb9e8339c0fc3 - 14427433616163832665
+AbilityLoadoutPage.prefab - .ao - 6699a783b45eb9e8339c21a5 - 2614657981299424245
 AbilityUpgradeDialog.prefab - .ao - 6685994eb45eb9e8339c0fc7 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 6685994eb45eb9e8339c0fc8 - 14180256252234443626
 BattleCry_Shockwave.prefab - .ao - 668863d8b45eb9e8339c1985 - 3209635888150171771
@@ -113,6 +114,7 @@ Invisibility_Aura.prefab - .ao - 668f23a2b45eb9e8339c1adf - 14758703216106953386
 Invisibility_VFX.prefab - .ao - 668f1f66b45eb9e8339c1ac6 - 16172691625342551677
 KunaiProjectile.prefab - .ao - 66859951b45eb9e8339c0fdd - 10521210724688615807
 LeapSlamCrater.prefab - .ao - 66887635b45eb9e8339c199f - 17071262920097834050
+LoadoutItemGroup.prefab - .ao - 6699a70db45eb9e8339c21a3 - 6058363755500062611
 Props/BearTrap/BAT003_bear_trap.png - .ao - 66859951b45eb9e8339c0fde - 12680163519278585061
 Props/BearTrap/BAT003_bear_trap.png - .ao.ios - 66859951b45eb9e8339c0fe0 - 7406773091814632799
 Props/BearTrap/BAT003_bear_trap.spine - .ao - 66859952b45eb9e8339c0fe2 - 3855122050485720892
@@ -176,8 +178,8 @@ UI/AbilityBook/Loadout/swap_button.png - .ao - 66980c27b45eb9e8339c1ed0 - 145652
 UI/AbilityBook/Loadout/swap_button.png - .ao.ios - 66980c28b45eb9e8339c1ed3 - 12839305475677817601
 UI/AbilityBook/Loadout/swap_button_pressed.png - .ao - 66980c28b45eb9e8339c1ed5 - 3461816073410609109
 UI/AbilityBook/Loadout/swap_button_pressed.png - .ao.ios - 66980c28b45eb9e8339c1ed6 - 10234977647442393302
-UI/AbilityBook/unlocked_abilities_backing.png - .ao - 6698448fb45eb9e8339c216b - 6228886176968818049
-UI/AbilityBook/unlocked_abilities_backing.png - .ao.ios - 6698448fb45eb9e8339c216c - 17333421952143542693
+UI/AbilityBook/unlocked_abilities_backing.png - .ao - 66998861b45eb9e8339c219b - 15291842776835831665
+UI/AbilityBook/unlocked_abilities_backing.png - .ao.ios - 66998861b45eb9e8339c219a - 10305147596006492540
 UI/SkillTree/Brawler.png - .ao - 669816ecb45eb9e8339c1f0a - 9998387097734776475
 UI/SkillTree/Brawler.png - .ao.ios - 669816ecb45eb9e8339c1f0c - 14977146293914380219
 UI/SkillTree/ability_backing.png - .ao - 669816ecb45eb9e8339c1f0f - 15250342353867512298

@@ -38,7 +38,6 @@ public class UniqueWindowInteractable : Component
     {
         if (p.IsLocal)
         {
-            Log.Debug("1");
             UIManager.Instance.OpenUniqueUIWindow(WindowPrefabPath);
         }
     }

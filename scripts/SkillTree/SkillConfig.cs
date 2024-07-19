@@ -19,7 +19,8 @@ public static partial class SkillConfig
         Defensive,
         Brawler,
         Stealth,
-        Psionic
+        Psionic,
+        Elemental
     }
 
     public enum StatType
