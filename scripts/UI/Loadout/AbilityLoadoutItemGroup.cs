@@ -11,6 +11,7 @@ public class AbilityLoadoutItemGroup : Component
     
     [Serialized] private Entity _selectionBorder;
     [Serialized] private Entity _equippedBorder;
+    [Serialized] private Entity _replaceIcon;
     private AbilityLoadoutPage _abWindow;
     
     public SkillConfig.SkillTreeTabs NTab;
@@ -32,5 +33,17 @@ public class AbilityLoadoutItemGroup : Component
     public void OnInfoButtonSelected()
     {
         // TODO
+    }
+
+    public void OnParentStateChange(AbilityLoadoutPage.LoadoutPageState state)
+    {
+        if (state == AbilityLoadoutPage.LoadoutPageState.Swap)
+        {
+            _replaceIcon.LocalEnabled = true;
+        }
+        else
+        {
+            _replaceIcon.LocalEnabled = false;
+        }
     }
 }

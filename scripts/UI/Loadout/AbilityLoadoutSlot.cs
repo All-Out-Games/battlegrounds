@@ -17,11 +17,7 @@ public class AbilityLoadoutSlot : Component
     private bool _toggled = false;
     public int Index = 0;
     
-    public override void Start()
-    {
-        base.Start();
-        
-    }
+    
 
     public void Initialize(AbilityLoadoutPage parentPage, int idx)
     {
@@ -33,6 +29,11 @@ public class AbilityLoadoutSlot : Component
     {
         _toggled = !_toggled;
         _clickEnableGroup.LocalEnabled = _toggled;
+        if (_toggled)
+        {
+            _page.OnSlotSelected(this);
+        }
+        //Log.Warn($"Toggled: {_toggled}; Slot: {SkillKey}");
     }
 
     public void Unselect()
@@ -41,5 +42,11 @@ public class AbilityLoadoutSlot : Component
         {
             Toggle();
         }
+    }
+
+    public void SetSkillKey(string skey)
+    {
+        SkillKey = skey;
+        FightClubUtils.SetButtonTexture(SkillButton, SkillConfig.GetIconPath(skey));
     }
 }

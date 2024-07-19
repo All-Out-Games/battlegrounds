@@ -42,4 +42,16 @@
       "Y": 0
     }
   }
+},
+{
+  "cid": 1,
+  "aoid": "247646205188034:1721411500940224100",
+  "component_type": "Mono_Component",
+  "mono_component_type": "AbilityLoadoutSlot",
+  "data": {
+    "SkillButton": "149568858879590:1721335089800581300",
+    "SwapButton": "155858854766063:1721338068018313900",
+    "RemoveButton": "155858864181863:1721338068022772100",
+    "_clickEnableGroup": "149043304333576:1721334840958468600"
+  }
 }
