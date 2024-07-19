@@ -35,6 +35,17 @@ public class AbilityLoadoutItemGroup : Component
         // TODO
     }
 
+    public void SetItemEquipped(bool equip)
+    {
+        Equipped = equip;
+        _equippedBorder.LocalEnabled = equip;
+    }
+
+    public void SetItemHighlighted(bool selected)
+    {
+        _selectionBorder.LocalEnabled = selected;
+    }
+
     public void OnParentStateChange(AbilityLoadoutPage.LoadoutPageState state)
     {
         if (state == AbilityLoadoutPage.LoadoutPageState.Swap)

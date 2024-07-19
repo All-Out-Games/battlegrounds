@@ -7,7 +7,7 @@ public class AbilityLoadoutPage : UniqueUIWindow
     public enum LoadoutPageState
     {
         Normal, // Nothing selected
-        Swap, // Swapping a skill slot
+        Swap, // Swapping a skill slot (with another slot or an item in skill book section)
         Equip // Trying to equip a skill from skill book session
     }
     [Serialized] private UIText _debugTxt;
@@ -52,11 +52,10 @@ public class AbilityLoadoutPage : UniqueUIWindow
     // Skill book items
     private Dictionary<string, AbilityLoadoutItemGroup> _bookItems;
     
-    
     // State
     public LoadoutPageState State = LoadoutPageState.Normal;
     
-    private AbilityLoadoutSlot _selectedSlot = null; // Slot refers to one of the 5 swappable slots in the Loadout Screen
+    private AbilityLoadoutSlot _slotForSwap = null; // Slot refers to one of the 5 swappable slots in the Loadout Screen
     private AbilityLoadoutItemGroup _selectedItem = null; // Item refers to the purchased skills in the item lists
 
     public override void OnInstantiate()
@@ -91,6 +90,8 @@ public class AbilityLoadoutPage : UniqueUIWindow
                 
                 itm.Entity.SetParent(layoutEntity, false);
                 _bookItems.Add(key, itm);
+
+                itm.Button.OnClicked += itm.OnItemSelected;
                 //Log.Debug($"{key} item Created!");
             }
         }
@@ -104,37 +105,39 @@ public class AbilityLoadoutPage : UniqueUIWindow
         _nextTab.OnClicked += NextTab;
         
         // First Open Phase 3
-        // Initialize Slots
+        // Initialize Loadout Slots
         for (int i = 0; i < 5; i++)
         {
             var slot = _loadoutSlots[i];
-            slot.Initialize(this, i+1);
+            slot.Initialize(this, i+1); // This index is the actual index in the _equippedSkillKey array
             slot.SkillButton.OnClicked += slot.Toggle;
+            slot.SwapButton.OnClicked += slot.OnSwapClicked;
+            slot.RemoveButton.OnClicked += slot.OnRemoveClicked;
         }
         
         
         ResetSelection();
         
     }
-
-    public void UpdateLoadoutData()
-    {
-        // From slotsMgr and skillTree, populate the loadout 
-    }
+    
     public void ResetSelection()
     {
         // TODO: Unselect all items
-        State = LoadoutPageState.Normal;
-        return;
-        foreach (var kv in _bookItems)
-        {
-            
-        }
-
+        
+        // Unselect loadout slots
+        _slotForSwap = null;
         foreach (var slot in _loadoutSlots)
         {
             slot.Unselect();
         }
+
+        // Unselect skill book items
+        _selectedItem = null;
+        RefreshItemEquippedBorders();
+        
+        SetState(LoadoutPageState.Normal);
+        
+        Log.Warn($"Equipped Skills {_equippedSkillKey[0]} {_equippedSkillKey[1]} {_equippedSkillKey[2]} {_equippedSkillKey[3]} {_equippedSkillKey[4]} {_equippedSkillKey[5]}");
     }
 
     public override void Update()
@@ -154,12 +157,12 @@ public class AbilityLoadoutPage : UniqueUIWindow
 
     public override void OpenWindow()
     {
-        ResetSelection();
         UpdateSkillTreeTab(_currentTab);
         FetchEquippedSkills();
         base.OpenWindow();
 
         _elapsedTimeSinceOpen = 0;
+        ResetSelection();
     }
 
     private void PreviousTab()
@@ -192,6 +195,7 @@ public class AbilityLoadoutPage : UniqueUIWindow
         {
             // Enable items in tab if player owns the skill & skill belongs to this tab
             var item = kv.Value;
+            
             if (item.NTab == tab && _skillTree.GetSkillLevel(item.SkillKey) > 0)
             {
                 item.Entity.LocalEnabled = true;
@@ -203,37 +207,62 @@ public class AbilityLoadoutPage : UniqueUIWindow
             }
         }
 
-        _emptyTabText.Entity.LocalEnabled = !haveItemsFlag; // Enable when the tab is empty (possible for an entirely passive tree)
+        _emptyTabText.Entity.LocalEnabled = !haveItemsFlag; // Enable when the tab is empty 
     }
 
     private void FetchEquippedSkills()
     {
+        // Put equipped abilities in slots
         List<FightAbility> faList = _slotsMgr.GetCurrentAbilities();
+        _equippedSkillKey = faList.Select(a => a.SkillKey).ToArray();
         // Punch
         _punchIcon.Sprite = faList[0].Icon;
         for (int i = 0; i < 5; i++)
         {
-            _loadoutSlots[i].SetSkillKey(faList[i+1].SkillKey);
+            _loadoutSlots[i].SetSkillKey(_equippedSkillKey[i+1]);
+        }
+    }
+
+    private void RefreshItemEquippedBorders()
+    {
+        foreach (var kv in _bookItems)
+        {
+            // Enable items in tab if player owns the skill & skill belongs to this tab
+            var item = kv.Value;
+            item.SetItemEquipped(_equippedSkillKey.Contains(kv.Key));
+            item.SetItemHighlighted(_selectedItem == item);
         }
     }
     
-    // Equip Skill
+    /// <summary>
+    /// [Important Function]
+    /// Equip a skill by key and index. Will remove duplicate if you try to equip an already equipped skill in another slot.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="idx"></param>
     private void EquipSkill(string key, int idx)
     {
         // Phase 1. Remove Duplicated Skill, if detected
         for (int i = 1; i < 6; i++)
         {
-            var slot = _loadoutSlots[i];
+            var slot = _loadoutSlots[i-1]; // slot idx need i-1 because of punch 
             if (slot.SkillKey == key)
             {
-                if (i == idx) return;
+                if (i == idx) return; // Equipping the same key. 
                 RemoveSkill(i);
             }
         }
-        
-        
+        // Phase 2. Put the in the new skill
+        _equippedSkillKey[idx] = key;
+        _loadoutSlots[idx-1].SetSkillKey(key);
+
     }
 
+    /// <summary>
+    /// [Important Function]
+    /// Remove a skill slot, by equipping an Empty key onto it
+    /// </summary>
+    /// <param name="idx"></param>
     private void RemoveSkill(int idx)
     {
         if (idx == 0)
@@ -243,10 +272,9 @@ public class AbilityLoadoutPage : UniqueUIWindow
         }
         // Equip an Empty skill at the slot.
         _equippedSkillKey[idx] = FightAbility.DefaultSkillKey;
-
-        int slotIdx = idx - 1;
-        // Remove the slot (Punch does not have a slot so the slot index need -1)
         
+        // Remove the slot (Punch does not have a slot so the slot index need -1)
+        _loadoutSlots[idx-1].SetSkillKey(FightAbility.DefaultSkillKey);
     }
 
     private void SetState(LoadoutPageState st)
@@ -264,6 +292,19 @@ public class AbilityLoadoutPage : UniqueUIWindow
                 _debugTxt.Text = "E";
                 break;
         }
+        
+        // Change replace icons based on stated
+        foreach (var kv in _bookItems)
+        {
+            // Enable items in tab if player owns the skill & skill belongs to this tab
+            var item = kv.Value;
+            item.OnParentStateChange(st); // Replace icon appear only in swap state
+        }
+
+        foreach (var slot in _loadoutSlots)
+        {
+            slot.OnParentStateChange(st); // Replace icon appear in swap state / equip state
+        }
     }
     
     // Callbacks - Loadout Section
@@ -272,23 +313,44 @@ public class AbilityLoadoutPage : UniqueUIWindow
         switch (State)
         {
             case LoadoutPageState.Normal:
-                // Toggle the slot, only one allowed each time
+                // The selected slot will toggle itself, here we untoggle all others
                 foreach (var slot in _loadoutSlots)
                 {
                     if (slot != selected)
                     {
                         slot.Unselect();
                     }
-                    
                 }
                 break;
             case LoadoutPageState.Equip:
-                // Equip the selected skill in this slot
-                SetState(LoadoutPageState.Normal);
+                if (_selectedItem == null)
+                {
+                    Log.Error("We should always have an item selected when the state is Equip!");
+                    return;
+                }
+                // Equip the skill on the slot clicked
+                EquipSkill(_selectedItem.SkillKey, selected.Index);
+                
+                RefreshItemEquippedBorders();
+                
+                ResetSelection();
                 break;
             case LoadoutPageState.Swap:
                 // Swap the selected slot and the clicked slot.
-                SetState(LoadoutPageState.Normal);
+                if (_slotForSwap == null)
+                {
+                    Log.Error("We should always have a slot for swap when the state is Swap!");
+                    return;
+                }
+                if (selected != _slotForSwap)
+                {
+                    string keyA = selected.SkillKey; // cahche before swap
+                    string keyB = _slotForSwap.SkillKey;
+                    
+                    EquipSkill(keyA, _slotForSwap.Index);
+                    EquipSkill(keyB, selected.Index);
+                }
+                ResetSelection();
                 break;
         }
     }
@@ -296,35 +358,70 @@ public class AbilityLoadoutPage : UniqueUIWindow
     public void OnSwapClicked(AbilityLoadoutSlot selected)
     {
         // Called after the swap button on the ability slot is clicked
-        _selectedSlot?.Unselect();
-        _selectedSlot = selected;
+        _slotForSwap = selected;
         SetState(LoadoutPageState.Swap);
         
         // You can swap the slot with another slot, or swap it with an unequipped ability
+        // These logics are handled in OnSlotSelected / OnItemSelected, in the respective branch.
+    }
+
+    public void OnRemoveClicked(AbilityLoadoutSlot selected)
+    {
+        _slotForSwap?.Unselect();
+        _slotForSwap = null;
+        selected.Unselect();
+        RemoveSkill(selected.Index);
+        RefreshItemEquippedBorders();
+        ResetSelection();
     }
     
     // Callbacks - Skill book Section
     public void OnItemSelected(AbilityLoadoutItemGroup selected)
     {
+        Log.Warn($"Selected {selected.SkillKey}");
         switch (State)
         {
             case LoadoutPageState.Normal:
-                if (!selected.Equipped)
-                {
-                    // Enter equip state
-                    SetState(LoadoutPageState.Equip);
-                    _selectedItem = selected;
-                }
+                ResetSelection();
+                _selectedItem = selected;
+                SetState(LoadoutPageState.Equip);
+                RefreshItemEquippedBorders();
                 break;
             case LoadoutPageState.Equip:
-                // Change to the newly selected item
-                _selectedItem = selected;
+                if (_selectedItem == null)
+                {
+                    Log.Error("We should always have an item selected when the state is Equip!");
+                    return;
+                }
+                if (_selectedItem == selected) // click the highlighted item again -> Unselect
+                {
+                    _selectedItem = null;
+                    SetState(LoadoutPageState.Normal);
+                }
+                else
+                {
+                    // Change to the newly selected item. Remain in equip state
+                    _selectedItem = selected;
+                    Log.Warn($"{selected.SkillKey} Selected");
+                }
+                
                 break;
             case LoadoutPageState.Swap:
-                // Swap the selected slot and the clicked item.
-                EquipSkill(selected.SkillKey, _selectedSlot.Index);
-                SetState(LoadoutPageState.Normal);
+                if (_slotForSwap == null)
+                {
+                    Log.Error("We should always have a slot for swap when the state is Swap!");
+                    return;
+                }
+                // Equip the selected slot with the clicked item.
+                EquipSkill(selected.SkillKey, _slotForSwap.Index);
+                RefreshItemEquippedBorders();
+                ResetSelection();
                 break;
         }
+    }
+
+    public void OnItemInfoClicked(AbilityLoadoutItemGroup selected)
+    {
+        // TODO
     }
 }
