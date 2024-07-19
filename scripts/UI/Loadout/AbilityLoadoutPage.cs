@@ -117,6 +117,7 @@ public class AbilityLoadoutPage : UniqueUIWindow
     {
         // TODO: Unselect all items
         _state = LoadoutPageState.Normal;
+        return;
         foreach (var kv in _bookItems)
         {
             
