@@ -404,7 +404,7 @@ public class AbilityLoadoutPage : UniqueUIWindow
                     _selectedItem = selected;
                     Log.Warn($"{selected.SkillKey} Selected");
                 }
-                
+                RefreshItemEquippedBorders();
                 break;
             case LoadoutPageState.Swap:
                 if (_slotForSwap == null)
