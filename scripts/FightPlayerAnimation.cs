@@ -249,8 +249,16 @@ public partial class FightPlayer
             .CreateTriggerCondition(knockDownRecoverTrigger);
         aoLayer.CreateTransition(knockDownEndState, aoIdleState, true);
         aoLayer.CreateGlobalTransition(knockDownStartState).CreateTriggerCondition(knockDownTrigger);
-        
 
+
+        #region Elemental
+
+        var punchIceTrigger = stateMachine.CreateVariable("punch_ice", StateMachineVariableKind.TRIGGER);
+        var punchIceState = fightLayer.CreateState("BAT_003/punch_ice_AL_mIK", 0, false);
+        fightLayer.CreateGlobalTransition(punchIceState).CreateTriggerCondition(punchIceTrigger);
+        fightLayer.CreateTransition(punchIceState, idleState, true);
+
+        #endregion
     }
     
     

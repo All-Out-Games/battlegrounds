@@ -678,6 +678,6 @@ public partial class FightAbility
         {SC.ShadowStepConfig.SkillKey, typeof(AbilityShadowStep)},
         {SC.BackstabConfig.SkillKey, typeof(AbilityBackstab)},
         {SC.TotalDarknessConfig.SkillKey, typeof(AbilityTotalDarkness)},
-        {SC.IceFistNodeConfig.SkillKey, typeof(AbilityPunch)}
+        {SC.IceFistNodeConfig.SkillKey, typeof(AbilityIceFist)}
     };
 }

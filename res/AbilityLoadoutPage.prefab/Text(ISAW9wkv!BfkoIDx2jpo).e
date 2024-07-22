@@ -1,8 +1,8 @@
 11
-270582939649
-270303084704884 1721422847533391200
+201863462914
+36421707958575 1721677433236241000
 {
-  "name": "DebugStateTxt",
+  "name": "Text",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,22 +13,22 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "146222836706279:1721333505509789400",
-  "next_sibling": "33896295177465:1721676421452326100",
-  "parent": "262493446113353:1721243717988617600"
+  "previous_sibling": "36421720581156:1721677433241298000",
+  "next_sibling": "36421694884371:1721677433231002900",
+  "parent": "36421683234240:1721677433226334900"
 },
 {
   "cid": 1,
-  "aoid": "270320776850689:1721422856393639600",
+  "aoid": "36421769564163:1721677433260923000",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0,
-      "Y": 0.9499999880790710
+      "X": 0.5000000000000000,
+      "Y": 0
     },
     "max": {
-      "X": 0.0599999986588955,
+      "X": 0.7500000000000000,
       "Y": 1
     },
     "insets": {
@@ -45,13 +45,13 @@
 },
 {
   "cid": 2,
-  "aoid": "270385574927769:1721422888844596400",
+  "aoid": "36421784228675:1721677433266798100",
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "N",
+    "text": "5",
     "settings": {
-      "font_id": "$AO/fonts/Asap-ExtraBold-Fixed.ttf",
+      "font_id": "",
       "size": 24,
       "color": {
         "X": 1,
@@ -79,7 +79,7 @@
         "W": 1
       },
       "do_outline": true,
-      "outline_thickness": 5,
+      "outline_thickness": 2,
       "outline_color": {
         "X": 0,
         "Y": 0,

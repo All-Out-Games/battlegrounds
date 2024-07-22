@@ -1,8 +1,8 @@
 11
-270582939649
-270303084704884 1721422847533391200
+223338299393
+35446426237360 1721677042498391600
 {
-  "name": "DebugStateTxt",
+  "name": "Field",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,45 +13,18 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "146222836706279:1721333505509789400",
-  "next_sibling": "33896295177465:1721676421452326100",
-  "parent": "262493446113353:1721243717988617600"
+  "next_sibling": "35633136281911:1721677117302091900",
+  "parent": "35401832436982:1721677024632286900"
 },
 {
   "cid": 1,
-  "aoid": "270320776850689:1721422856393639600",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIRect",
-  "data": {
-    "min": {
-      "X": 0,
-      "Y": 0.9499999880790710
-    },
-    "max": {
-      "X": 0.0599999986588955,
-      "Y": 1
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
-    }
-  }
-},
-{
-  "cid": 2,
-  "aoid": "270385574927769:1721422888844596400",
+  "aoid": "35473175884276:1721677053215397300",
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "N",
+    "text": "Damage",
     "settings": {
-      "font_id": "$AO/fonts/Asap-ExtraBold-Fixed.ttf",
+      "font_id": "",
       "size": 24,
       "color": {
         "X": 1,
@@ -79,7 +52,7 @@
         "W": 1
       },
       "do_outline": true,
-      "outline_thickness": 5,
+      "outline_thickness": 2,
       "outline_color": {
         "X": 0,
         "Y": 0,
@@ -90,5 +63,31 @@
       "line_height_multiplier": 1
     },
     "push_text_rect": false
+  }
+},
+{
+  "cid": 2,
+  "aoid": "35617287871487:1721677110952568500",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0,
+      "Y": 0
+    },
+    "max": {
+      "X": 0.5000000000000000,
+      "Y": 1
+    },
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
   }
 }

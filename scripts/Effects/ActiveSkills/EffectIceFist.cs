@@ -1,25 +1,16 @@
-using System.Collections;
-using AO;
-using Assembly.scripts;
+﻿using AO;
+namespace Assembly.scripts.Effects.ActiveSkills;
 
-public class AbilityPunch : FightAbility
+public class AbilityIceFist : FightAbility
 {
-    public override string SkillKey => "Punch";
-    public override Type Effect => typeof(EffectPunch);
+    public override string SkillKey => "IceFist";
+    public override Type Effect => typeof(EffectIceFist);
     public override bool MonitorEffectDuration => false;
     public override TargettingMode TargettingMode => TargettingMode.Self;
-
-    public override string SkillIconPath
-    {
-        get
-        {
-            FightPlayer ??= Network.LocalPlayer as FightPlayer;
-            return FightPlayer == null ? SkillConfig.GetPunchAbilityIconPath(1) : SkillConfig.GetPunchAbilityIconPath(FightPlayer.PunchLevel);
-        }
-    }
+    public override float Cooldown => EffectConfig.DoublePunchConfig.Cooldown;
 }
 
-public class EffectPunch : FightEffect
+public class EffectIceFist : FightEffect
 {
     protected EffectConfig.PunchConfig Config;
     public override bool IsActiveEffect => true;
@@ -34,7 +25,7 @@ public class EffectPunch : FightEffect
     {
         base.OnEffectStart();
 
-        AssignConfig(EffectConfig.GetPlayerPunchConfig(FightPlayer.PunchLevel, FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.GetIcePunchConfig(FightPlayer.CurrentAttack));
         FightPlayer.SetAnimTrigger(Config.AnimationTrigger); ;
     }
     
@@ -84,7 +75,7 @@ public class EffectPunch : FightEffect
                 FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position,
                     EffectConfig.PunchConfig.PunchMustHitRange);
             closeTargets.Remove(FightPlayer);
-            Log.Warn($"{closeTargets.Count}");
+
             if (closeTargets.Count > 0)
             {
                 foreach (var fp in closeTargets)
@@ -96,7 +87,4 @@ public class EffectPunch : FightEffect
             }
         }
     }
-    
-
-
 }
