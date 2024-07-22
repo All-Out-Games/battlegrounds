@@ -169,7 +169,6 @@ public static class EffectConfig
 
         public float Speed = 15f;
         public float ProjectileLifetime = 2f;
-        public float ThrowAnimationLength = 0.3f; // You can use this as delay (or use animation event) to spawn the projectile
         public int Damage = 0;
         public string ProjectilePrefabKey;
         public string ThrowTrigger = "throw";
@@ -244,7 +243,6 @@ public static class EffectConfig
     public struct GroundStompConfig
     {
         public static readonly int StompDamageBase = 1;
-        public static readonly float StompAnimationTime = 0.6f; // Entire duration of the punch animation
         public static readonly float Cooldown = 4f;
 
         public int StompDamage = 0;
@@ -374,7 +372,6 @@ public static class EffectConfig
     {
         public static readonly float Cooldown = 5f;
         public static readonly float SlashAnimationTime = 0.25f;
-        public static readonly float SlashActivationTime = 0.05f;
         public static readonly int SlashDmgBase = 1;
         public static readonly float SlashRadius = 2;
 
@@ -434,7 +431,6 @@ public static class EffectConfig
         public static readonly int HealAmtBase = 35;
         public static readonly float ChannelTime = 2.4f;
         public static readonly float Cooldown = 7f;
-        public static readonly string FxPath = "";
     }
 
     #endregion
@@ -475,7 +471,6 @@ public static class EffectConfig
         
         public static readonly float BeamCarveInterval = 0.3f; // Length of each interval. Calculate total intervals at runtime
         public static readonly float CarveFadeTime = 0.6f;
-        public static readonly float CarvePersistTime = 3f;
         public static readonly float EyeOffsetX = -1.5f;
         public static readonly float EyeOffsetY = 0.7f;
 

@@ -562,7 +562,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig IceFistNodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Punch and deals damage",
-        IconPath = "AbilityIcon_Merged/elemental/Ice_Fist.png",
+        IconPath = "AbilityIcon_Merged/elemental/ice_fist.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Elemental,

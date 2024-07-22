@@ -125,4 +125,13 @@
       "Y": 0
     }
   }
+},
+{
+  "cid": 2,
+  "aoid": "32833592487362:1721675995690052400",
+  "component_type": "Mono_Component",
+  "mono_component_type": "UISkillTabButton",
+  "data": {
+
+  }
 }

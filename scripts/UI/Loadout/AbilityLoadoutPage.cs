@@ -18,8 +18,8 @@ public class AbilityLoadoutPage : UniqueUIWindow
 
     [Serialized] private UIButton _nextTab;
     [Serialized] private UIButton _prevTab;
-    
-    
+
+    [Serialized] private UISkillTabButton[] _tabButtons;
     
     
     
@@ -115,6 +115,14 @@ public class AbilityLoadoutPage : UniqueUIWindow
             slot.RemoveButton.OnClicked += slot.OnRemoveClicked;
         }
         
+        // First Open Phase 4
+        // Associate Tab Buttons
+        for(int i = 0; i < _tabButtons.Length; i++)
+        {
+            
+            _tabButtons[i].Initialize(i, OnTabClicked);
+        }
+        
         
         ResetSelection();
         
@@ -181,6 +189,12 @@ public class AbilityLoadoutPage : UniqueUIWindow
         {
             _currentTabIndex = 0;
         }
+        UpdateSkillTreeTab(_availableTabs[_currentTabIndex]);
+    }
+
+    private void OnTabClicked(int index)
+    {
+        _currentTabIndex = index;
         UpdateSkillTreeTab(_availableTabs[_currentTabIndex]);
     }
     
