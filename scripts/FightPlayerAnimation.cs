@@ -18,10 +18,10 @@ public partial class FightPlayer
         
         // AL Layer
         var fightLayer = stateMachine.CreateLayer("fight_layer", 10);
-        var idleState = fightLayer.CreateState("BAT_003/neutralize_AL", 0, false);
+        var idleState = fightLayer.CreateState("Idle", 0, false);
         var emptyState = fightLayer.CreateState("__CLEAR_TRACK__", 0, true);
-        
-        fightLayer.SetInitialState(idleState);
+
+        fightLayer.SetInitialState(emptyState);
         fightLayer.CreateTransition(idleState, emptyState, true);
         fightLayer.CreateGlobalTransition(idleState).CreateTriggerCondition(resetTrigger);
 
@@ -244,6 +244,7 @@ public partial class FightPlayer
         var knockDownStartState = aoLayer.CreateState("BAT_003/knocked_down", 0, false);
         var knockDownLoopState = aoLayer.CreateState("BAT_003/knocked_down_loop", 0, true);
         var knockDownEndState = aoLayer.CreateState("BAT_003/knocked_down_get_up", 0, false);
+
         aoLayer.CreateTransition(knockDownStartState, knockDownLoopState, true);
         aoLayer.CreateTransition(knockDownLoopState, knockDownEndState, false)
             .CreateTriggerCondition(knockDownRecoverTrigger);
@@ -265,6 +266,12 @@ public partial class FightPlayer
     
     public void SetAnimTrigger(string variableName)
     {
+        SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
+    }
+
+    public void SetAnimTriggerWithReset(string variableName)
+    {
+        SpineAnimator.SpineInstance.StateMachine.SetTrigger("RESET");
         SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
     }
 

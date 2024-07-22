@@ -19,7 +19,7 @@ public class EffectBackstab : EffectNoMovement
 {
     // This effect triggers after the kunai hits
     // Play the victim animation and takes damage from the caster
-    public override bool IsActiveEffect => true;
+    public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
     public override bool FreezePlayer => true;
 
@@ -37,6 +37,7 @@ public class EffectBackstab : EffectNoMovement
             return;
         }
         FightPlayer.SetAnimTrigger("backstabbed");
+        DurationRemaining = MainLayer.GetCurrentStateLength();
     }
     
 
@@ -73,8 +74,7 @@ public class EffectBackstabCaster : FightEffectWithImmunity
         }
         Vector2 casterPos = Caster.Entity.Position - victimFp.GetFacingDirectionAsVector();
         FightPlayer.Teleport(casterPos);
-        FightPlayer.SetAnimTrigger("RESET");
-        FightPlayer.SetAnimTrigger("backstab");
+        FightPlayer.SetAnimTriggerWithReset("backstab");
         DurationRemaining = MainLayer.GetCurrentStateLength();
         FightPlayer.SetFacingDirection(victimFp.GetFacingDirection());
     }
