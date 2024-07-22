@@ -122,8 +122,6 @@ public class AbilityLoadoutPage : UniqueUIWindow
     
     public void ResetSelection()
     {
-        // TODO: Unselect all items
-        
         // Unselect loadout slots
         _slotForSwap = null;
         foreach (var slot in _loadoutSlots)
@@ -137,7 +135,7 @@ public class AbilityLoadoutPage : UniqueUIWindow
         
         SetState(LoadoutPageState.Normal);
         
-        Log.Warn($"Equipped Skills {_equippedSkillKey[0]} {_equippedSkillKey[1]} {_equippedSkillKey[2]} {_equippedSkillKey[3]} {_equippedSkillKey[4]} {_equippedSkillKey[5]}");
+        //Log.Warn($"Equipped Skills {_equippedSkillKey[0]} {_equippedSkillKey[1]} {_equippedSkillKey[2]} {_equippedSkillKey[3]} {_equippedSkillKey[4]} {_equippedSkillKey[5]}");
     }
 
     public override void Update()
@@ -153,6 +151,7 @@ public class AbilityLoadoutPage : UniqueUIWindow
         
         ResetSelection();
         base.CloseWindow();
+        SaveSkills();
     }
 
     public override void OpenWindow()
@@ -304,6 +303,17 @@ public class AbilityLoadoutPage : UniqueUIWindow
         foreach (var slot in _loadoutSlots)
         {
             slot.OnParentStateChange(st); // Replace icon appear in swap state / equip state
+        }
+    }
+    
+    private void SaveSkills()
+    {
+        for (int i = 1; i < 6; i++)
+        {
+            Type f = FightAbility.AbilityQueryDict[_equippedSkillKey[i]];
+            
+            _slotsMgr.ReplaceSlot(i, _slotsMgr.GetAbilityInstance(f));
+            _slotsMgr.CallServer_SetSavedSkillSlot(i, _equippedSkillKey[i]);
         }
     }
     
