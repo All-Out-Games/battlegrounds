@@ -18,6 +18,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PunchNodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Punch and deals damage",
+        RangeDescriptionKey = "Melee",
         IconPath = "AbilityIcon_Merged/basic/punch.png",
         MaximumLevel = 1,
         NType = NodeType.SkillReplace,
@@ -81,6 +82,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PunchTwoConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Upgrade your punch to be more powerful",
+        RangeDescriptionKey = "Melee",
         IconPath = "AbilityIcon_Merged/basic/punch_2.png",
         MaximumLevel = 1,
         NeedRemover = true,
@@ -145,6 +147,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PunchThreeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Upgrade your punch to be more powerful",
+        RangeDescriptionKey = "Melee",
         IconPath = "AbilityIcon_Merged/basic/punch_3.png",
         MaximumLevel = 1,
         NeedRemover = true,
