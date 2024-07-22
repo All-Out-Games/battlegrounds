@@ -192,9 +192,11 @@ public class AbilityVendorWindow : UniqueUIWindow
                 TabScrollHeight[cfg.NTab] = float.Max(TabScrollHeight[cfg.NTab], cfg.UIPosition.Y);
             }
             
+            
         }
         UIRect scrollRect = AbilityNode.GetComponent<UIRect>();
-        scrollRect.Insets = scrollRect.Insets with { Z = -(TabScrollHeight[tab] + 150) };
+        scrollRect.Insets = scrollRect.Insets with { Z = -(TabScrollHeight[tab])/2 };
+        
     }
 
     private void PreviousTab()

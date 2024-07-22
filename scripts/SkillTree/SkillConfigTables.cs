@@ -18,6 +18,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PunchNodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Punch and deals damage",
+        RangeDescriptionKey = "Melee",
         IconPath = "AbilityIcon_Merged/basic/punch.png",
         MaximumLevel = 1,
         NType = NodeType.SkillReplace,
@@ -81,6 +82,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PunchTwoConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Upgrade your punch to be more powerful",
+        RangeDescriptionKey = "Melee",
         IconPath = "AbilityIcon_Merged/basic/punch_2.png",
         MaximumLevel = 1,
         NeedRemover = true,
@@ -145,6 +147,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PunchThreeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Upgrade your punch to be more powerful",
+        RangeDescriptionKey = "Melee",
         IconPath = "AbilityIcon_Merged/basic/punch_3.png",
         MaximumLevel = 1,
         NeedRemover = true,
@@ -450,7 +453,7 @@ public static partial class SkillConfig
 
     #endregion
 
-    #region Stealth
+    #region NodeConfig: Stealth
 
     public static readonly SkillTreeNodeConfig InvisibilityConfig = new SkillTreeNodeConfig()
     {
@@ -554,6 +557,27 @@ public static partial class SkillConfig
 
     #endregion
 
+    #region NodeConfig: Element
+
+    /// <summary>
+    /// Punch node
+    /// </summary>
+    public static readonly SkillTreeNodeConfig IceFistNodeConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Punch and deals damage",
+        IconPath = "AbilityIcon_Merged/elemental/ice_fist.png",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Elemental,
+        UpgradeCost = 100,
+        UIPosition = new Vector2(450, 30), // This will be set to the item's offset value
+        SkillKey = "IceFist",
+        ParentNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { },
+    };
+
+    #endregion
+
     // [Add Skill] item 2: Query Entry
     // MUST ADD for each new skill. This connects the unique skill key to their node config.
     // The standard format is {"[SkillKey]", "[SkillKey]Config"}
@@ -596,7 +620,9 @@ public static partial class SkillConfig
             { "BearTrap", BearTrapConfig },
             { "ShadowStep", ShadowStepConfig },
             { "Backstab", BackstabConfig },
-            { "TotalDarkness", TotalDarknessConfig }
+            { "TotalDarkness", TotalDarknessConfig },
+            // Elemental
+            {"IceFist", IceFistNodeConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -611,7 +637,9 @@ public static partial class SkillConfig
         // Psionic
         "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize", "PsionicBeam", "PsyThrow",
         // Stealth
-        "Invisibility", "LightFeet", "Shuriken", "BearTrap", "ShadowStep", "Backstab", "TotalDarkness"
+        "Invisibility", "LightFeet", "Shuriken", "BearTrap", "ShadowStep", "Backstab", "TotalDarkness",
+        // Elemental
+        "IceFist"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "Punch2", "Punch3" };
@@ -652,6 +680,7 @@ public partial class FightAbility
         {SC.BearTrapConfig.SkillKey, typeof(AbilityBearTrap)},
         {SC.ShadowStepConfig.SkillKey, typeof(AbilityShadowStep)},
         {SC.BackstabConfig.SkillKey, typeof(AbilityBackstab)},
-        {SC.TotalDarknessConfig.SkillKey, typeof(AbilityTotalDarkness)}
+        {SC.TotalDarknessConfig.SkillKey, typeof(AbilityTotalDarkness)},
+        {SC.IceFistNodeConfig.SkillKey, typeof(AbilityIceFist)}
     };
 }

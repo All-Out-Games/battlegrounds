@@ -22,6 +22,9 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
 
     protected override bool PreventMovement => true;
     protected override string InvincibilityReason => "ShoulderCrash";
+    
+    protected float NextDmgTick = 1;
+    protected bool Ticked = false;
 
 
     public override void OnEffectStart()
@@ -29,19 +32,20 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
         base.OnEffectStart();
         AssignConfig(EffectConfig.ShoulderCrashConfig.GetDefault(FightPlayer.CurrentAttack));
         DurationRemaining = _config.DashDuration + 0.1f;
-        FightPlayer.AddPlayerCollisionFunction(OnShoulderCrashCollision);
+        //FightPlayer.AddPlayerCollisionFunction(OnShoulderCrashCollision);
 
         Vector2 dir = GetDashDirection();
+        _interactedEntity.Add(Player.Entity);
         
         FightPlayer.AddDash(dir * _config.DashSpeed, _config.DashDuration);
         // The player is invincible and not allowed to input movement during the dash
-        FightStateMachine.SetTrigger("shoulder_crash");
+        FightPlayer.SetAnimTriggerWithReset("shoulder_crash");
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        FightPlayer.RemovePlayerCollisionFunction(OnShoulderCrashCollision);
+        //FightPlayer.RemovePlayerCollisionFunction(OnShoulderCrashCollision);
         _interactedEntity = null;
         FightStateMachine.SetTrigger("shoulder_crash_end");
     }
@@ -61,17 +65,34 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
     protected void OnShoulderCrashCollision(Entity other)
     {
         if (_interactedEntity.Contains(other)) return; // Only interact once with each entity
-        
-        _interactedEntity.Add(other);
-        
+
         FightPlayer otherPlayer = other.GetComponent<FightPlayer>();
         if (otherPlayer != null)
         {
-            Vector2 bumpDir = other.Position - Entity.Position;
-            var add = bumpDir * _config.BumpStrength;
-            otherPlayer.AddBumpFrom(FightPlayer, add, false);
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage) with{ InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel};
-            otherPlayer.TakeDamage(FightPlayer, info);
+            ShoulderCrashDamage(otherPlayer);
+        }
+    }
+
+    private void ShoulderCrashDamage(FightPlayer otherPlayer)
+    {
+        Vector2 bumpDir = otherPlayer.Entity.Position - Entity.Position;
+        var add = bumpDir.Normalized * _config.BumpStrength;
+        otherPlayer.AddBumpFrom(FightPlayer, add, false);
+        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage) with{ InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel};
+        otherPlayer.TakeDamage(FightPlayer, info);
+    }
+
+    public override void OnEffectUpdate()
+    {
+        base.OnEffectUpdate();
+        foreach (var fp in FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 1.5f))
+        {
+            if (!_interactedEntity.Contains(fp.Entity))
+            {
+                ShoulderCrashDamage(fp);
+                _interactedEntity.Add(fp.Entity);
+            }
+                
         }
     }
 }

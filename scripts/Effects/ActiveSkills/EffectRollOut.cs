@@ -1,6 +1,7 @@
 ﻿using AO;
 using Assembly.scripts;
 using StreamReader = AO.StreamReader;
+using StreamWriter = AO.StreamWriter;
 
 
 public class AbilityRollOut : FightAbility
@@ -36,6 +37,10 @@ public class EffectRollOut : FightEffect
     private static readonly List<Type> Wl = new List<Type>() { typeof(AbilityRollOutCancel) };
     public override List<Type> AbilityWhitelist => Wl;
     private int _originalIndex = -1;
+    
+    
+    protected float NextDmgTick = 1;
+    protected bool Ticked = false;
 
     /// <summary>
     /// Call this function before adding the created Effect instance to the player!
@@ -73,10 +78,19 @@ public class EffectRollOut : FightEffect
 
         
     }
+    
+    
+
+    public override void NetworkSerialize(StreamWriter writer)
+    {
+        base.NetworkSerialize(writer);
+        writer.Write(NextDmgTick);
+    }
 
     public override void NetworkDeserialize(StreamReader reader)
     {
         base.NetworkDeserialize(reader);
+        NextDmgTick = reader.Read<float>();
         //AssignConfig(EffectConfig.GetPlayerRollOutConfig(FightPlayer.CurrentAttack));
         RollOutStart();
     }
@@ -86,10 +100,27 @@ public class EffectRollOut : FightEffect
         FightPlayer.UnsetAnimTrigger("rollout_end");
         AssignConfig(EffectConfig.RollOutConfig.GetDefault(FightPlayer.CurrentAttack));
         FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
-        FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
+        
+        // TODO: This collision is currently broken because the player collision entity will continuously trigger with the player itself and ignore others
+        // It should be fixed when we add collision layers
+        // FightPlayer.AddPlayerCollisionFunction(OnRolloutCollision);
         
         FightPlayer.OnReceiveDamage += OnDamageEvent;
         FightPlayer.RegisterPreDamageEvent(this);
+    }
+
+    public override void OnEffectUpdate()
+    {
+        base.OnEffectUpdate();
+        if (Util.OneTime(ElapsedTime > NextDmgTick, ref Ticked))
+        {
+            foreach (var fp in FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 2))
+            {
+                RolloutDamage(fp);
+            }
+            NextDmgTick += 1;
+            Ticked = false;
+        }
     }
 
 
@@ -98,7 +129,7 @@ public class EffectRollOut : FightEffect
         base.OnEffectEnd(interrupt);
         
         FightPlayer.RemoveSpeedModifier(_config.SpeedBuffMultiplier);
-        FightPlayer.RemovePlayerCollisionFunction(OnRolloutCollision);
+        // FightPlayer.RemovePlayerCollisionFunction(OnRolloutCollision);
         
         FightPlayer.OnReceiveDamage -= OnDamageEvent;
         FightPlayer.RemovePreDamageEvent(this);
@@ -130,17 +161,21 @@ public class EffectRollOut : FightEffect
         
         if (otherPlayer != null && otherPlayer.Damageable())
         {
-            if(otherPlayer == FightPlayer || otherPlayer.HasEffect<EffectNoMovement>())
-            {
-                return;
-            }
-            Vector2 bumpDir = other.Position - Entity.Position;
-            var add = bumpDir * _config.BumpStrength;
-            otherPlayer.AddBumpFrom(FightPlayer, add, false);
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage) with {InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel};
-            otherPlayer.TakeDamage( FightPlayer, info);
-
+            RolloutDamage(otherPlayer);
         }
+    }
+
+    protected void RolloutDamage(FightPlayer otherPlayer)
+    {
+        if(otherPlayer == FightPlayer || otherPlayer.HasEffect<EffectNoMovement>())
+        {
+            return;
+        }
+        Vector2 bumpDir = otherPlayer.Entity.Position - Entity.Position;
+        var add = bumpDir.Normalized * _config.BumpStrength;
+        otherPlayer.AddBumpFrom(FightPlayer, add, false);
+        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage) with {InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel};
+        otherPlayer.TakeDamage( FightPlayer, info);
     }
 
     public override void PreDamageMod(ref FightPlayer.DamageInfo info)

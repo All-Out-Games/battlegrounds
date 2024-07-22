@@ -29,6 +29,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
         PlayerTeleportEvent += OnPlayerTeleport;
         PlayerEliminationEvent += OnPlayerElimination;
         //PlayerDamageEvent += OnPlayerDamage;
+        Chat.SetChatMode(Chat.Mode.BubbleOnly);
     }
 
     public override void Update() 

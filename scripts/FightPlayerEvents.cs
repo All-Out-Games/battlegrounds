@@ -131,9 +131,15 @@ public partial class FightPlayer
     public void NotifyReceiveDamage(Entity source, DamageInfo info)
     {
         OnReceiveDamage?.Invoke(source.GetComponent<FightPlayer>(), info);
-        if (PlayerStatus == PlayerStatus.Combat)
+        
+        if (Network.IsClient && PlayerStatus == PlayerStatus.Combat)
         {
-            FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, info.DamageNumberColor, int.Abs(info.ReactionInfo.Amount).ToString());
+            // Log.Warn($"{source == Entity}, {source.Name}, {Entity.Name}");
+            if (IsLocal || source == Network.LocalPlayer.Entity) // Player takes the damage or deals damage
+            {
+                FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, info.DamageNumberColor, int.Abs(info.ReactionInfo.Amount).ToString());
+            }
+            
         }
     }
 

@@ -62,6 +62,7 @@ public static partial class SkillConfig
     public struct SkillTreeNodeConfig
     {
         public string DescriptionTextKey;
+        public string RangeDescriptionKey = "N/A";
         
         public int UpgradeCost;
         public int MaximumLevel; // Not used but put it here for redundancy. This number must be at least 1
@@ -86,7 +87,24 @@ public static partial class SkillConfig
         // Stat Type. Fill this if this is a stat buff node. This can only buff one stat, if need multiple or other custom data, implement special handler
         public StatBuff Buff;
 
-        
+        public SkillTreeNodeConfig()
+        {
+            DescriptionTextKey = "Unfilled";
+            UpgradeCost = 0;
+            MaximumLevel = 1;
+            NType = NodeType.AttrBoost;
+            NTab = SkillTreeTabs.Basic;
+            UIPosition = default;
+            SkillKey = "Empty";
+            IconPath = FightAbility.DefaultIconPath;
+            ChildrenNodeKeys = new string[] { };
+            ParentNodeKeys = new string[] { };
+            NeedSpecialHandler = false;
+            NeedRemover = false;
+            Buff = default;
+        }
+
+
         // PROGRAMMING NOTICE:
         // In C# structs, empty array (e.g. string[] ChildrenNodeKeys) will be initialized to null.
         // You must do a null check if you want to iterate over it.
@@ -99,6 +117,7 @@ public static partial class SkillConfig
         {
             return ParentNodeKeys ?? Array.Empty<string>();
         }
+        
     }
 
     public static string GetIconPath(string key)

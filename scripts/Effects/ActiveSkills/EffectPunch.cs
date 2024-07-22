@@ -55,7 +55,7 @@ public class EffectPunch : FightEffect
     }
     public void Punch()
     {
-        Log.Debug($"Punch! Dmg: {Config.PunchDamage}");
+        //Log.Debug($"Punch! Dmg: {Config.PunchDamage}");
         Physics.RaycastHit rc;
         
         // Re-adjust aiming

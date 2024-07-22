@@ -14,7 +14,7 @@ public class AbilitySelfDestruct : FightAbility
     public override float Cooldown => EffectConfig.SelfDestructConfig.Cooldown;
 }
 
-public class EffectSelfDestruct : FightEffectWithImmunity
+public class EffectSelfDestruct : FightEffectWithNoFlinch
 {
     protected EffectConfig.SelfDestructConfig Config;
     
