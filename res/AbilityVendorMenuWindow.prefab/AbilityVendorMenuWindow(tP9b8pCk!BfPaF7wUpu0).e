@@ -63,13 +63,4 @@
     "layer": -3,
     "relative": true
   }
-},
-{
-  "cid": 4,
-  "aoid": "11370635438843:1721667396749372300",
-  "component_type": "Mono_Component",
-  "mono_component_type": "AEffect",
-  "data": {
-
-  }
 }

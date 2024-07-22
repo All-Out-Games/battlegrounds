@@ -97,7 +97,7 @@ AbilityIcon_Merged/stealth/total_darkness.png - .ao.ios - 669018f2b45eb9e8339c1b
 AbilityItem.prefab - .ao - 6685994db45eb9e8339c0fc3 - 14427433616163832665
 AbilityLoadoutPage.prefab - .ao - 669e8efcb45eb9e8339c21e7 - 3618116906224952839
 AbilityUpgradeDialog.prefab - .ao - 6685994eb45eb9e8339c0fc7 - 16855350947188284189
-AbilityVendorMenuWindow.prefab - .ao - 669e8f56b45eb9e8339c21e9 - 10500320031875447073
+AbilityVendorMenuWindow.prefab - .ao - 669e9594b45eb9e8339c21eb - 10868794227734410679
 BattleCry_Shockwave.prefab - .ao - 668863d8b45eb9e8339c1985 - 3209635888150171771
 BearTrap.prefab - .ao - 6685d28fb45eb9e8339c10bf - 13247918014571345649
 BefuddleProjectile.prefab - .ao - 668c5245b45eb9e8339c1a0a - 8271891606478035943
