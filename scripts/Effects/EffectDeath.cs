@@ -9,7 +9,7 @@ public class EffectDeath : FightEffectWithImmunity
     public override void OnEffectStart()
     {
         base.OnEffectStart();
-        FightPlayer.SetAnimTrigger("death");
+        FightPlayer.SetAnimTriggerWithReset("death");
         FightPlayer.AddDash(Vector2.Zero, 0);
         FightPlayer.AddBump(Vector2.Zero, true);
     }

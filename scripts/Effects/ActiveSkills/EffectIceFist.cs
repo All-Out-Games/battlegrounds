@@ -7,7 +7,7 @@ public class AbilityIceFist : FightAbility
     public override Type Effect => typeof(EffectIceFist);
     public override bool MonitorEffectDuration => false;
     public override TargettingMode TargettingMode => TargettingMode.Self;
-    public override float Cooldown => EffectConfig.DoublePunchConfig.Cooldown;
+    public override float Cooldown => EffectConfig.IceFistConfig.Cooldown;
 }
 
 public class EffectIceFist : FightEffect

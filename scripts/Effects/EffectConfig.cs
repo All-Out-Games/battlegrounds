@@ -58,8 +58,6 @@ public static class EffectConfig
         public int PunchDamage = 5;
         public string AnimationTrigger = "punch";
 
-        public static int IcePunchDmgBase = 5;
-        
         public PunchConfig()
         {
         
@@ -80,7 +78,7 @@ public static class EffectConfig
     {
         PunchConfig cfg = new PunchConfig
         {
-            PunchDamage = PunchConfig.IcePunchDmgBase + atk,
+            PunchDamage = IceFistConfig.BaseDamage + atk,
             AnimationTrigger = "punch_ice"
         };
         return cfg;
@@ -620,6 +618,17 @@ public static class EffectConfig
         public static float Cooldown = 20f;
         public static float Range = 6f;
         public static float BlindTime = 6f;
+    }
+
+    #endregion
+
+    #region cfg: Ice Fist
+
+    public struct IceFistConfig
+    {
+        public static float Cooldown = 3.5f;
+        public static int BaseDamage = 4; // This skill uses PunchConfig so this config does not need to be instantiated
+        // See 
     }
 
     #endregion

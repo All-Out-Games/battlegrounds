@@ -92,11 +92,23 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     [ServerRpc]
     public void SetSavedSkillSlot(int index, string skillKey)
     {
-        if (index < 0 || index > 5 || !SkillConfig.GetAllSkillKeys().Contains(skillKey))
+        
+
+        if (Network.IsServer)
         {
-            return;
+            // Not valid index
+            if (index < 0 || index > 5)
+            {
+                return;
+            }
+            // Not valid skill key
+            if (skillKey != FightAbility.DefaultSkillKey && !SkillConfig.GetAllSkillKeys().Contains(skillKey))
+            {
+                return;
+            }
+            
+            Save.SetString(_player, $"SkillSlot{index}", skillKey);
         }
-        if(Network.IsServer) Save.SetString(_player, $"SkillSlot{index}", skillKey);
     }
 
     [ClientRpc] 
