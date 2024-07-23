@@ -11,8 +11,8 @@ public static class EffectConfig
 
     public struct RollOutConfig
     {
-        public static int BumpDmgBase = 9;
-        public static float Cooldown = 7f;
+        public static int BumpDmgBase = 3;
+        public static float Cooldown = 10f;
         
         public float Duration = 5f;
         public int ContactDamage = 5;
@@ -58,7 +58,7 @@ public static class EffectConfig
         public int PunchDamage = 5;
         public string AnimationTrigger = "punch";
 
-        public static int IcePunchDmgBase = 2;
+        public static int IcePunchDmgBase = 5;
         
         public PunchConfig()
         {
@@ -92,10 +92,10 @@ public static class EffectConfig
 
     public struct ShoulderCrashConfig
     {
-        public static int BumpDmgBase = 9;
-        public static float Cooldown = 4f;
+        public static int BumpDmgBase = 5;
+        public static float Cooldown = 6f;
         
-        public float DashDuration = 1f;
+        public float DashDuration = 1.5f;
         public float DashSpeed = 200f;
         
         public int ContactDamage = 5;
@@ -124,8 +124,8 @@ public static class EffectConfig
 
     public struct ShieldConfig
     {
-        public static readonly int ShieldAmtBase = 20;
-        public static readonly float Cooldown = 6f;
+        public static readonly int ShieldAmtBase = 25;
+        public static readonly float Cooldown = 10f;
         
         public float Duration = 8f;
         public int ShieldAmt = ShieldAmtBase;
@@ -151,22 +151,22 @@ public static class EffectConfig
     public struct ProjectileConfig
     {
         // Spoon
-        public static readonly int SpoonDamageBase = 3;
-        public static readonly float SpoonThrowCooldown = 3f;
+        public static readonly int SpoonDamageBase = 2;
+        public static readonly float SpoonThrowCooldown = 4f;
         public static readonly float SpoonRange = 10f;
         public static readonly float SpoonLifetime = 0.6f;
 
         // Befuddle
-        public static readonly int BefuddleDamageBase = 1;
-        public static readonly float BefuddleCooldown = 7;
+        public static readonly int BefuddleDamageBase = 0;
+        public static readonly float BefuddleCooldown = 12;
         public static readonly float BefuddleRange = 10f;
         public static readonly float BefuddleLifetime = 1f;
-        public static readonly float BefuddleConfusionTime = 2.75f;
+        public static readonly float BefuddleConfusionTime = 2f;
         public static readonly float BefuddleConfusionIntensity = 75f; // Higher will make player walk faster in confused state
         
         // PsyBolt
-        public static readonly int PsyboltDamageBase = 6;
-        public static readonly float PsyboltCooldown = 4.5f;
+        public static readonly int PsyboltDamageBase = 5;
+        public static readonly float PsyboltCooldown = 8f;
         public static readonly float PsyboltRange = 10f;
         public static readonly float PsyboltLifeTime = 1f;
         public static readonly float PsyboltKnockbackStrength = 165f;
@@ -174,7 +174,7 @@ public static class EffectConfig
         // Shuriken
         public static readonly int ShurikenDamageBase = 5;
         public static readonly float ShurikenBackDamageModifier = 1.5f;
-        public static readonly float ShurikenCooldown = 4.5f;
+        public static readonly float ShurikenCooldown = 4f;
         public static readonly float ShurikenRange = 6f;
         public static readonly float ShurikenLifetime = 0.5f;
 
@@ -253,8 +253,8 @@ public static class EffectConfig
 
     public struct GroundStompConfig
     {
-        public static readonly int StompDamageBase = 1;
-        public static readonly float Cooldown = 4f;
+        public static readonly int StompDamageBase = 10;
+        public static readonly float Cooldown = 12f;
 
         public int StompDamage = 0;
         public float StompRadius = 4;
@@ -282,9 +282,9 @@ public static class EffectConfig
 
     public struct RageConfig
     {
-        public static int AtkBoostBase = 6;
-        public static float Cooldown = 4f;
-        public static float Duration = 5f;
+        public static int AtkBoostBase = 10;
+        public static float Cooldown = 23f;
+        public static float Duration = 8f;
         public int AtkBoost;
 
         public RageConfig()
@@ -305,8 +305,8 @@ public static class EffectConfig
 
     public struct DoublePunchConfig
     {
-        public static int BaseDmg = 2;
-        public static float Cooldown = 3f;
+        public static int BaseDmg = 7;
+        public static float Cooldown = 6f;
         public static float PunchAnimationTime = 0.4f; // A bit quicker than normal punch
         public static float PunchRange = 2;
 
@@ -330,9 +330,9 @@ public static class EffectConfig
 
     public struct SelfDestructConfig
     {
-        public static int BaseDmg = 12;
-        public static int BaseSelfDmg = 10;
-        public static float Cooldown = 11f;
+        public static int BaseDmg = 25;
+        public static int BaseSelfDmg = 30;
+        public static float Cooldown = 25f;
         public static float BlastRange = 8f;
         public static float BumpStrength = 140f;
 
@@ -355,9 +355,9 @@ public static class EffectConfig
 
     public struct BattleCryConfig
     {
-        public static readonly float Cooldown = 7f;
+        public static readonly float Cooldown = 14f;
         public static readonly float RoarAnimationTime = 0.9f;
-        public static readonly int RoarDmgBase = 0;
+        public static readonly int RoarDmgBase = 10;
         
         public float StunTime = 0.8f;
         public float RoarRadius = 5;
@@ -381,12 +381,12 @@ public static class EffectConfig
 
     public struct ClawSlashConfig
     {
-        public static readonly float Cooldown = 5f;
+        public static readonly float Cooldown = 8f;
         public static readonly float SlashAnimationTime = 0.25f;
-        public static readonly int SlashDmgBase = 1;
+        public static readonly int SlashDmgBase = 2;
         public static readonly float SlashRadius = 2;
 
-        public float BleedTime = 5f;
+        public float BleedTime = 9f;
         public int BleedDmg = 1;
         public int SlashDamage = 1;
 
@@ -408,9 +408,9 @@ public static class EffectConfig
 
     public struct LeapSlamConfig
     {
-        public static int SlamDamageBase = 5;
+        public static int SlamDamageBase = 15;
         public static float KnockDownTime = 1f;
-        public static float Cooldown = 7f;
+        public static float Cooldown = 16f;
         
 
         public int SlamDamage = 5;
@@ -439,9 +439,9 @@ public static class EffectConfig
 
     public struct SelfHealConfig
     {
-        public static readonly int HealAmtBase = 35;
+        public static readonly int HealAmtBase = 30;
         public static readonly float ChannelTime = 2.4f;
-        public static readonly float Cooldown = 7f;
+        public static readonly float Cooldown = 15f;
     }
 
     #endregion
@@ -450,9 +450,9 @@ public static class EffectConfig
 
     public struct RegenerateConfig
     {
-        public static readonly int PerSecondHeal = 3;
-        public static readonly float HealTime = 6f;
-        public static readonly float Cooldown = 6f;
+        public static readonly int PerSecondHeal = 5;
+        public static readonly float HealTime = 8f;
+        public static readonly float Cooldown = 20f;
     }
 
     #endregion
@@ -472,11 +472,11 @@ public static class EffectConfig
 
     public struct PsionicBeamConfig
     {
-        public static readonly float Cooldown = 6f;
+        public static readonly float Cooldown = 16f;
         public static readonly float MinimumRange = 4f;
-        public static readonly float MaximumRange = 8f;
+        public static readonly float MaximumRange = 12f;
         public static readonly float Degrees = 15f; // Half the entire angle
-        public static readonly int PsionicBeamDmgBase = 3;
+        public static readonly int PsionicBeamDmgBase = 12;
         public static readonly float CarveTime = 0.4f;
         
         
@@ -503,7 +503,7 @@ public static class EffectConfig
 
     public struct PsyThrowConfig
     {
-        public static readonly float Cooldown = 7f;
+        public static readonly float Cooldown = 24f;
         public static readonly float Range = 8f;
         public static readonly float ThrowRange = 12f;
         public static readonly float ThrowStrength = 180f;
@@ -526,8 +526,8 @@ public static class EffectConfig
 
     public struct InvisibilityConfig
     {
-        public static readonly float Cooldown = 6f;
-        public static readonly float InvisTime = 4f;
+        public static readonly float Cooldown = 10f;
+        public static readonly float InvisTime = 5f;
     }
 
     #endregion
@@ -537,7 +537,7 @@ public static class EffectConfig
     public struct LightFeetConfig
     {
         public static float SpeedModifier = 1.3f;
-        public static float Cooldown = 5f;
+        public static float Cooldown = 8f;
         public static float BoostTime = 5f;
 
     }
@@ -548,11 +548,11 @@ public static class EffectConfig
 
     public struct BearTrapConfig
     {
-        public static int TrapBaseDamage = 2;
-        public static float TrapLifeTime = 10f;
-        public static float TrapArmTime = 2f;
-        public static float Cooldown = 7f;
-        public static float MaxSetupDistance = 4; 
+        public static int TrapBaseDamage = 10;
+        public static float TrapLifeTime = 15f;
+        public static float TrapArmTime = 1f;
+        public static float Cooldown = 5f;
+        public static float MaxSetupDistance = 5; 
 
         public static string TrapPrefabPath = "BearTrap.prefab";
 
@@ -571,7 +571,7 @@ public static class EffectConfig
 
     public struct ShadowStepConfig
     {
-        public static float Cooldown = 2f;
+        public static float Cooldown = 4f;
         public static float MovementDistance = 4f;
     }
 
@@ -581,7 +581,7 @@ public static class EffectConfig
 
     public struct BackStabConfig
     {
-        public static float Cooldown = 9f;
+        public static float Cooldown = 12f;
         public static readonly float KunaiRange = 6f;
         public static readonly float KunaiLifetime = 0.5f;
         public static ProjectileConfig GetKunaiConfig()
@@ -613,9 +613,9 @@ public static class EffectConfig
 
     public struct TotalDarknessConfig
     {
-        public static float Cooldown = 6f;
+        public static float Cooldown = 20f;
         public static float Range = 6f;
-        public static float BlindTime = 4f;
+        public static float BlindTime = 6f;
     }
 
     #endregion
