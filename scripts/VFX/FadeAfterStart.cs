@@ -15,7 +15,6 @@ public class FadeAfterStart : Component
     protected Spine_Animator Animator;
     protected Sprite_Renderer Sprite;
     
-    protected bool FadeCompleted;
 
     protected float ElapsedTime = 0;
     

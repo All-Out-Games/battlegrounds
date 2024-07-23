@@ -102,7 +102,7 @@ BattleCry_Shockwave.prefab - .ao - 668863d8b45eb9e8339c1985 - 320963588815017177
 BearTrap.prefab - .ao - 6685d28fb45eb9e8339c10bf - 13247918014571345649
 BefuddleProjectile.prefab - .ao - 668c5245b45eb9e8339c1a0a - 8271891606478035943
 Befuddle_Hit.prefab - .ao - 66904de1b45eb9e8339c1be8 - 9947058021191885588
-BloodVFX.prefab - .ao - 668c54ebb45eb9e8339c1a11 - 2289728732398408107
+BloodVFX.prefab - .ao - 669f4dfbb45eb9e8339c21fe - 8758899081934544505
 BroccoliProjectile.prefab - .ao - 6685994fb45eb9e8339c0fce - 5129262647641696432
 ClawSwipe.prefab - .ao - 6685994fb45eb9e8339c0fd0 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603

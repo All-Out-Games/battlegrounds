@@ -12,8 +12,7 @@
   "local_scale": {
     "X": 1,
     "Y": 1
-  },
-  "previous_sibling": "377316458197998:1716489394196426200"
+  }
 },
 {
   "cid": 1,
@@ -29,7 +28,8 @@
     "skeleton_scale": {
       "X": 1,
       "Y": 1
-    }
+    },
+    "mask_in_shadow": false
   }
 },
 {
@@ -52,7 +52,7 @@
   "component_type": "Mono_Component",
   "mono_component_type": "AttachmentObject",
   "data": {
-    "EntityLifeTime": 6
+    "EntityLifeTime": 0
   }
 },
 {

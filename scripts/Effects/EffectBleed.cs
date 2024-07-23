@@ -49,6 +49,9 @@ public class EffectBleed : FightEffect
         _aura = auraPrefab.Instantiate().GetComponent<AttachmentObject>();
         _aura.Spawn(FightPlayer.Entity,new Vector2(-0.3f, 0.9f), false, DurationRemaining);
 
+        var auraVfx = _aura.Entity.GetComponent<BaseVFX>();
+        auraVfx?.SetLifetime(DurationRemaining);
+
         var auraFade = _aura.Entity.GetComponent<FadeAfterStart>();
         if (auraFade != null)
         {

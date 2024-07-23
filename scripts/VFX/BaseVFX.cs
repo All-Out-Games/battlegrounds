@@ -24,6 +24,16 @@ public class VFX : Component
         
         //Animator.DepthOffset = 3;
     }
+    
+    /// <summary>
+    /// Runtime set lifetime, and reset timer
+    /// </summary>
+    /// <param name="t"></param>
+    public void SetLifetime(float t)
+    {
+        EntityLifeTime = t;
+        LifeTime = 0;
+    }
 }
 public class BaseVFX : VFX
 {
@@ -46,6 +56,8 @@ public class BaseVFX : VFX
 
         LifeTime += Time.DeltaTime;
     }
+
+
 }
 
 public class SelectionVFX : VFX
