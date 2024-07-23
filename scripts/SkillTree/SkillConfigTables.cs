@@ -18,6 +18,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PunchNodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Punch and deals damage",
+        BaseDamageKey = EffectConfig.PunchConfig.PunchDmgBase,
         RangeDescriptionKey = "Melee",
         IconPath = "AbilityIcon_Merged/basic/punch.png",
         MaximumLevel = 1,
@@ -82,6 +83,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PunchTwoConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Upgrade your punch to be more powerful",
+        BaseDamageKey = EffectConfig.PunchConfig.PunchDmgBase + EffectConfig.PunchConfig.PunchDmgGrowth,
         RangeDescriptionKey = "Melee",
         IconPath = "AbilityIcon_Merged/basic/punch_2.png",
         MaximumLevel = 1,
@@ -147,6 +149,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PunchThreeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Upgrade your punch to be more powerful",
+        BaseDamageKey = EffectConfig.PunchConfig.PunchDmgBase + EffectConfig.PunchConfig.PunchDmgGrowth * 2,
         RangeDescriptionKey = "Melee",
         IconPath = "AbilityIcon_Merged/basic/punch_3.png",
         MaximumLevel = 1,
@@ -166,6 +169,9 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig RollOutNodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Boost your speed and enable you to crash into other players",
+        BaseDamageKey = EffectConfig.RollOutConfig.BumpDmgBase,
+        RangeDescriptionKey = "Melee",
+        CooldownKey = $"{EffectConfig.RollOutConfig.Cooldown}s",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Defensive,
@@ -182,7 +188,8 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig ShieldConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Dash forward and knock the enemy back",
+        DescriptionTextKey = $"Create a shield that absorbs {EffectConfig.ShieldConfig.ShieldAmtBase} damage",
+        CooldownKey = $"{EffectConfig.ShieldConfig.Cooldown}s",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Defensive,
@@ -207,6 +214,9 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig ShoulderCrashNodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Dash to a direction and deals damage and knockback",
+        BaseDamageKey = EffectConfig.ShoulderCrashConfig.BumpDmgBase,
+        RangeDescriptionKey = "5m",
+        CooldownKey = $"{ EffectConfig.ShoulderCrashConfig.Cooldown }s",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
@@ -221,6 +231,9 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig GroundStompConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Stomp The ground and damage nearby enemies",
+        BaseDamageKey = EffectConfig.GroundStompConfig.StompDamageBase,
+        RangeDescriptionKey = $"{EffectConfig.GroundStompConfig.StompRadius}m",
+        CooldownKey = $"{EffectConfig.GroundStompConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/brawler/ground_stomp.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -236,6 +249,7 @@ public static partial class SkillConfig
     {
         DescriptionTextKey = "Temporarily increase your attack power",
         IconPath = "AbilityIcon_Merged/brawler/rage.png",
+        CooldownKey = $"{EffectConfig.RageConfig.Cooldown}s",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
@@ -248,7 +262,10 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig DoublePunchConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Punch to the front for two times in quick succession",
+        DescriptionTextKey = "Punch to the front for two times in quick succession. 2x Damage.",
+        BaseDamageKey = EffectConfig.DoublePunchConfig.BaseDmg,
+        RangeDescriptionKey = "Melee",
+        CooldownKey = $"{EffectConfig.DoublePunchConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/brawler/double_punch.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -262,7 +279,9 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig SelfDestructConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Release a big blast at the cost of damaging yourself",
+        DescriptionTextKey = $"Release a big blast at the cost of dealing {EffectConfig.SelfDestructConfig.BaseSelfDmg} yourself",
+        BaseDamageKey = EffectConfig.SelfDestructConfig.BaseDmg,
+        RangeDescriptionKey = $"{EffectConfig.SelfDestructConfig.BlastRange}m",
         IconPath = "AbilityIcon_Merged/brawler/self_destruct.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -276,7 +295,10 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig BattleCryConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Release a big blast at the cost of damaging yourself",
+        DescriptionTextKey = "Release a sound wave which shock and stun the enemy around you briefly",
+        BaseDamageKey = EffectConfig.BattleCryConfig.RoarDmgBase,
+        RangeDescriptionKey = $"{EffectConfig.BattleCryConfig.RoarRadius}m",
+        CooldownKey = $"{EffectConfig.BattleCryConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/brawler/battle_cry.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -290,7 +312,10 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig ClawSlashConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Slash your enemies and make them bleed",
+        DescriptionTextKey = $"Slash your enemies and make them bleed, losing {EffectConfig.ClawSlashConfig.BleedDmgBase} Health/s",
+        BaseDamageKey = EffectConfig.ClawSlashConfig.SlashDmgBase,
+        RangeDescriptionKey = "Melee",
+        CooldownKey = $"{EffectConfig.ClawSlashConfig.Cooldown}",
         IconPath = "AbilityIcon_Merged/brawler/claw_slash.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -305,6 +330,9 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig LeapSlamConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Leap and slam the ground",
+        BaseDamageKey = EffectConfig.LeapSlamConfig.SlamDamageBase,
+        RangeDescriptionKey = "3m",
+        CooldownKey = $"{EffectConfig.LeapSlamConfig.Cooldown}",
         IconPath = "AbilityIcon_Merged/brawler/leaping_fist_slam.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -326,6 +354,9 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig SpoonThrowConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Throw a spoon towards aiming position",
+        BaseDamageKey = EffectConfig.ProjectileConfig.SpoonDamageBase,
+        RangeDescriptionKey = $"{EffectConfig.ProjectileConfig.SpoonRange}m",
+        CooldownKey = $"{EffectConfig.ProjectileConfig.SpoonThrowCooldown}",
         IconPath = "AbilityIcon_Merged/psionic/spoon_throw.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -343,6 +374,9 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig BefuddleConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Throw a bird that confuses enemy movement on contact",
+        BaseDamageKey = EffectConfig.ProjectileConfig.BefuddleDamageBase,
+        RangeDescriptionKey = $"{EffectConfig.ProjectileConfig.BefuddleRange}m",
+        CooldownKey = $"{EffectConfig.ProjectileConfig.BefuddleCooldown}",
         IconPath = "AbilityIcon_Merged/psionic/befuddle.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -360,6 +394,9 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig PsyboltConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Throw a bolt that knocks back enemy",
+        BaseDamageKey = EffectConfig.ProjectileConfig.PsyboltDamageBase,
+        RangeDescriptionKey = $"{EffectConfig.ProjectileConfig.PsyboltRange}m",
+        CooldownKey = $"{EffectConfig.ProjectileConfig.PsyboltCooldown}",
         IconPath = "AbilityIcon_Merged/psionic/psybolt.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -376,7 +413,8 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig SelfHealConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Sit down and channel healing energy, restore a lot of health upon successful channel",
+        DescriptionTextKey = $"Sit down and channel healing energy, restore {EffectConfig.SelfHealConfig.HealAmtBase} health upon successful channel",
+        CooldownKey = $"{EffectConfig.SelfHealConfig.Cooldown}",
         IconPath = "AbilityIcon_Merged/psionic/self_heal.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -393,7 +431,8 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig RegenerationConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Regenerate small amount of health over time",
+        DescriptionTextKey = $"Regenerate {EffectConfig.RegenerateConfig.PerSecondHeal} health over {EffectConfig.RegenerateConfig.HealTime}s",
+        CooldownKey = $"{EffectConfig.RegenerateConfig.Cooldown}",
         IconPath = "AbilityIcon_Merged/psionic/regeneration.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -408,7 +447,9 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig HypnotizeConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Regenerate small amount of health over time",
+        DescriptionTextKey = $"Make your enemies sleep for {EffectConfig.HypnotizeConfig.HypnotizeTime}s. They wake up if get damaged.",
+        RangeDescriptionKey = "3m",
+        CooldownKey = $"{EffectConfig.HypnotizeConfig.Cooldown}",
         IconPath = "AbilityIcon_Merged/psionic/hypnotize.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -423,7 +464,10 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig PsionicBeamConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Beam a small area in front of you with dark energy",
+        DescriptionTextKey = "Using a beam, sweep a small area in front of you with dark energy",
+        BaseDamageKey = EffectConfig.PsionicBeamConfig.PsionicBeamDmgBase,
+        CooldownKey = $"{EffectConfig.PsionicBeamConfig.Cooldown}s",
+        RangeDescriptionKey = "3-7m",
         IconPath = "AbilityIcon_Merged/psionic/psionic_beam.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -438,7 +482,10 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig PsyThrowConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Grab and throw your enemy",
+        DescriptionTextKey = "Grab your enemy with your psionic force. Activate again to throw them to a direction of your choice.",
+        BaseDamageKey = EffectConfig.PsyThrowConfig.DmgBase,
+        RangeDescriptionKey = $"{EffectConfig.PsyThrowConfig.Range}m",
+        CooldownKey = $"{EffectConfig.PsyThrowConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/psionic/psythrow.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -457,7 +504,8 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig InvisibilityConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Become Invisible for a short period",
+        DescriptionTextKey = $"Become Invisible for {EffectConfig.InvisibilityConfig.InvisTime} seconds. Watch out for stray projectiles!",
+        CooldownKey = $"{EffectConfig.InvisibilityConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/stealth/invisibility.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -472,7 +520,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig LightFeetConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Increase movement speed temporarily",
+        DescriptionTextKey = $"Increase movement speed by {EffectConfig.LightFeetConfig.SpeedModifier} temporarily",
         IconPath = "AbilityIcon_Merged/stealth/light_feet.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -487,7 +535,10 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig ShurikenConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Throw a shuriken which deals more damage if you struck the back of an enemy",
+        DescriptionTextKey = "Throw a shuriken which scores a critical hit if you struck the back of an enemy",
+        BaseDamageKey = EffectConfig.ProjectileConfig.ShurikenDamageBase,
+        RangeDescriptionKey = $"{EffectConfig.ProjectileConfig.ShurikenRange}m",
+        CooldownKey = $"{EffectConfig.ProjectileConfig.ShurikenCooldown}s",
         IconPath = "AbilityIcon_Merged/stealth/shuriken.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -501,7 +552,10 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig BearTrapConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Setup a hidden trap to snare your enemies.",
+        DescriptionTextKey = "Setup a hidden trap to snare your enemies. The trap needs a brief moment to arm.",
+        BaseDamageKey = EffectConfig.BearTrapConfig.TrapBaseDamage,
+        RangeDescriptionKey = $"{EffectConfig.BearTrapConfig.MaxSetupDistance}m",
+        CooldownKey = $"{EffectConfig.BearTrapConfig.Cooldown}s",
         MaximumLevel = 1,
         IconPath = "AbilityIcon_Merged/stealth/bear_trap.png",
         NType = NodeType.SkillUnlock,
@@ -516,6 +570,8 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig ShadowStepConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Dash to your movement direction",
+        RangeDescriptionKey = $"{EffectConfig.ShadowStepConfig.MovementDistance}m",
+        CooldownKey = $"{EffectConfig.ShadowStepConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/stealth/shadow_step.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -529,7 +585,10 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig BackstabConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Throw A Kunai and backstab the victim if it hits.",
+        DescriptionTextKey = "Throw A Kunai. If it hits, you can teleport and backstab the victim.",
+        BaseDamageKey = EffectConfig.BackStabConfig.BaseDmg,
+        RangeDescriptionKey = $"{EffectConfig.BackStabConfig.KunaiRange}m",
+        CooldownKey = $"{EffectConfig.BackStabConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/stealth/backstab.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
@@ -543,7 +602,8 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig TotalDarknessConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Throw A Kunai and backstab the victim if it hits.",
+        DescriptionTextKey = $"Blind nearby opponents, making their vision extremely limited for {EffectConfig.TotalDarknessConfig.BlindTime}s.",
+        CooldownKey = $"{EffectConfig.TotalDarknessConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/stealth/total_darkness.png",
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,

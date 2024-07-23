@@ -18,7 +18,7 @@ public partial class FightPlayer
         
         // AL Layer
         var fightLayer = stateMachine.CreateLayer("fight_layer", 10);
-        var idleState = fightLayer.CreateState("neutralize_AL", 0, false);
+        var idleState = fightLayer.CreateState("BAT_003/Idle_short_AL", 0, false);
         var emptyState = fightLayer.CreateState("__CLEAR_TRACK__", 0, true);
 
         fightLayer.SetInitialState(emptyState);
@@ -59,10 +59,10 @@ public partial class FightPlayer
         // SelfDestruct
         var selfDestructTrigger = stateMachine.CreateVariable("self_destruct", StateMachineVariableKind.TRIGGER);
 
-        var selfDestructState = aoLayer.CreateState("BAT_003/self_destruct_AL", 0, false);
+        var selfDestructState = fightLayer.CreateState("BAT_003/self_destruct_AL", 0, false);
 
-        aoLayer.CreateGlobalTransition(selfDestructState).CreateTriggerCondition(selfDestructTrigger);
-        aoLayer.CreateTransition(selfDestructState, aoIdleState, true);
+        fightLayer.CreateGlobalTransition(selfDestructState).CreateTriggerCondition(selfDestructTrigger);
+        fightLayer.CreateTransition(selfDestructState, idleState, true);
 
         // LeapSlam
         var leapSlamTrigger = stateMachine.CreateVariable("leapslam", StateMachineVariableKind.TRIGGER);

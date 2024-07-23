@@ -62,7 +62,9 @@ public static partial class SkillConfig
     public struct SkillTreeNodeConfig
     {
         public string DescriptionTextKey;
+        public int BaseDamageKey;
         public string RangeDescriptionKey = "N/A";
+        public string CooldownKey = "N/A";
         
         public int UpgradeCost;
         public int MaximumLevel; // Not used but put it here for redundancy. This number must be at least 1
@@ -90,6 +92,7 @@ public static partial class SkillConfig
         public SkillTreeNodeConfig()
         {
             DescriptionTextKey = "Unfilled";
+
             UpgradeCost = 0;
             MaximumLevel = 1;
             NType = NodeType.AttrBoost;

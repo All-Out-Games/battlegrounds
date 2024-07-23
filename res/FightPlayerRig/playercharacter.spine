@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "BbvJD8LZieU", "spine": "4.0.64", "x": -291.96, "y": -82.78, "width": 565.63, "height": 540.31 },
+"skeleton": { "hash": "JxBRvDSM+UU", "spine": "4.0.64", "x": -291.96, "y": -82.78, "width": 565.63, "height": 540.31 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "scaling_Bone", "parent": "root" },
@@ -68937,6 +68937,103 @@
 			"AIM_hand_R": [
 				{}
 			]
+		}
+	},
+	"BAT_003/Idle_short_AL": {
+		"slots": {
+			"eyelid_L": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6, "name": null }
+				]
+			},
+			"eyelid_R": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6, "name": null }
+				]
+			},
+			"finger_R1": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6, "name": null }
+				]
+			},
+			"finger_R2": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6, "name": null }
+				]
+			},
+			"finger_R3": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6, "name": null }
+				]
+			},
+			"hand_R": {
+				"attachment": [
+					{ "name": "base_colours/crewchsia/hand_R_fist" },
+					{ "time": 0.6, "name": "base_colours/crewchsia/hand_R_fist" }
+				]
+			},
+			"mouth": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6, "name": null }
+				]
+			},
+			"thumb_R": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"Hips": {
+				"translate": [
+					{ "y": 3.74, "curve": "stepped" },
+					{ "time": 0.6, "y": 3.74 }
+				]
+			},
+			"Jump": {
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6 }
+				],
+				"scale": [
+					{
+						"curve": [ 0.098, 1, 0.186, 1.028, 0.098, 1, 0.186, 0.971 ]
+					},
+					{
+						"time": 0.2833,
+						"x": 1.028,
+						"y": 0.971,
+						"curve": [ 0.381, 1.028, 0.502, 1, 0.381, 0.971, 0.502, 1 ]
+					},
+					{ "time": 0.6 }
+				]
+			},
+			"Head": {
+				"rotate": [
+					{
+						"value": 0.24,
+						"curve": [ 0.03, 0.79, 0.071, 1.21 ]
+					},
+					{
+						"time": 0.1,
+						"value": 1.21,
+						"curve": [ 0.198, 1.21, 0.286, -2.13 ]
+					},
+					{
+						"time": 0.3833,
+						"value": -2.13,
+						"curve": [ 0.452, -2.13, 0.532, -1.02 ]
+					},
+					{ "time": 0.6, "value": 0.24 }
+				]
+			}
 		}
 	},
 	"Idle_Super_Speed": {

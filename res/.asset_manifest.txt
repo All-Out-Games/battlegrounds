@@ -108,7 +108,7 @@ ClawSwipe.prefab - .ao - 6685994fb45eb9e8339c0fd0 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
 FightPlayerRig/playercharacter.png - .ao - 668c6ecab45eb9e8339c1a1c - 13580176801984649393
 FightPlayerRig/playercharacter.png - .ao.ios - 668c6ecab45eb9e8339c1a1b - 5691610558711331661
-FightPlayerRig/playercharacter.spine - .ao - 6698448fb45eb9e8339c216d - 6535533322894837979
+FightPlayerRig/playercharacter.spine - .ao - 669ee7d3b45eb9e8339c21f8 - 17537599646092626620
 HitVfx.prefab - .ao - 66859951b45eb9e8339c0fd9 - 5146642717615886720
 Invisibility_Aura.prefab - .ao - 668f23a2b45eb9e8339c1adf - 14758703216106953386
 Invisibility_VFX.prefab - .ao - 668f1f66b45eb9e8339c1ac6 - 16172691625342551677

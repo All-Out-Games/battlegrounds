@@ -56,7 +56,7 @@ public class EffectBattleCry : FightEffectWithNoFlinch
     private void BattleCry()
     {
         Vector2 selfPos = FightPlayer.Entity.Position;
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, Config.RoarRadius);
+        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.BattleCryConfig.RoarRadius);
             
         foreach (var fp in cbPlayers)
         {

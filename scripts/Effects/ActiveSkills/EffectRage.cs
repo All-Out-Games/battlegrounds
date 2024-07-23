@@ -39,7 +39,7 @@ public class EffectRageCast : FightEffectWithNoFlinch
         base.OnEffectUpdate();
         if (Util.OneTime(ElapsedTime > _animDuration, ref _casted))
         {
-            FightPlayer.AddEffect<EffectRage>(FightPlayer, EffectConfig.RageConfig.Duration);
+            FightPlayer.GetAbility<AbilityRage>().AppliedEffect = FightPlayer.AddEffect<EffectRage>(FightPlayer, EffectConfig.RageConfig.Duration);
             FightPlayer.RemoveSpeedModifier(0.0f);
         }
     }

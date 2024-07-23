@@ -27,14 +27,13 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
         base.OnEffectStart();
         FightStateMachine.SetTrigger("self_destruct");
         AssignConfig(EffectConfig.SelfDestructConfig.GetDefault(FightPlayer.CurrentAttack));
-        FightPlayer.AddEffect<EffectNoMovementWithImmunity>(FightPlayer,DurationRemaining);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
         
-        FightPlayer.RemoveEffect<EffectNoMovementWithImmunity>(false); // Remove this so that the invincibility does not cover self damage
+        
         KnockingBlast();
         FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.SelfDestructExplosionPath, FightPlayer.Entity.Position);
     }
@@ -43,7 +42,7 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
     protected void AssignConfig(EffectConfig.SelfDestructConfig cfg)
     {
         Config = cfg;
-        DurationRemaining = MainLayer.GetCurrentStateLength();
+        DurationRemaining = FightLayer.GetCurrentStateLength();
     }
 
     private void KnockingBlast()

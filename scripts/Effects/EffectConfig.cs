@@ -255,9 +255,10 @@ public static class EffectConfig
     {
         public static readonly int StompDamageBase = 10;
         public static readonly float Cooldown = 12f;
+        public static readonly float StompRadius = 4;
 
         public int StompDamage = 0;
-        public float StompRadius = 4;
+        
         
         public GroundStompConfig()
         {
@@ -358,9 +359,10 @@ public static class EffectConfig
         public static readonly float Cooldown = 14f;
         public static readonly float RoarAnimationTime = 0.9f;
         public static readonly int RoarDmgBase = 10;
+        public static readonly float RoarRadius = 5;
         
         public float StunTime = 0.8f;
-        public float RoarRadius = 5;
+        
         public int RoarDamage = 0;
 
         public BattleCryConfig()
@@ -385,9 +387,11 @@ public static class EffectConfig
         public static readonly float SlashAnimationTime = 0.25f;
         public static readonly int SlashDmgBase = 2;
         public static readonly float SlashRadius = 2;
+        public static readonly int BleedDmgBase = 1;
+        public static readonly float BleedTimeBase = 9f;
 
-        public float BleedTime = 9f;
-        public int BleedDmg = 1;
+        public float BleedTime;
+        public int BleedDmg;
         public int SlashDamage = 1;
 
         public ClawSlashConfig()
@@ -397,7 +401,7 @@ public static class EffectConfig
 
         public static ClawSlashConfig GetDefault(int atk)
         {
-            var cfg = new ClawSlashConfig() { SlashDamage = SlashDmgBase + atk };
+            var cfg = new ClawSlashConfig() { SlashDamage = SlashDmgBase + atk, BleedTime = BleedTimeBase, BleedDmg = BleedDmgBase};
             return cfg;
         }
     }
