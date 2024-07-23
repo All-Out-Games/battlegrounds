@@ -18,7 +18,7 @@ public partial class FightPlayer
         
         // AL Layer
         var fightLayer = stateMachine.CreateLayer("fight_layer", 10);
-        var idleState = fightLayer.CreateState("BAT_003/Idle_short_AL", 0, false);
+        var idleState = fightLayer.CreateState("BAT_003/neutralize_AL", 0, false);
         var emptyState = fightLayer.CreateState("__CLEAR_TRACK__", 0, true);
 
         fightLayer.SetInitialState(emptyState);
