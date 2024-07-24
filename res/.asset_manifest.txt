@@ -95,7 +95,7 @@ AbilityIcon_Merged/stealth/speed_boost.png - .ao.ios - 669018f2b45eb9e8339c1b94 
 AbilityIcon_Merged/stealth/total_darkness.png - .ao - 669018f2b45eb9e8339c1b96 - 17869216149905270405
 AbilityIcon_Merged/stealth/total_darkness.png - .ao.ios - 669018f2b45eb9e8339c1b98 - 16344759447653552677
 AbilityItem.prefab - .ao - 6685994db45eb9e8339c0fc3 - 14427433616163832665
-AbilityLoadoutPage.prefab - .ao - 66a03a81b45eb9e8339c221e - 10427249875602013765
+AbilityLoadoutPage.prefab - .ao - 66a148af6732dee0bb811d13 - 4271266475277773734
 AbilityUpgradeDialog.prefab - .ao - 6685994eb45eb9e8339c0fc7 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 669e9594b45eb9e8339c21eb - 10868794227734410679
 BattleCry_Shockwave.prefab - .ao - 668863d8b45eb9e8339c1985 - 3209635888150171771
@@ -108,7 +108,7 @@ ClawSwipe.prefab - .ao - 6685994fb45eb9e8339c0fd0 - 1804017453416592716
 FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
 FightPlayerRig/playercharacter.png - .ao - 668c6ecab45eb9e8339c1a1c - 13580176801984649393
 FightPlayerRig/playercharacter.png - .ao.ios - 668c6ecab45eb9e8339c1a1b - 5691610558711331661
-FightPlayerRig/playercharacter.spine - .ao - 66a01527b45eb9e8339c2210 - 2784497515698535061
+FightPlayerRig/playercharacter.spine - .ao - 66a15b3f6732dee0bb811d19 - 11450400033259515061
 HitVfx.prefab - .ao - 66859951b45eb9e8339c0fd9 - 5146642717615886720
 Invisibility_Aura.prefab - .ao - 668f23a2b45eb9e8339c1adf - 14758703216106953386
 Invisibility_VFX.prefab - .ao - 668f1f66b45eb9e8339c1ac6 - 16172691625342551677
