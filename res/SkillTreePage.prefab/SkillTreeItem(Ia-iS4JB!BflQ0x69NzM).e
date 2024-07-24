@@ -1,8 +1,8 @@
 11
-236223201281
-34240290933561 1721676559271131500
+120259084289
+37039299592769 1721856428298525900
 {
-  "name": "StatBox",
+  "name": "SkillTreeItem",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,22 +13,21 @@
     "X": 1,
     "Y": 1
   },
-  "next_sibling": "36591575754108:1721677501292245400",
-  "parent": "33989206748250:1721676458676511200"
+  "parent": "30088451360339:1721852947305323500"
 },
 {
   "cid": 1,
-  "aoid": "34282024098353:1721676575991148600",
+  "aoid": "37052175053388:1721856434746572200",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.1000000014901161,
-      "Y": 0.1000000014901161
+      "X": 0,
+      "Y": 0
     },
     "max": {
-      "X": 0.8999999761581421,
-      "Y": 0.3000000119209290
+      "X": 0.1500000059604645,
+      "Y": 0.1199999973177910
     },
     "insets": {
       "X": 0,
@@ -37,18 +36,18 @@
       "W": 0
     },
     "offset": {
-      "X": 0,
-      "Y": 0
+      "X": 230,
+      "Y": 600
     }
   }
 },
 {
   "cid": 2,
-  "aoid": "34320338878352:1721676591341620600",
+  "aoid": "37061137358940:1721856439234905500",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "UI/AbilityBook/AbilityInfo/stat_box.png",
+    "sprite": "AbilityIcon_Merged/brawler/self_destruct.png",
     "tint": {
       "X": 1,
       "Y": 1,

@@ -165,6 +165,8 @@ public class AbilityLoadoutPage : UniqueUIWindow
         ResetSelection();
         base.CloseWindow();
         SaveSkills();
+        
+        Chat.SetChatMode(Chat.Mode.Default);
     }
 
     public override void OpenWindow()
@@ -175,6 +177,8 @@ public class AbilityLoadoutPage : UniqueUIWindow
 
         _elapsedTimeSinceOpen = 0;
         ResetSelection();
+        
+        Chat.SetChatMode(Chat.Mode.BubbleOnly);
     }
 
     private void PreviousTab()

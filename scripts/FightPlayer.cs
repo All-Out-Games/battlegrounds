@@ -26,7 +26,7 @@ public partial class FightPlayer : Player
     
     // SyncVars must not be set during Awake(). Do these in Start()
 
-    private SyncVar<int> currentHealth = new(100);
+    private SyncVar<int> currentHealth = new(GlobalData.DefaultMaxHealth);
     public int CurrentHealth 
     { 
         get => currentHealth.Value;
@@ -38,7 +38,7 @@ public partial class FightPlayer : Player
         }
     }
 
-    private SyncVar<int> currentAttack = new(10);
+    private SyncVar<int> currentAttack = new(GlobalData.DefaultAtk);
     public int CurrentAttack
     {
         get { return currentAttack.Value; }
@@ -50,7 +50,7 @@ public partial class FightPlayer : Player
         }
     }
 
-    private SyncVar<int> maxHealth = new(100);
+    private SyncVar<int> maxHealth = new(GlobalData.DefaultMaxHealth);
     public int MaxHealth
     {
         get { return maxHealth.Value; }

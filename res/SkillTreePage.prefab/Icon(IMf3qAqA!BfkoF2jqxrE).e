@@ -1,8 +1,8 @@
 11
-236223201281
-34240290933561 1721676559271131500
+214748364802
+36043225565824 1721677281600674500
 {
-  "name": "StatBox",
+  "name": "Icon",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,22 +13,23 @@
     "X": 1,
     "Y": 1
   },
-  "next_sibling": "36591575754108:1721677501292245400",
-  "parent": "33989206748250:1721676458676511200"
+  "previous_sibling": "35446426237360:1721677042498391600",
+  "next_sibling": "58530090675749:1721776371399778900",
+  "parent": "35401832436982:1721677024632286900"
 },
 {
   "cid": 1,
-  "aoid": "34282024098353:1721676575991148600",
+  "aoid": "36043236264107:1721677281604961000",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.1000000014901161,
-      "Y": 0.1000000014901161
+      "X": 0.8399999737739563,
+      "Y": 0
     },
     "max": {
-      "X": 0.8999999761581421,
-      "Y": 0.3000000119209290
+      "X": 0.9499999880790710,
+      "Y": 1
     },
     "insets": {
       "X": 0,
@@ -44,18 +45,18 @@
 },
 {
   "cid": 2,
-  "aoid": "34320338878352:1721676591341620600",
+  "aoid": "36159857647620:1721677328328269200",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "UI/AbilityBook/AbilityInfo/stat_box.png",
+    "sprite": "UI/SkillTree/damage_icon.png",
     "tint": {
       "X": 1,
       "Y": 1,
       "Z": 1,
       "W": 1
     },
-    "fit_aspect": true,
+    "fit_aspect": false,
     "fit_aspect_kind": 0,
     "fit_aspect_anchor": 0
   }
