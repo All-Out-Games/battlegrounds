@@ -520,7 +520,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig LightFeetConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = $"Increase movement speed by {(EffectConfig.LightFeetConfig.SpeedModifier - 1f) * 100}% for {EffectConfig.LightFeetConfig.BoostTime}s.",
+        DescriptionTextKey = $"Increase movement speed by {float.Round((EffectConfig.LightFeetConfig.SpeedModifier - 1f) * 100, 0)}% for {EffectConfig.LightFeetConfig.BoostTime}s.",
         IconPath = "AbilityIcon_Merged/stealth/light_feet.png",
         CooldownKey = $"{EffectConfig.LightFeetConfig.Cooldown}s",
         MaximumLevel = 1,

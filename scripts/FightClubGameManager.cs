@@ -22,14 +22,13 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public override void Awake()
     {
         Chat.RegisterChatCommandHandler(RunChatCommand);
+        
     }
 
     public override void Start()
     {
         PlayerTeleportEvent += OnPlayerTeleport;
         PlayerEliminationEvent += OnPlayerElimination;
-        //PlayerDamageEvent += OnPlayerDamage;
-        Chat.SetChatMode(Chat.Mode.BubbleOnly);
     }
 
     public override void Update() 
@@ -41,7 +40,6 @@ public class FightClubGameManager : System<FightClubGameManager> {
     {
         PlayerTeleportEvent -= OnPlayerTeleport;
         PlayerEliminationEvent -= OnPlayerElimination;
-        //PlayerDamageEvent -= OnPlayerDamage;
     }
 
     public void OnPlayerJoin(Player player) 

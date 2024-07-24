@@ -1,8 +1,8 @@
 11
-236223201281
-34240290933561 1721676559271131500
+253403070465
+11465181108626 1721843620749055500
 {
-  "name": "StatBox",
+  "name": "TreePage",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,22 +13,21 @@
     "X": 1,
     "Y": 1
   },
-  "next_sibling": "36591575754108:1721677501292245400",
-  "parent": "33989206748250:1721676458676511200"
+  "parent": "9177330268687:1721842474990587700"
 },
 {
   "cid": 1,
-  "aoid": "34282024098353:1721676575991148600",
+  "aoid": "11479198627830:1721843627769045900",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.1000000014901161,
-      "Y": 0.1000000014901161
+      "X": 0.3000000119209290,
+      "Y": 0
     },
     "max": {
-      "X": 0.8999999761581421,
-      "Y": 0.3000000119209290
+      "X": 1,
+      "Y": 1
     },
     "insets": {
       "X": 0,
@@ -44,11 +43,11 @@
 },
 {
   "cid": 2,
-  "aoid": "34320338878352:1721676591341620600",
+  "aoid": "11503890415100:1721843640134722800",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "UI/AbilityBook/AbilityInfo/stat_box.png",
+    "sprite": "UI/SkillTree/skill_tree_window.png",
     "tint": {
       "X": 1,
       "Y": 1,

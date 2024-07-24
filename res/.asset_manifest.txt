@@ -95,7 +95,7 @@ AbilityIcon_Merged/stealth/speed_boost.png - .ao.ios - 669018f2b45eb9e8339c1b94 
 AbilityIcon_Merged/stealth/total_darkness.png - .ao - 669018f2b45eb9e8339c1b96 - 17869216149905270405
 AbilityIcon_Merged/stealth/total_darkness.png - .ao.ios - 669018f2b45eb9e8339c1b98 - 16344759447653552677
 AbilityItem.prefab - .ao - 6685994db45eb9e8339c0fc3 - 14427433616163832665
-AbilityLoadoutPage.prefab - .ao - 66a03a81b45eb9e8339c221e - 10427249875602013765
+AbilityLoadoutPage.prefab - .ao - 66a14c2c6732dee0bb811d16 - 17192096013079269826
 AbilityUpgradeDialog.prefab - .ao - 6685994eb45eb9e8339c0fc7 - 16855350947188284189
 AbilityVendorMenuWindow.prefab - .ao - 669e9594b45eb9e8339c21eb - 10868794227734410679
 BattleCry_Shockwave.prefab - .ao - 668863d8b45eb9e8339c1985 - 3209635888150171771
@@ -134,6 +134,7 @@ ShadowStepVFX.prefab - .ao - 66859955b45eb9e8339c0ffd - 11550510081096301958
 Shield_FX.prefab - .ao - 669eba0bb45eb9e8339c21f4 - 112425385090612370
 ShurikenProjectile.prefab - .ao - 668f1467b45eb9e8339c1aa3 - 8548912423477914444
 SkillSlotsPanel.prefab - .ao - 66859956b45eb9e8339c1001 - 11546600357276263640
+SkillTreePage.prefab - .ao - 66a14c2c6732dee0bb811d15 - 8060599177928177552
 SpoonProjectile.prefab - .ao - 66859956b45eb9e8339c1002 - 12342670774966987832
 TotalDarknessOverlay.prefab - .ao - 6685d28fb45eb9e8339c10be - 15557225266589634022
 UI/AbilityBook/AbilityInfo/buy_button/buy_button.png - .ao - 669816f4b45eb9e8339c1f5b - 7538570100970345996

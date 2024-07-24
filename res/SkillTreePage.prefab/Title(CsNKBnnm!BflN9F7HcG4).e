@@ -1,8 +1,8 @@
 11
-158913789953
-45545279810203 1721771169149439400
+249108103169
+11833876838886 1721843805392323000
 {
-  "name": "Description",
+  "name": "Title",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,22 +13,22 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "36707671370946:1721677547804909300",
-  "parent": "33989206748250:1721676458676511200"
+  "previous_sibling": "11034690489806:1721843405158832700",
+  "parent": "11465181108626:1721843620749055500"
 },
 {
   "cid": 1,
-  "aoid": "45553713731996:1721771172528415700",
+  "aoid": "11846829485766:1721843811879024200",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.1000000014901161,
-      "Y": 0.3000000119209290
+      "X": 0,
+      "Y": 0.9399999976158142
     },
     "max": {
-      "X": 0.8999999761581421,
-      "Y": 0.5000000000000000
+      "X": 1,
+      "Y": 0.8999999761581421
     },
     "insets": {
       "X": 0,
@@ -44,14 +44,14 @@
 },
 {
   "cid": 2,
-  "aoid": "46078274781160:1721771382689189400",
+  "aoid": "11854783389834:1721843815862349000",
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "Channel and release a big blast at the cost of dealing {EffectConfig.SelfDestructConfig.BaseSelfDmg} to yourself",
+    "text": "SkillTree",
     "settings": {
-      "font_id": "",
-      "size": 24,
+      "font_id": "$AO/fonts/Barlow-ExtraBold.ttf",
+      "size": 48,
       "color": {
         "X": 0,
         "Y": 0,
@@ -60,29 +60,29 @@
       },
       "valign": 1,
       "halign": 1,
-      "word_wrap": true,
+      "word_wrap": false,
       "word_wrap_start_offset": 0,
       "offset": {
         "X": 0,
         "Y": 0
       },
-      "do_drop_shadow": true,
+      "do_drop_shadow": false,
       "drop_shadow_offset": {
         "X": 1,
         "Y": -1
       },
       "drop_shadow_color": {
-        "X": 1,
-        "Y": 1,
-        "Z": 1,
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
         "W": 1
       },
-      "do_outline": true,
+      "do_outline": false,
       "outline_thickness": 2,
       "outline_color": {
-        "X": 1,
-        "Y": 1,
-        "Z": 1,
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
         "W": 1
       },
       "spacing_multiplier": 1,
