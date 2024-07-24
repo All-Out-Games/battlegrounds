@@ -3,6 +3,11 @@ namespace Assembly.scripts;
 
 public static class FightClubUtils
 {
+
+    public static FightPlayer GetLocalFightPlayer()
+    {
+        return Network.LocalPlayer as FightPlayer;
+    }
     public static float AngleBetween(Vector2 a, Vector2 b)
     {
         float sin = a.X * b.Y - b.X * a.Y;  

@@ -32,7 +32,7 @@ public class AbilityLoadoutItemGroup : Component
 
     public void OnInfoButtonSelected()
     {
-        // TODO
+        _abWindow.OnItemInfoClicked(this);
     }
 
     public void SetItemEquipped(bool equip)

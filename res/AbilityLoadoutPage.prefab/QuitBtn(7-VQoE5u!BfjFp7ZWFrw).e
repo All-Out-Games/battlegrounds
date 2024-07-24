@@ -63,7 +63,7 @@
       "press_scaling": 0,
       "sprite": "UI/AbilityBook/AbilityInfo/quit_cross_button.png",
       "sprite_hovered": "",
-      "sprite_pressed": "$AO/new/icons/ability icons/punch.png",
+      "sprite_pressed": "UI/AbilityBook/AbilityInfo/quit_cross_button.png",
       "sprite_padding": {
         "X": 0,
         "Y": 0,

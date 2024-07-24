@@ -155,7 +155,7 @@ public static class EffectConfig
         public static readonly float SpoonLifetime = 0.6f;
 
         // Befuddle
-        public static readonly int BefuddleDamageBase = 0;
+        public static readonly int BefuddleDamageBase = 1;
         public static readonly float BefuddleCooldown = 12;
         public static readonly float BefuddleRange = 10f;
         public static readonly float BefuddleLifetime = 1f;
@@ -413,6 +413,7 @@ public static class EffectConfig
         public static int SlamDamageBase = 15;
         public static float KnockDownTime = 1f;
         public static float Cooldown = 16f;
+        public static float LeapMomentum = 200f;
         
 
         public int SlamDamage = 5;

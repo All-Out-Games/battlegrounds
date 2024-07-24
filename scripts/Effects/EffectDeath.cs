@@ -9,7 +9,8 @@ public class EffectDeath : FightEffectWithImmunity
     public override void OnEffectStart()
     {
         base.OnEffectStart();
-        FightPlayer.SetAnimTriggerWithReset("death");
+        // Reset AL if an AL animation is playing
+        FightPlayer.SetAnimTrigger("death");
         FightPlayer.AddDash(Vector2.Zero, 0);
         FightPlayer.AddBump(Vector2.Zero, true);
     }
@@ -19,6 +20,7 @@ public class EffectDeath : FightEffectWithImmunity
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.SetAnimTrigger("RESET");
+        FightPlayer.SetAnimTrigger("RESET_AL");
         FightPlayer.SwitchStatus((int)PlayerStatus.Safe); // teleport the player to central hub
         FightPlayer.CurrentHealth = FightPlayer.MaxHealth;
         

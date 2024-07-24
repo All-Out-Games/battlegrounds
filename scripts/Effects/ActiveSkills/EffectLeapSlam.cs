@@ -41,10 +41,10 @@ public class EffectLeapSlam : FightEffectWithImmunity
         FightPlayer.SetFacingDirection(_dirPosition.X > 0);
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
         
-        FightPlayer.SetAnimTriggerWithReset("leapslam");
+        FightPlayer.SetAnimTrigger("leapslam");
         
         DurationRemaining = MainLayer.GetCurrentStateLength();
-        FightPlayer.AddDash(_dirPosition * 100f, DurationRemaining);
+        FightPlayer.AddDash(_dirPosition * EffectConfig.LeapSlamConfig.LeapMomentum, DurationRemaining);
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -116,7 +116,7 @@ public class EffectKnockDown : FightEffectWithNoFlinch
     public override void OnEffectStart()
     {
         base.OnEffectStart();
-        FightPlayer.SetAnimTriggerWithReset("sentfly");
+        FightPlayer.SetAnimTrigger("sentfly");
         FightPlayer.SpineAnimator.OnAnimationEnd += OnAnimationEnd;
         FightPlayer.OnReceiveDamage += OnDamageEvent;
     }
@@ -145,6 +145,6 @@ public class EffectKnockDown : FightEffectWithNoFlinch
         base.OnEffectEnd(interrupt);
         FightPlayer.OnReceiveDamage -= OnDamageEvent;
         FightPlayer.SpineAnimator.OnAnimationEnd -= OnAnimationEnd;
-        FightPlayer.SetAnimTrigger("RESET");
+        FightPlayer.SetAnimTrigger("RESET", NeedALReset());
     }
 }

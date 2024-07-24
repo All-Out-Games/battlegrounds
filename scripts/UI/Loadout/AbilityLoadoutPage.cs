@@ -1,4 +1,5 @@
 using AO;
+using Assembly.scripts.UI.SkillTree;
 
 namespace Assembly.scripts.UI;
 
@@ -32,7 +33,7 @@ public class AbilityLoadoutPage : UniqueUIWindow
     [Serialized] private UIGrid _skillList;
 
     // TODO: Info popup
-    
+    [Serialized] private AbilityInfoScreen _infoScreen;
     
     // Data
     private FightPlayerSkillSlotsManager _slotsMgr;
@@ -92,6 +93,7 @@ public class AbilityLoadoutPage : UniqueUIWindow
                 _bookItems.Add(key, itm);
 
                 itm.Button.OnClicked += itm.OnItemSelected;
+                itm.InfoButton.OnClicked += itm.OnInfoButtonSelected;
                 //Log.Debug($"{key} item Created!");
             }
         }
@@ -123,6 +125,9 @@ public class AbilityLoadoutPage : UniqueUIWindow
             _tabButtons[i].Initialize(i, OnTabClicked);
         }
         
+        // First Open Phase 5
+        // Info Screen
+        _infoScreen.InfoQuitBtn.OnClicked += () => { SetInfoScreenEnabled(false); };
         
         ResetSelection();
         
@@ -330,6 +335,11 @@ public class AbilityLoadoutPage : UniqueUIWindow
             _slotsMgr.CallServer_SetSavedSkillSlot(i, _equippedSkillKey[i]);
         }
     }
+
+    private void SetInfoScreenEnabled(bool enable)
+    {
+        _infoScreen.Entity.LocalEnabled = enable;
+    }
     
     // Callbacks - Loadout Section
     public void OnSlotSelected(AbilityLoadoutSlot selected)
@@ -446,6 +456,7 @@ public class AbilityLoadoutPage : UniqueUIWindow
 
     public void OnItemInfoClicked(AbilityLoadoutItemGroup selected)
     {
-        // TODO
+        SetInfoScreenEnabled(true);
+        _infoScreen.SetDescription(selected.SkillKey);
     }
 }

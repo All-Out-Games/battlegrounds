@@ -1,8 +1,8 @@
 11
-188978561025
-36707671370946 1721677547804909300
+176093659137
+22483440028393 1721761929626038200
 {
-  "name": "Title",
+  "name": "Text",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,23 +13,23 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "36591575754108:1721677501292245400",
-  "next_sibling": "45545279810203:1721771169149439400",
-  "parent": "33989206748250:1721676458676511200"
+  "previous_sibling": "22483449548620:1721761929629852200",
+  "next_sibling": "22483429735656:1721761929621914700",
+  "parent": "22483418835044:1721761929617547400"
 },
 {
   "cid": 1,
-  "aoid": "36738560374682:1721677560180311400",
+  "aoid": "22483493662918:1721761929647526100",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0,
-      "Y": 0.8000000119209290
+      "X": 0.5000000000000000,
+      "Y": 0
     },
     "max": {
-      "X": 1,
-      "Y": 0.9499999880790710
+      "X": 0.8399999737739563,
+      "Y": 1
     },
     "insets": {
       "X": 0,
@@ -45,18 +45,18 @@
 },
 {
   "cid": 2,
-  "aoid": "37009194278065:1721677668607350300",
+  "aoid": "22483504665563:1721761929651934300",
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "Punch",
+    "text": "3-7m",
     "settings": {
-      "font_id": "$AO/fonts/Asap-ExtraBold-Fixed.ttf",
-      "size": 48,
+      "font_id": "",
+      "size": 24,
       "color": {
-        "X": 0,
-        "Y": 0,
-        "Z": 0,
+        "X": 1,
+        "Y": 1,
+        "Z": 1,
         "W": 1
       },
       "valign": 1,
@@ -81,9 +81,9 @@
       "do_outline": true,
       "outline_thickness": 2,
       "outline_color": {
-        "X": 1,
-        "Y": 1,
-        "Z": 1,
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
         "W": 1
       },
       "spacing_multiplier": 1,

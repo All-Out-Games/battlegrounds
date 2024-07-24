@@ -28,7 +28,7 @@
       "Y": 0
     },
     "max": {
-      "X": 0.7500000000000000,
+      "X": 0.8399999737739563,
       "Y": 1
     },
     "insets": {
@@ -49,7 +49,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "5",
+    "text": "99s",
     "settings": {
       "font_id": "",
       "size": 24,

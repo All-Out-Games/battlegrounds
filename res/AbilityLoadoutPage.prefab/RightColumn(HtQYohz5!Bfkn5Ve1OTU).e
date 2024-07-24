@@ -3,7 +3,7 @@
 33896295177465 1721676421452326100
 {
   "name": "RightColumn",
-  "local_enabled": false,
+  "local_enabled": true,
   "local_position": {
     "X": 0,
     "Y": 0

@@ -1,9 +1,9 @@
 11
-188978561025
-36707671370946 1721677547804909300
+154618822657
+58530090675749 1721776371399778900
 {
-  "name": "Title",
-  "local_enabled": true,
+  "name": "NonDamageText",
+  "local_enabled": false,
   "local_position": {
     "X": 0,
     "Y": 0
@@ -13,23 +13,23 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "36591575754108:1721677501292245400",
-  "next_sibling": "45545279810203:1721771169149439400",
-  "parent": "33989206748250:1721676458676511200"
+  "previous_sibling": "36043225565824:1721677281600674500",
+  "next_sibling": "58694375791768:1721776437219166700",
+  "parent": "35401832436982:1721677024632286900"
 },
 {
   "cid": 1,
-  "aoid": "36738560374682:1721677560180311400",
+  "aoid": "58566386974311:1721776385941571400",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0,
-      "Y": 0.8000000119209290
+      "X": 0.5000000000000000,
+      "Y": 0
     },
     "max": {
-      "X": 1,
-      "Y": 0.9499999880790710
+      "X": 0.8399999737739563,
+      "Y": 1
     },
     "insets": {
       "X": 0,
@@ -45,18 +45,18 @@
 },
 {
   "cid": 2,
-  "aoid": "37009194278065:1721677668607350300",
+  "aoid": "58624885758876:1721776409378595200",
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "Punch",
+    "text": "N/A",
     "settings": {
-      "font_id": "$AO/fonts/Asap-ExtraBold-Fixed.ttf",
-      "size": 48,
+      "font_id": "",
+      "size": 24,
       "color": {
-        "X": 0,
-        "Y": 0,
-        "Z": 0,
+        "X": 1,
+        "Y": 1,
+        "Z": 1,
         "W": 1
       },
       "valign": 1,
@@ -81,9 +81,9 @@
       "do_outline": true,
       "outline_thickness": 2,
       "outline_color": {
-        "X": 1,
-        "Y": 1,
-        "Z": 1,
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
         "W": 1
       },
       "spacing_multiplier": 1,

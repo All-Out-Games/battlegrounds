@@ -64,7 +64,7 @@ public partial class SkillConfig
         Tab = SkillTreeTabs.Defensive,
         TabName = "Defensive",
         SkillPageBg = "UI/SkillTree/skill_page_defensive.png",
-        InfoScreenBg = "UI/AbilityBook/AbilityInfo/info_window_defensive.png",
+        InfoScreenBg = "UI/AbilityBook/AbilityInfo/info_window_defense.png",
         TreeIcon = "UI/SkillTree/small_skill_tree_icons/defensive.png",
         TreeIconPressed = "UI/SkillTree/small_skill_tree_icons/defensive.png"
     };
@@ -94,7 +94,7 @@ public partial class SkillConfig
         Tab = SkillTreeTabs.Elemental,
         TabName = "Elemental",
         SkillPageBg = "UI/SkillTree/skill_page_Element.png",
-        InfoScreenBg = "UI/AbilityBook/AbilityInfo/info_window_element.png",
+        InfoScreenBg = "UI/AbilityBook/AbilityInfo/info_window_elemental.png",
         TreeIcon = "UI/SkillTree/small_skill_tree_icons/element.png",
         TreeIconPressed = "UI/SkillTree/small_skill_tree_icons/element.png"
     };

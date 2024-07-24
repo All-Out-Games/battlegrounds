@@ -63,7 +63,7 @@
       "press_scaling": 0,
       "sprite": "UI/AbilityBook/AbilityInfo/quit_cross_button.png",
       "sprite_hovered": "",
-      "sprite_pressed": "$AO/new/icons/ability icons/punch.png",
+      "sprite_pressed": "UI/AbilityBook/AbilityInfo/quit_cross_button.png",
       "sprite_padding": {
         "X": 0,
         "Y": 0,
@@ -107,12 +107,12 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.8500000238418579,
-      "Y": 0.8700000047683716
+      "X": 0.8000000119209290,
+      "Y": 0.8500000238418579
     },
     "max": {
-      "X": 0.9499999880790710,
-      "Y": 0.9499999880790710
+      "X": 0.8999999761581421,
+      "Y": 0.9300000071525574
     },
     "insets": {
       "X": 0,

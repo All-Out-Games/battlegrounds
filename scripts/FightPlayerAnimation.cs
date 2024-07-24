@@ -10,6 +10,7 @@ public partial class FightPlayer
     {
         var stateMachine = SpineAnimator.SpineInstance.StateMachine;
         var resetTrigger = stateMachine.TryGetVariableByName("RESET");
+        var resetALTrigger = stateMachine.CreateVariable("RESET_AL", StateMachineVariableKind.TRIGGER);
         // Main Layer
         var aoLayer = stateMachine.TryGetLayerByName("main");
         var aoIdleState = aoLayer.TryGetStateByName("Idle");
@@ -18,12 +19,12 @@ public partial class FightPlayer
         
         // AL Layer
         var fightLayer = stateMachine.CreateLayer("fight_layer", 10);
-        var idleState = fightLayer.CreateState("BAT_003/neutralize_AL", 0, false);
+        var idleState = fightLayer.CreateState("BAT_003/Idle_short_AL", 0, false);
         var emptyState = fightLayer.CreateState("__CLEAR_TRACK__", 0, true);
 
         fightLayer.SetInitialState(emptyState);
         fightLayer.CreateTransition(idleState, emptyState, true);
-        fightLayer.CreateGlobalTransition(idleState).CreateTriggerCondition(resetTrigger);
+        fightLayer.CreateGlobalTransition(idleState).CreateTriggerCondition(resetALTrigger);
 
         #region Basic Punch
 
@@ -264,15 +265,18 @@ public partial class FightPlayer
     
     
     
-    public void SetAnimTrigger(string variableName)
+    public void SetAnimTrigger(string variableName, bool resetAL = false)
     {
+        if(resetAL) SpineAnimator.SpineInstance.StateMachine.SetTrigger("RESET_AL");
         SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
     }
 
-    public void SetAnimTriggerWithReset(string variableName)
+    public void SetAnimTriggerWithReset(string variableName, bool resetAL = false)
     {
-        SpineAnimator.SpineInstance.StateMachine.SetTrigger("RESET");
-        SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
+        var machine = SpineAnimator.SpineInstance.StateMachine;
+        machine.SetTrigger("RESET");
+        if(resetAL) machine.SetTrigger("RESET_AL");
+        machine.SetTrigger(variableName);
     }
 
     public void UnsetAnimTrigger(string variableName)
