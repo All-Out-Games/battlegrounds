@@ -627,8 +627,8 @@ public static class EffectConfig
 
     public struct IceFistConfig
     {
-        public static float Cooldown = 3.5f;
-        public static int BaseDamage = 4; // This skill uses PunchConfig so this config does not need to be instantiated
+        public static float Cooldown = 3f;
+        public static int BaseDamage = 5; // This skill uses PunchConfig so this config does not need to be instantiated
         // See 
     }
 
