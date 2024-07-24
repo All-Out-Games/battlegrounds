@@ -23,11 +23,11 @@
   "data": {
     "min": {
       "X": 0.3000000119209290,
-      "Y": 0
+      "Y": 0.0500000007450581
     },
     "max": {
       "X": 1,
-      "Y": 1
+      "Y": 0.9499999880790710
     },
     "insets": {
       "X": 0,
@@ -54,7 +54,7 @@
       "Z": 1,
       "W": 1
     },
-    "fit_aspect": true,
+    "fit_aspect": false,
     "fit_aspect_kind": 0,
     "fit_aspect_anchor": 0
   }

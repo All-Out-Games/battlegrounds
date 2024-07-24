@@ -1,8 +1,8 @@
 11
-249108103169
-11833876838886 1721843805392323000
+137438953473
+24624425204794 1721850210914415700
 {
-  "name": "Title",
+  "name": "CoinsText",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,49 +13,23 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "11034690489806:1721843405158832700",
-  "parent": "11465181108626:1721843620749055500"
+  "next_sibling": "24681016089852:1721850239255199400",
+  "parent": "17317871155862:1721846551783310500"
 },
 {
   "cid": 1,
-  "aoid": "11846829485766:1721843811879024200",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIRect",
-  "data": {
-    "min": {
-      "X": 0,
-      "Y": 0.9100000262260437
-    },
-    "max": {
-      "X": 1,
-      "Y": 0.9800000190734863
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
-    }
-  }
-},
-{
-  "cid": 2,
-  "aoid": "11854783389834:1721843815862349000",
+  "aoid": "24624432724027:1721850210918181300",
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "SkillTree",
+    "text": "100",
     "settings": {
       "font_id": "$AO/fonts/Barlow-ExtraBold.ttf",
-      "size": 48,
+      "size": 36,
       "color": {
-        "X": 0,
-        "Y": 0,
-        "Z": 0,
+        "X": 1,
+        "Y": 1,
+        "Z": 1,
         "W": 1
       },
       "valign": 1,
@@ -77,7 +51,7 @@
         "Z": 0,
         "W": 1
       },
-      "do_outline": false,
+      "do_outline": true,
       "outline_thickness": 2,
       "outline_color": {
         "X": 0,
@@ -89,5 +63,31 @@
       "line_height_multiplier": 1
     },
     "push_text_rect": false
+  }
+},
+{
+  "cid": 2,
+  "aoid": "24624437784327:1721850210920715600",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0.2000000029802322,
+      "Y": 0
+    },
+    "max": {
+      "X": 1,
+      "Y": 1
+    },
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
   }
 }

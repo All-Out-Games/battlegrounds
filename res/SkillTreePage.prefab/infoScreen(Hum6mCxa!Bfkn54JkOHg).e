@@ -29,7 +29,7 @@
       "Z": 1,
       "W": 1
     },
-    "fit_aspect": true,
+    "fit_aspect": false,
     "fit_aspect_kind": 0,
     "fit_aspect_anchor": 0
   }
@@ -46,7 +46,7 @@
     },
     "max": {
       "X": 0.8999999761581421,
-      "Y": 0.9499999880790710
+      "Y": 0.8500000238418579
     },
     "insets": {
       "X": 0,

@@ -1,8 +1,8 @@
 11
-257698037761
-11034690489806 1721843405158832700
+133143986177
+24681016089852 1721850239255199400
 {
-  "name": "TreeBg",
+  "name": "CoinImage",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,40 +13,40 @@
     "X": 1,
     "Y": 1
   },
-  "next_sibling": "11833876838886:1721843805392323000",
-  "parent": "11465181108626:1721843620749055500"
+  "previous_sibling": "24624425204794:1721850210914415700",
+  "parent": "17317871155862:1721846551783310500"
 },
 {
   "cid": 1,
-  "aoid": "11065018470100:1721843420347122000",
+  "aoid": "24702088304233:1721850249808189800",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "UI/SkillTree/skill_page_basic.png",
+    "sprite": "UI/AbilityBook/AbilityInfo/buy_button/coin.png",
     "tint": {
       "X": 1,
       "Y": 1,
       "Z": 1,
       "W": 1
     },
-    "fit_aspect": false,
+    "fit_aspect": true,
     "fit_aspect_kind": 0,
     "fit_aspect_anchor": 0
   }
 },
 {
   "cid": 2,
-  "aoid": "11073321219989:1721843424505149100",
+  "aoid": "24727325886319:1721850262447201500",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.0500000007450581,
-      "Y": 0.0500000007450581
+      "X": 0.2000000029802322,
+      "Y": 0
     },
     "max": {
-      "X": 0.9499999880790710,
-      "Y": 0.8999999761581421
+      "X": 0.4000000059604645,
+      "Y": 1
     },
     "insets": {
       "X": 0,

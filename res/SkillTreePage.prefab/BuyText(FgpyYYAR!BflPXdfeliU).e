@@ -1,8 +1,8 @@
 11
-249108103169
-11833876838886 1721843805392323000
+141733920769
+24234124476433 1721850015451338900
 {
-  "name": "Title",
+  "name": "BuyText",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,45 +13,19 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "11034690489806:1721843405158832700",
-  "parent": "11465181108626:1721843620749055500"
+  "previous_sibling": "17317871155862:1721846551783310500",
+  "parent": "16092082902750:1721845937907070600"
 },
 {
   "cid": 1,
-  "aoid": "11846829485766:1721843811879024200",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIRect",
-  "data": {
-    "min": {
-      "X": 0,
-      "Y": 0.9100000262260437
-    },
-    "max": {
-      "X": 1,
-      "Y": 0.9800000190734863
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
-    }
-  }
-},
-{
-  "cid": 2,
-  "aoid": "11854783389834:1721843815862349000",
+  "aoid": "24234129196729:1721850015453702700",
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "SkillTree",
+    "text": "Buy Selfdestruct",
     "settings": {
       "font_id": "$AO/fonts/Barlow-ExtraBold.ttf",
-      "size": 48,
+      "size": 36,
       "color": {
         "X": 0,
         "Y": 0,
@@ -66,7 +40,7 @@
         "X": 0,
         "Y": 0
       },
-      "do_drop_shadow": false,
+      "do_drop_shadow": true,
       "drop_shadow_offset": {
         "X": 1,
         "Y": -1
@@ -89,5 +63,31 @@
       "line_height_multiplier": 1
     },
     "push_text_rect": false
+  }
+},
+{
+  "cid": 2,
+  "aoid": "24234134002381:1721850015456109400",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0.1000000014901161,
+      "Y": 0.1000000014901161
+    },
+    "max": {
+      "X": 0.8999999761581421,
+      "Y": 0.6000000238418579
+    },
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
   }
 }
