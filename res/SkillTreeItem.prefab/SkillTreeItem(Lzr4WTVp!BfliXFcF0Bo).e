@@ -1,8 +1,8 @@
 11
-103079215105
-33868206032426 1721854840211035200
+55834574849
+51930321204585 1721933552508420200
 {
-  "name": "New Entity",
+  "name": "SkillTreeItem",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -12,14 +12,37 @@
   "local_scale": {
     "X": 1,
     "Y": 1
-  },
-  "previous_sibling": "33821678515563:1721854816909998600",
-  "next_sibling": "34339154133089:1721855076062413600",
-  "parent": "29990149104877:1721852898075435300"
+  }
+},
+{
+  "cid": 1,
+  "aoid": "51930348098421:1721933552521888400",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0.4250000119209290,
+      "Y": 0
+    },
+    "max": {
+      "X": 0.5749999880790710,
+      "Y": 0.1199999973177910
+    },
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
+  }
 },
 {
   "cid": 2,
-  "aoid": "33868210305899:1721854840213175300",
+  "aoid": "64788703657950:1721939992001905900",
   "component_type": "Internal_Component",
   "internal_component_type": "UIButton",
   "data": {
@@ -61,9 +84,9 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "UI/SkillTree/small_skill_tree_icons/basic.png",
+      "sprite": "",
       "sprite_hovered": "",
-      "sprite_pressed": "UI/SkillTree/small_skill_tree_icons_pressed/basic.png",
+      "sprite_pressed": "",
       "sprite_padding": {
         "X": 0,
         "Y": 0,
@@ -102,36 +125,14 @@
 },
 {
   "cid": 3,
-  "aoid": "33868214672089:1721854840215361800",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIRect",
-  "data": {
-    "min": {
-      "X": 0.5500000119209290,
-      "Y": 0
-    },
-    "max": {
-      "X": 0.6499999761581421,
-      "Y": 1
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
-    }
-  }
-},
-{
-  "cid": 1,
-  "aoid": "34554169615916:1721855183742427500",
+  "aoid": "64882263186241:1721940038856630600",
   "component_type": "Mono_Component",
-  "mono_component_type": "UISkillTabButton",
+  "mono_component_type": "SkillTreeItem",
   "data": {
-
+    "ItemButton": "64788703657950:1721939992001905900",
+    "_lockedBorder": "51930329567838:1721933552512608500",
+    "_equippedBorder": "51930343471513:1721933552519571200",
+    "_boughtBorder": "58810458191877:1721936998089345100",
+    "_hightlightBorder": "51930339215819:1721933552517440000"
   }
 }

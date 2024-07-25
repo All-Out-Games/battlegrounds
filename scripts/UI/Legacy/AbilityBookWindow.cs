@@ -1,6 +1,6 @@
 using AO;
 
-namespace Assembly.scripts.UI;
+namespace Assembly.scripts.UI.Legacy;
 
 public class AbilityBookWindow : UniqueUIWindow
 {

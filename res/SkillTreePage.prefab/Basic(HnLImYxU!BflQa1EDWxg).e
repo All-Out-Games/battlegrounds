@@ -1,8 +1,8 @@
 11
-193273528322
-36591575754108 1721677501292245400
+115964116993
+33478340611156 1721854644965960800
 {
-  "name": "QuitBtn",
+  "name": "Basic",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,13 +13,12 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "36707671370946:1721677547804909300",
-  "next_sibling": "45545279810203:1721771169149439400",
-  "parent": "33989206748250:1721676458676511200"
+  "next_sibling": "33603490312701:1721854707641082600",
+  "parent": "29990149104877:1721852898075435300"
 },
 {
-  "cid": 1,
-  "aoid": "36591587647158:1721677501297010100",
+  "cid": 2,
+  "aoid": "33502784656401:1721854657207568000",
   "component_type": "Internal_Component",
   "internal_component_type": "UIButton",
   "data": {
@@ -61,9 +60,9 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "UI/AbilityBook/AbilityInfo/quit_cross_button.png",
+      "sprite": "UI/SkillTree/small_skill_tree_icons/basic.png",
       "sprite_hovered": "",
-      "sprite_pressed": "UI/AbilityBook/AbilityInfo/quit_cross_button.png",
+      "sprite_pressed": "UI/SkillTree/small_skill_tree_icons_pressed/basic.png",
       "sprite_padding": {
         "X": 0,
         "Y": 0,
@@ -101,18 +100,18 @@
   }
 },
 {
-  "cid": 2,
-  "aoid": "36591599567370:1721677501301785900",
+  "cid": 3,
+  "aoid": "33558831380579:1721854685275835300",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.8500000238418579,
-      "Y": 0.8999999761581421
+      "X": 0.1000000014901161,
+      "Y": 0
     },
     "max": {
-      "X": 0.9499999880790710,
-      "Y": 0.9800000190734863
+      "X": 0.2000000029802322,
+      "Y": 1
     },
     "insets": {
       "X": 0,
@@ -124,5 +123,14 @@
       "X": 0,
       "Y": 0
     }
+  }
+},
+{
+  "cid": 4,
+  "aoid": "34529314547378:1721855171294979100",
+  "component_type": "Mono_Component",
+  "mono_component_type": "UISkillTabButton",
+  "data": {
+
   }
 }

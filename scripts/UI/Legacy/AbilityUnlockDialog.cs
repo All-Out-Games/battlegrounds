@@ -1,6 +1,8 @@
 
 using AO;
 
+namespace Assembly.scripts.UI.Legacy;
+
 public class AbilityUnlockDialog : UniqueUIWindow
 {
     [Serialized] protected UIButton ConfirmBtn;

@@ -1,8 +1,8 @@
 11
-98784247809
-34339154133089 1721855076062413600
+103079215105
+33868206032426 1721854840211035200
 {
-  "name": "New Entity",
+  "name": "Psionic",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,13 +13,13 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "33868206032426:1721854840211035200",
-  "next_sibling": "34348840679565:1721855080913448000",
+  "previous_sibling": "33821678515563:1721854816909998600",
+  "next_sibling": "34339154133089:1721855076062413600",
   "parent": "29990149104877:1721852898075435300"
 },
 {
   "cid": 2,
-  "aoid": "34339169961654:1721855076070340600",
+  "aoid": "33868210305899:1721854840213175300",
   "component_type": "Internal_Component",
   "internal_component_type": "UIButton",
   "data": {
@@ -61,9 +61,9 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "UI/SkillTree/small_skill_tree_icons/basic.png",
+      "sprite": "UI/SkillTree/small_skill_tree_icons/psionic.png",
       "sprite_hovered": "",
-      "sprite_pressed": "UI/SkillTree/small_skill_tree_icons_pressed/basic.png",
+      "sprite_pressed": "UI/SkillTree/small_skill_tree_icons_pressed/psionic.png",
       "sprite_padding": {
         "X": 0,
         "Y": 0,
@@ -102,16 +102,16 @@
 },
 {
   "cid": 3,
-  "aoid": "34339177410143:1721855076074070800",
+  "aoid": "33868214672089:1721854840215361800",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.6999999880790710,
+      "X": 0.5500000119209290,
       "Y": 0
     },
     "max": {
-      "X": 0.8000000119209290,
+      "X": 0.6499999761581421,
       "Y": 1
     },
     "insets": {
@@ -128,7 +128,7 @@
 },
 {
   "cid": 1,
-  "aoid": "34564273749193:1721855188802589600",
+  "aoid": "34554169615916:1721855183742427500",
   "component_type": "Mono_Component",
   "mono_component_type": "UISkillTabButton",
   "data": {

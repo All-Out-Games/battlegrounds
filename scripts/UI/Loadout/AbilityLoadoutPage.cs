@@ -62,7 +62,6 @@ public class AbilityLoadoutPage : UniqueUIWindow
     public override void OnInstantiate()
     {
         base.OnInstantiate();
-        Log.Warn("ALP Instantiated!");
         
         // Get the player's skill tree and slot manager. The skill book will be instantiated after the player first open the book
         // it exists on local client only
@@ -76,10 +75,11 @@ public class AbilityLoadoutPage : UniqueUIWindow
         Entity layoutEntity = _skillList.Entity;
 
         _bookItems = new Dictionary<string, AbilityLoadoutItemGroup>();
+        Prefab itemPrefab = Assets.GetAsset<Prefab>("LoadoutItemGroup.prefab");
         
         foreach (string key in SkillConfig.GetAllSkillKeys())
         {
-            Prefab itemPrefab = Assets.GetAsset<Prefab>("LoadoutItemGroup.prefab");
+            
             SkillConfig.SkillTreeNodeConfig cfg = SkillConfig.GetConfig(key);
             if (cfg.NType == SkillConfig.NodeType.SkillUnlock) // Active skills only
             {
@@ -121,7 +121,6 @@ public class AbilityLoadoutPage : UniqueUIWindow
         // Associate Tab Buttons
         for(int i = 0; i < _tabButtons.Length; i++)
         {
-            
             _tabButtons[i].Initialize(i, OnTabClicked);
         }
         

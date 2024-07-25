@@ -2,7 +2,7 @@
 111669149697
 33603490312701 1721854707641082600
 {
-  "name": "New Entity",
+  "name": "Brawler",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -61,9 +61,9 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "UI/SkillTree/small_skill_tree_icons/basic.png",
+      "sprite": "UI/SkillTree/small_skill_tree_icons/brawler.png",
       "sprite_hovered": "",
-      "sprite_pressed": "UI/SkillTree/small_skill_tree_icons_pressed/basic.png",
+      "sprite_pressed": "UI/SkillTree/small_skill_tree_icons_pressed/brawler.png",
       "sprite_padding": {
         "X": 0,
         "Y": 0,

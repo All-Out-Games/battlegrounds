@@ -70,7 +70,10 @@ public static partial class SkillConfig
         public int MaximumLevel; // Not used but put it here for redundancy. This number must be at least 1
         public NodeType NType; // This determines how the skill is going to be handled on gameplay side (unrelated to UI)
         public SkillTreeTabs NTab; // This determines which page in ability vendor and ability book this node belongs to
-        public Vector2 UIPosition; // (x,y). Current page center is x = 420
+        
+        public Vector2 UIPosition; // TODO: this field is being retired. 
+        public int GridX = 1; // Max = 2
+        public int GridY = 0; // Max = 5
 
         // Keys are unique for each node
         public string SkillKey;

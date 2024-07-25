@@ -1,5 +1,7 @@
 using AO;
 
+namespace Assembly.scripts.UI.Legacy;
+
 public class AbilityItem : Component
 {
     public enum NodeStatus

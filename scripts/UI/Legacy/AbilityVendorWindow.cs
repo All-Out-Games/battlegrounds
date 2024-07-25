@@ -1,5 +1,6 @@
-
 using AO;
+
+namespace Assembly.scripts.UI.Legacy;
 
 public class AbilityVendorWindow : UniqueUIWindow
 {

@@ -1,8 +1,8 @@
 11
-193273528322
-36591575754108 1721677501292245400
+107374182401
+33821678515563 1721854816909998600
 {
-  "name": "QuitBtn",
+  "name": "Defensive",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,13 +13,13 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "36707671370946:1721677547804909300",
-  "next_sibling": "45545279810203:1721771169149439400",
-  "parent": "33989206748250:1721676458676511200"
+  "previous_sibling": "33603490312701:1721854707641082600",
+  "next_sibling": "33868206032426:1721854840211035200",
+  "parent": "29990149104877:1721852898075435300"
 },
 {
-  "cid": 1,
-  "aoid": "36591587647158:1721677501297010100",
+  "cid": 2,
+  "aoid": "33821682338931:1721854816911913200",
   "component_type": "Internal_Component",
   "internal_component_type": "UIButton",
   "data": {
@@ -61,9 +61,9 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "UI/AbilityBook/AbilityInfo/quit_cross_button.png",
+      "sprite": "UI/SkillTree/small_skill_tree_icons/defense.png",
       "sprite_hovered": "",
-      "sprite_pressed": "UI/AbilityBook/AbilityInfo/quit_cross_button.png",
+      "sprite_pressed": "UI/SkillTree/small_skill_tree_icons_pressed/defense.png",
       "sprite_padding": {
         "X": 0,
         "Y": 0,
@@ -101,18 +101,18 @@
   }
 },
 {
-  "cid": 2,
-  "aoid": "36591599567370:1721677501301785900",
+  "cid": 3,
+  "aoid": "33821686792811:1721854816914143600",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.8500000238418579,
-      "Y": 0.8999999761581421
+      "X": 0.4000000059604645,
+      "Y": 0
     },
     "max": {
-      "X": 0.9499999880790710,
-      "Y": 0.9800000190734863
+      "X": 0.5000000000000000,
+      "Y": 1
     },
     "insets": {
       "X": 0,
@@ -124,5 +124,14 @@
       "X": 0,
       "Y": 0
     }
+  }
+},
+{
+  "cid": 1,
+  "aoid": "34545685443894:1721855179493543900",
+  "component_type": "Mono_Component",
+  "mono_component_type": "UISkillTabButton",
+  "data": {
+
   }
 }

@@ -26,9 +26,11 @@ public static partial class SkillConfig
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 0,
         UIPosition = new Vector2(450, 30), // This will be set to the item's offset value
+        GridX = 1,
+        GridY = 0,
         SkillKey = "Punch",
         ParentNodeKeys = new string[] { },
-        ChildrenNodeKeys = new string[] { "HealthBoost", "AttackBoost" },
+        ChildrenNodeKeys = new string[] { "HealthBoost", "AttackBoost", "Punch2" },
     };
 
     /// <summary>
@@ -44,9 +46,11 @@ public static partial class SkillConfig
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 250,
         UIPosition = new Vector2(730, 230),
+        GridX = 0,
+        GridY = 1,
         SkillKey = "HealthBoost",
         ParentNodeKeys = new string[] { "Punch" },
-        ChildrenNodeKeys = new string[] { "Punch2" },
+        ChildrenNodeKeys = new string[] { "HealthBoost2" },
         Buff = new StatBuff
         {
             BoostType = StatType.MaxHealth,
@@ -67,9 +71,11 @@ public static partial class SkillConfig
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 250,
         UIPosition = new Vector2(110, 230),
+        GridX = 2,
+        GridY = 1,
         SkillKey = "AttackBoost",
         ParentNodeKeys = new string[] { "Punch" },
-        ChildrenNodeKeys = new string[] { "Punch2" },
+        ChildrenNodeKeys = new string[] { "AttackBoost2" },
         Buff = new StatBuff
         {
             BoostType = StatType.AttackPower,
@@ -92,9 +98,11 @@ public static partial class SkillConfig
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 500,
         UIPosition = new Vector2(450, 430),
+        GridX = 1,
+        GridY = 1,
         SkillKey = "Punch2",
-        ParentNodeKeys = new string[] { "AttackBoost", "HealthBoost" },
-        ChildrenNodeKeys = new string[] { "AttackBoost2", "HealthBoost2" },
+        ParentNodeKeys = new string[] { "Punch" },
+        ChildrenNodeKeys = new string[] { "Punch3" },
     };
 
     /// <summary>
@@ -110,9 +118,11 @@ public static partial class SkillConfig
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 750,
         UIPosition = new Vector2(730, 630),
+        GridX = 0,
+        GridY = 2,
         SkillKey = "HealthBoost2",
-        ParentNodeKeys = new string[] { "Punch2" },
-        ChildrenNodeKeys = new string[] { "Punch3" },
+        ParentNodeKeys = new string[] { "HealthBoost" },
+        ChildrenNodeKeys = new string[] { },
         Buff = new StatBuff
         {
             BoostType = StatType.MaxHealth,
@@ -126,16 +136,18 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig AttackBoost2NodeConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Boost the player's attack by 3.",
-        IconPath = "AbilityIcon_Merged/basic/attack_boost.png",
+        IconPath = "AbilityIcon_Merged/basic/attack_boost_2.png",
         MaximumLevel = 1,
         NeedRemover = true,
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 750,
         UIPosition = new Vector2(110, 630),
+        GridX = 2,
+        GridY = 2,
         SkillKey = "AttackBoost2",
-        ParentNodeKeys = new string[] { "Punch2" },
-        ChildrenNodeKeys = new string[] { "Punch3" },
+        ParentNodeKeys = new string[] { "AttackBoost" },
+        ChildrenNodeKeys = new string[] { },
         Buff = new StatBuff
         {
             BoostType = StatType.AttackPower,
@@ -158,6 +170,8 @@ public static partial class SkillConfig
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 1500,
         UIPosition = new Vector2(450, 830),
+        GridX = 1,
+        GridY = 2,
         SkillKey = "Punch3",
         ParentNodeKeys = new string[] { "AttackBoost2", "HealthBoost2" },
         ChildrenNodeKeys = new string[] { },
