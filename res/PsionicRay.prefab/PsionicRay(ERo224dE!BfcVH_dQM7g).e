@@ -12,8 +12,7 @@
   "local_scale": {
     "X": 1,
     "Y": 1
-  },
-  "previous_sibling": "377316458197998:1716489394196426200"
+  }
 },
 {
   "cid": 1,
@@ -27,9 +26,10 @@
     ],
     "depth_offset": 0,
     "skeleton_scale": {
-      "X": 1,
-      "Y": 1
-    }
+      "X": 2.4000000953674316,
+      "Y": 2.4000000953674316
+    },
+    "mask_in_shadow": false
   }
 },
 {
@@ -38,11 +38,11 @@
   "component_type": "Mono_Component",
   "mono_component_type": "BeamVFX",
   "data": {
-    "StartAnimationStr": [
-      "psionic_beam_loop"
-    ],
     "Loop": true,
     "Animator": "0:0",
-    "EntityLifeTime": 10
+    "EntityLifeTime": 10,
+    "StartAnimationStr": [
+      "psionic_beam_loop"
+    ]
   }
 }

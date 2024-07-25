@@ -5,8 +5,8 @@
   "name": "Portal",
   "local_enabled": true,
   "local_position": {
-    "X": 0.9068355560302734,
-    "Y": 22.1127090454101562
+    "X": 0.2469999939203262,
+    "Y": 21.3330001831054688
   },
   "local_rotation": 0,
   "local_scale": {
@@ -30,8 +30,8 @@
     ],
     "depth_offset": 0,
     "skeleton_scale": {
-      "X": 1,
-      "Y": 1
+      "X": 2.4000000953674316,
+      "Y": 2.4000000953674316
     },
     "mask_in_shadow": false
   }

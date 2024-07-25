@@ -27,9 +27,10 @@
     ],
     "depth_offset": 0,
     "skeleton_scale": {
-      "X": 1,
-      "Y": 1
-    }
+      "X": 2.4000000953674316,
+      "Y": 2.4000000953674316
+    },
+    "mask_in_shadow": false
   }
 },
 {
@@ -38,11 +39,11 @@
   "component_type": "Mono_Component",
   "mono_component_type": "BaseVFX",
   "data": {
-    "StartAnimationStr": [
-      "slice"
-    ],
     "Loop": false,
     "Animator": "133560215032735:1718742549134367300",
-    "EntityLifeTime": 2
+    "EntityLifeTime": 2,
+    "StartAnimationStr": [
+      "slice"
+    ]
   }
 }
