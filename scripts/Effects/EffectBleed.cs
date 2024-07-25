@@ -25,17 +25,12 @@ public class EffectBleed : FightEffect
         }
     }
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         AddAura();
     }
-
-    public override void NetworkDeserialize(StreamReader reader)
-    {
-        base.NetworkDeserialize(reader);
-        AddAura();
-    }
+    
 
     protected void Bleed()
     {

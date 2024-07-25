@@ -4,9 +4,9 @@ public class EffectBlinded : FightEffect
 {
     public override bool IsActiveEffect => false;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         if (FightPlayer.IsLocal)
         {
             FightClubGameManager.References.TotalDarknessOverlay.LocalEnabled = true;

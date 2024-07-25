@@ -4,9 +4,9 @@ public class EffectNoMovementWithImmunity : EffectNoMovement
 {
     public override bool IsValidTarget => false;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.RegisterPreDamageEvent(this);
     }
 

@@ -17,9 +17,9 @@ public class EffectTotalDarkness : FightEffect
     public override bool IsActiveEffect => false;
 
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         DurationRemaining = EffectConfig.TotalDarknessConfig.BlindTime;
         
         // Blind Every Player in combat

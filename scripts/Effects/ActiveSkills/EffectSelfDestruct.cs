@@ -22,9 +22,9 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => false;
     
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightStateMachine.SetTrigger("self_destruct");
         AssignConfig(EffectConfig.SelfDestructConfig.GetDefault(FightPlayer.CurrentAttack));
     }

@@ -25,9 +25,9 @@ public class EffectShield : FightEffect
 
     protected ShieldVFX ShieldVfx;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         
         AssignConfig(EffectConfig.ShieldConfig.GetDefault());
         DurationRemaining = Config.Duration;

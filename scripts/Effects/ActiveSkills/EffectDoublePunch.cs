@@ -21,9 +21,9 @@ public class EffectDoublePunch : FightEffect
     private int _punchIndex;
 
     private Vector2 punchDir;
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         
         AssignConfig(EffectConfig.DoublePunchConfig.GetDefault(FightPlayer.CurrentAttack));
         

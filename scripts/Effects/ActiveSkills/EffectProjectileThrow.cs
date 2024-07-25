@@ -26,9 +26,9 @@ public class EffectProjectileThrow : FightEffect
 
     protected List<Entity> WhiteList;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         WhiteList = new List<Entity>();
         WhiteList.Add(FightPlayer.Entity);
         

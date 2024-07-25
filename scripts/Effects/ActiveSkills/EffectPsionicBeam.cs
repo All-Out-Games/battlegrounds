@@ -52,9 +52,9 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
         DurationRemaining = EffectConfig.PsionicBeamConfig.CarveTime;
     }
     
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         AssignConfig(EffectConfig.PsionicBeamConfig.GetDefault(FightPlayer.CurrentAttack));
         FightPlayer.SetFacingDirection(AbilityPositionOrDirection.X >= 0);
         FightPlayer.UnsetAnimTrigger("psibeam_end");

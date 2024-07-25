@@ -23,9 +23,9 @@ public class EffectConfusion : EffectStun
         }
     }
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightStateMachine.SetBool("confusion", true);
     }
 

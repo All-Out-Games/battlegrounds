@@ -29,9 +29,9 @@ public class EffectHypnotizeCaster : FightEffect
 
     protected override bool PreventMovement => true;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("hypnotize");
         DurationRemaining = MainLayer.GetCurrentStateLength();
     }
@@ -46,9 +46,9 @@ public class EffectHypnotize : FightEffectWithNoFlinch
 
     public override bool BlockAbilityActivation => true;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("knockdown", NeedALReset());
         FightPlayer.OnReceiveDamage += OnDamageEvent;
         DurationRemaining = EffectConfig.HypnotizeConfig.HypnotizeTime;

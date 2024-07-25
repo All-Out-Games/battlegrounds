@@ -24,9 +24,9 @@ public class EffectInvisible : FightEffect
     private string _skillKey = "Invisibility";
 
     private AttachmentObject _aura;
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         DurationRemaining = EffectConfig.InvisibilityConfig.InvisTime;
         AddInvis(FightPlayer.IsLocal);
         

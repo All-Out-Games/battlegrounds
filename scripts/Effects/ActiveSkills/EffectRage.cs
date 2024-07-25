@@ -23,9 +23,9 @@ public class EffectRageCast : FightEffectWithNoFlinch
 
     public override bool IsActiveEffect => true;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("rage_stomp");
         
         _animDuration = MainLayer.GetCurrentStateLength();
@@ -58,9 +58,9 @@ public class EffectRage : FightEffect
     // General Atk boost buff
     protected EffectConfig.RageConfig Config;
     
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         AssignConfig(EffectConfig.RageConfig.GetDefault());
         
         FightPlayer.CurrentAttack += Config.AtkBoost;
@@ -79,12 +79,6 @@ public class EffectRage : FightEffect
     protected void AssignConfig(EffectConfig.RageConfig cfg)
     {
         Config = cfg;
-    }
-
-    public override void NetworkDeserialize(StreamReader reader)
-    {
-        base.NetworkDeserialize(reader);
-        AddAura();
     }
     
     private void AddAura()

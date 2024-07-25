@@ -22,9 +22,9 @@ public class EffectClawSlash : FightEffect
     
     private EffectConfig.ClawSlashConfig _config;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         AssignConfig(EffectConfig.ClawSlashConfig.GetDefault(FightPlayer.CurrentAttack));
 
         FightPlayer.SetAnimTrigger("clawslash");

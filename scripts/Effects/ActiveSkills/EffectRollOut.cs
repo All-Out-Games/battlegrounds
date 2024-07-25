@@ -51,9 +51,9 @@ public class EffectRollOut : FightEffect
         _config = cfg;
     }
     
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         
         var slotsMgr = FightPlayer.GetSkillSlots();
         var f = typeof(AbilityRollOut);
@@ -92,7 +92,6 @@ public class EffectRollOut : FightEffect
         base.NetworkDeserialize(reader);
         NextDmgTick = reader.Read<float>();
         //AssignConfig(EffectConfig.GetPlayerRollOutConfig(FightPlayer.CurrentAttack));
-        RollOutStart();
     }
 
     private void RollOutStart()
@@ -192,9 +191,9 @@ public class EffectRollOutCancel : FightEffect
 
     public override bool BlockAbilityActivation => true;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.RemoveEffect<EffectRollOut>(false);
         DurationRemaining = 0.2f;
     }

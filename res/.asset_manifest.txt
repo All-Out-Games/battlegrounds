@@ -134,7 +134,7 @@ ShadowStepVFX.prefab - .ao - 66859955b45eb9e8339c0ffd - 11550510081096301958
 Shield_FX.prefab - .ao - 66a1a7616732dee0bb811d5b - 13096274270533741888
 ShurikenProjectile.prefab - .ao - 668f1467b45eb9e8339c1aa3 - 8548912423477914444
 SkillSlotsPanel.prefab - .ao - 66859956b45eb9e8339c1001 - 11546600357276263640
-SkillTreePage.prefab - .ao - 66a187416732dee0bb811d21 - 15210374896331249991
+SkillTreePage.prefab - .ao - 66a29f9d6732dee0bb811d9e - 9913467456916616629
 SpoonProjectile.prefab - .ao - 66859956b45eb9e8339c1002 - 12342670774966987832
 TotalDarknessOverlay.prefab - .ao - 6685d28fb45eb9e8339c10be - 15557225266589634022
 UI/AbilityBook/AbilityInfo/buy_button/buy_button.png - .ao - 669816f4b45eb9e8339c1f5b - 7538570100970345996
@@ -470,6 +470,11 @@ environment/gold.png - .ao.ios - 66859967b45eb9e8339c108c - 15698126421952890697
 environment/portal/cosmicPortal.png - .ao - 66859967b45eb9e8339c1090 - 3995821800800756657
 environment/portal/cosmicPortal.png - .ao.ios - 66859967b45eb9e8339c1092 - 4722501650766168214
 environment/portal/cosmicPortal.spine - .ao - 66859967b45eb9e8339c1091 - 9083999045970940274
+old_base_rig/playercharacter.png - .ao - 66a29f9e6732dee0bb811da4 - 6411632049498198605
+old_base_rig/playercharacter.png - .ao.ios - 66a29f9e6732dee0bb811da3 - 6734048498957032975
+old_base_rig/playercharacter.spine - .ao - 66a29f9c6732dee0bb811d9b - 6453235407295536449
+old_base_rig/playercharacter_2.png - .ao - 66a29f9c6732dee0bb811d9c - 17558781897250562856
+old_base_rig/playercharacter_2.png - .ao.ios - 66a29f9d6732dee0bb811d9f - 11089736624654215381
 projectile/BAT003_Projectile/BAT003_projectile.png - .ao - 66859968b45eb9e8339c1096 - 8698776939411441091
 projectile/BAT003_Projectile/BAT003_projectile.png - .ao.ios - 66859968b45eb9e8339c1097 - 13689035272585891771
 projectile/BAT003_Projectile/BAT003_projectile.spine - .ao - 66859968b45eb9e8339c1098 - 17446277854452097558

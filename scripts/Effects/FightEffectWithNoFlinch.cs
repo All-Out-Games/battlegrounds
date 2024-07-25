@@ -4,9 +4,9 @@ public class FightEffectWithNoFlinch : FightEffect
 {
     public override bool IsActiveEffect => false;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.RegisterPreDamageEvent(this);
     }
 

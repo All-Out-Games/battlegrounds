@@ -21,9 +21,9 @@ public class EffectGroundStomp : FightEffectWithNoFlinch
     public override bool FreezePlayer => true;
 
     protected EffectConfig.GroundStompConfig Config;
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("groundstomp");
         AssignConfig(EffectConfig.GroundStompConfig.GetDefault(FightPlayer.CurrentAttack));
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;

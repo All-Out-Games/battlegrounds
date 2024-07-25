@@ -16,9 +16,9 @@ public class EffectLightFeet : FightEffect
 {
     public override bool IsActiveEffect => false;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.AddSpeedModifier(EffectConfig.LightFeetConfig.SpeedModifier);
         DurationRemaining = EffectConfig.LightFeetConfig.BoostTime;
     }

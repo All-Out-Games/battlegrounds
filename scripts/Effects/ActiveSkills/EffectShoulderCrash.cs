@@ -27,9 +27,9 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
     protected bool Ticked = false;
 
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         AssignConfig(EffectConfig.ShoulderCrashConfig.GetDefault(FightPlayer.CurrentAttack));
         DurationRemaining = _config.DashDuration + 0.1f;
         //FightPlayer.AddPlayerCollisionFunction(OnShoulderCrashCollision);

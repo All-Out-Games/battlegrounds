@@ -21,9 +21,9 @@ public class EffectBearTrap: FightEffect
     public override bool IsActiveEffect => false;
 
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         DurationRemaining = 0.1f;
     }
 
@@ -46,9 +46,9 @@ public class EffectBearTrapSnare : FightEffectWithNoFlinch
 
     public override bool BlockAbilityActivation => true;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("beartrapped");
         
         

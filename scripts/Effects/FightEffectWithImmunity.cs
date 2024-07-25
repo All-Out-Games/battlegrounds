@@ -10,9 +10,9 @@ public class FightEffectWithImmunity : FightEffect
 
     protected virtual string InvincibilityReason => "Immunity";
     
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.RegisterPreDamageEvent(this);
         FightPlayer.AddInvincibilityReason(InvincibilityReason);
 

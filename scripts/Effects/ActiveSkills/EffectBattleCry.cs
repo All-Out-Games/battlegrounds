@@ -21,9 +21,9 @@ public class EffectBattleCry : FightEffectWithNoFlinch
 
     protected EffectConfig.BattleCryConfig Config;
     protected bool Activated = false;
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         AssignConfig(EffectConfig.BattleCryConfig.GetDefault(FightPlayer.CurrentAttack));
 
         FightPlayer.SetAnimTrigger("battlecry");
@@ -77,9 +77,9 @@ public class EffectBattleCry : FightEffectWithNoFlinch
 
 public class EffectBattleCryStun : EffectStun
 {
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("battlecry_stun");
     }
 

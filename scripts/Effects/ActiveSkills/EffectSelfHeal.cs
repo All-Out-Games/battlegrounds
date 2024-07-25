@@ -24,20 +24,15 @@ public class EffectSelfHeal : FightEffect
 
     protected override bool PreventMovement => true;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.OnReceiveDamage += OnDamageEvent;
         DurationRemaining = EffectConfig.SelfHealConfig.ChannelTime;
         FightPlayer.UnsetAnimTrigger("selfheal_end");
         FightPlayer.SetAnimTrigger("selfheal");
     }
-
-    public override void NetworkDeserialize(StreamReader reader)
-    {
-        base.NetworkDeserialize(reader);
-        FightPlayer.OnReceiveDamage += OnDamageEvent;
-    }
+    
 
     public override void OnEffectEnd(bool interrupt)
     {

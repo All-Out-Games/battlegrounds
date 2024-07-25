@@ -30,9 +30,9 @@ public class EffectPunch : FightEffect
 
     protected Vector2 punchDir;
     
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
 
         AssignConfig(EffectConfig.GetPlayerPunchConfig(FightPlayer.PunchLevel, FightPlayer.CurrentAttack));
         FightPlayer.SetAnimTrigger(Config.AnimationTrigger); ;

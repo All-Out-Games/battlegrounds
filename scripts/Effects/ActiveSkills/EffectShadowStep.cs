@@ -20,9 +20,9 @@ public class EffectShadowStep : FightEffect
 
     public override bool BlockAbilityActivation => true;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         var fx = VFXPrefabs.ShadowStepVFX.Instantiate();
         fx.Position = FightPlayer.Entity.Position;
         fx.GetComponent<SelectionVFX>()?.StartVFX("shadow_step_effect", false);

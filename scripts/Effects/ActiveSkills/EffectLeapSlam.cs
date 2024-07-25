@@ -29,9 +29,9 @@ public class EffectLeapSlam : FightEffectWithImmunity
     private EffectConfig.LeapSlamConfig _config;
     private Vector2 _dirPosition;
     
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
 
         FightPlayer.AddBump(Vector2.Zero, true);
 
@@ -56,7 +56,6 @@ public class EffectLeapSlam : FightEffectWithImmunity
 
     public override void OnAnimationEvent(string evt)
     {
-        Log.Debug($"Event {evt}!");
         if (evt == "Attack")
         {
             FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.LeapSlamCraterVfxPath, FightPlayer.Entity.Position);
@@ -113,9 +112,9 @@ public class EffectKnockDown : FightEffectWithNoFlinch
 
     private bool _gettingup = false;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("sentfly");
         FightPlayer.SpineAnimator.OnAnimationEnd += OnAnimationEnd;
         FightPlayer.OnReceiveDamage += OnDamageEvent;

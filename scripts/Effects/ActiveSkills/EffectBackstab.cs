@@ -27,9 +27,9 @@ public class EffectBackstab : EffectNoMovement
     private EffectConfig.BackStabConfig _config;
     private FightPlayer _fp;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         _fp = Caster as FightPlayer;
         if (_fp == null)
         {
@@ -63,9 +63,9 @@ public class EffectBackstabCaster : FightEffectWithImmunity
 
     protected override string InvincibilityReason => "BacstabCast";
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         FightPlayer victimFp = Caster as FightPlayer;
         if (victimFp == null)
         {

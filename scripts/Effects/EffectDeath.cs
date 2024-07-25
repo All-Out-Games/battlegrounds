@@ -6,9 +6,9 @@ public class EffectDeath : FightEffectWithImmunity
 {
     protected override string InvincibilityReason => "Dead";
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         // Reset AL if an AL animation is playing
         FightPlayer.SetAnimTrigger("death");
         FightPlayer.AddDash(Vector2.Zero, 0);

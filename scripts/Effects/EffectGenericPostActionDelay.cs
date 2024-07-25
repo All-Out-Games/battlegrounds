@@ -9,9 +9,9 @@ public class EffectGenericPostActionDelay : FightEffectWithNoFlinch
     protected override bool PreventMovement => true;
     public override bool BlockAbilityActivation => true;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         DurationRemaining = MainLayer.GetCurrentStateLength();
     }
 }

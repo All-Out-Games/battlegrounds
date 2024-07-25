@@ -21,9 +21,9 @@ public class EffectIceFist : FightEffect
 
     protected Vector2 punchDir;
     
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
 
         AssignConfig(EffectConfig.GetIcePunchConfig(FightPlayer.CurrentAttack));
         FightPlayer.SetAnimTrigger(Config.AnimationTrigger); ;

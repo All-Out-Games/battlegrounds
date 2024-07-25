@@ -19,11 +19,13 @@ public abstract class FightEffect : AEffect
     // Only the initial values work for these two fields!
     protected virtual bool PreventMovement => false;
     protected virtual bool PreventDamage => false;
+
     /// <summary>
     /// Get the owner as FightPlayer & the slot the skill has been triggered from.
     /// If you want to use these fields you must call base.OnEffectStart!
     /// </summary>
-    public override void OnEffectStart()
+    /// <param name="isDropIn"></param>
+    public override void OnEffectStart(bool isDropIn)
     {
         FightPlayer = (FightPlayer)Player;
         FightStateMachine = Player.SpineAnimator.SpineInstance.StateMachine;

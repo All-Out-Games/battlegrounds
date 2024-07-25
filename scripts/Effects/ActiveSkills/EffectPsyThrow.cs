@@ -53,9 +53,9 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
     protected override bool PreventMovement => true;
     public override bool BlockAbilityActivation => true;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         DurationRemaining = EffectConfig.PsyThrowConfig.GrabTime;
         _casterFp = Caster as FightPlayer;
         UIManager.CallClient_SetPlayerPopup(FightPlayer.Entity.NetworkId, $"You are grabbed by {Caster.Entity.Name}!", 1f);
@@ -87,9 +87,9 @@ public class EffectPsyThrowReady : FightEffectWithNoFlinch
 
     private int _originalIndex = -1;
     
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         var slotsMgr = FightPlayer.GetSkillSlots();
         var f = typeof(AbilityPsyThrow);
         _originalIndex = slotsMgr.GetAbilityIndex(f);
@@ -143,9 +143,9 @@ public class EffectPsyThrowLaunch : FightEffectWithNoFlinch
 
     private List<Entity> _interactedEntities;
 
-    public override void OnEffectStart()
+    public override void OnEffectStart(bool isDropIn)
     {
-        base.OnEffectStart();
+        base.OnEffectStart(isDropIn);
         if (FightPlayer.HasEffect<EffectPsyThrow>())
         {
             Caster.RemoveEffect<EffectPsyThrowReady>(true);
