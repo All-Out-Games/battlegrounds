@@ -1,4 +1,4 @@
-10
+11
 210453397505
 63664780752557 1715969069547823000
 {
@@ -13,7 +13,8 @@
     "X": 1,
     "Y": 1
   },
-  "sibling_index": 1,
+  "previous_sibling": "61988692524781:1715968230160398600",
+  "next_sibling": "63498679490489:1715968986364069100",
   "parent": "61758491959901:1715968114875620900"
 },
 {
@@ -92,8 +93,11 @@
       },
       "click_sound": "",
       "click_sound_speed": 1,
+      "stay_hot_while_active": false,
+      "return_to_center_to_cancel": false,
       "keybind": 0
-    }
+    },
+    "interactable": true
   }
 },
 {

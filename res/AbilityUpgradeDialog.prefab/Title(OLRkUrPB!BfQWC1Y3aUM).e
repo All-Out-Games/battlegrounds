@@ -1,4 +1,4 @@
-10
+11
 219043332097
 62347428410305 1715968409815852300
 {
@@ -13,7 +13,7 @@
     "X": 1,
     "Y": 1
   },
-  "sibling_index": 0,
+  "next_sibling": "64105721554257:1715969290371618100",
   "parent": "61988692524781:1715968230160398600"
 },
 {
@@ -58,8 +58,8 @@
         "Z": 1,
         "W": 1
       },
-      "valign": "Vertical_Text_Align::Center",
-      "halign": "Horizontal_Text_Align::Center",
+      "valign": 1,
+      "halign": 1,
       "word_wrap": false,
       "word_wrap_start_offset": 0,
       "offset": {

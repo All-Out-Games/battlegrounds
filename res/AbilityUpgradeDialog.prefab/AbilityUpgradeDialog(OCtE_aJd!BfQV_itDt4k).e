@@ -1,4 +1,4 @@
-10
+11
 266287972353
 61758491959901 1715968114875620900
 {
@@ -12,8 +12,7 @@
   "local_scale": {
     "X": 1,
     "Y": 1
-  },
-  "sibling_index": 0
+  }
 },
 {
   "cid": 1,
@@ -42,18 +41,6 @@
   }
 },
 {
-  "cid": 2,
-  "aoid": "67219878788874:1715970849946094200",
-  "component_type": "Mono_Component",
-  "mono_component_type": "AbilityUnlockDialog",
-  "data": {
-    "CloseButton": "63664780918387:1715969069547905600",
-    "ConfirmBtn": "63576344512781:1715969025258825100",
-    "CancelBtn": "63664780918387:1715969069547905600",
-    "MainTxt": "64180071363410:1715969327606111000"
-  }
-},
-{
   "cid": 3,
   "aoid": "70281029559481:1715972382974856300",
   "component_type": "Internal_Component",
@@ -61,5 +48,17 @@
   "data": {
     "layer": -2,
     "relative": true
+  }
+},
+{
+  "cid": 5,
+  "aoid": "80225057343470:1721947722546502900",
+  "component_type": "Mono_Component",
+  "mono_component_type": "ConfirmOrCancelDialog",
+  "data": {
+    "CloseButton": "63664780918387:1715969069547905600",
+    "ConfirmBtn": "63576344512781:1715969025258825100",
+    "CancelBtn": "63664780918387:1715969069547905600",
+    "MainTxt": "64180071363410:1715969327606111000"
   }
 }

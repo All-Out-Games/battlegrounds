@@ -28,7 +28,7 @@ public class AbilityItem : Component
                 // Node already unlocked
                 break; 
             case NodeStatus.Attainable:
-                AbilityUnlockDialog dialog = UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityUnlockDialogPath) as AbilityUnlockDialog;
+                ConfirmOrCancelDialog dialog = UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityUnlockDialogPath) as ConfirmOrCancelDialog;
                 dialog.InitializeWithConfig(Config, OnAbilityUpgradeReturn);
                 break;
             case NodeStatus.Locked:
@@ -115,5 +115,6 @@ public class AbilityItem : Component
             FightPlayer fp = (FightPlayer)Network.LocalPlayer;
             fp.GetSkillTree().CallServer_RequestUpgradeSkill(Config.SkillKey);
         }
+        UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityVendorPath);
     }
 }

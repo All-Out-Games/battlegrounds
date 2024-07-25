@@ -1,4 +1,5 @@
 using AO;
+using Assembly.scripts.UI.Legacy;
 
 namespace Assembly.scripts.UI.SkillTree;
 
@@ -21,8 +22,8 @@ public class SkillTreePage : UniqueUIWindow
     [Serialized] private UIButton _prevTab;
     [Serialized] private UISkillTabButton[] _tabButtons;
     [Serialized] private UIText _abilityTabName;
+    [Serialized] private UIImage _tabBg;
     
-    // Tabs
     private SkillConfig.SkillTreeTabs _currentTab = SkillConfig.SkillTreeTabs.Basic;
     private int _currentTabIndex = 0;
     private int _tabAmount = 0;
@@ -34,6 +35,7 @@ public class SkillTreePage : UniqueUIWindow
     private FightPlayerSkillTree _skillTree;
     private FightPlayerSkillSlotsManager _slotsMgr;
     private SkillTreeItem _selectedItem;
+    private FightPlayer _localPlayer;
 
     public override void Start()
     {
@@ -43,9 +45,9 @@ public class SkillTreePage : UniqueUIWindow
     public override void OnInstantiate()
     {
         base.OnInstantiate();
-        FightPlayer fp = Network.LocalPlayer.Entity.GetComponent<FightPlayer>();
-        _slotsMgr ??= fp.GetSkillSlots();
-        _skillTree ??= fp.GetSkillTree();
+        _localPlayer = Network.LocalPlayer.Entity.GetComponent<FightPlayer>();
+        _slotsMgr ??= _localPlayer.GetSkillSlots();
+        _skillTree ??= _localPlayer.GetSkillTree();
         _treeItems = new Dictionary<string, SkillTreeItem>();
         
         // First Open Phase 1
@@ -77,19 +79,32 @@ public class SkillTreePage : UniqueUIWindow
         {
             _tabButtons[i].Initialize(i, OnTabClicked);
         }
-        
-        
-        
+
+        _buyButton.OnClicked += OnBuyButtonClicked;
+
+
     }
 
     public override void OpenWindow()
     {
         base.OpenWindow();
+        _localPlayer.CoinUpdateEvent += UpdateAllItems;
+        
         SetInfoScreenEnabled(false);
         ResetSelection();
         UpdateAllItems();
+        
+        Chat.SetChatMode(Chat.Mode.BubbleOnly);
     }
-    
+
+    public override void CloseWindow()
+    {
+        base.CloseWindow();
+        _localPlayer.CoinUpdateEvent -= UpdateAllItems;
+        
+        Chat.SetChatMode(Chat.Mode.Default);
+    }
+
     private void PreviousTab()
     {
         _currentTabIndex -= 1;
@@ -120,7 +135,8 @@ public class SkillTreePage : UniqueUIWindow
     {
         // All ability nodes are loaded upon startup. We just need to enable those belong to this tab
         _currentTab = tab;
-        _abilityTabName.Text = SkillConfig.STTabsNameQueryDict[tab];
+        _abilityTabName.Text = SkillConfig.STTabsNameQueryDict[_currentTab];
+        _tabBg.Sprite = Assets.GetAsset<Texture>(SkillConfig.STTabQueryDict[_currentTab].SkillPageBg);
         
         foreach (var kv in _treeItems)
         {
@@ -138,7 +154,7 @@ public class SkillTreePage : UniqueUIWindow
         }
     }
 
-    private void UpdateAllItems()
+    private void UpdateAllItems(int coins = 0)
     {
         var currentAbilities = _slotsMgr.GetCurrentAbilities().Select(ability => ability.SkillKey).ToArray();
         foreach (var item in _treeItems)
@@ -193,6 +209,11 @@ public class SkillTreePage : UniqueUIWindow
     // Callback - buy button
     public void OnBuyButtonClicked()
     {
-        
+        if (_selectedItem.Status == SkillTreeItem.NodeStatus.Attainable)
+        {
+            ConfirmOrCancelDialog dialog = UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityUnlockDialogPath) as ConfirmOrCancelDialog;
+            dialog.InitializeWithConfig(_selectedItem.Config, _selectedItem.OnAbilityUpgradeReturn);
+        }
     }
+    
 }

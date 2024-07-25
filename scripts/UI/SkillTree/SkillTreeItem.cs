@@ -46,16 +46,21 @@ public class SkillTreeItem : Component
         if (skillTree.SkillLevelDict[Config.SkillKey] > 0)
         {
             Status = NodeStatus.Purchased;
+            _boughtBorder.LocalEnabled = true;
         }
         // Check 2: Parent Level
         else if (CheckAttainable(skillTree))
         {
             Status = NodeStatus.Attainable;
+            _boughtBorder.LocalEnabled = false;
+            _lockedBorder.LocalEnabled = false;
         }
         // Otherwise...
         else
         {
             Status = NodeStatus.Locked;
+            _lockedBorder.LocalEnabled = true;
+            _boughtBorder.LocalEnabled = false;
         }
         
         // Check equipped
@@ -85,22 +90,23 @@ public class SkillTreeItem : Component
         return attainable;
     }
 
-    protected void OnAbilityUpgradeReturn(bool confirmed)
+    public void OnAbilityUpgradeReturn(bool confirmed)
     {
         if (confirmed && Status == NodeStatus.Attainable)
         {
-            // TODO: Request update from player skill tree
             TestServerRPC.CallServer_LogSomethingOnServer($"Callback received. Requesting to upgrade {Config.SkillKey}");
 
             FightPlayer fp = (FightPlayer)Network.LocalPlayer;
             fp.GetSkillTree().CallServer_RequestUpgradeSkill(Config.SkillKey);
         }
+        UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.SkillTreePath);
     }
 
     public void OnItemClicked()
     {
-        _hightlightBorder.LocalEnabled = true;
         TreePage.OnItemSelected(this);
+        _hightlightBorder.LocalEnabled = true;
+        
     }
 
     public void Unselect()

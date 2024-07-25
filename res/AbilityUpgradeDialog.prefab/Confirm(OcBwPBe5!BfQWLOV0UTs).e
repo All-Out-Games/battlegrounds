@@ -1,4 +1,4 @@
-10
+11
 214748364801
 63498679490489 1715968986364069100
 {
@@ -13,7 +13,7 @@
     "X": 1,
     "Y": 1
   },
-  "sibling_index": 2,
+  "previous_sibling": "63664780752557:1715969069547823000",
   "parent": "61758491959901:1715968114875620900"
 },
 {
@@ -60,9 +60,9 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "$AO/new/modal/help_button.png",
+      "sprite": "$AO/new/Settings Modal/button_2.png",
       "sprite_hovered": "",
-      "sprite_pressed": "$AO/new/modal/help_button_pressed.png",
+      "sprite_pressed": "$AO/new/Settings Modal/button_2_pressed.png",
       "sprite_padding": {
         "X": 0,
         "Y": 0,
@@ -72,9 +72,9 @@
       "nine_slice_data": {
         "slice": {
           "X": 0,
-          "Y": 0,
+          "Y": 37,
           "Z": 0,
-          "W": 0
+          "W": 52
         },
         "slice_scale": 1
       },
@@ -92,8 +92,11 @@
       },
       "click_sound": "",
       "click_sound_speed": 1,
+      "stay_hot_while_active": false,
+      "return_to_center_to_cancel": false,
       "keybind": 0
-    }
+    },
+    "interactable": true
   }
 },
 {

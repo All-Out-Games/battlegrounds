@@ -1,9 +1,9 @@
 
 using AO;
 
-namespace Assembly.scripts.UI.Legacy;
+namespace Assembly.scripts.UI;
 
-public class AbilityUnlockDialog : UniqueUIWindow
+public class ConfirmOrCancelDialog : UniqueUIWindow
 {
     [Serialized] protected UIButton ConfirmBtn;
     [Serialized] protected UIButton CancelBtn;
@@ -11,20 +11,13 @@ public class AbilityUnlockDialog : UniqueUIWindow
     
     protected SkillConfig.SkillTreeNodeConfig Config;
     protected Action<bool> OnDialogReturn;
-    public override void CloseWindow()
-    {
-        base.CloseWindow();
-        
-        // Pop the ability window back
-        UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityVendorPath);
-    }
     
 
-    public void InitializeWithConfig(SkillConfig.SkillTreeNodeConfig cfg, Action<bool> callback)
+    public void InitializeWithConfig(SkillConfig.SkillTreeNodeConfig cfg, Action<bool> callback, string txt = "Buy?")
     {
         Config = cfg;
         OnDialogReturn = callback;
-        MainTxt.Text = "Buy?";
+        MainTxt.Text = txt;
 
         ConfirmBtn.OnClicked += OnConfirm;
         ConfirmBtn.OnClicked += CloseWindow;

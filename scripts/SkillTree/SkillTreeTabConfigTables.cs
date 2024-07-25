@@ -83,7 +83,7 @@ public partial class SkillConfig
     {
         Tab = SkillTreeTabs.Psionic,
         TabName = "Psionic",
-        SkillPageBg = "UI/SkillTree/skill_page_Psionic.png",
+        SkillPageBg = "UI/SkillTree/skill_page_psionic.png",
         InfoScreenBg = "UI/AbilityBook/AbilityInfo/info_window_psionic.png",
         TreeIcon = "UI/SkillTree/small_skill_tree_icons/psionic.png",
         TreeIconPressed = "UI/SkillTree/small_skill_tree_icons/psionic.png"

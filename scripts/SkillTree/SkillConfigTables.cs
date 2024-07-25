@@ -173,7 +173,7 @@ public static partial class SkillConfig
         GridX = 1,
         GridY = 2,
         SkillKey = "Punch3",
-        ParentNodeKeys = new string[] { "AttackBoost2", "HealthBoost2" },
+        ParentNodeKeys = new string[] { "Punch2" },
         ChildrenNodeKeys = new string[] { },
     };
 
