@@ -24,7 +24,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/CentralHub/Palm.png",
-    "depth_offset": 0,
+    "depth_offset": -2,
     "tint": {
       "X": 1,
       "Y": 1,
