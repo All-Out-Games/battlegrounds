@@ -22,7 +22,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "NO ACTIVE SKILLS ARE CURRENTLY IN THIS TAB",
+    "text": "NO UNLOCKED SKILLS",
     "settings": {
       "font_id": "",
       "size": 36,
