@@ -25,7 +25,7 @@
     "text": "Buy Selfdestruct",
     "settings": {
       "font_id": "$AO/fonts/Barlow-ExtraBold.ttf",
-      "size": 36,
+      "size": 30,
       "color": {
         "X": 0,
         "Y": 0,
@@ -73,7 +73,7 @@
   "data": {
     "min": {
       "X": 0.1000000014901161,
-      "Y": 0.1000000014901161
+      "Y": 0.2000000029802322
     },
     "max": {
       "X": 0.8999999761581421,

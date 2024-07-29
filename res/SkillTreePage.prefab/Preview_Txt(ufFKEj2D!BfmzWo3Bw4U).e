@@ -1,8 +1,8 @@
 11
-249108103169
-11833876838886 1721843805392323000
+64424509442
+204445980966275 1722289763589230100
 {
-  "name": "Title",
+  "name": "Preview_Txt",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,49 +13,23 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "11034690489806:1721843405158832700",
-  "parent": "11465181108626:1721843620749055500"
+  "previous_sibling": "204408073643521:1722289745640687200",
+  "parent": "204313492101069:1722289700857760300"
 },
 {
   "cid": 1,
-  "aoid": "11846829485766:1721843811879024200",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIRect",
-  "data": {
-    "min": {
-      "X": 0,
-      "Y": 0.9100000262260437
-    },
-    "max": {
-      "X": 1,
-      "Y": 0.9800000190734863
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
-    }
-  }
-},
-{
-  "cid": 2,
-  "aoid": "11854783389834:1721843815862349000",
+  "aoid": "204476007701574:1722289777806434400",
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "Skill Tree",
+    "text": "Preview Coming Soon...",
     "settings": {
-      "font_id": "$AO/fonts/Barlow-ExtraBold.ttf",
-      "size": 48,
+      "font_id": "",
+      "size": 24,
       "color": {
-        "X": 0,
-        "Y": 0,
-        "Z": 0,
+        "X": 1,
+        "Y": 1,
+        "Z": 1,
         "W": 1
       },
       "valign": 1,
@@ -66,7 +40,7 @@
         "X": 0,
         "Y": 0
       },
-      "do_drop_shadow": false,
+      "do_drop_shadow": true,
       "drop_shadow_offset": {
         "X": 1,
         "Y": -1
@@ -77,7 +51,7 @@
         "Z": 0,
         "W": 1
       },
-      "do_outline": false,
+      "do_outline": true,
       "outline_thickness": 2,
       "outline_color": {
         "X": 0,
