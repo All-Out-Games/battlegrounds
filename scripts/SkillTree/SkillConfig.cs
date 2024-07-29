@@ -62,6 +62,7 @@ public static partial class SkillConfig
     public struct SkillTreeNodeConfig
     {
         public string DescriptionTextKey;
+        public string DisplayName;
         public int BaseDamageKey;
         public string RangeDescriptionKey = "N/A";
         public string CooldownKey = "N/A";
@@ -78,6 +79,7 @@ public static partial class SkillConfig
         // Keys are unique for each node
         public string SkillKey;
         public string IconPath;
+        public string AbilityIconPath; // These icons do not have a backplate, used in ability slots
         public string[] ChildrenNodeKeys;
         public string[] ParentNodeKeys;
         
@@ -94,7 +96,7 @@ public static partial class SkillConfig
 
         public SkillTreeNodeConfig()
         {
-            DescriptionTextKey = "Unfilled";
+            DescriptionTextKey = "Description Unfilled, to be updated";
 
             UpgradeCost = 0;
             MaximumLevel = 1;
@@ -136,13 +138,29 @@ public static partial class SkillConfig
         return path == String.Empty ? FightAbility.DefaultIconPath : path;
     }
 
+    public static string GetAbilityIconPath(string key)
+    {
+        if (key == "Empty")
+        {
+            return FightAbility.DefaultIconPath;
+        }
+        string path = STConfigQueryDict[key].AbilityIconPath;
+        
+        if (path == String.Empty)
+        {
+            path = GetIconPath(key); // No btn texture -> fall back to skill tree icon
+        }
+        
+        return path == String.Empty ? FightAbility.DefaultIconPath : path;
+    }
+
     public static string GetPunchAbilityIconPath(int punchLevel)
     {
         if (punchLevel == 1)
         {
-            return GetIconPath("Punch");
+            return GetAbilityIconPath("Punch");
         }
-        return GetIconPath($"Punch{punchLevel}");
+        return GetAbilityIconPath($"Punch{punchLevel}");
     }
 
     public static SkillTreeNodeConfig GetConfig(string skillKey)

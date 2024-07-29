@@ -16,7 +16,7 @@ public partial class FightAbility : Ability
     
     public FightPlayer FightPlayer;
     public virtual string SkillKey => DefaultSkillKey;
-    public virtual string SkillIconPath => SkillConfig.GetIconPath(SkillKey);
+    public virtual string SkillIconPath => SkillConfig.GetAbilityIconPath(SkillKey);
     public virtual int Interruptlevel => 1;
 
     public sealed override Texture Icon => Assets.GetAsset<Texture>(SkillIconPath);
