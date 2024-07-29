@@ -409,6 +409,9 @@ environment/CentralHub/Dummy_bit1.png - .ao - 66958377b45eb9e8339c1dac - 1357537
 environment/CentralHub/Dummy_bit1.png - .ao.ios - 66958377b45eb9e8339c1dae - 4430576863730548943
 environment/CentralHub/Dummy_bit2.png - .ao - 66958377b45eb9e8339c1db2 - 15248786152141465605
 environment/CentralHub/Dummy_bit2.png - .ao.ios - 66958377b45eb9e8339c1db3 - 1969964378124688110
+environment/CentralHub/Fountain/BAT003_fountain.png - .ao - 66a8032b6732dee0bb811e99 - 14257713472283138563
+environment/CentralHub/Fountain/BAT003_fountain.png - .ao.ios - 66a8032b6732dee0bb811e98 - 15808080625234688713
+environment/CentralHub/Fountain/BAT003_fountain.spine - .ao - 66a8032b6732dee0bb811e97 - 12942125870102003192
 environment/CentralHub/Fountain/Fountain_Base.png - .ao - 66958377b45eb9e8339c1db4 - 11874108295792533945
 environment/CentralHub/Fountain/Fountain_Base.png - .ao.ios - 66958378b45eb9e8339c1db8 - 10728771053404660206
 environment/CentralHub/Fountain/Fountain_flow1.png - .ao - 66958378b45eb9e8339c1db7 - 17550031586735275727

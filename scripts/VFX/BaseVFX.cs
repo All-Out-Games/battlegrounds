@@ -11,6 +11,8 @@ public class VFX : Component
     protected bool LifeTimeEnded;
     protected float LifeTime;
     
+    [Serialized] public bool IsPermanent;
+    
     public void Despawn()
     {
         if(Network.IsServer) Network.Despawn(Entity);
@@ -38,7 +40,7 @@ public class VFX : Component
 public class BaseVFX : VFX
 {
     [Serialized] public string[] StartAnimationStr; // Random Play
-
+    
     public override void Start()
     {
         base.Start();
@@ -54,7 +56,10 @@ public class BaseVFX : VFX
             //Log.Warn($"Entity {Entity.Name} Destroyed!");
         }
 
-        LifeTime += Time.DeltaTime;
+        if (!IsPermanent)
+        {
+            LifeTime += Time.DeltaTime;
+        }
     }
 
 
@@ -86,7 +91,10 @@ public class SelectionVFX : VFX
                 //Log.Warn($"Entity {Entity.Name} Destroyed!");
             }
 
-            LifeTime += Time.DeltaTime;
+            if (!IsPermanent)
+            {
+                LifeTime += Time.DeltaTime;
+            }
         }
     }
 }
