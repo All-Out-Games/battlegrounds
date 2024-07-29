@@ -84,7 +84,7 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "",
+      "sprite": "$AO/new/icons/ability icons/punch.png",
       "sprite_hovered": "",
       "sprite_pressed": "",
       "sprite_padding": {
@@ -133,6 +133,7 @@
     "_lockedBorder": "51930329567838:1721933552512608500",
     "_equippedBorder": "51930343471513:1721933552519571200",
     "_boughtBorder": "58810458191877:1721936998089345100",
-    "_hightlightBorder": "51930339215819:1721933552517440000"
+    "_hightlightBorder": "51930339215819:1721933552517440000",
+    "_mask": "0:0"
   }
 }

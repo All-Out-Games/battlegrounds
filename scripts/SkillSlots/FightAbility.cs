@@ -1,6 +1,14 @@
 using AO;
 using Assembly.scripts.Effects.ActiveSkills;
 
+internal class DefaultTargettingEffect : AEffect 
+{
+    public override bool IsActiveEffect => true;
+    public override void OnEffectStart(bool isDropIn) {}
+    public override void OnEffectUpdate() {}
+    public override void OnEffectEnd(bool interrupt) {}
+}
+
 public partial class FightAbility : Ability
 {
     public static string DefaultIconPath = "$AO/new/Player Inventory/abilities_inventory_bar/inv_square_empty_25.png";
@@ -12,7 +20,9 @@ public partial class FightAbility : Ability
     public virtual int Interruptlevel => 1;
 
     public sealed override Texture Icon => Assets.GetAsset<Texture>(SkillIconPath);
-    
+
+    public override Type TargettingEffect => typeof(DefaultTargettingEffect);
+
     public override bool CanUse()
     {
         if (SkillKey == "Empty") return false;

@@ -26,9 +26,10 @@
     ],
     "depth_offset": 1,
     "skeleton_scale": {
-      "X": 1,
-      "Y": 1
-    }
+      "X": 2.4000000953674316,
+      "Y": 2.4000000953674316
+    },
+    "mask_in_shadow": false
   }
 },
 {

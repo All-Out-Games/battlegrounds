@@ -16,7 +16,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
                 _player.DrawDefaultAbilityUI(new Player.AbilityDrawOptions()
                 {
                     Abilities = GetAbilityArray(),
-                    AbilityElementSize = 100
+                    AbilityElementSize = 75
                 });
             }
         }

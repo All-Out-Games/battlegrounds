@@ -29,8 +29,34 @@
       "Z": 1,
       "W": 1
     },
-    "fit_aspect": true,
+    "fit_aspect": false,
     "fit_aspect_kind": 0,
     "fit_aspect_anchor": 0
+  }
+},
+{
+  "cid": 2,
+  "aoid": "193280452891223:1722284476880891200",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0,
+      "Y": 0
+    },
+    "max": {
+      "X": 1.0599999427795410,
+      "Y": 1.0599999427795410
+    },
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
   }
 }

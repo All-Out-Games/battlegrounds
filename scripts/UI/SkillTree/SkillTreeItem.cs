@@ -16,6 +16,8 @@ public class SkillTreeItem : Component
     [Serialized] private Entity _boughtBorder;
     [Serialized] private Entity _hightlightBorder;
 
+    [Serialized] private UIImage _mask;
+
     public SkillTreePage TreePage;
     public SkillConfig.SkillTreeNodeConfig Config;
     protected UIRect Rect;
