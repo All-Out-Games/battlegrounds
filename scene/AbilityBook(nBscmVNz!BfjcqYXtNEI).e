@@ -5,7 +5,7 @@
   "name": "AbilityBook",
   "local_enabled": true,
   "local_position": {
-    "X": -10.6847772598266602,
+    "X": -11.0700988769531250,
     "Y": 3.2310636043548584
   },
   "local_rotation": 0,

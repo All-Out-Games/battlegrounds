@@ -5,7 +5,7 @@
   "name": "AbilityVendor",
   "local_enabled": true,
   "local_position": {
-    "X": -10.5577001571655273,
+    "X": -14.2396574020385742,
     "Y": 0.4349762201309204
   },
   "local_rotation": 0,

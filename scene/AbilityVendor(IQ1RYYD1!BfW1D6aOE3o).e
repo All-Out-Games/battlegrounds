@@ -3,7 +3,7 @@
 36341083635957 1717793673228865000
 {
   "name": "AbilityVendor",
-  "local_enabled": true,
+  "local_enabled": false,
   "local_position": {
     "X": -15.0361022949218750,
     "Y": 0.4349762201309204
