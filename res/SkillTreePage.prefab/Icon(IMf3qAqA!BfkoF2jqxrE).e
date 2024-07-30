@@ -56,7 +56,7 @@
       "Z": 1,
       "W": 1
     },
-    "fit_aspect": false,
+    "fit_aspect": true,
     "fit_aspect_kind": 0,
     "fit_aspect_anchor": 0
   }
