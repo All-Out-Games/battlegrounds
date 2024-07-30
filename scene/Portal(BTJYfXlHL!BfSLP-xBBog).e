@@ -28,7 +28,7 @@
     "ordered_skins": [
 
     ],
-    "depth_offset": 0,
+    "depth_offset": 1.6399999856948853,
     "skeleton_scale": {
       "X": 2.4000000953674316,
       "Y": 2.4000000953674316

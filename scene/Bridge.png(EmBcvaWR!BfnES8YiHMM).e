@@ -22,7 +22,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/PvP/Bridge.png",
-    "depth_offset": 0,
+    "depth_offset": 1.6399999856948853,
     "tint": {
       "X": 1,
       "Y": 1,
