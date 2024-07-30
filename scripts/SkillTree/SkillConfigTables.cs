@@ -601,7 +601,7 @@ public static partial class SkillConfig
         GridY = 1,
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Stealth,
-        UpgradeCost = 100,
+        UpgradeCost = 350,
         UIPosition = new Vector2(450, 30),
         SkillKey = "SpeedBoost",
         ParentNodeKeys = new string[] { "Invisibility" },
