@@ -27,21 +27,16 @@ public class EffectInvisible : FightEffect
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        DurationRemaining = EffectConfig.InvisibilityConfig.InvisTime;
+        if (!isDropIn)
+        {
+            DurationRemaining = EffectConfig.InvisibilityConfig.InvisTime;
+        }
         AddInvis(FightPlayer.IsLocal);
         
         FightPlayer.OnSkillActivate += OnSkillActivationEvent;
         FightPlayer.OnReceiveDamage += OnDamageEvent;
     }
-
-    public override void NetworkDeserialize(StreamReader reader)
-    {
-        base.NetworkDeserialize(reader);
-        AddInvis(FightPlayer.IsLocal);
-        
-        FightPlayer.OnSkillActivate += OnSkillActivationEvent;
-        FightPlayer.OnReceiveDamage += OnDamageEvent;
-    }
+    
 
     public override void OnEffectEnd(bool interrupt)
     {
@@ -77,6 +72,8 @@ public class EffectInvisible : FightEffect
         else
         {
             AddLocalAura();
+            FightPlayer.SpineAnimator.SpineInstance.ColorMultiplier =
+                FightPlayer.SpineAnimator.SpineInstance.ColorMultiplier with { W = 0.5f };
             UIManager.Instance.SetPopup("You are invisible! Other players cannot see you", 1.5f, FightPlayer);
         }
     }
@@ -91,6 +88,8 @@ public class EffectInvisible : FightEffect
         }
         else
         {
+            FightPlayer.SpineAnimator.SpineInstance.ColorMultiplier =
+                FightPlayer.SpineAnimator.SpineInstance.ColorMultiplier with { W = 1f };
             _aura.Despawn();
         }
     }

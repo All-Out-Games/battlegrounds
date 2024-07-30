@@ -188,7 +188,7 @@ AbilityItem.prefab - .ao - 6685994db45eb9e8339c0fc3 - 14427433616163832665
 AbilityLoadoutPage.prefab - .ao - 66a81f736732dee0bb811eaf - 16061655082307871542
 AbilityUpgradeDialog.prefab - .ao - 66a2db5e6732dee0bb811dd1 - 14863107215199290447
 AbilityVendorMenuWindow.prefab - .ao - 669e9594b45eb9e8339c21eb - 10868794227734410679
-BattleCry_Shockwave.prefab - .ao - 668863d8b45eb9e8339c1985 - 3209635888150171771
+BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
 BearTrap.prefab - .ao - 66a91b0496cebaeb1f329889 - 7049423839909874616
 BefuddleProjectile.prefab - .ao - 66a918fc96cebaeb1f329880 - 4708991272801069017
 Befuddle_Hit.prefab - .ao - 66904de1b45eb9e8339c1be8 - 9947058021191885588
@@ -200,8 +200,8 @@ FightPlayerRig/playercharacter.png - .ao - 668c6ecab45eb9e8339c1a1c - 1358017680
 FightPlayerRig/playercharacter.png - .ao.ios - 668c6ecab45eb9e8339c1a1b - 5691610558711331661
 FightPlayerRig/playercharacter.spine - .ao - 66a187416732dee0bb811d22 - 11450400033259515061
 HitVfx.prefab - .ao - 66859951b45eb9e8339c0fd9 - 5146642717615886720
-Invisibility_Aura.prefab - .ao - 668f23a2b45eb9e8339c1adf - 14758703216106953386
-Invisibility_VFX.prefab - .ao - 668f1f66b45eb9e8339c1ac6 - 16172691625342551677
+Invisibility_Aura.prefab - .ao - 66a9201c96cebaeb1f3298a1 - 15827307492988365390
+Invisibility_VFX.prefab - .ao - 66a91fe396cebaeb1f32989e - 15138177077832320917
 KunaiProjectile.prefab - .ao - 66a91b0496cebaeb1f329888 - 5148155901933309180
 LeapSlamCrater.prefab - .ao - 66a7fb536732dee0bb811e8d - 3837063221380588297
 LoadoutItemGroup.prefab - .ao - 66a7fca96732dee0bb811e94 - 7401326809135568983

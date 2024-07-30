@@ -24,11 +24,12 @@
     "ordered_skins": [
 
     ],
-    "depth_offset": 0.5000000000000000,
+    "depth_offset": 1.5000000000000000,
     "skeleton_scale": {
-      "X": 1,
-      "Y": 1
-    }
+      "X": 2.4000000953674316,
+      "Y": 2.4000000953674316
+    },
+    "mask_in_shadow": false
   }
 },
 {
@@ -49,6 +50,7 @@
     "Loop": true,
     "Animator": "237951493912849:1720655348423215000",
     "EntityLifeTime": 100,
+    "IsPermanent": false,
     "StartAnimationStr": [
       "effect_loop"
     ]

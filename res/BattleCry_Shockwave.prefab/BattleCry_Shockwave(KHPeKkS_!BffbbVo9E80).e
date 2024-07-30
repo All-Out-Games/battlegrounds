@@ -26,9 +26,10 @@
     ],
     "depth_offset": 0,
     "skeleton_scale": {
-      "X": 1,
-      "Y": 1
-    }
+      "X": 2.4000000953674316,
+      "Y": 2.4000000953674316
+    },
+    "mask_in_shadow": false
   }
 },
 {
@@ -40,6 +41,7 @@
     "Loop": true,
     "Animator": "0:0",
     "EntityLifeTime": 2.5000000000000000,
+    "IsPermanent": false,
     "StartAnimationStr": [
       "animation"
     ]
