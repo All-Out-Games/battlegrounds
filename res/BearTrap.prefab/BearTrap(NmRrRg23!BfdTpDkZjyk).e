@@ -27,9 +27,10 @@
     ],
     "depth_offset": 0,
     "skeleton_scale": {
-      "X": 1,
-      "Y": 1
-    }
+      "X": 1.2000000476837158,
+      "Y": 1.2000000476837158
+    },
+    "mask_in_shadow": false
   }
 },
 {
@@ -38,7 +39,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Circle_Collider",
   "data": {
-    "size": 0.7500000000000000,
+    "size": 0.5000000000000000,
     "offset": {
       "X": 0,
       "Y": 0
@@ -56,12 +57,14 @@
   "component_type": "Mono_Component",
   "mono_component_type": "BearTrap",
   "data": {
+    "Owner": "0:0",
     "TriggerCollider": "59827397374439:1719617025943161600",
     "Animator": "59804925535505:1719617016940021600",
     "EntityLifeTime": 0,
     "LifeTimeEnded": false,
-    "LifeTime": 0,
-    "Owner": "0:0",
-    "Snapped": false
+    "TimeElapsed": 0,
+    "Snapped": false,
+    "Armed": false,
+    "TrapArmTime": 0
   }
 }

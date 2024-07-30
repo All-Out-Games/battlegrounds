@@ -12,8 +12,7 @@
   "local_scale": {
     "X": 1,
     "Y": 1
-  },
-  "previous_sibling": "377316458197998:1716489394196426200"
+  }
 },
 {
   "cid": 1,
@@ -27,9 +26,10 @@
     ],
     "depth_offset": 0,
     "skeleton_scale": {
-      "X": 1,
-      "Y": 1
-    }
+      "X": 2.4000000953674316,
+      "Y": 2.4000000953674316
+    },
+    "mask_in_shadow": false
   }
 },
 {
@@ -41,6 +41,7 @@
     "Loop": false,
     "Animator": "0:0",
     "EntityLifeTime": 1.2000000476837158,
+    "IsPermanent": false,
     "StartAnimationStr": [
       "hit_psybolt"
     ]
