@@ -5,7 +5,7 @@
   "name": "DamageLeaderboard",
   "local_enabled": true,
   "local_position": {
-    "X": -6.4883942604064941,
+    "X": -6.4455819129943848,
     "Y": 8.2500286102294922
   },
   "local_rotation": 0,
