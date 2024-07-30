@@ -162,8 +162,8 @@ AbilityIcon_Separate/psionic/psybolt_icon.png - .ao - 66a824d16732dee0bb811f30 -
 AbilityIcon_Separate/psionic/psybolt_icon.png - .ao.ios - 66a824d16732dee0bb811f32 - 14172504752926142151
 AbilityIcon_Separate/psionic/psythrow_icon.png - .ao - 66a824d26732dee0bb811f35 - 12863549903435540905
 AbilityIcon_Separate/psionic/psythrow_icon.png - .ao.ios - 66a824d26732dee0bb811f37 - 11966893143763759678
-AbilityIcon_Separate/psionic/regenerate_icon.png - .ao - 66a824d26732dee0bb811f38 - 8916691967415717636
-AbilityIcon_Separate/psionic/regenerate_icon.png - .ao.ios - 66a824d26732dee0bb811f3b - 10324064404564292494
+AbilityIcon_Separate/psionic/regeneration_icon.png - .ao - 66a91e7e96cebaeb1f329898 - 8916691967415717636
+AbilityIcon_Separate/psionic/regeneration_icon.png - .ao.ios - 66a91e7e96cebaeb1f329899 - 10324064404564292494
 AbilityIcon_Separate/psionic/self_heal_icon.png - .ao - 66a824d26732dee0bb811f3d - 390774867055681529
 AbilityIcon_Separate/psionic/self_heal_icon.png - .ao.ios - 66a824d26732dee0bb811f3e - 2740091489298279023
 AbilityIcon_Separate/psionic/spoon_throw_icon.png - .ao - 66a824d26732dee0bb811f41 - 2609921497935350180
@@ -225,7 +225,7 @@ Shield_FX.prefab - .ao - 66a7fb546732dee0bb811e8e - 10171497738848877739
 ShurikenProjectile.prefab - .ao - 66a91b0496cebaeb1f32988f - 1922884962774569859
 SkillSlotsPanel.prefab - .ao - 66859956b45eb9e8339c1001 - 11546600357276263640
 SkillTreeItem.prefab - .ao - 66a7faa36732dee0bb811e8a - 16324502580043715951
-SkillTreePage.prefab - .ao - 66a80e866732dee0bb811ea8 - 3088319293195267257
+SkillTreePage.prefab - .ao - 66a91df096cebaeb1f329896 - 12249707374221441588
 SpoonProjectile.prefab - .ao - 66a91b0496cebaeb1f329890 - 11818330664990311604
 TotalDarknessOverlay.prefab - .ao - 6685d28fb45eb9e8339c10be - 15557225266589634022
 UI/AbilityBook/AbilityInfo/buy_button/buy_button.png - .ao - 669816f4b45eb9e8339c1f5b - 7538570100970345996

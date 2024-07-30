@@ -490,7 +490,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig RegenerationConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = $"Regenerate {EffectConfig.RegenerateConfig.PerSecondHeal} health over {EffectConfig.RegenerateConfig.HealTime}s",
+        DescriptionTextKey = $"Regenerate {EffectConfig.RegenerateConfig.PerSecondHeal} health per second over {EffectConfig.RegenerateConfig.HealTime}s",
         CooldownKey = $"{EffectConfig.RegenerateConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/psionic/regeneration.png",
         AbilityIconPath = "AbilityIcon_Separate/psionic/regeneration_icon.png",
