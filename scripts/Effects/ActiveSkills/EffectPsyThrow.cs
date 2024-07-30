@@ -12,8 +12,8 @@ public class AbilityPsyThrow : FightAbility
     public override TargettingMode TargettingMode => TargettingMode.Select;
     public override float MaxDistance => EffectConfig.PsyThrowConfig.Range;
     public override int MaxTargets => 1;
-    
-    public override float Cooldown => EffectConfig.PsyThrowConfig.Cooldown;
+
+    public override float Cooldown => 1;//EffectConfig.PsyThrowConfig.Cooldown;
 
     public static readonly string LaunchSkillKey = "PsyThrowLaunch";
 }
@@ -58,7 +58,10 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
         base.OnEffectStart(isDropIn);
         DurationRemaining = EffectConfig.PsyThrowConfig.GrabTime;
         _casterFp = Caster as FightPlayer;
-        UIManager.CallClient_SetPlayerPopup(FightPlayer.Entity.NetworkId, $"You are grabbed by {Caster.Entity.Name}!", 1f);
+        if (Network.IsServer)
+        {
+            UIManager.CallClient_SetPlayerPopup(FightPlayer.Entity.NetworkId, $"You are grabbed by {Caster.Entity.Name}!", 1f);
+        }
         if (_casterFp != null)
         {
             _casterFp.AddEffect<EffectPsyThrowReady>(FightPlayer, DurationRemaining-0.2f); // Let this effect expire slightly earlier to trigger auto-throw
@@ -79,7 +82,7 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
 public class EffectPsyThrowReady : FightEffectWithNoFlinch
 {
     // Temporarily replace the caster's throw ability so that they can launch the grabbed player
-    public override bool IsActiveEffect => true;
+    public override bool IsActiveEffect => false;
     public override List<Type> AbilityWhitelist => Wl;
     private static readonly List<Type> Wl = new List<Type>() { typeof(AbilityPsyThrowLaunch) };
     public override bool BlockAbilityActivation => true;

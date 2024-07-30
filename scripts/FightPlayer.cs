@@ -190,7 +190,7 @@ public partial class FightPlayer : Player
 
     public bool Damageable()
     {
-        return CurrentHealth > 0 && InvincibleReasons.Count == 0;
+        return CurrentHealth > 0 && InvincibleReasons.Count == 0 && IsValidTarget;
     }
 
     public void AddInvincibilityReason(string reason)
@@ -428,6 +428,11 @@ public partial class FightPlayer : Player
         {
             Log.Error($"FightPlayer: The Modifier {md} is not found!");
         }
+    }
+
+    public void ClearSpeedModifier()
+    {
+        _speedMultipliers.Clear();
     }
     public override Vector2 CalculatePlayerVelocity(Vector2 currentVelocity, Vector2 input, float deltaTime)
     {
