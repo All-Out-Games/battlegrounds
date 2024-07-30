@@ -618,7 +618,7 @@ public static class EffectConfig
     {
         public static float Cooldown = 20f;
         public static float Range = 6f;
-        public static float BlindTime = 6f;
+        public static float BlindTime = 10f;
     }
 
     #endregion
