@@ -3,7 +3,7 @@
 270303084704884 1721422847533391200
 {
   "name": "DebugStateTxt",
-  "local_enabled": true,
+  "local_enabled": false,
   "local_position": {
     "X": 0,
     "Y": 0
