@@ -9,6 +9,8 @@ public partial class FightPlayer
     private void InitializeStateMachine()
     {
         SpineAnimator.Entity.Scale = new Vector2(0.528f, 0.528f);
+        SpineAnimator.Entity.Rotation = GetFacingDirection() ? 0f : 180f;
+        
         // SpineAnimator.SpineInstance.Scale = new Vector2(0.528f, 0.528f);
         
         var stateMachine = SpineAnimator.SpineInstance.StateMachine;

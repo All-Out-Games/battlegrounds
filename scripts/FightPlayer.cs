@@ -103,6 +103,7 @@ public partial class FightPlayer : Player
             {
                 _totalEliminations.Set(value);
                 Save.SetInt(this, "TotalEliminations", value);
+                Save.OrderedSet("TotalEliminations", $"{this.UserId}", value);
             }
         }
     }
@@ -117,6 +118,23 @@ public partial class FightPlayer : Player
             {
                 _totalDamageDealt.Set(value);
                 Save.SetInt(this, "TotalDamageDealt", value);
+                Save.OrderedSet("TotalDamageDealt", $"{this.UserId}", value);
+            }
+        }
+    }
+
+    private SyncVar<int> _totalCoins = new();
+
+    public int TotalCoins
+    {
+        get { return _totalCoins.Value;}
+        set
+        {
+            if (Network.IsServer)
+            {
+                _totalCoins.Set(value);
+                Save.SetInt(this, "TotalCoins", value); 
+                Save.OrderedSet("TotalCoins", $"{this.UserId}", value);
             }
         }
     }

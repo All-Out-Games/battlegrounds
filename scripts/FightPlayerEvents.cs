@@ -159,6 +159,7 @@ public partial class FightPlayer
                 if (info.AwardCoin)
                 {
                     Coins += GlobalData.CoinForAttack;
+                    TotalCoins += GlobalData.CoinForAttack;
                 }
                 // Send a callback to the source of damage. This need to reach client & server
                 source.CallClient_NotifyDealDamage(info);
@@ -171,11 +172,13 @@ public partial class FightPlayer
             {
                 TotalEliminations += 1;
                 Coins += GlobalData.CoinForElimination; // Kills award 30 coins
+                TotalCoins += GlobalData.CoinForElimination;
             }
 
             if (victim == this && source != this)
             {
                 Coins += GlobalData.CoinForDeath; // Death award 15 coins
+                TotalCoins += GlobalData.CoinForDeath;
             }
         };
     }
