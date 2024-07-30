@@ -575,9 +575,9 @@ environment/gold.png - .ao.ios - 66859967b45eb9e8339c108c - 15698126421952890697
 environment/portal/cosmicPortal.png - .ao - 66859967b45eb9e8339c1090 - 3995821800800756657
 environment/portal/cosmicPortal.png - .ao.ios - 66859967b45eb9e8339c1092 - 4722501650766168214
 environment/portal/cosmicPortal.spine - .ao - 66859967b45eb9e8339c1091 - 9083999045970940274
-old_base_rig/playercharacter.png - .ao - 66a29f9e6732dee0bb811da4 - 6411632049498198605
-old_base_rig/playercharacter.png - .ao.ios - 66a29f9e6732dee0bb811da3 - 6734048498957032975
-old_base_rig/playercharacter.spine - .ao - 66a29f9c6732dee0bb811d9b - 6453235407295536449
+old_base_rig/playercharacter.png - .ao - 66a978f496cebaeb1f3298f2 - 8936069685551858978
+old_base_rig/playercharacter.png - .ao.ios - 66a978f496cebaeb1f3298f3 - 8816366524736704600
+old_base_rig/playercharacter.spine - .ao - 66a978f396cebaeb1f3298f1 - 15409900181107296828
 old_base_rig/playercharacter_2.png - .ao - 66a29f9c6732dee0bb811d9c - 17558781897250562856
 old_base_rig/playercharacter_2.png - .ao.ios - 66a29f9d6732dee0bb811d9f - 11089736624654215381
 projectile/BAT003_Projectile/BAT003_projectile.png - .ao - 66859968b45eb9e8339c1096 - 8698776939411441091
