@@ -298,6 +298,8 @@ public partial class FightPlayer : Player
         
         // See FightPlayerAnimation.cs
         InitializeStateMachine();
+        
+        Teleport(FightClubGameManager.References.CentralHubZone.Position );
     }
 
     public override void Update()

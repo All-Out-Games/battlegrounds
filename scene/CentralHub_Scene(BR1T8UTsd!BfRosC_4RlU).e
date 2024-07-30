@@ -5,8 +5,8 @@
   "name": "CentralHub_Scene",
   "local_enabled": true,
   "local_position": {
-    "X": 0.9339597225189209,
-    "Y": 2.8174321651458740
+    "X": -19.4902172088623047,
+    "Y": -12.6686439514160156
   },
   "local_rotation": 0,
   "local_scale": {
