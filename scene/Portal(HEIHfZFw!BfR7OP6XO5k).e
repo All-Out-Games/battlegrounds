@@ -28,7 +28,7 @@
     "ordered_skins": [
       "swords"
     ],
-    "depth_offset": 0,
+    "depth_offset": 3.6600000858306885,
     "skeleton_scale": {
       "X": 2.4000000953674316,
       "Y": 2.4000000953674316
