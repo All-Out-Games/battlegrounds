@@ -28,9 +28,10 @@
     ],
     "depth_offset": -0.5000000000000000,
     "skeleton_scale": {
-      "X": 0.5000000000000000,
-      "Y": 0.5000000000000000
-    }
+      "X": 1.2000000476837158,
+      "Y": 1.2000000476837158
+    },
+    "mask_in_shadow": false
   }
 },
 {
@@ -72,9 +73,9 @@
   "component_type": "Mono_Component",
   "mono_component_type": "SpoonProjectile",
   "data": {
+    "Owner": "0:0",
     "Damage": 0,
-    "Pierce": false,
-    "Owner": "0:0"
+    "Pierce": false
   }
 },
 {
@@ -91,6 +92,10 @@
     "start_position": {
       "X": 0,
       "Y": 0
-    }
+    },
+    "projectile_id": "",
+    "instance_id": "",
+    "spawn_id": 0,
+    "owner_network_id": 0
   }
 }

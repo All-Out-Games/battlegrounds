@@ -26,9 +26,10 @@
     ],
     "depth_offset": 0.5000000000000000,
     "skeleton_scale": {
-      "X": 1,
-      "Y": 1
-    }
+      "X": 2.4000000953674316,
+      "Y": 2.4000000953674316
+    },
+    "mask_in_shadow": false
   }
 },
 {
@@ -37,9 +38,9 @@
   "component_type": "Mono_Component",
   "mono_component_type": "BackstabKunaiProjectile",
   "data": {
+    "Owner": "0:0",
     "Damage": 0,
-    "Pierce": false,
-    "Owner": "0:0"
+    "Pierce": false
   }
 },
 {
@@ -74,7 +75,11 @@
     "start_position": {
       "X": 0,
       "Y": 0
-    }
+    },
+    "projectile_id": "",
+    "instance_id": "",
+    "spawn_id": 0,
+    "owner_network_id": 0
   }
 },
 {

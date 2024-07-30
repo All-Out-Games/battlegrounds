@@ -26,8 +26,8 @@
     ],
     "depth_offset": 0,
     "skeleton_scale": {
-      "X": 2.4000000953674316,
-      "Y": 2.4000000953674316
+      "X": 1,
+      "Y": 1
     },
     "mask_in_shadow": false
   }
@@ -41,6 +41,7 @@
     "Loop": true,
     "Animator": "0:0",
     "EntityLifeTime": 10,
+    "IsPermanent": false,
     "StartAnimationStr": [
       "psionic_beam_loop"
     ]
