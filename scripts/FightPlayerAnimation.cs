@@ -8,8 +8,8 @@ public partial class FightPlayer
     // Create your state machine here. We are going to have a sh*t ton of animations so keep this section well documented.
     private void InitializeStateMachine()
     {
-        
-        SpineAnimator.SpineInstance.Scale = new Vector2(0.528f, 0.528f);
+        SpineAnimator.Entity.Scale = new Vector2(0.528f, 0.528f);
+        // SpineAnimator.SpineInstance.Scale = new Vector2(0.528f, 0.528f);
         
         var stateMachine = SpineAnimator.SpineInstance.StateMachine;
         var resetTrigger = stateMachine.TryGetVariableByName("RESET");
