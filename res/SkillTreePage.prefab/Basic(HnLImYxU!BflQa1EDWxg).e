@@ -133,4 +133,16 @@
   "data": {
 
   }
+},
+{
+  "cid": 1,
+  "aoid": "239483022208696:1722453479759894300",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIFitAspect",
+  "data": {
+    "aspect_sprite": "",
+    "aspect_hardcoded": 1,
+    "fit_aspect_kind": 0,
+    "fit_aspect_anchor": 0
+  }
 }

@@ -1,8 +1,8 @@
 13
-94489280513
-34348840679565 1721855080913448000
+261993005058
+239887284915233 1722453671172159600
 {
-  "name": "Elemental",
+  "name": "SkillTreeItem",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,12 +13,25 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "33868206032426:1721854840211035200",
-  "parent": "29990149104877:1721852898075435300"
+  "previous_sibling": "239799217374343:1722453629473513300",
+  "next_sibling": "58810458191877:1721936998089345100",
+  "parent": "51930321204585:1721933552508420200"
+},
+{
+  "cid": 4,
+  "aoid": "239887285181592:1722453671172285300",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIFitAspect",
+  "data": {
+    "aspect_sprite": "",
+    "aspect_hardcoded": 1,
+    "fit_aspect_kind": 0,
+    "fit_aspect_anchor": 0
+  }
 },
 {
   "cid": 2,
-  "aoid": "34348848201648:1721855080917214900",
+  "aoid": "239887285141454:1722453671172266300",
   "component_type": "Internal_Component",
   "internal_component_type": "UIButton",
   "data": {
@@ -60,9 +73,9 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "UI/SkillTree/small_skill_tree_icons/element.png",
+      "sprite": "UI/SkillTree/ability_mask.png",
       "sprite_hovered": "",
-      "sprite_pressed": "UI/SkillTree/small_skill_tree_icons_pressed/element.png",
+      "sprite_pressed": "",
       "sprite_padding": {
         "X": 0,
         "Y": 0,
@@ -100,17 +113,17 @@
   }
 },
 {
-  "cid": 3,
-  "aoid": "34348853998171:1721855080920117800",
+  "cid": 1,
+  "aoid": "240009500121028:1722453729039207400",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.8500000238418579,
+      "X": 0,
       "Y": 0
     },
     "max": {
-      "X": 0.9499999880790710,
+      "X": 1,
       "Y": 1
     },
     "insets": {
@@ -123,26 +136,5 @@
       "X": 0,
       "Y": 0
     }
-  }
-},
-{
-  "cid": 1,
-  "aoid": "34571405766721:1721855192374312700",
-  "component_type": "Mono_Component",
-  "mono_component_type": "UISkillTabButton",
-  "data": {
-
-  }
-},
-{
-  "cid": 4,
-  "aoid": "239510648915233:1722453492840721000",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIFitAspect",
-  "data": {
-    "aspect_sprite": "",
-    "aspect_hardcoded": 1,
-    "fit_aspect_kind": 0,
-    "fit_aspect_anchor": 0
   }
 }

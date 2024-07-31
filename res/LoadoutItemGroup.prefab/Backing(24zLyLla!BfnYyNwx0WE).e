@@ -1,9 +1,9 @@
-11
-270582939651
-193762691677814 1722284705213648800
+13
+240518168577
+241397760833882 1722454386359616900
 {
-  "name": "LockedBorder",
-  "local_enabled": false,
+  "name": "Backing",
+  "local_enabled": true,
   "local_position": {
     "X": 0,
     "Y": 0
@@ -13,16 +13,16 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "58810458191877:1721936998089345100",
-  "parent": "51930321204585:1721933552508420200"
+  "next_sibling": "230720623547849:1722449330896915900",
+  "parent": "230964522185147:1722449446379224400"
 },
 {
   "cid": 1,
-  "aoid": "193762699259906:1722284705217238600",
+  "aoid": "241407302700445:1722454390877546000",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "UI/SkillTree/locked_border.png",
+    "sprite": "UI/SkillTree/ability_backing.png",
     "tint": {
       "X": 1,
       "Y": 1,
@@ -36,17 +36,17 @@
 },
 {
   "cid": 2,
-  "aoid": "193762705471991:1722284705220179900",
+  "aoid": "241434193527852:1722454403609945300",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
       "X": 0,
-      "Y": 0
+      "Y": -0.0599999986588955
     },
     "max": {
-      "X": 1.0599999427795410,
-      "Y": 1.1000000238418579
+      "X": 1,
+      "Y": 1
     },
     "insets": {
       "X": 0,

@@ -10,6 +10,7 @@ public class AbilityLoadoutSlot : Component
 
     [Serialized] private Entity _clickEnableGroup;
     [Serialized] private Entity _replaceIcon;
+    [Serialized] private Entity _backing;
 
     public string SkillKey = "Empty";
     
@@ -67,7 +68,9 @@ public class AbilityLoadoutSlot : Component
         SkillKey = skey;
         FightClubUtils.SetButtonTexture(SkillButton, SkillConfig.GetIconPath(skey));
 
-        RemoveButton.Interactable = skey != FightAbility.DefaultSkillKey; // You cannot remove an Empty slot
+        bool notEmpty = skey != FightAbility.DefaultSkillKey;
+        RemoveButton.Interactable = notEmpty; // You cannot remove an Empty slot
+        _backing.LocalEnabled = notEmpty; // And empty slot shouldn't have the backing
     }
     
     public void OnParentStateChange(AbilityLoadoutPage.LoadoutPageState state)
