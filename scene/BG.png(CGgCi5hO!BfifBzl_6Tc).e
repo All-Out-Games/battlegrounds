@@ -32,7 +32,7 @@
       "W": 1
     },
     "layer": -5,
-    "wait_for_load": false,
+    "wait_for_load": true,
     "wrap": false,
     "mask_in_shadow": false
   }

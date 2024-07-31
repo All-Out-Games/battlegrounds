@@ -1,8 +1,8 @@
 13
-103079215106
-147765522970134 1721334235948357100
+120259084289
+244095336698962 1722455663620909600
 {
-  "name": "Icon",
+  "name": "Backing",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,37 +13,36 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "147806139798462:1721334255179809400",
-  "next_sibling": "148169574632173:1721334427260695600",
-  "parent": "265811586614454:1721245289077093400"
+  "next_sibling": "149135613319352:1721334884665374200",
+  "parent": "149135590511864:1721334884654575600"
 },
 {
   "cid": 1,
-  "aoid": "147780164698299:1721334242880993100",
+  "aoid": "244095336775588:1722455663620945400",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "UI/SkillTree/ability_mask.png",
+    "sprite": "UI/SkillTree/ability_backing.png",
     "tint": {
       "X": 1,
       "Y": 1,
       "Z": 1,
       "W": 1
     },
-    "fit_aspect": false,
+    "fit_aspect": true,
     "fit_aspect_kind": 0,
     "fit_aspect_anchor": 0
   }
 },
 {
   "cid": 2,
-  "aoid": "147796498300099:1721334250614706100",
+  "aoid": "244095336831017:1722455663620971600",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
       "X": 0,
-      "Y": 0.4000000059604645
+      "Y": 0.3700000047683716
     },
     "max": {
       "X": 1,
@@ -59,17 +58,5 @@
       "X": 0,
       "Y": 0
     }
-  }
-},
-{
-  "cid": 3,
-  "aoid": "237655328889085:1722452614374805300",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIFitAspect",
-  "data": {
-    "aspect_sprite": "",
-    "aspect_hardcoded": 1,
-    "fit_aspect_kind": 0,
-    "fit_aspect_anchor": 0
   }
 }
