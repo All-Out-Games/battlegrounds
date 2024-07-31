@@ -5,9 +5,10 @@ namespace Assembly.scripts.UI.SkillTree;
 
 public class SkillTreePage : UniqueUIWindow
 {
+    public static Vector2 GridOrigin = new Vector2(0, 600);
     public static Vector2 GetGridPosition(int x, int y)
     {
-        return new Vector2(180*(x-1), 600-150*y);
+        return new Vector2(180*(x-1), GridOrigin.Y-150*y);
     }
 
     
@@ -45,10 +46,13 @@ public class SkillTreePage : UniqueUIWindow
     public override void OnInstantiate()
     {
         base.OnInstantiate();
+        GridOrigin *= AO.UI.SafeRect.Width / AO.UI.SafeRect.Height / 1.7778f; // Scale grid origin
+        
         _localPlayer = Network.LocalPlayer.Entity.GetComponent<FightPlayer>();
         _slotsMgr ??= _localPlayer.GetSkillSlots();
         _skillTree ??= _localPlayer.GetSkillTree();
         _treeItems = new Dictionary<string, SkillTreeItem>();
+        
         
         // First Open Phase 1
         // Spawn all skills

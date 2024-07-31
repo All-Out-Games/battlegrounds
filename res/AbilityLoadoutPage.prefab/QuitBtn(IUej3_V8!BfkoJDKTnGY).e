@@ -107,12 +107,12 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.9300000071525574,
-      "Y": 0.9399999976158142
+      "X": 0.7699999809265137,
+      "Y": 0.8500000238418579
     },
     "max": {
-      "X": 1,
-      "Y": 1
+      "X": 0.8299999833106995,
+      "Y": 0.9100000262260437
     },
     "insets": {
       "X": 0,
@@ -121,8 +121,20 @@
       "W": 0
     },
     "offset": {
-      "X": -39.7599983215332031,
-      "Y": -57.1699981689453125
+      "X": 0,
+      "Y": 0
     }
+  }
+},
+{
+  "cid": 3,
+  "aoid": "255627149729598:1722461123759623800",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIFitAspect",
+  "data": {
+    "aspect_sprite": "",
+    "aspect_hardcoded": 1,
+    "fit_aspect_kind": 0,
+    "fit_aspect_anchor": 0
   }
 }

@@ -187,7 +187,7 @@ AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao.ios - 66a9c97596cebae
 AbilityIcon_Separate/x_icon_ability.png - .ao - 66a9cdbb96cebaeb1f3299ae - 2967783583052140701
 AbilityIcon_Separate/x_icon_ability.png - .ao.ios - 66a9cdbb96cebaeb1f3299af - 13164514700408627865
 AbilityItem.prefab - .ao - 6685994db45eb9e8339c0fc3 - 14427433616163832665
-AbilityLoadoutPage.prefab - .ao - 66aaa88acf7a5e4159a6b687 - 17793236745640537491
+AbilityLoadoutPage.prefab - .ao - 66aaaf42cf7a5e4159a6b691 - 9774302869775044901
 AbilityUpgradeDialog.prefab - .ao - 66a2db5e6732dee0bb811dd1 - 14863107215199290447
 AbilityVendorMenuWindow.prefab - .ao - 66aaa88acf7a5e4159a6b685 - 11386754058337502644
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
