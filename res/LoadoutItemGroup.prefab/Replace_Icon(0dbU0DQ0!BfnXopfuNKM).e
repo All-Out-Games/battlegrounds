@@ -1,9 +1,9 @@
 13
-180388626433
-22483429735656 1721761929621914700
+261993005057
+230720623621172 1722449330896949900
 {
-  "name": "Icon",
-  "local_enabled": true,
+  "name": "Replace_Icon",
+  "local_enabled": false,
   "local_position": {
     "X": 0,
     "Y": 0
@@ -13,21 +13,21 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "22483440028393:1721761929626038200",
-  "parent": "22483418835044:1721761929617547400"
+  "previous_sibling": "230720623634659:1722449330896956300",
+  "parent": "230720623547849:1722449330896915900"
 },
 {
   "cid": 1,
-  "aoid": "22483472434572:1721761929639021500",
+  "aoid": "230720623791252:1722449330897030400",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.8399999737739563,
-      "Y": 0
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000
     },
     "max": {
-      "X": 0.9499999880790710,
+      "X": 1,
       "Y": 1
     },
     "insets": {
@@ -43,19 +43,19 @@
   }
 },
 {
-  "cid": 2,
-  "aoid": "22483483598342:1721761929643494000",
+  "cid": 3,
+  "aoid": "230720623808885:1722449330897038800",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "UI/SkillTree/range_icon.png",
+    "sprite": "UI/SkillTree/replace_ability_icon.png",
     "tint": {
       "X": 1,
       "Y": 1,
       "Z": 1,
       "W": 1
     },
-    "fit_aspect": true,
+    "fit_aspect": false,
     "fit_aspect_kind": 0,
     "fit_aspect_anchor": 0
   }

@@ -1,9 +1,9 @@
 13
 257698037761
-11034690489806 1721843405158832700
+230720623634659 1722449330896956300
 {
-  "name": "TreeBg",
-  "local_enabled": true,
+  "name": "Equipped_Boarder",
+  "local_enabled": false,
   "local_position": {
     "X": 0,
     "Y": 0
@@ -13,16 +13,17 @@
     "X": 1,
     "Y": 1
   },
-  "next_sibling": "11833876838886:1721843805392323000",
-  "parent": "11465181108626:1721843620749055500"
+  "previous_sibling": "230720623645684:1722449330896961500",
+  "next_sibling": "230720623621172:1722449330896949900",
+  "parent": "230720623547849:1722449330896915900"
 },
 {
   "cid": 1,
-  "aoid": "11065018470100:1721843420347122000",
+  "aoid": "230720623824438:1722449330897046100",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "UI/SkillTree/skill_page_basic.png",
+    "sprite": "UI/SkillTree/equipped_border.png",
     "tint": {
       "X": 1,
       "Y": 1,
@@ -36,17 +37,17 @@
 },
 {
   "cid": 2,
-  "aoid": "11073321219989:1721843424505149100",
+  "aoid": "230720623840260:1722449330897053600",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.0500000007450581,
-      "Y": 0.0500000007450581
+      "X": 0,
+      "Y": 0
     },
     "max": {
-      "X": 0.9499999880790710,
-      "Y": 0.8999999761581421
+      "X": 1.0599999427795410,
+      "Y": 1.0599999427795410
     },
     "insets": {
       "X": 0,

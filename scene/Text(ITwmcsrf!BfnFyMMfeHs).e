@@ -70,7 +70,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UICanvas",
   "data": {
-    "layer": 0,
+    "layer": 1,
     "ui_scale_multiplier": 0.1000000014901161,
     "tint": {
       "X": 1,

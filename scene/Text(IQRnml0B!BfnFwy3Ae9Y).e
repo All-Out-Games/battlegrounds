@@ -5,7 +5,7 @@
   "name": "Text",
   "local_enabled": true,
   "local_position": {
-    "X": -0.2727139890193939,
+    "X": 0.0113744400441647,
     "Y": -2.1499390602111816
   },
   "local_rotation": 0,
@@ -70,7 +70,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UICanvas",
   "data": {
-    "layer": 0,
+    "layer": 1,
     "ui_scale_multiplier": 0.1000000014901161,
     "tint": {
       "X": 1,
