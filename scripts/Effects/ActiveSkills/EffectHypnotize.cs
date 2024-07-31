@@ -49,7 +49,8 @@ public class EffectHypnotize : FightEffectWithNoFlinch
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        FightPlayer.SetAnimTrigger("knockdown", NeedALReset());
+        FightPlayer.UnsetAnimTrigger("knockdown_end");
+        FightPlayer.SetAnimTrigger("knockdown");
         FightPlayer.OnReceiveDamage += OnDamageEvent;
         DurationRemaining = EffectConfig.HypnotizeConfig.HypnotizeTime;
 

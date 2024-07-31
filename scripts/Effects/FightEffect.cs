@@ -117,7 +117,7 @@ public abstract class FightEffect : AEffect
 
     protected bool NeedALReset()
     {
-        return FightLayer.CurrentState == FightLayer.TryGetStateByName("__CLEAR_TRACK__") ||
-               FightLayer.CurrentState == FightLayer.TryGetStateByName("BAT_003/Idle_short_AL");
+        return !(FightLayer.CurrentState == FightLayer.TryGetStateByName("__CLEAR_TRACK__") ||
+                FightLayer.CurrentState == FightLayer.TryGetStateByName("BAT_003/Idle_short_AL"));
     }
 }
