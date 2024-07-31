@@ -78,7 +78,7 @@
         "Z": 1,
         "W": 1
       },
-      "do_outline": true,
+      "do_outline": false,
       "outline_thickness": 1,
       "outline_color": {
         "X": 1,

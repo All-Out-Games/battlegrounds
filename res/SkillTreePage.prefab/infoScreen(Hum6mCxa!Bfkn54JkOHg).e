@@ -3,7 +3,7 @@
 33989206748250 1721676458676511200
 {
   "name": "infoScreen",
-  "local_enabled": true,
+  "local_enabled": false,
   "local_position": {
     "X": 0,
     "Y": 0
