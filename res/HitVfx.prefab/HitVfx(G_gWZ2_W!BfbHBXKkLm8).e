@@ -26,9 +26,10 @@
     ],
     "depth_offset": 0.5000000000000000,
     "skeleton_scale": {
-      "X": 1,
-      "Y": 1
-    }
+      "X": 2.4000000953674316,
+      "Y": 2.4000000953674316
+    },
+    "mask_in_shadow": false
   }
 },
 {
@@ -39,6 +40,7 @@
   "data": {
     "Loop": false,
     "Animator": "0:0",
-    "EntityLifeTime": 1.2000000476837158
+    "EntityLifeTime": 1.2000000476837158,
+    "IsPermanent": false
   }
 }

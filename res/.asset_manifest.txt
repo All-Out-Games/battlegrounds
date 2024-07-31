@@ -199,7 +199,7 @@ FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
 FightPlayerRig/playercharacter.png - .ao - 66a931e096cebaeb1f3298ac - 10729938297514133197
 FightPlayerRig/playercharacter.png - .ao.ios - 66a931e096cebaeb1f3298ad - 12931280717863060393
 FightPlayerRig/playercharacter.spine - .ao - 66a931e096cebaeb1f3298ab - 6828746527935586160
-HitVfx.prefab - .ao - 66859951b45eb9e8339c0fd9 - 5146642717615886720
+HitVfx.prefab - .ao - 66a97e6696cebaeb1f3298f8 - 2238227580914794567
 Invisibility_Aura.prefab - .ao - 66a9201c96cebaeb1f3298a1 - 15827307492988365390
 Invisibility_VFX.prefab - .ao - 66a91fe396cebaeb1f32989e - 15138177077832320917
 KunaiProjectile.prefab - .ao - 66a91b0496cebaeb1f329888 - 5148155901933309180
