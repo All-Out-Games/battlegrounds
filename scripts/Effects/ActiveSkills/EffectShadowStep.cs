@@ -32,12 +32,15 @@ public class EffectShadowStep : FightEffect
         {
             Vector2 dir = FightPlayer.Velocity.Length < 0.1f ? FightPlayer.GetFacingDirectionAsVector() : FightPlayer.Velocity.Normalized;
             Vector2 tlePosition = FightPlayer.Entity.Position + dir * EffectConfig.ShadowStepConfig.MovementDistance;
-            // Raycast. If you hit an edge collider, do not cross it
+            // Raycast. Try to detect edges
             Physics.RaycastHit rc;
             var hit = Physics.RaycastWithWhitelist(FightPlayer.Entity.Position, dir,
                 EffectConfig.ShadowStepConfig.MovementDistance, new Entity[]{ FightClubGameManager.References.PvpZoneEdge.Entity }, 
-                new Entity[]{ FightPlayer.Entity, FightPlayer.CollisionEntity},out rc);
-            Log.Warn($"Hit = {hit}");
+                new Entity[]{ },out rc);
+            
+            /*var hit = Physics.Raycast(FightPlayer.Entity.Position, dir,
+                EffectConfig.ShadowStepConfig.MovementDistance, out rc);*/
+            Log.Warn($"Hit = {hit}, Entity = {rc.Entity?.Name}");
             if (hit)
             {
                 Edge_Collider eg = rc.Entity.GetComponent<Edge_Collider>();
