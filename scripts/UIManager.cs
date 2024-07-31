@@ -63,6 +63,17 @@ public partial class UIManager : System<UIManager>
     }
 
     [ClientRpc]
+    public static void SetStatusPopup(string txt, float time, PlayerStatus status)
+    {
+        // Broadcast to player with specific status
+        var fp = Network.LocalPlayer as FightPlayer;
+        if (fp?.PlayerStatus == status)
+        {
+            SetGlobalPopup(txt, time);
+        }
+    }
+
+    [ClientRpc]
     public static void SetPlayerPopup(ulong netId, string txt, float time)
     {
         if (Network.IsClient)
@@ -185,9 +196,9 @@ public partial class UIManager : System<UIManager>
                 // Draw the popup
                 {
                     var centerRect = UI.ScreenRect.CenterRect().Grow(235).CutBottom(50);
-                    UI.Text(centerRect, $"{PopupTxt}", new UI.TextSettings() {Font = _defaultFont, Size = 24, Color = Vector4.Black, 
+                    UI.Text(centerRect, $"{PopupTxt}", new UI.TextSettings() {Font = _defaultFont, Size = 40, Color = Vector4.Black, 
                         VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center,
-                        WordWrap = true, Outline = true, OutlineColor = Vector4.White
+                        WordWrap = true, Outline = true, OutlineColor = Vector4.White, OutlineThickness = 1f
                     });
                 }
             }

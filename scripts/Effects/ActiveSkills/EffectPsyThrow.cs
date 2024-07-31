@@ -58,10 +58,6 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
         base.OnEffectStart(isDropIn);
         DurationRemaining = EffectConfig.PsyThrowConfig.GrabTime;
         _casterFp = Caster as FightPlayer;
-        if (Network.IsServer)
-        {
-            UIManager.CallClient_SetPlayerPopup(FightPlayer.Entity.NetworkId, $"You are grabbed by {Caster.Entity.Name}!", 1f);
-        }
         if (_casterFp != null)
         {
             _casterFp.AddEffect<EffectPsyThrowReady>(FightPlayer, DurationRemaining-0.2f); // Let this effect expire slightly earlier to trigger auto-throw

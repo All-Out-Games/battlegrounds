@@ -64,17 +64,13 @@ public class EffectRollOut : FightEffect
         }
         else
         {
-            Log.Error("PsyThrow: Skill Replacement Error! The player does not have the primary skill equipped.");
+            Log.Error("Rollout: Skill Replacement Error! The player does not have the primary skill equipped.");
         }
         
         RollOutStart();
         FightPlayer.SetAnimTrigger("rollout_start");
         
         DurationRemaining = _config.Duration;
-        if (FightPlayer.IsLocal)
-        {
-            UIManager.Instance.SetPopup("You are Rollin! Bump other players with extra speed!", 3f, FightPlayer);
-        }
 
         
     }

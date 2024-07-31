@@ -65,7 +65,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     }
     public void OnPlayerElimination(FightPlayer killer, FightPlayer victim)
     {
-        UIManager.CallClient_SetGlobalPopup($"{killer.Name} killed {victim.Name}!", 2.5f);
+        UIManager.CallClient_SetStatusPopup($"{killer.Name} killed {victim.Name}!", 2.5f, PlayerStatus.Combat);
     }
 
     public void OnPlayerDamage(FightPlayer killer, FightPlayer victim, FightPlayer.DamageInfo info)

@@ -52,7 +52,7 @@
     "text": "Channel and release a big blast at the cost of dealing {EffectConfig.SelfDestructConfig.BaseSelfDmg} to yourself",
     "settings": {
       "font_id": "",
-      "size": 24,
+      "size": 32,
       "color": {
         "X": 0,
         "Y": 0,
@@ -79,7 +79,7 @@
         "W": 1
       },
       "do_outline": true,
-      "outline_thickness": 2,
+      "outline_thickness": 1,
       "outline_color": {
         "X": 1,
         "Y": 1,
