@@ -187,7 +187,7 @@ AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao.ios - 66a9c97596cebae
 AbilityIcon_Separate/x_icon_ability.png - .ao - 66a9cdbb96cebaeb1f3299ae - 2967783583052140701
 AbilityIcon_Separate/x_icon_ability.png - .ao.ios - 66a9cdbb96cebaeb1f3299af - 13164514700408627865
 AbilityItem.prefab - .ao - 6685994db45eb9e8339c0fc3 - 14427433616163832665
-AbilityLoadoutPage.prefab - .ao - 66a9511796cebaeb1f3298e0 - 7378118645020677745
+AbilityLoadoutPage.prefab - .ao - 66aa8aed96cebaeb1f329b68 - 11222348354006808139
 AbilityUpgradeDialog.prefab - .ao - 66a2db5e6732dee0bb811dd1 - 14863107215199290447
 AbilityVendorMenuWindow.prefab - .ao - 669e9594b45eb9e8339c21eb - 10868794227734410679
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
@@ -216,7 +216,7 @@ LeaderBoard/RANK 4.png - .ao.ios - 66a942a496cebaeb1f3298d0 - 272960257198212684
 LeaderBoard/RANK ME.png - .ao - 66a942a496cebaeb1f3298d1 - 17644210464790413515
 LeaderBoard/RANK ME.png - .ao.ios - 66a942a596cebaeb1f3298d4 - 13815408745773853164
 LeapSlamCrater.prefab - .ao - 66a7fb536732dee0bb811e8d - 3837063221380588297
-LoadoutItemGroup.prefab - .ao - 66aa828096cebaeb1f3299c6 - 176979261749320392
+LoadoutItemGroup.prefab - .ao - 66aa893c96cebaeb1f329b64 - 7426666361042458018
 Props/BearTrap/BAT003_bear_trap.png - .ao - 66859951b45eb9e8339c0fde - 12680163519278585061
 Props/BearTrap/BAT003_bear_trap.png - .ao.ios - 66859951b45eb9e8339c0fe0 - 7406773091814632799
 Props/BearTrap/BAT003_bear_trap.spine - .ao - 66859952b45eb9e8339c0fe2 - 3855122050485720892

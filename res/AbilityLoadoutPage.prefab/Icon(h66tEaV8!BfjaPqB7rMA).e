@@ -1,4 +1,4 @@
-11
+13
 433791696899
 149184297674108 1721334907716678400
 {
@@ -123,5 +123,17 @@
       "keybind": 0
     },
     "interactable": true
+  }
+},
+{
+  "cid": 3,
+  "aoid": "237569796757528:1722452573876636500",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIFitAspect",
+  "data": {
+    "aspect_sprite": "",
+    "aspect_hardcoded": 1,
+    "fit_aspect_kind": 0,
+    "fit_aspect_anchor": 0
   }
 }

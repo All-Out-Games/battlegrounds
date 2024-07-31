@@ -1,4 +1,4 @@
-11
+13
 408021893126
 123118523375197 1721322564838410500
 {
@@ -133,5 +133,17 @@
   "mono_component_type": "UISkillTabButton",
   "data": {
 
+  }
+},
+{
+  "cid": 4,
+  "aoid": "237862861414897:1722452712638310700",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIFitAspect",
+  "data": {
+    "aspect_sprite": "",
+    "aspect_hardcoded": 1,
+    "fit_aspect_kind": 0,
+    "fit_aspect_anchor": 0
   }
 }

@@ -1,4 +1,4 @@
-11
+13
 98784247809
 263836898709102 1721244354092751600
 {
@@ -124,5 +124,17 @@
       "X": -14.2899999618530273,
       "Y": -10
     }
+  }
+},
+{
+  "cid": 3,
+  "aoid": "237408826150583:1722452497659493600",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIFitAspect",
+  "data": {
+    "aspect_sprite": "",
+    "aspect_hardcoded": 1,
+    "fit_aspect_kind": 0,
+    "fit_aspect_anchor": 0
   }
 }

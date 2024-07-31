@@ -43,22 +43,14 @@
   }
 },
 {
-  "cid": 1,
-  "aoid": "231026577511405:1722449475761480900",
-  "component_type": "Mono_Component",
-  "mono_component_type": "UIMaskBegin",
-  "data": {
-    "Cb": "231921731000530:1722449899603092600",
-    "Mask": "UI/SkillTree/ability_mask.png",
-    "End": "231034778726824:1722449479644631900"
-  }
-},
-{
-  "cid": 3,
-  "aoid": "231921731000530:1722449899603092600",
+  "cid": 4,
+  "aoid": "236868232252624:1722452241696475300",
   "component_type": "Internal_Component",
-  "internal_component_type": "UICallback",
+  "internal_component_type": "UIFitAspect",
   "data": {
-
+    "aspect_sprite": "",
+    "aspect_hardcoded": 1,
+    "fit_aspect_kind": 0,
+    "fit_aspect_anchor": 0
   }
 }
