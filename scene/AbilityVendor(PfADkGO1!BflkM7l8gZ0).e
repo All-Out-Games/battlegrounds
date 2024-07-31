@@ -24,8 +24,8 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Sprite_Renderer",
   "data": {
-    "texture": "environment/CentralHub/Booth.png",
-    "depth_offset": 0,
+    "texture": "environment/CentralHub/Skill_Booths/Booth2.png",
+    "depth_offset": -1.4900000095367432,
     "tint": {
       "X": 1,
       "Y": 1,
@@ -48,7 +48,7 @@
       "X": 0,
       "Y": 1
     },
-    "text": "Ability Vendor",
+    "text": "Skill Shop",
     "hold_text": "",
     "radius": 2,
     "required_hold_time": 0.6000000238418579

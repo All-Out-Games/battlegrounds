@@ -6,13 +6,14 @@
   "local_enabled": true,
   "local_position": {
     "X": 0,
-    "Y": -1.3214225769042969
+    "Y": -0.7900257110595703
   },
   "local_rotation": 0,
   "local_scale": {
     "X": 1,
     "Y": 1
   },
+  "next_sibling": "270292589694982:1722468067623204900",
   "parent": "68101061239733:1721941650834589300"
 },
 {
@@ -21,7 +22,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Sprite_Renderer",
   "data": {
-    "texture": "environment/CentralHub/Booth_shadow.png",
+    "texture": "environment/CentralHub/Skill_Booths/Booth2_Shadow.png",
     "depth_offset": 0,
     "tint": {
       "X": 1,
