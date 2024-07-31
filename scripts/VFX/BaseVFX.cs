@@ -15,7 +15,6 @@ public class VFX : Component
     
     public void Despawn()
     {
-        if(Network.IsServer) Network.Despawn(Entity);
         Entity.Destroy();
     }
     
