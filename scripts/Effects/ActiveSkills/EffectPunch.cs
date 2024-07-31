@@ -84,7 +84,7 @@ public class EffectPunch : FightEffect
                 FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position,
                     EffectConfig.PunchConfig.PunchMustHitRange);
             closeTargets.Remove(FightPlayer);
-            Log.Warn($"{closeTargets.Count}");
+            //Log.Warn($"{closeTargets.Count}");
             if (closeTargets.Count > 0)
             {
                 foreach (var fp in closeTargets)

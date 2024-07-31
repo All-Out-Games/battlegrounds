@@ -1,58 +1,30 @@
 11
-270582939649
-270303084704884 1721422847533391200
+98784247809
+36302801755393 1722370725869907800
 {
-  "name": "DebugStateTxt",
-  "local_enabled": false,
+  "name": "Text",
+  "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+    "X": -0.2727139890193939,
+    "Y": -2.1499390602111816
   },
   "local_rotation": 0,
   "local_scale": {
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "146222836706279:1721333505509789400",
-  "next_sibling": "33896295177465:1721676421452326100",
-  "parent": "262493446113353:1721243717988617600"
+  "parent": "35155371672168:1721084852807577400"
 },
 {
   "cid": 1,
-  "aoid": "270320776850689:1721422856393639600",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIRect",
-  "data": {
-    "min": {
-      "X": 0,
-      "Y": 0.9499999880790710
-    },
-    "max": {
-      "X": 0.0599999986588955,
-      "Y": 1
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
-    }
-  }
-},
-{
-  "cid": 2,
-  "aoid": "270385574927769:1721422888844596400",
+  "aoid": "36311946221454:1722370729533554900",
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "N",
+    "text": "ALL TIME DAMAGE",
     "settings": {
-      "font_id": "$AO/fonts/Asap-ExtraBold-Fixed.ttf",
-      "size": 24,
+      "font_id": "",
+      "size": 4,
       "color": {
         "X": 1,
         "Y": 1,
@@ -79,7 +51,7 @@
         "W": 1
       },
       "do_outline": true,
-      "outline_thickness": 5,
+      "outline_thickness": 2,
       "outline_color": {
         "X": 0,
         "Y": 0,
@@ -90,5 +62,25 @@
       "line_height_multiplier": 1
     },
     "push_text_rect": false
+  }
+},
+{
+  "cid": 2,
+  "aoid": "36341501739880:1722370741374704000",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UICanvas",
+  "data": {
+    "layer": 0,
+    "ui_scale_multiplier": 0.1000000014901161,
+    "tint": {
+      "X": 1,
+      "Y": 1,
+      "Z": 1,
+      "W": 1
+    },
+    "interactable": true,
+    "start_with_safe_rect": false,
+    "world_space": true,
+    "hide_in_editor": false
   }
 }

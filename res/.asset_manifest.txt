@@ -185,7 +185,7 @@ AbilityIcon_Separate/stealth/speed_boost_icon.png - .ao.ios - 66a824d56732dee0bb
 AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao - 66a824d56732dee0bb811f60 - 12735156272323781516
 AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao.ios - 66a824d56732dee0bb811f64 - 17916898905444453559
 AbilityItem.prefab - .ao - 6685994db45eb9e8339c0fc3 - 14427433616163832665
-AbilityLoadoutPage.prefab - .ao - 66a9298796cebaeb1f3298a5 - 10521219662181075413
+AbilityLoadoutPage.prefab - .ao - 66a9511796cebaeb1f3298e0 - 7378118645020677745
 AbilityUpgradeDialog.prefab - .ao - 66a2db5e6732dee0bb811dd1 - 14863107215199290447
 AbilityVendorMenuWindow.prefab - .ao - 669e9594b45eb9e8339c21eb - 10868794227734410679
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
@@ -196,13 +196,23 @@ BloodVFX.prefab - .ao - 66a7fba36732dee0bb811e92 - 12549604446384681181
 BroccoliProjectile.prefab - .ao - 6685994fb45eb9e8339c0fce - 5129262647641696432
 ClawSwipe.prefab - .ao - 66a1a7616732dee0bb811d55 - 1318749154253486373
 FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
-FightPlayerRig/playercharacter.png - .ao - 668c6ecab45eb9e8339c1a1c - 13580176801984649393
-FightPlayerRig/playercharacter.png - .ao.ios - 668c6ecab45eb9e8339c1a1b - 5691610558711331661
-FightPlayerRig/playercharacter.spine - .ao - 66a187416732dee0bb811d22 - 11450400033259515061
-HitVfx.prefab - .ao - 66859951b45eb9e8339c0fd9 - 5146642717615886720
+FightPlayerRig/playercharacter.png - .ao - 66a931e096cebaeb1f3298ac - 10729938297514133197
+FightPlayerRig/playercharacter.png - .ao.ios - 66a931e096cebaeb1f3298ad - 12931280717863060393
+FightPlayerRig/playercharacter.spine - .ao - 66a931e096cebaeb1f3298ab - 6828746527935586160
+HitVfx.prefab - .ao - 66a97e6696cebaeb1f3298f8 - 2238227580914794567
 Invisibility_Aura.prefab - .ao - 66a9201c96cebaeb1f3298a1 - 15827307492988365390
 Invisibility_VFX.prefab - .ao - 66a91fe396cebaeb1f32989e - 15138177077832320917
 KunaiProjectile.prefab - .ao - 66a91b0496cebaeb1f329888 - 5148155901933309180
+LeaderBoard/RANK 1.png - .ao - 66a942a596cebaeb1f3298da - 13121725783381642367
+LeaderBoard/RANK 1.png - .ao.ios - 66a942a596cebaeb1f3298d5 - 7023957445842523738
+LeaderBoard/RANK 2.png - .ao - 66a942a596cebaeb1f3298d7 - 8351542619315229266
+LeaderBoard/RANK 2.png - .ao.ios - 66a942a496cebaeb1f3298c9 - 9307540845993023101
+LeaderBoard/RANK 3.png - .ao - 66a942a496cebaeb1f3298ca - 3188900835373933021
+LeaderBoard/RANK 3.png - .ao.ios - 66a942a496cebaeb1f3298cb - 7566612195606337285
+LeaderBoard/RANK 4.png - .ao - 66a942a496cebaeb1f3298cf - 15346804484886404422
+LeaderBoard/RANK 4.png - .ao.ios - 66a942a496cebaeb1f3298d0 - 2729602571982126847
+LeaderBoard/RANK ME.png - .ao - 66a942a496cebaeb1f3298d1 - 17644210464790413515
+LeaderBoard/RANK ME.png - .ao.ios - 66a942a596cebaeb1f3298d4 - 13815408745773853164
 LeapSlamCrater.prefab - .ao - 66a7fb536732dee0bb811e8d - 3837063221380588297
 LoadoutItemGroup.prefab - .ao - 66a7fca96732dee0bb811e94 - 7401326809135568983
 Props/BearTrap/BAT003_bear_trap.png - .ao - 66859951b45eb9e8339c0fde - 12680163519278585061
@@ -550,6 +560,8 @@ environment/PvP/003_Battle_Arena_Fighting_Stage.png - .ao - 66958ac1b45eb9e8339c
 environment/PvP/003_Battle_Arena_Fighting_Stage.png - .ao.ios - 66958ac1b45eb9e8339c1e44 - 845488614974668564
 environment/PvP/BG.png - .ao - 66958fadb45eb9e8339c1e4c - 18398481155087183478
 environment/PvP/BG.png - .ao.ios - 66958fadb45eb9e8339c1e4d - 7831317651071199190
+environment/PvP/Bridge.png - .ao - 66a931e096cebaeb1f3298af - 1041541556824088156
+environment/PvP/Bridge.png - .ao.ios - 66a931e196cebaeb1f3298b2 - 13355698463468250477
 environment/PvP/ground.png - .ao - 66859964b45eb9e8339c107b - 3941755338451764949
 environment/PvP/ground.png - .ao.ios - 66859964b45eb9e8339c107c - 4161336188796695126
 environment/PvP/light_ring.png - .ao - 66859965b45eb9e8339c107f - 5267325222286349184
@@ -563,9 +575,9 @@ environment/gold.png - .ao.ios - 66859967b45eb9e8339c108c - 15698126421952890697
 environment/portal/cosmicPortal.png - .ao - 66859967b45eb9e8339c1090 - 3995821800800756657
 environment/portal/cosmicPortal.png - .ao.ios - 66859967b45eb9e8339c1092 - 4722501650766168214
 environment/portal/cosmicPortal.spine - .ao - 66859967b45eb9e8339c1091 - 9083999045970940274
-old_base_rig/playercharacter.png - .ao - 66a29f9e6732dee0bb811da4 - 6411632049498198605
-old_base_rig/playercharacter.png - .ao.ios - 66a29f9e6732dee0bb811da3 - 6734048498957032975
-old_base_rig/playercharacter.spine - .ao - 66a29f9c6732dee0bb811d9b - 6453235407295536449
+old_base_rig/playercharacter.png - .ao - 66a978f496cebaeb1f3298f2 - 8936069685551858978
+old_base_rig/playercharacter.png - .ao.ios - 66a978f496cebaeb1f3298f3 - 8816366524736704600
+old_base_rig/playercharacter.spine - .ao - 66a978f396cebaeb1f3298f1 - 15409900181107296828
 old_base_rig/playercharacter_2.png - .ao - 66a29f9c6732dee0bb811d9c - 17558781897250562856
 old_base_rig/playercharacter_2.png - .ao.ios - 66a29f9d6732dee0bb811d9f - 11089736624654215381
 projectile/BAT003_Projectile/BAT003_projectile.png - .ao - 66859968b45eb9e8339c1096 - 8698776939411441091

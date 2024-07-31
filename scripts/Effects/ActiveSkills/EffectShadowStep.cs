@@ -31,7 +31,25 @@ public class EffectShadowStep : FightEffect
         if (Network.IsServer)
         {
             Vector2 dir = FightPlayer.Velocity.Length < 0.1f ? FightPlayer.GetFacingDirectionAsVector() : FightPlayer.Velocity.Normalized;
-            FightPlayer.Teleport(FightPlayer.Entity.Position + dir * EffectConfig.ShadowStepConfig.MovementDistance);
+            Vector2 tlePosition = FightPlayer.Entity.Position + dir * EffectConfig.ShadowStepConfig.MovementDistance;
+            // Raycast. If you hit an edge collider, do not cross it
+            Physics.RaycastHit rc;
+            var hit = Physics.RaycastWithWhitelist(FightPlayer.Entity.Position, dir,
+                EffectConfig.ShadowStepConfig.MovementDistance, new Entity[]{ FightClubGameManager.References.PvpZoneEdge.Entity }, 
+                new Entity[]{ FightPlayer.Entity, FightPlayer.CollisionEntity},out rc);
+            Log.Warn($"Hit = {hit}");
+            if (hit)
+            {
+                Edge_Collider eg = rc.Entity.GetComponent<Edge_Collider>();
+                if (eg != null)
+                {
+                    dir *= 0.1f;
+                    tlePosition = rc.point - dir;
+                }
+            }
+            
+            
+            FightPlayer.Teleport(tlePosition);
         }
         
     }

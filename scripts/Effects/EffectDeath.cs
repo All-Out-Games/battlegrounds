@@ -25,9 +25,10 @@ public class EffectDeath : FightEffectWithImmunity
         FightPlayer.CurrentHealth = FightPlayer.MaxHealth;
         
         FightPlayer.ClearAllEffects();
+        FightPlayer.ClearSpeedModifier();
     }
 
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => false;
 

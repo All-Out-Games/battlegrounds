@@ -21,7 +21,7 @@ public partial class FightAbility : Ability
 
     public sealed override Texture Icon => Assets.GetAsset<Texture>(SkillIconPath);
 
-    public override Type TargettingEffect => typeof(DefaultTargettingEffect);
+    public override Type TargettingEffect => TargettingMode == TargettingMode.Self ? null : typeof(DefaultTargettingEffect);
 
     public override bool CanUse()
     {
