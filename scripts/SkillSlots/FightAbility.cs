@@ -40,11 +40,12 @@ public partial class FightAbility : Ability
         return player.CurrentHealth > 0;
     }
 
-    public override void OnActivate(Player targetPlayer, Vector2 positionOrDirection, float magnitude)
+    public override bool OnTryActivate(List<Player> targetPlayers, Vector2 positionOrDirection, float magnitude)
     {
-        base.OnActivate(targetPlayer, positionOrDirection, magnitude);
+        base.OnTryActivate(targetPlayers, positionOrDirection, magnitude);
         FightPlayer = (FightPlayer)Player;
         FightPlayer.OnSkillActivate?.Invoke(FightPlayer.SkillActivationInfo.GetActivationInfo(Interruptlevel, SkillKey));
+        return true;
     }
     
 }
