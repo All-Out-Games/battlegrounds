@@ -237,7 +237,9 @@ public class AbilityLoadoutPage : UniqueUIWindow
         List<FightAbility> faList = _slotsMgr.GetCurrentAbilities();
         _equippedSkillKey = faList.Select(a => a.SkillKey).ToArray();
         // Punch
-        _punchIcon.Sprite = Assets.KeepLoaded<Texture>(SkillConfig.GetIconPath(faList[0].SkillKey));
+        string punchKey = "Punch";
+        if (_slotsMgr.GetFightPlayer().PunchLevel > 1) punchKey = $"Punch{_slotsMgr.GetFightPlayer().PunchLevel}";
+        _punchIcon.Sprite = Assets.KeepLoaded<Texture>(SkillConfig.GetIconPath(punchKey));
         for (int i = 0; i < 5; i++)
         {
             _loadoutSlots[i].SetSkillKey(_equippedSkillKey[i+1]);

@@ -14,4 +14,9 @@ public class FightPlayerComponent : Component
         _player = Entity.GetComponent<Player>() as FightPlayer;
         //Log.Info($"Set player: {_player.Name}");
     }
+
+    public FightPlayer GetFightPlayer()
+    {
+        return _player;
+    }
 }

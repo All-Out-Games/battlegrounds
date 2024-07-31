@@ -203,8 +203,17 @@ public class SkillTreePage : UniqueUIWindow
                 _buyButton.Interactable = false;
                 break;
             case SkillTreeItem.NodeStatus.Attainable:
-                _buyText.Text = $"Buy {item.Config.SkillKey}";
-                _buyButton.Interactable = true;
+                if (_localPlayer.Coins >= item.Config.UpgradeCost)
+                {
+                    _buyText.Text = $"Buy {item.Config.SkillKey}";
+                    _buyButton.Interactable = true;
+                }
+                else
+                {
+                    _buyText.Text = $"Earn {item.Config.UpgradeCost - _localPlayer.Coins} Coins!";
+                    _buyButton.Interactable = false;
+                }
+                
                 break;
             case SkillTreeItem.NodeStatus.Locked:
                 _buyText.Text = "Need Prerequisite!";

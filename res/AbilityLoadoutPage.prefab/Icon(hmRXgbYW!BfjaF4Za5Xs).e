@@ -13,8 +13,8 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "147806139798462:1721334255179809400",
-  "next_sibling": "148169574632173:1721334427260695600",
+  "previous_sibling": "264708832602672:1722465423798838300",
+  "next_sibling": "263643562407380:1722464919409544500",
   "parent": "265811586614454:1721245289077093400"
 },
 {
@@ -30,7 +30,7 @@
       "Z": 1,
       "W": 1
     },
-    "fit_aspect": false,
+    "fit_aspect": true,
     "fit_aspect_kind": 0,
     "fit_aspect_anchor": 0
   }
@@ -59,17 +59,5 @@
       "X": 0,
       "Y": 0
     }
-  }
-},
-{
-  "cid": 3,
-  "aoid": "237655328889085:1722452614374805300",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIFitAspect",
-  "data": {
-    "aspect_sprite": "",
-    "aspect_hardcoded": 1,
-    "fit_aspect_kind": 0,
-    "fit_aspect_anchor": 0
   }
 }
