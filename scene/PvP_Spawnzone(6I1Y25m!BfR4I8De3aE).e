@@ -5,13 +5,13 @@
   "name": "PvP_Spawnzone",
   "local_enabled": true,
   "local_position": {
-    "X": 1.0380249023437500,
-    "Y": -5.3198394775390625
+    "X": 0.9599999785423279,
+    "Y": -5.5900001525878906
   },
   "local_rotation": 0,
   "local_scale": {
-    "X": 5,
-    "Y": 5
+    "X": 20,
+    "Y": 20
   },
   "next_sibling": "11198096959298:1716403445063905600",
   "parent": "3995215179226:1716399837848180900",
@@ -19,7 +19,7 @@
 },
 {
   "cid": 1,
-  "aoid": "3995215330322:1716399837848255900",
+  "aoid": "245055507665978:1722456118247311900",
   "component_type": "Internal_Component",
   "internal_component_type": "Zone",
   "data": {

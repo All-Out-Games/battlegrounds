@@ -39,7 +39,6 @@ public class ZoneTeleporter : Component
                 Enum.TryParse(ChangeStatusTo, out newStatus);
             if (parsed)
             {
-                // player.Teleport(SpawnPoint.Position); // Moved to the player function (following)
                 player.CallClient_SwitchStatus((int)newStatus);
             }
         }

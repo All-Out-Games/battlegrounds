@@ -596,7 +596,7 @@ public partial class FightPlayer : Player
             {
                 Zone combatZone = FightClubGameManager.References.PvpZone;
                 //Teleport(Zone.GetRandomPointInZones(combatZone.ZoneId) + combatZone.Entity.Position);
-                Teleport(combatZone.Entity.Position);
+                Teleport(FightClubUtils.RandomPositionInCirle(combatZone.Entity.Position, combatZone.Entity.LocalScaleX));
             }
             OnTeleportToCombatZone();
         }
