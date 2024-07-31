@@ -13,6 +13,7 @@ public partial class FightAbility : Ability
 {
     public static string DefaultIconPath = "$AO/new/Player Inventory/abilities_inventory_bar/inv_square_empty_25.png";
     public static string DefaultSkillKey = "Empty";
+    public static string DefaultAbilityIcon = "AbilityIcon_Separate/x_icon_ability.png";
     
     public FightPlayer FightPlayer;
     public virtual string SkillKey => DefaultSkillKey;

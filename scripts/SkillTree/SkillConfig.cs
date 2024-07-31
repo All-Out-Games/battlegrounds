@@ -142,7 +142,7 @@ public static partial class SkillConfig
     {
         if (key == "Empty")
         {
-            return FightAbility.DefaultIconPath;
+            return FightAbility.DefaultAbilityIcon;
         }
         string path = STConfigQueryDict[key].AbilityIconPath;
         
@@ -151,7 +151,7 @@ public static partial class SkillConfig
             path = GetIconPath(key); // No btn texture -> fall back to skill tree icon
         }
         
-        return path == String.Empty ? FightAbility.DefaultIconPath : path;
+        return path == String.Empty ? FightAbility.DefaultAbilityIcon : path;
     }
 
     public static string GetPunchAbilityIconPath(int punchLevel)
