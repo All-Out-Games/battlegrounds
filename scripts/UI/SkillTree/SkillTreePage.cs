@@ -6,9 +6,11 @@ namespace Assembly.scripts.UI.SkillTree;
 public class SkillTreePage : UniqueUIWindow
 {
     public static Vector2 GridOrigin = new Vector2(0, 600);
+    public static Vector2 GridInterval = new Vector2(180, 150);
+    public static float GridFactor = 1;
     public static Vector2 GetGridPosition(int x, int y)
     {
-        return new Vector2(180*(x-1), GridOrigin.Y-150*y);
+        return new Vector2(GridInterval.X*(x-1), GridOrigin.Y-GridInterval.Y*y);
     }
 
     
@@ -46,7 +48,9 @@ public class SkillTreePage : UniqueUIWindow
     public override void OnInstantiate()
     {
         base.OnInstantiate();
-        GridOrigin *= AO.UI.SafeRect.Width / AO.UI.SafeRect.Height / 1.7778f; // Scale grid origin
+        GridFactor = 1.7778f / (AO.UI.SafeRect.Width / AO.UI.SafeRect.Height); // Scale grid origin
+        GridOrigin *= GridFactor;
+        GridInterval *= GridFactor;
         
         _localPlayer = Network.LocalPlayer.Entity.GetComponent<FightPlayer>();
         _slotsMgr ??= _localPlayer.GetSkillSlots();
