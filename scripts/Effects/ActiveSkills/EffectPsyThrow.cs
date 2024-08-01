@@ -13,7 +13,7 @@ public class AbilityPsyThrow : FightAbility
     public override float MaxDistance => EffectConfig.PsyThrowConfig.Range;
     public override int MaxTargets => 1;
 
-    public override float Cooldown => 1;//EffectConfig.PsyThrowConfig.Cooldown;
+    public override float Cooldown => EffectConfig.PsyThrowConfig.Cooldown;
 
     public static readonly string LaunchSkillKey = "PsyThrowLaunch";
 }
