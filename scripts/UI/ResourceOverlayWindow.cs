@@ -10,6 +10,9 @@ public class ResourceOverlayWindow : BaseUIWindow
     [Serialized] private UIText _coinText;
     [Serialized] private UIText _damageText;
     [Serialized] private UIText _eliminationText;
+
+    [Serialized] private UIButton _skillBookButton;
+    [Serialized] private Entity _sidebar;
     
     private Coroutine _coroutineC;
 
@@ -19,6 +22,9 @@ public class ResourceOverlayWindow : BaseUIWindow
         _localPlayer.CoinUpdateEvent -= UpdateCoin;
         _localPlayer.TotalDamageUpdateEvent -= UpdateDamage;
         _localPlayer.TotalElminationUpdateEvent -= UpdateElimination;
+        _localPlayer.PlayerSwitchZoneEvent -= SetSkillButton;
+        _skillBookButton.OnClicked -= OnSkillBtnClicked;
+        
     }
 
     public void HookupEvents(ref Action<int> coinUpdateEvt, ref Action<int> dmgUpdateEvt, ref Action<int> killUpdateEvt)
@@ -27,6 +33,8 @@ public class ResourceOverlayWindow : BaseUIWindow
         coinUpdateEvt += UpdateCoin;
         dmgUpdateEvt += UpdateDamage;
         killUpdateEvt += UpdateElimination;
+        _localPlayer.PlayerSwitchZoneEvent += SetSkillButton;
+        _skillBookButton.OnClicked += OnSkillBtnClicked;
     }
 
     public void UpdateCoin(int coin)
@@ -77,5 +85,31 @@ public class ResourceOverlayWindow : BaseUIWindow
 
         txt.Settings = txt.Settings with { Size = originalSize };
 
+    }
+
+    public void SetSkillButton(int status)
+    {
+        // Log.Error($"STATUS RECEIVED : {status}");
+        _sidebar.LocalEnabled = status != (int)PlayerStatus.Combat;
+    }
+
+    private void OnSkillBtnClicked()
+    {
+        var wd = UIManager.Instance.GetUniqueWindow(UniqueWindowKeys.AbilityLoadoutPagePath);
+        if (wd != null)
+        {
+            if (wd.IsActive)
+            {
+                wd.CloseWindow();
+            }
+            else
+            {
+                UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityLoadoutPagePath);
+            }
+        }
+        else
+        {
+            UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityLoadoutPagePath);
+        }
     }
 }

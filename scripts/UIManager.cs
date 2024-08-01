@@ -184,6 +184,19 @@ public partial class UIManager : System<UIManager>
         return wd;
     }
 
+    public T GetOverlayWindow<T>(string prefabPath = null) where T : BaseUIWindow
+    {
+        if (!OverlayWindows.TryGetValue(prefabPath, out var wd))
+        {
+            Log.Error($"Overlay Window {prefabPath} NOT FOUND");
+            return null;
+        }
+        else
+        {
+            return wd as T;
+        }
+    }
+
     public override void Update()
     {
         // Update timers

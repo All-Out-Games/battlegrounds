@@ -3,7 +3,7 @@
 171640257860467 1721345540273525000
 {
   "name": "AbilityBook",
-  "local_enabled": true,
+  "local_enabled": false,
   "local_position": {
     "X": -14.2934150695800781,
     "Y": 2.9537894725799561

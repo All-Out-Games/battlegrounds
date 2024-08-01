@@ -616,11 +616,13 @@ public partial class FightPlayer : Player
     public void OnTeleportToCombatZone()
     {
         SkillSlotsManager.SkillSlotsPanelEnable(true);
+        PlayerSwitchZoneEvent?.Invoke((int)PlayerStatus.Combat);
     }
 
     public void OnTeleportToSafeZone()
     {
         SkillSlotsManager.SkillSlotsPanelEnable(false);
+        PlayerSwitchZoneEvent?.Invoke((int)PlayerStatus.Safe);
     }
 
     #endregion

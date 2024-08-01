@@ -225,7 +225,7 @@ PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
 Rage_Aura.prefab - .ao - 66a1a7616732dee0bb811d54 - 14197455482549921607
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
-ResourcesOverlayWindow.prefab - .ao - 66aac098cf7a5e4159a6b6b6 - 3916617101745778145
+ResourcesOverlayWindow.prefab - .ao - 66aad92acf7a5e4159a6b770 - 11976965795483684769
 SceneProps_tmp/aura_circle.png - .ao - 66859954b45eb9e8339c0ff6 - 10293273442432679734
 SceneProps_tmp/aura_circle.png - .ao.ios - 66859955b45eb9e8339c0ff8 - 4712178218859138718
 SelfDestructExplosion.prefab - .ao - 66a1a7616732dee0bb811d5a - 5339910856129032631
@@ -280,6 +280,42 @@ UI/AbilityBook/Loadout/swap_button_pressed.png - .ao - 66980c28b45eb9e8339c1ed5 
 UI/AbilityBook/Loadout/swap_button_pressed.png - .ao.ios - 66980c28b45eb9e8339c1ed6 - 10234977647442393302
 UI/AbilityBook/unlocked_abilities_backing.png - .ao - 66998861b45eb9e8339c219b - 15291842776835831665
 UI/AbilityBook/unlocked_abilities_backing.png - .ao.ios - 66998861b45eb9e8339c219a - 10305147596006492540
+UI/LargeMenuButtons/Large Menu Buttons/large_button.png - .ao - 66aad25bcf7a5e4159a6b76b - 18231134355042940051
+UI/LargeMenuButtons/Large Menu Buttons/large_button.png - .ao.ios - 66aad25bcf7a5e4159a6b766 - 3983896806962664064
+UI/LargeMenuButtons/Large Menu Buttons/large_button_highlight.png - .ao - 66aad25bcf7a5e4159a6b768 - 5076871486006783888
+UI/LargeMenuButtons/Large Menu Buttons/large_button_highlight.png - .ao.ios - 66aad256cf7a5e4159a6b726 - 17760657373217393356
+UI/LargeMenuButtons/Large Menu Buttons/ref.png - .ao - 66aad256cf7a5e4159a6b727 - 13536252004462287787
+UI/LargeMenuButtons/Large Menu Buttons/ref.png - .ao.ios - 66aad256cf7a5e4159a6b728 - 14263978876701376747
+UI/LargeMenuButtons/Large Menu Buttons/skills.png - .ao - 66aad256cf7a5e4159a6b72b - 13385892535426110250
+UI/LargeMenuButtons/Large Menu Buttons/skills.png - .ao.ios - 66aad257cf7a5e4159a6b72d - 8763004915328211821
+UI/LargeMenuButtons/Large Menu Buttons/skills_icon.png - .ao - 66aad257cf7a5e4159a6b72e - 9891010765184258502
+UI/LargeMenuButtons/Large Menu Buttons/skills_icon.png - .ao.ios - 66aad257cf7a5e4159a6b731 - 4351971332935914723
+UI/LargeMenuButtons/Large Menu Buttons/skills_icon_pressed.png - .ao - 66aad257cf7a5e4159a6b733 - 16749933547949242913
+UI/LargeMenuButtons/Large Menu Buttons/skills_icon_pressed.png - .ao.ios - 66aad257cf7a5e4159a6b734 - 15692361174414435732
+UI/LargeMenuButtons/Large Menu Buttons/stats.png - .ao - 66aad257cf7a5e4159a6b736 - 15798147636281251811
+UI/LargeMenuButtons/Large Menu Buttons/stats.png - .ao.ios - 66aad257cf7a5e4159a6b73a - 16783506424287300965
+UI/LargeMenuButtons/Large Menu Buttons/stats_icon.png - .ao - 66aad257cf7a5e4159a6b739 - 9388318728894675768
+UI/LargeMenuButtons/Large Menu Buttons/stats_icon.png - .ao.ios - 66aad258cf7a5e4159a6b73d - 16313663364793090618
+UI/LargeMenuButtons/Large Menu Buttons/stats_icon_pressed.png - .ao - 66aad258cf7a5e4159a6b73f - 7965701045475553527
+UI/LargeMenuButtons/Large Menu Buttons/stats_icon_pressed.png - .ao.ios - 66aad258cf7a5e4159a6b740 - 12159045113275667113
+UI/LargeMenuButtons/large_button.png - .ao - 66aad258cf7a5e4159a6b743 - 18231134355042940051
+UI/LargeMenuButtons/large_button.png - .ao.ios - 66aad258cf7a5e4159a6b744 - 3983896806962664064
+UI/LargeMenuButtons/large_button_highlight.png - .ao - 66aad259cf7a5e4159a6b746 - 5076871486006783888
+UI/LargeMenuButtons/large_button_highlight.png - .ao.ios - 66aad259cf7a5e4159a6b749 - 17760657373217393356
+UI/LargeMenuButtons/ref.png - .ao - 66aad259cf7a5e4159a6b74a - 13536252004462287787
+UI/LargeMenuButtons/ref.png - .ao.ios - 66aad259cf7a5e4159a6b74c - 14263978876701376747
+UI/LargeMenuButtons/skills.png - .ao - 66aad259cf7a5e4159a6b74f - 13385892535426110250
+UI/LargeMenuButtons/skills.png - .ao.ios - 66aad259cf7a5e4159a6b750 - 8763004915328211821
+UI/LargeMenuButtons/skills_icon.png - .ao - 66aad25acf7a5e4159a6b752 - 9891010765184258502
+UI/LargeMenuButtons/skills_icon.png - .ao.ios - 66aad25acf7a5e4159a6b755 - 4351971332935914723
+UI/LargeMenuButtons/skills_icon_pressed.png - .ao - 66aad25acf7a5e4159a6b756 - 16749933547949242913
+UI/LargeMenuButtons/skills_icon_pressed.png - .ao.ios - 66aad25acf7a5e4159a6b758 - 15692361174414435732
+UI/LargeMenuButtons/stats.png - .ao - 66aad25acf7a5e4159a6b75a - 15798147636281251811
+UI/LargeMenuButtons/stats.png - .ao.ios - 66aad25acf7a5e4159a6b75c - 16783506424287300965
+UI/LargeMenuButtons/stats_icon.png - .ao - 66aad25bcf7a5e4159a6b760 - 9388318728894675768
+UI/LargeMenuButtons/stats_icon.png - .ao.ios - 66aad25acf7a5e4159a6b75f - 16313663364793090618
+UI/LargeMenuButtons/stats_icon_pressed.png - .ao - 66aad25bcf7a5e4159a6b762 - 7965701045475553527
+UI/LargeMenuButtons/stats_icon_pressed.png - .ao.ios - 66aad25bcf7a5e4159a6b765 - 12159045113275667113
 UI/SkillTree/Brawler.png - .ao - 669816ecb45eb9e8339c1f0a - 9998387097734776475
 UI/SkillTree/Brawler.png - .ao.ios - 669816ecb45eb9e8339c1f0c - 14977146293914380219
 UI/SkillTree/ability_backing.png - .ao - 669816ecb45eb9e8339c1f0f - 15250342353867512298

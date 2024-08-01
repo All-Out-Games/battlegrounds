@@ -7,6 +7,7 @@ public partial class FightPlayer
     public Action<int> CoinUpdateEvent;
     public Action<int> TotalElminationUpdateEvent;
     public Action<int> TotalDamageUpdateEvent;
+    public Action<int> PlayerSwitchZoneEvent;
 
     // Reserved for effects related to post-damage (e.g. after elimination, add damage)
     public Action<FightPlayer, DamageInfo> OnDealDamage; // Triggered in global damage event. Will contain the ACTUAL damage dealt (i.e. the damage info might be modified by some effects like parry)

@@ -115,6 +115,6 @@ public class AbilityItem : Component
             FightPlayer fp = (FightPlayer)Network.LocalPlayer;
             fp.GetSkillTree().CallServer_RequestUpgradeSkill(Config.SkillKey);
         }
-        UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityVendorPath);
+        UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.SkillTreePath);
     }
 }
