@@ -5,9 +5,8 @@ namespace Assembly.scripts.UI.SkillTree;
 
 public class SkillTreePage : UniqueUIWindow
 {
-    public static Vector2 GridOrigin = new Vector2(0, 600);
-    public static Vector2 GridInterval = new Vector2(180, 150);
-    public static float GridFactor = 1;
+    public static Vector2 GridOrigin = new Vector2(0, 225);
+    public static Vector2 GridInterval = new Vector2(150, 150);
     public static Vector2 GetGridPosition(int x, int y)
     {
         return new Vector2(GridInterval.X*(x-1), GridOrigin.Y-GridInterval.Y*y);
@@ -48,9 +47,16 @@ public class SkillTreePage : UniqueUIWindow
     public override void OnInstantiate()
     {
         base.OnInstantiate();
-        GridFactor = 1.7778f / (AO.UI.SafeRect.Width / AO.UI.SafeRect.Height); // Scale grid origin
-        GridOrigin *= GridFactor;
-        GridInterval *= GridFactor;
+        Rect screenRect = AO.UI.SafeRect;
+
+        //Log.Warn($"Rect {AO.UI.ScreenRect.Width},{AO.UI.ScreenRect.Height}; SafeRect {AO.UI.SafeRect.Width}, {AO.UI.SafeRect.Height};  ScaleFactor {AO.UI.ScreenScaleFactor}");
+        //GridFactor = new Vector2(1920f / screenRect.Width,1080f / screenRect.Height) * AO.UI.ScreenScaleFactor; // Scale grid
+        
+        //GridOrigin *= GridFactor;
+        //GridOrigin.Y = float.Min(600, GridOrigin.Y);
+        
+        //GridInterval *= GridFactor;
+        //GridInterval.X = float.Min(150, GridInterval.X);
         
         _localPlayer = Network.LocalPlayer.Entity.GetComponent<FightPlayer>();
         _slotsMgr ??= _localPlayer.GetSkillSlots();

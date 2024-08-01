@@ -53,4 +53,20 @@
     "padding": 10,
     "size_source": 1
   }
+},
+{
+  "cid": 1,
+  "aoid": "9113063690172:1722534984533063800",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIScrollView",
+  "data": {
+    "vertical": true,
+    "horizontal": false,
+    "content_inset": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
+    }
+  }
 }
