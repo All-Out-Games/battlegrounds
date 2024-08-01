@@ -23,6 +23,12 @@ public class EffectDeath : FightEffectWithImmunity
         FightPlayer.SetAnimTrigger("RESET_AL");
         FightPlayer.SwitchStatus((int)PlayerStatus.Safe); // teleport the player to central hub
         FightPlayer.CurrentHealth = FightPlayer.MaxHealth;
+
+        var slots = FightPlayer.GetSkillSlots().GetCurrentAbilities();
+        foreach (var slot in slots)
+        {
+            slot.CooldownRemaining = 1;
+        }
         
         FightPlayer.ClearAllEffects();
         FightPlayer.ClearSpeedModifier();
