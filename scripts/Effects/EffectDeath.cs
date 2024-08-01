@@ -28,7 +28,7 @@ public class EffectDeath : FightEffectWithImmunity
         FightPlayer.ClearSpeedModifier();
     }
 
-    public override bool IsActiveEffect => true;
+    public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => false;
 
