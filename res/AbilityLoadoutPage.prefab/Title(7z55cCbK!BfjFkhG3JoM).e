@@ -27,9 +27,9 @@
       "font_id": "$AO/fonts/Barlow-ExtraBold.ttf",
       "size": 36,
       "color": {
-        "X": 0,
-        "Y": 0,
-        "Z": 0,
+        "X": 1,
+        "Y": 1,
+        "Z": 1,
         "W": 1
       },
       "valign": 1,
@@ -51,8 +51,8 @@
         "Z": 0,
         "W": 1
       },
-      "do_outline": false,
-      "outline_thickness": 2,
+      "do_outline": true,
+      "outline_thickness": 4,
       "outline_color": {
         "X": 0,
         "Y": 0,

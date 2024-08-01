@@ -36,6 +36,7 @@ public partial class UIManager : System<UIManager>
         _scoreTxt = "0";
         _resourceTxt = "0";
         _moneyTxt = "0";
+        
     }
 
     public UICanvas FindCanvas()

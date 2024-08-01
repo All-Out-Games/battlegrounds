@@ -54,9 +54,9 @@
       "font_id": "",
       "size": 32,
       "color": {
-        "X": 0,
-        "Y": 0,
-        "Z": 0,
+        "X": 1,
+        "Y": 1,
+        "Z": 1,
         "W": 1
       },
       "valign": 1,
@@ -73,17 +73,17 @@
         "Y": -1
       },
       "drop_shadow_color": {
-        "X": 1,
-        "Y": 1,
-        "Z": 1,
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
         "W": 1
       },
-      "do_outline": false,
-      "outline_thickness": 1,
+      "do_outline": true,
+      "outline_thickness": 3,
       "outline_color": {
-        "X": 1,
-        "Y": 1,
-        "Z": 1,
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
         "W": 1
       },
       "spacing_multiplier": 1,
