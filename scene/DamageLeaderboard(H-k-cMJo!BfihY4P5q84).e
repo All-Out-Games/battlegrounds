@@ -25,7 +25,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/CentralHub/Leaderboard1.png",
-    "depth_offset": -0.5000000000000000,
+    "depth_offset": -2.5000000000000000,
     "tint": {
       "X": 1,
       "Y": 1,
@@ -51,5 +51,26 @@
     "LeaderboardBgMe": "LeaderBoard/RANK ME.png",
     "LeaderboardSpriteRenderer": "35155373006456:1721084852808111800",
     "LeaderboardId": "TotalDamageDealt"
+  }
+},
+{
+  "cid": 3,
+  "aoid": "36007512986988:1722545759548060800",
+  "component_type": "Internal_Component",
+  "internal_component_type": "Box_Collider",
+  "data": {
+    "size": {
+      "X": 5.3401317596435547,
+      "Y": 1.6710052490234375
+    },
+    "offset": {
+      "X": -0.0142755508422852,
+      "Y": -1.9202222824096680
+    },
+    "is_trigger": false,
+    "density": 1,
+    "friction": 0.2000000029802322,
+    "restitution": 0,
+    "restitution_threshold": 1
   }
 }

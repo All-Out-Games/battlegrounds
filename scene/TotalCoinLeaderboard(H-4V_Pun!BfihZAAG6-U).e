@@ -25,7 +25,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/CentralHub/Leaderboard3.png",
-    "depth_offset": -0.5000000000000000,
+    "depth_offset": -2.5000000000000000,
     "tint": {
       "X": 1,
       "Y": 1,
@@ -51,5 +51,26 @@
     "LeaderboardBgMe": "LeaderBoard/RANK ME.png",
     "LeaderboardSpriteRenderer": "35176150934774:1721084861132605800",
     "LeaderboardId": "TotalCoins"
+  }
+},
+{
+  "cid": 3,
+  "aoid": "35878800788214:1722545707980696600",
+  "component_type": "Internal_Component",
+  "internal_component_type": "Box_Collider",
+  "data": {
+    "size": {
+      "X": 5.2830238342285156,
+      "Y": 1.5567936897277832
+    },
+    "offset": {
+      "X": 0.0000019073486328,
+      "Y": -1.7631785869598389
+    },
+    "is_trigger": false,
+    "density": 1,
+    "friction": 0.2000000029802322,
+    "restitution": 0,
+    "restitution_threshold": 1
   }
 }

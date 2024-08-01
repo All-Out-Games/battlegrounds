@@ -25,7 +25,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/CentralHub/Leaderboard2.png",
-    "depth_offset": -0.5000000000000000,
+    "depth_offset": -2.5000000000000000,
     "tint": {
       "X": 1,
       "Y": 1,
@@ -51,5 +51,26 @@
     "LeaderboardBgMe": "LeaderBoard/RANK ME.png",
     "LeaderboardSpriteRenderer": "35169888820238:1721084858623744700",
     "LeaderboardId": "TotalEliminations"
+  }
+},
+{
+  "cid": 3,
+  "aoid": "35942832188378:1722545733634291000",
+  "component_type": "Internal_Component",
+  "internal_component_type": "Box_Collider",
+  "data": {
+    "size": {
+      "X": 5.4686222076416016,
+      "Y": 1.6710071563720703
+    },
+    "offset": {
+      "X": -0.0214147567749023,
+      "Y": -1.9059453010559082
+    },
+    "is_trigger": false,
+    "density": 1,
+    "friction": 0.2000000029802322,
+    "restitution": 0,
+    "restitution_threshold": 1
   }
 }
