@@ -210,6 +210,8 @@ public partial class FightPlayer
         #endregion
 
 
+        #region Stealth
+
         // Backstab - Caster
         var backstabTrigger = stateMachine.CreateVariable("backstab", StateMachineVariableKind.TRIGGER);
         var backstabState = aoLayer.CreateState("BAT_003/backstab_attack", 0, false);
@@ -227,6 +229,19 @@ public partial class FightPlayer
         var bearTrapState = aoLayer.CreateState("BAT_003/bear_trap_full", 0, false);
         aoLayer.CreateGlobalTransition(bearTrapState).CreateTriggerCondition(bearTrapTrigger);
         aoLayer.CreateTransition(bearTrapState, aoIdleState, true);
+        
+        // Total Darkness
+        var totalDarknessTrigger = stateMachine.CreateVariable("total_darkness", StateMachineVariableKind.TRIGGER);
+        //var totalDarknessState = aoLayer.CreateState("BAT_003/spew_loop", 0, false);
+        var totalDarknessALState = fightLayer.CreateState("BAT_003/spew_fx_AL", 0, false);
+        fightLayer.CreateGlobalTransition(totalDarknessALState).CreateTriggerCondition(totalDarknessTrigger);
+        fightLayer.CreateTransition(totalDarknessALState, idleState, true);
+        //aoLayer.CreateGlobalTransition(totalDarknessState).CreateTriggerCondition(totalDarknessTrigger);
+        //aoLayer.CreateTransition(totalDarknessState, aoIdleState, true);
+
+        #endregion
+
+        
         
         
         // Rollout

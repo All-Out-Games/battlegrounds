@@ -29,8 +29,10 @@ public class EffectBearTrap: FightEffect
 
     public override void OnEffectEnd(bool interrupt)
     {
+        Vector2 trapPos = FightPlayer.Entity.Position +
+                          AbilityPositionOrDirection * EffectConfig.BearTrapConfig.MaxSetupDistance;
         base.OnEffectEnd(interrupt);
-        FightClubGameManager.Instance.ServerSpawn(EffectConfig.BearTrapConfig.TrapPrefabPath, FightPlayer.Entity.Position + AbilityPositionOrDirection * EffectConfig.BearTrapConfig.MaxSetupDistance,
+        FightClubGameManager.Instance.ServerSpawn(EffectConfig.BearTrapConfig.TrapPrefabPath, trapPos,
             entity =>
             {
                 BearTrap trap = entity.GetComponent<BearTrap>();

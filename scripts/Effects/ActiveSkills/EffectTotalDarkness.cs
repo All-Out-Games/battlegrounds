@@ -9,7 +9,7 @@ public class AbilityTotalDarkness : FightAbility
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
 
-    public override float Cooldown => EffectConfig.RageConfig.Cooldown;
+    public override float Cooldown => EffectConfig.TotalDarknessConfig.Cooldown;
 }
 
 public class EffectTotalDarkness : FightEffect
@@ -25,6 +25,8 @@ public class EffectTotalDarkness : FightEffect
         // Blind Every Player in combat
         var fpList = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(FightPlayer.Entity.Position,
             EffectConfig.TotalDarknessConfig.Range);
+        
+        FightPlayer.SetAnimTrigger("total_darkness");
 
         foreach (var fp in fpList)
         {
