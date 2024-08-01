@@ -46,7 +46,7 @@
       "X": 0,
       "Y": 1
     },
-    "text": "PvPZone",
+    "text": "PvPArena",
     "hold_text": "",
     "radius": 2,
     "required_hold_time": 0.6000000238418579
@@ -60,7 +60,7 @@
   "data": {
     "SpawnPoint": "3995215294054:1716399837848237700",
     "TeleportZone": "245055507665978:1722456118247311900",
-    "TeleportText": "PvPZone",
+    "TeleportText": "PvPArena",
     "ChangeStatusTo": "Combat"
   }
 }
