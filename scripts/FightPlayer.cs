@@ -1,6 +1,7 @@
 using System.Collections;
 using AO;
 using Assembly.scripts;
+using Assembly.scripts.Effects.ActiveSkills;
 using Assembly.scripts.UI;
 using StreamReader = AO.StreamReader;
 
@@ -213,6 +214,7 @@ public partial class FightPlayer : Player
         Coins = Save.GetInt(this, "Coins", 10);
         TotalEliminations = Save.GetInt(this, "TotalEliminations");
         TotalDamageDealt = Save.GetInt(this, "TotalDamageDealt");
+        TotalCoins = Save.GetInt(this, "TotalCoins");
     }
     
     #region EventFunctions
@@ -548,7 +550,18 @@ public partial class FightPlayer : Player
     {
         var proximityPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, EffectConfig.PunchConfig.PunchTargetRange);
         proximityPlayers.Remove(this);
-        return proximityPlayers.Count > 0 ? proximityPlayers[0].Entity.Position - Entity.Position : PunchCollider.Entity.Position - Entity.Position;
+        if (proximityPlayers.Count > 0)
+        {
+            foreach (var fp in proximityPlayers)
+            {
+                // Ignore invis player
+                if (!fp.HasEffect<EffectInvisible>())
+                {
+                    return proximityPlayers[0].Entity.Position - Entity.Position;
+                }
+            }
+        }
+        return PunchCollider.Entity.Position - Entity.Position;
     }
 
     #endregion
