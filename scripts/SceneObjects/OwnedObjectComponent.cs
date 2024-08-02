@@ -2,6 +2,10 @@
 
 namespace Assembly.scripts.SceneObjects;
 
+/// <summary>
+/// Components that has a owner.
+/// Implement OnOwnerLeave to destroy entity when the player leaves.
+/// </summary>
 public abstract class OwnedObjectComponent : Component
 {
     [Serialized] protected FightPlayer Owner;

@@ -14,6 +14,8 @@ public class BaseProjectile : OwnedObjectComponent
     public float LifeTime;
     protected float TimeElapsed;
 
+    protected ulong SoundId = default;
+
     public override void OnOwnerLeave(FightPlayer player)
     {
         //LocalEnabled = false;
@@ -39,6 +41,11 @@ public class BaseProjectile : OwnedObjectComponent
     public override void OnDestroy()
     {
         EngineProjectile.OnHit -= OnHit;
+        if (SoundId != default)
+        {
+            Log.Warn($"Sound Stop ID = {SoundId}");
+            SFX.FadeOutAndStop(SoundId, 0.3f);
+        }
     }
 
     public override void Update()

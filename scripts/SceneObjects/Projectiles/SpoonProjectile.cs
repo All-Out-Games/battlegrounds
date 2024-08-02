@@ -16,6 +16,7 @@ public class SpoonProjectile : BaseProjectile
             instance.SetSkin("spoon");
             instance.EnableSkin("spoon");
             instance.SetAnimation("fly_straight", true);
+            SoundId = SFX.Play(SFXKeys.ProjectileLoopAudio, new SFX.PlaySoundDesc() {EntityToFollow = Entity, Loop = true});
         }
         else
         {

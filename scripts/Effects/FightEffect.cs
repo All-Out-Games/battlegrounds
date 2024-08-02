@@ -12,6 +12,8 @@ public abstract class FightEffect : AEffect
     protected StateMachineLayer FightLayer;
     protected StateMachineLayer MainLayer;
     protected StateMachine FightStateMachine;
+    
+    protected ulong SoundId;
 
     protected virtual int InterruptLevel => 0;
     

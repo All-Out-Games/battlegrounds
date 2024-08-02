@@ -19,6 +19,8 @@ public class PsyBoltProjectile : BaseProjectile
             instance.SetSkin("psybolt");
             instance.EnableSkin("psybolt");
             instance.SetAnimation("fly_straight", true);
+            SoundId = SFX.Play(SFXKeys.PsyboltLoopAudio, new SFX.PlaySoundDesc() {EntityToFollow = Entity, Loop = true});
+            
         }
         else
         {
@@ -41,13 +43,16 @@ public class PsyBoltProjectile : BaseProjectile
             {
                 Entity.Destroy();
             }
+            
             FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.HitVfxPath, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
                 entity =>
                 {
                     SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
                     vfx.StartVFX("hit_psybolt", false);
+                    SFX.Play(SFXKeys.PsyboltHitAudio, new SFX.PlaySoundDesc() { Position  = Entity.Position});
                 }
             );
         }
     }
+    
 }

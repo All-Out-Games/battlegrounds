@@ -16,6 +16,7 @@ public partial class BackstabKunaiProjectile : BaseProjectile
             instance.SetSkin("kunai");
             instance.EnableSkin("kunai");
             instance.SetAnimation("fly_straight", true);
+            SoundId = SFX.Play(SFXKeys.ShurikenLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity, Loop = true });
         }
         else
         {

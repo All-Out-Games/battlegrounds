@@ -1,4 +1,5 @@
 using AO;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 using StreamReader = AO.StreamReader;
 
@@ -34,12 +35,14 @@ public class EffectRegeneration : FightEffect
         PerSecondHeal = EffectConfig.RegenerateConfig.PerSecondHeal;
         DurationRemaining = EffectConfig.RegenerateConfig.HealTime;
         AddAura();
+        SoundId = SFX.Play(SFXKeys.HealingLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = FightPlayer.Entity, RangeMultiplier = 0.5f});
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
         _aura.SetAnimTrigger("disappear");
+        SFX.Stop(SoundId);
     }
 
     public override void OnEffectUpdate()

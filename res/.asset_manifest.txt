@@ -233,6 +233,7 @@ SFX/Effects/kunai_shuriken_projectile_loop.wav - .ao - 66ad2e59cf7a5e4159a6c406 
 SFX/Effects/pisonic_beam_loop.wav - .ao - 66ad2e59cf7a5e4159a6c407 - 16150917166322171328
 SFX/Effects/psybolt_hit.wav - .ao - 66ad2e59cf7a5e4159a6c408 - 17454458408791310961
 SFX/Effects/psybolt_projectile_loop.wav - .ao - 66ad2e5acf7a5e4159a6c40a - 4288331285899697900
+SFX/Effects/sound_wave_projectile_loop.wav - .ao - 66ad3a26cf7a5e4159a6c416 - 11178710722811247311
 SFX/Objects/bear_trap-appear_set_up.wav - .ao - 66ad2601cf7a5e4159a6c402 - 15602225193008380346
 SFX/Objects/bear_trap-snap_closed.wav - .ao - 66ad2601cf7a5e4159a6c403 - 5698733051945858040
 SFX/UI/ui_button.wav - .ao - 66ad110fcf7a5e4159a6c3ea - 6331010140746818706

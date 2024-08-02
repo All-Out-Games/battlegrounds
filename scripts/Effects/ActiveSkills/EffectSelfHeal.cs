@@ -1,4 +1,5 @@
 using AO;
+using Assembly.scripts.SceneObjects;
 using StreamReader = AO.StreamReader;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -31,6 +32,8 @@ public class EffectSelfHeal : FightEffect
         DurationRemaining = EffectConfig.SelfHealConfig.ChannelTime;
         FightPlayer.UnsetAnimTrigger("selfheal_end");
         FightPlayer.SetAnimTrigger("selfheal");
+
+        SoundId = SFX.Play(SFXKeys.HealingLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = FightPlayer.Entity, RangeMultiplier = 0.5f});
     }
     
 
@@ -45,5 +48,7 @@ public class EffectSelfHeal : FightEffect
             FightPlayer.SetAnimTrigger("selfheal_end");
             FightPlayer.AddEffect<EffectGenericPostActionDelay>();
         }
+
+        SFX.Stop(SoundId);
     }
 }

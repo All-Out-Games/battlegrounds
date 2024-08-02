@@ -19,6 +19,7 @@ public class BefuddleProjectile : BaseProjectile
         {
             var instance = _animator.SpineInstance;
             instance.SetAnimation("flying_loop", true);
+            SoundId = SFX.Play(SFXKeys.ProjectileLoopAudio, new SFX.PlaySoundDesc() {EntityToFollow = Entity, Loop = true});
         }
         else
         {
