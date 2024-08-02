@@ -79,6 +79,7 @@ public class EffectProjectileThrow : FightEffect
         projComp.Speed = Config.Speed;
         projComp.Lifetime = Config.ProjectileLifetime;
         BaseProjectile supplementProjectileComp = proj.GetComponent<BaseProjectile>();
+        supplementProjectileComp.LifeTime = Config.ProjectileLifetime;
         supplementProjectileComp.InitializeProjectile(FightPlayer, Config.Damage, false);
     }
 

@@ -30,6 +30,7 @@ public class EffectBefuddle : EffectProjectileThrow
         projComp.Lifetime = Config.ProjectileLifetime;
         
         BefuddleProjectile supplementProjectileComp = proj.GetComponent<BefuddleProjectile>();
+        supplementProjectileComp.LifeTime = Config.ProjectileLifetime;
         supplementProjectileComp.InitializeProjectile(FightPlayer, Config.Damage, false);
         supplementProjectileComp.ConfusionTime = EffectConfig.ProjectileConfig.BefuddleConfusionTime;
         supplementProjectileComp.ConfusionIntensity = EffectConfig.ProjectileConfig.BefuddleConfusionIntensity;

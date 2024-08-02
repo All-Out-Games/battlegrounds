@@ -11,6 +11,9 @@ public class BaseProjectile : OwnedObjectComponent
     [Serialized] protected int Damage = 0;
     [Serialized] protected bool Pierce = false;
 
+    public float LifeTime;
+    protected float TimeElapsed;
+
     public override void OnOwnerLeave(FightPlayer player)
     {
         //LocalEnabled = false;
@@ -29,11 +32,23 @@ public class BaseProjectile : OwnedObjectComponent
         WhiteList.Add(Owner.Entity);
         WhiteList.Add(Owner.CollisionEntity);
         EngineProjectile.OnHit += OnHit;
+
+        TimeElapsed = 0;
     }
 
     public override void OnDestroy()
     {
         EngineProjectile.OnHit -= OnHit;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        TimeElapsed += Time.DeltaTime;
+        if (TimeElapsed > LifeTime)
+        {
+            Entity.Destroy();
+        }
     }
 
     protected virtual void OnHit(Entity other, bool predicted)

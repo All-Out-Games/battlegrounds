@@ -32,6 +32,7 @@ public class EffectPsybolt : EffectProjectileThrow
         projComp.Lifetime = Config.ProjectileLifetime;
         
         PsyBoltProjectile supplementProjectileComp = proj.GetComponent<PsyBoltProjectile>();
+        supplementProjectileComp.LifeTime = Config.ProjectileLifetime;
         supplementProjectileComp.InitializeProjectile(FightPlayer, Config.Damage, false);
         supplementProjectileComp.KnockBackStrength = EffectConfig.ProjectileConfig.PsyboltKnockbackStrength;
     }

@@ -31,6 +31,7 @@ public class EffectShuriken : EffectProjectileThrow
         projComp.Lifetime = Config.ProjectileLifetime;
             
         ShurikenProjectile supplementProjectileComp = proj.GetComponent<ShurikenProjectile>();
+        supplementProjectileComp.LifeTime = Config.ProjectileLifetime;
         supplementProjectileComp.InitializeProjectile(FightPlayer, Config.Damage, false);
         supplementProjectileComp.BackDamageMultiplier = EffectConfig.ProjectileConfig.ShurikenBackDamageModifier;
     }

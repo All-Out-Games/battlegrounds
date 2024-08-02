@@ -22,7 +22,7 @@ public class BearTrap : OwnedTrigger
             Animator.SpineInstance.ColorMultiplier = new Vector4(1,1,1, 1);
             Animator.SpineInstance.StateMachine.SetTrigger("snap");
             Snapped = true;
-            SFX.Play(SFXKeys.BearTrapSnapAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
+            SFX.Play(SFXKeys.BearTrapSnapAudio, new SFX.PlaySoundDesc() { Position = Entity.Position});
         }
         
         
@@ -76,7 +76,7 @@ public class BearTrap : OwnedTrigger
             Animator.SpineInstance.ColorMultiplier = curColor;
         }
         
-        SFX.Play(SFXKeys.BearTrapSetAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
+        SFX.Play(SFXKeys.BearTrapSetAudio, new SFX.PlaySoundDesc() { Position = Entity.Position});
     }
 
     public override void OnDestroy()

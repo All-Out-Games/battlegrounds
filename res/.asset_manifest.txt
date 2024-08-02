@@ -226,6 +226,13 @@ PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
 Rage_Aura.prefab - .ao - 66a1a7616732dee0bb811d54 - 14197455482549921607
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
 ResourcesOverlayWindow.prefab - .ao - 66aad92acf7a5e4159a6b770 - 11976965795483684769
+SFX/Effects/healing_loop.wav - .ao - 66ad2e5ccf7a5e4159a6c411 - 746910204286397867
+SFX/Effects/ice_projectile_hit.wav - .ao - 66ad2e5bcf7a5e4159a6c40e - 432557898931429637
+SFX/Effects/invisibility_activate.wav - .ao - 66ad2e5bcf7a5e4159a6c40d - 2545487771450550111
+SFX/Effects/kunai_shuriken_projectile_loop.wav - .ao - 66ad2e59cf7a5e4159a6c406 - 5055125734165588881
+SFX/Effects/pisonic_beam_loop.wav - .ao - 66ad2e59cf7a5e4159a6c407 - 16150917166322171328
+SFX/Effects/psybolt_hit.wav - .ao - 66ad2e59cf7a5e4159a6c408 - 17454458408791310961
+SFX/Effects/psybolt_projectile_loop.wav - .ao - 66ad2e5acf7a5e4159a6c40a - 4288331285899697900
 SFX/Objects/bear_trap-appear_set_up.wav - .ao - 66ad2601cf7a5e4159a6c402 - 15602225193008380346
 SFX/Objects/bear_trap-snap_closed.wav - .ao - 66ad2601cf7a5e4159a6c403 - 5698733051945858040
 SFX/UI/ui_button.wav - .ao - 66ad110fcf7a5e4159a6c3ea - 6331010140746818706
