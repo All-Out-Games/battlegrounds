@@ -84,6 +84,7 @@ public class EffectLeapSlam : FightEffectWithImmunity
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlamDamage, DamageType.AOE, FightPlayer.DamageInfo.KnockBackInterruptLevel);
         
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, _config.SlamRadius);
+        bool hit = false;
         foreach (var other in cbPlayers)
         {
             if(other == FightPlayer || !other.Damageable()) continue;
@@ -98,9 +99,10 @@ public class EffectLeapSlam : FightEffectWithImmunity
 
             //other.AddEffect<EffectKnockDown>(FightPlayer, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
             other.GetEffectMgr().AddLeapSlamKnockdown(FightPlayer.Entity, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
+            hit = true;
         }
 
-        if (cbPlayers.Count != 0)
+        if (hit)
         {
             SFX.Play(SFXKeys.LeapSlamKnockAudio, DefaultSoundDesc);
         }
