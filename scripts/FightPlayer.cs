@@ -629,15 +629,23 @@ public partial class FightPlayer : Player
     public void OnTeleportToCombatZone()
     {
         SkillSlotsManager.SkillSlotsPanelEnable(true);
-        UIManager.Instance.CloseAllUniqueWindow();
         PlayerSwitchZoneEvent?.Invoke((int)PlayerStatus.Combat);
+
+        if (IsLocal)
+        {
+            UIManager.Instance.CloseAllUniqueWindow();
+        }
     }
 
     public void OnTeleportToSafeZone()
     {
         SkillSlotsManager.SkillSlotsPanelEnable(false);
-        UIManager.Instance.CloseAllUniqueWindow();
         PlayerSwitchZoneEvent?.Invoke((int)PlayerStatus.Safe);
+
+        if (IsLocal)
+        {
+            UIManager.Instance.CloseAllUniqueWindow();
+        }
     }
 
     #endregion
