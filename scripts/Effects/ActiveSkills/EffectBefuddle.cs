@@ -1,4 +1,5 @@
 using AO;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.SceneObjects.Projectiles;
 namespace Assembly.scripts.Effects.ActiveSkills;
 
@@ -17,6 +18,11 @@ public class AbilityBefuddle : FightAbility
 
 public class EffectBefuddle : EffectProjectileThrow
 {
+    public override void PlayThrowSound()
+    {
+        SFX.Play(SFXKeys.BefuddleThrowAudio, DefaultSoundDesc);
+    }
+
     public override void AssignConfig()
     {
         Config = EffectConfig.ProjectileConfig.GetPlayerBefuddleConfig(FightPlayer.CurrentAttack);

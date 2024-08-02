@@ -33,6 +33,7 @@ public class EffectSelfHeal : FightEffect
         FightPlayer.UnsetAnimTrigger("selfheal_end");
         FightPlayer.SetAnimTrigger("selfheal");
 
+        SFX.Play(SFXKeys.HealingStartAudio, DefaultSoundDesc);
         SoundId = SFX.Play(SFXKeys.HealingLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = FightPlayer.Entity, RangeMultiplier = 0.5f});
     }
     
@@ -49,6 +50,7 @@ public class EffectSelfHeal : FightEffect
             FightPlayer.AddEffect<EffectGenericPostActionDelay>();
         }
 
+        SFX.Play(SFXKeys.HealingEndAudio, DefaultSoundDesc);
         SFX.Stop(SoundId);
     }
 }

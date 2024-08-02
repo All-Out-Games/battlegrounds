@@ -226,6 +226,9 @@ PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
 Rage_Aura.prefab - .ao - 66a1a7616732dee0bb811d54 - 14197455482549921607
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
 ResourcesOverlayWindow.prefab - .ao - 66aad92acf7a5e4159a6b770 - 11976965795483684769
+SFX/Effects/confusion_ball.wav - .ao - 66ad4e9fcf7a5e4159a6c428 - 13980309189215291514
+SFX/Effects/heal_end.wav - .ao - 66ad4acacf7a5e4159a6c421 - 9391023529971212979
+SFX/Effects/heal_start.wav - .ao - 66ad4acacf7a5e4159a6c422 - 16830675159314326405
 SFX/Effects/healing_loop.wav - .ao - 66ad2e5ccf7a5e4159a6c411 - 746910204286397867
 SFX/Effects/ice_projectile_hit.wav - .ao - 66ad2e5bcf7a5e4159a6c40e - 432557898931429637
 SFX/Effects/invisibility_activate.wav - .ao - 66ad2e5bcf7a5e4159a6c40d - 2545487771450550111
@@ -233,7 +236,14 @@ SFX/Effects/kunai_shuriken_projectile_loop.wav - .ao - 66ad2e59cf7a5e4159a6c406 
 SFX/Effects/pisonic_beam_loop.wav - .ao - 66ad2e59cf7a5e4159a6c407 - 16150917166322171328
 SFX/Effects/psybolt_hit.wav - .ao - 66ad2e59cf7a5e4159a6c408 - 17454458408791310961
 SFX/Effects/psybolt_projectile_loop.wav - .ao - 66ad2e5acf7a5e4159a6c40a - 4288331285899697900
+SFX/Effects/psybolt_shoot.wav - .ao - 66ad4e9fcf7a5e4159a6c429 - 10986446254928044649
+SFX/Effects/punch_double.wav - .ao - 66ad4acacf7a5e4159a6c424 - 10969090771175518678
+SFX/Effects/punch_ice.wav - .ao - 66ad4ac9cf7a5e4159a6c41a - 16325186727549685039
+SFX/Effects/punch_small.wav - .ao - 66ad4ac9cf7a5e4159a6c41b - 894227513470079067
+SFX/Effects/punch_strong.wav - .ao - 66ad4ac9cf7a5e4159a6c41c - 7423844962650925155
+SFX/Effects/punch_strongest.wav - .ao - 66ad4acacf7a5e4159a6c420 - 10583603662442360391
 SFX/Effects/sound_wave_projectile_loop.wav - .ao - 66ad3a26cf7a5e4159a6c416 - 11178710722811247311
+SFX/Effects/throw_weapon.wav - .ao - 66ad4e9fcf7a5e4159a6c42a - 10244965043607779417
 SFX/Objects/bear_trap-appear_set_up.wav - .ao - 66ad2601cf7a5e4159a6c402 - 15602225193008380346
 SFX/Objects/bear_trap-snap_closed.wav - .ao - 66ad2601cf7a5e4159a6c403 - 5698733051945858040
 SFX/UI/ui_button.wav - .ao - 66ad110fcf7a5e4159a6c3ea - 6331010140746818706

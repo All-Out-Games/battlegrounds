@@ -14,6 +14,7 @@ public abstract class FightEffect : AEffect
     protected StateMachine FightStateMachine;
     
     protected ulong SoundId;
+    protected SFX.PlaySoundDesc DefaultSoundDesc;
 
     protected virtual int InterruptLevel => 0;
     
@@ -33,6 +34,7 @@ public abstract class FightEffect : AEffect
         FightStateMachine = Player.SpineAnimator.SpineInstance.StateMachine;
         MainLayer = FightStateMachine.TryGetLayerByName("main");
         FightLayer = FightStateMachine.TryGetLayerByName("fight_layer");
+        DefaultSoundDesc = new SFX.PlaySoundDesc() { EntityToFollow = FightPlayer.Entity};
 
         if (PreventMovement)
         {

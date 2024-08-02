@@ -58,6 +58,12 @@ public class EffectProjectileThrow : FightEffect
     {
         Config = EffectConfig.ProjectileConfig.GetPlayerSpoonThrowConfig(FightPlayer.CurrentAttack);
     }
+
+    public virtual void PlayThrowSound()
+    {
+        // Override to play other throw sound
+        SFX.Play(SFXKeys.ProjectileLThrowAudio, new SFX.PlaySoundDesc() {Position = Entity.Position});
+    }
     
     public virtual void ProjectileThrow()
     {
@@ -70,6 +76,8 @@ public class EffectProjectileThrow : FightEffect
             FightPlayer.Entity.Position, AbilityPositionOrDirection);
         //proj.Position = Entity.Position;
         InitializeProjectile(proj);
+        
+        PlayThrowSound();
     }
 
     protected virtual void InitializeProjectile(Entity proj)
