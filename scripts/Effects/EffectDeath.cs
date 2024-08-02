@@ -9,12 +9,23 @@ public class EffectDeath : FightEffectWithImmunity
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        // Reset AL if an AL animation is playing
         FightPlayer.SetAnimTrigger("death");
         FightPlayer.AddDash(Vector2.Zero, 0);
         FightPlayer.AddBump(Vector2.Zero, true);
     }
-    
+
+    public override void OnEffectUpdate()
+    {
+        base.OnEffectUpdate();
+        if (MainLayer.CurrentState.Name == "Idle")
+        {
+            FightPlayer.SetAnimTrigger("death");
+        }
+        else
+        {
+            FightPlayer.UnsetAnimTrigger("death");
+        }
+    }
 
     public override void OnEffectEnd(bool interrupt)
     {
