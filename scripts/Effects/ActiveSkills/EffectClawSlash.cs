@@ -71,7 +71,7 @@ public class EffectClawSlash : FightEffect
         foreach (var other in cbPlayers)
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlashDamage);
-            if(other.Entity.NetworkId == FightPlayer.Entity.NetworkId) continue;
+            if(other == FightPlayer || !other.Damageable()) continue;
                 
             other.TakeDamage(FightPlayer, info);
             other.GetEffectMgr().AddBleed(FightPlayer.Entity, _config.BleedTime, _config.BleedDmg);

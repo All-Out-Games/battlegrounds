@@ -162,7 +162,7 @@ public class EffectRollOut : FightEffect
 
     protected void RolloutDamage(FightPlayer otherPlayer)
     {
-        if(otherPlayer == FightPlayer || otherPlayer.HasEffect<EffectNoMovement>())
+        if(otherPlayer == FightPlayer || !otherPlayer.Damageable())
         {
             return;
         }

@@ -60,7 +60,7 @@ public class EffectBattleCry : FightEffectWithNoFlinch
             
         foreach (var fp in cbPlayers)
         {
-            if (fp.Entity.NetworkId == FightPlayer.Entity.NetworkId)
+            if (fp == FightPlayer || !fp.Damageable())
             {
                 continue;
             }

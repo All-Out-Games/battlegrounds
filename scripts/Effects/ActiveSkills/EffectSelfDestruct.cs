@@ -52,7 +52,7 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
             
         foreach (var fp in cbPlayers)
         {
-            if (fp.Entity.NetworkId == FightPlayer.Entity.NetworkId)
+            if (fp == FightPlayer)
             {
                 // Self damage
                 FightPlayer.DamageInfo selfDmgInfo = FightPlayer.DamageInfo.CreateSelfDamageInfo(Config.SelfDamage);
@@ -60,11 +60,14 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
             }
             else
             {
-                FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.BlastDamage, DamageType.AOE);
-                fp.TakeDamage(FightPlayer, info);
+                if (fp.Damageable())
+                {
+                    FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.BlastDamage, DamageType.AOE);
+                    fp.TakeDamage(FightPlayer, info);
                         
-                Vector2 bumpDir = fp.Entity.Position - selfPos;
-                fp.AddBumpFrom(FightPlayer, bumpDir.Normalized * EffectConfig.SelfDestructConfig.BumpStrength, false);
+                    Vector2 bumpDir = fp.Entity.Position - selfPos;
+                    fp.AddBumpFrom(FightPlayer, bumpDir.Normalized * EffectConfig.SelfDestructConfig.BumpStrength, false);
+                }
             }
         }
     }

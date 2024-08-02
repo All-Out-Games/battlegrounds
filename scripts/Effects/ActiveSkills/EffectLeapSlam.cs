@@ -84,7 +84,7 @@ public class EffectLeapSlam : FightEffectWithImmunity
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, _config.SlamRadius);
         foreach (var other in cbPlayers)
         {
-            if(other == FightPlayer) continue;
+            if(other == FightPlayer || !other.Damageable()) continue;
             
             other.TakeDamage(FightPlayer, info);
             Vector2 dir = other.Entity.Position - selfPos;

@@ -233,7 +233,7 @@ ShadowStepVFX.prefab - .ao - 66859955b45eb9e8339c0ffd - 11550510081096301958
 Shield_FX.prefab - .ao - 66a7fb546732dee0bb811e8e - 10171497738848877739
 ShurikenProjectile.prefab - .ao - 66a91b0496cebaeb1f32988f - 1922884962774569859
 SkillTreeItem.prefab - .ao - 66abd6c5cf7a5e4159a6c396 - 13351799685211274261
-SkillTreePage.prefab - .ao - 66abdb6ccf7a5e4159a6c3a7 - 2770855112954600812
+SkillTreePage.prefab - .ao - 66ac3fffcf7a5e4159a6c3e1 - 10490825385865467520
 SpoonProjectile.prefab - .ao - 66a91b0496cebaeb1f329890 - 11818330664990311604
 TotalDarknessOverlay.prefab - .ao - 6685d28fb45eb9e8339c10be - 15557225266589634022
 UI/AbilityBook/AbilityInfo/buy_button/buy_button.png - .ao - 669816f4b45eb9e8339c1f5b - 7538570100970345996

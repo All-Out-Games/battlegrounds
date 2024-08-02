@@ -75,11 +75,15 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
 
     private void ShoulderCrashDamage(FightPlayer otherPlayer)
     {
-        Vector2 bumpDir = otherPlayer.Entity.Position - Entity.Position;
-        var add = bumpDir.Normalized * _config.BumpStrength;
-        otherPlayer.AddBumpFrom(FightPlayer, add, false);
-        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage) with{ InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel};
-        otherPlayer.TakeDamage(FightPlayer, info);
+        if (otherPlayer.Damageable())
+        {
+            Vector2 bumpDir = otherPlayer.Entity.Position - Entity.Position;
+            var add = bumpDir.Normalized * _config.BumpStrength;
+            otherPlayer.AddBumpFrom(FightPlayer, add, false);
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage) with{ InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel};
+            otherPlayer.TakeDamage(FightPlayer, info);
+        }
+        
     }
 
     public override void OnEffectUpdate()

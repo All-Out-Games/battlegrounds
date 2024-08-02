@@ -29,7 +29,7 @@
     },
     "max": {
       "X": 0.8999999761581421,
-      "Y": 0.6000000238418579
+      "Y": 0.6499999761581421
     },
     "insets": {
       "X": 0,
@@ -49,7 +49,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "Channel and release a big blast at the cost of dealing {EffectConfig.SelfDestructConfig.BaseSelfDmg} to yourself",
+    "text": "Channel and release a big blast at the cost of dealing {EffectConfig. SelfDestructConfig.BaseSelfDmg} to yourself",
     "settings": {
       "font_id": "",
       "size": 32,
