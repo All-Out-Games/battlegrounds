@@ -1,5 +1,6 @@
 using System.Collections;
 using AO;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -89,7 +90,9 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
         
         // First carve starts here, others are in OnEffectUpdate
         _currentAngle = _angleLow;
-        CarveGround(); 
+        CarveGround();
+
+        SoundId = SFX.Play(SFXKeys.PsiRayAudio, new SFX.PlaySoundDesc() {Volume = 0.6f});
     }
 
     public override void OnEffectUpdate()
@@ -123,6 +126,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
         }
         FightPlayer.SetAnimTrigger("psibeam_end");
         FightPlayer.AddEffect<EffectGenericPostActionDelay>();
+        SFX.FadeOutAndStop(SoundId, 0.5f);
     }
 
 

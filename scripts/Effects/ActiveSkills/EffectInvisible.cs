@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 using StreamReader = AO.StreamReader;
 
@@ -32,6 +33,7 @@ public class EffectInvisible : FightEffect
             DurationRemaining = EffectConfig.InvisibilityConfig.InvisTime;
         }
         AddInvis(FightPlayer.IsLocal);
+        SoundId = SFX.Play(SFXKeys.InvisAudio, new SFX.PlaySoundDesc());
         
         FightPlayer.OnSkillActivate += OnSkillActivationEvent;
         FightPlayer.OnReceiveDamage += OnDamageEvent;
