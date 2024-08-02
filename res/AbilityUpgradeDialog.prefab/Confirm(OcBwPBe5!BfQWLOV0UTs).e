@@ -1,4 +1,4 @@
-11
+13
 214748364801
 63498679490489 1715968986364069100
 {
@@ -90,7 +90,7 @@
         "X": 0,
         "Y": 0
       },
-      "click_sound": "",
+      "click_sound": "SFX/UI/ui_buy.wav",
       "click_sound_speed": 1,
       "stay_hot_while_active": false,
       "return_to_center_to_cancel": false,

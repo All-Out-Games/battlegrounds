@@ -185,7 +185,7 @@ AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao.ios - 66a9c97596cebae
 AbilityIcon_Separate/x_icon_ability.png - .ao - 66a9cdbb96cebaeb1f3299ae - 2967783583052140701
 AbilityIcon_Separate/x_icon_ability.png - .ao.ios - 66a9cdbb96cebaeb1f3299af - 13164514700408627865
 AbilityLoadoutPage.prefab - .ao - 66ad1690cf7a5e4159a6c3f8 - 6695903201905657533
-AbilityUpgradeDialog.prefab - .ao - 66a2db5e6732dee0bb811dd1 - 14863107215199290447
+AbilityUpgradeDialog.prefab - .ao - 66ad1a0dcf7a5e4159a6c400 - 6044796207641115842
 AbilityVendorMenuWindow.prefab - .ao - 66aaa88acf7a5e4159a6b685 - 11386754058337502644
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
 BearTrap.prefab - .ao - 66a91b0496cebaeb1f329889 - 7049423839909874616
@@ -226,6 +226,8 @@ PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
 Rage_Aura.prefab - .ao - 66a1a7616732dee0bb811d54 - 14197455482549921607
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
 ResourcesOverlayWindow.prefab - .ao - 66aad92acf7a5e4159a6b770 - 11976965795483684769
+SFX/Objects/bear_trap-appear_set_up.wav - .ao - 66ad2601cf7a5e4159a6c402 - 15602225193008380346
+SFX/Objects/bear_trap-snap_closed.wav - .ao - 66ad2601cf7a5e4159a6c403 - 5698733051945858040
 SFX/UI/ui_button.wav - .ao - 66ad110fcf7a5e4159a6c3ea - 6331010140746818706
 SFX/UI/ui_buy.wav - .ao - 66ad110fcf7a5e4159a6c3ec - 8714927041337839869
 SFX/UI/ui_insufficient_funds.wav - .ao - 66ad110fcf7a5e4159a6c3e8 - 2742532382418302858
