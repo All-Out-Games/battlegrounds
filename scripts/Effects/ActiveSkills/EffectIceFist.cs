@@ -1,4 +1,6 @@
 ﻿using AO;
+using Assembly.scripts.SceneObjects;
+
 namespace Assembly.scripts.Effects.ActiveSkills;
 
 public class AbilityIceFist : FightAbility
@@ -27,6 +29,8 @@ public class EffectIceFist : FightEffect
 
         AssignConfig(EffectConfig.GetIcePunchConfig(FightPlayer.CurrentAttack));
         FightPlayer.SetAnimTrigger(Config.AnimationTrigger); ;
+
+        SoundId = SFX.Play(SFXKeys.IcePunchAudio, DefaultSoundDesc);
     }
     
 

@@ -232,7 +232,9 @@ SFX/Effects/heal_start.wav - .ao - 66ad4acacf7a5e4159a6c422 - 168306751593143264
 SFX/Effects/healing_loop.wav - .ao - 66ad2e5ccf7a5e4159a6c411 - 746910204286397867
 SFX/Effects/ice_projectile_hit.wav - .ao - 66ad2e5bcf7a5e4159a6c40e - 432557898931429637
 SFX/Effects/invisibility_activate.wav - .ao - 66ad2e5bcf7a5e4159a6c40d - 2545487771450550111
+SFX/Effects/knocked_down2.wav - .ao - 66ad594acf7a5e4159a6c42f - 2523582524280754453
 SFX/Effects/kunai_shuriken_projectile_loop.wav - .ao - 66ad2e59cf7a5e4159a6c406 - 5055125734165588881
+SFX/Effects/leaping_slam.wav - .ao - 66ad594acf7a5e4159a6c42e - 3293684565893333631
 SFX/Effects/pisonic_beam_loop.wav - .ao - 66ad2e59cf7a5e4159a6c407 - 16150917166322171328
 SFX/Effects/psybolt_hit.wav - .ao - 66ad2e59cf7a5e4159a6c408 - 17454458408791310961
 SFX/Effects/psybolt_projectile_loop.wav - .ao - 66ad2e5acf7a5e4159a6c40a - 4288331285899697900

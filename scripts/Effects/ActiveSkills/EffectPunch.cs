@@ -1,6 +1,7 @@
 using System.Collections;
 using AO;
 using Assembly.scripts;
+using Assembly.scripts.SceneObjects;
 
 public class AbilityPunch : FightAbility
 {
@@ -61,7 +62,9 @@ public class EffectPunch : FightEffect
         // Re-adjust aiming
         punchDir = FightPlayer.GetPunchDirection();
         FightPlayer.SetAimTarget(Entity.Position + punchDir);
-
+        
+        // SFX based on punch lvl
+        SFX.Play(SFXKeys.GetPunchSFXByLevel(FightPlayer.PunchLevel), DefaultSoundDesc);
         
         var hit = Physics.RaycastWithWhitelist(Entity.Position, punchDir.Normalized,
             EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(), new Entity[]{ },out rc);

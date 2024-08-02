@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -45,6 +46,7 @@ public class EffectLeapSlam : FightEffectWithImmunity
         
         DurationRemaining = MainLayer.GetCurrentStateLength();
         FightPlayer.AddDash(_dirPosition * EffectConfig.LeapSlamConfig.LeapMomentum, DurationRemaining);
+        SoundId = SFX.Play(SFXKeys.LeapSlamAudio, DefaultSoundDesc);
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -96,6 +98,11 @@ public class EffectLeapSlam : FightEffectWithImmunity
 
             //other.AddEffect<EffectKnockDown>(FightPlayer, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
             other.GetEffectMgr().AddLeapSlamKnockdown(FightPlayer.Entity, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
+        }
+
+        if (cbPlayers.Count != 0)
+        {
+            SFX.Play(SFXKeys.LeapSlamKnockAudio, DefaultSoundDesc);
         }
     }
 }

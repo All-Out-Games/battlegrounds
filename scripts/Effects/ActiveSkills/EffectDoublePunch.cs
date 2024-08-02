@@ -1,4 +1,6 @@
-﻿namespace Assembly.scripts.Effects.ActiveSkills;
+﻿using Assembly.scripts.SceneObjects;
+
+namespace Assembly.scripts.Effects.ActiveSkills;
 using System.Collections;
 using AO;
 
@@ -29,6 +31,8 @@ public class EffectDoublePunch : FightEffect
         
         FightPlayer.SetAnimTrigger("doublepunch");
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
+        
+        SoundId = SFX.Play(SFXKeys.DoublePunchAudio, DefaultSoundDesc);
     }
 
     public override void OnEffectEnd(bool interrupt)
