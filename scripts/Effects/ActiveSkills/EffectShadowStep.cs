@@ -40,10 +40,10 @@ public class EffectShadowStep : FightEffect
             
             /*var hit = Physics.Raycast(FightPlayer.Entity.Position, dir,
                 EffectConfig.ShadowStepConfig.MovementDistance, out rc);*/
-            Log.Warn($"Hit = {hit}, Entity = {rc.Entity?.Name}");
+            //Log.Warn($"Hit = {hit}, Entity = {rc.Entity?.Name}");
             if (hit)
             {
-                Edge_Collider eg = rc.Entity.GetComponent<Edge_Collider>();
+                Polygon_Collider eg = rc.Entity.GetComponent<Polygon_Collider>();
                 if (eg != null)
                 {
                     dir *= 0.1f;
