@@ -1,3 +1,4 @@
+using AO;
 #region Gameplay Enums
 
 public enum PlayerStatus
@@ -35,4 +36,10 @@ public static class GlobalData
     public static int CoinForDeath = 15;
 
     #endregion
+    
+    public static Vector4 DamageNumberColor = Vector4.Red;
+    public static Vector4 HealNumberColor = Vector4.Green;
+    public static Vector4 CritNumberColor = new Vector4(1, 0.68f, 0, 1);
+    public static Vector4 ShieldNumberColor = Vector4.LightBlue;
+    public static Vector4 OutputDamageNumberColor = Vector4.White;
 }

@@ -361,6 +361,7 @@ public partial class FightPlayer : Player
             // Actual damage stuff
             if (isDamage)
             {
+                // Shielded damage
                 if (CurrentShield > 0)
                 {
                     CurrentShield -= damage;
@@ -371,7 +372,7 @@ public partial class FightPlayer : Player
                         CurrentShield = 0;
                         info.ReactionInfo.ShieldBroken = true;
                     }
-                    info.DamageNumberColor = Vector4.LightBlue;
+                    info.DamageNumberColor = GlobalData.ShieldNumberColor;
                 }
                 else
                 {
@@ -683,7 +684,7 @@ public partial class FightPlayer : Player
         _healTimer += deltaTime;
         if (_healTimer > 1)
         {
-            TakeDamage(this, DamageInfo.CreateHealInfo(10));
+            TakeDamage(this, DamageInfo.CreateHealInfo(20));
             _healTimer = 0;
         }
     }

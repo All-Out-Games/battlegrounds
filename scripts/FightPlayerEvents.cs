@@ -27,7 +27,7 @@ public partial class FightPlayer
         public int InterruptLevel = 0;
         public ulong SourceNetworkId;
         public bool SpawnDamageNumber = true;
-        public Vector4 DamageNumberColor = Vector4.Red;
+        public Vector4 DamageNumberColor = GlobalData.DamageNumberColor;
         
         // Client & Server Data
         public DamageReactionInfo ReactionInfo = new DamageReactionInfo(); 
@@ -78,7 +78,7 @@ public partial class FightPlayer
 
             DamageInfo info = CreateDamageInfo(amount, DamageType.Heal, 0);
             info.AwardCoin = false;
-            info.DamageNumberColor = Vector4.Green;
+            info.DamageNumberColor = GlobalData.HealNumberColor;
             info.ReactionInfo.Flinch = false;
             return info;
         }
@@ -138,6 +138,10 @@ public partial class FightPlayer
             // Log.Warn($"{source == Entity}, {source.Name}, {Entity.Name}");
             if (IsLocal || source == Network.LocalPlayer.Entity) // Player takes the damage or deals damage
             {
+                if (source == Network.LocalPlayer.Entity && info.DamageNumberColor == GlobalData.DamageNumberColor)
+                {
+                    info.DamageNumberColor = GlobalData.OutputDamageNumberColor;
+                }
                 FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, info.DamageNumberColor, int.Abs(info.ReactionInfo.Amount).ToString());
             }
             
