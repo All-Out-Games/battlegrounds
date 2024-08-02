@@ -355,22 +355,32 @@ public partial class FightPlayer : Player
         
         int damage = info.ReactionInfo.Amount;
         
-        if (Network.IsServer) {
+        if (Network.IsServer)
+        {
+            bool isDamage = damage > 0;
             // Actual damage stuff
-            if (CurrentShield > 0)
+            if (isDamage)
             {
-                CurrentShield -= damage;
-                if (CurrentShield <= 0)
+                if (CurrentShield > 0)
                 {
-                    // Shield is not enough
-                    CurrentHealth += CurrentShield;
-                    CurrentShield = 0;
-                    info.ReactionInfo.ShieldBroken = true;
+                    CurrentShield -= damage;
+                    if (CurrentShield <= 0)
+                    {
+                        // Shield is not enough
+                        CurrentHealth += CurrentShield;
+                        CurrentShield = 0;
+                        info.ReactionInfo.ShieldBroken = true;
+                    }
+                    info.DamageNumberColor = Vector4.LightBlue;
                 }
-                info.DamageNumberColor = Vector4.LightBlue;
+                else
+                {
+                    CurrentHealth = CurrentHealth - damage > MaxHealth ? MaxHealth : CurrentHealth - damage;
+                }
             }
             else
             {
+                // isHeal
                 CurrentHealth = CurrentHealth - damage > MaxHealth ? MaxHealth : CurrentHealth - damage;
             }
 
