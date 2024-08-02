@@ -184,7 +184,7 @@ AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao - 66a9c97596cebaeb1f3
 AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao.ios - 66a9c97596cebaeb1f3299ab - 18224562795921330414
 AbilityIcon_Separate/x_icon_ability.png - .ao - 66a9cdbb96cebaeb1f3299ae - 2967783583052140701
 AbilityIcon_Separate/x_icon_ability.png - .ao.ios - 66a9cdbb96cebaeb1f3299af - 13164514700408627865
-AbilityLoadoutPage.prefab - .ao - 66abdbdbcf7a5e4159a6c3aa - 1203817212133456949
+AbilityLoadoutPage.prefab - .ao - 66ad1690cf7a5e4159a6c3f8 - 6695903201905657533
 AbilityUpgradeDialog.prefab - .ao - 66a2db5e6732dee0bb811dd1 - 14863107215199290447
 AbilityVendorMenuWindow.prefab - .ao - 66aaa88acf7a5e4159a6b685 - 11386754058337502644
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
@@ -213,7 +213,7 @@ LeaderBoard/RANK 4.png - .ao.ios - 66a942a496cebaeb1f3298d0 - 272960257198212684
 LeaderBoard/RANK ME.png - .ao - 66a942a496cebaeb1f3298d1 - 17644210464790413515
 LeaderBoard/RANK ME.png - .ao.ios - 66a942a596cebaeb1f3298d4 - 13815408745773853164
 LeapSlamCrater.prefab - .ao - 66a7fb536732dee0bb811e8d - 3837063221380588297
-LoadoutItemGroup.prefab - .ao - 66aab9c1cf7a5e4159a6b6a1 - 13103860311911950651
+LoadoutItemGroup.prefab - .ao - 66ad110fcf7a5e4159a6c3e9 - 14244214927106954058
 Props/BearTrap/BAT003_bear_trap.png - .ao - 66859951b45eb9e8339c0fde - 12680163519278585061
 Props/BearTrap/BAT003_bear_trap.png - .ao.ios - 66859951b45eb9e8339c0fe0 - 7406773091814632799
 Props/BearTrap/BAT003_bear_trap.spine - .ao - 66859952b45eb9e8339c0fe2 - 3855122050485720892
@@ -226,6 +226,9 @@ PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
 Rage_Aura.prefab - .ao - 66a1a7616732dee0bb811d54 - 14197455482549921607
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
 ResourcesOverlayWindow.prefab - .ao - 66aad92acf7a5e4159a6b770 - 11976965795483684769
+SFX/UI/ui_button.wav - .ao - 66ad110fcf7a5e4159a6c3ea - 6331010140746818706
+SFX/UI/ui_buy.wav - .ao - 66ad110fcf7a5e4159a6c3ec - 8714927041337839869
+SFX/UI/ui_insufficient_funds.wav - .ao - 66ad110fcf7a5e4159a6c3e8 - 2742532382418302858
 SceneProps_tmp/aura_circle.png - .ao - 66859954b45eb9e8339c0ff6 - 10293273442432679734
 SceneProps_tmp/aura_circle.png - .ao.ios - 66859955b45eb9e8339c0ff8 - 4712178218859138718
 SelfDestructExplosion.prefab - .ao - 66a1a7616732dee0bb811d5a - 5339910856129032631
