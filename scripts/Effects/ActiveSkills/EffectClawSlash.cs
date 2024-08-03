@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 using Assembly.scripts.Zones;
 
@@ -32,7 +33,8 @@ public class EffectClawSlash : FightEffect
         DurationRemaining = MainLayer.GetCurrentStateLength();
         Log.Debug($"Current Animation = {DurationRemaining}, Current State = {MainLayer.CurrentState.Name}");
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
-        
+
+        SoundId = SFX.Play(SFXKeys.ClawSlashAudio, DefaultSoundDesc);
     }
     
 

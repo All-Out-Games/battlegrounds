@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.SceneObjects.Projectiles;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -38,6 +39,7 @@ public class EffectBackstab : EffectNoMovement
         }
         FightPlayer.SetAnimTrigger("backstabbed");
         DurationRemaining = MainLayer.GetCurrentStateLength();
+        SoundId = SFX.Play(SFXKeys.BackStabVictimAudio, DefaultSoundDesc);
     }
     
 
@@ -72,11 +74,17 @@ public class EffectBackstabCaster : FightEffectWithImmunity
             FightPlayer.RemoveEffect<EffectBackstabCaster>(false);
             return;
         }
+        
+        FightPlayer.SetAnimTrigger("backstab");
+        
+        
         Vector2 casterPos = Caster.Entity.Position - victimFp.GetFacingDirectionAsVector();
         FightPlayer.Teleport(casterPos);
-        FightPlayer.SetAnimTrigger("backstab");
+        SFX.Play(SFXKeys.BackStabTeleportAudio, DefaultSoundDesc);
+        
         DurationRemaining = MainLayer.GetCurrentStateLength();
         FightPlayer.SetFacingDirection(victimFp.GetFacingDirection());
+        SoundId = SFX.Play(SFXKeys.BackStabCasterAudio, DefaultSoundDesc);
     }
     
     public override void OnEffectEnd(bool interrupt)

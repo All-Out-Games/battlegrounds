@@ -52,4 +52,8 @@ public static class SFXKeys
     public static AudioAsset LeapSlamAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/leaping_slam.wav");
     public static AudioAsset LeapSlamKnockAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/knocked_down2.wav");
     
+    public static AudioAsset ClawSlashAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/claw_swipe.wav");
+    public static AudioAsset BackStabTeleportAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/backstab_teleport.wav");
+    public static AudioAsset BackStabCasterAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/backstab_attack.wav");
+    public static AudioAsset BackStabVictimAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/backstab_victim.wav");
 }
