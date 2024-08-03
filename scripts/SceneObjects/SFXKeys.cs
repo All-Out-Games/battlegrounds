@@ -59,9 +59,20 @@ public static class SFXKeys
     public static AudioAsset BackStabVictimAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/backstab_victim.wav");
     
     public static AudioAsset GroundStompAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/ground_stomp.wav");
-    public static AudioAsset RageAudio =Assets.GetAsset<AudioAsset>("SFX/Effects/rage_stomp.wav");
+    public static AudioAsset RageAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/rage_stomp.wav");
     public static AudioAsset SelfDestructAudio =Assets.GetAsset<AudioAsset>("SFX/Effects/self_destruct.wav");
     
+    public static AudioAsset RolloutStartAudio =Assets.GetAsset<AudioAsset>("SFX/Effects/rollout_start.wav");
+    public static AudioAsset RolloutLoopAudio =Assets.GetAsset<AudioAsset>("SFX/Effects/rollout_loop.wav");
+    public static AudioAsset RolloutEndAudio =Assets.GetAsset<AudioAsset>("SFX/Effects/rollout_end.wav");
     
+    public static AudioAsset HypnotizeAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/hypnotize.wav");
+    public static AudioAsset HypnotizeGetupAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/knocked_down_getup.wav");
+    
+    
+    public static AudioAsset PsyThrowStart = Assets.GetAsset<AudioAsset>("SFX/Effects/psythrow_attack_start.wav");
+    public static AudioAsset PsyThrowLoop = Assets.GetAsset<AudioAsset>("SFX/Effects/psythrow_attack_loop.wav");
+    public static AudioAsset PsyThrowEnd = Assets.GetAsset<AudioAsset>("SFX/Effects/psythrow_attack_throw.wav");
+    public static AudioAsset PsyThrowVictim = Assets.GetAsset<AudioAsset>("SFX/Effects/psythrow_victim_start.wav");
     
 }

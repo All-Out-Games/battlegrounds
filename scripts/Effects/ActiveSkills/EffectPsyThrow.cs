@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.SceneObjects;
 using StreamReader = AO.StreamReader;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -63,6 +64,7 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
             _casterFp.AddEffect<EffectPsyThrowReady>(FightPlayer, DurationRemaining-0.2f); // Let this effect expire slightly earlier to trigger auto-throw
         }
         FightPlayer.SetAnimTrigger("psythrow_grabbed");
+        SoundId = SFX.Play(SFXKeys.PsyThrowVictim, DefaultSoundDesc);
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -72,6 +74,8 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
         {
             _casterFp.RemoveEffect<EffectPsyThrowReady>(false);
         }
+
+        SFX.FadeOutAndStop(SoundId, 0.3f);
     }
 }
 
@@ -102,6 +106,9 @@ public class EffectPsyThrowReady : FightEffectWithNoFlinch
         }
         FightPlayer.UnsetAnimTrigger("psythrow_attack_throw");
         FightPlayer.SetAnimTrigger("psythrow_attack");
+
+        SFX.Play(SFXKeys.PsyThrowStart, DefaultSoundDesc);
+        SoundId = SFX.Play(SFXKeys.PsyThrowLoop, new SFX.PlaySoundDesc(){EntityToFollow = FightPlayer.Entity, Loop = true, LoopTimeout = 1+EffectConfig.PsyThrowConfig.GrabTime});
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -129,6 +136,8 @@ public class EffectPsyThrowReady : FightEffectWithNoFlinch
             });
         }
         FightPlayer.SetAnimTrigger("psythrow_attack_throw");
+        SFX.Stop(SoundId);
+        SFX.Play(SFXKeys.PsyThrowEnd, DefaultSoundDesc);
     }
 }
 

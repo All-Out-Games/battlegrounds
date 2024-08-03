@@ -283,7 +283,8 @@ public static class EffectConfig
     {
         public static int AtkBoostBase = 10;
         public static float Cooldown = 23f;
-        public static float Duration = 8f;
+        public static float Duration = 8f; // If you want to buff any skill with an Aura (Rage/Regeneration/IronAura), the
+                                           // aura's prefab needs to be adjusted, especially when you extend it.
         public int AtkBoost;
 
         public RageConfig()

@@ -1,4 +1,5 @@
 using AO;
+using Assembly.scripts.SceneObjects;
 using StreamReader = AO.StreamReader;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -34,6 +35,7 @@ public class EffectHypnotizeCaster : FightEffect
         base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("hypnotize");
         DurationRemaining = MainLayer.GetCurrentStateLength();
+        SoundId = SFX.Play(SFXKeys.HypnotizeAudio, DefaultSoundDesc);
     }
 }
 
@@ -64,6 +66,7 @@ public class EffectHypnotize : FightEffectWithNoFlinch
         FightPlayer.UnsetAnimTrigger("knockdown");
         FightPlayer.SetAnimTrigger("knockdown_end");
         FightPlayer.AddEffect<EffectGenericPostActionDelay>();
+        SFX.Play(SFXKeys.HypnotizeGetupAudio, DefaultSoundDesc);
     }
 
     public override void NetworkDeserialize(StreamReader reader)

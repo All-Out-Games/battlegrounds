@@ -1,5 +1,6 @@
 ﻿using AO;
 using Assembly.scripts;
+using Assembly.scripts.SceneObjects;
 using StreamReader = AO.StreamReader;
 using StreamWriter = AO.StreamWriter;
 
@@ -102,6 +103,9 @@ public class EffectRollOut : FightEffect
         
         FightPlayer.OnReceiveDamage += OnDamageEvent;
         FightPlayer.RegisterPreDamageEvent(this);
+
+        SFX.Play(SFXKeys.RolloutStartAudio, DefaultSoundDesc);
+        SoundId = SFX.Play(SFXKeys.RolloutLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = FightPlayer.Entity, Loop = true, LoopTimeout = 1+_config.Duration});
     }
 
     public override void OnEffectUpdate()
@@ -135,6 +139,7 @@ public class EffectRollOut : FightEffect
         else
         {
             FightPlayer.SetAnimTrigger("rollout_end");
+            SFX.Play(SFXKeys.RolloutEndAudio, DefaultSoundDesc);
         }
         
         if (_originalIndex > 0)
@@ -142,6 +147,8 @@ public class EffectRollOut : FightEffect
             var slotsMgr = FightPlayer.GetSkillSlots();
             slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityRollOut)));
         }
+
+        SFX.Stop(SoundId);
         
     }
     
