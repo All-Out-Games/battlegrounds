@@ -92,7 +92,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
         _currentAngle = _angleLow;
         CarveGround();
 
-        SoundId = SFX.Play(SFXKeys.PsiRayAudio, new SFX.PlaySoundDesc() {Volume = 0.6f});
+        SoundId = SFX.Play(SFXKeys.PsiRayAudio, new SFX.PlaySoundDesc() {Volume = 0.6f, EntityToFollow = FightPlayer.Entity});
     }
 
     public override void OnEffectUpdate()

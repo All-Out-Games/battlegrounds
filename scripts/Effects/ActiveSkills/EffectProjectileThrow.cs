@@ -37,6 +37,8 @@ public class EffectProjectileThrow : FightEffect
         //FightPlayer.SetMouseIKPosition(AbilityPositionOrDirection);
         DurationRemaining = FightLayer.GetCurrentStateLength();
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
+        
+        PlayThrowSound();
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -62,7 +64,7 @@ public class EffectProjectileThrow : FightEffect
     public virtual void PlayThrowSound()
     {
         // Override to play other throw sound
-        SFX.Play(SFXKeys.ProjectileLThrowAudio, new SFX.PlaySoundDesc() {Position = Entity.Position});
+        SFX.Play(SFXKeys.ProjectileLThrowAudio, DefaultSoundDesc);
     }
     
     public virtual void ProjectileThrow()
@@ -76,8 +78,6 @@ public class EffectProjectileThrow : FightEffect
             FightPlayer.Entity.Position, AbilityPositionOrDirection);
         //proj.Position = Entity.Position;
         InitializeProjectile(proj);
-        
-        PlayThrowSound();
     }
 
     protected virtual void InitializeProjectile(Entity proj)
