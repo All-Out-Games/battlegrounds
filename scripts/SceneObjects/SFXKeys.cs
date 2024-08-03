@@ -61,6 +61,7 @@ public static class SFXKeys
     public static AudioAsset GroundStompAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/ground_stomp.wav");
     public static AudioAsset RageAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/rage_stomp.wav");
     public static AudioAsset SelfDestructAudio =Assets.GetAsset<AudioAsset>("SFX/Effects/self_destruct.wav");
+    public static AudioAsset SelfDestructExplodeAudio =Assets.GetAsset<AudioAsset>("SFX/Effects/self_destruct_explode.wav");
     
     public static AudioAsset RolloutStartAudio =Assets.GetAsset<AudioAsset>("SFX/Effects/rollout_start.wav");
     public static AudioAsset RolloutLoopAudio =Assets.GetAsset<AudioAsset>("SFX/Effects/rollout_loop.wav");

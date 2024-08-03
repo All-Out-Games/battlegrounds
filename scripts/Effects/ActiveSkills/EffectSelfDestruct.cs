@@ -34,8 +34,8 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        
-        
+
+        SFX.Play(SFXKeys.SelfDestructExplodeAudio, DefaultSoundDesc);
         KnockingBlast();
         FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.SelfDestructExplosionPath, FightPlayer.Entity.Position);
         SFX.FadeOutAndStop(SoundId, 0.25f);

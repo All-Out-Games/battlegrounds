@@ -260,6 +260,7 @@ SFX/Effects/rollout_end.wav - .ao - 66ad9d9ecf7a5e4159a6c452 - 11603954744542890
 SFX/Effects/rollout_loop.wav - .ao - 66ad9d9ecf7a5e4159a6c453 - 12886444320670719805
 SFX/Effects/rollout_start.wav - .ao - 66ad9d9ecf7a5e4159a6c451 - 2535902086376407751
 SFX/Effects/self_destruct.wav - .ao - 66ad9394cf7a5e4159a6c442 - 18352124696951603518
+SFX/Effects/self_destruct_explode.wav - .ao - 66ae6176cf7a5e4159a6c46a - 7596589421445641430
 SFX/Effects/sound_wave_projectile_loop.wav - .ao - 66ad3a26cf7a5e4159a6c416 - 11178710722811247311
 SFX/Effects/throw_weapon.wav - .ao - 66ad4e9fcf7a5e4159a6c42a - 10244965043607779417
 SFX/Objects/bear_trap-appear_set_up.wav - .ao - 66ad2601cf7a5e4159a6c402 - 15602225193008380346

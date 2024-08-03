@@ -29,6 +29,19 @@ public class EffectPsybolt : EffectProjectileThrow
     {
         Config = EffectConfig.ProjectileConfig.GetPlayerPsyboltConfig(FightPlayer.CurrentAttack);
     }
+    
+    public override void ProjectileThrow()
+    {
+        // This function can be overwritten to create different projectile throwing behaviors
+        // However, you should try to build the logic of the projectile within itself
+        // i.e. inherit the Projectile component and put it on your prefab.
+
+        Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
+            $"{Config.ProjectilePrefabKey}",
+            FightPlayer.Entity.Position + Vector2.Up, AbilityPositionOrDirection);
+        //proj.Position = Entity.Position;
+        InitializeProjectile(proj);
+    }
 
     protected override void InitializeProjectile(Entity proj)
     {

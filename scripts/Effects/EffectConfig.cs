@@ -601,7 +601,7 @@ public static class EffectConfig
 
         public static int BaseDmg = 8;
         public static float DamageDelay = 0.3f;
-        public static float BackstabTime = 1.0f;
+        public static float BackstabTime = 1.65f;
 
         public int Damage;
 

@@ -38,7 +38,7 @@ public class EffectBackstab : EffectNoMovement
             return;
         }
         FightPlayer.SetAnimTrigger("backstabbed");
-        DurationRemaining = MainLayer.GetCurrentStateLength();
+        DurationRemaining = EffectConfig.BackStabConfig.BackstabTime;
         SoundId = SFX.Play(SFXKeys.BackStabVictimAudio, DefaultSoundDesc);
     }
     
@@ -75,14 +75,14 @@ public class EffectBackstabCaster : FightEffectWithImmunity
             return;
         }
         
+        FightPlayer.UnsetAnimTrigger("RESET");
         FightPlayer.SetAnimTrigger("backstab");
-        
-        
+
         Vector2 casterPos = Caster.Entity.Position - victimFp.GetFacingDirectionAsVector();
         FightPlayer.Teleport(casterPos);
         SFX.Play(SFXKeys.BackStabTeleportAudio, DefaultSoundDesc);
-        
-        DurationRemaining = MainLayer.GetCurrentStateLength();
+
+        DurationRemaining = EffectConfig.BackStabConfig.BackstabTime;
         FightPlayer.SetFacingDirection(victimFp.GetFacingDirection());
         SoundId = SFX.Play(SFXKeys.BackStabCasterAudio, DefaultSoundDesc);
     }

@@ -565,11 +565,12 @@ public partial class FightPlayer : Player
         {
             foreach (var fp in proximityPlayers)
             {
-                // Ignore invis player
-                if (!fp.HasEffect<EffectInvisible>())
+                // Ignore invis player, ignore invincible/dead player
+                if (fp.HasEffect<EffectInvisible>() || !fp.Damageable())
                 {
-                    return proximityPlayers[0].Entity.Position - Entity.Position;
+                    continue;
                 }
+                return fp.Entity.Position - Entity.Position;
             }
         }
         return PunchCollider.Entity.Position - Entity.Position;
