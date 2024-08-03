@@ -49,7 +49,7 @@ public class PsyBoltProjectile : BaseProjectile
                 {
                     SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
                     vfx.StartVFX("hit_psybolt", false);
-                    SFX.Play(SFXKeys.PsyboltHitAudio, new SFX.PlaySoundDesc() { Position  = Entity.Position});
+                    SFX.Play(SFXKeys.PsyboltHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
                 }
             );
         }
