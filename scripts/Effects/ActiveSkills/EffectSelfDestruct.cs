@@ -1,4 +1,5 @@
 using AO;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -27,6 +28,7 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
         base.OnEffectStart(isDropIn);
         FightStateMachine.SetTrigger("self_destruct");
         AssignConfig(EffectConfig.SelfDestructConfig.GetDefault(FightPlayer.CurrentAttack));
+        SoundId = SFX.Play(SFXKeys.SelfDestructAudio, DefaultSoundDesc);
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -36,6 +38,7 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
         
         KnockingBlast();
         FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.SelfDestructExplosionPath, FightPlayer.Entity.Position);
+        SFX.FadeOutAndStop(SoundId, 0.25f);
     }
     
 

@@ -1,4 +1,5 @@
-﻿using Assembly.scripts.VFX;
+﻿using Assembly.scripts.SceneObjects;
+using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
 using AO;
@@ -27,7 +28,7 @@ public class EffectRageCast : FightEffectWithNoFlinch
     {
         base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("rage_stomp");
-        
+        SoundId = SFX.Play(SFXKeys.RageAudio, DefaultSoundDesc);
         _animDuration = MainLayer.GetCurrentStateLength();
         DurationRemaining = _animDuration + EffectConfig.RageConfig.Duration;
         

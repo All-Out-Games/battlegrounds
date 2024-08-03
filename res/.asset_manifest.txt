@@ -223,7 +223,7 @@ PsionicBeamGroundFissueEnd.prefab - .ao - 66859953b45eb9e8339c0fe8 - 99478697295
 PsionicRay.prefab - .ao - 66a9196d96cebaeb1f329886 - 12843001226758880522
 PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
-Rage_Aura.prefab - .ao - 66a1a7616732dee0bb811d54 - 14197455482549921607
+Rage_Aura.prefab - .ao - 66ad96d6cf7a5e4159a6c44a - 2127671326789894962
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
 ResourcesOverlayWindow.prefab - .ao - 66aad92acf7a5e4159a6b770 - 11976965795483684769
 SFX/Effects/backstab_attack.wav - .ao - 66ad89becf7a5e4159a6c436 - 16112955543606674532
@@ -231,6 +231,7 @@ SFX/Effects/backstab_teleport.wav - .ao - 66ad89becf7a5e4159a6c438 - 81581557501
 SFX/Effects/backstab_victim.wav - .ao - 66ad89becf7a5e4159a6c437 - 1465047161017477406
 SFX/Effects/claw_swipe.wav - .ao - 66ad89bfcf7a5e4159a6c43a - 3312688640848530899
 SFX/Effects/confusion_ball.wav - .ao - 66ad4e9fcf7a5e4159a6c428 - 13980309189215291514
+SFX/Effects/ground_stomp.wav - .ao - 66ad9394cf7a5e4159a6c440 - 8040942330557955187
 SFX/Effects/heal_end.wav - .ao - 66ad4acacf7a5e4159a6c421 - 9391023529971212979
 SFX/Effects/heal_start.wav - .ao - 66ad4acacf7a5e4159a6c422 - 16830675159314326405
 SFX/Effects/healing_loop.wav - .ao - 66ad2e5ccf7a5e4159a6c411 - 746910204286397867
@@ -248,6 +249,8 @@ SFX/Effects/punch_ice.wav - .ao - 66ad4ac9cf7a5e4159a6c41a - 1632518672754968503
 SFX/Effects/punch_small.wav - .ao - 66ad4ac9cf7a5e4159a6c41b - 894227513470079067
 SFX/Effects/punch_strong.wav - .ao - 66ad4ac9cf7a5e4159a6c41c - 7423844962650925155
 SFX/Effects/punch_strongest.wav - .ao - 66ad4acacf7a5e4159a6c420 - 10583603662442360391
+SFX/Effects/rage_stomp.wav - .ao - 66ad9394cf7a5e4159a6c441 - 6592306065110382476
+SFX/Effects/self_destruct.wav - .ao - 66ad9394cf7a5e4159a6c442 - 18352124696951603518
 SFX/Effects/sound_wave_projectile_loop.wav - .ao - 66ad3a26cf7a5e4159a6c416 - 11178710722811247311
 SFX/Effects/throw_weapon.wav - .ao - 66ad4e9fcf7a5e4159a6c42a - 10244965043607779417
 SFX/Objects/bear_trap-appear_set_up.wav - .ao - 66ad2601cf7a5e4159a6c402 - 15602225193008380346

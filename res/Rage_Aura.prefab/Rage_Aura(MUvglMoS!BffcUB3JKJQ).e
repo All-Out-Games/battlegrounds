@@ -1,4 +1,4 @@
-11
+13
 210453397506
 54201960155666 1720218104369554000
 {
@@ -38,7 +38,7 @@
   "component_type": "Mono_Component",
   "mono_component_type": "AttachmentObject",
   "data": {
-    "EntityLifeTime": 6
+    "EntityLifeTime": 15
   }
 },
 {
@@ -49,7 +49,8 @@
   "data": {
     "Loop": true,
     "Animator": "54201960338275:1720218104369626200",
-    "EntityLifeTime": 6,
+    "EntityLifeTime": 9,
+    "IsPermanent": false,
     "StartAnimationStr": [
       "rage_loop"
     ]
@@ -63,7 +64,7 @@
   "data": {
     "FadeSpine": true,
     "FadeSprite": false,
-    "PersistTime": 4,
-    "FadeTime": 5
+    "PersistTime": 9,
+    "FadeTime": 10
   }
 }

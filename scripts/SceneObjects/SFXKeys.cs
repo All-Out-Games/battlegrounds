@@ -11,15 +11,16 @@ public static class SFXKeys
 
     public static AudioAsset GetPunchSFXByLevel(int lvl)
     {
-        if (lvl == 2)
+        if (lvl > 1)
         {
             return Punch2Audio;
         }
 
+        /*
         if (lvl == 3)
         {
-            return Punch3Audio;
-        }
+            return Punch3Audio; // Mas said this is annoying
+        }*/
 
         return Punch1Audio;
     }
@@ -56,4 +57,11 @@ public static class SFXKeys
     public static AudioAsset BackStabTeleportAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/backstab_teleport.wav");
     public static AudioAsset BackStabCasterAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/backstab_attack.wav");
     public static AudioAsset BackStabVictimAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/backstab_victim.wav");
+    
+    public static AudioAsset GroundStompAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/ground_stomp.wav");
+    public static AudioAsset RageAudio =Assets.GetAsset<AudioAsset>("SFX/Effects/rage_stomp.wav");
+    public static AudioAsset SelfDestructAudio =Assets.GetAsset<AudioAsset>("SFX/Effects/self_destruct.wav");
+    
+    
+    
 }

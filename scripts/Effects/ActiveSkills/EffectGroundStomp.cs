@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -27,6 +28,8 @@ public class EffectGroundStomp : FightEffectWithNoFlinch
         FightPlayer.SetAnimTrigger("groundstomp");
         AssignConfig(EffectConfig.GroundStompConfig.GetDefault(FightPlayer.CurrentAttack));
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
+
+        SoundId = SFX.Play(SFXKeys.GroundStompAudio, DefaultSoundDesc);
     }
 
     public override void OnEffectEnd(bool interrupt)
