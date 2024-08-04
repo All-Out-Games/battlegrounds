@@ -14,6 +14,30 @@ public class AbilityClawSlash : FightAbility
     public override float MaxDistance => EffectConfig.ClawSlashConfig.SlashRadius;
     public override TargettingMode TargettingMode => TargettingMode.Line;
     public override float Cooldown => EffectConfig.ClawSlashConfig.Cooldown;
+    
+}
+
+public class EffectDualClaw : FightEffect
+{
+    public override bool IsActiveEffect => false;
+    private FightAbility _slash;
+
+    public override void OnEffectStart(bool isDropIn)
+    {
+        base.OnEffectStart(isDropIn);
+        
+        _slash = FightPlayer.GetSkillSlots().GetAbilityInstance(typeof(AbilityClawSlash));
+        _slash.CooldownRemaining = 0;
+    }
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        if (!interrupt)
+        {
+            _slash.CooldownRemaining = EffectConfig.ClawSlashConfig.Cooldown;
+        }
+    }
 }
 
 public class EffectClawSlash : FightEffect
@@ -42,6 +66,18 @@ public class EffectClawSlash : FightEffect
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
+
+        if (FightPlayer.HasSkill("DualClaw"))
+        {
+            if (!FightPlayer.HasEffect<EffectDualClaw>())
+            {
+                FightPlayer.AddEffect<EffectDualClaw>(FightPlayer, EffectConfig.ClawSlashConfig.DualClawTime);
+            }
+            else
+            {
+                FightPlayer.RemoveEffect<EffectDualClaw>(true);
+            }
+        }
     }
 
     public override void OnAnimationEvent(string eventName)

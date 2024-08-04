@@ -388,6 +388,7 @@ public static class EffectConfig
         public static readonly float SlashRadius = 2;
         public static readonly int BleedDmgBase = 1;
         public static readonly float BleedTimeBase = 9f;
+        public static readonly float DualClawTime = 3f;
 
         public float BleedTime;
         public int BleedDmg;
@@ -444,8 +445,11 @@ public static class EffectConfig
     public struct SelfHealConfig
     {
         public static readonly int HealAmtBase = 30;
-        public static readonly float ChannelTime = 2.4f;
+        public static readonly float ChannelTime = 2f;
         public static readonly float Cooldown = 15f;
+
+        public static readonly float ConcentrateRageTime = 5f;
+        public static readonly int ConcentrateExtraHealth = 20;
     }
 
     #endregion
@@ -457,6 +461,8 @@ public static class EffectConfig
         public static readonly int PerSecondHeal = 5;
         public static readonly float HealTime = 8f;
         public static readonly float Cooldown = 20f;
+        
+        public static readonly int ConcentrateExtraHealth = 2;
     }
 
     #endregion
@@ -588,6 +594,7 @@ public static class EffectConfig
         public static float Cooldown = 12f;
         public static readonly float KunaiRange = 6f;
         public static readonly float KunaiLifetime = 0.5f;
+        public static readonly float NinjaMasteryRangeModifier = 1.5f;
         public static ProjectileConfig GetKunaiConfig()
         {
             return new ProjectileConfig()

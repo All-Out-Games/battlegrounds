@@ -6,6 +6,7 @@ namespace Assembly.scripts.SceneObjects.Projectiles;
 public class ShurikenProjectile : BaseProjectile
 {
     public float BackDamageMultiplier = 1.0f;
+    public bool Enhanced = false;
     
     private Spine_Animator _animator;
     
@@ -40,6 +41,26 @@ public class ShurikenProjectile : BaseProjectile
                 info.DamageNumberColor = GlobalData.CritNumberColor; // Orange
             }
             fp.TakeDamage(Owner, info);
+            
+            if (Enhanced) // bounce
+            {
+                EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerShurikenConfig(Owner.CurrentAttack);
+                Vector2 bounceDir = Vector2.Rotate(dir.Normalized, 1.57f, Vector2.Zero).Normalized;
+                
+                Entity proj = Game.SpawnProjectile(Owner, config.ProjectilePrefabKey,
+                    config.ProjectilePrefabKey,
+                    Entity.Position, bounceDir);
+                Projectile projComp = proj.GetComponent<Projectile>();
+                projComp.Speed = config.Speed;
+                projComp.Lifetime = config.ProjectileLifetime;
+            
+                ShurikenProjectile supplementProjectileComp = proj.GetComponent<ShurikenProjectile>();
+                supplementProjectileComp.LifeTime = config.ProjectileLifetime;
+                supplementProjectileComp.InitializeProjectile(Owner, config.Damage, false);
+                supplementProjectileComp.BackDamageMultiplier = EffectConfig.ProjectileConfig.ShurikenBackDamageModifier;
+                supplementProjectileComp.AddIgnoredPlayer(fp); // Don't hit the same player again
+                
+            }
             
             if (!Pierce)
             {

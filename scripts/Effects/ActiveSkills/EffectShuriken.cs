@@ -34,6 +34,7 @@ public class EffectShuriken : EffectProjectileThrow
         supplementProjectileComp.LifeTime = Config.ProjectileLifetime;
         supplementProjectileComp.InitializeProjectile(FightPlayer, Config.Damage, false);
         supplementProjectileComp.BackDamageMultiplier = EffectConfig.ProjectileConfig.ShurikenBackDamageModifier;
+        supplementProjectileComp.Enhanced = FightPlayer.HasSkill("NinjaMastery");
     }
     
 }

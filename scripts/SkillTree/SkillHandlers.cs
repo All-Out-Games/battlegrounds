@@ -44,6 +44,8 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                     case SkillConfig.NodeType.AttrBoost: // Only handles single stat buff. If we need multiple stats write a special handler for that
                         CallClient_StatAdder(level, skillKey, cfg.Buff);
                         break;
+                    case SkillConfig.NodeType.SkillEnhance:
+                        break;
                 }
             }
             
@@ -74,6 +76,8 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                         break;
                     case SkillConfig.NodeType.AttrBoost: // Only handles single stat buff. If we need multiple stats write a special handler for that
                         CallClient_StatRemover(skillKey, cfg.Buff);
+                        break;
+                    case SkillConfig.NodeType.SkillEnhance:
                         break;
                 }
             }

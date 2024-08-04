@@ -99,6 +99,10 @@ public class EffectKunaiThrow : EffectProjectileThrow
     public override void AssignConfig()
     {
         Config = EffectConfig.BackStabConfig.GetKunaiConfig();
+        if (FightPlayer.HasSkill("NinjaMastery"))
+        {
+            Config.ProjectileLifetime *= EffectConfig.BackStabConfig.NinjaMasteryRangeModifier;
+        }
     }
 
 }

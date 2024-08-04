@@ -539,6 +539,16 @@ public partial class FightPlayer : Player
         return PlayerUi;
     }
 
+    public bool HasSkill(string key)
+    {
+        bool keyExist = SkillTree.SkillLevelDict.TryGetValue(key, out int lvl);
+        if (!keyExist)
+        {
+            Log.Error($"{key} is not a valid skillKey! Did you forget to add it to the skill hashset in SkillConfigTable.cs?");
+        }
+        return lvl > 0;
+    }
+
     #endregion
 
     #region Collision

@@ -42,15 +42,28 @@ public class EffectSelfHeal : FightEffect
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.OnReceiveDamage -= OnDamageEvent;
+
+        bool enhanced = FightPlayer.HasSkill("Concentrate");
         if (!interrupt)
         {
-            FightPlayer.DamageInfo healInfo = FightPlayer.DamageInfo.CreateHealInfo(EffectConfig.SelfHealConfig.HealAmtBase);
+            FightPlayer.DamageInfo healInfo = FightPlayer.DamageInfo.CreateHealInfo(EffectConfig.SelfHealConfig.HealAmtBase + (enhanced ? EffectConfig.SelfHealConfig.ConcentrateExtraHealth : 0));
             FightPlayer.TakeDamage(FightPlayer, healInfo);
             FightPlayer.SetAnimTrigger("selfheal_end");
+            SFX.Play(SFXKeys.HealingEndAudio, DefaultSoundDesc);
             FightPlayer.AddEffect<EffectGenericPostActionDelay>();
         }
+        else
+        {
+            if (enhanced)
+            {
+                FightPlayer.DamageInfo healInfo =
+                    FightPlayer.DamageInfo.CreateHealInfo(EffectConfig.SelfHealConfig.ConcentrateExtraHealth);
+                FightPlayer.TakeDamage(FightPlayer, healInfo);
+                FightPlayer.AddEffect<EffectRage>(FightPlayer, EffectConfig.SelfHealConfig.ConcentrateRageTime);
+            }
+        }
 
-        SFX.Play(SFXKeys.HealingEndAudio, DefaultSoundDesc);
+        
         SFX.Stop(SoundId);
     }
 }

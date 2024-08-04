@@ -24,7 +24,7 @@ public class AbilityHypnotize : FightAbility
 
 public class EffectHypnotizeCaster : FightEffect
 {
-    public override bool IsActiveEffect => true;
+    public override bool IsActiveEffect => false;
 
     public override bool BlockAbilityActivation => true;
 

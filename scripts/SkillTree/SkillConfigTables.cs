@@ -43,6 +43,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         IconPath = "AbilityIcon_Merged/basic/health_boost.png",
         NeedRemover = true,
+        RangeDescriptionKey = "Passive",
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 250,
@@ -68,6 +69,7 @@ public static partial class SkillConfig
         IconPath = "AbilityIcon_Merged/basic/attack_boost.png",
         MaximumLevel = 1,
         NeedRemover = true,
+        RangeDescriptionKey = "Passive",
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 250,
@@ -116,6 +118,7 @@ public static partial class SkillConfig
         IconPath = "AbilityIcon_Merged/basic/health_boost_2.png",
         MaximumLevel = 1,
         NeedRemover = true,
+        RangeDescriptionKey = "Passive",
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 750,
@@ -141,6 +144,7 @@ public static partial class SkillConfig
         IconPath = "AbilityIcon_Merged/basic/attack_boost_2.png",
         MaximumLevel = 1,
         NeedRemover = true,
+        RangeDescriptionKey = "Passive",
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
         UpgradeCost = 750,
@@ -368,6 +372,23 @@ public static partial class SkillConfig
         GridY = 2,
         SkillKey = "ClawSlash",
         ParentNodeKeys = new string[] { "DoublePunch" },
+        ChildrenNodeKeys = new string[] { "ClawSlash" },
+    };
+    
+    public static readonly SkillTreeNodeConfig DualClawConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = $"Upgrade your slash so that you can use Claw Slash again for {EffectConfig.ClawSlashConfig.DualClawTime} seconds after slash the first time.",
+        RangeDescriptionKey = "Passive",
+        IconPath = "AbilityIcon_Merged/brawler/claw_slash.png",
+        MaximumLevel = 1,
+        NType = NodeType.SkillEnhance,
+        NTab = SkillTreeTabs.Brawler,
+        UpgradeCost = 4000,
+        UIPosition = new Vector2(10, 430),
+        GridX = 2,
+        GridY = 3,
+        SkillKey = "DualClaw",
+        ParentNodeKeys = new string[] { "ClawSlash" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -484,6 +505,23 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[] { "SpoonThrow" },
         ChildrenNodeKeys = new string[] { "Regeneration" },
     };
+    
+    public static readonly SkillTreeNodeConfig ConcentrateConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = $"You gain more health from SelfHeal and Regeneration. If your SelfHeal gets interrupted, you still recover some health and get Rage for {EffectConfig.SelfHealConfig.ConcentrateRageTime}.",
+        IconPath = "AbilityIcon_Merged/psionic/self_heal.png",
+        RangeDescriptionKey = "Passive",
+        MaximumLevel = 1,
+        GridX = 2,
+        GridY = 3,
+        NType = NodeType.SkillEnhance,
+        NTab = SkillTreeTabs.Psionic,
+        UpgradeCost = 3750,
+        UIPosition = new Vector2(730, 230),
+        SkillKey = "Concentrate",
+        ParentNodeKeys = new string[] { "Regeneration" },
+        ChildrenNodeKeys = new string[] {  },
+    };
 
     /// <summary>
     /// Regenerate
@@ -503,7 +541,7 @@ public static partial class SkillConfig
         UIPosition = new Vector2(730, 430),
         SkillKey = "Regeneration",
         ParentNodeKeys = new string[] { "SelfHeal" },
-        ChildrenNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "Concentrate" },
     };
 
 
@@ -601,6 +639,7 @@ public static partial class SkillConfig
         GridY = 1,
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Stealth,
+        RangeDescriptionKey = "Passive",
         UpgradeCost = 350,
         UIPosition = new Vector2(450, 30),
         SkillKey = "SpeedBoost",
@@ -709,6 +748,23 @@ public static partial class SkillConfig
         UIPosition = new Vector2(230, 630),
         SkillKey = "Backstab",
         ParentNodeKeys = new string[] { "Shuriken" },
+        ChildrenNodeKeys = new string[] { "NinjaMastery" },
+    };
+    
+    public static readonly SkillTreeNodeConfig NinjaMasteryConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "A master ninja can throw the kunai further, and their shuriken will bounce once if it secures a hit.",
+        RangeDescriptionKey = "Passive",
+        IconPath = "AbilityIcon_Merged/stealth/shuriken.png",
+        MaximumLevel = 1,
+        GridX = 1,
+        GridY = 3,
+        NType = NodeType.SkillEnhance,
+        NTab = SkillTreeTabs.Stealth,
+        UpgradeCost = 4800,
+        UIPosition = new Vector2(230, 630),
+        SkillKey = "NinjaMastery",
+        ParentNodeKeys = new string[] { "Backstab" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -783,6 +839,7 @@ public static partial class SkillConfig
             { "BattleCry", BattleCryConfig },
             { "ClawSlash", ClawSlashConfig },
             { "LeapSlam", LeapSlamConfig },
+            { "DualClaw", DualClawConfig},
             // Psionic
             { "SpoonThrow", SpoonThrowConfig },
             { "Befuddle", BefuddleConfig },
@@ -792,6 +849,7 @@ public static partial class SkillConfig
             { "Hypnotize", HypnotizeConfig },
             { "PsionicBeam", PsionicBeamConfig },
             { "PsyThrow", PsyThrowConfig },
+            { "Concentrate", ConcentrateConfig},
             // Stealth
             { "Invisibility", InvisibilityConfig },
             { "LightFeet", LightFeetConfig },
@@ -801,8 +859,9 @@ public static partial class SkillConfig
             { "ShadowStep", ShadowStepConfig },
             { "Backstab", BackstabConfig },
             { "TotalDarkness", TotalDarknessConfig },
+            { "NinjaMastery", NinjaMasteryConfig},
             // Elemental
-            {"IceFist", IceFistNodeConfig}
+            { "IceFist", IceFistNodeConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -813,7 +872,7 @@ public static partial class SkillConfig
     {
         "Punch", "RollOut", "Shield",
         // Brawler
-        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam",
+        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam", 
         // Psionic
         "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize", "PsionicBeam", "PsyThrow",
         // Stealth
@@ -824,7 +883,7 @@ public static partial class SkillConfig
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "Punch2", "Punch3" };
 
-    public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() { };
+    public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() { "Concentrate", "DualClaw", "NinjaMastery"};
 }
 
 // [Add Skill] Item 4: Add the association between skillKey and type of ability.

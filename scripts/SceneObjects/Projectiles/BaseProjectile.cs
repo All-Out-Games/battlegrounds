@@ -6,7 +6,7 @@ public class BaseProjectile : OwnedObjectComponent
 {
     protected Projectile EngineProjectile;
 
-    protected List<Entity> WhiteList = new List<Entity>();
+    protected List<Entity> WhiteList = new List<Entity>(); // Projectiles will not interact with this list of entities.
 
     [Serialized] protected int Damage = 0;
     [Serialized] protected bool Pierce = false;
@@ -78,5 +78,11 @@ public class BaseProjectile : OwnedObjectComponent
         Owner = owner;
         Damage = dmg;
         Pierce = pierce;
+    }
+
+    public void AddIgnoredPlayer(FightPlayer fp)
+    {
+        WhiteList.Add(fp.Entity);
+        WhiteList.Add(fp.CollisionEntity);
     }
 }

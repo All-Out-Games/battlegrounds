@@ -36,6 +36,11 @@ public class EffectRegeneration : FightEffect
         DurationRemaining = EffectConfig.RegenerateConfig.HealTime;
         AddAura();
         SoundId = SFX.Play(SFXKeys.HealingLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = FightPlayer.Entity, RangeMultiplier = 0.5f});
+
+        if (FightPlayer.HasSkill("Concentrate"))
+        {
+            PerSecondHeal += EffectConfig.RegenerateConfig.ConcentrateExtraHealth;
+        }
     }
 
     public override void OnEffectEnd(bool interrupt)
