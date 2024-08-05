@@ -325,6 +325,8 @@ UI/AbilityBook/Loadout/swap_button_pressed.png - .ao - 66980c28b45eb9e8339c1ed5 
 UI/AbilityBook/Loadout/swap_button_pressed.png - .ao.ios - 66980c28b45eb9e8339c1ed6 - 10234977647442393302
 UI/AbilityBook/unlocked_abilities_backing.png - .ao - 66998861b45eb9e8339c219b - 15291842776835831665
 UI/AbilityBook/unlocked_abilities_backing.png - .ao.ios - 66998861b45eb9e8339c219a - 10305147596006492540
+UI/Bars/border.png - .ao - 66b13b85cf7a5e4159a6c4a6 - 13076663795422265221
+UI/Bars/border.png - .ao.ios - 66b13b85cf7a5e4159a6c4a7 - 11121674596510720087
 UI/LargeMenuButtons/Large Menu Buttons/large_button.png - .ao - 66aad25bcf7a5e4159a6b76b - 18231134355042940051
 UI/LargeMenuButtons/Large Menu Buttons/large_button.png - .ao.ios - 66aad25bcf7a5e4159a6b766 - 3983896806962664064
 UI/LargeMenuButtons/Large Menu Buttons/large_button_highlight.png - .ao - 66aad25bcf7a5e4159a6b768 - 5076871486006783888

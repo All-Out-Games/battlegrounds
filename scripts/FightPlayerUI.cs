@@ -8,6 +8,7 @@ using Assembly.scripts.UI;
 /// </summary>
 public class FightPlayerUI : FightPlayerComponent
 {
+    private static Texture BarBorder = Assets.KeepLoaded<Texture>("UI/Bars/border.png");
     private List<string> _hideUIReasons = new List<string>();
 
     public void AddPlayerUIInvisibleReason(string reason)
@@ -42,8 +43,9 @@ public class FightPlayerUI : FightPlayerComponent
     {
         var healthRect = UI.GetPlayerRect(_player);
         healthRect = healthRect.Grow(13, 50, 0, 50).Offset(0, 160);
-
+        var borderRect = healthRect.Grow(4, 3, 4, 3);
         UI.PushLayer(-2);
+        UI.Image(borderRect, BarBorder, Vector4.White, new UI.NineSlice());
         UI.Image(healthRect, null, Vector4.Black, new UI.NineSlice());
 
         var healthPercent = _player.CurrentHealth / (float)_player.MaxHealth;
