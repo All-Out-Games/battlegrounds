@@ -79,6 +79,11 @@ public class SelectionVFX : VFX
         Animator.SpineInstance.SetAnimation(selectionKey, Loop);
         Started = true;
     }
+
+    public void SetSkin(string skin)
+    {
+        Animator.SpineInstance.SetSkin(skin);
+    }
     
     public override void Update()
     {

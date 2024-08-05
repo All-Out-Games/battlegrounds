@@ -1,0 +1,21 @@
+BAT003_status_up.png
+	size: 576, 924
+	filter: Linear, Linear
+attack_icon
+	bounds: 351, 133, 60, 115
+	offsets: 1, 1, 62, 117
+aura
+	bounds: 3, 3, 345, 344
+	offsets: 1, 1, 347, 346
+defense_icon
+	bounds: 351, 251, 85, 96
+	offsets: 1, 1, 87, 98
+glow
+	bounds: 3, 350, 570, 570
+	offsets: 27, 27, 624, 624
+health_icon
+	bounds: 351, 55, 88, 75
+	offsets: 1, 1, 90, 77
+speed_icon
+	bounds: 442, 133, 104, 54
+	offsets: 1, 1, 106, 56
