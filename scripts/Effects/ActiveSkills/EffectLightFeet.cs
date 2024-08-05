@@ -1,4 +1,6 @@
 ﻿using AO;
+using Assembly.scripts.VFX;
+
 namespace Assembly.scripts.Effects.ActiveSkills;
 
 public class AbilityLightFeet : FightAbility
@@ -16,16 +18,49 @@ public class EffectLightFeet : FightEffect
 {
     public override bool IsActiveEffect => false;
 
+    private StatAuraVFX _aura;
+    private Spine_Animator _auraAnimator;
+    private bool _faded;
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
         FightPlayer.AddSpeedModifier(EffectConfig.LightFeetConfig.SpeedModifier);
         DurationRemaining = EffectConfig.LightFeetConfig.BoostTime;
+        AddAura();
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.RemoveSpeedModifier(EffectConfig.LightFeetConfig.SpeedModifier);
+    }
+    
+    private void AddAura()
+    {
+        Prefab auraPrefab = VFXPrefabs.StatAura;
+        _aura = auraPrefab.Instantiate().GetComponent<StatAuraVFX>();
+        _aura.SetSkin("speed", new Vector4(0.95f, 0.95f, 0, 1));
+        _aura.SetAnimTrigger("appear");
+        _auraAnimator = _aura.Animator;
+        _aura.Spawn(FightPlayer.Entity,new Vector2(0f, 0.2f), false, DurationRemaining);
+    }
+    
+    public override void OnEffectUpdate()
+    {
+        base.OnEffectUpdate();
+        if (FightPlayer.SpineAnimator.LocalEnabled)
+        {
+            _auraAnimator.LocalEnabled = true;
+        }
+        else
+        {
+            _auraAnimator.LocalEnabled = false;
+        }
+
+        if (Util.OneTime(DurationRemaining < 1, ref _faded))
+        {
+            _aura.SetAnimTrigger("disappear");
+        }
+        
     }
 }

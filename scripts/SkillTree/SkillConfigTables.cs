@@ -270,7 +270,7 @@ public static partial class SkillConfig
         GridY = 1,
         SkillKey = "IronSkin",
         IconPath = "AbilityIcon_Merged/defense/iron_aura.png",
-        AbilityIconPath = "AbilityIcon_Separate/defense/iron_aura.png",
+        AbilityIconPath = "AbilityIcon_Separate/defense/iron_aura_icon.png",
         ParentNodeKeys = new string[] { "Shield" },
         ChildrenNodeKeys = new string[] { },
     };
@@ -991,6 +991,7 @@ public partial class FightAbility
         {SC.ShadowStepConfig.SkillKey, typeof(AbilityShadowStep)},
         {SC.BackstabConfig.SkillKey, typeof(AbilityBackstab)},
         {SC.TotalDarknessConfig.SkillKey, typeof(AbilityTotalDarkness)},
-        {SC.IceFistNodeConfig.SkillKey, typeof(AbilityIceFist)}
+        {SC.IceFistNodeConfig.SkillKey, typeof(AbilityIceFist)},
+        {SC.IronSkinConfig.SkillKey, typeof(AbilityIronSkin)}
     };
 }

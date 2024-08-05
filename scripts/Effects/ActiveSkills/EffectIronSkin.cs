@@ -1,5 +1,6 @@
 ﻿using AO;
 using Assembly.scripts.VFX;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
 
@@ -20,48 +21,38 @@ public class EffectIronSkin : FightEffect
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => false;
 
-    private AttachmentObject _aura;
+    private StatAuraVFX _aura;
     private Spine_Animator _auraAnimator;
-
-    // General Atk boost buff
-    protected EffectConfig.RageConfig Config;
+    private bool _faded;
+    
     
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        AssignConfig(EffectConfig.RageConfig.GetDefault());
-        
-        FightPlayer.CurrentAttack += Config.AtkBoost;
-
+        DurationRemaining = EffectConfig.IronSkinConfig.Duration;
         AddAura();
+        
+        FightPlayer.RegisterPreDamageEvent(this);
         
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        FightPlayer.CurrentAttack -= Config.AtkBoost;
         _aura.Despawn();
+        FightPlayer.RemovePreDamageEvent(this);
     }
-
-    protected void AssignConfig(EffectConfig.RageConfig cfg)
-    {
-        Config = cfg;
-    }
+    
     
     private void AddAura()
     {
-        Prefab auraPrefab = VFXPrefabs.RageAura;
-        _aura = auraPrefab.Instantiate().GetComponent<AttachmentObject>();
-        _auraAnimator = _aura.Entity.GetComponent<Spine_Animator>();
-        _aura.Spawn(FightPlayer.Entity,new Vector2(-0.3f, 0.9f), false, DurationRemaining);
+        Prefab auraPrefab = VFXPrefabs.StatAura;
+        _aura = auraPrefab.Instantiate().GetComponent<StatAuraVFX>();
+        _aura.SetSkin("defense", Vector4.Blue);
+        _aura.SetAnimTrigger("appear");
+        _auraAnimator = _aura.Animator;
+        _aura.Spawn(FightPlayer.Entity,new Vector2(0f, 0.2f), false, DurationRemaining);
 
-        var auraFade = _aura.Entity.GetComponent<FadeAfterStart>();
-        if (auraFade != null)
-        {
-            auraFade.SetPersistFadeTime(DurationRemaining-1.5f, DurationRemaining-0.75f);
-        }
-        
     }
 
     public override void OnEffectUpdate()
@@ -75,6 +66,17 @@ public class EffectIronSkin : FightEffect
         {
             _auraAnimator.LocalEnabled = false;
         }
+
+        if (Util.OneTime(DurationRemaining < 1, ref _faded))
+        {
+            _aura.SetAnimTrigger("disappear");
+        }
         
+    }
+
+    public override void PreDamageMod(ref FightPlayer.DamageInfo info)
+    {
+        base.PreDamageMod(ref info);
+        info.ReactionInfo.Amount = (int)float.Floor(info.ReactionInfo.Amount * EffectConfig.IronSkinConfig.DamageModifier);
     }
 }

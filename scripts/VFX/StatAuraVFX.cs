@@ -1,7 +1,7 @@
-using AO;
+﻿using AO;
 namespace Assembly.scripts.VFX;
 
-public class RegenerationVFX : AttachmentObject
+public class StatAuraVFX : AttachmentObject
 {
     [Serialized] public Spine_Animator Animator;
     //[Serialized] public Spine_Animator CloudAnimator;
@@ -12,6 +12,15 @@ public class RegenerationVFX : AttachmentObject
         Animator.SpineInstance.StateMachine.SetTrigger(trigger);
     }
 
+    public void SetSkin(string skin, Vector4 color)
+    {
+        var spine = Animator.SpineInstance;
+        spine.DisableAllSkins();
+        spine.EnableSkin(skin);
+        spine.RefreshSkins();
+        spine.ColorMultiplier = color;
+    }
+
     public virtual void ConstructStateMachine()
     {
         var stateMachine = StateMachine.Make();
@@ -19,9 +28,9 @@ public class RegenerationVFX : AttachmentObject
         
         var emptyState = mainLayer.CreateState("__CLEAR_TRACK__", 0, true);
         
-        var appearState = mainLayer.CreateState("heal_pulse_intro", 0, false);
-        var idleState = mainLayer.CreateState("heal_pulse_loop", 0, true);
-        var disappearState = mainLayer.CreateState("heal_pulse_outro", 0, false);
+        var appearState = mainLayer.CreateState("status_up_appear", 0, false);
+        var idleState = mainLayer.CreateState("status_up_loop", 0, true);
+        var disappearState = mainLayer.CreateState("status_up_disappear", 0, false);
 
 
         var appearTrigger = stateMachine.CreateVariable("appear", StateMachineVariableKind.TRIGGER);
@@ -51,5 +60,4 @@ public class RegenerationVFX : AttachmentObject
             ConstructStateMachine();
         }
     }
-    
 }
