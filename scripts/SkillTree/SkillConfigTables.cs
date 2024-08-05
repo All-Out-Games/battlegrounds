@@ -229,7 +229,7 @@ public static partial class SkillConfig
         IconPath = "AbilityIcon_Merged/defense/shield.png",
         AbilityIconPath = "AbilityIcon_Separate/defense/shield_icon.png",
         ParentNodeKeys = new string[] { },
-        ChildrenNodeKeys = new string[] { "RollOut" },
+        ChildrenNodeKeys = new string[] { "RollOut", "IronSkin", "HealthBoostD" },
     };
 
     public static readonly SkillTreeNodeConfig HealthBoostDNodeConfig = new SkillTreeNodeConfig()
@@ -254,6 +254,25 @@ public static partial class SkillConfig
             BoostType = StatType.MaxHealth,
             BoostValue = 10
         }
+    };
+    
+    public static readonly SkillTreeNodeConfig IronSkinConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Iron Aura",
+        DescriptionTextKey = $"Harden your skin and reduce {float.Round((1f - EffectConfig.IronSkinConfig.DamageModifier) * 100, 0)}% damage for {EffectConfig.IronSkinConfig.Duration} seconds.",
+        CooldownKey = $"{EffectConfig.IronSkinConfig.Cooldown}s",
+        MaximumLevel = 1,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Defensive,
+        UpgradeCost = 900,
+        UIPosition = new Vector2(450, 30),
+        GridX = 2,
+        GridY = 1,
+        SkillKey = "IronSkin",
+        IconPath = "AbilityIcon_Merged/defense/iron_aura.png",
+        AbilityIconPath = "AbilityIcon_Separate/defense/iron_aura.png",
+        ParentNodeKeys = new string[] { "Shield" },
+        ChildrenNodeKeys = new string[] { },
     };
 
 
@@ -471,6 +490,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig BefuddleConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Psychic Mastery",
         DescriptionTextKey = $"Project a cloud of psychic energy that confuses enemy for {EffectConfig.ProjectileConfig.BefuddleConfusionTime}s.",
         BaseDamageKey = EffectConfig.ProjectileConfig.BefuddleDamageBase,
         RangeDescriptionKey = $"{EffectConfig.ProjectileConfig.BefuddleRange}m",
@@ -535,7 +555,8 @@ public static partial class SkillConfig
     
     public static readonly SkillTreeNodeConfig ConcentrateConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = $"You gain more health from SelfHeal and Regeneration. If your SelfHeal gets interrupted, you still recover some health and get Rage for {EffectConfig.SelfHealConfig.ConcentrateRageTime}.",
+        DisplayName = "Concentration",
+        DescriptionTextKey = $"You gain more health from SelfHeal and Regeneration. If your SelfHeal gets interrupted, you still recover some health and get Rage for {EffectConfig.SelfHealConfig.ConcentrateRageTime}s.",
         IconPath = "AbilityIcon_Merged/psionic/self_heal.png",
         RangeDescriptionKey = "Passive",
         MaximumLevel = 1,
@@ -700,7 +721,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig LightFeetConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = $"Kick it into second gear and temporarily increase your movement speed by {float.Round((EffectConfig.LightFeetConfig.SpeedModifier - 1f) * 100, 0)}% for {EffectConfig.LightFeetConfig.BoostTime}s seconds.",
+        DescriptionTextKey = $"Kick it into second gear and temporarily increase your movement speed by {float.Round((EffectConfig.LightFeetConfig.SpeedModifier - 1f) * 100, 0)}% for {EffectConfig.LightFeetConfig.BoostTime} seconds.",
         IconPath = "AbilityIcon_Merged/stealth/light_feet.png",
         AbilityIconPath = "AbilityIcon_Separate/stealth/light_feet_icon.png",
         CooldownKey = $"{EffectConfig.LightFeetConfig.Cooldown}s",
@@ -876,6 +897,7 @@ public static partial class SkillConfig
             { "RollOut", RollOutNodeConfig },
             { "Shield", ShieldConfig },
             { "HealthBoostD", HealthBoostDNodeConfig},
+            { "IronSkin", IronSkinConfig},
             // Brawler
             { "ShoulderCrash", ShoulderCrashNodeConfig },
             { "GroundStomp", GroundStompConfig },
@@ -918,7 +940,7 @@ public static partial class SkillConfig
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>()
     {
         // Defensive
-        "Punch", "RollOut", "Shield",
+        "Punch", "RollOut", "Shield","IronSkin",
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam", 
         // Psionic

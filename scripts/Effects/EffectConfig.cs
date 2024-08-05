@@ -42,6 +42,17 @@ public static class EffectConfig
 
     #endregion
 
+    #region Cfg: IronSkin
+
+    public struct IronSkinConfig
+    {
+        public static float DamageModifier = 0.8f;
+        public static float Duration = 6f;
+        public static float Cooldown = 12f;
+    }
+
+    #endregion
+
     #region Cfg: Punch
 
     public struct PunchConfig

@@ -276,7 +276,7 @@ SelfDestructExplosion.prefab - .ao - 66a1a7616732dee0bb811d5a - 5339910856129032
 ShadowStepVFX.prefab - .ao - 66859955b45eb9e8339c0ffd - 11550510081096301958
 Shield_FX.prefab - .ao - 66a7fb546732dee0bb811e8e - 10171497738848877739
 ShurikenProjectile.prefab - .ao - 66a91b0496cebaeb1f32988f - 1922884962774569859
-SkillTreeItem.prefab - .ao - 66ad194ccf7a5e4159a6c3fc - 13545040142077922255
+SkillTreeItem.prefab - .ao - 66b116aecf7a5e4159a6c48a - 16992300314804206834
 SkillTreePage.prefab - .ao - 66ad194ccf7a5e4159a6c3fd - 16522761631340062049
 SpoonProjectile.prefab - .ao - 66a91b0496cebaeb1f329890 - 11818330664990311604
 TotalDarknessOverlay.prefab - .ao - 6685d28fb45eb9e8339c10be - 15557225266589634022
@@ -533,6 +533,9 @@ VFX/ShadowStep/BAT003_shadow_step.spine - .ao - 6685995bb45eb9e8339c102c - 88294
 VFX/Shield/BAT003_shields.png - .ao - 668d8847b45eb9e8339c1a70 - 3641356142537919237
 VFX/Shield/BAT003_shields.png - .ao.ios - 668d8847b45eb9e8339c1a71 - 12968563510881937512
 VFX/Shield/BAT003_shields.spine - .ao - 668d8847b45eb9e8339c1a6f - 2176913794819811108
+VFX/StatusUp/BAT003_status_up.png - .ao - 66b0f858cf7a5e4159a6c47f - 3631878665178837719
+VFX/StatusUp/BAT003_status_up.png - .ao.ios - 66b0f858cf7a5e4159a6c47e - 9560923426440590301
+VFX/StatusUp/BAT003_status_up.spine - .ao - 66b0f858cf7a5e4159a6c47d - 15335207772030312265
 ability_icon_tmp/Backstab_tmp.png - .ao - 6685995bb45eb9e8339c102d - 4391966403771137123
 ability_icon_tmp/Backstab_tmp.png - .ao.ios - 6685995cb45eb9e8339c1031 - 17177637865044245287
 ability_icon_tmp/BearTrap_tmp.png - .ao - 6685995cb45eb9e8339c1032 - 5898372421903878382
