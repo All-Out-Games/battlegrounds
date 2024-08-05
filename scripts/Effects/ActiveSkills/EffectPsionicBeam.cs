@@ -31,6 +31,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
     private Vector2 _eyePos;
     private float _rayLength;
     private List<Entity> _interactedEntities;
+    private bool _enhanced;
     
     // Carve Trail
     private float _nextCarveTick = 0;
@@ -51,6 +52,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
     {
         _cfg = cfg;
         DurationRemaining = EffectConfig.PsionicBeamConfig.CarveTime;
+        _enhanced = FightPlayer.HasSkill("Psychic");
     }
     
     public override void OnEffectStart(bool isDropIn)
@@ -160,6 +162,12 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
 
                 var hitVfx = VFXPrefabs.PsionicBeamHitVFX.Instantiate();
                 hitVfx.Position = hit.point;
+                if (_enhanced)
+                {
+                    FightPlayer.DamageInfo selfHealInfo = FightPlayer.DamageInfo.CreateHealInfo(EffectConfig.PsionicBeamConfig.PsychicHeal);
+                    FightPlayer.TakeDamage(FightPlayer, selfHealInfo);
+                }
+                
             }
         }
     }

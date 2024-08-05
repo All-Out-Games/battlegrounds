@@ -68,7 +68,7 @@ public static class EffectConfig
     {
         PunchConfig cfg = new PunchConfig
         {
-            PunchDamage = PunchConfig.PunchDmgGrowth * level + PunchConfig.PunchDmgBase + atk,
+            PunchDamage = PunchConfig.PunchDmgGrowth * (level-1) + PunchConfig.PunchDmgBase + atk,
             AnimationTrigger = $"punch{level}"
         };
         return cfg;
@@ -488,7 +488,7 @@ public static class EffectConfig
         public static readonly float Degrees = 15f; // Half the entire angle
         public static readonly int PsionicBeamDmgBase = 12;
         public static readonly float CarveTime = 0.4f;
-        
+        public static readonly int PsychicHeal = 5;
         
         public static readonly float BeamCarveInterval = 0.3f; // Length of each interval. Calculate total intervals at runtime
         public static readonly float CarveFadeTime = 0.6f;

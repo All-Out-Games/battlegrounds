@@ -19,7 +19,7 @@ public class AbilityInfoScreen : Component
 
     public void SetDescription(string skillKey)
     {
-        _title.Text = skillKey;
+        
         if (!SkillConfig.STConfigQueryDict.TryGetValue(skillKey, out var stConfig))
         {
             Log.Error($"{skillKey} is not valid! Did you forgot to input it into the stConfig dict?");
@@ -27,6 +27,7 @@ public class AbilityInfoScreen : Component
             return;
         }
 
+        _title.Text = stConfig.GetDisplayName();
         if (!SkillConfig.STTabQueryDict.TryGetValue(stConfig.NTab, out var tabConfig))
         {
             Log.Error($"{tabConfig} is not valid! Did you forgot to add a new tab?");

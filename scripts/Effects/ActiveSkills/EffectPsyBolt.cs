@@ -53,6 +53,11 @@ public class EffectPsybolt : EffectProjectileThrow
         supplementProjectileComp.LifeTime = Config.ProjectileLifetime;
         supplementProjectileComp.InitializeProjectile(FightPlayer, Config.Damage, false);
         supplementProjectileComp.KnockBackStrength = EffectConfig.ProjectileConfig.PsyboltKnockbackStrength;
+
+        if (FightPlayer.HasSkill("Psychic"))
+        {
+            proj.LocalScale *= 2.0f;
+        }
     }
     
 }

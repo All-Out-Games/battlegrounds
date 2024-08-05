@@ -1,0 +1,63 @@
+13
+502511173633
+344238415728336 1722809950146308200
+{
+  "name": "Pipe_Hor",
+  "local_enabled": true,
+  "local_position": {
+    "X": 0,
+    "Y": 0
+  },
+  "local_rotation": 0,
+  "local_scale": {
+    "X": 1,
+    "Y": 1
+  },
+  "previous_sibling": "344198001990305:1722809931011015500",
+  "next_sibling": "344389487026339:1722810021676278200",
+  "parent": "341894663236004:1722808840415020600"
+},
+{
+  "cid": 1,
+  "aoid": "344238415807868:1722809950146345100",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000
+    },
+    "max": {
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000
+    },
+    "insets": {
+      "X": -12.5000000000000000,
+      "Y": -12.5000000000000000,
+      "Z": -12.5000000000000000,
+      "W": -12.5000000000000000
+    },
+    "offset": {
+      "X": 105.8000030517578125,
+      "Y": 0
+    }
+  }
+},
+{
+  "cid": 2,
+  "aoid": "344238415864630:1722809950146372000",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIImage",
+  "data": {
+    "sprite": "UI/SkillTree/empty_channels/horizontal_empty.png",
+    "tint": {
+      "X": 1,
+      "Y": 1,
+      "Z": 1,
+      "W": 1
+    },
+    "fit_aspect": false,
+    "fit_aspect_kind": 0,
+    "fit_aspect_anchor": 0
+  }
+}

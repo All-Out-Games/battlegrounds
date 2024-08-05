@@ -22,6 +22,8 @@ public enum DamageType
 
 public static class GlobalData
 {
+    // Stats
+    
     public static float RespawnTime = 3f;
     public static float CombatSpeedModifier = 0.75f;
     public static float SafeSpeedModifier = 1.25f;
@@ -29,17 +31,21 @@ public static class GlobalData
     public static int DefaultMaxHealth = 100;
     public static int DefaultAtk = 10;
     
-    #region Coins Related
-
+    // Coins
+    
     public static int CoinForAttack = 10;
     public static int CoinForElimination = 30;
     public static int CoinForDeath = 15;
-
-    #endregion
     
+    // Damage Number Color
+
     public static Vector4 DamageNumberColor = Vector4.Red;
     public static Vector4 HealNumberColor = Vector4.Green;
     public static Vector4 CritNumberColor = new Vector4(1, 0.68f, 0, 1);
     public static Vector4 ShieldNumberColor = Vector4.LightBlue;
     public static Vector4 OutputDamageNumberColor = Vector4.White;
+    
+    // Skill Tree
+    public static int GridMaxX = 2;
+    public static int GridMaxY = 3;
 }

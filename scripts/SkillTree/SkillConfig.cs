@@ -97,7 +97,7 @@ public static partial class SkillConfig
         public SkillTreeNodeConfig()
         {
             DescriptionTextKey = "Description Unfilled, to be updated";
-
+            DisplayName = String.Empty;
             UpgradeCost = 0;
             MaximumLevel = 1;
             NType = NodeType.AttrBoost;
@@ -124,6 +124,18 @@ public static partial class SkillConfig
         public string[] GetParentNodeKeys()
         {
             return ParentNodeKeys ?? Array.Empty<string>();
+        }
+        
+        public string GetDisplayName()
+        {
+            if (DisplayName == String.Empty)
+            {
+                return SkillKey;
+            }
+            else
+            {
+                return DisplayName;
+            }
         }
         
     }
@@ -175,4 +187,6 @@ public static partial class SkillConfig
             throw new KeyNotFoundException($"{skillKey} is not found in config!");
         }
     }
+
+    
 }

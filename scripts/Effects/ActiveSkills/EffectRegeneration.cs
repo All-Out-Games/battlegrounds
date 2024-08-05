@@ -63,7 +63,7 @@ public class EffectRegeneration : FightEffect
     private void Regenerate()
     {
         FightPlayer.DamageInfo selfHealInfo = FightPlayer.DamageInfo.CreateHealInfo(PerSecondHeal);
-        FightPlayer.TakeDamage(FightPlayer, selfHealInfo); // You can create self damage that comes from other players.
+        FightPlayer.TakeDamage(FightPlayer, selfHealInfo);
     }
 
     private void AddAura()

@@ -183,6 +183,10 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[] { "Punch2" },
         ChildrenNodeKeys = new string[] { },
     };
+    
+    #endregion
+
+    #region Defensive
 
     /// <summary>
     /// RollOut node
@@ -228,6 +232,29 @@ public static partial class SkillConfig
         ChildrenNodeKeys = new string[] { "RollOut" },
     };
 
+    public static readonly SkillTreeNodeConfig HealthBoostDNodeConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey = "Increase your base health by 10.",
+        DisplayName = "HealthBoost",
+        MaximumLevel = 1,
+        IconPath = "AbilityIcon_Merged/basic/health_boost.png",
+        NeedRemover = true,
+        RangeDescriptionKey = "Passive",
+        NType = NodeType.AttrBoost,
+        NTab = SkillTreeTabs.Defensive,
+        UpgradeCost = 780,
+        UIPosition = new Vector2(730, 230),
+        GridX = 0,
+        GridY = 1,
+        SkillKey = "HealthBoostD",
+        ParentNodeKeys = new string[] { "Shield" },
+        ChildrenNodeKeys = new string[] {  },
+        Buff = new StatBuff
+        {
+            BoostType = StatType.MaxHealth,
+            BoostValue = 10
+        }
+    };
 
 
 
@@ -352,7 +379,7 @@ public static partial class SkillConfig
         GridY = 2,
         SkillKey = "BattleCry",
         ParentNodeKeys = new string[] { "Rage" },
-        ChildrenNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "SelfDestruct" },
     };
 
     public static readonly SkillTreeNodeConfig ClawSlashConfig = new SkillTreeNodeConfig()
@@ -582,7 +609,7 @@ public static partial class SkillConfig
         UIPosition = new Vector2(10, 430),
         SkillKey = "PsionicBeam",
         ParentNodeKeys = new string[] { "Psybolt" },
-        ChildrenNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "Psychic" },
 
     };
 
@@ -605,6 +632,24 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[] { "Hypnotize" },
         ChildrenNodeKeys = new string[] { },
 
+    };
+
+    public static readonly SkillTreeNodeConfig PsychicConfig = new SkillTreeNodeConfig()
+    {
+        DescriptionTextKey =
+            "Improved connection with your inner voice. Your psybolt becomes larger, and your psionic beam absorbs health on each hit.",
+        RangeDescriptionKey = "Passive",
+        IconPath = "AbilityIcon_Merged/psionic/psybolt.png",
+        MaximumLevel = 1,
+        GridX = 1,
+        GridY = 3,
+        NType = NodeType.SkillEnhance,
+        NTab = SkillTreeTabs.Psionic,
+        UpgradeCost = 5000,
+        UIPosition = new Vector2(10, 430),
+        SkillKey = "Psychic",
+        ParentNodeKeys = new string[] { "PsionicBeam" },
+        ChildrenNodeKeys = new string[] { },
     };
 
     #endregion
@@ -830,6 +875,7 @@ public static partial class SkillConfig
             // Defensive
             { "RollOut", RollOutNodeConfig },
             { "Shield", ShieldConfig },
+            { "HealthBoostD", HealthBoostDNodeConfig},
             // Brawler
             { "ShoulderCrash", ShoulderCrashNodeConfig },
             { "GroundStomp", GroundStompConfig },
@@ -850,6 +896,7 @@ public static partial class SkillConfig
             { "PsionicBeam", PsionicBeamConfig },
             { "PsyThrow", PsyThrowConfig },
             { "Concentrate", ConcentrateConfig},
+            { "Psychic", PsychicConfig},
             // Stealth
             { "Invisibility", InvisibilityConfig },
             { "LightFeet", LightFeetConfig },
@@ -866,10 +913,11 @@ public static partial class SkillConfig
 
     // [Add Skill] Item 3: Put Classification Here
     public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>()
-        { "HealthBoost", "AttackBoost", "HealthBoost2", "AttackBoost2" };
+        { "HealthBoost", "AttackBoost", "HealthBoost2", "AttackBoost2", "HealthBoostD" };
 
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>()
     {
+        // Defensive
         "Punch", "RollOut", "Shield",
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam", 
@@ -883,7 +931,8 @@ public static partial class SkillConfig
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "Punch2", "Punch3" };
 
-    public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() { "Concentrate", "DualClaw", "NinjaMastery"};
+    public static readonly HashSet<string> SkillEnhanceSkills = new HashSet<string>() { "DualClaw",
+        "Concentrate", "Psychic", "NinjaMastery", };
 }
 
 // [Add Skill] Item 4: Add the association between skillKey and type of ability.

@@ -18,6 +18,7 @@ public class SkillTreePage : UniqueUIWindow
     [Serialized] private UIText _costText, _buyText;
     [Serialized] private UIButton _buyButton;
     private Dictionary<string, SkillTreeItem> _treeItems;
+    private Dictionary<Tuple<int, int>, SkillTreePipes> _treePipes;
     
     // Tab
     [Serialized] private UIButton _nextTab;
@@ -62,12 +63,35 @@ public class SkillTreePage : UniqueUIWindow
         _slotsMgr ??= _localPlayer.GetSkillSlots();
         _skillTree ??= _localPlayer.GetSkillTree();
         _treeItems = new Dictionary<string, SkillTreeItem>();
+        _treePipes = new Dictionary<Tuple<int, int>, SkillTreePipes>();
         
         
         // First Open Phase 1
-        // Spawn all skills
+        // Pipes
         Prefab itemPrefab = Assets.GetAsset<Prefab>("SkillTreeItem.prefab");
+        Prefab pipe1Prefab = Assets.GetAsset<Prefab>("Pipe_1.prefab");
+        Prefab pipePrefab = Assets.GetAsset<Prefab>("Pipe_Straight.prefab");
         
+        // First pipe at (1,0)
+        SkillTreePipes firstPipe = pipe1Prefab.Instantiate().GetComponent<SkillTreePipes>();
+        firstPipe.SetOffset(GetGridPosition(1,0) with {Y = GridOrigin.Y - 0.5f* GridInterval.Y});
+        firstPipe.Entity.SetParent(_skillPageParent, false);
+        _treePipes.Add(Tuple.Create(1,0),firstPipe);
+        // Other pipes up to (2,3)
+        // In function UpdateAllItems, we update pipes with the node's current information.
+        for (int i = 0; i <= GlobalData.GridMaxX; i++)
+        {
+            for (int j = 1; j <= GlobalData.GridMaxY; j++)
+            {
+                SkillTreePipes pipe = pipePrefab.Instantiate().GetComponent<SkillTreePipes>();
+                Vector2 pos = GetGridPosition(i, j);
+                pipe.SetOffset(pos with{ Y = pos.Y - 0.5f* GridInterval.Y});
+                pipe.Entity.SetParent(_skillPageParent, false);
+                _treePipes.Add(Tuple.Create(i,j), pipe);
+            }
+        }
+        
+        // Spawn all skills
         foreach (string key in SkillConfig.GetAllSkillKeys())
         {
             SkillConfig.SkillTreeNodeConfig cfg = SkillConfig.GetConfig(key);
@@ -166,6 +190,7 @@ public class SkillTreePage : UniqueUIWindow
                 item.Entity.LocalEnabled = false;
             }
         }
+        UpdatePipe();
     }
 
     private void UpdateAllItems(int coins = 0)
@@ -174,6 +199,39 @@ public class SkillTreePage : UniqueUIWindow
         foreach (var item in _treeItems)
         {
             item.Value.UpdateItem(_skillTree,currentAbilities );
+        }
+        UpdatePipe();
+    }
+
+    private void UpdatePipe()
+    {
+        // Hide all pipes
+        foreach (var pipe in _treePipes)
+        {
+            pipe.Value.Entity.LocalEnabled = false;
+        }
+        // Enable the ones related to current tree
+        foreach (var kv in _treeItems)
+        {
+            // Enable items in tab if player owns the skill & skill belongs to this tab
+            var item = kv.Value;
+            
+            if (item.NTab == _currentTab)
+            {
+                if (item.Config.ChildrenNodeKeys.Length == 0)
+                {
+                    continue; // If it's the last skill, don't show the pipe under it.
+                }
+                SkillTreePipes pipes;
+                if (!_treePipes.TryGetValue(Tuple.Create(item.Config.GridX, item.Config.GridY), out pipes))
+                {
+                    Log.Error("You queried a tree grid position out of range! Did you expand the skill tree's max dimension?");
+                    return;
+                }
+
+                pipes.Entity.LocalEnabled = true;
+                pipes.SetFilled(item.Status == SkillTreeItem.NodeStatus.Purchased);
+            }
         }
     }
 
@@ -205,13 +263,13 @@ public class SkillTreePage : UniqueUIWindow
         switch (item.Status)
         {
             case SkillTreeItem.NodeStatus.Purchased:
-                _buyText.Text = $"Purchased {item.Config.SkillKey}";
+                _buyText.Text = $"Purchased {item.Config.GetDisplayName()}";
                 _buyButton.Interactable = false;
                 break;
             case SkillTreeItem.NodeStatus.Attainable:
                 if (_localPlayer.Coins >= item.Config.UpgradeCost)
                 {
-                    _buyText.Text = $"Buy {item.Config.SkillKey}";
+                    _buyText.Text = $"Buy {item.Config.GetDisplayName()}";
                     _buyButton.Interactable = true;
                 }
                 else
