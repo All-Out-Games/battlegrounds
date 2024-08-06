@@ -109,7 +109,7 @@ public class SkillTreePage : UniqueUIWindow
         _tabAmount = _availableTabs.Count;
         _prevTab.OnClicked += PreviousTab;
         _nextTab.OnClicked += NextTab;
-        UpdateSkillTreeTab(SkillConfig.SkillTreeTabs.Basic); // Select Basic Tab (Tab 0)
+        
         
         // First Open Phase 3
         // Tab buttons
@@ -120,6 +120,7 @@ public class SkillTreePage : UniqueUIWindow
 
         _buyButton.OnClicked += OnBuyButtonClicked;
 
+        UpdateSkillTreeTab(SkillConfig.SkillTreeTabs.Basic); // Select Basic Tab (Tab 0)
 
     }
 
@@ -176,6 +177,18 @@ public class SkillTreePage : UniqueUIWindow
         _abilityTabName.Text = SkillConfig.STTabsNameQueryDict[_currentTab];
         _tabBg.Sprite = Assets.GetAsset<Texture>(SkillConfig.STTabQueryDict[_currentTab].SkillPageBg);
         
+        foreach (var tabBtn in _tabButtons)
+        {
+            if (tabBtn.Index == _currentTabIndex)
+            {
+                tabBtn.SetToggled(true);
+            }
+            else
+            {
+                tabBtn.SetToggled(false);
+            }
+        }
+
         foreach (var kv in _treeItems)
         {
             // Enable items in tab if player owns the skill & skill belongs to this tab

@@ -5,28 +5,58 @@ namespace Assembly.scripts.UI;
 public class UISkillTabButton : Component
 {
 
-    private int _index;
+    public int Index;
+    private Texture _pressedTexture;
+    private Texture _normalTexture;
+    private UIButton _btn;
+
+    [Serialized] private Entity _selectionBorder;
 
     public Action<int> OnTabButtonClicked;
 
     public void Initialize(int idx, Action<int> onIndexedTabClicked)
     {
-        _index = idx;
+        Index = idx;
         OnTabButtonClicked += onIndexedTabClicked;
 
-        UIButton btn = Entity.GetComponent<UIButton>();
+        _btn = Entity.GetComponent<UIButton>();
         
-        if (btn != null)
+        if (_btn != null)
         {
-            btn.OnClicked += () =>
+            _btn.OnClicked += () =>
             {
-                OnTabButtonClicked.Invoke(_index);
+                OnTabButtonClicked.Invoke(Index);
             };
+            _pressedTexture = _btn.Settings.SpritePressed;
+            _normalTexture = _btn.Settings.Sprite;
         }
         else
         {
             Log.Error("Skilltab button must have the button component!");
         }
         
+    }
+
+    public void SetToggled(bool toggled)
+    {
+        _selectionBorder.LocalEnabled = toggled;
+        if (toggled)
+        {
+            var buttonSettings = _btn.Settings with
+            {
+                SpritePressed = _normalTexture,
+                Sprite = _pressedTexture
+            };
+            _btn.Settings = buttonSettings;
+        }
+        else
+        {
+            var buttonSettings = _btn.Settings with
+            {
+                SpritePressed = _pressedTexture,
+                Sprite = _normalTexture
+            };
+            _btn.Settings = buttonSettings;
+        }
     }
 }

@@ -31,8 +31,7 @@ public class AbilityLoadoutPage : UniqueUIWindow
     [Serialized] private UIText _abilityTabName;
     [Serialized] private UIText _emptyTabText;
     [Serialized] private UIGrid _skillList;
-
-    // TODO: Info popup
+    
     [Serialized] private AbilityInfoScreen _infoScreen;
     
     // Data
@@ -211,6 +210,19 @@ public class AbilityLoadoutPage : UniqueUIWindow
         // All ability nodes are loaded upon startup. We just need to enable those belong to this tab
         _currentTab = tab;
         _abilityTabName.Text = SkillConfig.STTabsNameQueryDict[tab];
+        
+        foreach (var tabBtn in _tabButtons)
+        {
+            if (tabBtn.Index == _currentTabIndex)
+            {
+                tabBtn.SetToggled(true);
+            }
+            else
+            {
+                tabBtn.SetToggled(false);
+            }
+        }
+        
         bool haveItemsFlag = false;
         foreach (var kv in _bookItems)
         {

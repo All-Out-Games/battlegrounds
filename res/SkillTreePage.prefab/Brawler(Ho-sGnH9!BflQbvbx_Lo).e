@@ -132,7 +132,7 @@
   "component_type": "Mono_Component",
   "mono_component_type": "UISkillTabButton",
   "data": {
-
+    "_selectionBorder": "64317299597018:1722902407194638200"
   }
 },
 {
