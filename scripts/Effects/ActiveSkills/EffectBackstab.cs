@@ -38,7 +38,7 @@ public class EffectBackstab : EffectNoMovement
             return;
         }
         FightPlayer.SetAnimTrigger("backstabbed");
-        DurationRemaining = EffectConfig.BackStabConfig.BackstabTime;
+        DurationRemaining = EffectConfig.BackStabConfig.BackstabTime + 0.4f;
         SoundId = SFX.Play(SFXKeys.BackStabVictimAudio, DefaultSoundDesc);
     }
     

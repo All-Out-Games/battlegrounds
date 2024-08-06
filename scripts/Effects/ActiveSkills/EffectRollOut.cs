@@ -55,25 +55,26 @@ public class EffectRollOut : FightEffect
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        
-        var slotsMgr = FightPlayer.GetSkillSlots();
-        var f = typeof(AbilityRollOut);
-        _originalIndex = slotsMgr.GetAbilityIndex(f);
-        if (_originalIndex > 0)
-        {
-            slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityRollOutCancel)));
-        }
-        else
-        {
-            Log.Error("Rollout: Skill Replacement Error! The player does not have the primary skill equipped.");
-        }
-        
+
         RollOutStart();
         FightPlayer.SetAnimTrigger("rollout_start");
         
         DurationRemaining = _config.Duration;
 
-        
+        if (FightPlayer.IsLocal)
+        {
+            var slotsMgr = FightPlayer.GetSkillSlots();
+            var f = typeof(AbilityRollOut);
+            _originalIndex = slotsMgr.GetAbilityIndex(f);
+            if (_originalIndex > 0)
+            {
+                slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityRollOutCancel)));
+            }
+            else
+            {
+                Log.Error("Rollout: Skill Replacement Error! The player does not have the primary skill equipped.");
+            }
+        }
     }
     
     
@@ -142,7 +143,7 @@ public class EffectRollOut : FightEffect
             SFX.Play(SFXKeys.RolloutEndAudio, DefaultSoundDesc);
         }
         
-        if (_originalIndex > 0)
+        if (_originalIndex > 0 && FightPlayer.IsLocal)
         {
             var slotsMgr = FightPlayer.GetSkillSlots();
             slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityRollOut)));

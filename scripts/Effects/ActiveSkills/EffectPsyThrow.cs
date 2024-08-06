@@ -93,38 +93,31 @@ public class EffectPsyThrowReady : FightEffectWithNoFlinch
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        var slotsMgr = FightPlayer.GetSkillSlots();
-        var f = typeof(AbilityPsyThrow);
-        _originalIndex = slotsMgr.GetAbilityIndex(f);
-        if (_originalIndex > 0)
-        {
-            slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityPsyThrowLaunch)));
-        }
-        else
-        {
-            Log.Error("PsyThrow: Skill Replacement Error! The player does not have the primary skill equipped.");
-        }
         FightPlayer.UnsetAnimTrigger("psythrow_attack_throw");
         FightPlayer.SetAnimTrigger("psythrow_attack");
 
         SFX.Play(SFXKeys.PsyThrowStart, DefaultSoundDesc);
         SoundId = SFX.Play(SFXKeys.PsyThrowLoop, new SFX.PlaySoundDesc(){EntityToFollow = FightPlayer.Entity, Loop = true, LoopTimeout = 1+EffectConfig.PsyThrowConfig.GrabTime});
+
+        if (Player.IsLocal)
+        {
+            var slotsMgr = FightPlayer.GetSkillSlots();
+            var f = typeof(AbilityPsyThrow);
+            _originalIndex = slotsMgr.GetAbilityIndex(f);
+            if (_originalIndex > 0)
+            {
+                slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityPsyThrowLaunch)));
+            }
+            else
+            {
+                Log.Error("PsyThrow: Skill Replacement Error! The player does not have the primary skill equipped.");
+            }
+        }
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        var slotsMgr = FightPlayer.GetSkillSlots();
-        var f = typeof(AbilityPsyThrowLaunch);
-        _originalIndex = slotsMgr.GetAbilityIndex(f);
-        if (_originalIndex > 0)
-        {
-            slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityPsyThrow)));
-        }
-        else
-        {
-            Log.Error("PsyThrow: Skill Replacement Error! The player does not have the primary skill equipped.");
-        }
 
         if (!interrupt)
         {
@@ -138,6 +131,21 @@ public class EffectPsyThrowReady : FightEffectWithNoFlinch
         FightPlayer.SetAnimTrigger("psythrow_attack_throw");
         SFX.Stop(SoundId);
         SFX.Play(SFXKeys.PsyThrowEnd, DefaultSoundDesc);
+
+        if (Player.IsLocal)
+        {
+            var slotsMgr = FightPlayer.GetSkillSlots();
+            var f = typeof(AbilityPsyThrowLaunch);
+            _originalIndex = slotsMgr.GetAbilityIndex(f);
+            if (_originalIndex > 0)
+            {
+                slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityPsyThrow)));
+            }
+            else
+            {
+                Log.Error("PsyThrow: Skill Replacement Error! The player does not have the primary skill equipped.");
+            }
+        }
     }
 }
 
