@@ -182,6 +182,20 @@ public partial class FightPlayer : Player
         }
     }
 
+    private SyncVar<int> _exp = new(0);
+
+    public int Exp
+    {
+        get => _exp;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _exp.Set(value);
+            }
+        }
+    }
+
     /// <summary>
     /// Note: This flag doesn't actually make player immune to damage. You need to apply an effect that inherits FightEffectWithImmunity
     /// which removes damage and flinch event from TakeDamage(). This flag is used in projectiles / traps to make them ignore invincible players.
