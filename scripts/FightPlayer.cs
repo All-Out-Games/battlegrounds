@@ -192,6 +192,24 @@ public partial class FightPlayer : Player
             if (Network.IsServer)
             {
                 _exp.Set(value);
+                if (_exp > LevelingData.NextLevelXp[_level])
+                {
+                    Level += 1;
+                }
+            }
+        }
+    }
+
+    private SyncVar<int> _level = new(0);
+
+    public int Level
+    {
+        get => _level;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _level.Set(value);
             }
         }
     }
@@ -286,8 +304,12 @@ public partial class FightPlayer : Player
                 CoinUpdateEvent.Invoke(_coins); 
                 TotalDamageUpdateEvent.Invoke(TotalDamageDealt);
                 TotalElminationUpdateEvent.Invoke(TotalEliminations);
+                
+                // TODO: Probably need safer and clearer approach (without using self-defined events). Save a reference 
                 _totalDamageDealt.OnSync += (oldi, newi) => { TotalDamageUpdateEvent(newi); }; // Hook up sync var
                 _totalEliminations.OnSync += (oldi, newi) => { TotalElminationUpdateEvent(newi); };
+                _level.OnSync += NotifyLevelUpdate;
+                _exp.OnSync += NotifyExpUpdate;
             }
             
         }

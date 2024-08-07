@@ -1,13 +1,15 @@
 ﻿using AO;
+using Assembly.scripts;
 
 // This class is for events that are scoped to the player.
 
 public partial class FightPlayer
 {
     public Action<int> CoinUpdateEvent;
+    public Action<int> PlayerSwitchZoneEvent;
+    
     public Action<int> TotalElminationUpdateEvent;
     public Action<int> TotalDamageUpdateEvent;
-    public Action<int> PlayerSwitchZoneEvent;
 
     // Reserved for effects related to post-damage (e.g. after elimination, add damage)
     public Action<FightPlayer, DamageInfo> OnDealDamage; // Triggered in global damage event. Will contain the ACTUAL damage dealt (i.e. the damage info might be modified by some effects like parry)
@@ -23,7 +25,7 @@ public partial class FightPlayer
     {
         // Server Authoratative Data
         public DamageType DmgType = DamageType.Melee;
-        public bool AwardCoin = true;
+        public bool AwardCoin = true; // This is now used to determine if a attack should give EXP
         public int InterruptLevel = 0;
         public ulong SourceNetworkId;
         public bool SpawnDamageNumber = true;
@@ -109,6 +111,8 @@ public partial class FightPlayer
 
     #endregion
     
+    // These are functions that handles local client events.
+    // They are a type of events that usually invoked for UIs after receiving a SyncVar update 
     #region Local Client Events
 
     // All clients will receive this event, but we only update the ui if the player is local
@@ -121,6 +125,7 @@ public partial class FightPlayer
             CoinUpdateEvent?.Invoke(c);
         }
     }
+    
 
     [ClientRpc]
     public void NotifyDealDamage(DamageInfo info)
@@ -135,7 +140,7 @@ public partial class FightPlayer
         
         if (Network.IsClient && PlayerStatus == PlayerStatus.Combat)
         {
-            // Log.Warn($"{source == Entity}, {source.Name}, {Entity.Name}");
+            // Damage numbers only render if the number is related to the local player
             if (IsLocal || source == Network.LocalPlayer.Entity) // Player takes the damage or deals damage
             {
                 if (source == Network.LocalPlayer.Entity && info.DamageNumberColor == GlobalData.DamageNumberColor)
@@ -148,10 +153,39 @@ public partial class FightPlayer
         }
     }
 
+    /// <summary>
+    /// Called when _ex[ SyncVar is updated.
+    /// Should be UI only. Handle level up / rebirth in SyncVar setters
+    /// </summary>
+    /// <param name="old"></param>
+    /// <param name="exp"></param>
+    private void NotifyExpUpdate(int old, int exp)
+    {
+        if (IsLocal)
+        {
+            
+        }
+    }
+
+    /// <summary>
+    /// Called when _level SyncVar is updated.
+    /// Should be UI only. 
+    /// </summary>
+    /// <param name="old"></param>
+    /// <param name="lvl"></param>
+    private void NotifyLevelUpdate(int old, int lvl)
+    {
+        if (IsLocal)
+        {
+            
+        }
+    }
+
     #endregion
 
     /// <summary>
-    /// Subscribe to global damage & elimination events. Note that these events are client only.
+    /// Subscribe to global damage & elimination events.
+    /// They are distributed by the server, so they are reliable
     /// </summary>
     private void HookupGlobalEvents()
     {
@@ -163,8 +197,7 @@ public partial class FightPlayer
                 TotalDamageDealt += info.ReactionInfo.Amount;
                 if (info.AwardCoin)
                 {
-                    Coins += GlobalData.CoinForAttack;
-                    TotalCoins += GlobalData.CoinForAttack;
+                    Exp += LevelingData.XpForDamage;
                 }
                 // Send a callback to the source of damage. This need to reach client & server
                 source.CallClient_NotifyDealDamage(info);
@@ -175,15 +208,14 @@ public partial class FightPlayer
         {
             if (source == this && victim != this)
             {
+                // This player eliminated another player
                 TotalEliminations += 1;
-                Coins += GlobalData.CoinForElimination; // Kills award 30 coins
-                TotalCoins += GlobalData.CoinForElimination;
+                Exp += LevelingData.XpForKill;
             }
 
             if (victim == this && source != this)
             {
-                Coins += GlobalData.CoinForDeath; // Death award 15 coins
-                TotalCoins += GlobalData.CoinForDeath;
+                // This player died
             }
         };
     }
