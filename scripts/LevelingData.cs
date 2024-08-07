@@ -30,7 +30,7 @@ public static class LevelingData
     };
     
     // Player get this amount of coins when they reach level i
-    public static readonly int[] CoinRewards = new int[] {
+    public static readonly int[] CoinRewards = {
         0, 300, 300, 300, 1000,
         450, 450, 450, 450, 2000, 
         600, 600, 600, 600, 4000,

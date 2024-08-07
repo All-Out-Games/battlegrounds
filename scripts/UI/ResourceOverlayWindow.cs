@@ -8,8 +8,6 @@ public class ResourceOverlayWindow : BaseUIWindow
     private FightPlayer _localPlayer;
     
     [Serialized] private UIText _coinText;
-    [Serialized] private UIText _damageText;
-    [Serialized] private UIText _eliminationText;
 
     [Serialized] private UIButton _skillBookButton;
     [Serialized] private Entity _sidebar;
@@ -54,17 +52,7 @@ public class ResourceOverlayWindow : BaseUIWindow
                 64f, 32f));
         }
     }
-
-    public void UpdateDamage(int dmg)
-    {
-        _damageText.Text = dmg.ToString();
-    }
-
-    public void UpdateElimination(int kills)
-    {
-        _eliminationText.Text = kills.ToString();
-    }
-
+    
     public static IEnumerator TextChangeEmphasize(UIText txt, float expandTime, float shrinkTime, float expandSize,
         float originalSize)
     {
@@ -122,7 +110,7 @@ public class ResourceOverlayWindow : BaseUIWindow
 
     public void UpdateLevelingTxt(int level, int nextExp)
     {
-        _levelText.Text = level.ToString();
+        _levelText.Text = $"{level+1}";
         _nextExpText.Text = nextExp.ToString();
     }
 }

@@ -67,23 +67,36 @@ public static partial class SkillConfig
         public string RangeDescriptionKey = "N/A";
         public string CooldownKey = "N/A";
         
+        /// <summary>
+        /// Coins needed when purchasing this skill
+        /// </summary>
         public int UpgradeCost;
-        public int MaximumLevel; // Not used but put it here for redundancy. This number must be at least 1
-        public NodeType NType; // This determines how the skill is going to be handled on gameplay side (unrelated to UI)
+        /// <summary>
+        /// Not used but put it here for redundancy. This number must be at least 1
+        /// </summary>
+        public int MaximumLevel; 
+        /// <summary>
+        /// // Skill will be gated from players that are under this level.
+        /// </summary>
+        public int UnlockLevel; 
+        
+        public NodeType NType; // The skill type. Active Skill - SkillUnlock, Passive Skill - SkillEnhancement / Others are reserved for special types
         public SkillTreeTabs NTab; // This determines which page in ability vendor and ability book this node belongs to
         
         public Vector2 UIPosition; // TODO: this field is being retired. 
         public int GridX = 1; // Max = 2
         public int GridY = 0; // Max = 5
 
-        // Keys are unique for each node
+        /// <summary>
+        /// SkillKeys are unique IDs for skill.
+        /// </summary>
         public string SkillKey;
         public string IconPath;
         public string AbilityIconPath; // These icons do not have a backplate, used in ability slots
         public string[] ChildrenNodeKeys;
         public string[] ParentNodeKeys;
         
-        // Special Handler needed - If this is marked True, a special handler will be called when the skill is added
+        // Special Handler needed - If this is marked True, a special handler will be called (by Reflection) when the skill is added
         public bool NeedSpecialHandler;
         /// <summary>
         /// Depending on NodeType, a remover will be called from server, in case this skill is removed.
@@ -91,7 +104,9 @@ public static partial class SkillConfig
         /// </summary>
         public bool NeedRemover; 
         
-        // Stat Type. Fill this if this is a stat buff node. This can only buff one stat, if need multiple or other custom data, implement special handler
+        /// <summary>
+        /// Stat Type. Fill this if this is a stat buff node. This can only buff one stat, if need multiple or other custom data, implement special handler
+        /// </summary>
         public StatBuff Buff;
 
         public SkillTreeNodeConfig()

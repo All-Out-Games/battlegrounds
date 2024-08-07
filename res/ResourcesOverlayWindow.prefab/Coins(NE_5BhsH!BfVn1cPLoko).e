@@ -13,9 +13,8 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "57089918550534:1717453858066642900",
-  "next_sibling": "57518060080290:1717454029597598300",
-  "parent": "56958464634843:1717453805400844900"
+  "previous_sibling": "276719996754100:1722471110903044600",
+  "parent": "276658714702518:1722471081886922000"
 },
 {
   "cid": 1,
@@ -33,62 +32,13 @@
     },
     "insets": {
       "X": 0,
-      "Y": -80,
+      "Y": -100,
       "Z": -100,
-      "W": -80
+      "W": -100
     },
     "offset": {
       "X": 0,
       "Y": 0
     }
-  }
-},
-{
-  "cid": 2,
-  "aoid": "58177724408933:1717454293886025200",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIText",
-  "data": {
-    "text": "Coins",
-    "settings": {
-      "font_id": "",
-      "size": 32,
-      "color": {
-        "X": 1,
-        "Y": 0.9777777194976807,
-        "Z": 0,
-        "W": 1
-      },
-      "valign": 1,
-      "halign": 1,
-      "word_wrap": false,
-      "word_wrap_start_offset": 0,
-      "offset": {
-        "X": 0,
-        "Y": 24
-      },
-      "do_drop_shadow": true,
-      "drop_shadow_offset": {
-        "X": 1,
-        "Y": -1
-      },
-      "drop_shadow_color": {
-        "X": 0,
-        "Y": 0,
-        "Z": 0,
-        "W": 1
-      },
-      "do_outline": true,
-      "outline_thickness": 2,
-      "outline_color": {
-        "X": 0,
-        "Y": 0,
-        "Z": 0,
-        "W": 1
-      },
-      "spacing_multiplier": 1,
-      "line_height_multiplier": 1
-    },
-    "push_text_rect": false
   }
 }

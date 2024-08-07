@@ -26,8 +26,6 @@ public partial class FightPlayer
             // NOTE: Action is value type. You have to pass them as ref.
             _overlay.HookupEvents(ref CoinUpdateEvent);
             
-            _totalDamageDealt.OnSync += NotifyDamageUpdate;
-            _totalEliminations.OnSync += NotifyEliminationUpdate;
             _level.OnSync += NotifyLevelUpdate;
             _exp.OnSync += NotifyExpUpdate;
         }
@@ -68,15 +66,6 @@ public partial class FightPlayer
             _overlay.UpdateLevelingTxt(lvl, LevelingData.NextLevelXp[lvl]);
         }
     }
-
-    private void NotifyDamageUpdate(int old, int dmg)
-    {
-        _overlay.UpdateDamage(dmg);
-    }
-
-    private void NotifyEliminationUpdate(int old, int elm)
-    {
-        _overlay.UpdateElimination(elm);
-    }
+    
     
 }

@@ -188,15 +188,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
                     Chat.SendMessage(player, "Usage: /resetplayer");
                     return;
                 }
-                FightPlayerSkillTree st = player.GetSkillTree();
-                foreach (var kv in st.SkillLevelDict)
-                {
-                    if (kv.Value > 0 && kv.Key != "Punch")
-                    {
-                        st.DepriveSkill(kv.Key);
-                    }
-                }
-                player.Coins = 100;
+                player.Rebirth();
                 break;
             case "fetchstat":
                 //if (!CheckAdmin(p)) return;

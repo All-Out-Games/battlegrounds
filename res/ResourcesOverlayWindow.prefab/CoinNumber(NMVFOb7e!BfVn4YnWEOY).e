@@ -13,6 +13,8 @@
     "X": 1,
     "Y": 1
   },
+  "previous_sibling": "138491199630845:1723074028677667400",
+  "next_sibling": "138390030057998:1723073978011823600",
   "parent": "57517011245831:1717454029177391400"
 },
 {
@@ -21,7 +23,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "99999999",
+    "text": "999999",
     "settings": {
       "font_id": "",
       "size": 28,
@@ -62,5 +64,31 @@
       "line_height_multiplier": 1
     },
     "push_text_rect": false
+  }
+},
+{
+  "cid": 2,
+  "aoid": "138272521759210:1723073919163524900",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0.5000000000000000,
+      "Y": 1
+    },
+    "max": {
+      "X": 0.5000000000000000,
+      "Y": 1
+    },
+    "insets": {
+      "X": 0,
+      "Y": -40,
+      "Z": -80,
+      "W": -40
+    },
+    "offset": {
+      "X": 40,
+      "Y": 0
+    }
   }
 }

@@ -193,7 +193,7 @@ public partial class FightPlayer : Player
             {
                 _exp.Set(value);
                 Save.SetInt(this, "Exp", value);
-                if (_exp > LevelingData.NextLevelXp[_level])
+                if (_exp >= LevelingData.NextLevelXp[_level])
                 {
                     TryLevelUp();
                 }
@@ -221,35 +221,69 @@ public partial class FightPlayer : Player
     /// </summary>
     private void TryLevelUp()
     {
+        // At this point Exp is more than NextLevelXp[_level].
+        // Also note that MaxLevel is index based. The displayed level is _level+1 (i.e. MaxLevel = 29 means the max level is 30)
         if (Level >= LevelingData.MaxLevel)
         {
             Log.Warn("Max Level hit!");
             return;
         }
-
-        // Find next level
+        
+        int prevLevel = Level;
+        // Find next level's xp ceiling, which is the first xp ceiling that's more than the current xp of the player
         int nextXp = LevelingData.NextLevelXp.FirstOrDefault(p => p > Exp, -1);
         if (nextXp == -1)
         {
             Log.Error($"{Name} Overflowed the max level! This shouldn't happen unless they are granted a large amount of xp");
             Level = LevelingData.MaxLevel;
+            for (int j = prevLevel+1; j <= Level; j++)
+            {
+                Coins += LevelingData.CoinRewards[j];
+            }
+
         }
         else if(Exp < LevelingData.NextLevelXp[_level+1])
         {
             // Usual case where we raise the player level by one
             Level += 1;
+            Coins += LevelingData.CoinRewards[Level];
         }
         else
         {
-            // If the player exp exceeds even the next level's requirement...
-            for (int i = _level; i < LevelingData.MaxLevel; i++)
+            
+            // If the player exp exceeds even the next level's requirement... [Usually only happens with grant command]
+            int newLevel = Level;
+            for (int i = Level; i <= LevelingData.MaxLevel; i++)
             {
                 if (LevelingData.NextLevelXp[i] == nextXp)
                 {
-                    int prevLevel = Level;
-                    Level = i;
-                    Log.Warn($"Skipping happened to Player {Name} Level - From {prevLevel} to {Level}");
+                    newLevel = i;
+                    Log.Warn($"Skipping happened to Player {Name} Level - From {prevLevel} to {newLevel}");
                 }
+            }
+
+            for (int j = prevLevel+1; j <= newLevel; j++)
+            {
+                Coins += LevelingData.CoinRewards[j];
+            }
+
+            Level = newLevel;
+        }
+    }
+
+    /// <summary>
+    /// [Server Only] Remove XP, Skills & Level
+    /// </summary>
+    public void Rebirth()
+    {
+        Exp = 0;
+        Level = 0;
+        Coins = 0;
+        foreach (var kv in SkillTree.SkillLevelDict)
+        {
+            if (kv.Value > 0 && kv.Key != "Punch")
+            {
+                SkillTree.DepriveSkill(kv.Key);
             }
         }
     }
