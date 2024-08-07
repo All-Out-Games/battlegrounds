@@ -130,6 +130,19 @@ public class FightClubGameManager : System<FightClubGameManager> {
                         Chat.SendMessage(target, $"Coins Given = {amount}");
                         return;
                     }
+                    case "exp":
+                    {
+                        var amount = 100;
+                        if (parts.Length >= 3)
+                        {
+                            int.TryParse(parts[3], out amount);
+                        }
+
+                        var fightTarget = (FightPlayer)target;
+                        fightTarget.Exp += amount;
+                        Chat.SendMessage(target, $"Exp Given = {amount}");
+                        return;
+                    }
                     default:
                         Chat.SendMessage(player, $"The item {parts[2]} is not found to be granted");
                         break;

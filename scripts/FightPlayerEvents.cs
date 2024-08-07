@@ -8,8 +8,6 @@ public partial class FightPlayer
     public Action<int> CoinUpdateEvent;
     public Action<int> PlayerSwitchZoneEvent;
     
-    public Action<int> TotalElminationUpdateEvent;
-    public Action<int> TotalDamageUpdateEvent;
 
     // Reserved for effects related to post-damage (e.g. after elimination, add damage)
     public Action<FightPlayer, DamageInfo> OnDealDamage; // Triggered in global damage event. Will contain the ACTUAL damage dealt (i.e. the damage info might be modified by some effects like parry)
@@ -152,34 +150,7 @@ public partial class FightPlayer
             
         }
     }
-
-    /// <summary>
-    /// Called when _ex[ SyncVar is updated.
-    /// Should be UI only. Handle level up / rebirth in SyncVar setters
-    /// </summary>
-    /// <param name="old"></param>
-    /// <param name="exp"></param>
-    private void NotifyExpUpdate(int old, int exp)
-    {
-        if (IsLocal)
-        {
-            
-        }
-    }
-
-    /// <summary>
-    /// Called when _level SyncVar is updated.
-    /// Should be UI only. 
-    /// </summary>
-    /// <param name="old"></param>
-    /// <param name="lvl"></param>
-    private void NotifyLevelUpdate(int old, int lvl)
-    {
-        if (IsLocal)
-        {
-            
-        }
-    }
+    
 
     #endregion
 

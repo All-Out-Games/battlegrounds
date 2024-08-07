@@ -6,105 +6,77 @@ using Assembly.scripts.UI;
 /// This component manages world space player UI.
 /// 
 /// </summary>
-public class FightPlayerUI : FightPlayerComponent
+public partial class FightPlayer
 {
-    private static Texture BarBorder = Assets.KeepLoaded<Texture>("UI/Bars/border.png");
-    private List<string> _hideUIReasons = new List<string>();
-
-    public void AddPlayerUIInvisibleReason(string reason)
+    private ResourceOverlayWindow _overlay;
+    protected void InitializeUI()
     {
-        _hideUIReasons.Add(reason);
+        // TODO: Fetch levels and fill overhead level
+        
+        if (IsLocal)
+        {
+            _overlay =
+                UIManager.Instance.OpenOverlayWindow(UniqueWindowKeys.ResourcesOverlayWindowPath) as ResourceOverlayWindow;
+
+            if (_overlay == null)
+            {
+                Log.Error("Overlay Window is Null! Did you change the prefab path?");
+                return;
+            }
+            // NOTE: Action is value type. You have to pass them as ref.
+            _overlay.HookupEvents(ref CoinUpdateEvent);
+            
+            _totalDamageDealt.OnSync += NotifyDamageUpdate;
+            _totalEliminations.OnSync += NotifyEliminationUpdate;
+            _level.OnSync += NotifyLevelUpdate;
+            _exp.OnSync += NotifyExpUpdate;
+        }
     }
     
-    public void RemovePlayerUIInvisibleReason(string reason)
+    /// <summary>
+    /// Called when _ex[ SyncVar is updated.
+    /// Should be UI only. Handle level up / rebirth in SyncVar setters
+    /// </summary>
+    /// <param name="old"></param>
+    /// <param name="exp"></param>
+    private void NotifyExpUpdate(int old, int exp)
     {
-        _hideUIReasons.Remove(reason);
-    }
-    public override void Update()
-    {
-        Rect healthRect;
-        if (_player.CurrentHealth > 0 && _hideUIReasons.Count == 0)
+        if (exp - old > 1000)
         {
-            healthRect = DrawHealthBar();
-            if (_player.CurrentShield > 0)
-            {
-                DrawShieldBar(healthRect.Copy());
-            }
+            Log.Warn($"Player {Name} got an abnormal amount of EXP!");
         }
-
-        if (_player.IsLocal && _player.PlayerStatus == PlayerStatus.Combat)
+        if (IsLocal)
         {
-            DrawDamageNumber();
+            _overlay.UpdateCurExpTxt(exp);
         }
-
     }
 
-    protected Rect DrawHealthBar()
+    /// <summary>
+    /// Called when _level SyncVar is updated.
+    /// Should be UI only. 
+    /// </summary>
+    /// <param name="old"></param>
+    /// <param name="lvl"></param>
+    private void NotifyLevelUpdate(int old, int lvl)
     {
-        var healthRect = UI.GetPlayerRect(_player);
-        healthRect = healthRect.Grow(13, 50, 0, 50).Offset(0, 160);
-        var borderRect = healthRect.Grow(4, 3, 4, 3);
-        UI.PushLayer(-2);
-        UI.Image(borderRect, BarBorder, Vector4.White, new UI.NineSlice());
-        UI.Image(healthRect, null, Vector4.Black, new UI.NineSlice());
-
-        var healthPercent = _player.CurrentHealth / (float)_player.MaxHealth;
-        var healthPercentRect = healthRect.SubRect(0, 0, healthPercent, 1, 0, 0, 0, 0);
-        UI.Image(healthPercentRect, null, Vector4.HSVLerp(Vector4.Red, Vector4.Green, healthPercent), new UI.NineSlice());
-        //UIManager.Instance.SetPopup($"Shield - {_player.CurrentShield} Max shield - {_player.MaxShield}", 0.5f, _player);
-        UI.PopLayer();
-        return healthRect;
-        
-    }
-
-    protected void DrawShieldBar(Rect healthRect)
-    {
-        
-        Rect shieldRect = healthRect.Grow(-7, -5, 0, -5).Offset(0, 13);
-        UI.Image(shieldRect, null, Vector4.Black, new UI.NineSlice());
-
-        float shieldPercent = _player.CurrentShield / (float)_player.MaxShield;
-        var shieldPercentRect = shieldRect.SubRect(0, 0, shieldPercent, 1, 0, 0, 0, 0);
-        UI.Image(shieldPercentRect, null, Vector4.LightBlue);
-    }
-
-    protected void DrawDamageNumber()
-    {
-        using var _1 = UI.PUSH_CONTEXT(UI.Context.WORLD);
-        using var _2 = UI.PUSH_LAYER(FightClubGameManager.DamageNumberLayer);
-
-        var ts = new UI.TextSettings()
+        if (lvl - old > 1)
         {
-            Font = UI.Fonts.BarlowBold,
-            Size = 0.7f,
-            Color = Vector4.White,
-            DropShadowColor = new Vector4(0f, 0f, 0f, 1f),
-            DropShadowOffset = new Vector2(0f, -3f),
-            HorizontalAlignment = UI.HorizontalAlignment.Center,
-            VerticalAlignment = UI.VerticalAlignment.Center,
-            WordWrap = false,
-            WordWrapOffset = 0,
-            Outline = true,
-            OutlineThickness = 3,
-        };
-
-        List<DamageNumbers> numbers = FightClubGameManager.Instance.ActiveDamageNumbers;
-        for (int i = numbers.Count-1; i >= 0; i -= 1)
-        {
-            var result = numbers[i];
-            result.T += Time.DeltaTime * 0.5f;
-            if (result.T >= 1)
-            {
-                numbers.UnorderedRemoveAt(i);
-                continue;
-            }
-            var pos = result.Position;
-            pos.Y += AOMath.Lerp(0, 0.5f, Ease.OutQuart(result.T));
-            var rect = new Rect(pos, pos);
-            var color01 = Ease.FadeInAndOut(0.1f, 1, result.T);
-            ts.Color = new Vector4(0, 0, 0, 0).LerpTo(result.Color, color01);
-            UI.Text(rect, result.Text, ts);
+            Log.Warn($"Player {Name} got an abnormal amount of LV!");
         }
+        if (IsLocal)
+        {
+            _overlay.UpdateLevelingTxt(lvl, LevelingData.NextLevelXp[lvl]);
+        }
+    }
+
+    private void NotifyDamageUpdate(int old, int dmg)
+    {
+        _overlay.UpdateDamage(dmg);
+    }
+
+    private void NotifyEliminationUpdate(int old, int elm)
+    {
+        _overlay.UpdateElimination(elm);
     }
     
 }

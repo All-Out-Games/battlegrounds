@@ -13,7 +13,7 @@ public partial class FightPlayer : Player
     // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
     [Serialized] public PlayerStatus PlayerStatus = PlayerStatus.Safe;
     [Serialized] protected FightPlayerEffectManager EffectManager; 
-    [Serialized] protected FightPlayerUI PlayerUi;
+    [Serialized] protected FightPlayerLegacyUI PlayerLegacyUi;
     [Serialized] protected FightPlayerSkillTree SkillTree;
     [Serialized] protected FightPlayerSkillSlotsManager SkillSlotsManager;
 
@@ -192,9 +192,10 @@ public partial class FightPlayer : Player
             if (Network.IsServer)
             {
                 _exp.Set(value);
+                Save.SetInt(this, "Exp", value);
                 if (_exp > LevelingData.NextLevelXp[_level])
                 {
-                    Level += 1;
+                    TryLevelUp();
                 }
             }
         }
@@ -209,7 +210,46 @@ public partial class FightPlayer : Player
         {
             if (Network.IsServer)
             {
+                Save.SetInt(this, "Level", value);
                 _level.Set(value);
+            }
+        }
+    }
+
+    /// <summary>
+    /// [Server Only] Try to update the level if the player has a XP that exceeds the next level's baseline.
+    /// </summary>
+    private void TryLevelUp()
+    {
+        if (Level >= LevelingData.MaxLevel)
+        {
+            Log.Warn("Max Level hit!");
+            return;
+        }
+
+        // Find next level
+        int nextXp = LevelingData.NextLevelXp.FirstOrDefault(p => p > Exp, -1);
+        if (nextXp == -1)
+        {
+            Log.Error($"{Name} Overflowed the max level! This shouldn't happen unless they are granted a large amount of xp");
+            Level = LevelingData.MaxLevel;
+        }
+        else if(Exp < LevelingData.NextLevelXp[_level+1])
+        {
+            // Usual case where we raise the player level by one
+            Level += 1;
+        }
+        else
+        {
+            // If the player exp exceeds even the next level's requirement...
+            for (int i = _level; i < LevelingData.MaxLevel; i++)
+            {
+                if (LevelingData.NextLevelXp[i] == nextXp)
+                {
+                    int prevLevel = Level;
+                    Level = i;
+                    Log.Warn($"Skipping happened to Player {Name} Level - From {prevLevel} to {Level}");
+                }
             }
         }
     }
@@ -247,6 +287,8 @@ public partial class FightPlayer : Player
         TotalEliminations = Save.GetInt(this, "TotalEliminations");
         TotalDamageDealt = Save.GetInt(this, "TotalDamageDealt");
         TotalCoins = Save.GetInt(this, "TotalCoins");
+        Level = Save.GetInt(this, "Level");
+        Exp = Save.GetInt(this, "Exp");
     }
     
     #region EventFunctions
@@ -258,25 +300,19 @@ public partial class FightPlayer : Player
         if (Network.IsServer)
         {
             EffectManager = Entity.AddComponent<FightPlayerEffectManager>();
-            PlayerUi = Entity.AddComponent<FightPlayerUI>();
+            PlayerLegacyUi = Entity.AddComponent<FightPlayerLegacyUI>();
             SkillTree = Entity.AddComponent<FightPlayerSkillTree>();
             SkillSlotsManager = Entity.AddComponent<FightPlayerSkillSlotsManager>();
         }
         
         EffectManager = Entity.GetComponent<FightPlayerEffectManager>();
-        PlayerUi = Entity.GetComponent<FightPlayerUI>();
+        PlayerLegacyUi = Entity.GetComponent<FightPlayerLegacyUI>();
         SkillTree = Entity.GetComponent<FightPlayerSkillTree>();
         SkillSlotsManager = Entity.GetComponent<FightPlayerSkillSlotsManager>();
 
         //Log.Debug($"Client Awake!");
         //SkillSlotsManager.InitKeybind();
-        if (IsLocal)
-        {
-            ResourceOverlayWindow resourceWindow =
-                UIManager.Instance.OpenOverlayWindow(UniqueWindowKeys.ResourcesOverlayWindowPath) as ResourceOverlayWindow;
-            // NOTE: Action is value type. You have to pass them as ref.
-            resourceWindow.HookupEvents(ref CoinUpdateEvent, ref TotalDamageUpdateEvent, ref TotalElminationUpdateEvent);
-        }
+        InitializeUI();
 
         _preDamageEffects = new List<FightEffect>();
     }
@@ -302,14 +338,6 @@ public partial class FightPlayer : Player
                 
                 // First ui update need to be triggered manually (Save reading happens before this point)
                 CoinUpdateEvent.Invoke(_coins); 
-                TotalDamageUpdateEvent.Invoke(TotalDamageDealt);
-                TotalElminationUpdateEvent.Invoke(TotalEliminations);
-                
-                // TODO: Probably need safer and clearer approach (without using self-defined events). Save a reference 
-                _totalDamageDealt.OnSync += (oldi, newi) => { TotalDamageUpdateEvent(newi); }; // Hook up sync var
-                _totalEliminations.OnSync += (oldi, newi) => { TotalElminationUpdateEvent(newi); };
-                _level.OnSync += NotifyLevelUpdate;
-                _exp.OnSync += NotifyExpUpdate;
             }
             
         }
@@ -570,9 +598,9 @@ public partial class FightPlayer : Player
         return SkillSlotsManager;
     }
 
-    public FightPlayerUI GetPlayerUIComp()
+    public FightPlayerLegacyUI GetPlayerUIComp()
     {
-        return PlayerUi;
+        return PlayerLegacyUi;
     }
 
     public bool HasSkill(string key)

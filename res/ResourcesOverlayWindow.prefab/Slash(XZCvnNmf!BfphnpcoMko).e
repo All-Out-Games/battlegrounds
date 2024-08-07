@@ -1,8 +1,8 @@
 13
-210453397505
-57518060080290 1717454029597598300
+231928233985
+102876002965919 1723056192544098600
 {
-  "name": "Damage",
+  "name": "Slash",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,49 +13,22 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "57517011245831:1717454029177391400",
-  "next_sibling": "102151126654150:1723055829525165000",
-  "parent": "56958464634843:1717453805400844900"
+  "previous_sibling": "102845890551790:1723056177463765200",
+  "parent": "102151126654150:1723055829525165000"
 },
 {
   "cid": 1,
-  "aoid": "57518060346412:1717454029597703100",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIRect",
-  "data": {
-    "min": {
-      "X": 0.5000000000000000,
-      "Y": 1
-    },
-    "max": {
-      "X": 0.5000000000000000,
-      "Y": 1
-    },
-    "insets": {
-      "X": 0,
-      "Y": -80,
-      "Z": -100,
-      "W": -80
-    },
-    "offset": {
-      "X": 333,
-      "Y": 0
-    }
-  }
-},
-{
-  "cid": 2,
-  "aoid": "58693163399941:1717454500391901200",
+  "aoid": "102876003045593:1723056192544138200",
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "Damage Dealt",
+    "text": "/",
     "settings": {
       "font_id": "",
-      "size": 32,
+      "size": 30,
       "color": {
-        "X": 0.2703703641891479,
-        "Y": 0.6595061421394348,
+        "X": 1,
+        "Y": 1,
         "Z": 1,
         "W": 1
       },
@@ -65,7 +38,7 @@
       "word_wrap_start_offset": 0,
       "offset": {
         "X": 0,
-        "Y": 24
+        "Y": 0
       },
       "do_drop_shadow": true,
       "drop_shadow_offset": {
@@ -90,5 +63,31 @@
       "line_height_multiplier": 1
     },
     "push_text_rect": false
+  }
+},
+{
+  "cid": 2,
+  "aoid": "102876003099019:1723056192544164900",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0.5000000000000000,
+      "Y": 1
+    },
+    "max": {
+      "X": 0.5000000000000000,
+      "Y": 1
+    },
+    "insets": {
+      "X": 0,
+      "Y": -50,
+      "Z": -100,
+      "W": -50
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
   }
 }

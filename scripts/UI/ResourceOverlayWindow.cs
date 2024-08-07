@@ -13,6 +13,10 @@ public class ResourceOverlayWindow : BaseUIWindow
 
     [Serialized] private UIButton _skillBookButton;
     [Serialized] private Entity _sidebar;
+
+    [Serialized] private UIText _levelText;
+    [Serialized] private UIText _curExpText;
+    [Serialized] private UIText _nextExpText;
     
     private Coroutine _coroutineC;
 
@@ -20,19 +24,17 @@ public class ResourceOverlayWindow : BaseUIWindow
     {
         base.OnDestroy();
         _localPlayer.CoinUpdateEvent -= UpdateCoin;
-        _localPlayer.TotalDamageUpdateEvent -= UpdateDamage;
-        _localPlayer.TotalElminationUpdateEvent -= UpdateElimination;
+        
         _localPlayer.PlayerSwitchZoneEvent -= SetSkillButton;
         _skillBookButton.OnClicked -= OnSkillBtnClicked;
         
     }
 
-    public void HookupEvents(ref Action<int> coinUpdateEvt, ref Action<int> dmgUpdateEvt, ref Action<int> killUpdateEvt)
+    public void HookupEvents(ref Action<int> coinUpdateEvt)
     {
         _localPlayer = (FightPlayer)Network.LocalPlayer;
         coinUpdateEvt += UpdateCoin;
-        dmgUpdateEvt += UpdateDamage;
-        killUpdateEvt += UpdateElimination;
+        
         _localPlayer.PlayerSwitchZoneEvent += SetSkillButton;
         _skillBookButton.OnClicked += OnSkillBtnClicked;
     }
@@ -111,5 +113,16 @@ public class ResourceOverlayWindow : BaseUIWindow
         {
             UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityLoadoutPagePath);
         }
+    }
+
+    public void UpdateCurExpTxt(int exp)
+    {
+        _curExpText.Text = $"{exp}";
+    }
+
+    public void UpdateLevelingTxt(int level, int nextExp)
+    {
+        _levelText.Text = level.ToString();
+        _nextExpText.Text = nextExp.ToString();
     }
 }
