@@ -231,6 +231,7 @@
 39800 bytes - AbilityIcon_Merged/psionic/psionic_beam.png.ao
 39792 bytes - AbilityIcon_Merged/psionic/psionic_beam.png.ao.ios
 39080 bytes - environment/CentralHub/Dummy_Body.png.ao.ios
+38528 bytes - SFX/Effects/rage_shout_v2.wav.ao
 37008 bytes - environment/CentralHub/Dummy_Body.png.ao
 35040 bytes - SFX/UI/enter_pvp_arena.wav.ao
 34056 bytes - SFX/Effects/knocked_down2.wav.ao

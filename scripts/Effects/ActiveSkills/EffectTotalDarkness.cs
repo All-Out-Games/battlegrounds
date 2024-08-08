@@ -1,4 +1,6 @@
 using AO;
+using Assembly.scripts.SceneObjects;
+
 namespace Assembly.scripts.Effects.ActiveSkills;
 
 public class AbilityTotalDarkness : FightAbility
@@ -15,22 +17,25 @@ public class AbilityTotalDarkness : FightAbility
 public class EffectTotalDarkness : FightEffect
 {
     public override bool IsActiveEffect => false;
+    private EffectConfig.TotalDarknessConfig _config;
 
 
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
         DurationRemaining = EffectConfig.TotalDarknessConfig.BlindTime;
+        SoundId = SFX.Play(SFXKeys.TotalDarknessAudio, DefaultSoundDesc);
         
         // Blind Every Player in combat
         var fpList = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(FightPlayer.Entity.Position,
             EffectConfig.TotalDarknessConfig.Range);
         
-        FightPlayer.SetAnimTrigger("total_darkness");
+        // FightPlayer.SetAnimTrigger("total_darkness");
+        _config = EffectConfig.TotalDarknessConfig.GetConfig(FightPlayer.CurrentAttack);
 
         foreach (var fp in fpList)
         {
-            if (fp != FightPlayer)
+            if (fp != FightPlayer && fp.Damageable())
             {
                 if (fp.HasEffect<EffectBlinded>())
                 {
@@ -40,7 +45,9 @@ public class EffectTotalDarkness : FightEffect
                 {
                     fp.AddEffect<EffectBlinded>(FightPlayer, EffectConfig.TotalDarknessConfig.BlindTime);
                 }
-                
+
+                FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage, DamageType.None);
+                fp.TakeDamage(FightPlayer, info);
             }
         }
     }

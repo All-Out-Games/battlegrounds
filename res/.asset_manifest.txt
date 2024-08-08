@@ -273,6 +273,7 @@ SFX/Effects/punch_ice.wav - .ao - 66ad4ac9cf7a5e4159a6c41a - 1632518672754968503
 SFX/Effects/punch_small.wav - .ao - 66ad4ac9cf7a5e4159a6c41b - 894227513470079067
 SFX/Effects/punch_strong.wav - .ao - 66ad4ac9cf7a5e4159a6c41c - 7423844962650925155
 SFX/Effects/punch_strongest.wav - .ao - 66ad4acacf7a5e4159a6c420 - 10583603662442360391
+SFX/Effects/rage_shout_v2.wav - .ao - 66b509adcf7a5e4159a6c52b - 11291459583435176059
 SFX/Effects/rage_stomp.wav - .ao - 66ad9394cf7a5e4159a6c441 - 6592306065110382476
 SFX/Effects/rollout_end.wav - .ao - 66ad9d9ecf7a5e4159a6c452 - 11603954744542890877
 SFX/Effects/rollout_loop.wav - .ao - 66ad9d9ecf7a5e4159a6c453 - 12886444320670719805

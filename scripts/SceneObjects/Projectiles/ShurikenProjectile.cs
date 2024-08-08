@@ -74,6 +74,7 @@ public class ShurikenProjectile : BaseProjectile
                     vfx.StartVFX("hit_generic", false);
                 }
             );
+            SFX.Play(SFXKeys.ShurikenHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
         }
     }
 }
