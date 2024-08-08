@@ -40,14 +40,14 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig HealthBoostNodeConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Health Boost",
-        DescriptionTextKey = "Increase your base health by 10.",
+        DescriptionTextKey = "Increase your base health by 5.",
         MaximumLevel = 1,
         IconPath = "AbilityIcon_Merged/basic/health_boost.png",
         NeedRemover = true,
         RangeDescriptionKey = "Passive",
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
-        UpgradeCost = 250,
+        UpgradeCost = 300,
         UIPosition = new Vector2(730, 230),
         GridX = 0,
         GridY = 1,
@@ -57,7 +57,7 @@ public static partial class SkillConfig
         Buff = new StatBuff
         {
             BoostType = StatType.MaxHealth,
-            BoostValue = 10
+            BoostValue = 5
         }
     };
 
@@ -67,14 +67,14 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig AttackBoostNodeConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Attack Boost",
-        DescriptionTextKey = "Increase your base attack power by 2.",
+        DescriptionTextKey = "Increase your base attack power by 1.",
         IconPath = "AbilityIcon_Merged/basic/attack_boost.png",
         MaximumLevel = 1,
         NeedRemover = true,
         RangeDescriptionKey = "Passive",
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
-        UpgradeCost = 250,
+        UpgradeCost = 300,
         UIPosition = new Vector2(110, 230),
         GridX = 2,
         GridY = 1,
@@ -84,7 +84,7 @@ public static partial class SkillConfig
         Buff = new StatBuff
         {
             BoostType = StatType.AttackPower,
-            BoostValue = 2
+            BoostValue = 1
         }
     };
 
@@ -103,7 +103,7 @@ public static partial class SkillConfig
         NeedRemover = true,
         NType = NodeType.SkillReplace,
         NTab = SkillTreeTabs.Basic,
-        UpgradeCost = 500,
+        UpgradeCost = 800,
         UIPosition = new Vector2(450, 430),
         GridX = 1,
         GridY = 1,
@@ -118,14 +118,14 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig HealthBoost2NodeConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Health Boost II",
-        DescriptionTextKey = "Increase your base health by 15",
+        DescriptionTextKey = "Increase your base health by 10",
         IconPath = "AbilityIcon_Merged/basic/health_boost_2.png",
         MaximumLevel = 1,
         NeedRemover = true,
         RangeDescriptionKey = "Passive",
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
-        UpgradeCost = 750,
+        UpgradeCost = 900,
         UIPosition = new Vector2(730, 630),
         GridX = 0,
         GridY = 2,
@@ -135,7 +135,7 @@ public static partial class SkillConfig
         Buff = new StatBuff
         {
             BoostType = StatType.MaxHealth,
-            BoostValue = 15
+            BoostValue = 10
         }
     };
 
@@ -145,14 +145,14 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig AttackBoost2NodeConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Attack Boost II",
-        DescriptionTextKey = "Increase your base attack by 3.",
+        DescriptionTextKey = "Increase your base attack by 2.",
         IconPath = "AbilityIcon_Merged/basic/attack_boost_2.png",
         MaximumLevel = 1,
         NeedRemover = true,
         RangeDescriptionKey = "Passive",
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Basic,
-        UpgradeCost = 750,
+        UpgradeCost = 900,
         UIPosition = new Vector2(110, 630),
         GridX = 2,
         GridY = 2,
@@ -162,7 +162,7 @@ public static partial class SkillConfig
         Buff = new StatBuff
         {
             BoostType = StatType.AttackPower,
-            BoostValue = 3
+            BoostValue = 2
         }
     };
 
@@ -181,7 +181,7 @@ public static partial class SkillConfig
         NeedRemover = true,
         NType = NodeType.SkillReplace,
         NTab = SkillTreeTabs.Basic,
-        UpgradeCost = 1500,
+        UpgradeCost = 2400,
         UIPosition = new Vector2(450, 830),
         GridX = 1,
         GridY = 2,
@@ -242,14 +242,14 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig HealthBoostDNodeConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Health Boost",
-        DescriptionTextKey = "Increase your base health by 10.",
+        DescriptionTextKey = "Increase your base health by 5.",
         MaximumLevel = 1,
         IconPath = "AbilityIcon_Merged/basic/health_boost.png",
         NeedRemover = true,
         RangeDescriptionKey = "Passive",
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Defensive,
-        UpgradeCost = 780,
+        UpgradeCost = 750,
         UIPosition = new Vector2(730, 230),
         GridX = 0,
         GridY = 1,
@@ -259,7 +259,7 @@ public static partial class SkillConfig
         Buff = new StatBuff
         {
             BoostType = StatType.MaxHealth,
-            BoostValue = 10
+            BoostValue = 5
         }
     };
     
@@ -324,7 +324,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 750,
+        UpgradeCost = 900,
         UIPosition = new Vector2(730, 230),
         GridX = 0,
         GridY = 1,
@@ -342,7 +342,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 500,
+        UpgradeCost = 750,
         UIPosition = new Vector2(450, 230),
         GridX = 1,
         GridY = 1,
@@ -363,7 +363,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 350,
+        UpgradeCost = 600,
         UIPosition = new Vector2(170, 230),
         GridX = 2,
         GridY = 1,
@@ -383,7 +383,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 3000,
+        UpgradeCost = 6750,
         UIPosition = new Vector2(240, 430),
         GridX = 1,
         GridY = 3,
@@ -404,7 +404,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 1500,
+        UpgradeCost = 2250,
         UIPosition = new Vector2(450, 430),
         GridX = 1,
         GridY = 2,
@@ -425,7 +425,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 1150,
+        UpgradeCost = 1800,
         UIPosition = new Vector2(10, 430),
         GridX = 2,
         GridY = 2,
@@ -443,7 +443,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillEnhance,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 4000,
+        UpgradeCost = 5400,
         UIPosition = new Vector2(10, 430),
         GridX = 2,
         GridY = 3,
@@ -464,7 +464,7 @@ public static partial class SkillConfig
         MaximumLevel = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
-        UpgradeCost = 2250,
+        UpgradeCost = 2700,
         UIPosition = new Vector2(730, 430),
         GridX = 0,
         GridY = 2,
@@ -563,7 +563,7 @@ public static partial class SkillConfig
         GridY = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
-        UpgradeCost = 450,
+        UpgradeCost = 650,
         UIPosition = new Vector2(730, 230),
         SkillKey = "SelfHeal",
         ParentNodeKeys = new string[] { "SpoonThrow" },
@@ -581,7 +581,7 @@ public static partial class SkillConfig
         GridY = 3,
         NType = NodeType.SkillEnhance,
         NTab = SkillTreeTabs.Psionic,
-        UpgradeCost = 3750,
+        UpgradeCost = 5850,
         UIPosition = new Vector2(730, 230),
         SkillKey = "Concentrate",
         ParentNodeKeys = new string[] { "Regeneration" },
@@ -602,7 +602,7 @@ public static partial class SkillConfig
         GridY = 2,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
-        UpgradeCost = 1350,
+        UpgradeCost = 1950,
         UIPosition = new Vector2(730, 430),
         SkillKey = "Regeneration",
         ParentNodeKeys = new string[] { "SelfHeal" },
@@ -622,7 +622,7 @@ public static partial class SkillConfig
         GridY = 2,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
-        UpgradeCost = 1900,
+        UpgradeCost = 2550,
         UIPosition = new Vector2(450, 430),
         SkillKey = "Hypnotize",
         ParentNodeKeys = new string[] { "Befuddle" },
@@ -666,7 +666,7 @@ public static partial class SkillConfig
         GridY = 3,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Psionic,
-        UpgradeCost = 3400,
+        UpgradeCost = 7650,
         UIPosition = new Vector2(240, 430),
         SkillKey = "PsyThrow",
         ParentNodeKeys = new string[] { "Hypnotize" },
@@ -686,7 +686,7 @@ public static partial class SkillConfig
         GridY = 3,
         NType = NodeType.SkillEnhance,
         NTab = SkillTreeTabs.Psionic,
-        UpgradeCost = 5000,
+        UpgradeCost = 8100,
         UIPosition = new Vector2(10, 430),
         SkillKey = "Psychic",
         ParentNodeKeys = new string[] { "PsionicBeam" },
@@ -727,7 +727,7 @@ public static partial class SkillConfig
         NType = NodeType.AttrBoost,
         NTab = SkillTreeTabs.Stealth,
         RangeDescriptionKey = "Passive",
-        UpgradeCost = 350,
+        UpgradeCost = 550,
         UIPosition = new Vector2(450, 30),
         SkillKey = "SpeedBoost",
         ParentNodeKeys = new string[] { "Invisibility" },
@@ -752,7 +752,7 @@ public static partial class SkillConfig
         GridY = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
-        UpgradeCost = 500,
+        UpgradeCost = 650,
         UIPosition = new Vector2(450, 230),
         SkillKey = "LightFeet",
         ParentNodeKeys = new string[] { "Invisibility" },
@@ -773,7 +773,7 @@ public static partial class SkillConfig
         GridY = 1,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
-        UpgradeCost = 850,
+        UpgradeCost = 900,
         UIPosition = new Vector2(450, 430),
         SkillKey = "Shuriken",
         ParentNodeKeys = new string[] { "Invisibility" },
@@ -814,7 +814,7 @@ public static partial class SkillConfig
         GridY = 2,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
-        UpgradeCost = 1500,
+        UpgradeCost = 1950,
         UIPosition = new Vector2(230, 430),
         SkillKey = "ShadowStep",
         ParentNodeKeys = new string[] { "LightFeet" },
@@ -834,7 +834,7 @@ public static partial class SkillConfig
         GridY = 2,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
-        UpgradeCost = 2350,
+        UpgradeCost = 2700,
         UIPosition = new Vector2(230, 630),
         SkillKey = "Backstab",
         ParentNodeKeys = new string[] { "Shuriken" },
@@ -852,7 +852,7 @@ public static partial class SkillConfig
         GridY = 3,
         NType = NodeType.SkillEnhance,
         NTab = SkillTreeTabs.Stealth,
-        UpgradeCost = 4800,
+        UpgradeCost = 8100,
         UIPosition = new Vector2(230, 630),
         SkillKey = "NinjaMastery",
         ParentNodeKeys = new string[] { "Backstab" },
@@ -873,7 +873,7 @@ public static partial class SkillConfig
         GridY = 3,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Stealth,
-        UpgradeCost = 3500,
+        UpgradeCost = 5850,
         UIPosition = new Vector2(10, 630),
         SkillKey = "TotalDarkness",
         ParentNodeKeys = new string[] { "ShadowStep" },
