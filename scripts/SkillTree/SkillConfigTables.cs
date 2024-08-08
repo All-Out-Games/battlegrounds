@@ -862,8 +862,10 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig TotalDarknessConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Total Darkness",
-        DescriptionTextKey = $"Spew a dark cloud that blinds all nearby players for {EffectConfig.TotalDarknessConfig.BlindTime}s seconds.",
+        DescriptionTextKey = $"Release a wave of darkness that blinds all nearby players for {EffectConfig.TotalDarknessConfig.BlindTime}s seconds.",
+        RangeDescriptionKey = $"{EffectConfig.TotalDarknessConfig.Range}m",
         CooldownKey = $"{EffectConfig.TotalDarknessConfig.Cooldown}s",
+        BaseDamageKey = EffectConfig.TotalDarknessConfig.BaseDamage,
         IconPath = "AbilityIcon_Merged/stealth/total_darkness.png",
         AbilityIconPath = "AbilityIcon_Separate/stealth/total_darkness_icon.png",
         MaximumLevel = 1,
