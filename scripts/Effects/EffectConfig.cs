@@ -636,7 +636,7 @@ public static class EffectConfig
     public struct TotalDarknessConfig
     {
         public static float Cooldown = 10f;
-        public static float Range = 6f;
+        public static float Range = 4f;
         public static float BlindTime = 10f;
         public static int BaseDamage = 5;
 

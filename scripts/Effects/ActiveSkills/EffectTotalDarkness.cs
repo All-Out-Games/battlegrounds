@@ -24,13 +24,33 @@ public class EffectTotalDarkness : FightEffect
     {
         base.OnEffectStart(isDropIn);
         DurationRemaining = EffectConfig.TotalDarknessConfig.BlindTime;
+        FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
+        FightPlayer.SetAnimTrigger("total_darkness");
         SoundId = SFX.Play(SFXKeys.TotalDarknessAudio, DefaultSoundDesc);
-        
+    }
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
+    }
+
+    public override void OnAnimationEvent(string eventName)
+    {
+        base.OnAnimationEvent(eventName);
+        if (eventName == "Attack")
+        {
+            //FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.LeapSlamCraterVfxPath, FightPlayer.Entity.Position);
+            DarkAttack();
+        }
+    }
+
+    public void DarkAttack()
+    {
         // Blind Every Player in combat
         var fpList = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(FightPlayer.Entity.Position,
             EffectConfig.TotalDarknessConfig.Range);
         
-        // FightPlayer.SetAnimTrigger("total_darkness");
         _config = EffectConfig.TotalDarknessConfig.GetConfig(FightPlayer.CurrentAttack);
 
         foreach (var fp in fpList)

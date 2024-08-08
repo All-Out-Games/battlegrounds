@@ -203,9 +203,11 @@ BloodVFX.prefab - .ao - 66a7fba36732dee0bb811e92 - 12549604446384681181
 BroccoliProjectile.prefab - .ao - 6685994fb45eb9e8339c0fce - 5129262647641696432
 ClawSwipe.prefab - .ao - 66a1a7616732dee0bb811d55 - 1318749154253486373
 FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
-FightPlayerRig/playercharacter.png - .ao - 66a931e096cebaeb1f3298ac - 10729938297514133197
-FightPlayerRig/playercharacter.png - .ao.ios - 66a931e096cebaeb1f3298ad - 12931280717863060393
-FightPlayerRig/playercharacter.spine - .ao - 66ac1b03cf7a5e4159a6c3da - 1357084127469703843
+FightPlayerRig/playercharacter.png - .ao - 66b54e7acf7a5e4159a6c581 - 3623416252221893877
+FightPlayerRig/playercharacter.png - .ao.ios - 66b54e7acf7a5e4159a6c580 - 3102808124993676841
+FightPlayerRig/playercharacter.spine - .ao - 66b54e7acf7a5e4159a6c57f - 6258579674917471480
+FightPlayerRig/playercharacter_2.png - .ao - 66b54e7bcf7a5e4159a6c583 - 16733141778334847515
+FightPlayerRig/playercharacter_2.png - .ao.ios - 66b54e7bcf7a5e4159a6c586 - 3641760734195305233
 HitVfx.prefab - .ao - 66a97e6696cebaeb1f3298f8 - 2238227580914794567
 Invisibility_Aura.prefab - .ao - 66a9201c96cebaeb1f3298a1 - 15827307492988365390
 Invisibility_VFX.prefab - .ao - 66a91fe396cebaeb1f32989e - 15138177077832320917
@@ -706,11 +708,6 @@ environment/gold.png - .ao.ios - 66859967b45eb9e8339c108c - 15698126421952890697
 environment/portal/cosmicPortal.png - .ao - 66859967b45eb9e8339c1090 - 3995821800800756657
 environment/portal/cosmicPortal.png - .ao.ios - 66859967b45eb9e8339c1092 - 4722501650766168214
 environment/portal/cosmicPortal.spine - .ao - 66859967b45eb9e8339c1091 - 9083999045970940274
-old_base_rig/playercharacter.png - .ao - 66a978f496cebaeb1f3298f2 - 8936069685551858978
-old_base_rig/playercharacter.png - .ao.ios - 66a978f496cebaeb1f3298f3 - 8816366524736704600
-old_base_rig/playercharacter.spine - .ao - 66a978f396cebaeb1f3298f1 - 15409900181107296828
-old_base_rig/playercharacter_2.png - .ao - 66a29f9c6732dee0bb811d9c - 17558781897250562856
-old_base_rig/playercharacter_2.png - .ao.ios - 66a29f9d6732dee0bb811d9f - 11089736624654215381
 projectile/BAT003_Projectile/BAT003_projectile.png - .ao - 66859968b45eb9e8339c1096 - 8698776939411441091
 projectile/BAT003_Projectile/BAT003_projectile.png - .ao.ios - 66859968b45eb9e8339c1097 - 13689035272585891771
 projectile/BAT003_Projectile/BAT003_projectile.spine - .ao - 66859968b45eb9e8339c1098 - 17446277854452097558
