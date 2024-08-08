@@ -467,6 +467,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig SpoonThrowConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Spoon Throw",
         DescriptionTextKey = "Telekinetically throw a spoon in a direction that deals damage to players struck.",
         BaseDamageKey = EffectConfig.ProjectileConfig.SpoonDamageBase,
         RangeDescriptionKey = $"{EffectConfig.ProjectileConfig.SpoonRange}m",
