@@ -42,6 +42,7 @@ public class BefuddleProjectile : BaseProjectile
                 Entity.Destroy();
             }
             FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.BefuddleHitVFX, Vector2.Lerp(other.Position, Entity.Position, 0.5f));
+            SFX.Play(SFXKeys.BefuddleHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
         }
     }
 }

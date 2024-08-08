@@ -490,7 +490,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig BefuddleConfig = new SkillTreeNodeConfig()
     {
-        DisplayName = "Psychic Mastery",
+        DisplayName = "Befuddle",
         DescriptionTextKey = $"Project a cloud of psychic energy that confuses enemy for {EffectConfig.ProjectileConfig.BefuddleConfusionTime}s.",
         BaseDamageKey = EffectConfig.ProjectileConfig.BefuddleDamageBase,
         RangeDescriptionKey = $"{EffectConfig.ProjectileConfig.BefuddleRange}m",
@@ -657,6 +657,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig PsychicConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Psychic Mastery",
         DescriptionTextKey =
             "Improved connection with your inner voice. Your psybolt becomes larger, and your psionic beam absorbs health on each hit.",
         RangeDescriptionKey = "Passive",

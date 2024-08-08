@@ -1,4 +1,6 @@
 using AO;
+using Assembly.scripts.SceneObjects;
+
 namespace Assembly.scripts.Effects;
 
 
@@ -27,6 +29,7 @@ public class EffectConfusion : EffectStun
     {
         base.OnEffectStart(isDropIn);
         FightStateMachine.SetBool("confusion", true);
+        SoundId = SFX.Play(SFXKeys.ConfusedLoopAudio, DefaultSoundDesc);
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -34,6 +37,7 @@ public class EffectConfusion : EffectStun
         base.OnEffectEnd(interrupt);
         FightPlayer.AddDash(Vector2.Zero, 0);
         FightStateMachine.SetBool("confusion", false);
+        SFX.Stop(SoundId);
     }
 
     public void Confuse()

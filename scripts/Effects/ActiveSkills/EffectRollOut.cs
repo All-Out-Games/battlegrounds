@@ -60,6 +60,10 @@ public class EffectRollOut : FightEffect
         FightPlayer.SetAnimTrigger("rollout_start");
         
         DurationRemaining = _config.Duration;
+        if (!isDropIn)
+        {
+            SFX.Play(SFXKeys.RolloutStartAudio, DefaultSoundDesc);
+        }
 
         if (FightPlayer.IsLocal)
         {
@@ -104,8 +108,7 @@ public class EffectRollOut : FightEffect
         
         FightPlayer.OnReceiveDamage += OnDamageEvent;
         FightPlayer.RegisterPreDamageEvent(this);
-
-        SFX.Play(SFXKeys.RolloutStartAudio, DefaultSoundDesc);
+        
         SoundId = SFX.Play(SFXKeys.RolloutLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = FightPlayer.Entity, Loop = true, LoopTimeout = 1+_config.Duration});
     }
 

@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -27,6 +28,11 @@ public class EffectLightFeet : FightEffect
         FightPlayer.AddSpeedModifier(EffectConfig.LightFeetConfig.SpeedModifier);
         DurationRemaining = EffectConfig.LightFeetConfig.BoostTime;
         AddAura();
+        
+        if (!isDropIn)
+        {
+            SoundId = SFX.Play(SFXKeys.LightFeetAudio, DefaultSoundDesc);
+        }
     }
 
     public override void OnEffectEnd(bool interrupt)

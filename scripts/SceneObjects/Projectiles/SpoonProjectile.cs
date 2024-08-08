@@ -43,7 +43,8 @@ public class SpoonProjectile : BaseProjectile
                     vfx.StartVFX("hit_generic", false);
                 }
             );
-        
+            SFX.Play(SFXKeys.SpoonHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
+
         }
     }
 }
