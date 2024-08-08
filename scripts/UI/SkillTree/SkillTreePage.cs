@@ -1,4 +1,5 @@
 using AO;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.UI.Legacy;
 
 namespace Assembly.scripts.UI.SkillTree;
@@ -132,6 +133,7 @@ public class SkillTreePage : UniqueUIWindow
         SetInfoScreenEnabled(false);
         ResetSelection();
         UpdateAllItems();
+        SFX.Play(SFXKeys.SkillShopAudio, new SFX.PlaySoundDesc());
         
         Chat.SetChatMode(Chat.Mode.BubbleOnly);
     }

@@ -638,6 +638,14 @@ public static class EffectConfig
         public static float Cooldown = 0f;
         public static float Range = 6f;
         public static float BlindTime = 10f;
+        public static int BaseDamage = 5;
+
+        public int Damage;
+
+        public static TotalDarknessConfig GetConfig(int atk)
+        {
+            return new TotalDarknessConfig() { Damage = atk + BaseDamage };
+        }
     }
 
     #endregion

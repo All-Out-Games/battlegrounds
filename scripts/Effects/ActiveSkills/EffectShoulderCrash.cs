@@ -1,5 +1,6 @@
 ﻿using AO;
 using Assembly.scripts.Effects;
+using Assembly.scripts.SceneObjects;
 
 public class AbilityShoulderCrash : FightAbility
 {
@@ -40,6 +41,11 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
         FightPlayer.AddDash(dir * _config.DashSpeed, _config.DashDuration);
         // The player is invincible and not allowed to input movement during the dash
         FightPlayer.SetAnimTrigger("shoulder_crash");
+        if (!isDropIn)
+        {
+            SFX.Play(SFXKeys.ShoulderCrashAudio, DefaultSoundDesc);
+        }
+        SoundId = SFX.Play(SFXKeys.ShoulderCrashLoopAudio, DefaultSoundDesc with { Loop = true, LoopTimeout = 10f });
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -48,6 +54,7 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
         //FightPlayer.RemovePlayerCollisionFunction(OnShoulderCrashCollision);
         _interactedEntity = null;
         FightStateMachine.SetTrigger("shoulder_crash_end");
+        SFX.Stop(SoundId);
     }
 
 

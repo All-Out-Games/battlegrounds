@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 using Microsoft.VisualBasic.CompilerServices;
 
@@ -33,7 +34,10 @@ public class EffectIronSkin : FightEffect
         AddAura();
         
         FightPlayer.RegisterPreDamageEvent(this);
-        
+        if (!isDropIn)
+        {
+            SoundId = SFX.Play(SFXKeys.IronAuradAudio, DefaultSoundDesc);
+        }
     }
 
     public override void OnEffectEnd(bool interrupt)

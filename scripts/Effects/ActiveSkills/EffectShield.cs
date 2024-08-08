@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 using StreamReader = AO.StreamReader;
 
@@ -37,7 +38,10 @@ public class EffectShield : FightEffect
         FightPlayer.OnReceiveDamage += OnDamageEvent;
 
         AddShieldFx();
-        
+        if (!isDropIn)
+        {
+            SoundId = SFX.Play(SFXKeys.WoodShieldAudio, DefaultSoundDesc);
+        }
     }
 
     public void AssignConfig(EffectConfig.ShieldConfig cfg)

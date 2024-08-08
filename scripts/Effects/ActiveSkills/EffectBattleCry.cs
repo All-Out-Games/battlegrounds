@@ -1,4 +1,5 @@
 using System.Collections;
+using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -29,6 +30,7 @@ public class EffectBattleCry : FightEffectWithNoFlinch
         FightPlayer.SetAnimTrigger("battlecry");
         DurationRemaining = MainLayer.GetCurrentStateLength();
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
+        SoundId = SFX.Play(SFXKeys.BattleCryAudio, DefaultSoundDesc);
     }
     
     public override void OnEffectEnd(bool interrupt)
@@ -57,7 +59,7 @@ public class EffectBattleCry : FightEffectWithNoFlinch
     {
         Vector2 selfPos = FightPlayer.Entity.Position;
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.BattleCryConfig.RoarRadius);
-            
+
         foreach (var fp in cbPlayers)
         {
             if (fp == FightPlayer || !fp.Damageable())

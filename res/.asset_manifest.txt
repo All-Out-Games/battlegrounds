@@ -18,6 +18,8 @@ AbilityIcon_Merged/brawler/claw_slash.png - .ao - 669018deb45eb9e8339c1b01 - 291
 AbilityIcon_Merged/brawler/claw_slash.png - .ao.ios - 669018deb45eb9e8339c1b02 - 16772798305174765025
 AbilityIcon_Merged/brawler/double_punch.png - .ao - 669018dfb45eb9e8339c1b04 - 3552212615668337624
 AbilityIcon_Merged/brawler/double_punch.png - .ao.ios - 669018dfb45eb9e8339c1b07 - 10956173931379053864
+AbilityIcon_Merged/brawler/dual_claw.png - .ao - 66b5013fcf7a5e4159a6c501 - 17478951004374816389
+AbilityIcon_Merged/brawler/dual_claw.png - .ao.ios - 66b5013fcf7a5e4159a6c500 - 12732744670099854839
 AbilityIcon_Merged/brawler/ground_stomp.png - .ao - 669018dfb45eb9e8339c1b08 - 8728402032193697074
 AbilityIcon_Merged/brawler/ground_stomp.png - .ao.ios - 669018e0b45eb9e8339c1b0a - 9277512522535061345
 AbilityIcon_Merged/brawler/leaping_fist_slam.png - .ao - 669018e0b45eb9e8339c1b0c - 3142146333401659991
@@ -60,12 +62,16 @@ AbilityIcon_Merged/elemental/wind_punch.png - .ao - 669018e9b45eb9e8339c1b50 - 1
 AbilityIcon_Merged/elemental/wind_punch.png - .ao.ios - 669018e9b45eb9e8339c1b53 - 7216744998417199974
 AbilityIcon_Merged/psionic/befuddle.png - .ao - 669018e9b45eb9e8339c1b54 - 17712989668022820403
 AbilityIcon_Merged/psionic/befuddle.png - .ao.ios - 669018eab45eb9e8339c1b56 - 16369401899660842952
+AbilityIcon_Merged/psionic/concentration.png - .ao - 66b50140cf7a5e4159a6c506 - 8938967104922526412
+AbilityIcon_Merged/psionic/concentration.png - .ao.ios - 66b5013ecf7a5e4159a6c4fb - 798400892604519352
 AbilityIcon_Merged/psionic/hypnotize.png - .ao - 669018eab45eb9e8339c1b59 - 3998384596402993739
 AbilityIcon_Merged/psionic/hypnotize.png - .ao.ios - 669018eab45eb9e8339c1b5a - 11452511788556231547
 AbilityIcon_Merged/psionic/psionic_beam.png - .ao - 669018eab45eb9e8339c1b5c - 7810459473561026553
 AbilityIcon_Merged/psionic/psionic_beam.png - .ao.ios - 669018ebb45eb9e8339c1b5f - 12627321028558159597
 AbilityIcon_Merged/psionic/psybolt.png - .ao - 669018ebb45eb9e8339c1b60 - 11503432279068516654
 AbilityIcon_Merged/psionic/psybolt.png - .ao.ios - 669018ebb45eb9e8339c1b62 - 12654796820913854352
+AbilityIcon_Merged/psionic/psychic_mastery.png - .ao - 66b5013ecf7a5e4159a6c4fa - 13415402321181979659
+AbilityIcon_Merged/psionic/psychic_mastery.png - .ao.ios - 66b5013ecf7a5e4159a6c4fc - 4450780815452566141
 AbilityIcon_Merged/psionic/psythrow.png - .ao - 669018ebb45eb9e8339c1b65 - 5337736356865223355
 AbilityIcon_Merged/psionic/psythrow.png - .ao.ios - 669018ebb45eb9e8339c1b66 - 10240867450723558224
 AbilityIcon_Merged/psionic/psythrow_launch.png - .ao - 669027deb45eb9e8339c1b9c - 842873593181929447
@@ -84,6 +90,8 @@ AbilityIcon_Merged/stealth/invisibility.png - .ao - 669018efb45eb9e8339c1b82 - 3
 AbilityIcon_Merged/stealth/invisibility.png - .ao.ios - 669018efb45eb9e8339c1b84 - 7491285398006721831
 AbilityIcon_Merged/stealth/light_feet.png - .ao - 669018f0b45eb9e8339c1b88 - 2667134525425574828
 AbilityIcon_Merged/stealth/light_feet.png - .ao.ios - 669018f0b45eb9e8339c1b89 - 3823615315399482480
+AbilityIcon_Merged/stealth/ninja_mastery.png - .ao - 66b5013fcf7a5e4159a6c502 - 18406330534451291681
+AbilityIcon_Merged/stealth/ninja_mastery.png - .ao.ios - 66b50140cf7a5e4159a6c505 - 2250438555188485074
 AbilityIcon_Merged/stealth/shadow_step.png - .ao - 669018f0b45eb9e8339c1b8a - 14537456036650551246
 AbilityIcon_Merged/stealth/shadow_step.png - .ao.ios - 669018f1b45eb9e8339c1b8d - 6333847855850258505
 AbilityIcon_Merged/stealth/shuriken.png - .ao - 669018f1b45eb9e8339c1b8f - 7061428876960268788
@@ -227,12 +235,15 @@ PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
 Rage_Aura.prefab - .ao - 66ad96d6cf7a5e4159a6c44a - 2127671326789894962
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
-ResourcesOverlayWindow.prefab - .ao - 66b40f9ecf7a5e4159a6c4f5 - 969920507611851167
+ResourcesOverlayWindow.prefab - .ao - 66b51d49cf7a5e4159a6c530 - 7654806939518035106
 SFX/Effects/backstab_attack.wav - .ao - 66ad89becf7a5e4159a6c436 - 16112955543606674532
 SFX/Effects/backstab_teleport.wav - .ao - 66ad89becf7a5e4159a6c438 - 8158155750117357873
 SFX/Effects/backstab_victim.wav - .ao - 66ad89becf7a5e4159a6c437 - 1465047161017477406
 SFX/Effects/claw_swipe.wav - .ao - 66ad89bfcf7a5e4159a6c43a - 3312688640848530899
+SFX/Effects/confused_loop.wav - .ao - 66b50140cf7a5e4159a6c508 - 4406945306894190570
 SFX/Effects/confusion_ball.wav - .ao - 66ad4e9fcf7a5e4159a6c428 - 13980309189215291514
+SFX/Effects/darkness_activate.wav - .ao - 66b50141cf7a5e4159a6c50b - 17485412967686096163
+SFX/Effects/darkness_loop.wav - .ao - 66b50141cf7a5e4159a6c50e - 1866994766018125668
 SFX/Effects/ground_stomp.wav - .ao - 66ad9394cf7a5e4159a6c440 - 8040942330557955187
 SFX/Effects/heal_end.wav - .ao - 66ad4acacf7a5e4159a6c421 - 9391023529971212979
 SFX/Effects/heal_start.wav - .ao - 66ad4acacf7a5e4159a6c422 - 16830675159314326405
@@ -240,11 +251,16 @@ SFX/Effects/healing_loop.wav - .ao - 66ad2e5ccf7a5e4159a6c411 - 7469102042863978
 SFX/Effects/hypnotize.wav - .ao - 66ad9ee6cf7a5e4159a6c458 - 16480091797947969445
 SFX/Effects/ice_projectile_hit.wav - .ao - 66ad2e5bcf7a5e4159a6c40e - 432557898931429637
 SFX/Effects/invisibility_activate.wav - .ao - 66ad2e5bcf7a5e4159a6c40d - 2545487771450550111
+SFX/Effects/iron_aura_activate.wav - .ao - 66b50141cf7a5e4159a6c50d - 5498259327882802753
 SFX/Effects/knocked_down2.wav - .ao - 66ad594acf7a5e4159a6c42f - 2523582524280754453
 SFX/Effects/knocked_down_getup.wav - .ao - 66ad9ee6cf7a5e4159a6c457 - 15202407874369641892
 SFX/Effects/kunai_shuriken_projectile_loop.wav - .ao - 66ad2e59cf7a5e4159a6c406 - 5055125734165588881
 SFX/Effects/leaping_slam.wav - .ao - 66ad594acf7a5e4159a6c42e - 3293684565893333631
+SFX/Effects/light_feet_activate.wav - .ao - 66b50141cf7a5e4159a6c510 - 11888145908665970614
 SFX/Effects/pisonic_beam_loop.wav - .ao - 66ad2e59cf7a5e4159a6c407 - 16150917166322171328
+SFX/Effects/player_hit_by_befuddle.wav - .ao - 66b50141cf7a5e4159a6c512 - 6642647711310762565
+SFX/Effects/player_hit_by_shuriken.wav - .ao - 66b50142cf7a5e4159a6c514 - 17542474789942228288
+SFX/Effects/player_hit_by_spoon.wav - .ao - 66b50142cf7a5e4159a6c516 - 2098633999754779165
 SFX/Effects/psybolt_hit.wav - .ao - 66ad2e59cf7a5e4159a6c408 - 17454458408791310961
 SFX/Effects/psybolt_projectile_loop.wav - .ao - 66ad2e5acf7a5e4159a6c40a - 4288331285899697900
 SFX/Effects/psybolt_shoot.wav - .ao - 66ad4e9fcf7a5e4159a6c429 - 10986446254928044649
@@ -257,16 +273,24 @@ SFX/Effects/punch_ice.wav - .ao - 66ad4ac9cf7a5e4159a6c41a - 1632518672754968503
 SFX/Effects/punch_small.wav - .ao - 66ad4ac9cf7a5e4159a6c41b - 894227513470079067
 SFX/Effects/punch_strong.wav - .ao - 66ad4ac9cf7a5e4159a6c41c - 7423844962650925155
 SFX/Effects/punch_strongest.wav - .ao - 66ad4acacf7a5e4159a6c420 - 10583603662442360391
+SFX/Effects/rage_shout_v2.wav - .ao - 66b509adcf7a5e4159a6c52b - 11291459583435176059
 SFX/Effects/rage_stomp.wav - .ao - 66ad9394cf7a5e4159a6c441 - 6592306065110382476
 SFX/Effects/rollout_end.wav - .ao - 66ad9d9ecf7a5e4159a6c452 - 11603954744542890877
 SFX/Effects/rollout_loop.wav - .ao - 66ad9d9ecf7a5e4159a6c453 - 12886444320670719805
 SFX/Effects/rollout_start.wav - .ao - 66ad9d9ecf7a5e4159a6c451 - 2535902086376407751
 SFX/Effects/self_destruct.wav - .ao - 66ad9394cf7a5e4159a6c442 - 18352124696951603518
 SFX/Effects/self_destruct_explode.wav - .ao - 66ae6176cf7a5e4159a6c46a - 7596589421445641430
+SFX/Effects/shoulder_crash_loop.wav - .ao - 66b50142cf7a5e4159a6c518 - 400251291864753231
 SFX/Effects/sound_wave_projectile_loop.wav - .ao - 66ad3a26cf7a5e4159a6c416 - 11178710722811247311
+SFX/Effects/spike_shield_activate.wav - .ao - 66b50142cf7a5e4159a6c51a - 9556373634791649850
 SFX/Effects/throw_weapon.wav - .ao - 66ad4e9fcf7a5e4159a6c42a - 10244965043607779417
+SFX/Effects/wood_shield_activate.wav - .ao - 66b50143cf7a5e4159a6c51c - 10863746478839718501
 SFX/Objects/bear_trap-appear_set_up.wav - .ao - 66ad2601cf7a5e4159a6c402 - 15602225193008380346
 SFX/Objects/bear_trap-snap_closed.wav - .ao - 66ad2601cf7a5e4159a6c403 - 5698733051945858040
+SFX/Objects/fountain_loop.wav - .ao - 66b50143cf7a5e4159a6c51e - 17123349947514671954
+SFX/UI/enter_pvp_arena.wav - .ao - 66b50143cf7a5e4159a6c520 - 1602682121109635273
+SFX/UI/open_shop.wav - .ao - 66b50143cf7a5e4159a6c522 - 15967314141189846510
+SFX/UI/open_skill_menu.wav - .ao - 66b50144cf7a5e4159a6c524 - 2202298359802231256
 SFX/UI/ui_button.wav - .ao - 66ad110fcf7a5e4159a6c3ea - 6331010140746818706
 SFX/UI/ui_buy.wav - .ao - 66ad110fcf7a5e4159a6c3ec - 8714927041337839869
 SFX/UI/ui_insufficient_funds.wav - .ao - 66ad110fcf7a5e4159a6c3e8 - 2742532382418302858
@@ -345,8 +369,6 @@ UI/LargeMenuButtons/Large Menu Buttons/stats_icon.png - .ao - 66aad257cf7a5e4159
 UI/LargeMenuButtons/Large Menu Buttons/stats_icon.png - .ao.ios - 66aad258cf7a5e4159a6b73d - 16313663364793090618
 UI/LargeMenuButtons/Large Menu Buttons/stats_icon_pressed.png - .ao - 66aad258cf7a5e4159a6b73f - 7965701045475553527
 UI/LargeMenuButtons/Large Menu Buttons/stats_icon_pressed.png - .ao.ios - 66aad258cf7a5e4159a6b740 - 12159045113275667113
-UI/LargeMenuButtons/coin_icon.png - .ao - 66b406f1cf7a5e4159a6c4e6 - 17998369875264506600
-UI/LargeMenuButtons/coin_icon.png - .ao.ios - 66b406f1cf7a5e4159a6c4e7 - 35094986374472792
 UI/LargeMenuButtons/large_button.png - .ao - 66aad258cf7a5e4159a6b743 - 18231134355042940051
 UI/LargeMenuButtons/large_button.png - .ao.ios - 66aad258cf7a5e4159a6b744 - 3983896806962664064
 UI/LargeMenuButtons/large_button_highlight.png - .ao - 66aad259cf7a5e4159a6b746 - 5076871486006783888
@@ -365,8 +387,6 @@ UI/LargeMenuButtons/stats_icon.png - .ao - 66aad25bcf7a5e4159a6b760 - 9388318728
 UI/LargeMenuButtons/stats_icon.png - .ao.ios - 66aad25acf7a5e4159a6b75f - 16313663364793090618
 UI/LargeMenuButtons/stats_icon_pressed.png - .ao - 66aad25bcf7a5e4159a6b762 - 7965701045475553527
 UI/LargeMenuButtons/stats_icon_pressed.png - .ao.ios - 66aad25bcf7a5e4159a6b765 - 12159045113275667113
-UI/LargeMenuButtons/topbar_bg.png - .ao - 66b406f0cf7a5e4159a6c4e1 - 12337881749898040965
-UI/LargeMenuButtons/topbar_bg.png - .ao.ios - 66b406f0cf7a5e4159a6c4e3 - 12468717668686089589
 UI/SkillTree/Brawler.png - .ao - 669816ecb45eb9e8339c1f0a - 9998387097734776475
 UI/SkillTree/Brawler.png - .ao.ios - 669816ecb45eb9e8339c1f0c - 14977146293914380219
 UI/SkillTree/ability_backing.png - .ao - 669816ecb45eb9e8339c1f0f - 15250342353867512298

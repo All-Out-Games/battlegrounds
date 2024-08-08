@@ -39,6 +39,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig HealthBoostNodeConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Health Boost",
         DescriptionTextKey = "Increase your base health by 10.",
         MaximumLevel = 1,
         IconPath = "AbilityIcon_Merged/basic/health_boost.png",
@@ -65,6 +66,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig AttackBoostNodeConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Attack Boost",
         DescriptionTextKey = "Increase your base attack power by 2.",
         IconPath = "AbilityIcon_Merged/basic/attack_boost.png",
         MaximumLevel = 1,
@@ -91,6 +93,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig PunchTwoConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Punch II",
         DescriptionTextKey = "A more powerful punch dealing more damage.",
         BaseDamageKey = EffectConfig.PunchConfig.PunchDmgBase + EffectConfig.PunchConfig.PunchDmgGrowth,
         RangeDescriptionKey = "Melee",
@@ -114,6 +117,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig HealthBoost2NodeConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Health Boost II",
         DescriptionTextKey = "Increase your base health by 15",
         IconPath = "AbilityIcon_Merged/basic/health_boost_2.png",
         MaximumLevel = 1,
@@ -140,6 +144,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig AttackBoost2NodeConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Attack Boost II",
         DescriptionTextKey = "Increase your base attack by 3.",
         IconPath = "AbilityIcon_Merged/basic/attack_boost_2.png",
         MaximumLevel = 1,
@@ -166,6 +171,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig PunchThreeConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Punch III",
         DescriptionTextKey = "An elite punch dealing even more damage.",
         BaseDamageKey = EffectConfig.PunchConfig.PunchDmgBase + EffectConfig.PunchConfig.PunchDmgGrowth * 2,
         RangeDescriptionKey = "Melee",
@@ -193,6 +199,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig RollOutNodeConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Rollout",
         DescriptionTextKey = "You curl into a ball, rolling at high speed and can crash into other players to deal damage.",
         BaseDamageKey = EffectConfig.RollOutConfig.BumpDmgBase,
         RangeDescriptionKey = "Melee",
@@ -234,8 +241,8 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig HealthBoostDNodeConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Health Boost",
         DescriptionTextKey = "Increase your base health by 10.",
-        DisplayName = "HealthBoost",
         MaximumLevel = 1,
         IconPath = "AbilityIcon_Merged/basic/health_boost.png",
         NeedRemover = true,
@@ -286,6 +293,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig ShoulderCrashNodeConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Shoulder Crash",
         DescriptionTextKey = "Charge with your shoulder dealing damage and knockback to other players.",
         BaseDamageKey = EffectConfig.ShoulderCrashConfig.BumpDmgBase,
         RangeDescriptionKey = "5m",
@@ -306,6 +314,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig GroundStompConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Ground Stomp",
         DescriptionTextKey = "Stomp the ground in anger dealing damage to nearby players.",
         BaseDamageKey = EffectConfig.GroundStompConfig.StompDamageBase,
         RangeDescriptionKey = $"{EffectConfig.GroundStompConfig.StompRadius}m",
@@ -344,6 +353,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig DoublePunchConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Double Punch",
         DescriptionTextKey = "The ol' one, two combo. Strike another player with a double punch.",
         BaseDamageKey = EffectConfig.DoublePunchConfig.BaseDmg,
         RangeDescriptionKey = "Melee",
@@ -364,6 +374,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig SelfDestructConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Self-Destruct",
         DescriptionTextKey = $"Unleash a powerful explosion that damages all nearby enemies, but also deals {EffectConfig.SelfDestructConfig.BaseSelfDmg} damage to yourself.",
         BaseDamageKey = EffectConfig.SelfDestructConfig.BaseDmg,
         RangeDescriptionKey = $"{EffectConfig.SelfDestructConfig.BlastRange}m",
@@ -383,6 +394,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig BattleCryConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Battle Cry",
         DescriptionTextKey = "Roar with all your might, creating a sound wave damaging and stunning all players nearby.",
         BaseDamageKey = EffectConfig.BattleCryConfig.RoarDmgBase,
         RangeDescriptionKey = $"{EffectConfig.BattleCryConfig.RoarRadius}m",
@@ -403,6 +415,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig ClawSlashConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Claw Slash",
         DescriptionTextKey = $"Slash with a razor sharp claw damaging and causing bleed. Bleed deals {EffectConfig.ClawSlashConfig.BleedDmgBase} damage per second for {EffectConfig.ClawSlashConfig.BleedTimeBase} seconds.",
         BaseDamageKey = EffectConfig.ClawSlashConfig.SlashDmgBase,
         RangeDescriptionKey = "Melee",
@@ -423,9 +436,10 @@ public static partial class SkillConfig
     
     public static readonly SkillTreeNodeConfig DualClawConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Dual Claw",
         DescriptionTextKey = $"Upgrade your slash so that you can use Claw Slash again for {EffectConfig.ClawSlashConfig.DualClawTime} seconds after slash the first time.",
         RangeDescriptionKey = "Passive",
-        IconPath = "AbilityIcon_Merged/brawler/claw_slash.png",
+        IconPath = "AbilityIcon_Merged/brawler/dual_claw.png",
         MaximumLevel = 1,
         NType = NodeType.SkillEnhance,
         NTab = SkillTreeTabs.Brawler,
@@ -440,6 +454,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig LeapSlamConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Leap Slam",
         DescriptionTextKey = "Leap forward and slam the ground with your fists, damaging and knocking away other players.",
         BaseDamageKey = EffectConfig.LeapSlamConfig.SlamDamageBase,
         RangeDescriptionKey = "5m",
@@ -467,6 +482,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig SpoonThrowConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Spoon Throw",
         DescriptionTextKey = "Telekinetically throw a spoon in a direction that deals damage to players struck.",
         BaseDamageKey = EffectConfig.ProjectileConfig.SpoonDamageBase,
         RangeDescriptionKey = $"{EffectConfig.ProjectileConfig.SpoonRange}m",
@@ -490,7 +506,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig BefuddleConfig = new SkillTreeNodeConfig()
     {
-        DisplayName = "Psychic Mastery",
+        DisplayName = "Befuddle",
         DescriptionTextKey = $"Project a cloud of psychic energy that confuses enemy for {EffectConfig.ProjectileConfig.BefuddleConfusionTime}s.",
         BaseDamageKey = EffectConfig.ProjectileConfig.BefuddleDamageBase,
         RangeDescriptionKey = $"{EffectConfig.ProjectileConfig.BefuddleRange}m",
@@ -537,6 +553,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig SelfHealConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Self-Heal",
         DescriptionTextKey = $"Channel healing energy for {EffectConfig.SelfHealConfig.ChannelTime}s to restore {EffectConfig.SelfHealConfig.HealAmtBase} health. This channel can be interrupted by other players.",
         CooldownKey = $"{EffectConfig.SelfHealConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/psionic/self_heal.png",
@@ -557,7 +574,7 @@ public static partial class SkillConfig
     {
         DisplayName = "Concentration",
         DescriptionTextKey = $"You gain more health from SelfHeal and Regeneration. If your SelfHeal gets interrupted, you still recover some health and get Rage for {EffectConfig.SelfHealConfig.ConcentrateRageTime}s.",
-        IconPath = "AbilityIcon_Merged/psionic/self_heal.png",
+        IconPath = "AbilityIcon_Merged/psionic/concentration.png",
         RangeDescriptionKey = "Passive",
         MaximumLevel = 1,
         GridX = 2,
@@ -615,6 +632,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig PsionicBeamConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Psionic Beam",
         DescriptionTextKey = "Unleash a devastating energy beam that sweeps a small area dealing damage and causing an explosion.",
         BaseDamageKey = EffectConfig.PsionicBeamConfig.PsionicBeamDmgBase,
         CooldownKey = $"{EffectConfig.PsionicBeamConfig.Cooldown}s",
@@ -636,6 +654,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig PsyThrowConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Psythrow",
         DescriptionTextKey = "Grab a target with your telekinetic power. Reactivate to throw them in a direction of your choice.",
         BaseDamageKey = EffectConfig.PsyThrowConfig.DmgBase,
         RangeDescriptionKey = $"{EffectConfig.PsyThrowConfig.Range}m",
@@ -657,10 +676,11 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig PsychicConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Psychic Mastery",
         DescriptionTextKey =
             "Improved connection with your inner voice. Your psybolt becomes larger, and your psionic beam absorbs health on each hit.",
         RangeDescriptionKey = "Passive",
-        IconPath = "AbilityIcon_Merged/psionic/psybolt.png",
+        IconPath = "AbilityIcon_Merged/psionic/psychic_mastery.png",
         MaximumLevel = 1,
         GridX = 1,
         GridY = 3,
@@ -698,7 +718,8 @@ public static partial class SkillConfig
     
     public static readonly SkillTreeNodeConfig SpeedBoostConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Increase your base movement speed by 10%.",
+        DisplayName = "Speed Boost",
+        DescriptionTextKey = "Increase your base movement speed by 5%.",
         IconPath = "AbilityIcon_Merged/stealth/speed_boost.png",
         MaximumLevel = 1,
         GridX = 0,
@@ -714,13 +735,14 @@ public static partial class SkillConfig
         Buff = new StatBuff()
         {
             BoostType = StatType.BaseSpeed,
-            BoostValue = 8 // Your base speed is 80
+            BoostValue = 4 // Your base speed is 80
         }
 
     };
 
     public static readonly SkillTreeNodeConfig LightFeetConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Light Feet",
         DescriptionTextKey = $"Kick it into second gear and temporarily increase your movement speed by {float.Round((EffectConfig.LightFeetConfig.SpeedModifier - 1f) * 100, 0)}% for {EffectConfig.LightFeetConfig.BoostTime} seconds.",
         IconPath = "AbilityIcon_Merged/stealth/light_feet.png",
         AbilityIconPath = "AbilityIcon_Separate/stealth/light_feet_icon.png",
@@ -760,6 +782,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig BearTrapConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Bear Trap",
         DescriptionTextKey = $"Place a hidden bear trap that triggers on the next player to walk over it. The trap will last {EffectConfig.BearTrapConfig.TrapLifeTime}s seconds on the ground.",
         BaseDamageKey = EffectConfig.BearTrapConfig.TrapBaseDamage,
         RangeDescriptionKey = $"{EffectConfig.BearTrapConfig.MaxSetupDistance}m",
@@ -780,6 +803,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig ShadowStepConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Shadow Step",
         DescriptionTextKey = "Using your ninja way, teleport a short distance in the direction you're moving.",
         RangeDescriptionKey = $"{EffectConfig.ShadowStepConfig.MovementDistance}m",
         CooldownKey = $"{EffectConfig.ShadowStepConfig.Cooldown}s",
@@ -819,9 +843,10 @@ public static partial class SkillConfig
     
     public static readonly SkillTreeNodeConfig NinjaMasteryConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Ninja Mastery",
         DescriptionTextKey = "A master ninja can throw the kunai further, and their shuriken will bounce once if it secures a hit.",
         RangeDescriptionKey = "Passive",
-        IconPath = "AbilityIcon_Merged/stealth/shuriken.png",
+        IconPath = "AbilityIcon_Merged/stealth/ninja_mastery.png",
         MaximumLevel = 1,
         GridX = 1,
         GridY = 3,
@@ -836,6 +861,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig TotalDarknessConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Total Darkness",
         DescriptionTextKey = $"Spew a dark cloud that blinds all nearby players for {EffectConfig.TotalDarknessConfig.BlindTime}s seconds.",
         CooldownKey = $"{EffectConfig.TotalDarknessConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/stealth/total_darkness.png",
@@ -861,6 +887,7 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig IceFistNodeConfig = new SkillTreeNodeConfig()
     {
+        DisplayName = "Ice Fist",
         DescriptionTextKey = "Punch with an ice covered fist.",
         BaseDamageKey = EffectConfig.IceFistConfig.BaseDamage,
         RangeDescriptionKey = "Melee",
