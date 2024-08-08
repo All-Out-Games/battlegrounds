@@ -1,3 +1,5 @@
+using AO;
+
 namespace Assembly.scripts.Effects;
 
 public class EffectBlinded : FightEffect
@@ -10,6 +12,13 @@ public class EffectBlinded : FightEffect
         if (FightPlayer.IsLocal)
         {
             FightClubGameManager.References.TotalDarknessOverlay.LocalEnabled = true;
+            foreach (var pl in Player.AllPlayers)
+            {
+                if (!pl.IsLocal)
+                {
+                    pl.AddNameInvisibilityReason("Blinded");
+                }
+            }
         }
     }
 
@@ -19,6 +28,13 @@ public class EffectBlinded : FightEffect
         if (FightPlayer.IsLocal)
         {
             FightClubGameManager.References.TotalDarknessOverlay.LocalEnabled = false;
+            foreach (var pl in Player.AllPlayers)
+            {
+                if (!pl.IsLocal)
+                {
+                    pl.RemoveNameInvisibilityReason("Blinded");
+                }
+            }
         }
         
     }
