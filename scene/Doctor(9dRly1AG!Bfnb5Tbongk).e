@@ -10,8 +10,8 @@
   },
   "local_rotation": 0,
   "local_scale": {
-    "X": 0.5780000090599060,
-    "Y": 0.5780000090599060
+    "X": 1,
+    "Y": 1
   },
   "previous_sibling": "68101068022379:1721941650837986000",
   "next_sibling": "271225477921762:1722468509331642700",
@@ -23,7 +23,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Spine_Animator",
   "data": {
-    "skeleton_data_asset": "old_base_rig/playercharacter.spine",
+    "skeleton_data_asset": "$AO/schleem/playercharacter.spine",
     "ordered_skins": [
       "base/blue1",
       "body/doctor",
@@ -44,7 +44,7 @@
   "mono_component_type": "BaseVFX",
   "data": {
     "Loop": true,
-    "Animator": "0:0",
+    "Animator": "270292589827709:1722468067623267000",
     "EntityLifeTime": 0,
     "IsPermanent": true,
     "StartAnimationStr": [
