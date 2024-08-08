@@ -48,4 +48,15 @@
       "idle"
     ]
   }
+},
+{
+  "cid": 3,
+  "aoid": "27803555065461:1723146941888714800",
+  "component_type": "Mono_Component",
+  "mono_component_type": "AudioObject",
+  "data": {
+    "clip": "SFX/Objects/fountain_loop.wav",
+    "IsLoop": true,
+    "TimeOutForLoop": 0
+  }
 }
