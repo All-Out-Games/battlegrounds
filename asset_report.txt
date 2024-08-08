@@ -471,19 +471,19 @@
 3200 bytes - ability_icon_tmp/Shuriken_tmp.png.ao
 3184 bytes - UI/SkillTree/locked_border.png.ao
 3168 bytes - UI/SkillTree/replace_ability_icon.png.ao.ios
-3112 bytes - UI/LargeMenuButtons/large_button.png.ao
 3112 bytes - UI/LargeMenuButtons/Large Menu Buttons/large_button.png.ao
+3112 bytes - UI/LargeMenuButtons/large_button.png.ao
 3112 bytes - Pipe_1.prefab.ao
 2936 bytes - ability_icon_tmp/PsyThrowGrab_Tmp.png.ao
 2928 bytes - UI/SkillTree/small_skill_tree_icons/psionic.png.ao.ios
 2912 bytes - ability_icon_tmp/PsyThrowGrab_Tmp.png.ao.ios
+2856 bytes - ResourcesOverlayWindow.prefab.ao
 2848 bytes - UI/SkillTree/small_skill_tree_icons/defense.png.ao.ios
 2840 bytes - UI/SkillTree/small_skill_tree_icons/stealth.png.ao.ios
-2816 bytes - ResourcesOverlayWindow.prefab.ao
 2784 bytes - UI/LargeMenuButtons/Large Menu Buttons/stats.png.ao.ios
 2784 bytes - UI/LargeMenuButtons/stats.png.ao.ios
-2664 bytes - UI/LargeMenuButtons/skills.png.ao.ios
 2664 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills.png.ao.ios
+2664 bytes - UI/LargeMenuButtons/skills.png.ao.ios
 2648 bytes - UI/SkillTree/small_skill_tree_icons_pressed/defense.png.ao.ios
 2616 bytes - AbilityIcon_Separate/x_icon_ability.png.ao
 2608 bytes - UI/SkillTree/replace_ability_icon.png.ao
@@ -511,20 +511,20 @@
 2320 bytes - ability_icon_tmp/PsyThrow_Tmp.png.ao
 2280 bytes - VFX/LeapFistSlam/BAT003_leaping_fist_slam.spine.ao
 2280 bytes - UI/SkillTree/Brawler.png.ao.ios
+2256 bytes - UI/SkillTree/small_skill_tree_icons/basic.png.ao.ios
 2256 bytes - UI/LargeMenuButtons/skills.png.ao
 2256 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills.png.ao
-2256 bytes - UI/SkillTree/small_skill_tree_icons/basic.png.ao.ios
 2240 bytes - UI/AbilityBook/AbilityInfo/buy_button/buy_button.png.ao
 2200 bytes - ability_icon_tmp/ShadowStep_tmp.png.ao.ios
 2144 bytes - environment/gold.png.ao.ios
 2128 bytes - UI/SkillTree/equipped_border.png.ao
 2120 bytes - UI/AbilityBook/Loadout/remove_button.png.ao.ios
 2112 bytes - ability_icon_tmp/ShadowStep_tmp.png.ao
-2104 bytes - AbilityUpgradeDialog.prefab.ao
 2104 bytes - environment/portal/cosmicPortal.spine.ao
+2104 bytes - AbilityUpgradeDialog.prefab.ao
 2096 bytes - UI/AbilityBook/AbilityInfo/stat_box.png.ao.ios
-2088 bytes - UI/AbilityBook/AbilityInfo/buy_button/buy_button_pressed.png.ao
 2088 bytes - UI/SkillTree/small_skill_tree_icons/brawler.png.ao
+2088 bytes - UI/AbilityBook/AbilityInfo/buy_button/buy_button_pressed.png.ao
 2080 bytes - UI/AbilityBook/Loadout/swap_button.png.ao
 2072 bytes - UI/SkillTree/small_skill_tree_icons/element.png.ao
 2056 bytes - UI/AbilityBook/Loadout/swap_button.png.ao.ios
@@ -542,8 +542,8 @@
 1872 bytes - UI/LargeMenuButtons/stats_icon.png.ao.ios
 1872 bytes - UI/LargeMenuButtons/Large Menu Buttons/stats_icon.png.ao.ios
 1864 bytes - UI/SkillTree/small_skill_tree_icons_pressed/basic.png.ao.ios
-1856 bytes - UI/SkillTree/equip_button_pressed.png.ao
 1856 bytes - UI/AbilityBook/Loadout/swap_button_pressed.png.ao.ios
+1856 bytes - UI/SkillTree/equip_button_pressed.png.ao
 1848 bytes - Props/BearTrap/BAT003_bear_trap.spine.ao
 1840 bytes - SFX/UI/ui_button.wav.ao
 1816 bytes - UI/SkillTree/equip_button.png.ao.ios
