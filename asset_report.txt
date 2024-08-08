@@ -520,11 +520,11 @@
 2424 bytes - UI/SkillTree/small_skill_tree_icons_pressed/defense.png.ao
 2408 bytes - UI/SkillTree/small_skill_tree_icons/defense.png.ao
 2408 bytes - UI/SkillTree/small_skill_tree_icons_pressed/stealth.png.ao.ios
+2400 bytes - ResourcesOverlayWindow.prefab.ao
 2400 bytes - UI/AbilityBook/AbilityInfo/buy_button/coin.png.ao
-2392 bytes - UI/SkillTree/equipped_border.png.ao.ios
 2392 bytes - AbilityVendorMenuWindow.prefab.ao
+2392 bytes - UI/SkillTree/equipped_border.png.ao.ios
 2384 bytes - ability_icon_tmp/PsyThrow_Tmp.png.ao.ios
-2376 bytes - ResourcesOverlayWindow.prefab.ao
 2368 bytes - UI/AbilityBook/AbilityInfo/buy_button/buy_button_pressed.png.ao.ios
 2360 bytes - ability_icon_tmp/TotalDarkness_tmp.png.ao
 2352 bytes - UI/LargeMenuButtons/Large Menu Buttons/stats.png.ao
@@ -534,8 +534,8 @@
 2280 bytes - UI/SkillTree/Brawler.png.ao.ios
 2280 bytes - VFX/LeapFistSlam/BAT003_leaping_fist_slam.spine.ao
 2256 bytes - UI/LargeMenuButtons/skills.png.ao
-2256 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills.png.ao
 2256 bytes - UI/SkillTree/small_skill_tree_icons/basic.png.ao.ios
+2256 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills.png.ao
 2240 bytes - UI/AbilityBook/AbilityInfo/buy_button/buy_button.png.ao
 2200 bytes - ability_icon_tmp/ShadowStep_tmp.png.ao.ios
 2144 bytes - environment/gold.png.ao.ios

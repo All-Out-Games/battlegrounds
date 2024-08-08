@@ -4,6 +4,11 @@ namespace Assembly.scripts.SceneObjects;
 
 public static class SFXKeys
 {
+    #region Skills
+
+    
+
+    
     public static AudioAsset Punch1Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/punch_small.wav");
     public static AudioAsset Punch2Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/punch_strong.wav");
     public static AudioAsset Punch3Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/punch_strongest.wav");
@@ -89,5 +94,14 @@ public static class SFXKeys
     public static AudioAsset WoodShieldAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/wood_shield_activate.wav");
     public static AudioAsset IronAuradAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/light_feet_activate.wav");
     public static AudioAsset LightFeetAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/iron_aura_activate.wav");
+    
+    #endregion
+
+    #region UI
+
+    public static AudioAsset SkillShopAudio = Assets.GetAsset<AudioAsset>("SFX/UI/open_shop.wav");
+    public static AudioAsset SkillPageAudio = Assets.GetAsset<AudioAsset>("SFX/UI/open_skill_menu.wav");
+
+    #endregion
     
 }
