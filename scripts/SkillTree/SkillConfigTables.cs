@@ -40,7 +40,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig HealthBoostNodeConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Health Boost",
-        DescriptionTextKey = "Increase your base health by 10.",
+        DescriptionTextKey = "Increase your base health by 5.",
         MaximumLevel = 1,
         IconPath = "AbilityIcon_Merged/basic/health_boost.png",
         NeedRemover = true,
@@ -67,7 +67,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig AttackBoostNodeConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Attack Boost",
-        DescriptionTextKey = "Increase your base attack power by 2.",
+        DescriptionTextKey = "Increase your base attack power by 1.",
         IconPath = "AbilityIcon_Merged/basic/attack_boost.png",
         MaximumLevel = 1,
         NeedRemover = true,
@@ -118,7 +118,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig HealthBoost2NodeConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Health Boost II",
-        DescriptionTextKey = "Increase your base health by 15",
+        DescriptionTextKey = "Increase your base health by 10",
         IconPath = "AbilityIcon_Merged/basic/health_boost_2.png",
         MaximumLevel = 1,
         NeedRemover = true,
@@ -145,7 +145,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig AttackBoost2NodeConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Attack Boost II",
-        DescriptionTextKey = "Increase your base attack by 3.",
+        DescriptionTextKey = "Increase your base attack by 2.",
         IconPath = "AbilityIcon_Merged/basic/attack_boost_2.png",
         MaximumLevel = 1,
         NeedRemover = true,
@@ -242,7 +242,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig HealthBoostDNodeConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Health Boost",
-        DescriptionTextKey = "Increase your base health by 10.",
+        DescriptionTextKey = "Increase your base health by 5.",
         MaximumLevel = 1,
         IconPath = "AbilityIcon_Merged/basic/health_boost.png",
         NeedRemover = true,
