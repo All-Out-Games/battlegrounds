@@ -69,7 +69,7 @@ public class EffectBackstabCaster : FightEffectWithImmunity
     {
         base.OnEffectStart(isDropIn);
         FightPlayer victimFp = Caster as FightPlayer;
-        if (victimFp == null)
+        if (victimFp == null || !victimFp.Damageable())
         {
             FightPlayer.RemoveEffect<EffectBackstabCaster>(false);
             return;

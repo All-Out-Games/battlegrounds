@@ -8,11 +8,7 @@ public partial class FightPlayer
     // Create your state machine here. We are going to have a sh*t ton of animations so keep this section well documented.
     private void InitializeStateMachine()
     {
-        SpineAnimator.Entity.LocalScale = new Vector2(0.528f, 0.528f);
-        //SpineAnimator.Entity.Rotation = GetFacingDirection() ? 0f : 180f;
-        
-        // SpineAnimator.SpineInstance.Scale = new Vector2(0.528f, 0.528f);
-        
+
         var stateMachine = SpineAnimator.SpineInstance.StateMachine;
         var resetTrigger = stateMachine.TryGetVariableByName("RESET");
         var resetALTrigger = stateMachine.CreateVariable("RESET_AL", StateMachineVariableKind.TRIGGER);
@@ -232,12 +228,9 @@ public partial class FightPlayer
         
         // Total Darkness
         var totalDarknessTrigger = stateMachine.CreateVariable("total_darkness", StateMachineVariableKind.TRIGGER);
-        //var totalDarknessState = aoLayer.CreateState("BAT_003/spew_loop", 0, false);
-        var totalDarknessALState = fightLayer.CreateState("BAT_003/spew_fx_AL", 0, false);
+        var totalDarknessALState = fightLayer.CreateState("BAT_003/total_darkness_AL", 0, false);
         fightLayer.CreateGlobalTransition(totalDarknessALState).CreateTriggerCondition(totalDarknessTrigger);
         fightLayer.CreateTransition(totalDarknessALState, idleState, true);
-        //aoLayer.CreateGlobalTransition(totalDarknessState).CreateTriggerCondition(totalDarknessTrigger);
-        //aoLayer.CreateTransition(totalDarknessState, aoIdleState, true);
 
         #endregion
 
