@@ -46,7 +46,7 @@
       "X": 0,
       "Y": 1
     },
-    "text": "PvPArena",
+    "text": "Teleport to PVP",
     "hold_text": "",
     "radius": 2,
     "required_hold_time": 0.6000000238418579
