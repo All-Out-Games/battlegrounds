@@ -3,7 +3,7 @@
 48975507420036 1723237904000940900
 {
   "name": "ColorMultiplierEnd",
-  "local_enabled": true,
+  "local_enabled": false,
   "local_position": {
     "X": 0,
     "Y": 0

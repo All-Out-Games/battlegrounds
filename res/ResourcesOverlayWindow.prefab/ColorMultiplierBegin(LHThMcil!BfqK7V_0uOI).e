@@ -3,7 +3,7 @@
 48880505964709 1723237865939461000
 {
   "name": "ColorMultiplierBegin",
-  "local_enabled": true,
+  "local_enabled": false,
   "local_position": {
     "X": 0,
     "Y": 0
@@ -23,10 +23,10 @@
   "mono_component_type": "UIColorMultiplierBegin",
   "data": {
     "Modifier": {
-      "X": 255,
-      "Y": 255,
-      "Z": 255,
-      "W": 255
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000,
+      "Z": 0.5000000000000000,
+      "W": 0.5000000000000000
     },
     "Cb": "49216662038589:1723238000617373400",
     "End": "48975507543134:1723237904000989500"

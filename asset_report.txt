@@ -463,9 +463,9 @@
 6352 bytes - ability_icon_tmp/Invisibility_tmp.png.ao.ios
 6328 bytes - SFX/Effects/punch_strong.wav.ao
 6320 bytes - SFX/Effects/rollout_start.wav.ao
-6088 bytes - ResourcesOverlayWindow.prefab.ao
-5976 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills_icon_pressed.png.ao.ios
 5976 bytes - UI/LargeMenuButtons/skills_icon_pressed.png.ao.ios
+5976 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills_icon_pressed.png.ao.ios
+5976 bytes - ResourcesOverlayWindow.prefab.ao
 5864 bytes - environment/CentralHub/Wave2.png.ao.ios
 5824 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills_icon_pressed.png.ao
 5824 bytes - UI/LargeMenuButtons/skills_icon_pressed.png.ao

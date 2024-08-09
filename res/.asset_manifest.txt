@@ -237,7 +237,7 @@ PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
 Rage_Aura.prefab - .ao - 66ad96d6cf7a5e4159a6c44a - 2127671326789894962
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
-ResourcesOverlayWindow.prefab - .ao - 66b686f783ee6f3bbee18f27 - 2143334192011386853
+ResourcesOverlayWindow.prefab - .ao - 66b689ee83ee6f3bbee18f39 - 7461061894110177250
 SFX/Effects/backstab_attack.wav - .ao - 66ad89becf7a5e4159a6c436 - 16112955543606674532
 SFX/Effects/backstab_teleport.wav - .ao - 66ad89becf7a5e4159a6c438 - 8158155750117357873
 SFX/Effects/backstab_victim.wav - .ao - 66ad89becf7a5e4159a6c437 - 1465047161017477406
