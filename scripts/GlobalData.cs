@@ -25,7 +25,7 @@ public static class GlobalData
     // Stats
     
     public static float RespawnTime = 3f;
-    public static float CombatSpeedModifier = 0.75f;
+    public static float CombatSpeedModifier = 0.65f;
     public static float SafeSpeedModifier = 1.25f;
 
     public static int DefaultMaxHealth = 100;
