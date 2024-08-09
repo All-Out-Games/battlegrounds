@@ -50,7 +50,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         UI.Image(borderRect, BarBorder, Vector4.White, new UI.NineSlice());
         UI.Image(healthRect, null, Vector4.Black, new UI.NineSlice());
         UI.Image(levelRect, LvPlate, Vector4.White, new UI.NineSlice());
-        UI.Text(levelRect.Offset(10,10), $"{_player.Level + 1}", UI.TextSettings.Default with {Size = 28});
+        UI.Text(levelRect.Offset(0,5), $"{_player.Level + 1}", UI.TextSettings.Default with {Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center});
 
         var healthPercent = _player.CurrentHealth / (float)_player.MaxHealth;
         var healthPercentRect = healthRect.SubRect(0, 0, healthPercent, 1, 0, 0, 0, 0);
