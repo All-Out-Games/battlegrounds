@@ -13,7 +13,8 @@
     "X": 1,
     "Y": 1
   },
-  "next_sibling": "102569122678842:1723056038858079900",
+  "previous_sibling": "8850935096257:1723221828451331400",
+  "next_sibling": "9363338485466:1723222033741148400",
   "parent": "102151126654150:1723055829525165000"
 },
 {
@@ -22,9 +23,9 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "999",
+    "text": "50",
     "settings": {
-      "font_id": "",
+      "font_id": "$AO/fonts/Barlow-ExtraBold.ttf",
       "size": 50,
       "color": {
         "X": 1,
@@ -38,7 +39,7 @@
       "word_wrap_start_offset": 0,
       "offset": {
         "X": 0,
-        "Y": 0
+        "Y": 3
       },
       "do_drop_shadow": true,
       "drop_shadow_offset": {
@@ -73,20 +74,20 @@
   "data": {
     "min": {
       "X": 0.5000000000000000,
-      "Y": 1
+      "Y": 0.5000000000000000
     },
     "max": {
       "X": 0.5000000000000000,
-      "Y": 1
+      "Y": 0.5000000000000000
     },
     "insets": {
-      "X": 0,
+      "X": -50,
       "Y": -50,
-      "Z": -100,
+      "Z": -50,
       "W": -50
     },
     "offset": {
-      "X": -270,
+      "X": -250,
       "Y": 0
     }
   }

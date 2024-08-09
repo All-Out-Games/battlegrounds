@@ -25,6 +25,27 @@
     "_sidebar": "276719996754100:1722471110903044600",
     "_levelText": "102232605651696:1723055870329945400",
     "_curExpText": "102569122820216:1723056038858150100",
-    "_nextExpText": "102845890633732:1723056177463805900"
+    "_nextExpText": "102845890633732:1723056177463805900",
+    "_expBarMaskRect": "13234418891834:1723223584654753000"
+  }
+},
+{
+  "cid": 2,
+  "aoid": "8820433151227:1723221816231001900",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UICanvas",
+  "data": {
+    "layer": 0,
+    "ui_scale_multiplier": 1,
+    "tint": {
+      "X": 1,
+      "Y": 1,
+      "Z": 1,
+      "W": 1
+    },
+    "interactable": true,
+    "start_with_safe_rect": false,
+    "world_space": false,
+    "hide_in_editor": false
   }
 }

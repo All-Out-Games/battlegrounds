@@ -15,8 +15,14 @@ public class ResourceOverlayWindow : BaseUIWindow
     [Serialized] private UIText _levelText;
     [Serialized] private UIText _curExpText;
     [Serialized] private UIText _nextExpText;
+
+    [Serialized] private UIRect _expBarMaskRect;
     
     private Coroutine _coroutineC;
+    private int _currentLevel;
+    private int _currentExp;
+    private int _baselineExp;
+    private int _nextExp;
 
     public override void OnDestroy()
     {
@@ -40,17 +46,6 @@ public class ResourceOverlayWindow : BaseUIWindow
     public void UpdateCoin(int coin)
     {
         _coinText.Text = coin.ToString();
-        if (_coroutineC == null || _coroutineC.Finished)
-        {
-            _coroutineC = Coroutine.Start(this.Entity, TextChangeEmphasize(_coinText, 0.1f, 0.15f,
-                64f, 32f));
-        }
-        else
-        {
-            Coroutine.ActiveCoroutines.Remove(_coroutineC);
-            _coroutineC = Coroutine.Start(this.Entity, TextChangeEmphasize(_coinText, 0.1f, 0.15f,
-                64f, 32f));
-        }
     }
     
     public static IEnumerator TextChangeEmphasize(UIText txt, float expandTime, float shrinkTime, float expandSize,
@@ -105,12 +100,39 @@ public class ResourceOverlayWindow : BaseUIWindow
 
     public void UpdateCurExpTxt(int exp)
     {
+        _currentExp = exp;
         _curExpText.Text = $"{exp}";
+        ExpBarMaskUpdate();
     }
 
     public void UpdateLevelingTxt(int level, int nextExp)
     {
+        
         _levelText.Text = $"{level+1}";
         _nextExpText.Text = nextExp.ToString();
+        if (_coroutineC == null || _coroutineC.Finished)
+        {
+            _coroutineC = Coroutine.Start(this.Entity, TextChangeEmphasize(_levelText, 0.1f, 0.15f,
+                100f, 50f));
+        }
+        else
+        {
+            Coroutine.ActiveCoroutines.Remove(_coroutineC);
+            _coroutineC = Coroutine.Start(this.Entity, TextChangeEmphasize(_levelText, 0.1f, 0.15f,
+                100f, 50f));
+        }
+
+        _baselineExp = LevelingData.BaselineXp[level];
+        _currentLevel = level;
+        _nextExp = nextExp;
+        _currentLevel = level;
+        ExpBarMaskUpdate();
+    }
+
+    private void ExpBarMaskUpdate()
+    {
+        float totalLevelExp = _nextExp - _baselineExp;
+        float currentLevelExp = _currentExp - _baselineExp;
+        _expBarMaskRect.Max = _expBarMaskRect.Max with { X = currentLevelExp / totalLevelExp };
     }
 }
