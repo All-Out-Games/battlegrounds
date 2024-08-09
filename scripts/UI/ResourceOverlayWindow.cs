@@ -27,6 +27,8 @@ public class ResourceOverlayWindow : BaseUIWindow
     private int _baselineExp;
     private int _nextExp;
 
+    private bool _isFirstLevelup = true; 
+
     public override void OnDestroy()
     {
         base.OnDestroy();
@@ -130,8 +132,14 @@ public class ResourceOverlayWindow : BaseUIWindow
         _nextExp = nextExp;
         _currentLevel = level;
         ExpBarMaskUpdate();
-        
-        _levelUpWindow.PopAtLevelUp(_currentLevel);
+
+        if (!_isFirstLevelup)
+        {
+            // We do not pop for the first event for every client because that would be from their saves
+            _levelUpWindow.PopAtLevelUp(_currentLevel);
+        }
+
+        _isFirstLevelup = false;
     }
 
     private void ExpBarMaskUpdate()

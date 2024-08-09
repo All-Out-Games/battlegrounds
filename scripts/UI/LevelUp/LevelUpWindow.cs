@@ -1,4 +1,5 @@
-﻿using AO;
+﻿using System.Collections;
+using AO;
 
 namespace Assembly.scripts.UI.LevelUp;
 
@@ -12,9 +13,19 @@ public class LevelUpWindow : Component
     [Serialized] public UIText GemText;
     [Serialized] public LevelUpSkillUnlockItem Item1;
     [Serialized] public LevelUpSkillUnlockItem Item2;
+    [Serialized] private UISpineSkeleton _sparkles;
+
+    private UIRect _rect;
+    private Coroutine _popCoroutine;
 
     public void PopAtLevelUp(int lvl)
     {
+        if (lvl <= 0 || lvl > LevelingData.MaxLevel)
+        {
+            return;
+        }
+
+        _rect ??= GetComponent<UIRect>();
         LevelText.Text = $"{lvl + 1}";
         
         CoinText.Text = $"{LevelingData.CoinRewards[lvl]} Coins Given!";
@@ -54,5 +65,33 @@ public class LevelUpWindow : Component
                 item.Entity.LocalEnabled = false;
             }
         }
+
+        _popCoroutine = Coroutine.Start(Entity, PopOnOutThenRetract());
+    }
+
+    private IEnumerator PopOnOutThenRetract()
+    {
+        float progress01 = 0;
+        Entity.LocalEnabled = true;
+        _sparkles.Instance.SetAnimation("hatch", false);
+        while (progress01 < 1)
+        {
+            _rect.Offset = _rect.Offset with { Y = -500 + 500 * progress01 };
+            progress01 += 4 * Time.DeltaTime; // Pop out in 0.25 a sec
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(LevelingData.LevelingWindowStayTime);
+        progress01 = 0;
+        while (progress01 < 1)
+        {
+            _rect.Offset = _rect.Offset with { Y = -500 * progress01 };
+            progress01 += 2 * Time.DeltaTime; // Retract in .5 sec
+            yield return null;
+        }
+
+        Entity.LocalEnabled = false;
+        
+        yield return null;
     }
 }

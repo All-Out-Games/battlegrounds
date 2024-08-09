@@ -8,6 +8,8 @@ public static class LevelingData
     
     public static readonly int XpLowLevelPenalty = 3; // Elimination of lower level players will reward less xp
     public static readonly int XpHighLevelReward = 2; // Take down a higher level player will reward more xp
+
+    public static readonly float LevelingWindowStayTime = 5f;
     
     // Total XP a player needs for Level i
     public static readonly int[] BaselineXp = {

@@ -237,7 +237,7 @@ PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
 Rage_Aura.prefab - .ao - 66ad96d6cf7a5e4159a6c44a - 2127671326789894962
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
-ResourcesOverlayWindow.prefab - .ao - 66b6942d83ee6f3bbee18f3d - 11205728337848998331
+ResourcesOverlayWindow.prefab - .ao - 66b6ab3d83ee6f3bbee18f4b - 662047696701867971
 SFX/Effects/backstab_attack.wav - .ao - 66ad89becf7a5e4159a6c436 - 16112955543606674532
 SFX/Effects/backstab_teleport.wav - .ao - 66ad89becf7a5e4159a6c438 - 8158155750117357873
 SFX/Effects/backstab_victim.wav - .ao - 66ad89becf7a5e4159a6c437 - 1465047161017477406
@@ -523,6 +523,9 @@ UI/SkillTree/tree_selected.png - .ao - 66981701b45eb9e8339c2000 - 96853644919205
 UI/SkillTree/tree_selected.png - .ao.ios - 66981701b45eb9e8339c2002 - 5278201373430736246
 UI/TotalDarknessOverlay.png - .ao - 6685d28fb45eb9e8339c10c0 - 5181732608959223275
 UI/TotalDarknessOverlay.png - .ao.ios - 6685d28fb45eb9e8339c10c2 - 9412426728575774527
+UI/XPBar/Sparkles/FAT_sparkles.png - .ao - 66b6ab1c83ee6f3bbee18f48 - 4489548302515844564
+UI/XPBar/Sparkles/FAT_sparkles.png - .ao.ios - 66b6ab1c83ee6f3bbee18f45 - 11070410687123507061
+UI/XPBar/Sparkles/FAT_sparkles.spine - .ao - 66b6ab1c83ee6f3bbee18f43 - 11510525998519255467
 UI/XPBar/exp_bar/XP_backing.png - .ao - 66b6488f83ee6f3bbee18eec - 14275796706020942182
 UI/XPBar/exp_bar/XP_backing.png - .ao.ios - 66b6488f83ee6f3bbee18eed - 15838280936913125848
 UI/XPBar/exp_bar/XP_bar.png - .ao - 66b6488f83ee6f3bbee18eee - 16519570126890386809

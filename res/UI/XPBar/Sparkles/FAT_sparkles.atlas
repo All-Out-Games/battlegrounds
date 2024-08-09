@@ -1,0 +1,28 @@
+FAT_sparkles.png
+	size: 240, 240
+	filter: Linear, Linear
+	scale: 0.5
+images/sparkles/sparkle_fx/sparkle_blue
+	bounds: 6, 94, 29, 30
+	offsets: 2, 2, 33, 34
+images/sparkles/sparkle_fx/sparkle_green
+	bounds: 6, 130, 29, 30
+	offsets: 2, 2, 33, 34
+images/sparkles/sparkle_fx/sparkle_pink
+	bounds: 6, 166, 29, 30
+	offsets: 2, 2, 33, 34
+images/sparkles/sparkle_fx/sparkle_small_blue
+	bounds: 6, 6, 16, 16
+	offsets: 2, 2, 20, 20
+images/sparkles/sparkle_fx/sparkle_small_green
+	bounds: 6, 28, 16, 16
+	offsets: 2, 2, 20, 20
+images/sparkles/sparkle_fx/sparkle_small_pink
+	bounds: 6, 50, 16, 16
+	offsets: 2, 2, 20, 20
+images/sparkles/sparkle_fx/sparkle_small_yellow
+	bounds: 6, 72, 16, 16
+	offsets: 2, 2, 20, 20
+images/sparkles/sparkle_fx/sparkle_yellow
+	bounds: 6, 202, 29, 30
+	offsets: 2, 2, 33, 34
