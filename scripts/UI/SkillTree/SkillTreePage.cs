@@ -289,14 +289,22 @@ public class SkillTreePage : UniqueUIWindow
                 }
                 else
                 {
+                    // Attainable but not enough money
                     _buyText.Text = $"Earn {item.Config.UpgradeCost - _localPlayer.Coins} Coins!";
                     _buyButton.Interactable = false;
                 }
                 
                 break;
             case SkillTreeItem.NodeStatus.Locked:
-                _buyText.Text = "Need Prerequisite!";
                 _buyButton.Interactable = false;
+                if (item.Config.UnlockLevel > _localPlayer.Level)
+                {
+                    _buyText.Text = $"Unlock at Lv. {item.Config.UnlockLevel + 1}";
+                }
+                else
+                {
+                    _buyText.Text = "Need Prerequisite!";
+                }
                 break;
         }
         _costText.Text = $"{item.Config.UpgradeCost}";

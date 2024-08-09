@@ -70,6 +70,12 @@ public class SkillTreeItem : Component
 
     }
 
+    /// <summary>
+    /// Check if the player is eligible to buy the skill that this node represents.
+    /// Does not check coins. Coin check moved to the parent page (SkillTreePage.cs)
+    /// </summary>
+    /// <param name="skillTree"></param>
+    /// <returns></returns>
     public bool CheckAttainable(FightPlayerSkillTree skillTree)
     {
         // if (!skillTree.CheckAffordable(Config.UpgradeCost))
@@ -77,7 +83,11 @@ public class SkillTreeItem : Component
         //     // Not enough money
         //     return false;
         // }
-        
+        if (Config.UnlockLevel > skillTree.GetFightPlayer().Level)
+        {
+            // Not enough level
+            return false;
+        }
         bool attainable = true;
         foreach (string k in Config.GetParentNodeKeys())
         {

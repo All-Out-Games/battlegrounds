@@ -50,6 +50,12 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             UIManager.CallClient_SetPlayerPopup(_player.Entity.NetworkId,$"You don't have enough coin! {cfg.UpgradeCost} needed!", 2f);
             return;
         }
+
+        if (_player.Level < cfg.UnlockLevel)
+        {
+            UIManager.CallClient_SetPlayerPopup(_player.Entity.NetworkId,$"You need to be Level {cfg.UnlockLevel + 1} to purchase!", 2f);
+            return;
+        }
         foreach (string key in cfg.GetParentNodeKeys())
         {
             if (SkillLevelDict[key] == 0)

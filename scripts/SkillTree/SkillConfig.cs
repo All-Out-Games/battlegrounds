@@ -61,9 +61,9 @@ public static partial class SkillConfig
     /// </summary>
     public struct SkillTreeNodeConfig
     {
-        public string DescriptionTextKey;
-        public string DisplayName;
-        public int BaseDamageKey;
+        public string DescriptionTextKey; 
+        public string DisplayName; // This field is displayed on info screen as title. If unfilled, will display skillKey
+        public int BaseDamageKey; // A fixed number for the base damage of the skill
         public string RangeDescriptionKey = "N/A";
         public string CooldownKey = "N/A";
         
@@ -76,7 +76,9 @@ public static partial class SkillConfig
         /// </summary>
         public int MaximumLevel; 
         /// <summary>
-        /// // Skill will be gated from players that are under this level.
+        /// Skill will be gated from players that are under this level.
+        /// IMPORTANT NOTE: The DISPLAYED level on UI is (ACTUAL level + 1). So please fill this field as DISPLAY level - 1
+        /// e.g. Punch II unlocks at level 5. You should fill in 4 (not 5)!
         /// </summary>
         public int UnlockLevel; 
         

@@ -27,24 +27,4 @@
     "_curExpText": "102569122820216:1723056038858150100",
     "_nextExpText": "102845890633732:1723056177463805900"
   }
-},
-{
-  "cid": 5,
-  "aoid": "138156077453843:1723073860848076100",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UICanvas",
-  "data": {
-    "layer": 0,
-    "ui_scale_multiplier": 1,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "interactable": true,
-    "start_with_safe_rect": false,
-    "world_space": false,
-    "hide_in_editor": false
-  }
 }

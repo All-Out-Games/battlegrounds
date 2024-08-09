@@ -9,6 +9,7 @@ using Assembly.scripts.UI;
 public class FightPlayerLegacyUI : FightPlayerComponent
 {
     private static Texture BarBorder = Assets.KeepLoaded<Texture>("UI/Bars/border.png");
+    private static Texture LvPlate = Assets.KeepLoaded<Texture>("UI/LargeMenuButtons/Large Menu Buttons/large_button.png");
     private List<string> _hideUIReasons = new List<string>();
 
     public void AddPlayerUIInvisibleReason(string reason)
@@ -42,11 +43,14 @@ public class FightPlayerLegacyUI : FightPlayerComponent
     protected Rect DrawHealthBar()
     {
         var healthRect = UI.GetPlayerRect(_player);
-        healthRect = healthRect.Grow(13, 50, 0, 50).Offset(0, 160);
+        var levelRect = healthRect.Grow(20, 20, 20, 20).Offset(-70, 170);
+        healthRect = healthRect.Grow(13, 50, 0, 50).Offset(0, 170);
         var borderRect = healthRect.Grow(4, 3, 4, 3);
         UI.PushLayer(-2);
         UI.Image(borderRect, BarBorder, Vector4.White, new UI.NineSlice());
         UI.Image(healthRect, null, Vector4.Black, new UI.NineSlice());
+        UI.Image(levelRect, LvPlate, Vector4.White, new UI.NineSlice());
+        UI.Text(levelRect.Offset(10,10), $"{_player.Level + 1}", UI.TextSettings.Default with {Size = 28});
 
         var healthPercent = _player.CurrentHealth / (float)_player.MaxHealth;
         var healthPercentRect = healthRect.SubRect(0, 0, healthPercent, 1, 0, 0, 0, 0);

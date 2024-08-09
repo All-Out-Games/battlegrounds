@@ -60,7 +60,7 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "UI/LargeMenuButtons/topbar_bg.png",
+      "sprite": "UI/LargeMenuButtons/large_button.png",
       "sprite_hovered": "",
       "sprite_pressed": "",
       "sprite_padding": {
@@ -71,10 +71,10 @@
       },
       "nine_slice_data": {
         "slice": {
-          "X": 20,
-          "Y": 25,
-          "Z": 40,
-          "W": 70
+          "X": 58,
+          "Y": 370,
+          "Z": 114,
+          "W": 240
         },
         "slice_scale": 50
       },

@@ -237,7 +237,7 @@ PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
 Rage_Aura.prefab - .ao - 66ad96d6cf7a5e4159a6c44a - 2127671326789894962
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
-ResourcesOverlayWindow.prefab - .ao - 66b51d49cf7a5e4159a6c530 - 7654806939518035106
+ResourcesOverlayWindow.prefab - .ao - 66b56c3083ee6f3bbee18ee4 - 11731728474825289216
 SFX/Effects/backstab_attack.wav - .ao - 66ad89becf7a5e4159a6c436 - 16112955543606674532
 SFX/Effects/backstab_teleport.wav - .ao - 66ad89becf7a5e4159a6c438 - 8158155750117357873
 SFX/Effects/backstab_victim.wav - .ao - 66ad89becf7a5e4159a6c437 - 1465047161017477406
@@ -371,6 +371,8 @@ UI/LargeMenuButtons/Large Menu Buttons/stats_icon.png - .ao - 66aad257cf7a5e4159
 UI/LargeMenuButtons/Large Menu Buttons/stats_icon.png - .ao.ios - 66aad258cf7a5e4159a6b73d - 16313663364793090618
 UI/LargeMenuButtons/Large Menu Buttons/stats_icon_pressed.png - .ao - 66aad258cf7a5e4159a6b73f - 7965701045475553527
 UI/LargeMenuButtons/Large Menu Buttons/stats_icon_pressed.png - .ao.ios - 66aad258cf7a5e4159a6b740 - 12159045113275667113
+UI/LargeMenuButtons/coin_icon.png - .ao - 66b56a2a83ee6f3bbee18edc - 17998369875264506600
+UI/LargeMenuButtons/coin_icon.png - .ao.ios - 66b56a2a83ee6f3bbee18edb - 35094986374472792
 UI/LargeMenuButtons/large_button.png - .ao - 66aad258cf7a5e4159a6b743 - 18231134355042940051
 UI/LargeMenuButtons/large_button.png - .ao.ios - 66aad258cf7a5e4159a6b744 - 3983896806962664064
 UI/LargeMenuButtons/large_button_highlight.png - .ao - 66aad259cf7a5e4159a6b746 - 5076871486006783888
@@ -389,6 +391,8 @@ UI/LargeMenuButtons/stats_icon.png - .ao - 66aad25bcf7a5e4159a6b760 - 9388318728
 UI/LargeMenuButtons/stats_icon.png - .ao.ios - 66aad25acf7a5e4159a6b75f - 16313663364793090618
 UI/LargeMenuButtons/stats_icon_pressed.png - .ao - 66aad25bcf7a5e4159a6b762 - 7965701045475553527
 UI/LargeMenuButtons/stats_icon_pressed.png - .ao.ios - 66aad25bcf7a5e4159a6b765 - 12159045113275667113
+UI/LargeMenuButtons/topbar_bg.png - .ao - 66b56a2a83ee6f3bbee18ede - 12337881749898040965
+UI/LargeMenuButtons/topbar_bg.png - .ao.ios - 66b56a2a83ee6f3bbee18ee1 - 12468717668686089589
 UI/SkillTree/Brawler.png - .ao - 669816ecb45eb9e8339c1f0a - 9998387097734776475
 UI/SkillTree/Brawler.png - .ao.ios - 669816ecb45eb9e8339c1f0c - 14977146293914380219
 UI/SkillTree/ability_backing.png - .ao - 669816ecb45eb9e8339c1f0f - 15250342353867512298
