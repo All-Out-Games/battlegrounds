@@ -157,6 +157,11 @@ public static partial class SkillConfig
         
     }
 
+    /// <summary>
+    /// Get the icon (backplate version) of the skill
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
     public static string GetIconPath(string key)
     {
         if (key == "Empty")
@@ -167,6 +172,11 @@ public static partial class SkillConfig
         return path == String.Empty ? FightAbility.DefaultIconPath : path;
     }
 
+    /// <summary>
+    /// Get the icon (non-backplate version) of the skill
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
     public static string GetAbilityIconPath(string key)
     {
         if (key == "Empty")
@@ -182,6 +192,7 @@ public static partial class SkillConfig
         
         return path == String.Empty ? FightAbility.DefaultAbilityIcon : path;
     }
+    
 
     public static string GetPunchAbilityIconPath(int punchLevel)
     {

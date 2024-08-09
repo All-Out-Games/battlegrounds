@@ -23,12 +23,12 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "",
+    "sprite": "$AO/new/Leaderboard/leaderboard_backing.png",
     "tint": {
-      "X": 0.2037037014961243,
-      "Y": 0.2037037014961243,
-      "Z": 0.2037037014961243,
-      "W": 0.7294117808341980
+      "X": 1,
+      "Y": 1,
+      "Z": 1,
+      "W": 1
     },
     "fit_aspect": false,
     "fit_aspect_kind": 0,

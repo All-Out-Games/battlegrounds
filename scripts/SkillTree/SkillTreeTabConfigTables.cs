@@ -65,8 +65,8 @@ public partial class SkillConfig
         TabName = "Defensive",
         SkillPageBg = "UI/SkillTree/skill_page_defense.png",
         InfoScreenBg = "UI/AbilityBook/AbilityInfo/info_window_defense.png",
-        TreeIcon = "UI/SkillTree/small_skill_tree_icons/defensive.png",
-        TreeIconPressed = "UI/SkillTree/small_skill_tree_icons/defensive.png"
+        TreeIcon = "UI/SkillTree/small_skill_tree_icons/defense.png",
+        TreeIconPressed = "UI/SkillTree/small_skill_tree_icons/defense.png"
     };
     
     public static readonly SkillTreeTabConfig StealthTabConfig = new SkillTreeTabConfig()

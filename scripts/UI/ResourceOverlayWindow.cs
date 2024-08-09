@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using AO;
+using Assembly.scripts.UI.LevelUp;
 
 namespace Assembly.scripts.UI;
 
@@ -17,6 +18,8 @@ public class ResourceOverlayWindow : BaseUIWindow
     [Serialized] private UIText _nextExpText;
 
     [Serialized] private UIRect _expBarMaskRect;
+
+    [Serialized] private LevelUpWindow _levelUpWindow;
     
     private Coroutine _coroutineC;
     private int _currentLevel;
@@ -127,6 +130,8 @@ public class ResourceOverlayWindow : BaseUIWindow
         _nextExp = nextExp;
         _currentLevel = level;
         ExpBarMaskUpdate();
+        
+        _levelUpWindow.PopAtLevelUp(_currentLevel);
     }
 
     private void ExpBarMaskUpdate()
