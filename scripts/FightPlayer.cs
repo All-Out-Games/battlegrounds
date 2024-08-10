@@ -2,8 +2,6 @@ using System.Collections;
 using AO;
 using Assembly.scripts;
 using Assembly.scripts.Effects.ActiveSkills;
-using Assembly.scripts.UI;
-using StreamReader = AO.StreamReader;
 
 /// <summary>
 /// Model class of the player. Stores data and handle actions using RPC
@@ -191,13 +189,8 @@ public partial class FightPlayer : Player
         {
             if (Network.IsServer)
             {
-                int v = value;
-                if (value > LevelingData.NextLevelXp[LevelingData.MaxLevel])
-                {
-                    v = LevelingData.NextLevelXp[LevelingData.MaxLevel];
-                }
-                _exp.Set(v);
-                Save.SetInt(this, "Exp", v);
+                _exp.Set(value);
+                Save.SetInt(this, "Exp", value);
                 if (_exp >= LevelingData.NextLevelXp[_level])
                 {
                     TryLevelUp();
@@ -377,12 +370,12 @@ public partial class FightPlayer : Player
         //SkillSlotsManager.InitKeybind();
         
         _preDamageEffects = new List<FightEffect>();
+        InitializeUI();
     }
 
     public override void Start()
     {
         //Log.Debug($"Client Start!");
-        InitializeUI();
         if (Network.IsServer)
         {
             // DO save related things here! You cannot sync stuff in Awake
