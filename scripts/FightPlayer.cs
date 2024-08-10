@@ -215,10 +215,6 @@ public partial class FightPlayer : Player
         {
             if (Network.IsServer)
             {
-                if (value > LevelingData.MaxLevel || value < 0)
-                {
-                    return;
-                }
                 Save.SetInt(this, "Level", value);
                 _level.Set(value);
             }
@@ -380,14 +376,13 @@ public partial class FightPlayer : Player
         //Log.Debug($"Client Awake!");
         //SkillSlotsManager.InitKeybind();
         
-
         _preDamageEffects = new List<FightEffect>();
     }
 
     public override void Start()
     {
         //Log.Debug($"Client Start!");
-        
+        InitializeUI();
         if (Network.IsServer)
         {
             // DO save related things here! You cannot sync stuff in Awake
@@ -402,7 +397,6 @@ public partial class FightPlayer : Player
                 // Stuff related to the local player goes here. e.g. Camera control & UI
                 CameraInterface = Camera.CreateCameraControl(1);
                 CameraInterface.Zoom = 1.0f;
-                InitializeUI();
                 // First ui update need to be triggered manually (Save reading happens before this point)
                 CoinUpdateEvent.Invoke(_coins); 
             }
