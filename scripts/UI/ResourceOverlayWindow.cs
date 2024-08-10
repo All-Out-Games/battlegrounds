@@ -9,6 +9,7 @@ public class ResourceOverlayWindow : BaseUIWindow
     private FightPlayer _localPlayer;
     
     [Serialized] private UIText _coinText;
+    [Serialized] private UIText _gemText;
 
     [Serialized] private UIButton _skillBookButton;
     [Serialized] private Entity _sidebar;

@@ -21,6 +21,7 @@
   "mono_component_type": "ResourceOverlayWindow",
   "data": {
     "_coinText": "58021874832863:1717454231446329100",
+    "_gemText": "80694314965981:1723250611856369700",
     "_skillBookButton": "276980188914254:1722471234100089700",
     "_sidebar": "276719996754100:1722471110903044600",
     "_levelText": "102232605651696:1723055870329945400",
@@ -28,25 +29,5 @@
     "_nextExpText": "102845890633732:1723056177463805900",
     "_expBarMaskRect": "13234418891834:1723223584654753000",
     "_levelUpWindow": "57741690227612:1723241416093368600"
-  }
-},
-{
-  "cid": 4,
-  "aoid": "74243352564504:1723248027336209600",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UICanvas",
-  "data": {
-    "layer": 0,
-    "ui_scale_multiplier": 1,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "interactable": true,
-    "start_with_safe_rect": false,
-    "world_space": false,
-    "hide_in_editor": false
   }
 }

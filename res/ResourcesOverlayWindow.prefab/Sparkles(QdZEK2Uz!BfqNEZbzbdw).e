@@ -13,8 +13,7 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "23040970051318:1723227513561419800",
-  "next_sibling": "276603803210872:1722471055887162800",
+  "next_sibling": "56958464634843:1717453805400844900",
   "parent": "56713756930459:1717453707360960100"
 },
 {
@@ -50,5 +49,23 @@
       "X": 0,
       "Y": 0
     }
+  }
+},
+{
+  "cid": 3,
+  "aoid": "76277192775340:1723248842176027800",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UICallback",
+  "data": {
+
+  }
+},
+{
+  "cid": 4,
+  "aoid": "77152484786464:1723249192853912100",
+  "component_type": "Mono_Component",
+  "mono_component_type": "UIDrawSkeletonCallback",
+  "data": {
+
   }
 }
