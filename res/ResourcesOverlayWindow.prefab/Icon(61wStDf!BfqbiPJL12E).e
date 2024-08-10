@@ -1,8 +1,8 @@
 13
-90194313217
-35009125666391 1723232308495499900
+55834574851
+4043448176863 1723310907400871300
 {
-  "name": "TreeIcon",
+  "name": "Icon",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,13 +13,13 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "34629531526812:1723232156414516800",
-  "next_sibling": "3222814391638:1723310578621206500",
-  "parent": "33969294139250:1723231891896335600"
+  "previous_sibling": "4043448199751:1723310907400880300",
+  "next_sibling": "4043448155195:1723310907400862700",
+  "parent": "4043447977116:1723310907400791800"
 },
 {
   "cid": 1,
-  "aoid": "35009125788381:1723232308495548300",
+  "aoid": "4043448733618:1723310907401094300",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
@@ -32,24 +32,24 @@
       "Y": 0.5000000000000000
     },
     "insets": {
-      "X": -20,
-      "Y": -40,
-      "Z": -20,
+      "X": -37.5000000000000000,
+      "Y": -75,
+      "Z": -37.5000000000000000,
       "W": 0
     },
     "offset": {
-      "X": 25,
-      "Y": 25
+      "X": 50,
+      "Y": 0
     }
   }
 },
 {
   "cid": 2,
-  "aoid": "35009125878746:1723232308495584400",
+  "aoid": "4043448758150:1723310907401104100",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "UI/SkillTree/small_skill_tree_icons/psionic.png",
+    "sprite": "AbilityIcon_Merged/psionic/psychic_mastery.png",
     "tint": {
       "X": 1,
       "Y": 1,

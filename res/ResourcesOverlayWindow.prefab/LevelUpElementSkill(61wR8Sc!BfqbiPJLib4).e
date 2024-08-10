@@ -1,6 +1,6 @@
 13
-81604378627
-57840779570495 1723241455792623900
+81604378628
+4043447977116 1723310907400791800
 {
   "name": "LevelUpElementSkill",
   "local_enabled": true,
@@ -18,7 +18,7 @@
 },
 {
   "cid": 1,
-  "aoid": "57840779816339:1723241455792721500",
+  "aoid": "4043448284430:1723310907400914300",
   "component_type": "Internal_Component",
   "internal_component_type": "UIDirectionalLayoutElement",
   "data": {
@@ -27,12 +27,13 @@
 },
 {
   "cid": 2,
-  "aoid": "57840779911241:1723241455792759600",
+  "aoid": "4043448364715:1723310907400946400",
   "component_type": "Mono_Component",
   "mono_component_type": "LevelUpSkillUnlockItem",
   "data": {
-    "SkillIcon": "57840780240313:1723241455792891300",
-    "SkillTreeIcon": "57840780005927:1723241455792797500",
-    "UnlockText": "57840780434235:1723241455792969000"
+    "SkillIcon": "4043448758150:1723310907401104100",
+    "SkillTreeIcon": "4043448628330:1723310907401052000",
+    "UnlockText": "4043448919638:1723310907401168800",
+    "CoinsText": "4043448519002:1723310907401008300"
   }
 }

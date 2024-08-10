@@ -1,8 +1,8 @@
 13
-77309411331
-57840779671177 1723241455792663300
+8589934593
+3222814391638 1723310578621206500
 {
-  "name": "TreeIcon",
+  "name": "CoinIcon",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,12 +13,13 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "57840779697720:1723241455792673900",
-  "parent": "57840779570495:1723241455792623900"
+  "previous_sibling": "35009125666391:1723232308495499900",
+  "next_sibling": "3375848491568:1723310639932964600",
+  "parent": "33969294139250:1723231891896335600"
 },
 {
   "cid": 1,
-  "aoid": "57840779972715:1723241455792784200",
+  "aoid": "3222814486159:1723310578621244000",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
@@ -31,24 +32,24 @@
       "Y": 0.5000000000000000
     },
     "insets": {
-      "X": -20,
-      "Y": -40,
-      "Z": -20,
+      "X": -15,
+      "Y": -30,
+      "Z": -15,
       "W": 0
     },
     "offset": {
-      "X": 25,
-      "Y": 25
+      "X": 35,
+      "Y": -30
     }
   }
 },
 {
   "cid": 2,
-  "aoid": "57840780005927:1723241455792797500",
+  "aoid": "3222814558404:1723310578621272900",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "UI/SkillTree/small_skill_tree_icons/psionic.png",
+    "sprite": "UI/AbilityBook/AbilityInfo/buy_button/coin.png",
     "tint": {
       "X": 1,
       "Y": 1,

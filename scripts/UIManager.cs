@@ -247,7 +247,7 @@ public partial class UIManager : System<UIManager>
             // This should be the ONLY IsServer in this file!
             if (Network.IsServer)
             {
-                if (_timerNextGlobalUIUpdate < 60)
+                if (_timerNextGlobalUIUpdate > 60)
                 {
                     _timerNextGlobalUIUpdate = 0;
 

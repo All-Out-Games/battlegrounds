@@ -7,6 +7,7 @@ public class LevelUpSkillUnlockItem : Component
     [Serialized] public UIImage SkillIcon;
     [Serialized] public UIImage SkillTreeIcon;
     [Serialized] public UIText UnlockText;
+    [Serialized] public UIText CoinsText;
 
     public void SetSkillUnlock(string skillKey)
     {
@@ -15,5 +16,6 @@ public class LevelUpSkillUnlockItem : Component
         SkillTreeIcon.Sprite =
             Assets.GetAsset<Texture>(SkillConfig.STTabQueryDict[cfg.NTab].TreeIcon);
         UnlockText.Text = $"You can now learn {cfg.GetDisplayName()}!";
+        CoinsText.Text = cfg.UpgradeCost.ToString();
     }
 }
