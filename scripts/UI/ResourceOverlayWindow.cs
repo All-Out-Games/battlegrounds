@@ -139,6 +139,7 @@ public class ResourceOverlayWindow : BaseUIWindow
         _currentLevel = level;
         ExpBarMaskUpdate();
 
+        Log.Warn("Tried pop leveling text");
         if (!_isFirstLevelup)
         {
             // We do not pop for the first event for every client because that would be from their saves

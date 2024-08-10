@@ -43,8 +43,8 @@ public class FightPlayerLegacyUI : FightPlayerComponent
     protected Rect DrawHealthBar()
     {
         var healthRect = UI.GetPlayerRect(_player);
-        var levelRect = healthRect.Grow(20, 20, 20, 20).Offset(-70, 170);
-        healthRect = healthRect.Grow(13, 50, 0, 50).Offset(0, 170);
+        var levelRect = healthRect.Grow(20, 20, 20, 20).Offset(-70, 180);
+        healthRect = healthRect.Grow(13, 50, 0, 50).Offset(0, 180);
         var borderRect = healthRect.Grow(4, 3, 4, 3);
         UI.PushLayer(-2);
         UI.Image(borderRect, BarBorder, Vector4.White, new UI.NineSlice());
