@@ -191,8 +191,13 @@ public partial class FightPlayer : Player
         {
             if (Network.IsServer)
             {
-                _exp.Set(value);
-                Save.SetInt(this, "Exp", value);
+                int v = value;
+                if (value > LevelingData.NextLevelXp[LevelingData.MaxLevel])
+                {
+                    v = LevelingData.NextLevelXp[LevelingData.MaxLevel];
+                }
+                _exp.Set(v);
+                Save.SetInt(this, "Exp", v);
                 if (_exp >= LevelingData.NextLevelXp[_level])
                 {
                     TryLevelUp();
@@ -210,8 +215,27 @@ public partial class FightPlayer : Player
         {
             if (Network.IsServer)
             {
+                if (value > LevelingData.MaxLevel || value < 0)
+                {
+                    return;
+                }
                 Save.SetInt(this, "Level", value);
                 _level.Set(value);
+            }
+        }
+    }
+
+    private SyncVar<int> _gem = new(0);
+
+    public int Gem
+    {
+        get => _gem;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _gem.Set(value);
+                Save.SetInt(this, "Gem", value);
             }
         }
     }
@@ -239,6 +263,7 @@ public partial class FightPlayer : Player
             for (int j = prevLevel+1; j <= Level; j++)
             {
                 Coins += LevelingData.CoinRewards[j];
+                Gem += LevelingData.GemRewards[j];
             }
 
         }
@@ -247,6 +272,11 @@ public partial class FightPlayer : Player
             // Usual case where we raise the player level by one
             Level += 1;
             Coins += LevelingData.CoinRewards[Level];
+            int g = LevelingData.GemRewards[Level];
+            if (g != 0)
+            {
+                Gem += g;
+            }
         }
         else
         {
@@ -265,6 +295,7 @@ public partial class FightPlayer : Player
             for (int j = prevLevel+1; j <= newLevel; j++)
             {
                 Coins += LevelingData.CoinRewards[j];
+                Gem += LevelingData.GemRewards[j];
             }
 
             Level = newLevel;
@@ -279,6 +310,7 @@ public partial class FightPlayer : Player
         Exp = 0;
         Level = 0;
         Coins = 0;
+        Gem = 0;
         foreach (var kv in SkillTree.SkillLevelDict)
         {
             if (kv.Value > 0 && kv.Key != "Punch")
@@ -317,7 +349,8 @@ public partial class FightPlayer : Player
     /// </summary>
     public void ProcessSave()
     {
-        Coins = Save.GetInt(this, "Coins", 10);
+        Coins = Save.GetInt(this, "Coins");
+        Gem = Save.GetInt(this, "Gem");
         TotalEliminations = Save.GetInt(this, "TotalEliminations");
         TotalDamageDealt = Save.GetInt(this, "TotalDamageDealt");
         TotalCoins = Save.GetInt(this, "TotalCoins");

@@ -156,7 +156,8 @@ public partial class FightPlayer
 
     /// <summary>
     /// Subscribe to global damage & elimination events.
-    /// They are distributed by the server, so they are reliable
+    /// They are distributed by the server, so they are reliable.
+    /// We use these to handle resources (xp, level, gems, coins, leaderboards etc)
     /// </summary>
     private void HookupGlobalEvents()
     {

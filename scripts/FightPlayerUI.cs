@@ -28,6 +28,7 @@ public partial class FightPlayer
             
             _level.OnSync += NotifyLevelUpdate;
             _exp.OnSync += NotifyExpUpdate;
+            _gem.OnSync += NotifyGemUpdate;
         }
     }
     
@@ -64,6 +65,14 @@ public partial class FightPlayer
         if (IsLocal)
         {
             _overlay.UpdateLevelingTxt(lvl, LevelingData.NextLevelXp[lvl]);
+        }
+    }
+
+    private void NotifyGemUpdate(int old, int gem)
+    {
+        if (IsLocal)
+        {
+            _overlay.UpdateGem(gem);
         }
     }
     

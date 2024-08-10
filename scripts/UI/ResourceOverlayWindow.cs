@@ -53,6 +53,11 @@ public class ResourceOverlayWindow : BaseUIWindow
     {
         _coinText.Text = coin.ToString();
     }
+
+    public void UpdateGem(int gem)
+    {
+        _gemText.Text = gem.ToString();
+    }
     
     public static IEnumerator TextChangeEmphasize(UIText txt, float expandTime, float shrinkTime, float expandSize,
         float originalSize)
