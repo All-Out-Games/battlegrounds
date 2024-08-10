@@ -83,6 +83,11 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
         }
     }
 
+    public void AddSafePortalCooldown(Entity caster, float duration)
+    {
+        CallClient_AddSafePortalCooldownInternal(caster, duration);
+    }
+
     [ClientRpc]
     public void AddNoMovementInternal(Entity caster, float duration)
     {
@@ -113,5 +118,11 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     public void AddBattleCryStunInternal(Entity caster, float duration)
     {
         _player.AddEffect<EffectBattleCryStun>(caster.GetComponent<FightPlayer>(), duration);
+    }
+
+    [ClientRpc]
+    public void AddSafePortalCooldownInternal(Entity caster, float duration)
+    {
+        _player.AddEffect<EffectSafePortalCooldown>(caster.GetComponent<FightPlayer>(), duration);
     }
 }

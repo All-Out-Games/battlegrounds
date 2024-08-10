@@ -58,9 +58,6 @@
   "component_type": "Mono_Component",
   "mono_component_type": "ZoneTeleporter",
   "data": {
-    "SpawnPoint": "3995215294054:1716399837848237700",
-    "TeleportZone": "245055507665978:1722456118247311900",
-    "TeleportText": "PvPArena",
     "ChangeStatusTo": "Combat"
   }
 }

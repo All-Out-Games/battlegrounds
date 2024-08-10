@@ -5,8 +5,8 @@
   "name": "Portal",
   "local_enabled": true,
   "local_position": {
-    "X": 0.2469999939203262,
-    "Y": 21.3330001831054688
+    "X": 0.2610533237457275,
+    "Y": 22.3266296386718750
   },
   "local_rotation": 0,
   "local_scale": {
@@ -58,9 +58,6 @@
   "component_type": "Mono_Component",
   "mono_component_type": "ZoneTeleporter",
   "data": {
-    "SpawnPoint": "360067163054752:1716331958358429600",
-    "TeleportZone": "3111059827982:1716399395061642500",
-    "TeleportText": "CentralHub",
     "ChangeStatusTo": "Safe"
   }
 }
