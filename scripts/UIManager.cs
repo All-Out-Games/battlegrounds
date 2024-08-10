@@ -244,11 +244,13 @@ public partial class UIManager : System<UIManager>
 
         // Global UI Update
         {
-            // This should be the ONLY IsServer in this file!
             if (Network.IsServer)
             {
-                if (_timerNextGlobalUIUpdate > 60)
+                // Refresh event status every 30 sec
+                // This is also executed when a new player joins
+                if (_timerNextGlobalUIUpdate > 30)
                 {
+                    
                     _timerNextGlobalUIUpdate = 0;
 
                     CallClient_SetExpBoostText(LevelingData.DoubleXP(DateTime.Now));
@@ -259,5 +261,14 @@ public partial class UIManager : System<UIManager>
             
         }
         
+    }
+
+    public void OnPlayerJoin(Player player)
+    {
+        if (Network.IsServer)
+        {
+            _timerNextGlobalUIUpdate = 25; // Trigger an update 5 sec later
+            //CallClient_SetExpBoostText(LevelingData.DoubleXP(DateTime.Now));
+        }
     }
 }

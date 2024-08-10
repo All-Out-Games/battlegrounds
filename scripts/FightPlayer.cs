@@ -335,8 +335,6 @@ public partial class FightPlayer : Player
     
     public override void Awake()
     {
-        FightClubGameManager.Instance.OnPlayerJoin(this);
-
         if (Network.IsServer)
         {
             EffectManager = Entity.AddComponent<FightPlayerEffectManager>();
@@ -355,6 +353,8 @@ public partial class FightPlayer : Player
         
         _preDamageEffects = new List<FightEffect>();
         InitializeUI();
+        FightClubGameManager.Instance.OnPlayerJoin(this);
+        UIManager.Instance.OnPlayerJoin(this);
     }
 
     public override void Start()

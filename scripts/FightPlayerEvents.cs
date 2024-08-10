@@ -150,11 +150,21 @@ public partial class FightPlayer
             
         }
     }
+
+    [ClientRpc]
+    public void NotifyKillExp(int xp)
+    {
+        if (IsLocal && PlayerStatus == PlayerStatus.Combat)
+        {
+            FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"EXP+{xp}");
+        }
+    }
     
 
     #endregion
 
     /// <summary>
+    /// [Server Only]
     /// Subscribe to global damage & elimination events.
     /// They are distributed by the server, so they are reliable.
     /// We use these to handle resources (xp, level, gems, coins, leaderboards etc)
@@ -182,12 +192,27 @@ public partial class FightPlayer
             {
                 // This player eliminated another player
                 TotalEliminations += 1;
-                Exp += LevelingData.GetMultipliedExp(LevelingData.XpForKill);
+                int lvDifference = source.Level - victim.Level;
+                int xp = LevelingData.XpForKill;
+                // Adjust xp based on level differences
+                if (lvDifference > 0)
+                {
+                    xp -= LevelingData.XpLowLevelPenalty * lvDifference;
+                }
+                else
+                {
+                    xp -= LevelingData.XpHighLevelReward * lvDifference;
+                }
+
+                xp = LevelingData.GetMultipliedExp(xp);
+                
+                Exp += xp;
+                CallClient_NotifyKillExp(xp);
             }
 
             if (victim == this && source != this)
             {
-                // This player died
+                // This player died (from non-self damage)
             }
         };
     }
