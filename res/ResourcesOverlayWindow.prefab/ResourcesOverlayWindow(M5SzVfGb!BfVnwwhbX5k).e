@@ -31,24 +31,4 @@
     "_levelUpWindow": "57741690227612:1723241416093368600",
     "_extraXp": "131854628502072:1723271107616914500"
   }
-},
-{
-  "cid": 2,
-  "aoid": "3148333219377:1723310548780983800",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UICanvas",
-  "data": {
-    "layer": 0,
-    "ui_scale_multiplier": 1,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "interactable": true,
-    "start_with_safe_rect": false,
-    "world_space": false,
-    "hide_in_editor": false
-  }
 }
