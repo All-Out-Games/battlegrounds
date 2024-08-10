@@ -192,17 +192,7 @@ public partial class FightPlayer
             {
                 // This player eliminated another player
                 TotalEliminations += 1;
-                int lvDifference = source.Level - victim.Level;
-                int xp = LevelingData.XpForKill;
-                // Adjust xp based on level differences
-                if (lvDifference > 0)
-                {
-                    xp -= LevelingData.XpLowLevelPenalty * lvDifference;
-                }
-                else
-                {
-                    xp -= LevelingData.XpHighLevelReward * lvDifference;
-                }
+                int xp = LevelingData.GetTrueXpDampen(Level, victim.Level, LevelingData.XpForKill);
 
                 xp = LevelingData.GetMultipliedExp(xp);
                 

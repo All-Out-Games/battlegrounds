@@ -75,4 +75,33 @@ public static class LevelingData
     {
         return timeNow.DayOfWeek == DayOfWeek.Saturday || timeNow.DayOfWeek == DayOfWeek.Sunday;
     }
+
+    public static int GetTrueXp(int level, int victimLevel, int xp)
+    {
+        int lvDifference = level - victimLevel;
+        // Adjust xp based on level differences
+        if (lvDifference > 0)
+        {
+            xp -= XpLowLevelPenalty * lvDifference;
+        }
+        else
+        {
+            xp -= XpHighLevelReward * lvDifference;
+        }
+        return xp;
+    }
+    
+    public static int GetTrueXpDampen(int level, int victimLevel, int xp)
+    {
+        // Josh's version
+        if (level == 0 || victimLevel == 0)
+        {
+            return GetTrueXp(level, victimLevel, xp); // Fallback to old version
+        }
+        float rewardCoef = 2 * (float)(victimLevel * victimLevel) / (level + victimLevel);
+        rewardCoef /= victimLevel;
+
+        xp = (int)(float.Ceiling(xp * rewardCoef) + 0.1);
+        return xp;
+    }
 }
