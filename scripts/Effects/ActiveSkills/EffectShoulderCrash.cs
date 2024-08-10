@@ -40,6 +40,7 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
         
         FightPlayer.AddDash(dir * _config.DashSpeed, _config.DashDuration);
         // The player is invincible and not allowed to input movement during the dash
+        FightStateMachine.UnsetTrigger("shoulder_crash_end");
         FightPlayer.SetAnimTrigger("shoulder_crash");
         if (!isDropIn)
         {
