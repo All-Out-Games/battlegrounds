@@ -28,7 +28,16 @@ public class ResourceOverlayWindow : BaseUIWindow
     private int _baselineExp;
     private int _nextExp;
 
-    private bool _isFirstLevelup = true; 
+    private bool _isFirstLevelup = true;
+
+
+    public override void OnInstantiate()
+    {
+        base.OnInstantiate();
+        Coroutine.Start(Entity, RefuseToPop());
+        // For the first second in the game, we do not pop the level up window
+        // because we don't want the player to see the level up screen
+    }
 
     public override void OnDestroy()
     {
@@ -81,6 +90,13 @@ public class ResourceOverlayWindow : BaseUIWindow
 
         txt.Settings = txt.Settings with { Size = originalSize };
 
+    }
+
+    public IEnumerator RefuseToPop()
+    {
+        _isFirstLevelup = true;
+        yield return new WaitForSeconds(1);
+        _isFirstLevelup = false;
     }
 
     public void SetSkillButton(int status)
@@ -145,8 +161,6 @@ public class ResourceOverlayWindow : BaseUIWindow
             // We do not pop for the first event for every client because that would be from their saves
             _levelUpWindow.PopAtLevelUp(_currentLevel);
         }
-
-        _isFirstLevelup = false;
     }
 
     private void ExpBarMaskUpdate()
