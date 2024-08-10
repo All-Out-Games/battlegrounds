@@ -21,6 +21,8 @@ public class ResourceOverlayWindow : BaseUIWindow
     [Serialized] private UIRect _expBarMaskRect;
 
     [Serialized] private LevelUpWindow _levelUpWindow;
+
+    [Serialized] private Entity _extraXp;
     
     private Coroutine _coroutineC;
     private int _currentLevel;
@@ -89,7 +91,6 @@ public class ResourceOverlayWindow : BaseUIWindow
         }
 
         txt.Settings = txt.Settings with { Size = originalSize };
-
     }
 
     public IEnumerator RefuseToPop()
@@ -103,6 +104,11 @@ public class ResourceOverlayWindow : BaseUIWindow
     {
         // Log.Error($"STATUS RECEIVED : {status}");
         _sidebar.LocalEnabled = status != (int)PlayerStatus.Combat;
+    }
+
+    public void SetExtraExpActive(bool active)
+    {
+        _extraXp.LocalEnabled = active;
     }
 
     private void OnSkillBtnClicked()

@@ -1,4 +1,6 @@
-﻿namespace Assembly.scripts;
+﻿using AO;
+
+namespace Assembly.scripts;
 
 public static class LevelingData
 {
@@ -50,4 +52,27 @@ public static class LevelingData
         0, 0, 0, 0, 1800
     };
 
+    /// <summary>
+    /// [Server Only] Made for double XP events.
+    /// We check the date and decide if we want to give out more XP 
+    /// </summary>
+    /// <param name="xp"></param>
+    /// <returns></returns>
+    public static int GetMultipliedExp(int xp)
+    {
+        //Log.Warn($"Day is: {DateTime.Now.Day}");
+        if (DoubleXP(DateTime.Now))
+        {
+            return xp * 2;
+        }
+        else
+        {
+            return xp;
+        }
+    }
+
+    public static bool DoubleXP(DateTime timeNow)
+    {
+        return timeNow.DayOfWeek == DayOfWeek.Saturday || timeNow.DayOfWeek == DayOfWeek.Sunday;
+    }
 }

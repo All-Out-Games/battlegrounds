@@ -121,22 +121,7 @@ public partial class FightPlayer : Player
             }
         }
     }
-
-    private SyncVar<int> _totalCoins = new();
-
-    public int TotalCoins
-    {
-        get { return _totalCoins.Value;}
-        set
-        {
-            if (Network.IsServer)
-            {
-                _totalCoins.Set(value);
-                Save.SetInt(this, "TotalCoins", value); 
-                Save.OrderedSet("TotalCoins", $"{this.UserId}", value);
-            }
-        }
-    }
+    
     private int _coins = 0;
     public int Coins
     {
@@ -342,7 +327,6 @@ public partial class FightPlayer : Player
         Gem = Save.GetInt(this, "Gem");
         TotalEliminations = Save.GetInt(this, "TotalEliminations");
         TotalDamageDealt = Save.GetInt(this, "TotalDamageDealt");
-        TotalCoins = Save.GetInt(this, "TotalCoins");
         Level = Save.GetInt(this, "Level");
         Exp = Save.GetInt(this, "Exp");
     }

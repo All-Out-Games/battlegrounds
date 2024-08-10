@@ -1,4 +1,7 @@
-﻿using AO;
+﻿using System.Collections;
+using AO;
+using Assembly.scripts;
+using Assembly.scripts.UI;
 
 public partial class UIManager : System<UIManager>
 {
@@ -23,6 +26,8 @@ public partial class UIManager : System<UIManager>
     private UI.TextSettings _defaultTextSettings;
 
     private UICanvas _mainCanvas;
+
+    private float _timerNextGlobalUIUpdate;
     public override void Awake()
     {
         _defaultFont = Assets.GetAsset<FontAsset>("$AO/fonts/Barlow-SemiBold.ttf");
@@ -36,8 +41,8 @@ public partial class UIManager : System<UIManager>
         _scoreTxt = "0";
         _resourceTxt = "0";
         _moneyTxt = "0";
-        
     }
+
 
     public UICanvas FindCanvas()
     {
@@ -198,6 +203,19 @@ public partial class UIManager : System<UIManager>
         }
     }
 
+    [ClientRpc]
+    public static void SetExpBoostText(bool active)
+    {
+        if (Network.IsClient)
+        {
+            var overlay = Instance.GetOverlayWindow<ResourceOverlayWindow>("ResourcesOverlayWindow.prefab");
+            if (overlay != null)
+            {
+                overlay.SetExtraExpActive(active);
+            }
+        }
+    }
+
     public override void Update()
     {
         // Update timers
@@ -224,7 +242,22 @@ public partial class UIManager : System<UIManager>
             
         }
 
-        
+        // Global UI Update
+        {
+            // This should be the ONLY IsServer in this file!
+            if (Network.IsServer)
+            {
+                if (_timerNextGlobalUIUpdate < 60)
+                {
+                    _timerNextGlobalUIUpdate = 0;
+
+                    CallClient_SetExpBoostText(LevelingData.DoubleXP(DateTime.Now));
+                }
+
+                _timerNextGlobalUIUpdate += Time.DeltaTime;
+            }
+            
+        }
         
     }
 }
