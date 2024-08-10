@@ -73,6 +73,9 @@ public class LevelUpWindow : Component
     {
         float progress01 = 0;
         Entity.LocalEnabled = true;
+        _sparkles.Instance.SetSkeleton(Assets.KeepLoaded<SpineSkeletonAsset>("UI/XPBar/Sparkles/FAT_sparkles.spine"));
+        _sparkles.Instance.SetSkin("default");
+        _sparkles.Instance.RefreshSkins();
         _sparkles.Instance.SetAnimation("hatch", false);
         while (progress01 < 1)
         {

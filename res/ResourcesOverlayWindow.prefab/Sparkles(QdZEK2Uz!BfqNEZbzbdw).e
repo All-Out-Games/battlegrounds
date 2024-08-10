@@ -13,7 +13,8 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "276603803210872:1722471055887162800",
+  "previous_sibling": "23040970051318:1723227513561419800",
+  "next_sibling": "276603803210872:1722471055887162800",
   "parent": "56713756930459:1717453707360960100"
 },
 {
@@ -23,5 +24,31 @@
   "internal_component_type": "UISpineSkeleton",
   "data": {
     "spine": "UI/XPBar/Sparkles/FAT_sparkles.spine"
+  }
+},
+{
+  "cid": 2,
+  "aoid": "73250129985622:1723247629410501600",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000
+    },
+    "max": {
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000
+    },
+    "insets": {
+      "X": -450,
+      "Y": -675,
+      "Z": -450,
+      "W": -675
+    },
+    "offset": {
+      "X": 0,
+      "Y": 0
+    }
   }
 }

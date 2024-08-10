@@ -29,4 +29,24 @@
     "_expBarMaskRect": "13234418891834:1723223584654753000",
     "_levelUpWindow": "57741690227612:1723241416093368600"
   }
+},
+{
+  "cid": 4,
+  "aoid": "74243352564504:1723248027336209600",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UICanvas",
+  "data": {
+    "layer": 0,
+    "ui_scale_multiplier": 1,
+    "tint": {
+      "X": 1,
+      "Y": 1,
+      "Z": 1,
+      "W": 1
+    },
+    "interactable": true,
+    "start_with_safe_rect": false,
+    "world_space": false,
+    "hide_in_editor": false
+  }
 }
