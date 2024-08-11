@@ -90,8 +90,12 @@ public partial class OwnedTrigger : OwnedObjectComponent
     public void Despawn()
     {
         Log.Debug($"Despawn called for {Entity.Name}");
-        if(Network.IsServer) Network.Despawn(Entity);
-        Entity.Destroy();
+        if (Network.IsServer)
+        {
+            Network.Despawn(Entity);
+            Entity.Destroy();
+        }
+        
         
     }
 
