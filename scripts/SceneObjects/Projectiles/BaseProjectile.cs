@@ -2,7 +2,7 @@ using AO;
 
 namespace Assembly.scripts.SceneObjects.Projectiles;
 
-public class BaseProjectile : OwnedObjectComponent
+public partial class BaseProjectile : OwnedObjectComponent
 {
     protected Projectile EngineProjectile;
 
@@ -11,8 +11,8 @@ public class BaseProjectile : OwnedObjectComponent
     [Serialized] protected int Damage = 0;
     [Serialized] protected bool Pierce = false;
 
-    public float LifeTime;
-    protected float TimeElapsed;
+    [Serialized] public float LifeTime;
+    [Serialized] protected float TimeElapsed;
 
     protected ulong SoundId = default;
 
@@ -43,7 +43,7 @@ public class BaseProjectile : OwnedObjectComponent
         EngineProjectile.OnHit -= OnHit;
         if (SoundId != default)
         {
-            Log.Warn($"Sound Stop ID = {SoundId}");
+            //Log.Warn($"Sound Stop ID = {SoundId}");
             SFX.FadeOutAndStop(SoundId, 0.3f);
         }
     }
@@ -51,6 +51,7 @@ public class BaseProjectile : OwnedObjectComponent
     public override void Update()
     {
         base.Update();
+        // Server Authoritative Projectile
         TimeElapsed += Time.DeltaTime;
         if (TimeElapsed > LifeTime)
         {
