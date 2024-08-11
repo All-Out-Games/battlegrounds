@@ -98,7 +98,10 @@ public partial class OwnedTrigger : OwnedObjectComponent
     public override void OnOwnerLeave(FightPlayer player)
     {
         // When the owner quits, despawn the owned stuff
-        LocalEnabled = false;
-        Despawn();
+        if (Owner == player)
+        {
+            LocalEnabled = false;
+            Despawn();
+        }
     }
 }
