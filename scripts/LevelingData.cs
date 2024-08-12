@@ -12,9 +12,8 @@ public static class LevelingData
     public static readonly int XpHighLevelReward = 2; // Take down a higher level player will reward more xp
 
     public static readonly float LevelingWindowStayTime = 5f;
+    public static readonly TimeZoneInfo PST = TimeZoneInfo.CreateCustomTimeZone("PST", TimeSpan.FromHours(-5), "PST", "PST");
 
-    public static TimeZoneInfo PST = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
-    
     // Total XP a player needs for Level i
     public static readonly int[] BaselineXp = {
         0, 500, 1500, 3000, 5000, 
