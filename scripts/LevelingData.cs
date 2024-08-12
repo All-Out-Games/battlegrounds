@@ -73,7 +73,9 @@ public static class LevelingData
 
     public static bool DoubleXP(DateTime timeNow)
     {
-        return timeNow.DayOfWeek == DayOfWeek.Saturday || timeNow.DayOfWeek == DayOfWeek.Sunday;
+        TimeZoneInfo tz = TimeZoneInfo.Local;
+        var timeConverted = TimeZoneInfo.ConvertTime(timeNow, tz);
+        return timeConverted.DayOfWeek == DayOfWeek.Saturday || timeConverted.DayOfWeek == DayOfWeek.Sunday;
     }
 
     public static int GetTrueXp(int level, int victimLevel, int xp)
