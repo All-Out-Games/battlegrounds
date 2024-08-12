@@ -493,7 +493,8 @@ public partial class FightPlayer : Player
             if (CurrentHealth <= 0)
             {
                 //Coroutine.Start(this.Entity, PlayerRespawnCoroutine());
-                FightClubGameManager.Instance.PlayerEliminationEvent.Invoke(source, this);
+                FightClubGameManager.Instance.PlayerEliminationEvent.Invoke(source, this, info);
+                CallClient_NotifyElimination(source.Entity, Entity, info, info.SkillKey);
                 CallClient_PlayerDeath();
                 return;
             }

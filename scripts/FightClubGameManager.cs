@@ -11,7 +11,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
 
     // Server Only Event. Client Related events should go in FightPlayerEvents, and be sent to the player client.
     public Action<FightPlayer> PlayerTeleportEvent;
-    public Action<FightPlayer, FightPlayer> PlayerEliminationEvent;
+    public Action<FightPlayer, FightPlayer, FightPlayer.DamageInfo> PlayerEliminationEvent;
     public Action<FightPlayer, FightPlayer, FightPlayer.DamageInfo> PlayerDamageEvent;
 
     public Action<FightPlayer> PlayerLeaveEvent;
@@ -63,7 +63,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     {
         
     }
-    public void OnPlayerElimination(FightPlayer killer, FightPlayer victim)
+    public void OnPlayerElimination(FightPlayer killer, FightPlayer victim, FightPlayer.DamageInfo info)
     {
         UIManager.CallClient_SetStatusPopup($"{killer.Name} killed {victim.Name}!", 2.5f, PlayerStatus.Combat);
     }
