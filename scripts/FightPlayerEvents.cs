@@ -28,6 +28,7 @@ public partial class FightPlayer
         public ulong SourceNetworkId;
         public bool SpawnDamageNumber = true;
         public Vector4 DamageNumberColor = GlobalData.DamageNumberColor;
+        public string SkillKey = "Punch";
         
         // Client & Server Data
         public DamageReactionInfo ReactionInfo = new DamageReactionInfo(); 
@@ -148,6 +149,12 @@ public partial class FightPlayer
         }
     }
 
+    [ClientRpc]
+    public void NotifyElimination(Entity source, Entity victim, DamageInfo info, string skillKey)
+    {
+        Log.Warn($"{source.Name} Eliminated {victim.Name} with {skillKey}");
+    }
+
     #endregion
 
     /// <summary>
@@ -171,7 +178,7 @@ public partial class FightPlayer
             }
         };
 
-        FightClubGameManager.Instance.PlayerEliminationEvent += (source, victim) =>
+        FightClubGameManager.Instance.PlayerEliminationEvent += (source, victim, info) =>
         {
             if (source == this && victim != this)
             {
