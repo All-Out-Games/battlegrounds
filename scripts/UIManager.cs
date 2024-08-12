@@ -253,7 +253,7 @@ public partial class UIManager : System<UIManager>
                     
                     _timerNextGlobalUIUpdate = 0;
 
-                    CallClient_SetExpBoostText(LevelingData.DoubleXP(DateTime.Now));
+                    CallClient_SetExpBoostText(LevelingData.DoubleXP(DateTime.UtcNow));
                 }
 
                 _timerNextGlobalUIUpdate += Time.DeltaTime;

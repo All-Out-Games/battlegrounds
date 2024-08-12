@@ -12,6 +12,8 @@ public static class LevelingData
     public static readonly int XpHighLevelReward = 2; // Take down a higher level player will reward more xp
 
     public static readonly float LevelingWindowStayTime = 5f;
+
+    public static TimeZoneInfo PST = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
     
     // Total XP a player needs for Level i
     public static readonly int[] BaselineXp = {
@@ -61,7 +63,7 @@ public static class LevelingData
     public static int GetMultipliedExp(int xp)
     {
         //Log.Warn($"Day is: {DateTime.Now.Day}");
-        if (DoubleXP(DateTime.Now))
+        if (DoubleXP(DateTime.UtcNow))
         {
             return xp * 2;
         }
@@ -73,8 +75,8 @@ public static class LevelingData
 
     public static bool DoubleXP(DateTime timeNow)
     {
-        TimeZoneInfo tz = TimeZoneInfo.Local;
-        var timeConverted = TimeZoneInfo.ConvertTime(timeNow, tz);
+        //Log.Error(timeNow.Kind.ToString());
+        var timeConverted = TimeZoneInfo.ConvertTimeFromUtc(timeNow, PST);
         return timeConverted.DayOfWeek == DayOfWeek.Saturday || timeConverted.DayOfWeek == DayOfWeek.Sunday;
     }
 
