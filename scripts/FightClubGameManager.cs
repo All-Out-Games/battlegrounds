@@ -27,7 +27,6 @@ public class FightClubGameManager : System<FightClubGameManager> {
 
     public override void Start()
     {
-        PlayerTeleportEvent += OnPlayerTeleport;
         PlayerEliminationEvent += OnPlayerElimination;
         
         Leaderboard.RegisterSortCallback((Player[] players) =>
@@ -66,7 +65,6 @@ public class FightClubGameManager : System<FightClubGameManager> {
 
     public override void Shutdown()
     {
-        PlayerTeleportEvent -= OnPlayerTeleport;
         PlayerEliminationEvent -= OnPlayerElimination;
     }
 
@@ -81,16 +79,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     }
 
     #region Server Events
-
-    /// <summary>
-    /// If the player teleported, call 'OnPlayerLeave' first to remove them from their current area
-    /// Call this to move them to the new space player list
-    /// </summary>
-    /// <param name="fp"></param>
-    public void OnPlayerTeleport(FightPlayer fp)
-    {
-        
-    }
+    
     public void OnPlayerElimination(FightPlayer killer, FightPlayer victim, FightPlayer.DamageInfo info)
     {
         //UIManager.CallClient_SetStatusPopup($"{killer.Name} killed {victim.Name}!", 2.5f, PlayerStatus.Combat);

@@ -175,8 +175,13 @@ public partial class FightPlayer : Player
         {
             if (Network.IsServer)
             {
-                _exp.Set(value);
-                Save.SetInt(this, "Exp", value);
+                int e = value;
+                if (value > LevelingData.MaxXp)
+                {
+                    e = LevelingData.MaxXp;
+                }
+                _exp.Set(e);
+                Save.SetInt(this, "Exp", e);
                 if (_exp >= LevelingData.NextLevelXp[_level])
                 {
                     TryLevelUp();
@@ -766,7 +771,15 @@ public partial class FightPlayer : Player
             }
             OnTeleportToSafeZone();
         }
-        FightClubGameManager.Instance.PlayerTeleportEvent.Invoke(this);
+        else if (status == PlayerStatus.AFK)
+        {
+            if (Network.IsServer)
+            {
+                Zone afkZone = FightClubGameManager.References.AfkZone;
+                Teleport(afkZone.Entity.Position);
+            }
+            OnTeleportToAfkZone();
+        }
     }
 
     public void OnTeleportToCombatZone()
@@ -785,6 +798,16 @@ public partial class FightPlayer : Player
         SkillSlotsManager.SkillSlotsPanelEnable(false);
         PlayerSwitchZoneEvent?.Invoke((int)PlayerStatus.Safe);
 
+        if (IsLocal)
+        {
+            UIManager.Instance.CloseAllUniqueWindow();
+        }
+    }
+
+    public void OnTeleportToAfkZone()
+    {
+        SkillSlotsManager.SkillSlotsPanelEnable(false);
+        PlayerSwitchZoneEvent?.Invoke((int)PlayerStatus.AFK);
         if (IsLocal)
         {
             UIManager.Instance.CloseAllUniqueWindow();

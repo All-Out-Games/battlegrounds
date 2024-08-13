@@ -33,6 +33,8 @@ public static class LevelingData
         115500, 126500, 138000, 150000, 162500,
         175500, 189000, 203000, 217500, 232500
     };
+
+    public static readonly int MaxXp = NextLevelXp[MaxLevel];
     
     // Player get this amount of coins when they reach level i
     public static readonly int[] CoinRewards = {

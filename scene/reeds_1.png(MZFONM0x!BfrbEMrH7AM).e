@@ -1,29 +1,29 @@
 13
-236223201281
-20205082092945 1722364276465234700
+34359738369
+54500152102193 1723590318141452300
 {
-  "name": "Bridge.png",
+  "name": "reeds_1.png",
   "local_enabled": true,
   "local_position": {
-    "X": 200.1484832763671875,
-    "Y": 115.8350372314453125
+    "X": 5.9438476562500000,
+    "Y": -6.1586074829101562
   },
   "local_rotation": 0,
   "local_scale": {
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "377316458197998:1716489394196426200",
-  "next_sibling": "54040865964219:1723590134132524500"
+  "next_sibling": "54580070421053:1723590350160020200",
+  "parent": "54370117342113:1723590266044176600"
 },
 {
   "cid": 1,
-  "aoid": "20205083308351:1722364276465721300",
+  "aoid": "54500152355642:1723590318141553500",
   "component_type": "Internal_Component",
   "internal_component_type": "Sprite_Renderer",
   "data": {
-    "texture": "environment/PvP/Bridge.png",
-    "depth_offset": 1.6399999856948853,
+    "texture": "environment/AFK_tmp/reeds_1.png",
+    "depth_offset": 0,
     "tint": {
       "X": 1,
       "Y": 1,
