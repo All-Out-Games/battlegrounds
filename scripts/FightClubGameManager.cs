@@ -34,8 +34,17 @@ public class FightClubGameManager : System<FightClubGameManager> {
         {
             Array.Sort(players, (a, b) =>
             {
-                return ((FightPlayer)b).Level.CompareTo(((FightPlayer)a).Level);
+                return ((FightPlayer)b).TotalEliminations.CompareTo(((FightPlayer)a).TotalEliminations);
             });
+        });
+        
+        Leaderboard.Register("Kills", (Player[] players, string[] scores) =>
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                var player = (FightPlayer)players[i];
+                scores[i] = $"{player.TotalEliminations:N0}";
+            }
         });
         
         Leaderboard.Register("Level", (Player[] players, string[] scores) =>
@@ -47,14 +56,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
             }
         });
 
-        Leaderboard.Register("Kills", (Player[] players, string[] scores) =>
-        {
-            for (int i = 0; i < players.Length; i++)
-            {
-                var player = (FightPlayer)players[i];
-                scores[i] = $"{player.TotalEliminations:N0}";
-            }
-        });
+
     }
 
     public override void Update() 
