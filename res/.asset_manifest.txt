@@ -193,7 +193,7 @@ AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao.ios - 66a9c97596cebae
 AbilityIcon_Separate/x_icon_ability.png - .ao - 66a9cdbb96cebaeb1f3299ae - 2967783583052140701
 AbilityIcon_Separate/x_icon_ability.png - .ao.ios - 66a9cdbb96cebaeb1f3299af - 13164514700408627865
 AbilityLoadoutPage.prefab - .ao - 66b17684cf7a5e4159a6c4ad - 12623272253570132385
-AbilityUpgradeDialog.prefab - .ao - 66ad1a0dcf7a5e4159a6c400 - 6044796207641115842
+AbilityUpgradeDialog.prefab - .ao - 66bbca5483ee6f3bbee19279 - 2339095606238477241
 AbilityVendorMenuWindow.prefab - .ao - 66aaa88acf7a5e4159a6b685 - 11386754058337502644
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
 BattlegroundInfoOverlay.prefab - .ao - 66baba0d83ee6f3bbee191ba - 4880104689168888380
@@ -351,8 +351,12 @@ UI/AbilityBook/Loadout/swap_button.png - .ao - 66980c27b45eb9e8339c1ed0 - 145652
 UI/AbilityBook/Loadout/swap_button.png - .ao.ios - 66980c28b45eb9e8339c1ed3 - 12839305475677817601
 UI/AbilityBook/Loadout/swap_button_pressed.png - .ao - 66980c28b45eb9e8339c1ed5 - 3461816073410609109
 UI/AbilityBook/Loadout/swap_button_pressed.png - .ao.ios - 66980c28b45eb9e8339c1ed6 - 10234977647442393302
+UI/AbilityBook/confirm_backing.png - .ao - 66bbc9cc83ee6f3bbee19272 - 7640512320911067311
+UI/AbilityBook/confirm_backing.png - .ao.ios - 66bbc9cc83ee6f3bbee19271 - 1893085904189708871
 UI/AbilityBook/unlocked_abilities_backing.png - .ao - 66998861b45eb9e8339c219b - 15291842776835831665
 UI/AbilityBook/unlocked_abilities_backing.png - .ao.ios - 66998861b45eb9e8339c219a - 10305147596006492540
+UI/AbilityBook/upgrade_arrow.png - .ao - 66bbc9cc83ee6f3bbee19273 - 1934603946950623676
+UI/AbilityBook/upgrade_arrow.png - .ao.ios - 66bbc9cd83ee6f3bbee19275 - 12895922437930199644
 UI/Bars/border.png - .ao - 66b13b85cf7a5e4159a6c4a6 - 13076663795422265221
 UI/Bars/border.png - .ao.ios - 66b13b85cf7a5e4159a6c4a7 - 11121674596510720087
 UI/LargeMenuButtons/Large Menu Buttons/large_button.png - .ao - 66aad25bcf7a5e4159a6b76b - 18231134355042940051
