@@ -134,16 +134,16 @@ public partial class FightPlayer
     }
 
     [ClientRpc]
-    public void NotifyReceiveDamage(Entity source, DamageInfo info)
+    public void NotifyReceiveDamage(FightPlayer source, DamageInfo info)
     {
-        OnReceiveDamage?.Invoke(source.GetComponent<FightPlayer>(), info);
+        OnReceiveDamage?.Invoke(source, info);
         
         if (Network.IsClient && PlayerStatus == PlayerStatus.Combat)
         {
             // Damage numbers only render if the number is related to the local player
-            if (IsLocal || source == Network.LocalPlayer.Entity) // Player takes the damage or deals damage
+            if (IsLocal || source == Network.LocalPlayer) // Player takes the damage or deals damage
             {
-                if (source == Network.LocalPlayer.Entity && info.DamageNumberColor == GlobalData.DamageNumberColor)
+                if (source == Network.LocalPlayer && info.DamageNumberColor == GlobalData.DamageNumberColor)
                 {
                     info.DamageNumberColor = GlobalData.OutputDamageNumberColor;
                 }
@@ -163,7 +163,7 @@ public partial class FightPlayer
     }
     
     [ClientRpc]
-    public void NotifyElimination(Entity source, Entity victim, DamageInfo info, string skillKey)
+    public void NotifyElimination(FightPlayer source, FightPlayer victim, DamageInfo info, string skillKey)
     {
         //Log.Warn($"{source.Name} Eliminated {victim.Name} with {skillKey}");
         if (IsLocal && PlayerStatus == PlayerStatus.Combat)
@@ -217,7 +217,7 @@ public partial class FightPlayer
                 // This player died (from non-self damage)
             }
             
-            CallClient_NotifyElimination(source.Entity, victim.Entity, info, info.SkillKey);
+            CallClient_NotifyElimination(source, victim, info, info.SkillKey);
         };
     }
 

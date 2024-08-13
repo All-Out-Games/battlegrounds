@@ -494,7 +494,7 @@ public partial class FightPlayer : Player
             }
 
             FightClubGameManager.Instance.PlayerDamageEvent.Invoke(source, this, info);
-            CallClient_NotifyReceiveDamage(source.Entity, info); // This info is reliable (server dispatched)
+            CallClient_NotifyReceiveDamage(source, info); // This info is reliable (server dispatched)
             // Player Death
             if (CurrentHealth <= 0)
             {
