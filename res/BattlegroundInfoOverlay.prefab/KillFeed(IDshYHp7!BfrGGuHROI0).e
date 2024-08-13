@@ -16,19 +16,13 @@
   "parent": "35320638390968:1723498085355218400"
 },
 {
-  "cid": 1,
-  "aoid": "36535406407304:1723498572041039500",
+  "cid": 3,
+  "aoid": "36567148007486:1723498584758024100",
   "component_type": "Internal_Component",
-  "internal_component_type": "UIScrollView",
+  "internal_component_type": "UIDirectionalLayout",
   "data": {
-    "vertical": true,
-    "horizontal": false,
-    "content_inset": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    }
+    "padding": 0,
+    "grow_direction": 0
   }
 },
 {
@@ -55,15 +49,5 @@
       "X": -10,
       "Y": -105
     }
-  }
-},
-{
-  "cid": 3,
-  "aoid": "36567148007486:1723498584758024100",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIDirectionalLayout",
-  "data": {
-    "padding": 0,
-    "grow_direction": 0
   }
 }

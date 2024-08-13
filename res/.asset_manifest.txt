@@ -196,7 +196,7 @@ AbilityLoadoutPage.prefab - .ao - 66b17684cf7a5e4159a6c4ad - 1262327225357013238
 AbilityUpgradeDialog.prefab - .ao - 66ad1a0dcf7a5e4159a6c400 - 6044796207641115842
 AbilityVendorMenuWindow.prefab - .ao - 66aaa88acf7a5e4159a6b685 - 11386754058337502644
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
-BattlegroundInfoOverlay.prefab - .ao - 66baab3283ee6f3bbee191b8 - 14823402418309855245
+BattlegroundInfoOverlay.prefab - .ao - 66baba0d83ee6f3bbee191ba - 4880104689168888380
 BearTrap.prefab - .ao - 66a91b0496cebaeb1f329889 - 7049423839909874616
 BefuddleProjectile.prefab - .ao - 66a918fc96cebaeb1f329880 - 4708991272801069017
 Befuddle_Hit.prefab - .ao - 66904de1b45eb9e8339c1be8 - 9947058021191885588

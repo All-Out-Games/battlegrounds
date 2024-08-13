@@ -25,7 +25,7 @@ public class BattlegroundOverlayWindow : BaseUIWindow
         var kfComp =  kf.GetComponent<KillFeedItem>();    
         kfComp.SetKillFeed(sourceId, victimId, skillKey, this);
         kf.SetParent(_killFeedScroll, false);
-        if (KillFeedList.Count > MaxKillFeed)
+        if (KillFeedList.Count >= MaxKillFeed)
         {
             RemoveKillFeed(KillFeedList[0]);
         }
