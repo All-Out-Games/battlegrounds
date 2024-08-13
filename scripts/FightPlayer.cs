@@ -20,6 +20,7 @@ public partial class FightPlayer : Player
     protected Circle_Collider Collider; // MAIN Collider used for damage
     protected Box_Collider PunchCollider;
     protected CameraControl CameraInterface;
+    protected FightPlayer PriorityTarget;
     
     public Entity CollisionEntity;
     
@@ -192,6 +193,11 @@ public partial class FightPlayer : Player
     public bool Damageable()
     {
         return CurrentHealth > 0 && InvincibleReasons.Count == 0 && IsValidTarget;
+    }
+
+    public bool Targetable()
+    {
+        return !HasEffect<EffectInvisible>() && Damageable();
     }
 
     public void AddInvincibilityReason(string reason)
@@ -574,10 +580,23 @@ public partial class FightPlayer : Player
         proximityPlayers.Remove(this);
         if (proximityPlayers.Count > 0)
         {
+            // Aim for priority target if you have one 
+            if (PriorityTarget != null && proximityPlayers.Contains(PriorityTarget))
+            {
+                if (PriorityTarget.Targetable())
+                {
+                    return PriorityTarget.Entity.Position - Entity.Position;
+                }
+                else
+                {
+                    PriorityTarget = null;
+                }
+            }
+            
             foreach (var fp in proximityPlayers)
             {
                 // Ignore invis player, ignore invincible/dead player
-                if (fp.HasEffect<EffectInvisible>() || !fp.Damageable())
+                if (!fp.Targetable())
                 {
                     continue;
                 }

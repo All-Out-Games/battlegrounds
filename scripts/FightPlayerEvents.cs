@@ -124,9 +124,10 @@ public partial class FightPlayer
     }
 
     [ClientRpc]
-    public void NotifyDealDamage(DamageInfo info)
+    public void NotifyDealDamage(FightPlayer victim, DamageInfo info)
     {
         OnDealDamage?.Invoke(this, info);
+        PriorityTarget = victim;
     }
 
     [ClientRpc]
@@ -174,7 +175,8 @@ public partial class FightPlayer
                     TotalCoins += GlobalData.CoinForAttack;
                 }
                 // Send a callback to the source of damage. This need to reach client & server
-                source.CallClient_NotifyDealDamage(info);
+                source.CallClient_NotifyDealDamage(victim, info);
+                // Prioritize targeting towards your recently damaged player
             }
         };
 
