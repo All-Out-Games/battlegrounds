@@ -48,7 +48,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "$AO/new/launcher/launcher_background.png",
+    "sprite": "UI/AbilityBook/confirm_backing.png",
     "tint": {
       "X": 1,
       "Y": 1,
