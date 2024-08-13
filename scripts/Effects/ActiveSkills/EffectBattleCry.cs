@@ -69,6 +69,7 @@ public class EffectBattleCry : FightEffectWithNoFlinch
 
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.RoarDamage, DamageType.AOE) with {InterruptLevel = FightPlayer.DamageInfo.StunInterruptLevel};
             info.ReactionInfo.Flinch = false;
+            info.SkillKey = SkillConfig.BattleCryConfig.SkillKey;
             fp.TakeDamage(FightPlayer, info);
             fp.GetEffectMgr().AddBattleCryStun(FightPlayer.Entity, Config.StunTime);
             fp.AddScreenShake(1f,0.5f);

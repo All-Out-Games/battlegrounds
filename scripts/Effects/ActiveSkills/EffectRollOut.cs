@@ -181,6 +181,7 @@ public class EffectRollOut : FightEffect
         var add = bumpDir.Normalized * _config.BumpStrength;
         otherPlayer.AddBumpFrom(FightPlayer, add, false);
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage) with {InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel};
+        info.SkillKey = SkillConfig.RollOutNodeConfig.SkillKey;
         otherPlayer.TakeDamage( FightPlayer, info);
     }
 

@@ -69,13 +69,14 @@ public class EffectPunch : FightEffect
         var hit = Physics.RaycastWithWhitelist(Entity.Position, punchDir.Normalized,
             EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(), new Entity[]{ },out rc);
 
-        
+        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
+        info.SkillKey = FightPlayer.PunchLevel == 1 ? "Punch" : $"Punch{FightPlayer.PunchLevel}";
         if (hit) // If players are too close, always hit
         {
             var other = rc.Entity.GetComponent<DamageableObject>();
             if (other != null)
             {
-                FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
+                
                 // other.Player.TakeDamage(FightPlayer, info);
                 other.TakeDamage(FightPlayer, info);
             }
@@ -92,7 +93,6 @@ public class EffectPunch : FightEffect
             {
                 foreach (var fp in closeTargets)
                 {
-                    FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
                     // other.Player.TakeDamage(FightPlayer, info);
                     fp.TakeDamage(FightPlayer, info);
                 }

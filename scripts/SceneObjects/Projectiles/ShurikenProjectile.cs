@@ -40,6 +40,8 @@ public class ShurikenProjectile : BaseProjectile
                 info.ReactionInfo.Amount = (int) float.Floor(Damage * BackDamageMultiplier);
                 info.DamageNumberColor = GlobalData.CritNumberColor; // Orange
             }
+
+            info.SkillKey = SkillConfig.ShurikenConfig.SkillKey;
             fp.TakeDamage(Owner, info);
             
             if (Enhanced) // bounce

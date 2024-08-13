@@ -31,6 +31,7 @@ public class SpoonProjectile : BaseProjectile
         if (fp != null && fp.Damageable())
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
+            info.SkillKey = SkillConfig.SpoonThrowConfig.SkillKey;
             fp.TakeDamage(Owner, info);
             if (!Pierce)
             {

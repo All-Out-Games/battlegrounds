@@ -158,6 +158,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
             {
                 FightPlayer.DamageInfo info =
                     FightPlayer.DamageInfo.CreateDamageInfo(_cfg.Damage, DamageType.Ranged);
+                info.SkillKey = SkillConfig.PsionicBeamConfig.SkillKey;
                 fp.Player.TakeDamage(FightPlayer, info);
 
                 var hitVfx = VFXPrefabs.PsionicBeamHitVFX.Instantiate();

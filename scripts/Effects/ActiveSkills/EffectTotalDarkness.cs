@@ -67,6 +67,7 @@ public class EffectTotalDarkness : FightEffect
                 }
 
                 FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage, DamageType.None);
+                info.SkillKey = SkillConfig.TotalDarknessConfig.SkillKey;
                 fp.TakeDamage(FightPlayer, info);
             }
         }

@@ -35,6 +35,7 @@ public class EffectBleed : FightEffect
     protected void Bleed()
     {
         FightPlayer.DamageInfo selfDmgInfo = FightPlayer.DamageInfo.CreateSelfDamageInfo(PerSecondDmg);
+        selfDmgInfo.SkillKey = SkillConfig.ClawSlashConfig.SkillKey;
         FightPlayer.TakeDamage(Caster as FightPlayer, selfDmgInfo); // You can create self damage that comes from other players.
     }
     
