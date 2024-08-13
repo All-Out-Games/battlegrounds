@@ -29,6 +29,32 @@ public class FightClubGameManager : System<FightClubGameManager> {
     {
         PlayerTeleportEvent += OnPlayerTeleport;
         PlayerEliminationEvent += OnPlayerElimination;
+        
+        Leaderboard.RegisterSortCallback((Player[] players) =>
+        {
+            Array.Sort(players, (a, b) =>
+            {
+                return ((FightPlayer)b).Level.CompareTo(((FightPlayer)a).Level);
+            });
+        });
+        
+        Leaderboard.Register("Level", (Player[] players, string[] scores) =>
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                var player = (FightPlayer)players[i];
+                scores[i] = $"{player.Level+1}";
+            }
+        });
+
+        Leaderboard.Register("Kills", (Player[] players, string[] scores) =>
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                var player = (FightPlayer)players[i];
+                scores[i] = $"{player.TotalEliminations:N0}";
+            }
+        });
     }
 
     public override void Update() 
@@ -65,7 +91,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     }
     public void OnPlayerElimination(FightPlayer killer, FightPlayer victim, FightPlayer.DamageInfo info)
     {
-        UIManager.CallClient_SetStatusPopup($"{killer.Name} killed {victim.Name}!", 2.5f, PlayerStatus.Combat);
+        //UIManager.CallClient_SetStatusPopup($"{killer.Name} killed {victim.Name}!", 2.5f, PlayerStatus.Combat);
     }
 
     public void OnPlayerDamage(FightPlayer killer, FightPlayer victim, FightPlayer.DamageInfo info)

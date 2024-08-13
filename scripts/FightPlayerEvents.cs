@@ -166,7 +166,7 @@ public partial class FightPlayer
     public void NotifyElimination(Entity source, Entity victim, DamageInfo info, string skillKey)
     {
         //Log.Warn($"{source.Name} Eliminated {victim.Name} with {skillKey}");
-        if (IsLocal)
+        if (IsLocal && PlayerStatus == PlayerStatus.Combat)
         {
             _combatOverlay.AddKillFeed(source.Name, victim.Name, skillKey);
         }
