@@ -57,6 +57,7 @@ public class EffectBearTrapSnare : FightEffectWithNoFlinch
         int dmg = caster == null ? EffectConfig.BearTrapConfig.TrapBaseDamage : EffectConfig.BearTrapConfig.GetDefault(caster.CurrentAttack).Damage;
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(dmg, DamageType.Melee, FightPlayer.DamageInfo.StunInterruptLevel);
         info.ReactionInfo.Flinch = false;
+        info.SkillKey = SkillConfig.BearTrapConfig.SkillKey;
         FightPlayer.TakeDamage(caster, info);
         
         DurationRemaining = MainLayer.GetCurrentStateLength();

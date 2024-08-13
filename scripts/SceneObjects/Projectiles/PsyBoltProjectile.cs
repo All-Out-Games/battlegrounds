@@ -33,7 +33,7 @@ public class PsyBoltProjectile : BaseProjectile
         if (fp != null && fp.Damageable())
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged) with {InterruptLevel = 2000};
-
+            info.SkillKey = SkillConfig.PsyboltConfig.SkillKey;
             fp.TakeDamage(Owner, info);
             Vector2 dir = other.Position - Entity.Position;
             fp.AddBumpFrom(Owner, dir * KnockBackStrength, false);

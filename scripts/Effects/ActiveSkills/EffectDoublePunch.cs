@@ -96,6 +96,7 @@ public class EffectDoublePunch : FightEffect
                 }
             }
             // Damage
+            info.SkillKey = SkillConfig.DoublePunchConfig.SkillKey;
             other.TakeDamage(FightPlayer, info);
         }
     }

@@ -176,6 +176,7 @@ public class EffectPsyThrowLaunch : FightEffectWithNoFlinch
             
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage) with {InterruptLevel = 0};
             info.ReactionInfo.Flinch = false;
+            info.SkillKey = SkillConfig.PsyThrowConfig.SkillKey;
             FightPlayer.TakeDamage(Caster as FightPlayer, info);
             
             FightPlayer.UnsetAnimTrigger("sentfly_end");

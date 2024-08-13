@@ -110,7 +110,7 @@ public class EffectClawSlash : FightEffect
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlashDamage);
             if(other == FightPlayer || !other.Damageable()) continue;
-                
+            info.SkillKey = SkillConfig.ClawSlashConfig.SkillKey;
             other.TakeDamage(FightPlayer, info);
             other.GetEffectMgr().AddBleed(FightPlayer.Entity, _config.BleedTime, _config.BleedDmg);
         }

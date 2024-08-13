@@ -58,7 +58,7 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
             if (fp == FightPlayer)
             {
                 // Self damage
-                FightPlayer.DamageInfo selfDmgInfo = FightPlayer.DamageInfo.CreateSelfDamageInfo(Config.SelfDamage);
+                FightPlayer.DamageInfo selfDmgInfo = FightPlayer.DamageInfo.CreateSelfDamageInfo(Config.SelfDamage) with{SkillKey = SkillConfig.SelfDestructConfig.SkillKey};
                 FightPlayer.TakeDamage(FightPlayer, selfDmgInfo);
             }
             else
@@ -66,6 +66,7 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
                 if (fp.Damageable())
                 {
                     FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.BlastDamage, DamageType.AOE);
+                    info.SkillKey = SkillConfig.SelfDestructConfig.SkillKey;
                     fp.TakeDamage(FightPlayer, info);
                         
                     Vector2 bumpDir = fp.Entity.Position - selfPos;

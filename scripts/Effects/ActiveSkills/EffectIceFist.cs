@@ -68,6 +68,7 @@ public class EffectIceFist : FightEffect
             if (other != null)
             {
                 FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
+                info.SkillKey = SkillConfig.IceFistNodeConfig.SkillKey;
                 // other.Player.TakeDamage(FightPlayer, info);
                 other.TakeDamage(FightPlayer, info);
             }
@@ -85,6 +86,7 @@ public class EffectIceFist : FightEffect
                 foreach (var fp in closeTargets)
                 {
                     FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
+                    info.SkillKey = SkillConfig.IceFistNodeConfig.SkillKey;
                     // other.Player.TakeDamage(FightPlayer, info);
                     fp.TakeDamage(FightPlayer, info);
                 }

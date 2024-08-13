@@ -51,6 +51,7 @@ public class EffectBackstab : EffectNoMovement
             _config = EffectConfig.BackStabConfig.GetDefault(_fp.CurrentAttack);
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage);
             info.ReactionInfo.Flinch = false;
+            info.SkillKey = SkillConfig.BackstabConfig.SkillKey;
             FightPlayer.TakeDamage(_fp, info);
         }
     }
