@@ -127,8 +127,9 @@ public partial class FightPlayer
     
 
     [ClientRpc]
-    public void NotifyDealDamage(DamageInfo info)
+    public void NotifyDealDamage(FightPlayer victim, DamageInfo info)
     {
+        PriorityTarget = victim;
         OnDealDamage?.Invoke(this, info);
     }
 
@@ -193,7 +194,7 @@ public partial class FightPlayer
                     Exp += LevelingData.GetMultipliedExp(LevelingData.XpForDamage);
                 }
                 // Send a callback to the source of damage. This need to reach client & server
-                CallClient_NotifyDealDamage(info);
+                CallClient_NotifyDealDamage(victim, info);
             }
         };
 
