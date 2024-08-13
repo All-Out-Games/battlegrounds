@@ -184,41 +184,19 @@ public partial class FightPlayer
     private void HookupGlobalEvents()
     {
         // Hook up elimination event and damage event
-        FightClubGameManager.Instance.PlayerDamageEvent += (source, victim, info) =>
-        {
-            if (source == this && victim != this && info.DmgType != DamageType.Heal)
-            {
-                TotalDamageDealt += info.ReactionInfo.Amount;
-                if (info.AwardCoin)
-                {
-                    Exp += LevelingData.GetMultipliedExp(LevelingData.XpForDamage);
-                }
-                // Send a callback to the source of damage. This need to reach client & server
-                CallClient_NotifyDealDamage(victim, info);
-            }
-        };
+        FightClubGameManager.Instance.PlayerDamageEvent += OnServerPlayerDamage;
 
-        FightClubGameManager.Instance.PlayerEliminationEvent += (source, victim,info) =>
-        {
-            if (source == this && victim != this)
-            {
-                // This player eliminated another player
-                TotalEliminations += 1;
-                int xp = LevelingData.GetTrueXpDampen(Level, victim.Level, LevelingData.XpForKill);
+        FightClubGameManager.Instance.PlayerEliminationEvent += OnServerPlayerElimination;
+    }
 
-                xp = LevelingData.GetMultipliedExp(xp);
-                
-                Exp += xp;
-                CallClient_NotifyKillExp(xp);
-            }
+    /// <summary>
+    /// [Server Only]
+    /// </summary>
+    private void RemoveGlobalEvents()
+    {
+        FightClubGameManager.Instance.PlayerDamageEvent -= OnServerPlayerDamage;
 
-            if (victim == this && source != this)
-            {
-                // This player died (from non-self damage)
-            }
-            
-            CallClient_NotifyElimination(source, victim, info, info.SkillKey);
-        };
+        FightClubGameManager.Instance.PlayerEliminationEvent -= OnServerPlayerElimination;
     }
 
     public void RegisterPreDamageEvent(FightEffect pfe)
@@ -229,5 +207,41 @@ public partial class FightPlayer
     public void RemovePreDamageEvent(FightEffect pfe)
     {
         _preDamageEffects.Remove(pfe);
+    }
+
+    public void OnServerPlayerDamage(FightPlayer source, FightPlayer victim, DamageInfo info)
+    {
+        if (source == this && victim != this && info.DmgType != DamageType.Heal)
+        {
+            TotalDamageDealt += info.ReactionInfo.Amount;
+            if (info.AwardCoin)
+            {
+                Exp += LevelingData.GetMultipliedExp(LevelingData.XpForDamage);
+            }
+            // Send a callback to the source of damage. This need to reach client & server
+            CallClient_NotifyDealDamage(victim, info);
+        }
+    }
+
+    public void OnServerPlayerElimination(FightPlayer source, FightPlayer victim, DamageInfo info)
+    {
+        if (source == this && victim != this)
+        {
+            // This player eliminated another player
+            TotalEliminations += 1;
+            int xp = LevelingData.GetTrueXpDampen(Level, victim.Level, LevelingData.XpForKill);
+
+            xp = LevelingData.GetMultipliedExp(xp);
+                
+            Exp += xp;
+            CallClient_NotifyKillExp(xp);
+        }
+
+        if (victim == this && source != this)
+        {
+            // This player died (from non-self damage)
+        }
+            
+        CallClient_NotifyElimination(source, victim, info, info.SkillKey);
     }
 }

@@ -435,6 +435,7 @@ public partial class FightPlayer : Player
     public override void OnDestroy()
     {
         FightClubGameManager.Instance.OnPlayerLeave(this);
+        RemoveGlobalEvents();
     }
     
 
