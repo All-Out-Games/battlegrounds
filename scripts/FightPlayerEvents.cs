@@ -28,6 +28,7 @@ public partial class FightPlayer
         public ulong SourceNetworkId;
         public bool SpawnDamageNumber = true;
         public Vector4 DamageNumberColor = GlobalData.DamageNumberColor;
+        public string SkillKey = "Punch";
         
         // Client & Server Data
         public DamageReactionInfo ReactionInfo = new DamageReactionInfo(); 
@@ -160,6 +161,16 @@ public partial class FightPlayer
         }
     }
     
+    [ClientRpc]
+    public void NotifyElimination(Entity source, Entity victim, DamageInfo info, string skillKey)
+    {
+        //Log.Warn($"{source.Name} Eliminated {victim.Name} with {skillKey}");
+        if (IsLocal)
+        {
+            _combatOverlay.AddKillFeed(source.Name, victim.Name, skillKey);
+        }
+    }
+    
 
     #endregion
 
@@ -182,11 +193,11 @@ public partial class FightPlayer
                     Exp += LevelingData.GetMultipliedExp(LevelingData.XpForDamage);
                 }
                 // Send a callback to the source of damage. This need to reach client & server
-                source.CallClient_NotifyDealDamage(info);
+                CallClient_NotifyDealDamage(info);
             }
         };
 
-        FightClubGameManager.Instance.PlayerEliminationEvent += (source, victim) =>
+        FightClubGameManager.Instance.PlayerEliminationEvent += (source, victim,info) =>
         {
             if (source == this && victim != this)
             {
@@ -204,6 +215,8 @@ public partial class FightPlayer
             {
                 // This player died (from non-self damage)
             }
+            
+            CallClient_NotifyElimination(source.Entity, victim.Entity, info, info.SkillKey);
         };
     }
 

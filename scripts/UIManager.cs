@@ -131,7 +131,7 @@ public partial class UIManager : System<UIManager>
         bool exist = UniqueUiWindows.TryGetValue(prefabKey, out uwd);
         if (!exist)
         {
-            Log.Error($"UIManager: Window {prefabKey} not created yet.");
+            Log.Warn($"UIManager: Window {prefabKey} not created yet.");
         }
         return uwd;
     }
@@ -183,7 +183,7 @@ public partial class UIManager : System<UIManager>
         }
         if (!OverlayWindows.TryGetValue(prefabPath, out var wd))
         {
-            Log.Error($"Overlay Window {prefabPath} is not created yet!");
+            Log.Warn($"Overlay Window {prefabPath} is not created yet!");
             return null;
         }
         wd.CloseWindow();
@@ -194,7 +194,7 @@ public partial class UIManager : System<UIManager>
     {
         if (!OverlayWindows.TryGetValue(prefabPath, out var wd))
         {
-            Log.Error($"Overlay Window {prefabPath} NOT FOUND");
+            Log.Warn($"Overlay Window {prefabPath} NOT FOUND");
             return null;
         }
         else

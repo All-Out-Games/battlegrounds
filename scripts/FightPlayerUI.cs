@@ -1,6 +1,7 @@
 using AO;
 using Assembly.scripts;
 using Assembly.scripts.UI;
+using Assembly.scripts.UI.BattlegroundOverlay;
 
 /// <summary>
 /// This component manages world space player UI.
@@ -9,10 +10,10 @@ using Assembly.scripts.UI;
 public partial class FightPlayer
 {
     private ResourceOverlayWindow _overlay;
+    private BattlegroundOverlayWindow _combatOverlay;
     protected void InitializeUI()
     {
-        // TODO: Fetch levels and fill overhead level
-        
+
         if (IsLocal)
         {
             _overlay =
@@ -29,6 +30,8 @@ public partial class FightPlayer
             _level.OnSync += NotifyLevelUpdate;
             _exp.OnSync += NotifyExpUpdate;
             _gem.OnSync += NotifyGemUpdate;
+            
+            _combatOverlay = UIManager.Instance.OpenOverlayWindow(UniqueWindowKeys.BattlegroundOverlayWindowPath) as BattlegroundOverlayWindow;
         }
     }
     

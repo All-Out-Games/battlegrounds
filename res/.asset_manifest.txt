@@ -196,6 +196,7 @@ AbilityLoadoutPage.prefab - .ao - 66b17684cf7a5e4159a6c4ad - 1262327225357013238
 AbilityUpgradeDialog.prefab - .ao - 66ad1a0dcf7a5e4159a6c400 - 6044796207641115842
 AbilityVendorMenuWindow.prefab - .ao - 66aaa88acf7a5e4159a6b685 - 11386754058337502644
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
+BattlegroundInfoOverlay.prefab - .ao - 66baab3283ee6f3bbee191b8 - 14823402418309855245
 BearTrap.prefab - .ao - 66a91b0496cebaeb1f329889 - 7049423839909874616
 BefuddleProjectile.prefab - .ao - 66a918fc96cebaeb1f329880 - 4708991272801069017
 Befuddle_Hit.prefab - .ao - 66904de1b45eb9e8339c1be8 - 9947058021191885588
@@ -211,6 +212,7 @@ FightPlayerRig/playercharacter_2.png - .ao.ios - 66b54e7bcf7a5e4159a6c586 - 3641
 HitVfx.prefab - .ao - 66a97e6696cebaeb1f3298f8 - 2238227580914794567
 Invisibility_Aura.prefab - .ao - 66a9201c96cebaeb1f3298a1 - 15827307492988365390
 Invisibility_VFX.prefab - .ao - 66a91fe396cebaeb1f32989e - 15138177077832320917
+KillFeedElement.prefab - .ao - 66baa05783ee6f3bbee191aa - 13452589510282137414
 KunaiProjectile.prefab - .ao - 66aac040cf7a5e4159a6b6b4 - 2857029536881074775
 LeaderBoard/RANK 1.png - .ao - 66a942a596cebaeb1f3298da - 13121725783381642367
 LeaderBoard/RANK 1.png - .ao.ios - 66a942a596cebaeb1f3298d5 - 7023957445842523738
@@ -237,7 +239,7 @@ PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
 Rage_Aura.prefab - .ao - 66ad96d6cf7a5e4159a6c44a - 2127671326789894962
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
-ResourcesOverlayWindow.prefab - .ao - 66b7d52383ee6f3bbee18f93 - 16774531750110071418
+ResourcesOverlayWindow.prefab - .ao - 66baa92483ee6f3bbee191ae - 15357026721588577201
 SFX/Effects/backstab_attack.wav - .ao - 66ad89becf7a5e4159a6c436 - 16112955543606674532
 SFX/Effects/backstab_teleport.wav - .ao - 66ad89becf7a5e4159a6c438 - 8158155750117357873
 SFX/Effects/backstab_victim.wav - .ao - 66ad89becf7a5e4159a6c437 - 1465047161017477406

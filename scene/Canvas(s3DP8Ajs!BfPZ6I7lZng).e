@@ -21,7 +21,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UICanvas",
   "data": {
-    "layer": 1,
+    "layer": 0,
     "ui_scale_multiplier": 1,
     "tint": {
       "X": 1,

@@ -48,4 +48,10 @@ public static class GlobalData
     // Skill Tree
     public static int GridMaxX = 2;
     public static int GridMaxY = 3;
+    
+    // KillFeed
+    public static Vector4 SelfIdColor = new Vector4(1, 0.68f, 0, 1);
+    public static Vector4 OtherIdColor = Vector4.White;
+    public static float KillFeedLifeTime = 4f;
+
 }

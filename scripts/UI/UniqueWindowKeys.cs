@@ -10,4 +10,5 @@ public static class UniqueWindowKeys
     
     // Overlay Window - they are windows without close buttons. Control them through UI manager
     public static string ResourcesOverlayWindowPath = "ResourcesOverlayWindow.prefab";
+    public static string BattlegroundOverlayWindowPath = "BattlegroundInfoOverlay.prefab";
 }
