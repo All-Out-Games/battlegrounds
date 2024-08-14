@@ -10,12 +10,14 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public static int DamageNumberLayer = 5;
 
     // Server Only Event. Client Related events should go in FightPlayerEvents, and be sent to the player client.
-    public Action<FightPlayer> PlayerTeleportEvent;
     public Action<FightPlayer, FightPlayer, FightPlayer.DamageInfo> PlayerEliminationEvent;
     public Action<FightPlayer, FightPlayer, FightPlayer.DamageInfo> PlayerDamageEvent;
+    
 
     public Action<FightPlayer> PlayerLeaveEvent;
 
+    public Action AfkTick;
+    private float _afkLastTickElapsed;
     #endregion
     
 
@@ -58,9 +60,14 @@ public class FightClubGameManager : System<FightClubGameManager> {
 
     }
 
-    public override void Update() 
+    public override void Update()
     {
-
+        _afkLastTickElapsed += Time.DeltaTime;
+        if (_afkLastTickElapsed > 60)
+        {
+            _afkLastTickElapsed = 0;
+            AfkTick?.Invoke();
+        }
     }
 
     public override void Shutdown()

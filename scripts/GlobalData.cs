@@ -25,17 +25,26 @@ public static class GlobalData
     // Stats
     
     public static float RespawnTime = 3f;
-    public static float CombatSpeedModifier = 0.65f;
-    public static float SafeSpeedModifier = 1.25f;
+    public static readonly float CombatSpeedModifier = 0.65f;
+    public static readonly float SafeSpeedModifier = 1.25f;
 
-    public static int DefaultMaxHealth = 100;
-    public static int DefaultAtk = 10;
+    public static readonly int DefaultMaxHealth = 100;
+    public static readonly int DefaultAtk = 10;
     
-    // Coins
-    
+    // Coins & Exp - Coins were changed to be given by leveling
     public static int CoinForAttack = 10;
     public static int CoinForElimination = 30;
     public static int CoinForDeath = 15;
+    
+    public static readonly int AfkBaseExp = 3; // Exp given to players in AFK zone, per minute.
+    public static readonly int AfkUnpopulatedServerBonusExp = 3; // When player count < 5 (entire server, including players in combat), bonus is given (encouraging VIPs to open private server) 
+    public static readonly int AfkLowLevelThreshold = 5; // Players with level <= this value will be considered low-level and receive +14 from AFK
+    public static readonly int AfkMidLevelThreshold = 15; // Players with level <= this value will receive +6 from AFK (Stack with the L bonus)
+    public static readonly int AfkLowLevelBonus = 14;
+    public static readonly int AfkMidLevelBonus = 6;
+    
+    
+
     
     // Damage Number Color
 

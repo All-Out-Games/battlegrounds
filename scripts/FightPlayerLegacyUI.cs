@@ -33,7 +33,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
             }
         }
 
-        if (_player.IsLocal && _player.PlayerStatus == PlayerStatus.Combat)
+        if (_player.IsLocal && _player.PlayerStatus != PlayerStatus.Safe)
         {
             DrawDamageNumber();
         }

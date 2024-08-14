@@ -163,6 +163,15 @@ public partial class FightPlayer
     }
     
     [ClientRpc]
+    public void NotifyAfkExp(int xp)
+    {
+        if (IsLocal && PlayerStatus == PlayerStatus.AFK)
+        {
+            FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"EXP+{xp}");
+        }
+    }
+    
+    [ClientRpc]
     public void NotifyElimination(FightPlayer source, FightPlayer victim, DamageInfo info, string skillKey)
     {
         //Log.Warn($"{source.Name} Eliminated {victim.Name} with {skillKey}");
@@ -180,13 +189,18 @@ public partial class FightPlayer
     /// Subscribe to global damage & elimination events.
     /// They are distributed by the server, so they are reliable.
     /// We use these to handle resources (xp, level, gems, coins, leaderboards etc)
+    /// IMPORTANT: RemoveGlobalEvent is called in OnDestroy! <see cref="FightPlayer"/>
+    /// MUST REMOVE EVENTS THERE by mirroring subscription
     /// </summary>
     private void HookupGlobalEvents()
     {
-        // Hook up elimination event and damage event
+        // Hook up elimination event and damage event.
+        
         FightClubGameManager.Instance.PlayerDamageEvent += OnServerPlayerDamage;
 
         FightClubGameManager.Instance.PlayerEliminationEvent += OnServerPlayerElimination;
+
+        FightClubGameManager.Instance.AfkTick += OnAfkTick;
     }
 
     /// <summary>
@@ -197,6 +211,8 @@ public partial class FightPlayer
         FightClubGameManager.Instance.PlayerDamageEvent -= OnServerPlayerDamage;
 
         FightClubGameManager.Instance.PlayerEliminationEvent -= OnServerPlayerElimination;
+        
+        FightClubGameManager.Instance.AfkTick -= OnAfkTick;
     }
 
     public void RegisterPreDamageEvent(FightEffect pfe)
@@ -243,5 +259,31 @@ public partial class FightPlayer
         }
             
         CallClient_NotifyElimination(source, victim, info, info.SkillKey);
+    }
+
+    public void OnAfkTick()
+    {
+        if (PlayerStatus == PlayerStatus.AFK)
+        {
+            // Give EXP on 60 sec tick
+            int baseExp = GlobalData.AfkBaseExp;
+            if (Level < GlobalData.AfkLowLevelThreshold)
+            {
+                baseExp += GlobalData.AfkLowLevelBonus;
+            }
+
+            if (Level < GlobalData.AfkMidLevelThreshold)
+            {
+                baseExp += GlobalData.AfkMidLevelBonus;
+            }
+
+            if (AllPlayers.Count < 5)
+            {
+                baseExp += GlobalData.AfkUnpopulatedServerBonusExp;
+            }
+
+            CallClient_NotifyAfkExp(baseExp);
+            Exp += baseExp;
+        }
     }
 }
