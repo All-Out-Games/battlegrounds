@@ -23,7 +23,15 @@ public class ZoneTeleporter : Component
         var spineAnimator = Entity.GetComponent<Spine_Animator>();
         if (spineAnimator.Alive())
         {
-            spineAnimator.SpineInstance.SetAnimation("idle_loop", true);
+            if (ChangeStatusTo == "Safe")
+            {
+                spineAnimator.SpineInstance.SetAnimation("idle", true);
+            }
+            else
+            {
+                spineAnimator.SpineInstance.SetAnimation("idle_loop", true);
+            }
+            
         }
     }
 

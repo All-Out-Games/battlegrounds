@@ -24,4 +24,5 @@ public class SceneReferenceHolder : Component
     
     [Serialized] public Entity TotalDarknessOverlay;
     [Serialized] public Edge_Collider PvpZoneEdge;
+    [Serialized] public Texture FrameWhite;
 }

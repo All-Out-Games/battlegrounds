@@ -26,7 +26,7 @@
   "data": {
     "skeleton_data_asset": "environment/portal/cosmicPortal.spine",
     "ordered_skins": [
-
+      "default"
     ],
     "depth_offset": 1.6399999856948853,
     "skeleton_scale": {

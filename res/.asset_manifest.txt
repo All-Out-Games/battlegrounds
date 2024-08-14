@@ -239,7 +239,7 @@ PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
 Rage_Aura.prefab - .ao - 66ad96d6cf7a5e4159a6c44a - 2127671326789894962
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
-ResourcesOverlayWindow.prefab - .ao - 66bcec1483ee6f3bbee193a0 - 7615158182952111156
+ResourcesOverlayWindow.prefab - .ao - 66bcef1983ee6f3bbee193a4 - 4667592157150026971
 SFX/Effects/backstab_attack.wav - .ao - 66ad89becf7a5e4159a6c436 - 16112955543606674532
 SFX/Effects/backstab_teleport.wav - .ao - 66ad89becf7a5e4159a6c438 - 8158155750117357873
 SFX/Effects/backstab_victim.wav - .ao - 66ad89becf7a5e4159a6c437 - 1465047161017477406
@@ -629,6 +629,8 @@ ability_icon_tmp/TotalDarkness_tmp.png - .ao - 66859962b45eb9e8339c106a - 919692
 ability_icon_tmp/TotalDarkness_tmp.png - .ao.ios - 66859962b45eb9e8339c106e - 16597579585589337802
 environment/AFK_tmp/cliff.png - .ao - 66bbe90083ee6f3bbee19356 - 1844921976484692892
 environment/AFK_tmp/cliff.png - .ao.ios - 66bbe90083ee6f3bbee19358 - 18226990329017100583
+environment/AFK_tmp/modal-9slice.png - .ao - 66bcf1e083ee6f3bbee193aa - 15794475867342281441
+environment/AFK_tmp/modal-9slice.png - .ao.ios - 66bcf1e083ee6f3bbee193ab - 15592095553901355695
 environment/AFK_tmp/park_bench.png - .ao - 66bbe90083ee6f3bbee19355 - 9102048248060213281
 environment/AFK_tmp/park_bench.png - .ao.ios - 66bbe90083ee6f3bbee19359 - 2830783972274709716
 environment/AFK_tmp/park_tree_medium.png - .ao - 66bbe90183ee6f3bbee1935b - 14413441634798029021
@@ -653,6 +655,10 @@ environment/AFK_tmp/rock_3.png - .ao - 66bbe90383ee6f3bbee19381 - 31891435820542
 environment/AFK_tmp/rock_3.png - .ao.ios - 66bbe90383ee6f3bbee1937f - 13608229710058976670
 environment/AFK_tmp/rock_4.png - .ao - 66bbe90383ee6f3bbee19385 - 16053197062968729531
 environment/AFK_tmp/rock_4.png - .ao.ios - 66bbe90383ee6f3bbee19386 - 7602242644831737480
+environment/AFK_tmp/signpost.png - .ao - 66bcf5b383ee6f3bbee193af - 18060968719880173568
+environment/AFK_tmp/signpost.png - .ao.ios - 66bcf5b383ee6f3bbee193b3 - 15615828857627934857
+environment/AFK_tmp/signpost_noob.png - .ao - 66bcf5b383ee6f3bbee193b0 - 7971483782797285475
+environment/AFK_tmp/signpost_noob.png - .ao.ios - 66bcf5b383ee6f3bbee193ae - 8624920170408240859
 environment/AFK_tmp/world1_ground_texture.png - .ao - 66bbe90383ee6f3bbee19387 - 12894535161973970450
 environment/AFK_tmp/world1_ground_texture.png - .ao.ios - 66bbe90383ee6f3bbee1938a - 5691067413213017135
 environment/CentralHub/BG.png - .ao - 66958372b45eb9e8339c1d88 - 1551762879120462974
