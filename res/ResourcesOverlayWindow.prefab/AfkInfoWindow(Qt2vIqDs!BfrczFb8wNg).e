@@ -3,7 +3,7 @@
 73519893487852 1723597938232591200
 {
   "name": "AfkInfoWindow",
-  "local_enabled": true,
+  "local_enabled": false,
   "local_position": {
     "X": 0,
     "Y": 0
@@ -37,8 +37,20 @@
       "W": -300
     },
     "offset": {
-      "X": 0,
-      "Y": 0
+      "X": -13,
+      "Y": 250
     }
+  }
+},
+{
+  "cid": 2,
+  "aoid": "4422093824887:1723656137088526800",
+  "component_type": "Mono_Component",
+  "mono_component_type": "AfkInfoWindow",
+  "data": {
+    "CloseButton": "4442454618854:1723656145245899800",
+    "AfkXpTotalNumber": "83691595489349:1723602013435018800",
+    "LevelBonusNumber": "76509294929906:1723599135909834100",
+    "ServerBonusNumber": "76509294851023:1723599135909802300"
   }
 }

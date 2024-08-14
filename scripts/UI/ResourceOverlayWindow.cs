@@ -23,6 +23,10 @@ public class ResourceOverlayWindow : BaseUIWindow
     [Serialized] private LevelUpWindow _levelUpWindow;
 
     [Serialized] private Entity _extraXp;
+
+    [Serialized] public AfkInfoWindow AfkInfoWindow;
+    [Serialized] public UIText AfkExpText;
+    [Serialized] public UIButton AfkInfoBtn;
     
     private Coroutine _coroutineC;
     private int _currentLevel;
@@ -39,6 +43,7 @@ public class ResourceOverlayWindow : BaseUIWindow
         Coroutine.Start(Entity, RefuseToPop());
         // For the first second in the game, we do not pop the level up window
         // because we don't want the player to see the level up screen
+        AfkInfoBtn.OnClicked += ShowAfkWindow;
     }
 
     public override void OnDestroy()
@@ -104,6 +109,27 @@ public class ResourceOverlayWindow : BaseUIWindow
     {
         // Log.Error($"STATUS RECEIVED : {status}");
         _sidebar.LocalEnabled = status != (int)PlayerStatus.Combat;
+        if (status == (int)PlayerStatus.AFK)
+        {
+            AfkInfoBtn.Entity.LocalEnabled = true;
+            CalculateAfkExp();
+        }
+        else
+        {
+            AfkInfoBtn.Entity.LocalEnabled = false;
+        }
+
+    }
+
+    public void CalculateAfkExp()
+    {
+        int exp = AfkInfoWindow.CalculateAfkInfo();
+        AfkExpText.Text = $"+{exp}/min";
+    }
+
+    public void ShowAfkWindow()
+    {
+        AfkInfoWindow.OpenWindow();
     }
 
     public void SetExtraExpActive(bool active)

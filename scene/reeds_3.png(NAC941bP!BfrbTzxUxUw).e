@@ -23,7 +23,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/AFK_tmp/reeds_3.png",
-    "depth_offset": -1,
+    "depth_offset": -14,
     "tint": {
       "X": 1,
       "Y": 1,

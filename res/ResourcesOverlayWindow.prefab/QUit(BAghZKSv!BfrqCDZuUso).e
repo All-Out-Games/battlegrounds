@@ -1,9 +1,9 @@
 13
-545460846593
-72722084547694 1723597618597496300
+472446402561
+4432966493359 1723656141444565800
 {
-  "name": "AfkEffectiveNess",
-  "local_enabled": false,
+  "name": "QUit",
+  "local_enabled": true,
   "local_position": {
     "X": 0,
     "Y": 0
@@ -13,38 +13,12 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "80694314583584:1723250611856217200",
-  "parent": "276658714702518:1722471081886922000"
+  "previous_sibling": "83691595287233:1723602013434938300",
+  "parent": "73519893487852:1723597938232591200"
 },
 {
   "cid": 1,
-  "aoid": "72722084715851:1723597618597563100",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIRect",
-  "data": {
-    "min": {
-      "X": 0.5000000000000000,
-      "Y": 0.5000000000000000
-    },
-    "max": {
-      "X": 0.5000000000000000,
-      "Y": 0.5000000000000000
-    },
-    "insets": {
-      "X": -50,
-      "Y": -100,
-      "Z": -50,
-      "W": -100
-    },
-    "offset": {
-      "X": 0,
-      "Y": -307
-    }
-  }
-},
-{
-  "cid": 2,
-  "aoid": "5751980926358:1723656669896105200",
+  "aoid": "4442454618854:1723656145245899800",
   "component_type": "Internal_Component",
   "internal_component_type": "UIButton",
   "data": {
@@ -86,9 +60,9 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "$AO/new/Large Menu Buttons/large_button.png",
+      "sprite": "$AO/new/Player Stat Window/quit_cross_button.png",
       "sprite_hovered": "",
-      "sprite_pressed": "$AO/new/Large Menu Buttons/large_button.png",
+      "sprite_pressed": "$AO/new/Player Stat Window/quit_cross_button.png",
       "sprite_padding": {
         "X": 0,
         "Y": 0,
@@ -97,12 +71,12 @@
       },
       "nine_slice_data": {
         "slice": {
-          "X": 58,
-          "Y": 370,
-          "Z": 114,
-          "W": 194
+          "X": 0,
+          "Y": 0,
+          "Z": 0,
+          "W": 0
         },
-        "slice_scale": 50
+        "slice_scale": 1
       },
       "hover_offset": {
         "X": 0,
@@ -123,5 +97,31 @@
       "keybind": 0
     },
     "interactable": true
+  }
+},
+{
+  "cid": 2,
+  "aoid": "4451407905045:1723656148832955100",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UIRect",
+  "data": {
+    "min": {
+      "X": 1,
+      "Y": 1
+    },
+    "max": {
+      "X": 1,
+      "Y": 1
+    },
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": -40,
+      "W": -40
+    },
+    "offset": {
+      "X": -36,
+      "Y": -26
+    }
   }
 }

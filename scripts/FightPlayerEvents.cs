@@ -168,6 +168,7 @@ public partial class FightPlayer
         if (IsLocal && PlayerStatus == PlayerStatus.AFK)
         {
             FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"EXP+{xp}");
+            _overlay.CalculateAfkExp();
         }
     }
     
