@@ -194,14 +194,12 @@ AbilityIcon_Separate/x_icon_ability.png - .ao - 66a9cdbb96cebaeb1f3299ae - 29677
 AbilityIcon_Separate/x_icon_ability.png - .ao.ios - 66a9cdbb96cebaeb1f3299af - 13164514700408627865
 AbilityLoadoutPage.prefab - .ao - 66b17684cf7a5e4159a6c4ad - 12623272253570132385
 AbilityUpgradeDialog.prefab - .ao - 66bbd8cf83ee6f3bbee1931a - 2339095606238477241
-AbilityVendorMenuWindow.prefab - .ao - 66aaa88acf7a5e4159a6b685 - 11386754058337502644
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
 BattlegroundInfoOverlay.prefab - .ao - 66baba0d83ee6f3bbee191ba - 4880104689168888380
 BearTrap.prefab - .ao - 66a91b0496cebaeb1f329889 - 7049423839909874616
 BefuddleProjectile.prefab - .ao - 66a918fc96cebaeb1f329880 - 4708991272801069017
 Befuddle_Hit.prefab - .ao - 66904de1b45eb9e8339c1be8 - 9947058021191885588
 BloodVFX.prefab - .ao - 66a7fba36732dee0bb811e92 - 12549604446384681181
-BroccoliProjectile.prefab - .ao - 6685994fb45eb9e8339c0fce - 5129262647641696432
 ClawSwipe.prefab - .ao - 66a1a7616732dee0bb811d55 - 1318749154253486373
 FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
 FightPlayerRig/playercharacter.png - .ao - 66b54e7acf7a5e4159a6c581 - 3623416252221893877

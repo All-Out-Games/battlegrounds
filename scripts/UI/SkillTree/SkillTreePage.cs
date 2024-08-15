@@ -1,6 +1,5 @@
 using AO;
 using Assembly.scripts.SceneObjects;
-using Assembly.scripts.UI.Legacy;
 
 namespace Assembly.scripts.UI.SkillTree;
 
