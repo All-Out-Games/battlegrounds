@@ -20,6 +20,6 @@ public class EffectGenericPostActionDelay : FightEffectWithNoFlinch
     public override void PreDamageMod(ref FightPlayer.DamageInfo info)
     {
         base.PreDamageMod(ref info);
-        FightPlayer.RemoveEffect(this, true);
+        DurationRemaining = 0.1f;
     }
 }

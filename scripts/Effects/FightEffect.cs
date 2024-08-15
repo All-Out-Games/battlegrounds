@@ -95,7 +95,9 @@ public abstract class FightEffect : AEffect
 
     /// <summary>
     /// Register this effect instance using FightPlayer.RegisterPreDamageEvent and this function will be called in TakeDamage
-    /// You can modify the damage event received, namely remove the flinch or reduce the damage
+    /// You can modify the damage event received, namely remove the flinch or reduce the damage.
+    /// NOTE: DO NOT call RemoveEffect(this) in this function. We execute this function by iterating over a registered effects list
+    /// before the player takes damage. Removing this effect changes that iterator and stop other pre damage mods from executing. 
     /// </summary>
     /// <param name="info"></param>
     public virtual void PreDamageMod(ref FightPlayer.DamageInfo info)
