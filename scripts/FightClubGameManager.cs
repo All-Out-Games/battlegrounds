@@ -57,7 +57,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
             }
         });
 
-
+        Game.SetVoiceEnabled(true);
     }
 
     public override void Update()
