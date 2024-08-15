@@ -557,9 +557,11 @@ public static class EffectConfig
 
     public struct LightFeetConfig
     {
-        public static float SpeedModifier = 1.3f;
+        public static float SpeedModifier = 1.15f;
         public static float Cooldown = 8f;
-        public static float BoostTime = 5f;
+        public static float BoostTime = 3f;
+        public static float SpeedModifierGrowth = 0.03f;
+        public static float BoostTimeGrowth = 0.5f;
 
     }
 

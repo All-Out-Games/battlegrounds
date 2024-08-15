@@ -61,7 +61,8 @@ public static partial class SkillConfig
     /// </summary>
     public struct SkillTreeNodeConfig
     {
-        public string DescriptionTextKey; 
+        public string DescriptionTextKey;
+        public string UpgradeTextKey;
         public string DisplayName; // This field is displayed on info screen as title. If unfilled, will display skillKey
         public int BaseDamageKey; // A fixed number for the base damage of the skill
         public string RangeDescriptionKey = "N/A";
@@ -111,9 +112,12 @@ public static partial class SkillConfig
         /// </summary>
         public StatBuff Buff;
 
+        public int[] UpgradeGemCost;
+
         public SkillTreeNodeConfig()
         {
             DescriptionTextKey = "Description Unfilled, to be updated";
+            UpgradeTextKey = "Description Unfilled, to be updated";
             DisplayName = String.Empty;
             UpgradeCost = 0;
             MaximumLevel = 1;
@@ -124,6 +128,7 @@ public static partial class SkillConfig
             IconPath = FightAbility.DefaultIconPath;
             ChildrenNodeKeys = new string[] { };
             ParentNodeKeys = new string[] { };
+            UpgradeGemCost = new int[] { };
             NeedSpecialHandler = false;
             NeedRemover = false;
             Buff = default;
