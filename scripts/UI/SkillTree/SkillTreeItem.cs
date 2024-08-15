@@ -54,7 +54,7 @@ public class SkillTreeItem : Component
             if (Config.MaximumLevel > 1)
             {
                 // Upgradeable
-                ShowStars(lvl);
+                ShowStars(lvl-1);
             }
             
             if (lvl == Config.MaximumLevel)
