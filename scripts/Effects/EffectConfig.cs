@@ -563,6 +563,13 @@ public static class EffectConfig
         public static float SpeedModifierGrowth = 0.03f;
         public static float BoostTimeGrowth = 0.5f;
 
+        public float SpeedMtp;
+        public float BuffTime;
+
+        public static LightFeetConfig GetDefault(int level)
+        {
+            return new LightFeetConfig() {SpeedMtp = SpeedModifier + (level-1) * SpeedModifierGrowth, BuffTime = BoostTime + BoostTimeGrowth * (level - 1)};
+        }
     }
 
     #endregion

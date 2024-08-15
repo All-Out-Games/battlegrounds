@@ -76,6 +76,7 @@ public partial class FightPlayer
         if (IsLocal)
         {
             _overlay.UpdateGem(gem);
+            NotifyCoinUpdate(Coins); // Refresh coins to update (TODO: This probably need to be renamed as NotifyResourceUpdate)
         }
     }
     

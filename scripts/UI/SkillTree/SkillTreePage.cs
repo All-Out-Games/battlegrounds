@@ -18,6 +18,8 @@ public class SkillTreePage : UniqueUIWindow
     [Serialized] private AbilityInfoScreen _infoScreen;
     [Serialized] private UIText _costText, _buyText;
     [Serialized] private UIButton _buyButton;
+    [Serialized] private Entity _gemIcon;
+    [Serialized] private Entity _coinIcon;
     private Dictionary<string, SkillTreeItem> _treeItems;
     private Dictionary<Tuple<int, int>, SkillTreePipes> _treePipes;
     
@@ -245,7 +247,7 @@ public class SkillTreePage : UniqueUIWindow
                 }
 
                 pipes.Entity.LocalEnabled = true;
-                pipes.SetFilled(item.Status == SkillTreeItem.NodeStatus.Purchased);
+                pipes.SetFilled(item.Status == SkillTreeItem.NodeStatus.Purchased || item.Status == SkillTreeItem.NodeStatus.Upgradable);
             }
         }
     }
@@ -264,6 +266,12 @@ public class SkillTreePage : UniqueUIWindow
         _infoScreen.Entity.LocalEnabled = enable;
     }
 
+    private void ShowGemIcon(bool enable)
+    {
+        _gemIcon.LocalEnabled = enable;
+        _coinIcon.LocalEnabled = !enable;
+    }
+
     // Callback - items
     public void OnItemSelected(SkillTreeItem item)
     {
@@ -273,7 +281,8 @@ public class SkillTreePage : UniqueUIWindow
         _selectedItem = item;
         _infoScreen.SetDescription(item.Config.SkillKey);
         SetInfoScreenEnabled(true);
-        
+        int upgradeCost = item.Config.UpgradeCost;
+        ShowGemIcon(item.Status == SkillTreeItem.NodeStatus.Upgradable);
         // Buy button - check item status
         switch (item.Status)
         {
@@ -296,15 +305,16 @@ public class SkillTreePage : UniqueUIWindow
                 
                 break;
             case SkillTreeItem.NodeStatus.Upgradable:
-                int gemCost = item.Config.UpgradeGemCost[_skillTree.GetSkillLevel(item.Config.SkillKey)-1];
-                if (_localPlayer.Gem >= gemCost)
+                upgradeCost = item.Config.UpgradeGemCost[_skillTree.GetSkillLevel(item.Config.SkillKey)-1];
+                _infoScreen.OverrideDescription(item.Config.UpgradeTextKey);
+                if (_localPlayer.Gem >= upgradeCost)
                 {
                     _buyText.Text = $"Upgrade {item.Config.GetDisplayName()}";
                     _buyButton.Interactable = true;
                 }
                 else
                 {
-                    _buyText.Text = $"Earn {gemCost - _localPlayer.Gem} Gems!";
+                    _buyText.Text = $"Earn {upgradeCost - _localPlayer.Gem} Gems!";
                     _buyButton.Interactable = false;
                 }
                 break;
@@ -320,8 +330,7 @@ public class SkillTreePage : UniqueUIWindow
                 }
                 break;
         }
-        _costText.Text = $"{item.Config.UpgradeCost}";
-        
+        _costText.Text = $"{upgradeCost}";
     }
     // Callback - buy button
     public void OnBuyButtonClicked()

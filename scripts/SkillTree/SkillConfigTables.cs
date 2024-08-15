@@ -776,7 +776,7 @@ public static partial class SkillConfig
     {
         DisplayName = "Light Feet",
         DescriptionTextKey = $"Kick it into second gear and temporarily increase your movement speed by {float.Round((EffectConfig.LightFeetConfig.SpeedModifier - 1f) * 100, 0)}% for {EffectConfig.LightFeetConfig.BoostTime} seconds.",
-        UpgradeTextKey = $"Get {float.Round(EffectConfig.LightFeetConfig.SpeedModifierGrowth*100, 0)}% more speed, and {EffectConfig.LightFeetConfig.BoostTimeGrowth}s time for the speed boost each level",
+        UpgradeTextKey = $"Upgrade Effect: Get {float.Round(EffectConfig.LightFeetConfig.SpeedModifierGrowth*100, 0)}% more speed, and {EffectConfig.LightFeetConfig.BoostTimeGrowth}s extra time for the speed boost.",
         IconPath = "AbilityIcon_Merged/stealth/light_feet.png",
         AbilityIconPath = "AbilityIcon_Separate/stealth/light_feet_icon.png",
         CooldownKey = $"{EffectConfig.LightFeetConfig.Cooldown}s",
