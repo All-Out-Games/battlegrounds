@@ -782,7 +782,7 @@ public static partial class SkillConfig
         CooldownKey = $"{EffectConfig.LightFeetConfig.Cooldown}s",
         UnlockLevel = 3,
         MaximumLevel = 4,
-        UpgradeGemCost = new [] {300,900,2700},
+        UpgradeGemCost = new [] {250,625,1500},
         GridX = 2,
         GridY = 1,
         NType = NodeType.SkillUnlock,
