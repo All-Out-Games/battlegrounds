@@ -31,14 +31,14 @@ public class EffectIronSkin : FightEffect
     {
         base.OnEffectStart(isDropIn);
         
-        AddAura();
-        
         FightPlayer.RegisterPreDamageEvent(this);
         if (!isDropIn)
         {
             DurationRemaining = EffectConfig.IronSkinConfig.Duration;
             SoundId = SFX.Play(SFXKeys.IronAuradAudio, DefaultSoundDesc);
         }
+        
+        AddAura();
     }
 
     public override void OnEffectEnd(bool interrupt)

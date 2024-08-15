@@ -5,9 +5,10 @@ public class SkillTreeItem : Component
 {
     public enum NodeStatus
     {
-        Locked,
-        Attainable,
-        Purchased
+        Locked, // Prerequisite not satisfied
+        Attainable, // Prerequisite satisfied
+        Purchased, // Bought to Maximum level. (Max Level is either 1 or 4, depending on whether the skill is upgradable by gems)
+        Upgradable // Purchased, but now upgraded to max level
     }
     [Serialized] public UIButton ItemButton;
 
@@ -15,8 +16,8 @@ public class SkillTreeItem : Component
     [Serialized] private Entity _equippedBorder;
     [Serialized] private Entity _boughtBorder;
     [Serialized] private Entity _hightlightBorder;
-
-    [Serialized] private UIImage _mask;
+    
+    [Serialized] private Entity[] _stars;
 
     public SkillTreePage TreePage;
     public SkillConfig.SkillTreeNodeConfig Config;
@@ -45,10 +46,29 @@ public class SkillTreeItem : Component
         //Log.Debug($"Ability Item: {Config.SkillKey}; Level = {skillTree.SkillLevelDict[Config.SkillKey]}");
         
         // Check 1: Self Level
-        if (skillTree.SkillLevelDict[Config.SkillKey] > 0)
+        
+        int lvl = skillTree.GetSkillLevel(Config.SkillKey);
+        ShowStars(0);
+        if (lvl > 0)
         {
-            Status = NodeStatus.Purchased;
-            _boughtBorder.LocalEnabled = true;
+            if (Config.MaximumLevel > 1)
+            {
+                // Upgradeable
+                ShowStars(lvl);
+            }
+            
+            if (lvl == Config.MaximumLevel)
+            {
+                // Level full
+                Status = NodeStatus.Purchased;
+                _boughtBorder.LocalEnabled = true;
+            }
+            else
+            {
+                // [lvl >= 1 && MaxiumLevel != 1] -> Upgradable skill
+                Status = NodeStatus.Upgradable;
+            }
+            
         }
         // Check 2: Parent Level
         else if (CheckAttainable(skillTree))
@@ -91,27 +111,26 @@ public class SkillTreeItem : Component
         bool attainable = true;
         foreach (string k in Config.GetParentNodeKeys())
         {
-            if (skillTree.SkillLevelDict[k] < 1)
+            if (skillTree.GetSkillLevel(k) < 1)
             {
                 attainable = false;
                 break;
             }
         }
         
-
         return attainable;
     }
 
     public void OnAbilityUpgradeReturn(bool confirmed)
     {
-        if (confirmed && Status == NodeStatus.Attainable)
+        if (confirmed && (Status == NodeStatus.Attainable || Status == NodeStatus.Upgradable))
         {
             TestServerRPC.CallServer_LogSomethingOnServer($"Callback received. Requesting to upgrade {Config.SkillKey}");
 
             FightPlayer fp = (FightPlayer)Network.LocalPlayer;
             fp.GetSkillTree().CallServer_RequestUpgradeSkill(Config.SkillKey);
         }
-        UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.SkillTreePath);
+        UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.SkillTreePath); // This should refresh everything including the status of this node & its child nodes
     }
 
     public void OnItemClicked()
@@ -124,5 +143,13 @@ public class SkillTreeItem : Component
     public void Unselect()
     {
         _hightlightBorder.LocalEnabled = false;
+    }
+
+    public void ShowStars(int star)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            _stars[i].LocalEnabled = i < star;
+        }
     }
 }

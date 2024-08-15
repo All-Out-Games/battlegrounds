@@ -295,6 +295,19 @@ public class SkillTreePage : UniqueUIWindow
                 }
                 
                 break;
+            case SkillTreeItem.NodeStatus.Upgradable:
+                int gemCost = item.Config.UpgradeGemCost[_skillTree.GetSkillLevel(item.Config.SkillKey)-1];
+                if (_localPlayer.Gem >= gemCost)
+                {
+                    _buyText.Text = $"Upgrade {item.Config.GetDisplayName()}";
+                    _buyButton.Interactable = true;
+                }
+                else
+                {
+                    _buyText.Text = $"Earn {gemCost - _localPlayer.Gem} Gems!";
+                    _buyButton.Interactable = false;
+                }
+                break;
             case SkillTreeItem.NodeStatus.Locked:
                 _buyButton.Interactable = false;
                 if (item.Config.UnlockLevel > _localPlayer.Level)
@@ -317,6 +330,11 @@ public class SkillTreePage : UniqueUIWindow
         {
             ConfirmOrCancelDialog dialog = UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityUnlockDialogPath) as ConfirmOrCancelDialog;
             dialog.InitializeWithConfig(_selectedItem.Config, _selectedItem.OnAbilityUpgradeReturn);
+        }
+        else if (_selectedItem.Status == SkillTreeItem.NodeStatus.Upgradable)
+        {
+            ConfirmOrCancelDialog dialog = UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityUnlockDialogPath) as ConfirmOrCancelDialog;
+            dialog.InitializeWithConfig(_selectedItem.Config, _selectedItem.OnAbilityUpgradeReturn, $"Upgrade {_selectedItem.Config.GetDisplayName()}?");
         }
     }
     

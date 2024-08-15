@@ -304,7 +304,7 @@ SelfDestructExplosion.prefab - .ao - 66a1a7616732dee0bb811d5a - 5339910856129032
 ShadowStepVFX.prefab - .ao - 66859955b45eb9e8339c0ffd - 11550510081096301958
 Shield_FX.prefab - .ao - 66a7fb546732dee0bb811e8e - 10171497738848877739
 ShurikenProjectile.prefab - .ao - 66a91b0496cebaeb1f32988f - 1922884962774569859
-SkillTreeItem.prefab - .ao - 66b116aecf7a5e4159a6c48a - 16992300314804206834
+SkillTreeItem.prefab - .ao - 66be5ca483ee6f3bbee194ac - 6658981128960291887
 SkillTreePage.prefab - .ao - 66b16886cf7a5e4159a6c4ab - 3478324720018410269
 SpoonProjectile.prefab - .ao - 66a91b0496cebaeb1f329890 - 11818330664990311604
 Stat_Aura.prefab - .ao - 66b1373ccf7a5e4159a6c4a4 - 11034765975460030984
@@ -525,6 +525,8 @@ UI/SkillTree/small_skill_tree_icons_pressed/psionic.png - .ao - 66981701b45eb9e8
 UI/SkillTree/small_skill_tree_icons_pressed/psionic.png - .ao.ios - 66981701b45eb9e8339c1ffa - 10295096773042058590
 UI/SkillTree/small_skill_tree_icons_pressed/stealth.png - .ao - 66981701b45eb9e8339c1ffc - 310125365728065912
 UI/SkillTree/small_skill_tree_icons_pressed/stealth.png - .ao.ios - 66981701b45eb9e8339c1ffe - 10487636083827631428
+UI/SkillTree/star.png - .ao - 66be5ca483ee6f3bbee194af - 12719292204069295214
+UI/SkillTree/star.png - .ao.ios - 66be5ca483ee6f3bbee194ad - 2204626422556949890
 UI/SkillTree/tree_selected.png - .ao - 66981701b45eb9e8339c2000 - 9685364491920531861
 UI/SkillTree/tree_selected.png - .ao.ios - 66981701b45eb9e8339c2002 - 5278201373430736246
 UI/TotalDarknessOverlay.png - .ao - 6685d28fb45eb9e8339c10c0 - 5181732608959223275

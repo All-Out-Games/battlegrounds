@@ -68,7 +68,18 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
         if (UpgradeSkill(skillKey, cfg.MaximumLevel))
         {
             Log.Info($"{skillKey} Upgrade Complete!");
-            _player.Coins -= cfg.UpgradeCost;
+            int lvl = GetSkillLevel(skillKey); // Lvl after upgrade
+            if (lvl == 1)
+            {
+                // Unlock - Use coins
+                _player.Coins -= cfg.UpgradeCost;
+            }
+            else
+            {
+                // Upgrade - Use gems
+                _player.Gem -= cfg.UpgradeGemCost[lvl - 2];
+            }
+            
         }
         
     }
