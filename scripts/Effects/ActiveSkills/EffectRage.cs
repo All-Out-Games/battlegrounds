@@ -28,11 +28,14 @@ public class EffectRageCast : FightEffectWithNoFlinch
     {
         base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("rage_stomp");
-        SoundId = SFX.Play(SFXKeys.RageAudio, DefaultSoundDesc);
-        _animDuration = MainLayer.GetCurrentStateLength();
-        DurationRemaining = _animDuration + EffectConfig.RageConfig.Duration;
         
+        _animDuration = MainLayer.GetCurrentStateLength();
         FightPlayer.AddSpeedModifier(0.0f);
+        if (!isDropIn)
+        {
+            SoundId = SFX.Play(SFXKeys.RageAudio, DefaultSoundDesc);
+            DurationRemaining = _animDuration + EffectConfig.RageConfig.Duration;
+        }
     }
 
     public override void OnEffectUpdate()

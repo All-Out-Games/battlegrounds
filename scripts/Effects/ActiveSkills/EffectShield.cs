@@ -31,8 +31,6 @@ public class EffectShield : FightEffect
         base.OnEffectStart(isDropIn);
         
         AssignConfig(EffectConfig.ShieldConfig.GetDefault());
-        DurationRemaining = Config.Duration;
-        
         FightPlayer.MaxShield = Config.ShieldAmt;
         FightPlayer.CurrentShield = Config.ShieldAmt;
         FightPlayer.OnReceiveDamage += OnDamageEvent;
@@ -40,6 +38,7 @@ public class EffectShield : FightEffect
         AddShieldFx();
         if (!isDropIn)
         {
+            DurationRemaining = Config.Duration;
             SoundId = SFX.Play(SFXKeys.WoodShieldAudio, DefaultSoundDesc);
         }
     }
@@ -66,13 +65,7 @@ public class EffectShield : FightEffect
         FightPlayer.MaxShield = 0;
         FightPlayer.OnReceiveDamage -= OnDamageEvent;
     }
-
-    public override void NetworkDeserialize(StreamReader reader)
-    {
-        base.NetworkDeserialize(reader);
-        AddShieldFx();
-        FightPlayer.OnReceiveDamage += OnDamageEvent;
-    }
+    
     
     protected override void OnDamageEvent(FightPlayer source, FightPlayer.DamageInfo info)
     {
@@ -89,7 +82,7 @@ public class EffectShield : FightEffect
     protected virtual void AddShieldFx()
     {
         ShieldVfx = VFXPrefabs.ShieldFx.Instantiate().GetComponent<ShieldVFX>();
-        ShieldVfx.Spawn(FightPlayer.Entity, new Vector2(0, 0.22f), false, 1);
+        ShieldVfx.Spawn(FightPlayer.Entity, new Vector2(0, 0.22f), false, DurationRemaining);
         ShieldVfx.SetAnimTrigger("appear");
     }
 

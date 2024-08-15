@@ -33,9 +33,13 @@ public class EffectRegeneration : FightEffect
         base.OnEffectStart(isDropIn);
         
         PerSecondHeal = EffectConfig.RegenerateConfig.PerSecondHeal;
-        DurationRemaining = EffectConfig.RegenerateConfig.HealTime;
+        
         AddAura();
-        SoundId = SFX.Play(SFXKeys.HealingLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = FightPlayer.Entity, RangeMultiplier = 0.5f});
+        if (!isDropIn)
+        {
+            DurationRemaining = EffectConfig.RegenerateConfig.HealTime;
+            SoundId = SFX.Play(SFXKeys.HealingLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = FightPlayer.Entity, RangeMultiplier = 0.5f});
+        }
 
         if (FightPlayer.HasSkill("Concentrate"))
         {

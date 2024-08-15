@@ -26,11 +26,12 @@ public class EffectLightFeet : FightEffect
     {
         base.OnEffectStart(isDropIn);
         FightPlayer.AddSpeedModifier(EffectConfig.LightFeetConfig.SpeedModifier);
-        DurationRemaining = EffectConfig.LightFeetConfig.BoostTime;
+        
         AddAura();
         
         if (!isDropIn)
         {
+            DurationRemaining = EffectConfig.LightFeetConfig.BoostTime;
             SoundId = SFX.Play(SFXKeys.LightFeetAudio, DefaultSoundDesc);
         }
     }

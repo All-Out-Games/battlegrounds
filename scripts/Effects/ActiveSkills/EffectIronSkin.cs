@@ -30,12 +30,13 @@ public class EffectIronSkin : FightEffect
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        DurationRemaining = EffectConfig.IronSkinConfig.Duration;
+        
         AddAura();
         
         FightPlayer.RegisterPreDamageEvent(this);
         if (!isDropIn)
         {
+            DurationRemaining = EffectConfig.IronSkinConfig.Duration;
             SoundId = SFX.Play(SFXKeys.IronAuradAudio, DefaultSoundDesc);
         }
     }

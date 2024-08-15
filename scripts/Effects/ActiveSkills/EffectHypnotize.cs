@@ -54,7 +54,11 @@ public class EffectHypnotize : FightEffectWithNoFlinch
         FightPlayer.UnsetAnimTrigger("knockdown_end");
         FightPlayer.SetAnimTrigger("knockdown");
         FightPlayer.OnReceiveDamage += OnDamageEvent;
-        DurationRemaining = EffectConfig.HypnotizeConfig.HypnotizeTime;
+        
+        if (!isDropIn)
+        {
+            DurationRemaining = EffectConfig.HypnotizeConfig.HypnotizeTime;
+        }
 
         Caster.AddEffect<EffectHypnotizeCaster>();
     }

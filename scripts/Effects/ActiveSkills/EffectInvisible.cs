@@ -31,10 +31,9 @@ public class EffectInvisible : FightEffect
         if (!isDropIn)
         {
             DurationRemaining = EffectConfig.InvisibilityConfig.InvisTime;
+            SoundId = SFX.Play(SFXKeys.InvisAudio, DefaultSoundDesc);
         }
         AddInvis(FightPlayer.IsLocal);
-        SoundId = SFX.Play(SFXKeys.InvisAudio, DefaultSoundDesc);
-        
         FightPlayer.OnSkillActivate += OnSkillActivationEvent;
         FightPlayer.OnReceiveDamage += OnDamageEvent;
     }

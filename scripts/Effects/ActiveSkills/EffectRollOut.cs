@@ -59,9 +59,10 @@ public class EffectRollOut : FightEffect
         RollOutStart();
         FightPlayer.SetAnimTrigger("rollout_start");
         
-        DurationRemaining = _config.Duration;
+        
         if (!isDropIn)
         {
+            DurationRemaining = _config.Duration;
             SFX.Play(SFXKeys.RolloutStartAudio, DefaultSoundDesc);
         }
 

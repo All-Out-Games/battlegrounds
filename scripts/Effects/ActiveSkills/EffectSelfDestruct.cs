@@ -28,7 +28,12 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
         base.OnEffectStart(isDropIn);
         FightStateMachine.SetTrigger("self_destruct");
         AssignConfig(EffectConfig.SelfDestructConfig.GetDefault(FightPlayer.CurrentAttack));
-        SoundId = SFX.Play(SFXKeys.SelfDestructAudio, DefaultSoundDesc);
+        if (!isDropIn)
+        {
+            DurationRemaining = FightLayer.GetCurrentStateLength();
+            SoundId = SFX.Play(SFXKeys.SelfDestructAudio, DefaultSoundDesc);
+        }
+        
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -45,7 +50,6 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
     protected void AssignConfig(EffectConfig.SelfDestructConfig cfg)
     {
         Config = cfg;
-        DurationRemaining = FightLayer.GetCurrentStateLength();
     }
 
     private void KnockingBlast()

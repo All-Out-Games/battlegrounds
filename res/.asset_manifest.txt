@@ -655,8 +655,8 @@ environment/AFK_tmp/rock_3.png - .ao - 66bbe90383ee6f3bbee19381 - 31891435820542
 environment/AFK_tmp/rock_3.png - .ao.ios - 66bbe90383ee6f3bbee1937f - 13608229710058976670
 environment/AFK_tmp/rock_4.png - .ao - 66bbe90383ee6f3bbee19385 - 16053197062968729531
 environment/AFK_tmp/rock_4.png - .ao.ios - 66bbe90383ee6f3bbee19386 - 7602242644831737480
-environment/AFK_tmp/signpost.png - .ao - 66bcf5b383ee6f3bbee193af - 18060968719880173568
-environment/AFK_tmp/signpost.png - .ao.ios - 66bcf5b383ee6f3bbee193b3 - 15615828857627934857
+environment/AFK_tmp/sign.png - .ao - 66bd514483ee6f3bbee19498 - 11634883497683769537
+environment/AFK_tmp/sign.png - .ao.ios - 66bd514483ee6f3bbee19497 - 3517781559697260770
 environment/AFK_tmp/signpost_noob.png - .ao - 66bcf5b383ee6f3bbee193b0 - 7971483782797285475
 environment/AFK_tmp/signpost_noob.png - .ao.ios - 66bcf5b383ee6f3bbee193ae - 8624920170408240859
 environment/AFK_tmp/world1_ground_texture.png - .ao - 66bbe90383ee6f3bbee19387 - 12894535161973970450
