@@ -53,6 +53,11 @@ public class AbilityInfoScreen : Component
         }
     }
 
+    public void OverrideDescription(string txt)
+    {
+        _description.Text = txt;
+    }
+
     private void SetNonDamageSkill(bool enable)
     {
         _damageText.LocalEnabled = !enable;

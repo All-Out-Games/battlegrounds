@@ -1,8 +1,8 @@
 13
-133143986177
-24681016089852 1721850239255199400
+34359738369
+163489231373618 1723756727360651400
 {
-  "name": "CoinImage",
+  "name": "GemImage",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -13,17 +13,16 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "24624425204794:1721850210914415700",
-  "next_sibling": "163489231373618:1723756727360651400",
+  "previous_sibling": "24681016089852:1721850239255199400",
   "parent": "17317871155862:1721846551783310500"
 },
 {
   "cid": 1,
-  "aoid": "24702088304233:1721850249808189800",
+  "aoid": "163489231457424:1723756727360692600",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "UI/AbilityBook/AbilityInfo/buy_button/coin.png",
+    "sprite": "$AO/new/main_menu/gems/gem_resource_icon.png",
     "tint": {
       "X": 1,
       "Y": 1,
@@ -37,7 +36,7 @@
 },
 {
   "cid": 2,
-  "aoid": "24727325886319:1721850262447201500",
+  "aoid": "163489231515108:1723756727360721400",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {

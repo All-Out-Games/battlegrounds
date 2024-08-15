@@ -18,6 +18,7 @@ public class AbilityLightFeet : FightAbility
 public class EffectLightFeet : FightEffect
 {
     public override bool IsActiveEffect => false;
+    private EffectConfig.LightFeetConfig _cfg;
 
     private StatAuraVFX _aura;
     private Spine_Animator _auraAnimator;
@@ -25,20 +26,22 @@ public class EffectLightFeet : FightEffect
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        FightPlayer.AddSpeedModifier(EffectConfig.LightFeetConfig.SpeedModifier);
         
+        _cfg = EffectConfig.LightFeetConfig.GetDefault(FightPlayer.GetSkillTree().GetSkillLevel("LightFeet"));
+        Log.Error($"Level = {FightPlayer.GetSkillTree().GetSkillLevel("LightFeet")}");
         if (!isDropIn)
         {
-            DurationRemaining = EffectConfig.LightFeetConfig.BoostTime;
+            DurationRemaining = _cfg.BuffTime;
             SoundId = SFX.Play(SFXKeys.LightFeetAudio, DefaultSoundDesc);
         }
+        FightPlayer.AddSpeedModifier(_cfg.SpeedMtp);
         AddAura();
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        FightPlayer.RemoveSpeedModifier(EffectConfig.LightFeetConfig.SpeedModifier);
+        FightPlayer.RemoveSpeedModifier(_cfg.SpeedMtp);
     }
     
     private void AddAura()
