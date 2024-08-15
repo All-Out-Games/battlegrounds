@@ -21,7 +21,8 @@ public class FightPlayerLegacyUI : FightPlayerComponent
     {
         _hideUIReasons.Remove(reason);
     }
-    public override void Update()
+
+    public void DrawUI()
     {
         Rect healthRect;
         if (_player.CurrentHealth > 0 && _hideUIReasons.Count == 0)
@@ -37,16 +38,17 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         {
             DrawDamageNumber();
         }
-
     }
 
     protected Rect DrawHealthBar()
     {
-        var healthRect = UI.GetPlayerRect(_player);
-        var levelRect = healthRect.Grow(20, 20, 20, 20).Offset(-70, 180);
-        healthRect = healthRect.Grow(13, 50, 0, 50).Offset(0, 180);
+        using var _1 = UI.PUSH_CONTEXT(UI.Context.WORLD);
+        using var _2 = IM.PUSH_Z(_player.GetZOffset() - 0.0001f); // minus an epsilon so the health bar draws over the player
+        using var _3 = UI.PUSH_SCALE_FACTOR(5.0f / 540.0f);
+        var healthRect = _player.FinalNameRect.BottomCenterRect().Offset(0, -20);
+        var levelRect = healthRect.Grow(20, 20, 20, 20).Offset(-70, 0);
+        healthRect = healthRect.Grow(13, 50, 0, 50).Offset(0, 0);
         var borderRect = healthRect.Grow(4, 3, 4, 3);
-        UI.PushLayer(-2);
         UI.Image(borderRect, BarBorder, Vector4.White, new UI.NineSlice());
         UI.Image(healthRect, null, Vector4.Black, new UI.NineSlice());
         UI.Image(levelRect, LvPlate, Vector4.White, new UI.NineSlice());
@@ -56,14 +58,11 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         var healthPercentRect = healthRect.SubRect(0, 0, healthPercent, 1, 0, 0, 0, 0);
         UI.Image(healthPercentRect, null, Vector4.HSVLerp(Vector4.Red, Vector4.Green, healthPercent), new UI.NineSlice());
         //UIManager.Instance.SetPopup($"Shield - {_player.CurrentShield} Max shield - {_player.MaxShield}", 0.5f, _player);
-        UI.PopLayer();
         return healthRect;
-        
     }
 
     protected void DrawShieldBar(Rect healthRect)
     {
-        
         Rect shieldRect = healthRect.Grow(-7, -5, 0, -5).Offset(0, 13);
         UI.Image(shieldRect, null, Vector4.Black, new UI.NineSlice());
 

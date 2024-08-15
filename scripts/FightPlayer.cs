@@ -359,6 +359,8 @@ public partial class FightPlayer : Player
         SkillTree = Entity.GetComponent<FightPlayerSkillTree>();
         SkillSlotsManager = Entity.GetComponent<FightPlayerSkillSlotsManager>();
 
+        NameOffset = 0.275f;
+
         //Log.Debug($"Client Awake!");
         //SkillSlotsManager.InitKeybind();
         
@@ -432,9 +434,10 @@ public partial class FightPlayer : Player
         base.LateUpdate();
         if (IsLocal)
         {
-            CameraInterface.Position = Vector2.Lerp(new Vector2(CameraInterface.Position.X , CameraInterface.Position.Y + 0.5f), Entity.Position, 0.75f);
+            CameraInterface.Position = Entity.Position + new Vector2(0, 0.5f);
         }
-        
+
+        PlayerLegacyUi.DrawUI();
     }
     
     public override void OnDestroy()
