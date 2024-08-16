@@ -36,8 +36,9 @@ public class AbilityInfoScreen : Component
         }
 
         _background.Sprite = Assets.GetAsset<Texture>(tabConfig.InfoScreenBg);
-        _description.Text = stConfig.DescriptionTextKey;
-        _cooldown.Text = stConfig.CooldownKey;
+
+        _description.Text = stConfig.DescriptionTextKey == "%OVERRIDE%" ? SkillConfig.GetOverrideDescription(stConfig.SkillKey, FightClubUtils.GetLocalFightPlayer()) : stConfig.DescriptionTextKey;
+        _cooldown.Text = stConfig.CooldownKey == "%OVERRIDE%" ? SkillConfig.GetOverrideCooldown(stConfig.SkillKey, FightClubUtils.GetLocalFightPlayer()) : stConfig.CooldownKey;
         _range.Text = stConfig.RangeDescriptionKey;
         
         
@@ -48,7 +49,9 @@ public class AbilityInfoScreen : Component
         else
         {
             SetNonDamageSkill(false);
-            _baseDmg.Text = stConfig.BaseDamageKey.ToString();
+            _baseDmg.Text = (stConfig.BaseDamageKey == SkillConfig._overrideValue_
+                ? SkillConfig.GetOverrideBaseDamage(stConfig.SkillKey, FightClubUtils.GetLocalFightPlayer())
+                : stConfig.BaseDamageKey).ToString();
             _atk.Text = FightClubUtils.GetLocalFightPlayer().CurrentAttack.ToString();
         }
     }

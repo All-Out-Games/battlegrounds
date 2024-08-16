@@ -5,6 +5,8 @@ using Assembly.scripts.Effects.ActiveSkills;
 
 public static partial class SkillConfig
 {
+    public static int _overrideValue_ = Int32.MinValue;
+    
     // NOTE: The query dictionary (SkillKey : NodeConfig) is defined at the bottom of this file as 'STConfigQueryDict'
     // You MUST define node config and add it to the query dict.
 
@@ -352,7 +354,7 @@ public static partial class SkillConfig
         UpgradeTextKey = "Upgrade Effect: Reduce cooldown by 1s for each level.",
         IconPath = "AbilityIcon_Merged/brawler/rage.png",
         AbilityIconPath = "AbilityIcon_Separate/brawler/rage_icon.png",
-        CooldownKey = $"{EffectConfig.RageConfig.Cooldown}s",
+        CooldownKey = "%OVERRIDE%",
         UnlockLevel = 4,
         MaximumLevel = 5,
         UpgradeGemCost = new [] {250,625,1500,4000},
@@ -372,7 +374,7 @@ public static partial class SkillConfig
         DisplayName = "Double Punch",
         DescriptionTextKey = "The ol' one, two combo. Strike another player with a double punch.",
         UpgradeTextKey = "Upgrade Effect: Base Damage is increased by 1 per punch.",
-        BaseDamageKey = EffectConfig.DoublePunchConfig.BaseDmg,
+        BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = "Melee",
         CooldownKey = $"{EffectConfig.DoublePunchConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/brawler/double_punch.png",
@@ -779,7 +781,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig LightFeetConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Light Feet",
-        DescriptionTextKey = $"Kick it into second gear and temporarily increase your movement speed by {float.Round((EffectConfig.LightFeetConfig.SpeedModifier - 1f) * 100, 0)}% for {EffectConfig.LightFeetConfig.BoostTime} seconds.",
+        DescriptionTextKey = "%OVERRIDE%",
         UpgradeTextKey = $"Upgrade Effect: Get {float.Round(EffectConfig.LightFeetConfig.SpeedModifierGrowth*100, 0)}% more speed, and {EffectConfig.LightFeetConfig.BoostTimeGrowth}s extra time for the speed boost.",
         IconPath = "AbilityIcon_Merged/stealth/light_feet.png",
         AbilityIconPath = "AbilityIcon_Separate/stealth/light_feet_icon.png",
@@ -823,7 +825,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig BearTrapConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Bear Trap",
-        DescriptionTextKey = $"Place a hidden bear trap that triggers on the next player to walk over it. The trap will last {EffectConfig.BearTrapConfig.TrapLifeTime}s seconds on the ground.",
+        DescriptionTextKey = "%OVERRIDE%",
         UpgradeTextKey = $"Upgrade Effect: Traps last {EffectConfig.BearTrapConfig.LifeTimeGrowth}s longer for each level. Your trap also gets {float.Round(EffectConfig.BearTrapConfig.FourStarSizeBonus*100, 0)}% bigger at 4 stars.",
         BaseDamageKey = EffectConfig.BearTrapConfig.TrapBaseDamage,
         RangeDescriptionKey = $"{EffectConfig.BearTrapConfig.MaxSetupDistance}m",

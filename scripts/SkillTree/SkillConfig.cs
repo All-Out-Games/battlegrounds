@@ -5,6 +5,7 @@ using AO;
 public static partial class SkillConfig
 {
     
+    
     public enum NodeType
     {
         AttrBoost,
@@ -72,6 +73,9 @@ public static partial class SkillConfig
         // DescriptionKey / BaseDamageKey / RangeDescriptionKey / CooldownKey are used in 
         // You can fill DescriptionKey / RangeDescriptionKey / CooldownKey with '%OVERRIDE%' to trigger a call of
         // an override function. Pass the skillkey and the local player in it to get the actual number based on their skill level
+        // You can fill BaseDamageKey (int) as _overridevalue_ to achieve the same on this field.
+        
+        // Write the handler in this file. Add your case to the override function
         
         /// <summary>
         /// Coins needed when purchasing this skill
@@ -226,5 +230,53 @@ public static partial class SkillConfig
         }
     }
 
-    
+    public static string GetOverrideCooldown(string skillKey, FightPlayer fp)
+    {
+        SkillTreeNodeConfig cfg = GetConfig(skillKey);
+        string res = cfg.CooldownKey; // default
+        switch (skillKey)
+        {
+            case "Rage":
+                res = $"{EffectConfig.RageConfig.Cooldown - fp.GetSkillTree().GetSkillLevel("Rage")}s";
+                break;
+        }
+
+        return res;
+    }
+
+    public static int GetOverrideBaseDamage(string skillKey, FightPlayer fp)
+    {
+        SkillTreeNodeConfig cfg = GetConfig(skillKey);
+        int res = cfg.BaseDamageKey; // default
+        switch (skillKey)
+        {
+            case "DoublePunch":
+                res = EffectConfig.DoublePunchConfig.BaseDmg + fp.GetSkillTree().GetSkillLevel("DoublePunch");
+                break;
+        }
+
+        return res;
+    }
+
+    public static string GetOverrideDescription(string skillKey, FightPlayer fp)
+    {
+        SkillTreeNodeConfig cfg = GetConfig(skillKey);
+        string res = cfg.CooldownKey; // default
+        switch (skillKey)
+        {
+            case "BearTrap":
+                res =
+                    $"Place a hidden bear trap that triggers on the next player to walk over it. The trap will last " +
+                    $"{EffectConfig.BearTrapConfig.TrapLifeTime + EffectConfig.BearTrapConfig.LifeTimeGrowth * (fp.GetSkillTree().GetSkillLevel("BearTrap")-1)}s seconds on the ground.";
+                break;
+            case "LightFeet":
+                EffectConfig.LightFeetConfig lf =
+                    EffectConfig.LightFeetConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("LightFeet"));
+                res =
+                    $"Kick it into second gear and temporarily increase your movement speed by {float.Round((lf.SpeedMtp - 1f) * 100, 0)}% for {lf.BuffTime} seconds.";
+                break;
+        }
+
+        return res;
+    }
 }
