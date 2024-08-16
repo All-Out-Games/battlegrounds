@@ -4,7 +4,7 @@ using Assembly.scripts.Effects.ActiveSkills;
 
 namespace Assembly.scripts.SceneObjects.TriggersAndInteractions;
 
-public class BearTrap : OwnedTrigger
+public partial class BearTrap : OwnedTrigger
 {
     [Serialized] public bool Snapped;
     [Serialized] protected bool Armed;
@@ -127,11 +127,18 @@ public class BearTrap : OwnedTrigger
         base.OnEntityEnter(entity);
     }
 
+    [ClientRpc]
     public override void Initialization(Entity owner, float lifeTime)
     {
         base.Initialization(owner, lifeTime);
         TrapArmTime = EffectConfig.BearTrapConfig.TrapArmTime;
         Armed = false;
         Snapped = false;
+    }
+    
+    [ClientRpc]
+    public void SetSize(float sizeMultiplier)
+    {
+        Entity.LocalScale = new Vector2(sizeMultiplier, sizeMultiplier);
     }
 }

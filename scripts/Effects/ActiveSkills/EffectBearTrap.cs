@@ -31,11 +31,15 @@ public class EffectBearTrap: FightEffect
     {
         Vector2 trapPos = FightPlayer.Entity.Position + AbilityPositionOrDirection * EffectConfig.BearTrapConfig.MaxSetupDistance * AbilityMagnitude;
         base.OnEffectEnd(interrupt);
+        int lv = FightPlayer.GetSkillTree().GetSkillLevel("BearTrap");
+        float lifeTime = EffectConfig.BearTrapConfig.TrapLifeTime +
+                         (lv-1) * EffectConfig.BearTrapConfig.LifeTimeGrowth;
         FightClubGameManager.Instance.ServerSpawn(EffectConfig.BearTrapConfig.TrapPrefabPath, trapPos,
             entity =>
             {
                 BearTrap trap = entity.GetComponent<BearTrap>();
-                trap.CallClient_Initialization(FightPlayer.Entity, EffectConfig.BearTrapConfig.TrapLifeTime);
+                trap.CallClient_Initialization(FightPlayer.Entity, lifeTime);
+                trap.CallClient_SetSize(lv > 4 ? 1+EffectConfig.BearTrapConfig.FourStarSizeBonus : 1);
             });
     }
 }

@@ -581,16 +581,20 @@ public static class EffectConfig
         public static int TrapBaseDamage = 10;
         public static float TrapLifeTime = 15f;
         public static float TrapArmTime = 1f;
-        public static float Cooldown = 5f;
-        public static float MaxSetupDistance = 5; 
+        public static float Cooldown = 10f;
+        public static float MaxSetupDistance = 5;
+
+        public static float FourStarSizeBonus = 0.1f;
+        public static float LifeTimeGrowth = 1.5f;
 
         public static string TrapPrefabPath = "BearTrap.prefab";
 
         public int Damage;
 
+
         public static BearTrapConfig GetDefault(int atk)
         {
-            BearTrapConfig cfg = new BearTrapConfig { Damage = TrapBaseDamage + atk };
+            BearTrapConfig cfg = new BearTrapConfig { Damage = TrapBaseDamage + atk};
             return cfg;
         }
     }
