@@ -42,15 +42,11 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     [ServerRpc]
     public void RequestUpgradeSkill(string skillKey)
     {
-
         if (!SkillConfig.STConfigQueryDict.TryGetValue(skillKey, out var cfg)) return;
         // Get parent nodes and check if they are unlocked
-        if (_player.Coins < cfg.UpgradeCost)
-        {
-            UIManager.CallClient_SetPlayerPopup(_player.Entity.NetworkId,$"You don't have enough coin! {cfg.UpgradeCost} needed!", 2f);
-            return;
-        }
 
+        // Lots of checks for the safety of this server RPC.
+        // These shouldn't pop up on a non-hacked client as we shall stop clients from requesting this RPC when they don't have the resources.
         if (_player.Level < cfg.UnlockLevel)
         {
             UIManager.CallClient_SetPlayerPopup(_player.Entity.NetworkId,$"You need to be Level {cfg.UnlockLevel + 1} to purchase!", 2f);
@@ -64,7 +60,18 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                 return;
             }
         }
-
+        int prevLvl = GetSkillLevel(skillKey);
+        if (prevLvl == 0 && _player.Coins < cfg.UpgradeCost)
+        {
+            UIManager.CallClient_SetPlayerPopup(_player.Entity.NetworkId,$"You don't have enough coin! {cfg.UpgradeCost} needed!", 2f);
+            return;
+        }
+        if (prevLvl > 0 && _player.Gem < cfg.UpgradeGemCost[prevLvl - 1])
+        {
+            UIManager.CallClient_SetPlayerPopup(_player.Entity.NetworkId,$"You don't have enough gem! {cfg.UpgradeGemCost[prevLvl - 1]} needed!", 2f);
+            return;
+        }
+        
         if (UpgradeSkill(skillKey, cfg.MaximumLevel))
         {
             Log.Info($"{skillKey} Upgrade Complete!");
@@ -116,7 +123,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                 }
                 else
                 {
-                    Log.Error($"Skill {skillKey} reached max level!");
+                    Log.Warn($"Skill {skillKey} reached max level!");
                 }
             }
             else

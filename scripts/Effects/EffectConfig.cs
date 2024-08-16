@@ -636,9 +636,9 @@ public static class EffectConfig
 
         public int Damage;
 
-        public static BackStabConfig GetDefault(int atk)
+        public static BackStabConfig GetDefault(int atk, int level = 1)
         {
-            return new BackStabConfig() { Damage = atk + BaseDmg };
+            return new BackStabConfig() { Damage = atk + BaseDmg + level };
         }
     }
 

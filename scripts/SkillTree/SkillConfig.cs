@@ -251,7 +251,12 @@ public static partial class SkillConfig
         switch (skillKey)
         {
             case "DoublePunch":
+                // There are two ways to get the overridden base damage. Calculate here or just get a config with atk=0
                 res = EffectConfig.DoublePunchConfig.BaseDmg + fp.GetSkillTree().GetSkillLevel("DoublePunch");
+                break;
+            case "Backstab":
+                // Note: Do not fill in fp.CurrentAttack. We are looking for the base damage here!
+                res = EffectConfig.BackStabConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("Backstab")).Damage;
                 break;
         }
 

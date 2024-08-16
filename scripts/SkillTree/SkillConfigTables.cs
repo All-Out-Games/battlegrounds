@@ -870,13 +870,15 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig BackstabConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "Throw A Kunai. If it hits another player, you teleport behind them and stab the target.",
-        BaseDamageKey = EffectConfig.BackStabConfig.BaseDmg,
+        UpgradeTextKey = "Upgrade Effect: Increase base damage by 1 for each level.",
+        BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = $"{EffectConfig.BackStabConfig.KunaiRange}m",
         CooldownKey = $"{EffectConfig.BackStabConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/stealth/backstab.png",
         AbilityIconPath = "AbilityIcon_Separate/stealth/backstab_icon.png",
         UnlockLevel = 18,
-        MaximumLevel = 1,
+        MaximumLevel = 5,
+        UpgradeGemCost = new [] {250,625,1500,4000},
         GridX = 1,
         GridY = 2,
         NType = NodeType.SkillUnlock,
