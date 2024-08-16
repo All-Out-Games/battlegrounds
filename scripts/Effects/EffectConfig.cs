@@ -293,7 +293,7 @@ public static class EffectConfig
     public struct RageConfig
     {
         public static int AtkBoostBase = 10;
-        public static float Cooldown = 23f;
+        public static float Cooldown = 24f;
         public static float Duration = 8f; // If you want to buff any skill with an Aura (Rage/Regeneration/IronAura), the
                                            // aura's prefab needs to be adjusted, especially when you extend it.
         public int AtkBoost;
@@ -316,7 +316,7 @@ public static class EffectConfig
 
     public struct DoublePunchConfig
     {
-        public static int BaseDmg = 7;
+        public static int BaseDmg = 5;
         public static float Cooldown = 6f;
         public static float PunchAnimationTime = 0.4f; // A bit quicker than normal punch
         public static float PunchRange = 2;
@@ -329,9 +329,9 @@ public static class EffectConfig
             
         }
 
-        public static DoublePunchConfig GetDefault(int attack)
+        public static DoublePunchConfig GetDefault(int attack, int level = 1)
         {
-            return new DoublePunchConfig() with { PunchDamage = BaseDmg + attack};
+            return new DoublePunchConfig() with { PunchDamage = BaseDmg + attack + level - 1};
         }
     }
 
@@ -584,7 +584,7 @@ public static class EffectConfig
         public static float Cooldown = 10f;
         public static float MaxSetupDistance = 5;
 
-        public static float FourStarSizeBonus = 0.1f;
+        public static float FourStarSizeBonus = 0.15f;
         public static float LifeTimeGrowth = 1.5f;
 
         public static string TrapPrefabPath = "BearTrap.prefab";

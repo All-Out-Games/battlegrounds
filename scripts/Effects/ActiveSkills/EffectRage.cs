@@ -12,7 +12,8 @@ public class AbilityRage : FightAbility
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
 
-    public override float Cooldown => EffectConfig.RageConfig.Cooldown;
+    // Reduced 1s cooldown for each level
+    public override float Cooldown => EffectConfig.RageConfig.Cooldown - FightPlayer.GetSkillTree().GetSkillLevel("Rage");
 }
 
 public class EffectRageCast : FightEffectWithNoFlinch

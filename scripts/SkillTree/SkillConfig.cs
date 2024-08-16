@@ -68,6 +68,11 @@ public static partial class SkillConfig
         public string RangeDescriptionKey = "N/A";
         public string CooldownKey = "N/A";
         
+        // SPECIAL VALUES:
+        // DescriptionKey / BaseDamageKey / RangeDescriptionKey / CooldownKey are used in 
+        // You can fill DescriptionKey / RangeDescriptionKey / CooldownKey with '%OVERRIDE%' to trigger a call of
+        // an override function. Pass the skillkey and the local player in it to get the actual number based on their skill level
+        
         /// <summary>
         /// Coins needed when purchasing this skill
         /// </summary>
