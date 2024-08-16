@@ -27,7 +27,7 @@ public class EffectDoublePunch : FightEffect
     {
         base.OnEffectStart(isDropIn);
         
-        AssignConfig(EffectConfig.DoublePunchConfig.GetDefault(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.DoublePunchConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("DoublePunch")));
         
         FightPlayer.SetAnimTrigger("doublepunch");
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
