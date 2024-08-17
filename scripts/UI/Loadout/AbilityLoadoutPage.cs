@@ -175,6 +175,11 @@ public class AbilityLoadoutPage : UniqueUIWindow
 
         _elapsedTimeSinceOpen = 0;
         ResetSelection();
+        foreach (var kv in _bookItems)
+        {
+            int lvl = _skillTree.GetSkillLevel(kv.Key);
+            kv.Value.RefreshLevel(lvl, lvl > 1);
+        }
         
         Chat.SetChatMode(Chat.Mode.BubbleOnly);
     }

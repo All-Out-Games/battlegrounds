@@ -548,6 +548,7 @@
 2840 bytes - UI/SkillTree/small_skill_tree_icons/stealth.png.ao.ios
 2784 bytes - UI/LargeMenuButtons/Large Menu Buttons/stats.png.ao.ios
 2784 bytes - UI/LargeMenuButtons/stats.png.ao.ios
+2760 bytes - LoadoutItemGroup.prefab.ao
 2664 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills.png.ao.ios
 2664 bytes - UI/LargeMenuButtons/skills.png.ao.ios
 2648 bytes - UI/SkillTree/small_skill_tree_icons_pressed/defense.png.ao.ios
@@ -558,7 +559,7 @@
 2568 bytes - UI/SkillTree/small_skill_tree_icons/psionic.png.ao
 2528 bytes - UI/AbilityBook/AbilityInfo/buy_button/buy_button.png.ao.ios
 2488 bytes - UI/SkillTree/small_skill_tree_icons/brawler.png.ao.ios
-2472 bytes - SkillTreeItem.prefab.ao
+2480 bytes - SkillTreeItem.prefab.ao
 2464 bytes - VFX/ClawSwipe/claw_swipe_BAT003.spine.ao
 2432 bytes - UI/SkillTree/small_skill_tree_icons/element.png.ao.ios
 2432 bytes - UI/SkillTree/small_skill_tree_icons_pressed/psionic.png.ao.ios
@@ -574,7 +575,6 @@
 2360 bytes - ability_icon_tmp/TotalDarkness_tmp.png.ao
 2352 bytes - UI/LargeMenuButtons/Large Menu Buttons/stats.png.ao
 2352 bytes - UI/LargeMenuButtons/stats.png.ao
-2328 bytes - LoadoutItemGroup.prefab.ao
 2320 bytes - ability_icon_tmp/PsyThrow_Tmp.png.ao
 2280 bytes - UI/SkillTree/Brawler.png.ao.ios
 2280 bytes - VFX/LeapFistSlam/BAT003_leaping_fist_slam.spine.ao

@@ -12,6 +12,7 @@ public class AbilityLoadoutItemGroup : Component
     [Serialized] private Entity _selectionBorder;
     [Serialized] private Entity _equippedBorder;
     [Serialized] private Entity _replaceIcon;
+    [Serialized] private Entity[] _stars;
     private AbilityLoadoutPage _abWindow;
     
     public SkillConfig.SkillTreeTabs NTab;
@@ -55,6 +56,26 @@ public class AbilityLoadoutItemGroup : Component
         else
         {
             _replaceIcon.LocalEnabled = false;
+        }
+    }
+
+    public void RefreshLevel(int level, bool upgradable)
+    {
+        if (upgradable)
+        {
+            ShowStars(level);
+        }
+        else
+        {
+            ShowStars(0);
+        }
+    }
+    
+    public void ShowStars(int star)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            _stars[i].LocalEnabled = i < star;
         }
     }
 }

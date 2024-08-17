@@ -3,7 +3,7 @@
 152626557409181 1723751287320390400
 {
   "name": "Star",
-  "local_enabled": true,
+  "local_enabled": false,
   "local_position": {
     "X": 0,
     "Y": 0

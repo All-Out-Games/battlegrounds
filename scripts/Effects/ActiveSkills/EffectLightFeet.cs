@@ -28,7 +28,7 @@ public class EffectLightFeet : FightEffect
         base.OnEffectStart(isDropIn);
         
         _cfg = EffectConfig.LightFeetConfig.GetDefault(FightPlayer.GetSkillTree().GetSkillLevel("LightFeet"));
-        Log.Error($"Level = {FightPlayer.GetSkillTree().GetSkillLevel("LightFeet")}");
+        // Log.Error($"Level = {FightPlayer.GetSkillTree().GetSkillLevel("LightFeet")}");
         if (!isDropIn)
         {
             DurationRemaining = _cfg.BuffTime;
