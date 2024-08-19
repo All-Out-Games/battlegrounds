@@ -11,7 +11,7 @@ public class AbilityShoulderCrash : FightAbility
     public override TargettingMode TargettingMode => TargettingMode.Line;
     public override float MaxDistance => 5f;
     
-    public override float Cooldown => EffectConfig.ShoulderCrashConfig.Cooldown;
+    public override float Cooldown => FightPlayer.GetSkillTree().GetSkillLevel("ShoulderCrash") > 2 ? EffectConfig.ShoulderCrashConfig.Cooldown - 1 : EffectConfig.ShoulderCrashConfig.Cooldown;
 }
 public sealed class EffectShoulderCrash : FightEffectWithImmunity
 {
@@ -31,7 +31,7 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        AssignConfig(EffectConfig.ShoulderCrashConfig.GetDefault(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.ShoulderCrashConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("ShoulderCrash")));
         DurationRemaining = _config.DashDuration + 0.1f;
         //FightPlayer.AddPlayerCollisionFunction(OnShoulderCrashCollision);
 

@@ -63,7 +63,7 @@ public class AbilityLoadoutItemGroup : Component
     {
         if (upgradable)
         {
-            ShowStars(level);
+            ShowStars(level-1);
         }
         else
         {

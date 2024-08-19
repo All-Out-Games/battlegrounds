@@ -5,13 +5,19 @@ using Assembly.scripts.Effects.ActiveSkills;
 
 public static partial class SkillConfig
 {
-    public static int _overrideValue_ = Int32.MinValue;
+    public static readonly int _overrideValue_ = Int32.MinValue;
+    public static readonly int[] _tierOneGemCost = new[] { 250, 625, 1500, 4000};
+    public static readonly int[] _tierTwoGemCost = new[] { 400, 1000, 2500, 6250};
     
     // NOTE: The query dictionary (SkillKey : NodeConfig) is defined at the bottom of this file as 'STConfigQueryDict'
     // You MUST define node config and add it to the query dict.
 
     // [Add Skill] item 1: Config Entry
 
+    
+    // Template for filling multi-line upgrade text 
+    // "Upgrade Effect: \n ★: \n ★★: \n ★★★:\n ★★★★:\n" // STAR U+2605 not supported
+    // "*: Damage +1\n **: Cooldown -1\n ***: Damage +1\n ****: Dash Duration/Speed +20%\n"
     #region Node Configs : Basic
 
     /// <summary>
@@ -308,11 +314,13 @@ public static partial class SkillConfig
     {
         DisplayName = "Shoulder Crash",
         DescriptionTextKey = "Charge with your shoulder dealing damage and knockback to other players.",
+        UpgradeTextKey = "*: Damage +1\n **: Cooldown -1\n ***: Damage +1\n ****: Dash Distance +20%\n", 
         BaseDamageKey = EffectConfig.ShoulderCrashConfig.BumpDmgBase,
         RangeDescriptionKey = "5m",
         CooldownKey = $"{ EffectConfig.ShoulderCrashConfig.Cooldown }s",
         UnlockLevel = 0,
-        MaximumLevel = 1,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierOneGemCost,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 100,
@@ -357,7 +365,7 @@ public static partial class SkillConfig
         CooldownKey = "%OVERRIDE%",
         UnlockLevel = 4,
         MaximumLevel = 5,
-        UpgradeGemCost = new [] {250,625,1500,4000},
+        UpgradeGemCost = _tierOneGemCost,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 750,

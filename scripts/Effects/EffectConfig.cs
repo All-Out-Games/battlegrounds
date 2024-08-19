@@ -104,7 +104,7 @@ public static class EffectConfig
         public static int BumpDmgBase = 5;
         public static float Cooldown = 6f;
         
-        public float DashDuration = 1.5f;
+        public float DashDuration = 1.0f;
         public float DashSpeed = 200f;
         
         public int ContactDamage = 5;
@@ -116,12 +116,27 @@ public static class EffectConfig
         }
 
 
-        public static ShoulderCrashConfig GetDefault(int attack)
+        public static ShoulderCrashConfig GetDefault(int attack, int level)
         {
             ShoulderCrashConfig cfg = new ShoulderCrashConfig
             {
-                ContactDamage = attack + ShoulderCrashConfig.BumpDmgBase
+                ContactDamage = attack + ShoulderCrashConfig.BumpDmgBase,
             };
+            if (level > 4)
+            {
+                cfg.DashSpeed += 40;
+                cfg.DashDuration += 0.2f;
+            }
+
+            if (level > 1)
+            {
+                cfg.ContactDamage += 1;
+            }
+
+            if (level > 3)
+            {
+                cfg.ContactDamage += 1;
+            }
             return cfg;
         }
     }
