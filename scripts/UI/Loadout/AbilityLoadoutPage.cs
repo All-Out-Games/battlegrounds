@@ -163,6 +163,7 @@ public class AbilityLoadoutPage : UniqueUIWindow
         ResetSelection();
         base.CloseWindow();
         SaveSkills();
+        SetInfoScreenEnabled(false);
         
         Chat.SetChatMode(Chat.Mode.Default);
     }

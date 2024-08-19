@@ -13,7 +13,13 @@ public class AbilityRage : FightAbility
     public override TargettingMode TargettingMode => TargettingMode.Self;
 
     // Reduced 1s cooldown for each level
-    public override float Cooldown => EffectConfig.RageConfig.Cooldown - FightPlayer.GetSkillTree().GetSkillLevel("Rage");
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        int lv = int.Min(fp.GetSkillTree().GetSkillLevel("Rage"), 4);
+        return EffectConfig.RageConfig.Cooldown - lv;
+    }
 }
 
 public class EffectRageCast : FightEffectWithNoFlinch
@@ -36,6 +42,10 @@ public class EffectRageCast : FightEffectWithNoFlinch
         {
             SoundId = SFX.Play(SFXKeys.RageAudio, DefaultSoundDesc);
             DurationRemaining = _animDuration + EffectConfig.RageConfig.Duration;
+            if (FightPlayer.GetSkillTree().GetSkillLevel("Rage") > 4)
+            {
+                DurationRemaining += 2;
+            }
         }
     }
 

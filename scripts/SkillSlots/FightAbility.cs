@@ -15,7 +15,20 @@ public partial class FightAbility : Ability
     public static string DefaultSkillKey = "Empty";
     public static string DefaultAbilityIcon = "AbilityIcon_Separate/x_icon_ability.png";
     
-    public FightPlayer FightPlayer;
+    private FightPlayer _fightPlayer;
+
+    public FightPlayer FightPlayer
+    {
+        get
+        {
+            if (_fightPlayer == null)
+            {
+                _fightPlayer = Player as FightPlayer;
+            }
+
+            return _fightPlayer;
+        }
+    }
     public virtual string SkillKey => DefaultSkillKey;
     public virtual string SkillIconPath => SkillConfig.GetAbilityIconPath(SkillKey);
     public virtual int Interruptlevel => 1;
@@ -27,7 +40,6 @@ public partial class FightAbility : Ability
     public override bool CanUse()
     {
         if (SkillKey == "Empty") return false;
-        FightPlayer = (FightPlayer)Player;
         return FightPlayer.SkillCastGeneralCheck() && FightPlayer.GetSkillTree().SkillLevelDict[SkillKey] > 0;
     }
 
@@ -44,10 +56,10 @@ public partial class FightAbility : Ability
     public override bool OnTryActivate(List<Player> targetPlayers, Vector2 positionOrDirection, float magnitude)
     {
         base.OnTryActivate(targetPlayers, positionOrDirection, magnitude);
-        FightPlayer = (FightPlayer)Player;
         FightPlayer.OnSkillActivate?.Invoke(FightPlayer.SkillActivationInfo.GetActivationInfo(Interruptlevel, SkillKey));
         return true;
     }
     
+
 }
 

@@ -10,8 +10,13 @@ public class AbilityShoulderCrash : FightAbility
     public override bool MonitorEffectDuration => false;
     public override TargettingMode TargettingMode => TargettingMode.Line;
     public override float MaxDistance => 5f;
-    
-    public override float Cooldown => FightPlayer.GetSkillTree().GetSkillLevel("ShoulderCrash") > 2 ? EffectConfig.ShoulderCrashConfig.Cooldown - 1 : EffectConfig.ShoulderCrashConfig.Cooldown;
+
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        return fp.GetSkillTree().GetSkillLevel("ShoulderCrash") > 2 ? EffectConfig.ShoulderCrashConfig.Cooldown - 1 : EffectConfig.ShoulderCrashConfig.Cooldown;
+    }
 }
 public sealed class EffectShoulderCrash : FightEffectWithImmunity
 {

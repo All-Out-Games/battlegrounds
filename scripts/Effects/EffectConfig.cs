@@ -331,8 +331,8 @@ public static class EffectConfig
 
     public struct DoublePunchConfig
     {
-        public static int BaseDmg = 5;
-        public static float Cooldown = 6f;
+        public static int BaseDmg = 2;
+        public static float Cooldown = 9f;
         public static float PunchAnimationTime = 0.4f; // A bit quicker than normal punch
         public static float PunchRange = 2;
 
@@ -346,6 +346,7 @@ public static class EffectConfig
 
         public static DoublePunchConfig GetDefault(int attack, int level = 1)
         {
+            level = int.Min(4, level); // DPunch level 4 does not increase damage
             return new DoublePunchConfig() with { PunchDamage = BaseDmg + attack + level - 1};
         }
     }

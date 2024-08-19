@@ -1,6 +1,7 @@
 // Definition of skills and related data structs
 
 using AO;
+using Assembly.scripts.Effects.ActiveSkills;
 
 public static partial class SkillConfig
 {
@@ -236,8 +237,14 @@ public static partial class SkillConfig
         string res = cfg.CooldownKey; // default
         switch (skillKey)
         {
+            case "ShoulderCrash":
+                res = $"{AbilityShoulderCrash.GetCooldown(fp)}s";
+                break;
+            case "DoublePunch":
+                res = $"{AbilityDoublePunch.GetCooldown(fp)}s";
+                break;
             case "Rage":
-                res = $"{EffectConfig.RageConfig.Cooldown - fp.GetSkillTree().GetSkillLevel("Rage")}s";
+                res = $"{AbilityRage.GetCooldown(fp)}s";
                 break;
         }
 
@@ -250,9 +257,14 @@ public static partial class SkillConfig
         int res = cfg.BaseDamageKey; // default
         switch (skillKey)
         {
+            case "ShoulderCrash":
+                res = EffectConfig.ShoulderCrashConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("ShoulderCrash"))
+                    .ContactDamage;
+                break;
             case "DoublePunch":
                 // There are two ways to get the overridden base damage. Calculate here or just get a config with atk=0
-                res = EffectConfig.DoublePunchConfig.BaseDmg + fp.GetSkillTree().GetSkillLevel("DoublePunch");
+                res = EffectConfig.DoublePunchConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("DoublePunch"))
+                    .PunchDamage;
                 break;
             case "Backstab":
                 // Note: Do not fill in fp.CurrentAttack. We are looking for the base damage here!
@@ -279,6 +291,10 @@ public static partial class SkillConfig
                     EffectConfig.LightFeetConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("LightFeet"));
                 res =
                     $"Kick it into second gear and temporarily increase your movement speed by {float.Round((lf.SpeedMtp - 1f) * 100, 0)}% for {lf.BuffTime} seconds.";
+                break;
+            case "Rage":
+                res =
+                    $"Channel your rage and temporarily increase your attack power by {EffectConfig.RageConfig.AtkBoostBase} for {EffectConfig.RageConfig.Duration + (fp.GetSkillTree().GetSkillLevel("Rage") > 4 ? 2 : 0)}s.";
                 break;
         }
 
