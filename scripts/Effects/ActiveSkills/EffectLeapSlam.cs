@@ -14,7 +14,24 @@ public class AbilityLeapSlam : FightAbility
     public override TargettingMode TargettingMode => TargettingMode.Line;
     public override float MaxDistance => 4f;
 
-    public override float Cooldown =>  EffectConfig.LeapSlamConfig.Cooldown;
+    public override float Cooldown =>  GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        float cd = EffectConfig.LeapSlamConfig.Cooldown;
+        int lv = fp.GetSkillTree().GetSkillLevel("LeapSlam");
+        if (lv > 2)
+        {
+            cd -= 1;
+        }
+
+        if (lv > 3)
+        {
+            cd -= 1;
+        }
+
+        return cd;
+    }
 }
 
 public class EffectLeapSlam : FightEffectWithImmunity
@@ -36,7 +53,7 @@ public class EffectLeapSlam : FightEffectWithImmunity
 
         FightPlayer.AddBump(Vector2.Zero, true);
 
-        AssignConfig(EffectConfig.LeapSlamConfig.GetDefault(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.LeapSlamConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("LeapSlam")));
 
         _dirPosition = GetDashDirection();
         FightPlayer.SetFacingDirection(_dirPosition.X > 0);
@@ -60,7 +77,7 @@ public class EffectLeapSlam : FightEffectWithImmunity
     {
         if (evt == "Attack")
         {
-            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.LeapSlamCraterVfxPath, FightPlayer.Entity.Position);
+            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.LeapSlamCraterVfxPath, FightPlayer.Entity.Position, entity => entity.LocalScale *= _config.SlamAreaMultiplier);
             SlamDamage();
             FightPlayer.SetFacingDirection(_dirPosition.X > 0);
         }
@@ -83,7 +100,7 @@ public class EffectLeapSlam : FightEffectWithImmunity
         FightPlayer.AddDash(Vector2.Zero, 0); // Remove Dash
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlamDamage, DamageType.AOE, FightPlayer.DamageInfo.KnockBackInterruptLevel);
         info.SkillKey = SkillConfig.LeapSlamConfig.SkillKey;
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, _config.SlamRadius);
+        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.LeapSlamConfig.SlamRadius * _config.SlamAreaMultiplier);
         bool hit = false;
         foreach (var other in cbPlayers)
         {

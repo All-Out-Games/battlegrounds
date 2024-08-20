@@ -13,7 +13,14 @@ public class AbilityClawSlash : FightAbility
 
     public override float MaxDistance => EffectConfig.ClawSlashConfig.SlashRadius;
     public override TargettingMode TargettingMode => TargettingMode.Line;
-    public override float Cooldown => EffectConfig.ClawSlashConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        return fp.GetSkillTree().GetSkillLevel("ClawSlash") > 2
+            ? EffectConfig.ClawSlashConfig.Cooldown - 1
+            : EffectConfig.ClawSlashConfig.Cooldown;
+    }
     
 }
 
@@ -50,7 +57,7 @@ public class EffectClawSlash : FightEffect
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        AssignConfig(EffectConfig.ClawSlashConfig.GetDefault(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.ClawSlashConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("ClawSlash")));
 
         FightPlayer.SetAnimTrigger("clawslash");
         FightPlayer.SetAimTarget(AbilityPositionOrDirection + FightPlayer.Entity.Position);

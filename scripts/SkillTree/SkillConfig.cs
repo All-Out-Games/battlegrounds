@@ -249,6 +249,15 @@ public static partial class SkillConfig
             case "GroundStomp":
                 res = $"{AbilityGroundStomp.GetCooldown(fp)}s";
                 break;
+            case "ClawSlash":
+                res = $"{AbilityClawSlash.GetCooldown(fp)}s";
+                break;
+            case "LeapSlam":
+                res = $"{AbilityLeapSlam.GetCooldown(fp)}s";
+                break;
+            case "SelfDestruct":
+                res = $"{AbilitySelfDestruct.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -276,6 +285,21 @@ public static partial class SkillConfig
             case "GroundStomp":
                 res = EffectConfig.GroundStompConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("GroundStomp")).StompDamage;
                 break;
+            case "ClawSlash":
+                res = EffectConfig.ClawSlashConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("ClawSlash"))
+                    .SlashDamage;
+                break;
+            case "BattleCry":
+                res = EffectConfig.BattleCryConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("BattleCry"))
+                    .RoarDamage;
+                break;
+            case "LeapSlam":
+                res = EffectConfig.LeapSlamConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("LeapSlam")).SlamDamage;
+                break;
+            case "SelfDestruct":
+                res = EffectConfig.SelfDestructConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("SelfDestruct"))
+                    .BlastDamage;
+                break;
         }
 
         return res;
@@ -301,6 +325,13 @@ public static partial class SkillConfig
             case "Rage":
                 res =
                     $"Channel your rage and temporarily increase your attack power by {EffectConfig.RageConfig.AtkBoostBase} for {EffectConfig.RageConfig.Duration + (fp.GetSkillTree().GetSkillLevel("Rage") > 4 ? 2 : 0)}s.";
+                break;
+            case "ClawSlash":
+                res =
+                    $"Slash with a razor sharp claw damaging and causing bleed. Bleed deals {EffectConfig.ClawSlashConfig.BleedDmgBase} damage per second for {EffectConfig.ClawSlashConfig.BleedTimeBase + (fp.GetSkillTree().GetSkillLevel("ClawSlash") > 4 ? 2 : 0)} seconds.";
+                break;
+            case "SelfDestruct":
+                res = $"Unleash a powerful explosion that damages all nearby enemies, but also deals {EffectConfig.SelfDestructConfig.BaseSelfDmg - (fp.GetSkillTree().GetSkillLevel("SelfDestruct") > 4 ? 10 : 0)} damage to yourself.";
                 break;
         }
 

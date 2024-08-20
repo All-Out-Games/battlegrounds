@@ -379,13 +379,24 @@ public static class EffectConfig
         public int BlastDamage;
         public int SelfDamage;
 
-        public static SelfDestructConfig GetDefault(int attack)
+        public static SelfDestructConfig GetDefault(int attack, int level)
         {
-            return new SelfDestructConfig()
+            SelfDestructConfig cfg = new()
             {
                 BlastDamage = BaseDmg + attack,
                 SelfDamage = BaseSelfDmg
             };
+            if (level > 2)
+            {
+                cfg.BlastDamage += 5;
+            }
+
+            if (level > 4)
+            {
+                cfg.SelfDamage -= 10;
+            }
+            return cfg;
+
         }
     }
 
@@ -403,15 +414,23 @@ public static class EffectConfig
         public float StunTime = 0.8f;
         
         public int RoarDamage = 0;
+        public float WaveSizeMultiplier = 1;
 
         public BattleCryConfig()
         {
             
         }
 
-        public static BattleCryConfig GetDefault(int atk)
+        public static BattleCryConfig GetDefault(int atk, int level = 1)
         {
             var cfg = new BattleCryConfig() {RoarDamage = atk + RoarDmgBase};
+            if (level > 4)
+            {
+                cfg.WaveSizeMultiplier = 1.25f;
+                level = 4;
+            }
+
+            cfg.RoarDamage += level - 1;
             return cfg;
         }
     }
@@ -439,9 +458,22 @@ public static class EffectConfig
             
         }
 
-        public static ClawSlashConfig GetDefault(int atk)
+        public static ClawSlashConfig GetDefault(int atk, int level = 1)
         {
             var cfg = new ClawSlashConfig() { SlashDamage = SlashDmgBase + atk, BleedTime = BleedTimeBase, BleedDmg = BleedDmgBase};
+            if (level > 1)
+            {
+                cfg.SlashDamage += 1;
+            }
+            if (level > 3)
+            {
+                cfg.SlashDamage += 1;
+            }
+
+            if (level > 4)
+            {
+                cfg.BleedTime += 2;
+            }
             return cfg;
         }
     }
@@ -452,14 +484,15 @@ public static class EffectConfig
 
     public struct LeapSlamConfig
     {
-        public static int SlamDamageBase = 15;
-        public static float KnockDownTime = 1f;
-        public static float Cooldown = 16f;
-        public static float LeapMomentum = 200f;
+        public static readonly int SlamDamageBase = 15;
+        public static readonly float KnockDownTime = 1f;
+        public static readonly float Cooldown = 16f;
+        public static readonly float LeapMomentum = 200f;
+        public static readonly float SlamRadius = 3f;
         
 
         public int SlamDamage = 5;
-        public float SlamRadius = 3f;
+        public float SlamAreaMultiplier = 1f;
         public float BumpStrength = 150f;
         
         public LeapSlamConfig()
@@ -468,12 +501,18 @@ public static class EffectConfig
         }
 
 
-        public static LeapSlamConfig GetDefault(int attack)
+        public static LeapSlamConfig GetDefault(int attack, int level = 1)
         {
             LeapSlamConfig cfg = new LeapSlamConfig
             {
-                SlamDamage = SlamDamageBase + attack
+                SlamDamage = SlamDamageBase + attack,
+                SlamAreaMultiplier = level > 4 ? 1.25f : 1f
             };
+            if (level > 1)
+            {
+                cfg.SlamDamage += 1;
+            }
+            
             return cfg;
         }
     }

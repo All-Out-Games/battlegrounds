@@ -17,7 +17,7 @@ public static partial class SkillConfig
     
     // Template for filling multi-line upgrade text 
     // "Upgrade Effect: \n ★: \n ★★: \n ★★★:\n ★★★★:\n" // STAR U+2605 not supported
-    // "*: Damage +1\n **: Cooldown -1\n ***: Damage +1\n ****: Dash Duration/Speed +20%\n"
+    // "*: Damage +1\n **: Cooldown -1\n ***: Damage +1\n ****: Dash Duration/Speed +20%"
     #region Node Configs : Basic
 
     /// <summary>
@@ -314,7 +314,7 @@ public static partial class SkillConfig
     {
         DisplayName = "Shoulder Crash",
         DescriptionTextKey = "Charge with your shoulder dealing damage and knockback to other players.",
-        UpgradeTextKey = "*: Damage +1\n **: Cooldown -1\n ***: Damage +1\n ****: Dash Distance +20%\n", 
+        UpgradeTextKey = "*: Damage +1\n **: Cooldown -1\n ***: Damage +1\n ****: Dash Distance +20%", 
         BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = "5m",
         CooldownKey = "%OVERRIDE%",
@@ -338,7 +338,7 @@ public static partial class SkillConfig
     {
         DisplayName = "Ground Stomp",
         DescriptionTextKey = "Stomp the ground in anger dealing damage to nearby players.",
-        UpgradeTextKey = "*: Damage +1\n **: Cooldown -1\n ***: Damage +1\n ****: Crater Size +25%\n", 
+        UpgradeTextKey = "*: Damage +1\n **: Cooldown -1\n ***: Damage +1\n ****: Crater Size +25%", 
         BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = $"{EffectConfig.GroundStompConfig.StompRadius}m",
         CooldownKey = "%OVERRIDE%",
@@ -361,7 +361,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig RageConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = "%OVERRIDE%",
-        UpgradeTextKey = "*: Cooldown -1\n **: Cooldown -1\n ***: Cooldown -1\n ****: Duration +2\n",
+        UpgradeTextKey = "*: Cooldown -1\n **: Cooldown -1\n ***: Cooldown -1\n ****: Duration +2",
         IconPath = "AbilityIcon_Merged/brawler/rage.png",
         AbilityIconPath = "AbilityIcon_Separate/brawler/rage_icon.png",
         CooldownKey = "%OVERRIDE%",
@@ -383,7 +383,7 @@ public static partial class SkillConfig
     {
         DisplayName = "Double Punch",
         DescriptionTextKey = "The ol' one, two combo. Strike another player with a double punch.",
-        UpgradeTextKey = "*: Damage +1\n **: Damage +1\n ***: Damage +1\n ****: Cooldown -1\n",
+        UpgradeTextKey = "*: Damage +1\n **: Damage +1\n ***: Damage +1\n ****: Cooldown -1",
         BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = "Melee",
         CooldownKey = "%OVERRIDE%",
@@ -406,14 +406,16 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig SelfDestructConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Self-Destruct",
-        DescriptionTextKey = $"Unleash a powerful explosion that damages all nearby enemies, but also deals {EffectConfig.SelfDestructConfig.BaseSelfDmg} damage to yourself.",
-        BaseDamageKey = EffectConfig.SelfDestructConfig.BaseDmg,
-        CooldownKey = $"{EffectConfig.SelfDestructConfig.Cooldown}s",
+        UpgradeTextKey = "*: Cooldown -1\n **: Damage +5\n ***: Cooldown -1\n ****: Self Damage -10",
+        DescriptionTextKey = "%OVERRIDE%",
+        BaseDamageKey = _overrideValue_,
+        CooldownKey = "%OVERRIDE%",
         RangeDescriptionKey = $"{EffectConfig.SelfDestructConfig.BlastRange}m",
         IconPath = "AbilityIcon_Merged/brawler/self_destruct.png",
         AbilityIconPath = "AbilityIcon_Separate/brawler/self_destruct_icon.png",
         UnlockLevel = 25,
-        MaximumLevel = 1,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 6750,
@@ -429,16 +431,18 @@ public static partial class SkillConfig
     {
         DisplayName = "Battle Cry",
         DescriptionTextKey = "Roar with all your might, creating a sound wave damaging and stunning all players nearby.",
-        BaseDamageKey = EffectConfig.BattleCryConfig.RoarDmgBase,
+        UpgradeTextKey = "*: Damage +1\n **: Damage +1\n ***: Damage +1\n ****: Sound Wave Size +25%",
+        BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = $"{EffectConfig.BattleCryConfig.RoarRadius}m",
         CooldownKey = $"{EffectConfig.BattleCryConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/brawler/battle_cry.png",
         AbilityIconPath = "AbilityIcon_Separate/brawler/battle_cry_icon.png",
         UnlockLevel = 15,
-        MaximumLevel = 1,
+        MaximumLevel = 5,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 2250,
+        UpgradeGemCost = _tierTwoGemCost,
         UIPosition = new Vector2(450, 430),
         GridX = 1,
         GridY = 2,
@@ -450,14 +454,16 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig ClawSlashConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Claw Slash",
-        DescriptionTextKey = $"Slash with a razor sharp claw damaging and causing bleed. Bleed deals {EffectConfig.ClawSlashConfig.BleedDmgBase} damage per second for {EffectConfig.ClawSlashConfig.BleedTimeBase} seconds.",
-        BaseDamageKey = EffectConfig.ClawSlashConfig.SlashDmgBase,
+        DescriptionTextKey = "%OVERRIDE%",
+        UpgradeTextKey = "*: Damage +1\n **: Cooldown -1\n ***: Damage +1\n ****: Bleed Time +2", 
+        BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = "Melee",
-        CooldownKey = $"{EffectConfig.ClawSlashConfig.Cooldown}s",
+        CooldownKey = "%OVERRIDE%",
         IconPath = "AbilityIcon_Merged/brawler/claw_slash.png",
         AbilityIconPath = "AbilityIcon_Separate/brawler/claw_slash_icon.png",
         UnlockLevel = 12,
-        MaximumLevel = 1,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 1800,
@@ -492,13 +498,15 @@ public static partial class SkillConfig
     {
         DisplayName = "Leap Slam",
         DescriptionTextKey = "Leap forward and slam the ground with your fists, damaging and knocking away other players.",
+        UpgradeTextKey= "*: Damage +1\n **: Cooldown -1\n ***: Cooldown -1\n ****: Slam Area +25%",
         BaseDamageKey = EffectConfig.LeapSlamConfig.SlamDamageBase,
         RangeDescriptionKey = "5m",
         CooldownKey = $"{EffectConfig.LeapSlamConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/brawler/leaping_fist_slam.png",
         AbilityIconPath = "AbilityIcon_Separate/brawler/leaping_fist_slam_icon.png",
         UnlockLevel = 17,
-        MaximumLevel = 1,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Brawler,
         UpgradeCost = 2700,

@@ -12,7 +12,24 @@ public class AbilitySelfDestruct : FightAbility
     public override Type Effect => typeof(EffectSelfDestruct);
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
-    public override float Cooldown => EffectConfig.SelfDestructConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        int lv = fp.GetSkillTree().GetSkillLevel("SelfDestruct");
+        float cd = EffectConfig.SelfDestructConfig.Cooldown;
+        if (lv > 1)
+        {
+            cd -= 1;
+        }
+
+        if (lv > 3)
+        {
+            cd -= 1;
+        }
+
+        return cd;
+    }
 }
 
 public class EffectSelfDestruct : FightEffectWithNoFlinch
@@ -27,7 +44,7 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
     {
         base.OnEffectStart(isDropIn);
         FightStateMachine.SetTrigger("self_destruct");
-        AssignConfig(EffectConfig.SelfDestructConfig.GetDefault(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.SelfDestructConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("SelfDestruct")));
         if (!isDropIn)
         {
             DurationRemaining = FightLayer.GetCurrentStateLength();

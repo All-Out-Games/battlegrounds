@@ -25,7 +25,7 @@ public class EffectBattleCry : FightEffectWithNoFlinch
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        AssignConfig(EffectConfig.BattleCryConfig.GetDefault(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.BattleCryConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("BattleCry")));
 
         FightPlayer.SetAnimTrigger("battlecry");
         DurationRemaining = MainLayer.GetCurrentStateLength();
@@ -44,7 +44,7 @@ public class EffectBattleCry : FightEffectWithNoFlinch
         base.OnAnimationEvent(eventName);
         if (eventName == "Attack")
         {
-            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.BattleCryVfxPath, FightPlayer.Entity.Position);
+            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.BattleCryVfxPath, FightPlayer.Entity.Position, entity => entity.LocalScale *= Config.WaveSizeMultiplier);
             BattleCry();
         }
     }
@@ -58,7 +58,7 @@ public class EffectBattleCry : FightEffectWithNoFlinch
     private void BattleCry()
     {
         Vector2 selfPos = FightPlayer.Entity.Position;
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.BattleCryConfig.RoarRadius);
+        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.BattleCryConfig.RoarRadius * Config.WaveSizeMultiplier);
 
         foreach (var fp in cbPlayers)
         {
