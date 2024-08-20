@@ -20,6 +20,8 @@ public class EffectShadowStep : FightEffect
 
     public override bool BlockAbilityActivation => true;
 
+    private EffectConfig.ShadowStepConfig _cfg;
+
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
@@ -28,6 +30,7 @@ public class EffectShadowStep : FightEffect
         fx.GetComponent<SelectionVFX>()?.StartVFX("shadow_step_effect", false);
         
         DurationRemaining = 0.1f;
+        _cfg = EffectConfig.ShadowStepConfig.GetDefault(FightPlayer.GetSkillTree().GetSkillLevel("ShadowStep"));
         if (Network.IsServer)
         {
             Vector2 dir = FightPlayer.Velocity.Length < 0.1f ? FightPlayer.GetFacingDirectionAsVector() : FightPlayer.Velocity.Normalized;
@@ -54,6 +57,49 @@ public class EffectShadowStep : FightEffect
             
             FightPlayer.Teleport(tlePosition);
         }
-        
+
+        FightPlayer.AddEffect<EffectShadowArmor>(FightPlayer, EffectConfig.ShadowStepConfig.ShadowArmorBuffTime,
+            armor =>
+            {
+                armor.TriggerForTime = _cfg.ShadowArmorEffectiveTime;
+                armor.ArmorAmount = _cfg.ShadowArmorAmount;
+            });
+    }
+}
+
+public class EffectShadowArmor : FightEffect
+{
+    public override bool IsActiveEffect => false;
+
+    private int _triggerCount;
+    public int TriggerForTime;
+    public int ArmorAmount;
+    
+    public override void OnEffectStart(bool isDropIn)
+    {
+        base.OnEffectStart(isDropIn);
+        FightPlayer.RegisterPreDamageEvent(this);
+    }
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        FightPlayer.RemovePreDamageEvent(this);
+    }
+
+    public override void PreDamageMod(ref FightPlayer.DamageInfo info)
+    {
+        base.PreDamageMod(ref info);
+        if (Network.IsServer)
+        {
+            info.ReactionInfo.Amount -= ArmorAmount;
+            info.ReactionInfo.Amount = int.Max(0, info.ReactionInfo.Amount);
+        }
+        _triggerCount++;
+        if (_triggerCount >= TriggerForTime)
+        {
+            DurationRemaining = 0.05f;
+        }
+
     }
 }

@@ -269,6 +269,9 @@ public static partial class SkillConfig
             case "Invisibility":
                 res = $"{AbilityInvisible.GetCooldown(fp)}s";
                 break;
+            case "Shuriken":
+                res = $"{AbilityShuriken.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -311,6 +314,10 @@ public static partial class SkillConfig
                 res = EffectConfig.SelfDestructConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("SelfDestruct"))
                     .BlastDamage;
                 break;
+            case "Shuriken":
+                res = EffectConfig.ProjectileConfig
+                    .GetPlayerShurikenConfig(0, fp.GetSkillTree().GetSkillLevel("Shuriken")).Damage;
+                break;
         }
 
         return res;
@@ -348,6 +355,10 @@ public static partial class SkillConfig
                 break;
             case "SelfDestruct":
                 res = $"Unleash a powerful explosion that damages all nearby enemies, but also deals {EffectConfig.SelfDestructConfig.BaseSelfDmg - (fp.GetSkillTree().GetSkillLevel("SelfDestruct") > 4 ? 10 : 0)} damage to yourself.";
+                break;
+            case "ShadowStep":
+                EffectConfig.ShadowStepConfig sscfg = EffectConfig.ShadowStepConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("ShadowStep"));
+                res = "Using your ninja way, teleport a short distance in the direction you're moving." + $" Also grants Shadow Armor for 2s, which blocks {sscfg.ShadowArmorAmount}damage for {sscfg.ShadowArmorEffectiveTime} time(s)";
                 break;
         }
 

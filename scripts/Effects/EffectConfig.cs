@@ -197,7 +197,7 @@ public static class EffectConfig
         
         // Shuriken
         public static readonly int ShurikenDamageBase = 5;
-        public static readonly float ShurikenBackDamageModifier = 1.5f;
+        public static readonly float ShurikenBackDamageModifier = 1.3f;
         public static readonly float ShurikenCooldown = 4f;
         public static readonly float ShurikenRange = 6f;
         public static readonly float ShurikenLifetime = 0.5f;
@@ -207,6 +207,7 @@ public static class EffectConfig
         public int Damage = 0;
         public string ProjectilePrefabKey;
         public string ThrowTrigger = "throw";
+        public int ProjectileLevel = 1;
 
         public ProjectileConfig()
         {
@@ -256,15 +257,26 @@ public static class EffectConfig
             return cfg;
         }
 
-        public static ProjectileConfig GetPlayerShurikenConfig(int attack)
+        public static ProjectileConfig GetPlayerShurikenConfig(int attack, int level)
         {
             ProjectileConfig cfg = new ProjectileConfig()
             {
                 Damage = ShurikenDamageBase + attack,
                 ProjectilePrefabKey = "ShurikenProjectile.prefab",
                 ProjectileLifetime = ShurikenLifetime,
-                Speed = ShurikenRange / ShurikenLifetime
+                Speed = ShurikenRange / ShurikenLifetime,
+                ProjectileLevel = level
             };
+            if (level > 1)
+            {
+                cfg.Damage += 1;
+            }
+
+            if (level > 3)
+            {
+                cfg.Damage += 1;
+            }
+            
             return cfg;
         }
     }
@@ -676,6 +688,28 @@ public static class EffectConfig
     {
         public static float Cooldown = 4f;
         public static float MovementDistance = 4f;
+        
+        public static float ShadowArmorBuffTime = 2.5f;
+        public int ShadowArmorAmount = 1;
+        public int ShadowArmorEffectiveTime = 1;
+
+        public ShadowStepConfig()
+        {
+        }
+
+        public static ShadowStepConfig GetDefault(int level)
+        {
+            var cfg = new ShadowStepConfig();
+
+            if (level > 4)
+            {
+                cfg.ShadowArmorEffectiveTime = 2;
+            }
+
+            level = int.Min(4, level);
+            cfg.ShadowArmorAmount = -1 + 2 * level;
+            return cfg;
+        }
     }
 
     #endregion

@@ -46,7 +46,7 @@ public class ShurikenProjectile : BaseProjectile
             
             if (Enhanced) // bounce
             {
-                EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerShurikenConfig(Owner.CurrentAttack);
+                EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerShurikenConfig(Owner.CurrentAttack, 1);
                 Vector2 bounceDir = Vector2.Rotate(dir.Normalized, 1.57f, Vector2.Zero).Normalized;
                 
                 Entity proj = Game.SpawnProjectile(Owner, config.ProjectilePrefabKey,

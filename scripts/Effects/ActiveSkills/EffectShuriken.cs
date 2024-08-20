@@ -13,7 +13,19 @@ public class AbilityShuriken : FightAbility
     public override float MaxDistance => EffectConfig.ProjectileConfig.ShurikenRange;
     public override int MaxTargets => 1;
     
-    public override float Cooldown => EffectConfig.ProjectileConfig.ShurikenCooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        int lv = fp.GetSkillTree().GetSkillLevel("Shuriken");
+        float cd = EffectConfig.ProjectileConfig.ShurikenCooldown;
+        if (lv > 2)
+        {
+            cd -= 1;
+        }
+
+        return cd;
+    }
 }
 
 
@@ -21,7 +33,8 @@ public class EffectShuriken : EffectProjectileThrow
 {
     public override void AssignConfig()
     {
-        Config = EffectConfig.ProjectileConfig.GetPlayerShurikenConfig(FightPlayer.CurrentAttack);
+        Config = EffectConfig.ProjectileConfig.GetPlayerShurikenConfig(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("Shuriken"));
+        
     }
 
     protected override void InitializeProjectile(Entity proj)
@@ -29,11 +42,14 @@ public class EffectShuriken : EffectProjectileThrow
         Projectile projComp = proj.GetComponent<Projectile>();
         projComp.Speed = Config.Speed;
         projComp.Lifetime = Config.ProjectileLifetime;
-            
+        
+        
         ShurikenProjectile supplementProjectileComp = proj.GetComponent<ShurikenProjectile>();
         supplementProjectileComp.LifeTime = Config.ProjectileLifetime;
         supplementProjectileComp.InitializeProjectile(FightPlayer, Config.Damage, false);
-        supplementProjectileComp.BackDamageMultiplier = EffectConfig.ProjectileConfig.ShurikenBackDamageModifier;
+        supplementProjectileComp.BackDamageMultiplier =
+            Config.ProjectileLevel > 4 ? EffectConfig.ProjectileConfig.ShurikenBackDamageModifier + 0.2f :
+        EffectConfig.ProjectileConfig.ShurikenBackDamageModifier;
         supplementProjectileComp.Enhanced = FightPlayer.HasSkill("NinjaMastery");
     }
     
