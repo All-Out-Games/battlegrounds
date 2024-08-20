@@ -282,19 +282,32 @@ public static class EffectConfig
         public static readonly float StompRadius = 4;
 
         public int StompDamage = 0;
-        
+        public float StompSizeMultiplier = 1;
         
         public GroundStompConfig()
         {
         
         }
 
-        public static GroundStompConfig GetDefault(int atk)
+        public static GroundStompConfig GetDefault(int atk, int level = 1)
         {
             GroundStompConfig cfg = new GroundStompConfig()
             {
                 StompDamage = atk + StompDamageBase
             };
+            if (level > 1)
+            {
+                cfg.StompDamage += 1;
+            }
+            if (level > 3)
+            {
+                cfg.StompDamage += 1;
+            }
+
+            if (level > 4)
+            {
+                cfg.StompSizeMultiplier = 1.25f;
+            }
             return cfg;
         }
     }

@@ -11,7 +11,14 @@ public class AbilityGroundStomp : FightAbility
     public override Type Effect => typeof(EffectGroundStomp);
     public override bool MonitorEffectDuration => false;
     public override TargettingMode TargettingMode => TargettingMode.Self;
-    public override float Cooldown => EffectConfig.GroundStompConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        return fp.GetSkillTree().GetSkillLevel("GroundStomp") > 2
+            ? EffectConfig.GroundStompConfig.Cooldown - 1
+            : EffectConfig.GroundStompConfig.Cooldown;
+    }
 }
 
 public class EffectGroundStomp : FightEffectWithNoFlinch
@@ -26,7 +33,7 @@ public class EffectGroundStomp : FightEffectWithNoFlinch
     {
         base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("groundstomp");
-        AssignConfig(EffectConfig.GroundStompConfig.GetDefault(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.GroundStompConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("GroundStomp")));
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
 
         SoundId = SFX.Play(SFXKeys.GroundStompAudio, DefaultSoundDesc);
@@ -44,7 +51,11 @@ public class EffectGroundStomp : FightEffectWithNoFlinch
         base.OnAnimationEvent(eventName);
         if (eventName == "Attack")
         {
-            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.LeapSlamCraterVfxPath, FightPlayer.Entity.Position);
+            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.LeapSlamCraterVfxPath, FightPlayer.Entity.Position,
+                entity =>
+                {
+                    entity.LocalScale *= Config.StompSizeMultiplier;
+                });
             Stomp();
         }
     }
@@ -62,7 +73,7 @@ public class EffectGroundStomp : FightEffectWithNoFlinch
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.StompDamage, DamageType.AOE);
         info.SkillKey = SkillConfig.GroundStompConfig.SkillKey;
         
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.GroundStompConfig.StompRadius);
+        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.GroundStompConfig.StompRadius * Config.StompSizeMultiplier);
         foreach (var other in cbPlayers)
         {
             if(other.Entity.NetworkId == FightPlayer.Entity.NetworkId) continue;

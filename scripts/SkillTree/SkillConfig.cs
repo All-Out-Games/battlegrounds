@@ -246,6 +246,9 @@ public static partial class SkillConfig
             case "Rage":
                 res = $"{AbilityRage.GetCooldown(fp)}s";
                 break;
+            case "GroundStomp":
+                res = $"{AbilityGroundStomp.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -269,6 +272,9 @@ public static partial class SkillConfig
             case "Backstab":
                 // Note: Do not fill in fp.CurrentAttack. We are looking for the base damage here!
                 res = EffectConfig.BackStabConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("Backstab")).Damage;
+                break;
+            case "GroundStomp":
+                res = EffectConfig.GroundStompConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("GroundStomp")).StompDamage;
                 break;
         }
 
