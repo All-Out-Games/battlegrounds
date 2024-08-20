@@ -1,4 +1,6 @@
 using AO;
+using StreamReader = AO.StreamReader;
+using StreamWriter = AO.StreamWriter;
 
 public partial class FightPlayerSkillTree : FightPlayerComponent
 {
@@ -29,6 +31,27 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     {
         
         SkillUpgradeUIEvent -= OnSkillUpgrade;
+    }
+
+    // We'll need to sync the level for followup clients (the players who joined earlier passed their initialization stage already)
+    public override void NetworkSerialize(StreamWriter writer)
+    {
+        base.NetworkSerialize(writer);
+        foreach (var key in SkillConfig.GetAllSkillKeys())
+        {
+            writer.Write<int>(GetSkillLevel(key));
+        }
+    }
+    // Note: HashSet.UnionWith preserves the order, so we don't need to order the skill keys
+    public override void NetworkDeserialize(StreamReader reader)
+    {
+        base.NetworkDeserialize(reader);
+        foreach (var key in SkillConfig.GetAllSkillKeys())
+        {
+            int lv = reader.Read<int>();
+            SkillLevelDict[key] = lv;
+            //Log.Warn($"Deserialized {key} = {lv}");
+        }
     }
 
     #endregion

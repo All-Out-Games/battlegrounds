@@ -1,10 +1,12 @@
 using AO;
+using StreamReader = AO.StreamReader;
+using StreamWriter = AO.StreamWriter;
 
 /// <summary>
 /// Base class for components added to FightPlayer
 /// Wrapped in more functionality to improve readability
 /// </summary>
-public class FightPlayerComponent : Component
+public class FightPlayerComponent : Component, INetworkedComponent
 {
     
     protected FightPlayer _player;
@@ -18,5 +20,15 @@ public class FightPlayerComponent : Component
     public FightPlayer GetFightPlayer()
     {
         return _player;
+    }
+
+    public virtual void NetworkSerialize(StreamWriter writer)
+    {
+        
+    }
+
+    public virtual void NetworkDeserialize(StreamReader reader)
+    {
+        
     }
 }

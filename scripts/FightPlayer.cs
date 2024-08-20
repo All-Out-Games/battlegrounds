@@ -439,7 +439,7 @@ public partial class FightPlayer : Player
 
         PlayerLegacyUi.DrawUI();
     }
-    
+
     public override void OnDestroy()
     {
         FightClubGameManager.Instance.OnPlayerLeave(this);

@@ -51,6 +51,14 @@ public static partial class SkillConfig
         allSkills.UnionWith(ReplacementSkills);
         allSkills.UnionWith(AttrBoostSkills);
         allSkills.UnionWith(SkillEnhanceSkills);
+
+        /*string st = "";
+        foreach (var key in allSkills)
+        {
+            st += $"{key} ";
+        }
+        Log.Warn(st);*/
+        
         return allSkills;
     }
 
