@@ -26,8 +26,8 @@ public class EffectLightFeet : FightEffect
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        
-        _cfg = EffectConfig.LightFeetConfig.GetDefault(FightPlayer.GetSkillTree().GetSkillLevel("LightFeet"));
+        int lv = FightPlayer.GetSkillTree().GetSkillLevel("LightFeet");
+        _cfg = EffectConfig.LightFeetConfig.GetDefault(lv);
         // Log.Error($"Level = {FightPlayer.GetSkillTree().GetSkillLevel("LightFeet")}");
         if (!isDropIn)
         {
@@ -36,6 +36,10 @@ public class EffectLightFeet : FightEffect
         }
         FightPlayer.AddSpeedModifier(_cfg.SpeedMtp);
         AddAura();
+        if (lv > 4)
+        {
+            FightPlayer.AddEffect<EffectDodge>(FightPlayer, DurationRemaining, dodge => dodge.DodgeChance = 0.1f);
+        }
     }
 
     public override void OnEffectEnd(bool interrupt)

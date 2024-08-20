@@ -755,11 +755,13 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig InvisibilityConfig = new SkillTreeNodeConfig()
     {
         DescriptionTextKey = $"Turn invisible for {EffectConfig.InvisibilityConfig.InvisTime} seconds. Being hit by a projectile will knock you out of invisibility!",
-        CooldownKey = $"{EffectConfig.InvisibilityConfig.Cooldown}s",
+        UpgradeTextKey = "*: Cooldown -1\n **: Cooldown -1\n ***: Duration +1\n ****: Boost Speed +10% During Effect",
+        CooldownKey = "%OVERRIDE%",
         IconPath = "AbilityIcon_Merged/stealth/invisibility.png",
         AbilityIconPath = "AbilityIcon_Separate/stealth/invisibility_icon.png",
         UnlockLevel = 0,
-        MaximumLevel = 1,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierOneGemCost,
         GridX = 1,
         GridY = 0,
         NType = NodeType.SkillUnlock,

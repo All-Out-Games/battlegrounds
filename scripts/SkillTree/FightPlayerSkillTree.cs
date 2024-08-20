@@ -189,7 +189,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     
     /// <summary>
     /// [Server Only]
-    /// Called in player's Awake function. 
+    /// Called in player's Start function. 
     /// Get the Save of player and populate skill trees. [Save API is only available on server]
     ///
     /// Also: If you need to do any testing and modify player skill level manually, do it here.
@@ -205,7 +205,6 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                 int lvl = Save.GetInt(p, skillKey, 0);
                 
                 SkillLevelDict[skillKey] = lvl;
-                // CallClient_SyncSkill(skillKey, lvl); // DO NOT Sync skills here on the server. The initial sync happens in HandleAllSkills()
             }
             
             // After fetching save, we sync those to the client and handle the skill effects

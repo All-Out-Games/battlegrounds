@@ -258,6 +258,9 @@ public static partial class SkillConfig
             case "SelfDestruct":
                 res = $"{AbilitySelfDestruct.GetCooldown(fp)}s";
                 break;
+            case "Invisibility":
+                res = $"{AbilityInvisible.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -317,10 +320,15 @@ public static partial class SkillConfig
                     $"{EffectConfig.BearTrapConfig.TrapLifeTime + EffectConfig.BearTrapConfig.LifeTimeGrowth * (fp.GetSkillTree().GetSkillLevel("BearTrap")-1)}s seconds on the ground.";
                 break;
             case "LightFeet":
+                int lflv = fp.GetSkillTree().GetSkillLevel("LightFeet");
                 EffectConfig.LightFeetConfig lf =
-                    EffectConfig.LightFeetConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("LightFeet"));
+                    EffectConfig.LightFeetConfig.GetDefault(lflv);
                 res =
                     $"Kick it into second gear and temporarily increase your movement speed by {float.Round((lf.SpeedMtp - 1f) * 100, 0)}% for {lf.BuffTime} seconds.";
+                if (lflv > 4)
+                {
+                    res += " Also provides a 10% dodge chance.";
+                }
                 break;
             case "Rage":
                 res =

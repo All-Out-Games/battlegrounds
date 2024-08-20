@@ -21,12 +21,19 @@ public partial class FightPlayer
     
     public struct DamageInfo
     {
+        public enum DamageNumberOverrideType
+        {
+            None,
+            Immune,
+            Dodged
+        }
         // Server Authoratative Data
         public DamageType DmgType = DamageType.Melee;
         public bool AwardCoin = true; // This is now used to determine if a attack should give EXP
         public int InterruptLevel = 0;
         public ulong SourceNetworkId;
-        public bool SpawnDamageNumber = true;
+        public DamageNumberOverrideType OverrideDamageNumber = DamageNumberOverrideType.None;
+
         public Vector4 DamageNumberColor = GlobalData.DamageNumberColor;
         public string SkillKey = "Punch";
         
@@ -140,6 +147,18 @@ public partial class FightPlayer
         
         if (Network.IsClient && PlayerStatus == PlayerStatus.Combat)
         {
+            // Override types
+            if (info.OverrideDamageNumber == DamageInfo.DamageNumberOverrideType.Dodged)
+            {
+                FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, GlobalData.OutputDamageNumberColor, "Dodged!");
+                return;
+            }
+
+            if (info.OverrideDamageNumber == DamageInfo.DamageNumberOverrideType.Immune)
+            {
+                FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, GlobalData.OutputDamageNumberColor, "Immune!");
+                return;
+            }
             // Damage numbers only render if the number is related to the local player
             if (IsLocal || source == Network.LocalPlayer) // Player takes the damage or deals damage
             {

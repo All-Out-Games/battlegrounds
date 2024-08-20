@@ -14,6 +14,12 @@ public class AbilityInvisible : FightAbility
     
     public override TargettingMode TargettingMode => TargettingMode.Self;
     public override float Cooldown => EffectConfig.InvisibilityConfig.Cooldown;
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        int lv = int.Min(3, fp.GetSkillTree().GetSkillLevel("Invisibility")); // Reduce 1 cooldown for the first two level
+        return EffectConfig.InvisibilityConfig.Cooldown - lv + 1;
+    }
 }
 
 public class EffectInvisible : FightEffect
@@ -24,14 +30,28 @@ public class EffectInvisible : FightEffect
 
     private string _skillKey = "Invisibility";
 
+    private bool _boosted = false;
+
     private AttachmentObject _aura;
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
+        int lv = FightPlayer.GetSkillTree().GetSkillLevel("Invisibility");
+        
         if (!isDropIn)
         {
             DurationRemaining = EffectConfig.InvisibilityConfig.InvisTime;
+            if (lv > 3)
+            {
+                DurationRemaining += 1f;
+            }
             SoundId = SFX.Play(SFXKeys.InvisAudio, DefaultSoundDesc);
+        }
+
+        if (lv > 4)
+        {
+            _boosted = true;
+            FightPlayer.AddSpeedModifier(1.1f);
         }
         AddInvis(FightPlayer.IsLocal);
         FightPlayer.OnSkillActivate += OnSkillActivationEvent;
@@ -46,6 +66,11 @@ public class EffectInvisible : FightEffect
         
         FightPlayer.OnSkillActivate -= OnSkillActivationEvent;
         FightPlayer.OnReceiveDamage -= OnDamageEvent;
+
+        if (_boosted)
+        {
+            FightPlayer.RemoveSpeedModifier(1.1f);
+        }
     }
 
     private void OnSkillActivationEvent(FightPlayer.SkillActivationInfo info)

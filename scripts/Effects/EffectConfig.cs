@@ -636,6 +636,7 @@ public static class EffectConfig
 
         public static LightFeetConfig GetDefault(int level)
         {
+            level = int.Min(4, level);
             return new LightFeetConfig() {SpeedMtp = SpeedModifier + (level-1) * SpeedModifierGrowth, BuffTime = BoostTime + BoostTimeGrowth * (level - 1)};
         }
     }
