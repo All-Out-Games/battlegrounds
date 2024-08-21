@@ -280,7 +280,7 @@ public static class EffectConfig
             return cfg;
         }
 
-        public static ProjectileConfig GetPlayerBefuddleConfig(int attack)
+        public static ProjectileConfig GetPlayerBefuddleConfig(int attack, int level)
         {
             ProjectileConfig cfg = new ProjectileConfig()
             {
@@ -290,10 +290,14 @@ public static class EffectConfig
                 Speed = BefuddleRange / BefuddleLifetime,
                 ThrowTrigger = "befuddle_throw"
             };
+            if (level > 4)
+            {
+                cfg.Speed = (BefuddleRange + 2) / BefuddleLifetime;
+            }
             return cfg;
         }
 
-        public static ProjectileConfig GetPlayerPsyboltConfig(int attack)
+        public static ProjectileConfig GetPlayerPsyboltConfig(int attack, int level)
         {
             ProjectileConfig cfg = new ProjectileConfig()
             {
@@ -303,6 +307,15 @@ public static class EffectConfig
                 Speed = PsyboltRange / PsyboltLifeTime,
                 ThrowTrigger = "psybolt"
             };
+            if (level > 1)
+            {
+                cfg.Damage += 1;
+            }
+
+            if (level > 3)
+            {
+                cfg.Damage += 1;
+            }
             return cfg;
         }
 

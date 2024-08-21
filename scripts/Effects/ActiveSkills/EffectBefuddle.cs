@@ -13,7 +13,13 @@ public class AbilityBefuddle : FightAbility
     public override float MaxDistance => EffectConfig.ProjectileConfig.BefuddleRange;
     public override int MaxTargets => 1;
     
-    public override float Cooldown => EffectConfig.ProjectileConfig.BefuddleCooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        int lv = int.Min(4, fp.GetSkillTree().GetSkillLevel("Befuddle"));
+        return EffectConfig.ProjectileConfig.BefuddleCooldown + 1 - lv;
+    }
 }
 
 public class EffectBefuddle : EffectProjectileThrow
@@ -25,7 +31,7 @@ public class EffectBefuddle : EffectProjectileThrow
 
     public override void AssignConfig()
     {
-        Config = EffectConfig.ProjectileConfig.GetPlayerBefuddleConfig(FightPlayer.CurrentAttack);
+        Config = EffectConfig.ProjectileConfig.GetPlayerBefuddleConfig(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("Befuddle"));
     }
     
 

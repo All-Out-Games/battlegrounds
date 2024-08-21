@@ -290,6 +290,12 @@ public static partial class SkillConfig
             case "SelfHeal":
                 res = $"{AbilitySelfHeal.GetCooldown(fp)}s";
                 break;
+            case "Befuddle":
+                res = $"{AbilityBefuddle.GetCooldown(fp)}s";
+                break;
+            case "Psybolt":
+                res = $"{AbilityPsybolt.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -304,6 +310,9 @@ public static partial class SkillConfig
         {
             case "SpoonThrow":
                 res = $"{(fp.GetSkillTree().GetSkillLevel("SpoonThrow") > 4  ? EffectConfig.ProjectileConfig.SpoonRange + 2 : EffectConfig.ProjectileConfig.SpoonRange)}m";
+                break;
+            case "Befuddle":
+                res = $"{(fp.GetSkillTree().GetSkillLevel("Befuddle") > 4  ? EffectConfig.ProjectileConfig.BefuddleRange + 2 : EffectConfig.ProjectileConfig.BefuddleRange)}m";
                 break;
         }
         return res;
@@ -361,6 +370,9 @@ public static partial class SkillConfig
             case "SpoonThrow":
                 res = EffectConfig.ProjectileConfig
                     .GetPlayerSpoonThrowConfig(0, fp.GetSkillTree().GetSkillLevel("SpoonThrow")).Damage;
+                break;
+            case "Psybolt":
+                res = EffectConfig.ProjectileConfig.GetPlayerPsyboltConfig(0, fp.GetSkillTree().GetSkillLevel("Psybolt")).Damage;
                 break;
         }
 

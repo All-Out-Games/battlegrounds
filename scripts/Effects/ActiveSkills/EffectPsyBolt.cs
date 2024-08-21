@@ -15,7 +15,19 @@ public class AbilityPsybolt : FightAbility
     public override float MaxDistance => EffectConfig.ProjectileConfig.PsyboltRange;
     public override int MaxTargets => 1;
     
-    public override float Cooldown => EffectConfig.ProjectileConfig.PsyboltCooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        int lv = fp.GetSkillTree().GetSkillLevel("Psybolt");
+        float cd = EffectConfig.ProjectileConfig.ShurikenCooldown;
+        if (lv > 2)
+        {
+            cd -= 1;
+        }
+
+        return cd;
+    }
 }
 
 public class EffectPsybolt : EffectProjectileThrow
@@ -27,7 +39,7 @@ public class EffectPsybolt : EffectProjectileThrow
 
     public override void AssignConfig()
     {
-        Config = EffectConfig.ProjectileConfig.GetPlayerPsyboltConfig(FightPlayer.CurrentAttack);
+        Config = EffectConfig.ProjectileConfig.GetPlayerPsyboltConfig(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("Psybolt"));
     }
     
     public override void ProjectileThrow()
@@ -52,7 +64,7 @@ public class EffectPsybolt : EffectProjectileThrow
         PsyBoltProjectile supplementProjectileComp = proj.GetComponent<PsyBoltProjectile>();
         supplementProjectileComp.LifeTime = Config.ProjectileLifetime;
         supplementProjectileComp.InitializeProjectile(FightPlayer, Config.Damage, false);
-        supplementProjectileComp.KnockBackStrength = EffectConfig.ProjectileConfig.PsyboltKnockbackStrength;
+        supplementProjectileComp.KnockBackStrength = EffectConfig.ProjectileConfig.PsyboltKnockbackStrength + (FightPlayer.GetSkillTree().GetSkillLevel("Psybolt") > 4 ? 40 : 0);
 
         if (FightPlayer.HasSkill("Psychic"))
         {
