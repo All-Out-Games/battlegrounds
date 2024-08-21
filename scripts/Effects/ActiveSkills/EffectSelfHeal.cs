@@ -1,6 +1,5 @@
 using AO;
 using Assembly.scripts.SceneObjects;
-using StreamReader = AO.StreamReader;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
 
@@ -12,7 +11,13 @@ public class AbilitySelfHeal : FightAbility
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
     
-    public override float Cooldown => EffectConfig.SelfHealConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        int lv = int.Min(4, fp.GetSkillTree().GetSkillLevel("SelfHeal"));
+        return EffectConfig.SelfHealConfig.Cooldown + 1 - lv;
+    }
 }
 
 
@@ -46,7 +51,12 @@ public class EffectSelfHeal : FightEffect
         bool enhanced = FightPlayer.HasSkill("Concentrate");
         if (!interrupt)
         {
+            
             FightPlayer.DamageInfo healInfo = FightPlayer.DamageInfo.CreateHealInfo(EffectConfig.SelfHealConfig.HealAmtBase + (enhanced ? EffectConfig.SelfHealConfig.ConcentrateExtraHealth : 0));
+            if (FightPlayer.GetSkillTree().GetSkillLevel("SelfHeal") > 4)
+            {
+                healInfo.ReactionInfo.Amount -= 5;
+            }
             FightPlayer.TakeDamage(FightPlayer, healInfo);
             FightPlayer.SetAnimTrigger("selfheal_end");
             SFX.Play(SFXKeys.HealingEndAudio, DefaultSoundDesc);

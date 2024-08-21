@@ -284,8 +284,28 @@ public static partial class SkillConfig
             case "IronSkin":
                 res = $"{AbilityIronSkin.GetCooldown(fp)}s";
                 break;
+            case "SpoonThrow":
+                res = $"{AbilitySpoonThrow.GetCooldown(fp)}s";
+                break;
+            case "SelfHeal":
+                res = $"{AbilitySelfHeal.GetCooldown(fp)}s";
+                break;
         }
 
+        return res;
+    }
+
+    public static string GetOverrideRange(string skillKey, FightPlayer fp)
+    {
+        SkillTreeNodeConfig cfg = GetConfig(skillKey);
+        string res = cfg.RangeDescriptionKey; // default
+
+        switch (skillKey)
+        {
+            case "SpoonThrow":
+                res = $"{(fp.GetSkillTree().GetSkillLevel("SpoonThrow") > 4  ? EffectConfig.ProjectileConfig.SpoonRange + 2 : EffectConfig.ProjectileConfig.SpoonRange)}m";
+                break;
+        }
         return res;
     }
 
@@ -338,6 +358,10 @@ public static partial class SkillConfig
                 res = EffectConfig.RollOutConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("RollOut"))
                     .ContactDamage;
                 break;
+            case "SpoonThrow":
+                res = EffectConfig.ProjectileConfig
+                    .GetPlayerSpoonThrowConfig(0, fp.GetSkillTree().GetSkillLevel("SpoonThrow")).Damage;
+                break;
         }
 
         return res;
@@ -389,6 +413,14 @@ public static partial class SkillConfig
                 EffectConfig.IronSkinConfig iscfg = EffectConfig.IronSkinConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("IronSkin"));
                 res =
                     $"Harden your skin and reduce {float.Round((1f - iscfg.DmgModifer) * 100, 0)}% damage for {iscfg.Duration} seconds.";
+                break;
+            case "SelfHeal":
+                int healAmt = EffectConfig.SelfHealConfig.HealAmtBase;
+                if (fp.GetSkillTree().GetSkillLevel("SelfHeal") > 4) healAmt += 5;
+                if (fp.HasSkill("Concentrate")) healAmt += 20;
+                res =
+                    $"Channel healing energy for {EffectConfig.SelfHealConfig.ChannelTime}s to restore {healAmt} health. This channel can be interrupted by other players.";
+                if (fp.HasSkill("Concentrate")) res += " You also gain Rage when you are interrupted.";
                 break;
         }
 

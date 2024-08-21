@@ -39,7 +39,7 @@ public class AbilityInfoScreen : Component
 
         _description.Text = stConfig.DescriptionTextKey == "%OVERRIDE%" ? SkillConfig.GetOverrideDescription(stConfig.SkillKey, FightClubUtils.GetLocalFightPlayer()) : stConfig.DescriptionTextKey;
         _cooldown.Text = stConfig.CooldownKey == "%OVERRIDE%" ? SkillConfig.GetOverrideCooldown(stConfig.SkillKey, FightClubUtils.GetLocalFightPlayer()) : stConfig.CooldownKey;
-        _range.Text = stConfig.RangeDescriptionKey;
+        _range.Text = stConfig.RangeDescriptionKey == "%OVERRIDE%" ? SkillConfig.GetOverrideRange(stConfig.SkillKey, FightClubUtils.GetLocalFightPlayer()) : stConfig.RangeDescriptionKey;;
         
         
         if (stConfig.BaseDamageKey == 0)

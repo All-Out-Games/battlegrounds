@@ -266,7 +266,7 @@ public static class EffectConfig
         /// </summary>
         /// <param name="attack"></param>
         /// <returns></returns>
-        public static ProjectileConfig GetPlayerSpoonThrowConfig(int attack)
+        public static ProjectileConfig GetPlayerSpoonThrowConfig(int attack, int level)
         {
             ProjectileConfig cfg = new ProjectileConfig()
             {
@@ -274,6 +274,9 @@ public static class EffectConfig
                 ProjectilePrefabKey = "SpoonProjectile.prefab",
                 ProjectileLifetime = SpoonLifetime,
             };
+            if (level > 2) cfg.Damage += 1;
+            if (level > 3) cfg.Damage += 1;
+            if (level > 4) cfg.ProjectileLifetime += 0.15f;
             return cfg;
         }
 
@@ -610,7 +613,7 @@ public static class EffectConfig
     {
         public static readonly float HypnotizeTime = 5f;
         public static readonly float HypnotizeRange = 2f;
-        public static readonly float Cooldown = 8f;
+        public static readonly float Cooldown = 14f;
     }
 
     #endregion

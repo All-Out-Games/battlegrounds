@@ -13,7 +13,14 @@ public class AbilitySpoonThrow : FightAbility
     public override float MaxDistance => EffectConfig.ProjectileConfig.SpoonRange;
     public override int MaxTargets => 1;
     
-    public override float Cooldown => EffectConfig.ProjectileConfig.SpoonThrowCooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        return fp.GetSkillTree().GetSkillLevel("SpoonThrow") > 1
+            ? EffectConfig.ProjectileConfig.SpoonThrowCooldown - 1
+            : EffectConfig.ProjectileConfig.SpoonThrowCooldown;
+    }
 }
 
 public class EffectProjectileThrow : FightEffect
@@ -58,7 +65,7 @@ public class EffectProjectileThrow : FightEffect
 
     public virtual void AssignConfig()
     {
-        Config = EffectConfig.ProjectileConfig.GetPlayerSpoonThrowConfig(FightPlayer.CurrentAttack);
+        Config = EffectConfig.ProjectileConfig.GetPlayerSpoonThrowConfig(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("SpoonThrow"));
     }
 
     public virtual void PlayThrowSound()
