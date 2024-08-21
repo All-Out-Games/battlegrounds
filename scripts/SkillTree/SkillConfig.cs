@@ -278,6 +278,12 @@ public static partial class SkillConfig
             case "TotalDarkness":
                 res = $"{AbilityTotalDarkness.GetCooldown(fp)}s";
                 break;
+            case "Shield":
+                res = $"{AbilityShield.GetCooldown(fp)}s";
+                break;
+            case "IronSkin":
+                res = $"{AbilityIronSkin.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -369,6 +375,16 @@ public static partial class SkillConfig
             case "ShadowStep":
                 EffectConfig.ShadowStepConfig sscfg = EffectConfig.ShadowStepConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("ShadowStep"));
                 res = "Using your ninja way, teleport a short distance in the direction you're moving." + $" Also grants Shadow Armor for 2s, which blocks {sscfg.ShadowArmorAmount}damage for {sscfg.ShadowArmorEffectiveTime} time(s)";
+                break;
+            case "Shield":
+                EffectConfig.ShieldConfig scfg =
+                    EffectConfig.ShieldConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("Shield"));
+                res = $"Create a weak wooden shield that absorbs {scfg.ShieldAmt} damage.";
+                break;
+            case "IronSkin":
+                EffectConfig.IronSkinConfig iscfg = EffectConfig.IronSkinConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("IronSkin"));
+                res =
+                    $"Harden your skin and reduce {float.Round((1f - iscfg.DmgModifer) * 100, 0)}% damage for {iscfg.Duration} seconds.";
                 break;
         }
 

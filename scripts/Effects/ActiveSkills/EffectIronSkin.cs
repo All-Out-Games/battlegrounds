@@ -13,7 +13,19 @@ public class AbilityIronSkin : FightAbility
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
 
-    public override float Cooldown => EffectConfig.IronSkinConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        float cd = EffectConfig.IronSkinConfig.Cooldown;
+        int lv = fp.GetSkillTree().GetSkillLevel("IronSkin");
+        if (lv > 1)
+        {
+            cd -= 1;
+        }
+
+        return cd;
+    }
 }
 
 public class EffectIronSkin : FightEffect
@@ -25,16 +37,18 @@ public class EffectIronSkin : FightEffect
     private StatAuraVFX _aura;
     private Spine_Animator _auraAnimator;
     private bool _faded;
+
+    private EffectConfig.IronSkinConfig _config;
     
     
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        
+        _config = EffectConfig.IronSkinConfig.GetDefault(FightPlayer.GetSkillTree().GetSkillLevel("IronSkin"));
         FightPlayer.RegisterPreDamageEvent(this);
         if (!isDropIn)
         {
-            DurationRemaining = EffectConfig.IronSkinConfig.Duration;
+            DurationRemaining = _config.Duration;
             SoundId = SFX.Play(SFXKeys.IronAuradAudio, DefaultSoundDesc);
         }
         
@@ -82,6 +96,6 @@ public class EffectIronSkin : FightEffect
     public override void PreDamageMod(ref FightPlayer.DamageInfo info)
     {
         base.PreDamageMod(ref info);
-        info.ReactionInfo.Amount = (int)float.Floor(info.ReactionInfo.Amount * EffectConfig.IronSkinConfig.DamageModifier);
+        info.ReactionInfo.Amount = (int)float.Floor(info.ReactionInfo.Amount * _config.DmgModifer);
     }
 }

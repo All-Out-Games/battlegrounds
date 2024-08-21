@@ -11,7 +11,19 @@ public class AbilityShield : FightAbility
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
     
-    public override float Cooldown => EffectConfig.ShieldConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        float cd = EffectConfig.ShieldConfig.Cooldown;
+        int lv = fp.GetSkillTree().GetSkillLevel("Shield");
+        if (lv > 1)
+        {
+            cd -= 1;
+        }
+
+        return cd;
+    }
 }
 /// <summary>
 /// Base class of a shield ability.
@@ -30,7 +42,7 @@ public class EffectShield : FightEffect
     {
         base.OnEffectStart(isDropIn);
         
-        AssignConfig(EffectConfig.ShieldConfig.GetDefault());
+        AssignConfig(EffectConfig.ShieldConfig.GetDefault(FightPlayer.GetSkillTree().GetSkillLevel("Shield")));
         FightPlayer.MaxShield = Config.ShieldAmt;
         FightPlayer.CurrentShield = Config.ShieldAmt;
         FightPlayer.OnReceiveDamage += OnDamageEvent;

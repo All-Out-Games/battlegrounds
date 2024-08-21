@@ -239,10 +239,12 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig ShieldConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = $"Create a weak wooden shield that absorbs {EffectConfig.ShieldConfig.ShieldAmtBase} damage.",
-        CooldownKey = $"{EffectConfig.ShieldConfig.Cooldown}s",
+        DescriptionTextKey = "%OVERRIDE%",
+        UpgradeTextKey = "*: Cooldown -1\n **: Duration +1\n ***: Duration +1\n ****: Shield +5",
+        CooldownKey = "%OVERRIDE%",
         UnlockLevel = 0,
-        MaximumLevel = 1,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierOneGemCost,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Defensive,
         UpgradeCost = 100,
@@ -284,10 +286,12 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig IronSkinConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Iron Aura",
-        DescriptionTextKey = $"Harden your skin and reduce {float.Round((1f - EffectConfig.IronSkinConfig.DamageModifier) * 100, 0)}% damage for {EffectConfig.IronSkinConfig.Duration} seconds.",
-        CooldownKey = $"{EffectConfig.IronSkinConfig.Cooldown}s",
+        DescriptionTextKey = "%OVERRIDE%",
+        UpgradeTextKey = "*: Cooldown -1\n **: Duration +1\n ***: Duration +1\n ****: Resist +5%",
+        CooldownKey = "%OVERRIDE%",
         UnlockLevel = 6,
-        MaximumLevel = 1,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierOneGemCost,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Defensive,
         UpgradeCost = 900,

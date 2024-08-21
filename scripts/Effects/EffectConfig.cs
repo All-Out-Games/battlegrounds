@@ -46,9 +46,31 @@ public static class EffectConfig
 
     public struct IronSkinConfig
     {
-        public static float DamageModifier = 0.8f;
-        public static float Duration = 6f;
-        public static float Cooldown = 12f;
+        public static readonly float DamageModifier = 0.8f;
+        public static readonly float DurationBase = 6f;
+        public static readonly float Cooldown = 12f;
+
+        public float DmgModifer = 1;
+        public float Duration = 5f;
+        
+        public IronSkinConfig()
+        {
+            
+        }
+        
+        public static IronSkinConfig GetDefault(int level)
+        {
+            
+            var cfg = new IronSkinConfig();
+            if (level > 4)
+            {
+                cfg.DmgModifer = 0.75f;
+            }
+
+            level = int.Min(3, level);
+            cfg.Duration += level - 1;
+            return cfg;
+        }
     }
 
     #endregion
@@ -159,9 +181,18 @@ public static class EffectConfig
             
         }
         
-        public static ShieldConfig GetDefault()
+        public static ShieldConfig GetDefault(int level)
         {
-            return new ShieldConfig();
+            
+            var cfg = new ShieldConfig();
+            if (level > 4)
+            {
+                cfg.ShieldAmt += 5;
+            }
+
+            level = int.Min(3, level);
+            cfg.Duration += level - 1;
+            return cfg;
         }
     }
 
