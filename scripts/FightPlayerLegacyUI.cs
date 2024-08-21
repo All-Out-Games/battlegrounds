@@ -28,10 +28,6 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         if (_player.CurrentHealth > 0 && _hideUIReasons.Count == 0)
         {
             healthRect = DrawHealthBar();
-            if (_player.CurrentShield > 0)
-            {
-                DrawShieldBar(healthRect.Copy());
-            }
         }
 
         if (_player.IsLocal && _player.PlayerStatus != PlayerStatus.Safe)
@@ -57,7 +53,10 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         var healthPercent = _player.CurrentHealth / (float)_player.MaxHealth;
         var healthPercentRect = healthRect.SubRect(0, 0, healthPercent, 1, 0, 0, 0, 0);
         UI.Image(healthPercentRect, null, Vector4.HSVLerp(Vector4.Red, Vector4.Green, healthPercent), new UI.NineSlice());
-        //UIManager.Instance.SetPopup($"Shield - {_player.CurrentShield} Max shield - {_player.MaxShield}", 0.5f, _player);
+        if (_player.CurrentShield > 0)
+        {
+            DrawShieldBar(healthRect);
+        }
         return healthRect;
     }
 

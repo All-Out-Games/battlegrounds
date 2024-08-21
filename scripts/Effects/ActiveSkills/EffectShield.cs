@@ -82,7 +82,7 @@ public class EffectShield : FightEffect
     protected virtual void AddShieldFx()
     {
         ShieldVfx = VFXPrefabs.ShieldFx.Instantiate().GetComponent<ShieldVFX>();
-        ShieldVfx.Spawn(FightPlayer.Entity, new Vector2(0, 0.22f), false, DurationRemaining);
+        ShieldVfx.Spawn(FightPlayer.Entity, new Vector2(0, 0.22f), false, DurationRemaining+1.5f);
         ShieldVfx.SetAnimTrigger("appear");
     }
 
