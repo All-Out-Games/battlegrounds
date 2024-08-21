@@ -1,5 +1,6 @@
 ﻿using AO;
 using Assembly.scripts;
+using Assembly.scripts.Effects;
 using Assembly.scripts.SceneObjects;
 using StreamReader = AO.StreamReader;
 using StreamWriter = AO.StreamWriter;
@@ -64,6 +65,10 @@ public class EffectRollOut : FightEffect
         {
             DurationRemaining = _config.Duration;
             SFX.Play(SFXKeys.RolloutStartAudio, DefaultSoundDesc);
+            if (_config.ProvideShield)
+            {
+                FightPlayer.AddEffect<EffectOvershield>(FightPlayer, DurationRemaining, overshield => overshield.AssignConfig(EffectConfig.ShieldConfig.GetOvershield(10, DurationRemaining)));
+            }
         }
 
         if (FightPlayer.IsLocal)
@@ -80,6 +85,7 @@ public class EffectRollOut : FightEffect
                 Log.Error("Rollout: Skill Replacement Error! The player does not have the primary skill equipped.");
             }
         }
+        
     }
     
     
@@ -100,7 +106,7 @@ public class EffectRollOut : FightEffect
     private void RollOutStart()
     {
         FightPlayer.UnsetAnimTrigger("rollout_end");
-        AssignConfig(EffectConfig.RollOutConfig.GetDefault(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.RollOutConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("RollOut")));
         FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
         
         // TODO: This collision is currently broken because the player collision entity will continuously trigger with the player itself and ignore others
@@ -204,6 +210,7 @@ public class EffectRollOutCancel : FightEffect
     {
         base.OnEffectStart(isDropIn);
         FightPlayer.RemoveEffect<EffectRollOut>(false);
+        FightPlayer.RemoveEffect<EffectOvershield>(true);
         DurationRemaining = 0.2f;
     }
     

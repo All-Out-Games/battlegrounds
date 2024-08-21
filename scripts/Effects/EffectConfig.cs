@@ -11,13 +11,15 @@ public static class EffectConfig
 
     public struct RollOutConfig
     {
-        public static int BumpDmgBase = 3;
-        public static float Cooldown = 10f;
+        public static readonly int BumpDmgBase = 3;
+        public static readonly float Cooldown = 10f;
+        public static readonly int FourStarShieldAmt = 10;
         
         public float Duration = 5f;
         public int ContactDamage = 5;
-        public float SpeedBuffMultiplier = 1.35f;
+        public float SpeedBuffMultiplier = 1.30f;
         public float BumpStrength = 35f;
+        public bool ProvideShield = false;
         
         
 
@@ -25,14 +27,18 @@ public static class EffectConfig
         {
         }
         
-        public static RollOutConfig GetDefault(int attack)
+        public static RollOutConfig GetDefault(int attack, int level)
         {
+            
             RollOutConfig cfg = new RollOutConfig
             {
                 // Modify the config on the server side in this function based on parameters
-                ContactDamage = RollOutConfig.BumpDmgBase + attack
+                ContactDamage = BumpDmgBase + attack
             };
-
+            if (level > 1) cfg.Duration += 1;
+            if (level > 2) cfg.ContactDamage += 1;
+            if (level > 3) cfg.SpeedBuffMultiplier += 0.05f;
+            if (level > 4) cfg.ProvideShield = true;
             return cfg;
         }
     }
@@ -193,6 +199,15 @@ public static class EffectConfig
             level = int.Min(3, level);
             cfg.Duration += level - 1;
             return cfg;
+        }
+
+        public static ShieldConfig GetOvershield(int amt, float duration)
+        {
+            return new ShieldConfig()
+            {
+                ShieldAmt = amt,
+                Duration = duration
+            };
         }
     }
 

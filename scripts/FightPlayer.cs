@@ -73,7 +73,7 @@ public partial class FightPlayer : Player
         {
             if (Network.IsServer)
             {
-                currentShield.Set(value);
+                currentShield.Set(int.Max(0, value));
             }
         }
     }
@@ -87,7 +87,7 @@ public partial class FightPlayer : Player
         {
             if (Network.IsServer)
             {
-                maxShield.Set(value);
+                maxShield.Set(int.Max(0, value));
             }
         }
     }

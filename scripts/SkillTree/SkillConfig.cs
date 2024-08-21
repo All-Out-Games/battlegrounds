@@ -334,6 +334,10 @@ public static partial class SkillConfig
                 res = EffectConfig.TotalDarknessConfig.GetConfig(0, fp.GetSkillTree().GetSkillLevel("TotalDarkness"))
                     .Damage;
                 break;
+            case "RollOut":
+                res = EffectConfig.RollOutConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("RollOut"))
+                    .ContactDamage;
+                break;
         }
 
         return res;
