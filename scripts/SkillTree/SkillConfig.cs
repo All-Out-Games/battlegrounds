@@ -272,6 +272,12 @@ public static partial class SkillConfig
             case "Shuriken":
                 res = $"{AbilityShuriken.GetCooldown(fp)}s";
                 break;
+            case "Backstab":
+                res = $"{AbilityBackstab.GetCooldown(fp)}s";
+                break;
+            case "TotalDarkness":
+                res = $"{AbilityTotalDarkness.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -317,6 +323,10 @@ public static partial class SkillConfig
             case "Shuriken":
                 res = EffectConfig.ProjectileConfig
                     .GetPlayerShurikenConfig(0, fp.GetSkillTree().GetSkillLevel("Shuriken")).Damage;
+                break;
+            case "TotalDarkness":
+                res = EffectConfig.TotalDarknessConfig.GetConfig(0, fp.GetSkillTree().GetSkillLevel("TotalDarkness"))
+                    .Damage;
                 break;
         }
 

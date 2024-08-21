@@ -722,6 +722,7 @@ public static class EffectConfig
         public static readonly float KunaiRange = 6f;
         public static readonly float KunaiLifetime = 0.5f;
         public static readonly float NinjaMasteryRangeModifier = 1.5f;
+        public static readonly float FourStarLifeStealModifier = 0.5f;
         public static ProjectileConfig GetKunaiConfig()
         {
             return new ProjectileConfig()
@@ -738,10 +739,27 @@ public static class EffectConfig
         public static float BackstabTime = 0.8f;
 
         public int Damage;
+        public bool LifeSteal;
 
         public static BackStabConfig GetDefault(int atk, int level = 1)
         {
-            return new BackStabConfig() { Damage = atk + BaseDmg + level };
+            var cfg = new BackStabConfig() { Damage = atk + BaseDmg};
+            if (level > 1)
+            {
+                cfg.Damage += 1;
+            }
+
+            if (level > 3)
+            {
+                cfg.Damage += 1;
+            }
+
+            if (level > 4)
+            {
+                cfg.LifeSteal = true;
+            }
+
+            return cfg;
         }
     }
 
@@ -751,16 +769,34 @@ public static class EffectConfig
 
     public struct TotalDarknessConfig
     {
-        public static float Cooldown = 10f;
-        public static float Range = 4f;
-        public static float BlindTime = 10f;
-        public static int BaseDamage = 5;
+        public static readonly float Cooldown = 10f;
+        public static readonly float Range = 4f;
+        public static readonly float BlindTime = 5f;
+        public static readonly int BaseDamage = 10;
+        public static readonly float FourStarLifeStealMultiplier = 0.25f;
 
         public int Damage;
+        public bool LifeSteal;
 
-        public static TotalDarknessConfig GetConfig(int atk)
+        public static TotalDarknessConfig GetConfig(int atk, int level)
         {
-            return new TotalDarknessConfig() { Damage = atk + BaseDamage };
+            var cfg =  new TotalDarknessConfig() { Damage = atk + BaseDamage };
+
+            if (level > 1)
+            {
+                cfg.Damage += 1;
+            }
+
+            if (level > 3)
+            {
+                cfg.Damage += 1;
+            }
+
+            if (level > 4)
+            {
+                cfg.LifeSteal = true;
+            }
+            return cfg;
         }
     }
 

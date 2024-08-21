@@ -11,7 +11,20 @@ public class AbilityTotalDarkness : FightAbility
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
 
-    public override float Cooldown => EffectConfig.TotalDarknessConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        int lv = fp.GetSkillTree().GetSkillLevel("TotalDarkness");
+        if (lv > 2)
+        {
+            return EffectConfig.TotalDarknessConfig.Cooldown - 1;
+        }
+        else
+        {
+            return EffectConfig.TotalDarknessConfig.Cooldown;
+        }
+    }
 }
 
 public class EffectTotalDarkness : FightEffect
@@ -32,7 +45,6 @@ public class EffectTotalDarkness : FightEffect
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
     }
 
     public override void OnAnimationEvent(string eventName)
@@ -51,7 +63,7 @@ public class EffectTotalDarkness : FightEffect
         var fpList = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(FightPlayer.Entity.Position,
             EffectConfig.TotalDarknessConfig.Range);
         
-        _config = EffectConfig.TotalDarknessConfig.GetConfig(FightPlayer.CurrentAttack);
+        _config = EffectConfig.TotalDarknessConfig.GetConfig(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("TotalDarkness"));
 
         foreach (var fp in fpList)
         {
@@ -69,8 +81,15 @@ public class EffectTotalDarkness : FightEffect
                 FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage, DamageType.None);
                 info.SkillKey = SkillConfig.TotalDarknessConfig.SkillKey;
                 fp.TakeDamage(FightPlayer, info);
+                if (_config.LifeSteal)
+                {
+                    info.ReactionInfo.Amount = (int)(info.ReactionInfo.Amount * -EffectConfig.TotalDarknessConfig.FourStarLifeStealMultiplier);
+                    info.DamageNumberColor = GlobalData.HealNumberColor;
+                    FightPlayer.TakeDamage(FightPlayer, info);
+                }
             }
         }
+        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
     }
     
 }

@@ -32,9 +32,13 @@ public class FightEffectWithImmunity : FightEffect
     public override void PreDamageMod(ref FightPlayer.DamageInfo info)
     {
         base.PreDamageMod(ref info);
-        if(info.ReactionInfo.Amount > 0) info.ReactionInfo.Amount = 0; // Does not affect healing
         info.ReactionInfo.Flinch = false;
         info.AwardCoin = false;
-        info.OverrideDamageNumber = FightPlayer.DamageInfo.DamageNumberOverrideType.Immune;
+        
+        if(info.ReactionInfo.Amount > 0) {
+            info.ReactionInfo.Amount = 0; // Does not affect healing
+            info.OverrideDamageNumber = FightPlayer.DamageInfo.DamageNumberOverrideType.Immune;
+        }
+
     }
 }

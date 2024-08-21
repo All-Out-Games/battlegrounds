@@ -14,7 +14,20 @@ public class AbilityBackstab : FightAbility
     public override float MaxDistance => EffectConfig.BackStabConfig.KunaiRange;
     public override int MaxTargets => 1;
     
-    public override float Cooldown => EffectConfig.BackStabConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        int lv = fp.GetSkillTree().GetSkillLevel("Backstab");
+        if (lv > 3)
+        {
+            return EffectConfig.BackStabConfig.Cooldown - 1;
+        }
+        else
+        {
+            return EffectConfig.BackStabConfig.Cooldown;
+        }
+    }
 }
 public class EffectBackstab : EffectNoMovement
 {
@@ -26,7 +39,7 @@ public class EffectBackstab : EffectNoMovement
 
     private bool _damaged = false;
     private EffectConfig.BackStabConfig _config;
-    private FightPlayer _fp;
+    private FightPlayer _fp; // Caster FP
 
     public override void OnEffectStart(bool isDropIn)
     {
@@ -48,11 +61,17 @@ public class EffectBackstab : EffectNoMovement
         base.OnEffectUpdate();
         if (Util.OneTime(ElapsedTime > EffectConfig.BackStabConfig.DamageDelay, ref _damaged))
         {
-            _config = EffectConfig.BackStabConfig.GetDefault(_fp.CurrentAttack);
+            _config = EffectConfig.BackStabConfig.GetDefault(_fp.CurrentAttack, _fp.GetSkillTree().GetSkillLevel("Backstab"));
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage);
             info.ReactionInfo.Flinch = false;
             info.SkillKey = SkillConfig.BackstabConfig.SkillKey;
             FightPlayer.TakeDamage(_fp, info);
+            if (_config.LifeSteal)
+            {
+                info.ReactionInfo.Amount = (int)(info.ReactionInfo.Amount * -EffectConfig.BackStabConfig.FourStarLifeStealModifier);
+                info.DamageNumberColor = GlobalData.HealNumberColor;
+                _fp.TakeDamage(_fp, info);
+            }
         }
     }
 }
