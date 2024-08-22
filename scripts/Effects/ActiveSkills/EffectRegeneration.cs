@@ -14,7 +14,13 @@ public class AbilityRegeneration : FightAbility
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
     
-    public override float Cooldown => EffectConfig.RegenerateConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+    
+    public static float GetCooldown(FightPlayer fp)
+    {
+        int lv = int.Min(3, fp.GetSkillTree().GetSkillLevel("Regeneration")); // Reduce 1 cooldown for the first two level
+        return EffectConfig.RegenerateConfig.Cooldown - lv + 1;
+    }
 }
 
 public class EffectRegeneration : FightEffect
@@ -27,17 +33,20 @@ public class EffectRegeneration : FightEffect
     protected bool Ticked = false;
 
     private RegenerationVFX _aura;
+    private EffectConfig.RegenerateConfig _config;
+    private bool _boosted;
     
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        
+        _config = EffectConfig.RegenerateConfig.GetDefault(FightPlayer.GetSkillTree().GetSkillLevel("Regeneration"));
         PerSecondHeal = EffectConfig.RegenerateConfig.PerSecondHeal;
+        _boosted = _config.ProvideBoost;
         
         
         if (!isDropIn)
         {
-            DurationRemaining = EffectConfig.RegenerateConfig.HealTime;
+            DurationRemaining = _config.RegenTime;
             SoundId = SFX.Play(SFXKeys.HealingLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = FightPlayer.Entity, RangeMultiplier = 0.5f});
         }
         
@@ -46,6 +55,11 @@ public class EffectRegeneration : FightEffect
         {
             PerSecondHeal += EffectConfig.RegenerateConfig.ConcentrateExtraHealth;
         }
+
+        if (_boosted)
+        {
+            FightPlayer.AddSpeedModifier(1.03f);
+        }
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -53,6 +67,10 @@ public class EffectRegeneration : FightEffect
         base.OnEffectEnd(interrupt);
         _aura.SetAnimTrigger("disappear");
         SFX.Stop(SoundId);
+        if (_boosted)
+        {
+            FightPlayer.RemoveSpeedModifier(1.03f);
+        }
     }
 
     public override void OnEffectUpdate()

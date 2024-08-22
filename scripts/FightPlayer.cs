@@ -545,7 +545,7 @@ public partial class FightPlayer : Player
         float baseSpeed = PlayerStatus == PlayerStatus.Combat
             ? GlobalData.CombatSpeedModifier * _combatSpeedPercentage / 100f
             : GlobalData.SafeSpeedModifier;
-        return _speedMultipliers.Count > 0 ? _speedMultipliers.Aggregate((x, y) =>  x*y ) : baseSpeed;
+        return _speedMultipliers.Count > 0 ? _speedMultipliers.Aggregate((x, y) =>  x*y ) * baseSpeed : baseSpeed;
     }
 
     public void AddSpeedModifier(float md)

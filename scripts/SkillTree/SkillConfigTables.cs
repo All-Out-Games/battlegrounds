@@ -657,12 +657,14 @@ public static partial class SkillConfig
     /// </summary>
     public static readonly SkillTreeNodeConfig RegenerationConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = $"Regenerate {EffectConfig.RegenerateConfig.PerSecondHeal} health per second over {EffectConfig.RegenerateConfig.HealTime}s seconds.",
-        CooldownKey = $"{EffectConfig.RegenerateConfig.Cooldown}s",
+        DescriptionTextKey = "%OVERRIDE%",
+        UpgradeTextKey = "*: Cooldown -1\n **: Cooldown -1\n ***: Duration +1\n ****: 3% Speed Boost During Healing",
+        CooldownKey = "%OVERRIDE%",
         IconPath = "AbilityIcon_Merged/psionic/regeneration.png",
         AbilityIconPath = "AbilityIcon_Separate/psionic/regeneration_icon.png",
         UnlockLevel = 11,
-        MaximumLevel = 1,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
         GridX = 2,
         GridY = 2,
         NType = NodeType.SkillUnlock,
@@ -677,13 +679,15 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig HypnotizeConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = $"Concentrate and select a target, then cause the player to fall sleep for {EffectConfig.HypnotizeConfig.HypnotizeTime}s. The player will wake up early if damaged.",
-        RangeDescriptionKey = "3m",
-        CooldownKey = $"{EffectConfig.HypnotizeConfig.Cooldown}s",
+        DescriptionTextKey = "%OVERRIDE%",
+        UpgradeTextKey = "*: Cooldown -1\n **: Cooldown -1\n ***: Cooldown -1\n ****: Sleep Time +1",
+        RangeDescriptionKey = "8m",
+        CooldownKey = "%OVERRIDE%",
         IconPath = "AbilityIcon_Merged/psionic/hypnotize.png",
         AbilityIconPath = "AbilityIcon_Separate/psionic/hypnotize_icon.png",
         UnlockLevel = 14,
-        MaximumLevel = 1,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
         GridX = 0,
         GridY = 2,
         NType = NodeType.SkillUnlock,

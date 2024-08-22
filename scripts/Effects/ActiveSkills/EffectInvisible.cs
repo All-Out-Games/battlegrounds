@@ -13,7 +13,7 @@ public class AbilityInvisible : FightAbility
     public override bool MonitorEffectDuration => true;
     
     public override TargettingMode TargettingMode => TargettingMode.Self;
-    public override float Cooldown => EffectConfig.InvisibilityConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
 
     public static float GetCooldown(FightPlayer fp)
     {

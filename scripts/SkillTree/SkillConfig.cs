@@ -296,6 +296,12 @@ public static partial class SkillConfig
             case "Psybolt":
                 res = $"{AbilityPsybolt.GetCooldown(fp)}s";
                 break;
+            case "Regeneration":
+                res = $"{AbilityRegeneration.GetCooldown(fp)}s";
+                break;
+            case "Hypnotize":
+                res = $"{AbilityHypnotize.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -433,6 +439,19 @@ public static partial class SkillConfig
                 res =
                     $"Channel healing energy for {EffectConfig.SelfHealConfig.ChannelTime}s to restore {healAmt} health. This channel can be interrupted by other players.";
                 if (fp.HasSkill("Concentrate")) res += " You also gain Rage when you are interrupted.";
+                break;
+            case "Regeneration":
+                float duration = EffectConfig.RegenerateConfig.HealTime;
+                int regenAmt = EffectConfig.RegenerateConfig.PerSecondHeal;
+                if (fp.GetSkillTree().GetSkillLevel("Regeneration") > 3) duration += 1;
+                if (fp.HasSkill("Concentrate")) regenAmt += 2;
+                res =
+                    $"Regenerate {regenAmt} health per second over {duration}s seconds.";
+                if (fp.GetSkillTree().GetSkillLevel("Regeneration") > 3) res += " Boost speed by 3% during this effect.";
+                break;
+            case "Hypnotize":
+                res =
+                    $"Concentrate and select a target, then cause the player to fall sleep for {EffectConfig.HypnotizeConfig.HypnotizeTime + (fp.GetSkillTree().GetSkillLevel("Hypnotize") > 4 ? 1 : 0)}s. The player will wake up early if damaged.";
                 break;
         }
 

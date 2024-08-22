@@ -616,6 +616,17 @@ public static class EffectConfig
         public static readonly float Cooldown = 20f;
         
         public static readonly int ConcentrateExtraHealth = 2;
+
+        public float RegenTime;
+        public bool ProvideBoost;
+
+        public static RegenerateConfig GetDefault(int level)
+        {
+            RegenerateConfig cfg = new RegenerateConfig() {RegenTime = HealTime};
+            if (level > 3) cfg.RegenTime += 1;
+            if (level > 4) cfg.ProvideBoost = true;
+            return cfg;
+        }
     }
 
     #endregion

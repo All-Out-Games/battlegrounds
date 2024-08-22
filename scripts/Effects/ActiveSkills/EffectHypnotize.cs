@@ -14,7 +14,12 @@ public class AbilityHypnotize : FightAbility
     public override float MaxDistance => EffectConfig.HypnotizeConfig.HypnotizeRange;
     public override int MaxTargets => 1;
     
-    public override float Cooldown => EffectConfig.HypnotizeConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+    public static float GetCooldown(FightPlayer fp)
+    {
+        int lv = int.Min(4, fp.GetSkillTree().GetSkillLevel("Hypnotize"));
+        return EffectConfig.HypnotizeConfig.Cooldown + 1 - lv;
+    }
 
     public override bool CanTarget(Player player)
     {
@@ -54,13 +59,17 @@ public class EffectHypnotize : FightEffectWithNoFlinch
         FightPlayer.UnsetAnimTrigger("knockdown_end");
         FightPlayer.SetAnimTrigger("knockdown");
         FightPlayer.OnReceiveDamage += OnDamageEvent;
+
+        Caster.AddEffect<EffectHypnotizeCaster>();
         
         if (!isDropIn)
         {
             DurationRemaining = EffectConfig.HypnotizeConfig.HypnotizeTime;
+            if((Caster as FightPlayer)?.GetSkillTree().GetSkillLevel("Hypnotize") > 4)
+            {
+                DurationRemaining += 1;
+            }
         }
-
-        Caster.AddEffect<EffectHypnotizeCaster>();
     }
 
     public override void OnEffectEnd(bool interrupt)
