@@ -72,6 +72,10 @@ public static class EffectConfig
             {
                 cfg.DmgModifer = 0.75f;
             }
+            else
+            {
+                cfg.DmgModifer = 0.8f;
+            }
 
             level = int.Min(3, level);
             cfg.Duration += level - 1;
