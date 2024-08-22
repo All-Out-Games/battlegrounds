@@ -36,6 +36,16 @@
   }
 },
 {
+  "cid": 2,
+  "aoid": "13194534316099:1723659651689706100",
+  "component_type": "Mono_Component",
+  "mono_component_type": "BillboardSign",
+  "data": {
+    "Message": "Hard to fight high levels? AFK First! You get bonus as a new player!",
+    "HalfWidth": 1
+  }
+},
+{
   "cid": 3,
   "aoid": "13209718567108:1723659657773143100",
   "component_type": "Internal_Component",

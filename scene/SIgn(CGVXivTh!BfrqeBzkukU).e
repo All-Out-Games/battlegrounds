@@ -56,4 +56,14 @@
     "restitution": 0,
     "restitution_threshold": 1
   }
+},
+{
+  "cid": 3,
+  "aoid": "9334138902572:1723658105056213700",
+  "component_type": "Mono_Component",
+  "mono_component_type": "BillboardSign",
+  "data": {
+    "Message": "You'll get 3 EXP here every minute!\nIf you are lower than specific level, you get bonuses!\nLevel 5: Extra 20 EXP/min\nLevel 15: Extra 6 EXP/min\nIf your server has less than 5 players, you get 3 EXP/min bonus.\n",
+    "HalfWidth": 1
+  }
 }

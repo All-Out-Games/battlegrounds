@@ -27,6 +27,6 @@
     "AfkZone": "54312157995743:1723590242823276700",
     "TotalDarknessOverlay": "170660771038913:1720032136217568700",
     "PvpZoneEdge": "109698259849242:1722575280857494700",
-    "FrameWhite": ""
+    "FrameWhite": "environment/AFK_tmp/modal-9slice.png"
   }
 }
