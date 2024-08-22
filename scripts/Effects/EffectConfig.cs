@@ -57,7 +57,7 @@ public static class EffectConfig
         public static readonly float Cooldown = 12f;
 
         public float DmgModifer = 1;
-        public float Duration = 5f;
+        public float Duration = 6f;
         
         public IronSkinConfig()
         {
@@ -70,15 +70,15 @@ public static class EffectConfig
             var cfg = new IronSkinConfig();
             if (level > 4)
             {
-                cfg.DmgModifer = 0.75f;
+                cfg.DmgModifer = DamageModifier - 0.05f;
             }
             else
             {
-                cfg.DmgModifer = 0.8f;
+                cfg.DmgModifer = DamageModifier;
             }
 
             level = int.Min(3, level);
-            cfg.Duration += level - 1;
+            cfg.Duration =DurationBase + level - 1;
             return cfg;
         }
     }
