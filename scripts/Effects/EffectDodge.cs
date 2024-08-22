@@ -23,6 +23,7 @@ public class EffectDodge : FightEffect
         base.PreDamageMod(ref info);
         if (Network.IsServer)
         {
+            if(info.ReactionInfo.Amount < 0) return; // Do not dodge healing
             if (Random.Shared.NextSingle() < DodgeChance)
             {
                 info.ReactionInfo.Flinch = false;

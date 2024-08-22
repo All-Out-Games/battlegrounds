@@ -90,7 +90,7 @@ public class EffectShadowArmor : FightEffect
     public override void PreDamageMod(ref FightPlayer.DamageInfo info)
     {
         base.PreDamageMod(ref info);
-        if (Network.IsServer)
+        if (Network.IsServer && _triggerCount < TriggerForTime)
         {
             info.ReactionInfo.Amount -= ArmorAmount;
             info.ReactionInfo.Amount = int.Max(0, info.ReactionInfo.Amount);
