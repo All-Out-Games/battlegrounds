@@ -14,7 +14,19 @@ public class AbilityPsionicBeam : FightAbility
     public override TargettingMode TargettingMode => TargettingMode.CircleAOE;
     public override float MaxDistance => EffectConfig.PsionicBeamConfig.MaximumRange;
 
-    public override float Cooldown => EffectConfig.PsionicBeamConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        if (fp.GetSkillTree().GetSkillLevel("PsionicBeam") > 2)
+        {
+            return EffectConfig.PsionicBeamConfig.Cooldown - 1;
+        }
+        else
+        {
+            return EffectConfig.PsionicBeamConfig.Cooldown;
+        }
+    }
 }
 
 public class EffectPsionicBeam : FightEffectWithNoFlinch
@@ -58,7 +70,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        AssignConfig(EffectConfig.PsionicBeamConfig.GetDefault(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.PsionicBeamConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("PsionicBeam")));
         FightPlayer.SetFacingDirection(AbilityPositionOrDirection.X >= 0);
         FightPlayer.UnsetAnimTrigger("psibeam_end");
         FightPlayer.SetAnimTrigger("psibeam");
@@ -144,6 +156,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
     {
         var fpInRadius =
             FightClubGameManager.Instance.GetCombatPlayersCollisionEntities();
+        bool explode = FightPlayer.GetSkillTree().GetSkillLevel("PsionicBeam") > 4;
         if (AO.Physics.RaycastWithWhitelist(_eyePos, _rayEnd - _eyePos, _rayLength, fpInRadius, new Entity[] { },
                 out Physics.RaycastHit hit))
         {
@@ -163,12 +176,24 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
 
                 var hitVfx = VFXPrefabs.PsionicBeamHitVFX.Instantiate();
                 hitVfx.Position = hit.point;
+                // Psychic Enhancement: Heal for a certain amount
                 if (_enhanced)
                 {
                     FightPlayer.DamageInfo selfHealInfo = FightPlayer.DamageInfo.CreateHealInfo(EffectConfig.PsionicBeamConfig.PsychicHeal);
                     FightPlayer.TakeDamage(FightPlayer, selfHealInfo);
                 }
-                
+                // Lv.4 Enhancement: Attach PsyExplosion for 20% Damage
+                if (explode)
+                {
+                   
+                    fp.Player.AddEffect<EffectPsyExplosion>(FightPlayer, 2f, explosion =>
+                    {
+                        explosion.Damage = (int)float.Ceiling(0.1f * info.ReactionInfo.Amount);
+                        explosion.Radius = 3;
+                        explosion.SkillKey = "PsionicBeam";
+
+                    });
+                }
             }
         }
     }

@@ -117,13 +117,15 @@ public static class EffectConfig
         return cfg;
     }
 
-    public static PunchConfig GetIcePunchConfig(int atk = 0)
+    public static PunchConfig GetIcePunchConfig(int atk = 0, int level = 1)
     {
         PunchConfig cfg = new PunchConfig
         {
             PunchDamage = IceFistConfig.BaseDamage + atk,
             AnimationTrigger = "punch_ice"
         };
+        level = int.Min(4, level);
+        cfg.PunchDamage += level - 1;
         return cfg;
     }
 
@@ -669,9 +671,13 @@ public static class EffectConfig
         
         public int Damage;
 
-        public static PsionicBeamConfig GetDefault(int atk)
+        public static PsionicBeamConfig GetDefault(int atk, int level)
         {
-            return new PsionicBeamConfig() { Damage = atk + PsionicBeamDmgBase };
+            var cfg = new PsionicBeamConfig() { Damage = atk + PsionicBeamDmgBase };
+
+            if (level > 1) cfg.Damage += 1;
+            if (level > 3) cfg.Damage += 1;
+            return cfg;
         }
     }
 
@@ -687,14 +693,15 @@ public static class EffectConfig
         public static readonly float ThrowStrength = 180f;
         public static readonly float GrabTime = 2f;
         public static readonly int DmgBase = 3;
-        public static readonly float SelfDmgModifier = 0.5f; // If you throw the enemy to yourself, you take half the damage.
 
         public int Damage;
-        public int SelfDamage;
 
-        public static PsyThrowConfig GetDefault(int atk)
+        public static PsyThrowConfig GetDefault(int atk, int level)
         {
-            return new PsyThrowConfig() { Damage = atk + DmgBase, SelfDamage = (int)((atk + DmgBase) * SelfDmgModifier) };
+            var cfg = new PsyThrowConfig() { Damage = atk + DmgBase };
+            if (level > 2) cfg.Damage += 1;
+            if (level > 3) cfg.Damage += 1;
+            return cfg;
         }
     }
 

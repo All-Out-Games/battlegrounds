@@ -1,4 +1,4 @@
-11
+13
 219043332097
 85820734682308 1718833290825758500
 {
@@ -10,8 +10,8 @@
   },
   "local_rotation": 0,
   "local_scale": {
-    "X": 1,
-    "Y": 1
+    "X": 2,
+    "Y": 2
   },
   "spawn_as_networked_entity": true
 },
@@ -33,9 +33,11 @@
   "component_type": "Mono_Component",
   "mono_component_type": "PsyBoltProjectile",
   "data": {
+    "Owner": "0:0",
     "Damage": 0,
     "Pierce": false,
-    "Owner": "0:0"
+    "LifeTime": 0,
+    "TimeElapsed": 0
   }
 },
 {
@@ -52,7 +54,11 @@
     "start_position": {
       "X": 0,
       "Y": 0
-    }
+    },
+    "projectile_id": "",
+    "instance_id": "",
+    "spawn_id": 0,
+    "owner_network_id": 0
   }
 },
 {
@@ -90,6 +96,7 @@
     "skeleton_scale": {
       "X": 1,
       "Y": 1
-    }
+    },
+    "mask_in_shadow": false
   }
 }

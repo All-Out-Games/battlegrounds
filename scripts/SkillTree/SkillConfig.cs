@@ -302,6 +302,12 @@ public static partial class SkillConfig
             case "Hypnotize":
                 res = $"{AbilityHypnotize.GetCooldown(fp)}s";
                 break;
+            case "PsyThrow":
+                res = $"{AbilityPsyThrow.GetCooldown(fp)}s";
+                break;
+            case "PsionicBeam":
+                res = $"{AbilityPsionicBeam.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -379,6 +385,16 @@ public static partial class SkillConfig
                 break;
             case "Psybolt":
                 res = EffectConfig.ProjectileConfig.GetPlayerPsyboltConfig(0, fp.GetSkillTree().GetSkillLevel("Psybolt")).Damage;
+                break;
+            case "PsyThrow":
+                res = EffectConfig.PsyThrowConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("PsyThrow")).Damage;
+                break;
+            case "PsionicBeam":
+                res = EffectConfig.PsionicBeamConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("PsionicBeam"))
+                    .Damage;
+                break;
+            case "IceFist":
+                res = EffectConfig.GetIcePunchConfig(0, fp.GetSkillTree().GetSkillLevel("IceFist")).PunchDamage;
                 break;
         }
 

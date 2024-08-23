@@ -229,12 +229,12 @@ Pipe_Straight.prefab - .ao - 66b0100bcf7a5e4159a6c479 - 4243949072746644775
 Props/BearTrap/BAT003_bear_trap.png - .ao - 66859951b45eb9e8339c0fde - 12680163519278585061
 Props/BearTrap/BAT003_bear_trap.png - .ao.ios - 66859951b45eb9e8339c0fe0 - 7406773091814632799
 Props/BearTrap/BAT003_bear_trap.spine - .ao - 66859952b45eb9e8339c0fe2 - 3855122050485720892
-PsionicBeamExplosion.prefab - .ao - 66859952b45eb9e8339c0fe5 - 13710752620973719839
-PsionicBeamGroundFissue.prefab - .ao - 66859952b45eb9e8339c0fe6 - 6060544460007990298
-PsionicBeamGroundFissueEnd.prefab - .ao - 66859953b45eb9e8339c0fe8 - 9947869729590302411
-PsionicRay.prefab - .ao - 66a9196d96cebaeb1f329886 - 12843001226758880522
+PsionicBeamExplosion.prefab - .ao - 66c7c80560ed1ef1ffbc3f28 - 8636868043643330879
+PsionicBeamGroundFissue.prefab - .ao - 66c7b28260ed1ef1ffbc3edb - 12450150658249866470
+PsionicBeamGroundFissueEnd.prefab - .ao - 66c7b28260ed1ef1ffbc3eda - 7328066586182626511
+PsionicRay.prefab - .ao - 66c7b17660ed1ef1ffbc3ed7 - 14899517252460525722
 PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
-PsyboltProjectile.prefab - .ao - 66859953b45eb9e8339c0fed - 12382924361178526717
+PsyboltProjectile.prefab - .ao - 66c7a90f60ed1ef1ffbc3eae - 3691909516463296595
 Rage_Aura.prefab - .ao - 66ad96d6cf7a5e4159a6c44a - 2127671326789894962
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
 ResourcesOverlayWindow.prefab - .ao - 66bcef1983ee6f3bbee193a4 - 4667592157150026971

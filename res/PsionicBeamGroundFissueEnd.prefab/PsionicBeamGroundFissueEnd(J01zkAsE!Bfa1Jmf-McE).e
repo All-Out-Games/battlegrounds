@@ -1,4 +1,4 @@
-11
+13
 219043332098
 43213604784900 1718919964074493700
 {
@@ -12,9 +12,7 @@
   "local_scale": {
     "X": 1,
     "Y": 1
-  },
-  "previous_sibling": "377316458197998:1716489394196426200",
-  "next_sibling": "43217582967331:1718919965958103000"
+  }
 },
 {
   "cid": 1,
@@ -23,7 +21,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "VFX/PsionicBeam/ground_fissue_end.png",
-    "depth_offset": -0.5000000000000000,
+    "depth_offset": 0.5000000000000000,
     "tint": {
       "X": 1,
       "Y": 1,

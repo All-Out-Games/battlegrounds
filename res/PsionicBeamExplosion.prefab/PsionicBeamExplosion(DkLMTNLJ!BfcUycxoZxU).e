@@ -1,4 +1,4 @@
-11
+13
 219043332097
 15680058217161 1719340585550191700
 {
@@ -28,7 +28,8 @@
     "skeleton_scale": {
       "X": 1,
       "Y": 1
-    }
+    },
+    "mask_in_shadow": false
   }
 },
 {
@@ -37,15 +38,16 @@
   "component_type": "Mono_Component",
   "mono_component_type": "BaseVFX",
   "data": {
+    "Loop": false,
+    "Animator": "0:0",
+    "EntityLifeTime": 2,
+    "IsPermanent": false,
     "StartAnimationStr": [
       "med_explosion",
       "small_explosion",
       "big_explosion",
       "og_explosion",
       "og_small_explosion"
-    ],
-    "Loop": false,
-    "Animator": "0:0",
-    "EntityLifeTime": 2
+    ]
   }
 }

@@ -27,7 +27,7 @@ public class EffectIceFist : FightEffect
     {
         base.OnEffectStart(isDropIn);
 
-        AssignConfig(EffectConfig.GetIcePunchConfig(FightPlayer.CurrentAttack));
+        AssignConfig(EffectConfig.GetIcePunchConfig(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("IceFist")));
         FightPlayer.SetAnimTrigger(Config.AnimationTrigger); ;
 
         SoundId = SFX.Play(SFXKeys.IcePunchAudio, DefaultSoundDesc);
@@ -57,7 +57,7 @@ public class EffectIceFist : FightEffect
         punchDir = FightPlayer.GetPunchDirection();
         FightPlayer.SetAimTarget(Entity.Position + punchDir);
 
-        
+        int lv = FightPlayer.GetSkillTree().GetSkillLevel("IceFist");
         var hit = Physics.RaycastWithWhitelist(Entity.Position, punchDir.Normalized,
             EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(), new Entity[]{ },out rc);
 
@@ -71,6 +71,14 @@ public class EffectIceFist : FightEffect
                 info.SkillKey = SkillConfig.IceFistNodeConfig.SkillKey;
                 // other.Player.TakeDamage(FightPlayer, info);
                 other.TakeDamage(FightPlayer, info);
+                if (lv > 4)
+                {
+                    rc.Entity.GetComponent<PlayerCollisionChild>()?.Player.AddEffect<EffectMovementSpeedChange>(FightPlayer, 1.5f,
+                        change =>
+                        {
+                            change.SpdModifier = 0.9f;
+                        });
+                }
             }
         }
         else
@@ -89,6 +97,14 @@ public class EffectIceFist : FightEffect
                     info.SkillKey = SkillConfig.IceFistNodeConfig.SkillKey;
                     // other.Player.TakeDamage(FightPlayer, info);
                     fp.TakeDamage(FightPlayer, info);
+                    if (lv > 4)
+                    {
+                        rc.Entity.GetComponent<PlayerCollisionChild>()?.Player.AddEffect<EffectMovementSpeedChange>(FightPlayer, 1.5f,
+                            change =>
+                            {
+                                change.SpdModifier = 0.9f;
+                            });
+                    }
                 }
             }
         }

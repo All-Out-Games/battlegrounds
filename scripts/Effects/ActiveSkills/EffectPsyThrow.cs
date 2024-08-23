@@ -1,5 +1,6 @@
 ﻿using AO;
 using Assembly.scripts.SceneObjects;
+using Assembly.scripts.VFX;
 using StreamReader = AO.StreamReader;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -14,7 +15,14 @@ public class AbilityPsyThrow : FightAbility
     public override float MaxDistance => EffectConfig.PsyThrowConfig.Range;
     public override int MaxTargets => 1;
 
-    public override float Cooldown => EffectConfig.PsyThrowConfig.Cooldown;
+    public override float Cooldown => GetCooldown(FightPlayer);
+
+    public static float GetCooldown(FightPlayer fp)
+    {
+        return fp.GetSkillTree().GetSkillLevel("PsyThrow") > 1
+            ? EffectConfig.PsyThrowConfig.Cooldown - 1
+            : EffectConfig.PsyThrowConfig.Cooldown;
+    }
 
     public static readonly string LaunchSkillKey = "PsyThrowLaunch";
 }
@@ -156,8 +164,7 @@ public class EffectPsyThrowLaunch : FightEffectWithNoFlinch
     public override bool BlockAbilityActivation => true;
 
     private EffectConfig.PsyThrowConfig _config;
-
-    private List<Entity> _interactedEntities;
+    
 
     public override void OnEffectStart(bool isDropIn)
     {
@@ -166,13 +173,13 @@ public class EffectPsyThrowLaunch : FightEffectWithNoFlinch
         {
             Caster.RemoveEffect<EffectPsyThrowReady>(true);
             
+            int? lv = (Caster as FightPlayer)?.GetSkillTree().GetSkillLevel("PsyThrow");
             FightPlayer.AddBump(AbilityPositionOrDirection * EffectConfig.PsyThrowConfig.ThrowStrength, false);
             
             //FightPlayer.GetEffectMgr().AddNoMovement(Caster.Entity, 1f);
             DurationRemaining = 1f;
             
-            _interactedEntities = new List<Entity>() {FightPlayer.Entity, FightPlayer.CollisionEntity};
-            AssignConfig(EffectConfig.PsyThrowConfig.GetDefault(FightPlayer.CurrentAttack));
+            AssignConfig(EffectConfig.PsyThrowConfig.GetDefault(FightPlayer.CurrentAttack, lv.GetValueOrDefault(1)));
             
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage) with {InterruptLevel = 0};
             info.ReactionInfo.Flinch = false;
@@ -181,6 +188,16 @@ public class EffectPsyThrowLaunch : FightEffectWithNoFlinch
             
             FightPlayer.UnsetAnimTrigger("sentfly_end");
             FightPlayer.SetAnimTrigger("sentfly");
+            // Lv.4 Effect - Explode after throw
+            if (lv.GetValueOrDefault(1) > 4)
+            {
+                FightPlayer.AddEffect<EffectPsyExplosion>(Caster, 1f, explosion =>
+                {
+                    explosion.Damage = (int)float.Ceiling(0.2f * info.ReactionInfo.Amount);
+                    explosion.Radius = 3;
+                    explosion.SkillKey = "PsyThrow";
+                });
+            }
         }
         else
         {
@@ -199,20 +216,37 @@ public class EffectPsyThrowLaunch : FightEffectWithNoFlinch
     {
         _config = cfg;
     }
-    
-    protected void OnThrowCollision(Entity other)
+}
+
+/// <summary>
+/// Addon effect for Psionic Beam Lv.4 & PsyThrow Lv.4
+/// </summary>
+public class EffectPsyExplosion : FightEffect
+{
+    public override bool IsActiveEffect => false;
+
+    public int Damage;
+    public int Radius;
+    public string SkillKey = "PsyThrow";
+
+    public override void OnEffectEnd(bool interrupt)
     {
-        if(_interactedEntities.Contains(other)) return;
-        _interactedEntities.Add(other);
-        
-        PlayerCollisionChild otherPlayer = other.GetComponent<PlayerCollisionChild>();
-        if (otherPlayer != null)
+        base.OnEffectEnd(interrupt);
+        if (!interrupt)
         {
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage) with {InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel, DmgType = DamageType.None};
-            FightPlayer.TakeDamage(Caster as FightPlayer, info);
-            
-            info.ReactionInfo.Amount = other.NetworkId == Caster.Entity.NetworkId ? _config.SelfDamage : _config.Damage;
-            otherPlayer.Player.TakeDamage(Caster as FightPlayer, info);
+            // Spawn an explosion
+            FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.PsionicBeamHitVFX, FightPlayer.Position, entity => entity.LocalScale = Vector2.One * 3);
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.AOE);
+            info.AwardCoin = false;
+            info.SkillKey = SkillKey;
+            var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(FightPlayer.Position, Radius);
+            SFX.Play(SFXKeys.PsyboltHitAudio, DefaultSoundDesc);
+            foreach (var other in cbPlayers)
+            {
+                if(other.Entity == Caster.Entity) continue;
+                
+                other.TakeDamage(Caster as FightPlayer, info);
+            }
         }
     }
 }
