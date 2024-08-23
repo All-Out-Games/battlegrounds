@@ -252,7 +252,7 @@ public partial class FightPlayer
             TotalDamageDealt += info.ReactionInfo.Amount;
             if (info.AwardCoin)
             {
-                Exp += LevelingData.GetMultipliedExp(LevelingData.XpForDamage);
+                Exp += LevelingData.GetBoostedExp(LevelingData.GetMultipliedExp(LevelingData.XpForDamage), source);
             }
             // Send a callback to the source of damage. This need to reach client & server
             CallClient_NotifyDealDamage(victim, info);
@@ -268,6 +268,7 @@ public partial class FightPlayer
             int xp = LevelingData.GetTrueXpDampen(Level, victim.Level, LevelingData.XpForKill);
 
             xp = LevelingData.GetMultipliedExp(xp);
+            xp = LevelingData.GetBoostedExp(xp, source);
                 
             Exp += xp;
             CallClient_NotifyKillExp(xp);
@@ -302,8 +303,18 @@ public partial class FightPlayer
                 baseExp += GlobalData.AfkUnpopulatedServerBonusExp;
             }
 
+            if (IsExpBoosted())
+            {
+                baseExp *= 2;
+            }
+
             CallClient_NotifyAfkExp(baseExp);
             Exp += baseExp;
+        }
+
+        if (IsExpBoosted())
+        {
+            ExpBoostTime -= 1;
         }
     }
 }

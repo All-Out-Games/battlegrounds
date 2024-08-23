@@ -178,7 +178,18 @@ public class FightClubGameManager : System<FightClubGameManager> {
                         fightTarget.Gem += amount;
                         Chat.SendMessage(target, $"Gem Given = {amount}");
                         return;
-                        
+                    }
+                    case "expbooster":
+                    {
+                        var amount = 5;
+                        if (parts.Length >= 3)
+                        {
+                            int.TryParse(parts[3], out amount);
+                        }
+                        var fightTarget = (FightPlayer)target;
+                        fightTarget.AddExpBoostTime(amount);
+                        Chat.SendMessage(target, $"Booster Given = {amount}");
+                        return;
                     }
                     default:
                         Chat.SendMessage(player, $"The item {parts[2]} is not found to be granted");

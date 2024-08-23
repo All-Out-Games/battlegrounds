@@ -220,6 +220,31 @@ public partial class FightPlayer : Player
         }
     }
 
+    private SyncVar<int> _expBoostTime = new(0);
+
+    public int ExpBoostTime
+    {
+        get => _expBoostTime;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _expBoostTime.Set(value);
+                Save.SetInt(this, "ExpBoostTime", value);
+            }
+        }
+    }
+
+    public bool IsExpBoosted()
+    {
+        return ExpBoostTime > 0;
+    }
+
+    public void AddExpBoostTime(int minutes)
+    {
+        ExpBoostTime += minutes;
+    }
+
     /// <summary>
     /// [Server Only] Try to update the level if the player has a XP that exceeds the next level's baseline.
     /// </summary>
@@ -340,6 +365,7 @@ public partial class FightPlayer : Player
         TotalDamageDealt = Save.GetInt(this, "TotalDamageDealt");
         Level = Save.GetInt(this, "Level");
         Exp = Save.GetInt(this, "Exp");
+        ExpBoostTime = Save.GetInt(this, "ExpBoostTime");
     }
     
     #region EventFunctions

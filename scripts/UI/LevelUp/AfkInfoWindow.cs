@@ -10,6 +10,7 @@ public class AfkInfoWindow : UniqueUIWindow
     [Serialized] public UIText AfkXpTotalNumber;
     [Serialized] public UIText LevelBonusNumber;
     [Serialized] public UIText ServerBonusNumber;
+    [Serialized] public UIText BoosterBonusNumber;
 
     /// <summary>
     /// Update UI. Called on player teleport to AFK (from ResourceOverlayWindow)
@@ -36,6 +37,16 @@ public class AfkInfoWindow : UniqueUIWindow
         int serverBonus = Player.AllPlayers.Count < 5 ? GlobalData.AfkUnpopulatedServerBonusExp : 0;
 
         afk = afk + levelBonus + serverBonus;
+        if (fp.IsExpBoosted())
+        {
+            BoosterBonusNumber.Text = afk.ToString();
+            afk *= 2;
+        }
+        else
+        {
+            BoosterBonusNumber.Text = "0";
+        }
+        
 
         AfkXpTotalNumber.Text = $"{afk} EXP/min";
         LevelBonusNumber.Text = levelBonus.ToString();

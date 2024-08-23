@@ -2,7 +2,7 @@
 493921239041
 76509294500746 1723599135909662800
 {
-  "name": "VIP Bonus",
+  "name": "VIP Bonus Num",
   "local_enabled": true,
   "local_position": {
     "X": 0,
@@ -49,7 +49,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "To be added",
+    "text": "0",
     "settings": {
       "font_id": "$AO/fonts/Barlow-ExtraBold.ttf",
       "size": 35,

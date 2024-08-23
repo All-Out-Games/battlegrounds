@@ -68,10 +68,17 @@ public static class LevelingData
         {
             return (int)float.Ceiling(xp * 1.2f);
         }
-        else
+        return xp;
+    }
+
+    public static int GetBoostedExp(int xp, FightPlayer fp)
+    {
+        if (fp.IsExpBoosted())
         {
-            return xp;
+            xp *= 2;
         }
+
+        return xp;
     }
 
     public static bool DoubleXP(DateTime timeNow)
