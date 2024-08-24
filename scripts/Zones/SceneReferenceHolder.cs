@@ -17,12 +17,18 @@ public class SceneReferenceHolder : Component
         }
         
     }
-
+    
+    
     [Serialized] public Zone CentralHubZone;
     [Serialized] public Zone PvpZone;
     [Serialized] public Zone AfkZone;
     
     [Serialized] public Entity TotalDarknessOverlay;
     [Serialized] public Edge_Collider PvpZoneEdge;
+    
+    public static UI.NineSlice WhiteFrameSlice = new UI.NineSlice() { slice = new Vector4(34, 34, 34, 34), sliceScale = 0.5f };
     [Serialized] public Texture FrameWhite;
+    [Serialized] public Texture FrameWhiteBottom;
+    [Serialized] public Texture CheckMark;
+    [Serialized] public Texture SparkIcon;
 }

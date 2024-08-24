@@ -9,7 +9,6 @@ public partial class BillboardSign : Component
     [Serialized] public float HalfWidth = 0.5f;
 
     public float NearSinceTime;
-    public static UI.NineSlice WhiteFrameSlice = new UI.NineSlice() { slice = new Vector4(34, 34, 34, 34), sliceScale = 0.5f };
 
     public override void Update()
     {
@@ -47,7 +46,7 @@ public partial class BillboardSign : Component
             });
 
             IM.SetNextSerial(bgSerial);
-            var slice = WhiteFrameSlice;
+            var slice = SceneReferenceHolder.WhiteFrameSlice;
             slice.sliceScale *= 4;
             UI.Image(actualTextRect.Grow(0.15f), FightClubGameManager.References.FrameWhite, Vector4.White, slice);
         }

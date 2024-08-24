@@ -2,6 +2,7 @@
 using AO;
 using Assembly.scripts;
 using Assembly.scripts.UI;
+using Shop = Assembly.scripts.UI.Shop;
 
 public partial class UIManager : System<UIManager>
 {
@@ -23,7 +24,11 @@ public partial class UIManager : System<UIManager>
     public string PopupTxt;
     public float PopupRemainingTime;
 
-    private FontAsset _defaultFont;
+    public float TimeShopOpened;
+    public bool IsShowingShopWindow;
+
+
+    public static FontAsset DefaultFont = Assets.KeepLoaded<FontAsset>("$AO/fonts/Barlow-SemiBold.ttf");
     private UI.ButtonSettings _defaultButtonSettings;
     private UI.TextSettings _defaultTextSettings;
 
@@ -32,10 +37,9 @@ public partial class UIManager : System<UIManager>
     private float _timerNextGlobalUIUpdate;
     public override void Awake()
     {
-        _defaultFont = Assets.GetAsset<FontAsset>("$AO/fonts/Barlow-SemiBold.ttf");
         _defaultButtonSettings = new UI.ButtonSettings()
             { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") };
-        _defaultTextSettings = new UI.TextSettings() { Font = _defaultFont, Size = 24, Color = Vector4.LightBlue };
+        _defaultTextSettings = new UI.TextSettings() { Font = DefaultFont, Size = 24, Color = Vector4.LightBlue };
     }
     
     public override void Start()
@@ -217,6 +221,78 @@ public partial class UIManager : System<UIManager>
             }
         }
     }
+    
+    public Rect DoNormalWindowFrame(string title, Vector4 titleColor, Texture icon, float width, float height, ref bool isShowing, float timeOpened, bool modalBg = false)
+    {
+        if (modalBg)
+        {
+            UI.Image(UI.ScreenRect, null, new Vector4(0, 0, 0, 0.8f));
+        }
+
+        var windowRect = UI.SafeRect.CenterRect();
+        windowRect = windowRect.Grow(height*0.5f, width*0.5f, height*0.5f, width*0.5f);
+        using var _8 = AnimateWindowIn(ref windowRect, timeOpened);
+
+        UI.Blocker(windowRect, title);
+        UI.Image(windowRect, FightClubGameManager.References.FrameWhite, Vector4.White, SceneReferenceHolder.WhiteFrameSlice);
+
+        // title/top row
+        {
+            UI.PushLayerRelative(1); using var _2 = AllOut.Defer(UI.PopLayer);
+
+            var iconRect = windowRect.TopLeftRect().Grow(40, 40, 40, 40).Offset(0, -5);
+            UI.Image(iconRect, icon, Vector4.White);
+            var textRect = iconRect.CenterRect().Grow(25, 0, 25, 0).Offset(25, 0);
+            UI.Text(textRect, title, new UI.TextSettings(){
+                Font = DefaultFont,
+                Color = titleColor,
+                Outline = true,
+                OutlineThickness = 3,
+                HorizontalAlignment = UI.HorizontalAlignment.Left,
+                VerticalAlignment = UI.VerticalAlignment.Center,
+                Size = 60,
+            });
+
+            var exitRect = windowRect.TopRightRect().Grow(20, 20, 20, 20).Offset(-35, -35);
+            var exitResult = UI.Button(exitRect, "EXIT_BUTTON", GetButtonSettings(Assets.KeepLoaded<Texture>("")), new UI.TextSettings());
+            if (exitResult.Clicked)
+            {
+                isShowing = false;
+            }
+        }
+
+        return windowRect;
+    }
+    
+    public void OpenShop()
+    {
+        TimeShopOpened = Time.TimeSinceStartup;
+    }
+    
+    
+    public AllOut.DeferImpl AnimateWindowIn(ref Rect rect, float openTime)
+    {
+        float t = Ease.T(Time.TimeSinceStartup - openTime, 0.1f);
+        rect = rect.Offset(Ease.InQuart(1 - t) * -100, 0);
+        float a = Ease.OutQuart(t);
+        return UI.PUSH_COLOR_MULTIPLIER(a);
+    }
+    
+    public UI.ButtonSettings GetButtonSettings(Texture sprite)
+    {
+        var bs = new UI.ButtonSettings()
+        {
+            Color           = new Vector4(1, 1, 1, 1),
+            HoveredColor    = new Vector4(0.9f, 0.9f, 0.9f, 1),
+            PressedColor    = new Vector4(0.7f, 0.7f, 0.7f, 1),
+            DisabledColor   = new Vector4(0.5f, 0.5f, 0.5f, 1),
+            ClickedColor    = new Vector4(1, 1, 1, 1),
+            ColorMultiplier = new Vector4(1, 1, 1, 1),
+            PressScaling    = 0.8f,
+            Sprite = sprite,
+        };
+        return bs;
+    }
 
     public override void Update()
     {
@@ -230,7 +306,7 @@ public partial class UIManager : System<UIManager>
                 // Draw the popup
                 {
                     var centerRect = UI.ScreenRect.CenterRect().Grow(235).CutBottom(50);
-                    UI.Text(centerRect, $"{PopupTxt}", new UI.TextSettings() {Font = _defaultFont, Size = 40, Color = Vector4.Black, 
+                    UI.Text(centerRect, $"{PopupTxt}", new UI.TextSettings() {Font = DefaultFont, Size = 40, Color = Vector4.Black, 
                         VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center,
                         WordWrap = true, Outline = true, OutlineColor = Vector4.White, OutlineThickness = 1f
                     });
@@ -242,6 +318,12 @@ public partial class UIManager : System<UIManager>
                 PopupTxt = "";
             }
             
+        }
+        // Shop (Temporary, waiting for Engine Feature)
+        if (IsShowingShopWindow)
+        {
+            using var _1 = UI.PUSH_ID("SHOP_WINDOW");
+            IsShowingShopWindow = Shop.Instance.DrawShop("Shop", ShopData.MainWorldShopDefinition);
         }
 
         // Global UI Update
