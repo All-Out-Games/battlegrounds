@@ -489,7 +489,7 @@ public static class ShopData
 
             new ShopCategory()
             {
-                Name = "Passes",
+                Name = "Enhancements",
                 BackgroundColor = new Vector4((float)0xB5 / 255.0f, (float)0x7A / 255.0f, (float)0xF8 / 255.0f, 1),
                 Rows = new List<ShopRow>()
                 {
@@ -499,7 +499,6 @@ public static class ShopData
                         Entries = new()
                         {
                             new () { ItemId = "xp_booster_5",     Icons = new() { "" } },
-                            // new () { ItemId = "vip",               Icons = new() { "" } },
                             new () { ItemId = "xp_booster_15",          Icons = new() { "" } },
                             new () { ItemId = "xp_booster_30",             Icons = new() { "" } },
                         },
@@ -523,9 +522,9 @@ public static class ShopData
         new () { Id = "starter_pack3",        ProductId = "6580a7ea1b8adea4b7fe6beb", Currency = Currency.Sparks, Kind = ItemKind.Pass, },
 
 
-        new () { Id = "xp_booster_5",                  ProductId = "6580ad4e1d3ed3881220a6b1", Currency = Currency.Sparks, Kind = ItemKind.Pass, },
-        new () { Id = "xp_booster_15",          ProductId = "6580ad5d1efc21b35e8169d0", Currency = Currency.Sparks, Kind = ItemKind.Pass, },
-        new () { Id = "xp_booster_30",             ProductId = "6581fbd81abd39db1febe7ec", Currency = Currency.Sparks, Kind = ItemKind.Pass, },
+        new () { Id = "xp_booster_5",                  ProductId = "66c959936203839a49e78260", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
+        new () { Id = "xp_booster_15",          ProductId = "66c959ad7c153a47bed5102f", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
+        new () { Id = "xp_booster_30",             ProductId = "66c95a367c153a47bed51030", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
         
     };
 

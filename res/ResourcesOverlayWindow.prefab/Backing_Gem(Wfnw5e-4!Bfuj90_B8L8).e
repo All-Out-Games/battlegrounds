@@ -1,9 +1,9 @@
 13
-545460846593
-72722084547694 1723597618597496300
+455266533377
+98930023329784 1724473887720719100
 {
-  "name": "AfkEffectiveNess",
-  "local_enabled": false,
+  "name": "Backing_Gem",
+  "local_enabled": true,
   "local_position": {
     "X": 0,
     "Y": 0
@@ -13,38 +13,12 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "102096133864601:1724475156194447200",
-  "parent": "276658714702518:1722471081886922000"
+  "next_sibling": "98930023305549:1724473887720709400",
+  "parent": "98930023147747:1724473887720647800"
 },
 {
   "cid": 1,
-  "aoid": "72722084715851:1723597618597563100",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIRect",
-  "data": {
-    "min": {
-      "X": 0.5000000000000000,
-      "Y": 0.5000000000000000
-    },
-    "max": {
-      "X": 0.5000000000000000,
-      "Y": 0.5000000000000000
-    },
-    "insets": {
-      "X": -50,
-      "Y": -100,
-      "Z": -50,
-      "W": -100
-    },
-    "offset": {
-      "X": 0,
-      "Y": -350
-    }
-  }
-},
-{
-  "cid": 2,
-  "aoid": "5751980926358:1723656669896105200",
+  "aoid": "98930023689778:1724473887720863600",
   "component_type": "Internal_Component",
   "internal_component_type": "UIButton",
   "data": {
@@ -86,9 +60,9 @@
         "W": 1
       },
       "press_scaling": 0,
-      "sprite": "$AO/new/Large Menu Buttons/large_button.png",
+      "sprite": "UI/LargeMenuButtons/large_button.png",
       "sprite_hovered": "",
-      "sprite_pressed": "$AO/new/Large Menu Buttons/large_button.png",
+      "sprite_pressed": "",
       "sprite_padding": {
         "X": 0,
         "Y": 0,
@@ -100,7 +74,7 @@
           "X": 58,
           "Y": 370,
           "Z": 114,
-          "W": 194
+          "W": 240
         },
         "slice_scale": 50
       },

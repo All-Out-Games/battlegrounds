@@ -27,7 +27,13 @@ public class ResourceOverlayWindow : BaseUIWindow
     [Serialized] public AfkInfoWindow AfkInfoWindow;
     [Serialized] public UIText AfkExpText;
     [Serialized] public UIButton AfkInfoBtn;
-    
+
+    [Serialized] public Entity ExpPotionIndicator;
+    [Serialized] public UIText ExpBoostTime;
+
+    [Serialized] public Entity Shop;
+    [Serialized] public UIButton ShopBtn;
+
     private Coroutine _coroutineC;
     private int _currentLevel;
     private int _currentExp;
@@ -44,6 +50,7 @@ public class ResourceOverlayWindow : BaseUIWindow
         // For the first second in the game, we do not pop the level up window
         // because we don't want the player to see the level up screen
         AfkInfoBtn.OnClicked += ShowAfkWindow;
+        ShopBtn.OnClicked += OnShopButtonClicked;
     }
 
     public override void OnDestroy()
@@ -53,6 +60,7 @@ public class ResourceOverlayWindow : BaseUIWindow
         
         _localPlayer.PlayerSwitchZoneEvent -= SetSkillButton;
         _skillBookButton.OnClicked -= OnSkillBtnClicked;
+        ShopBtn.OnClicked -= OnShopButtonClicked;
         
     }
 
@@ -109,6 +117,7 @@ public class ResourceOverlayWindow : BaseUIWindow
     {
         // Log.Error($"STATUS RECEIVED : {status}");
         _sidebar.LocalEnabled = status != (int)PlayerStatus.Combat;
+        Shop.LocalEnabled = status != (int)PlayerStatus.Combat;
         if (status == (int)PlayerStatus.AFK)
         {
             AfkInfoBtn.Entity.LocalEnabled = true;
@@ -120,11 +129,25 @@ public class ResourceOverlayWindow : BaseUIWindow
         }
 
     }
+    
 
     public void CalculateAfkExp()
     {
         int exp = AfkInfoWindow.CalculateAfkInfo();
         AfkExpText.Text = $"+{exp}/min";
+    }
+
+    public void UpdateExpBoosterTime(int boostMin)
+    {
+        if (boostMin > 0)
+        {
+            ExpPotionIndicator.LocalEnabled = true;
+            ExpBoostTime.Text = $"{boostMin} min";
+        }
+        else
+        {
+            ExpPotionIndicator.LocalEnabled = false;
+        }
     }
 
     public void ShowAfkWindow()
@@ -154,6 +177,14 @@ public class ResourceOverlayWindow : BaseUIWindow
         else
         {
             UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.AbilityLoadoutPagePath);
+        }
+    }
+    
+    public void OnShopButtonClicked()
+    {
+        if (!UIManager.Instance.IsShowingShopWindow)
+        {
+            UIManager.Instance.OpenShop();
         }
     }
 

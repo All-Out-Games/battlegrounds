@@ -237,7 +237,7 @@ PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 66c7a90f60ed1ef1ffbc3eae - 3691909516463296595
 Rage_Aura.prefab - .ao - 66ad96d6cf7a5e4159a6c44a - 2127671326789894962
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
-ResourcesOverlayWindow.prefab - .ao - 66c8ed2260ed1ef1ffbc40f5 - 4953159310318233163
+ResourcesOverlayWindow.prefab - .ao - 66c9698a60ed1ef1ffbc40f8 - 10858109216367496706
 SFX/Effects/backstab_attack.wav - .ao - 66ad89becf7a5e4159a6c436 - 16112955543606674532
 SFX/Effects/backstab_teleport.wav - .ao - 66ad89becf7a5e4159a6c438 - 8158155750117357873
 SFX/Effects/backstab_victim.wav - .ao - 66ad89becf7a5e4159a6c437 - 1465047161017477406
@@ -357,6 +357,8 @@ UI/AbilityBook/upgrade_arrow.png - .ao - 66bbd8cf83ee6f3bbee19317 - 193460394695
 UI/AbilityBook/upgrade_arrow.png - .ao.ios - 66bbd8cf83ee6f3bbee19315 - 12895922437930199644
 UI/Bars/border.png - .ao - 66b13b85cf7a5e4159a6c4a6 - 13076663795422265221
 UI/Bars/border.png - .ao.ios - 66b13b85cf7a5e4159a6c4a7 - 11121674596510720087
+UI/CheckMark.png - .ao - 66c9698b60ed1ef1ffbc40fa - 10325974098968886308
+UI/CheckMark.png - .ao.ios - 66c9698b60ed1ef1ffbc40fb - 13539075324007794126
 UI/LargeMenuButtons/Large Menu Buttons/large_button.png - .ao - 66aad25bcf7a5e4159a6b76b - 18231134355042940051
 UI/LargeMenuButtons/Large Menu Buttons/large_button.png - .ao.ios - 66aad25bcf7a5e4159a6b766 - 3983896806962664064
 UI/LargeMenuButtons/Large Menu Buttons/large_button_highlight.png - .ao - 66aad25bcf7a5e4159a6b768 - 5076871486006783888
@@ -529,6 +531,10 @@ UI/SkillTree/tree_selected.png - .ao - 66981701b45eb9e8339c2000 - 96853644919205
 UI/SkillTree/tree_selected.png - .ao.ios - 66981701b45eb9e8339c2002 - 5278201373430736246
 UI/TotalDarknessOverlay.png - .ao - 6685d28fb45eb9e8339c10c0 - 5181732608959223275
 UI/TotalDarknessOverlay.png - .ao.ios - 6685d28fb45eb9e8339c10c2 - 9412426728575774527
+UI/UI_Frame_White.png - .ao - 66c9698c60ed1ef1ffbc4100 - 12058232831434450668
+UI/UI_Frame_White.png - .ao.ios - 66c9698c60ed1ef1ffbc40ff - 13978267607221532366
+UI/XPBar/PotionYellow.png - .ao - 66c9698c60ed1ef1ffbc40fe - 10760536870049653460
+UI/XPBar/PotionYellow.png - .ao.ios - 66c9698d60ed1ef1ffbc4103 - 8469035805122815564
 UI/XPBar/Sparkles/FAT_eggs.png - .ao - 66b6afab83ee6f3bbee18f53 - 11006314216743585575
 UI/XPBar/Sparkles/FAT_eggs.png - .ao.ios - 66b6afab83ee6f3bbee18f52 - 3217209895957304719
 UI/XPBar/Sparkles/FAT_eggs.spine - .ao - 66b6afab83ee6f3bbee18f51 - 17103554799112929057

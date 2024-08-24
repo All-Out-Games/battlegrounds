@@ -267,6 +267,7 @@ public partial class UIManager : System<UIManager>
     public void OpenShop()
     {
         TimeShopOpened = Time.TimeSinceStartup;
+        IsShowingShopWindow = true;
     }
     
     
