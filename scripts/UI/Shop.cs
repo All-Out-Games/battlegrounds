@@ -96,7 +96,7 @@ public class Shop : System<Shop>
                 Rect iconsRect = entryCutRect.InsetBottom(85);
                 if (hasDescription)
                 {
-                    iconsRect = iconsRect.Offset(150, 0);
+                    iconsRect = iconsRect.Offset(0, 0);
                 }
                 if (product.Icon != null)
                 {
@@ -105,7 +105,7 @@ public class Shop : System<Shop>
                 if (hasDescription)
                 {
                     var color = new Vector4((float)0xB1 / 255.0f, (float)0xF3 / 255.0f, (float)0xFA / 255.0f, 1);
-                    UI.Text(iconsRect.Offset(-250, 0).Inset(0, 100, 0, 100), product.Description, new UI.TextSettings() {
+                    UI.Text(iconsRect.Offset(0, -75).Inset(0, 0, 0, 0), product.Description, new UI.TextSettings() {
                         Font = UIManager.DefaultFont,
                         Size = 30,
                         Color = color,
@@ -120,7 +120,7 @@ public class Shop : System<Shop>
 
             UI.Text(titleTextRect, product.Name, new UI.TextSettings() {
                 Font = UIManager.DefaultFont,
-                Size = 42 * item.TitleSizeMultiplier,
+                Size = 36 * item.TitleSizeMultiplier,
                 Color = new Vector4((float)0xFE / 255.0f, (float)0xCB / 255.0f, (float)0x34 / 255.0f, 1),
                 Outline = true,
                 OutlineThickness = 3,
@@ -133,7 +133,7 @@ public class Shop : System<Shop>
             var costRect = buyButtonResult.Rect.BottomRect().GrowTop(75);
             UI.Image(costRect, FightClubGameManager.References.FrameWhiteBottom, new Vector4(0, 0, 0, 0.25f));
             var costTextRect = UI.Text(costRect, $"   {product.Price}", buyButtonTextSettings);
-            UI.Image(costTextRect.LeftRect().FitAspect(FightClubGameManager.References.SparkIcon.Aspect, Rect.FitAspectKind.KeepHeight).Inset(4).Offset(16, 0), FightClubGameManager.References.SparkIcon);
+            UI.Image(costTextRect.LeftRect().FitAspect(FightClubGameManager.References.SparkIcon.Aspect, Rect.FitAspectKind.KeepHeight).Inset(5).Offset(0, 0), FightClubGameManager.References.SparkIcon);
         }
 
         if (buyButtonResult.Clicked)
@@ -420,6 +420,12 @@ public class Shop : System<Shop>
                     player.ServerGiveTemporaryBuff(StatModifierKind.ClickPower, 2.0f, MINUTES(30));
                     return (true, "");
                 }*/
+                case "xp_booster_5": player.AddExpBoostTime(5);
+                    return (true, "");
+                case "xp_booster_15": player.AddExpBoostTime(15);
+                    return (true, "");
+                case "xp_booster_30": player.AddExpBoostTime(30);
+                    return (true, "");
             }
 
             Log.Error($"Unknown boost: {item.Id}");

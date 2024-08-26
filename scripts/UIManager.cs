@@ -254,7 +254,7 @@ public partial class UIManager : System<UIManager>
             });
 
             var exitRect = windowRect.TopRightRect().Grow(20, 20, 20, 20).Offset(-35, -35);
-            var exitResult = UI.Button(exitRect, "EXIT_BUTTON", GetButtonSettings(Assets.KeepLoaded<Texture>("")), new UI.TextSettings());
+            var exitResult = UI.Button(exitRect, "EXIT_BUTTON", GetButtonSettings(Assets.KeepLoaded<Texture>("UI/AbilityBook/AbilityInfo/quit_cross_button.png")), new UI.TextSettings());
             if (exitResult.Clicked)
             {
                 isShowing = false;
