@@ -313,31 +313,6 @@ public class Shop : System<Shop>
         return result;
     }
 
-    public void Purchase(FightPlayer player, string itemId)
-    {
-        var item = ShopData.Items.First(i => i.Id == itemId);
-
-        if (Network.IsClient)
-        {
-            return;
-        }
-
-        if (item.Currency == ShopData.Currency.Sparks)
-        {
-            Log.Error("Tried to purchase sparks item. This must be done through Purchasing.PromptPurchase");
-            return;
-        }
-
-        // We get here if the item was purchased with coins or trophies and they could afford it
-
-        var (success, _) = GrantItem(player, item);
-        if (!success)
-        {
-            Log.Error($"Failed to grant item: {item.Id}. Cannot complete purhcase!");
-            return;
-        }
-    }
-
     public bool OnPurchase(Player purchaser, string productId)
     {
         var item = ShopData.Items.FirstOrDefault(i => i.ProductId == productId);
@@ -381,24 +356,12 @@ public class Shop : System<Shop>
         {
             switch (item.Id)
             {
-                case "vip":
-                case "2x_trophies":
-                case "2x_money":
-                case "teleporter":
-                case "boss_autoclicker":
-                case "pet_equip_cap_1":
-                case "pet_equip_cap_2":
-                case "pet_equip_cap_3":
-                case "pet_storage_cap_1":
-                case "pet_storage_cap_2":
-                case "pet_storage_cap_3":
-                case "pet_storage_cap_4":
-                case "pet_storage_cap_5":
-                {
-                    // TODO
-                    // player.ServerOnBuyGamePass(item.Id);
+                case "starter_pack1": player.Exp += LevelingData.BaselineXp[4];
                     return (true, "");
-                }
+                case "starter_pack2": player.Exp += LevelingData.BaselineXp[9];
+                    return (true, "");
+                case "starter_pack3": player.Exp += LevelingData.BaselineXp[14];
+                    return (true, "");
                 default:
                     Log.Error($"Unknown pass: {item.Id}");
                     return (false, "");
@@ -509,6 +472,30 @@ public static class ShopData
                             new () { ItemId = "xp_booster_30",             Icons = new() { "" } },
 
                         },
+                    },
+                    new ShopRow()
+                    {
+                        DisplaySize = ItemDisplaySize.SingleBigEntry,
+                        Entries = new()
+                        {
+                            new () { ItemId = "starter_pack1",     Icons = new() { "" } },
+                        }
+                    },
+                    new ShopRow()
+                    {
+                        DisplaySize = ItemDisplaySize.SingleBigEntry,
+                        Entries = new()
+                        {
+                            new () { ItemId = "starter_pack2",     Icons = new() { "" } },
+                        }
+                    },
+                    new ShopRow()
+                    {
+                        DisplaySize = ItemDisplaySize.SingleBigEntry,
+                        Entries = new()
+                        {
+                            new () { ItemId = "starter_pack3",     Icons = new() { "" } },
+                        }
                     }
                 }
             },
@@ -524,9 +511,9 @@ public static class ShopData
 
     public static List<Item> Items = new List<Item>()
     {
-        new () { Id = "starter_pack1",        ProductId = "6580a7d41d3ed3881220a6b0", Currency = Currency.Sparks, Kind = ItemKind.Pass, },
-        new () { Id = "starter_pack2",        ProductId = "6580a7e01b8adea4b7fe6bea", Currency = Currency.Sparks, Kind = ItemKind.Pass, },
-        new () { Id = "starter_pack3",        ProductId = "6580a7ea1b8adea4b7fe6beb", Currency = Currency.Sparks, Kind = ItemKind.Pass, },
+        new () { Id = "starter_pack1",        ProductId = "66cce39be9d028e4047b4687", Currency = Currency.Sparks, Kind = ItemKind.Pass, },
+        new () { Id = "starter_pack2",        ProductId = "66cce3e1007431448b01c811", Currency = Currency.Sparks, Kind = ItemKind.Pass, },
+        new () { Id = "starter_pack3",        ProductId = "66cce47ee9d028e4047b468a", Currency = Currency.Sparks, Kind = ItemKind.Pass, },
 
 
         new () { Id = "xp_booster_5",                  ProductId = "66c959936203839a49e78260", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
