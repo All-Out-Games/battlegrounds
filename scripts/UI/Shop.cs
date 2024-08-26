@@ -499,10 +499,11 @@ public static class ShopData
                         Entries = new()
                         {
                             new () { ItemId = "xp_booster_5",     Icons = new() { "" } },
-                            new () { ItemId = "xp_booster_15",          Icons = new() { "" } },
+                            new () { ItemId = "xp_booster_15",             Icons = new() { "" } },
                             new () { ItemId = "xp_booster_30",             Icons = new() { "" } },
+
                         },
-                    },
+                    }
                 }
             },
             
@@ -551,8 +552,6 @@ public static class ShopData
         SingleBigEntry,
         DoubleEntry,
         TripleEntry,
-
-        EggEntry,
     }
 
     public class ShopRow
@@ -575,8 +574,6 @@ public static class ShopData
 
     public enum ItemKind
     {
-        Egg,
-        Pet,
         Boost,
         Pass,
         Coins,
