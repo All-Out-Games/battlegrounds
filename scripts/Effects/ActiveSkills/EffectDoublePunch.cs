@@ -84,7 +84,7 @@ public class EffectDoublePunch : FightEffect
 
         if (hit)
         {
-            DamageableObject other = rc.Entity.GetComponent<DamageableObject>();
+            DamageableObject other = rc.Collider.GetComponent<DamageableObject>();
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
             // Effect
             if (other is PlayerCollisionChild fdb)

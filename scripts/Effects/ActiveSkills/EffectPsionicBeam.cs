@@ -42,7 +42,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
     private float _angleHigh;
     private Vector2 _eyePos;
     private float _rayLength;
-    private List<Entity> _interactedEntities;
+    private List<Collider> _interactedEntities;
     private bool _enhanced;
     
     // Carve Trail
@@ -74,7 +74,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
         FightPlayer.SetFacingDirection(AbilityPositionOrDirection.X >= 0);
         FightPlayer.UnsetAnimTrigger("psibeam_end");
         FightPlayer.SetAnimTrigger("psibeam");
-        _interactedEntities = new List<Entity>();
+        _interactedEntities = new List<Collider>();
         
         float targetAngle = FightClubUtils.AngleBetween(Vector2.Right,AbilityPositionOrDirection);
         _angleHigh = targetAngle + EffectConfig.PsionicBeamConfig.Degrees;
@@ -160,13 +160,13 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
         if (AO.Physics.RaycastWithWhitelist(_eyePos, _rayEnd - _eyePos, _rayLength, fpInRadius, new Entity[] { },
                 out Physics.RaycastHit hit))
         {
-            if (_interactedEntities.Contains(hit.Entity))
+            if (_interactedEntities.Contains(hit.Collider))
             {
                 return;
             }
-            _interactedEntities.Add(hit.Entity);
+            _interactedEntities.Add(hit.Collider);
             
-            PlayerCollisionChild fp = hit.Entity.GetComponent<PlayerCollisionChild>();
+            PlayerCollisionChild fp = hit.Collider.GetComponent<PlayerCollisionChild>();
             if (fp != null && fp.Player != FightPlayer)
             {
                 FightPlayer.DamageInfo info =

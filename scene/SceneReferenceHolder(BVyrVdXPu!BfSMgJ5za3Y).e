@@ -26,10 +26,31 @@
     "PvpZone": "245055507665978:1722456118247311900",
     "AfkZone": "54312157995743:1723590242823276700",
     "TotalDarknessOverlay": "170660771038913:1720032136217568700",
-    "PvpZoneEdge": "109698259849242:1722575280857494700",
+    "PvpZoneEdge": "51543896878510:1724710736179634500",
     "FrameWhite": "environment/AFK_tmp/modal-9slice.png",
     "FrameWhiteBottom": "UI/UI_Frame_White.png",
     "CheckMark": "UI/CheckMark.png",
     "SparkIcon": "$AO/new/icons/sparks/spark_icon.png"
+  }
+},
+{
+  "cid": 2,
+  "aoid": "52256556716237:1724711021700520500",
+  "component_type": "Internal_Component",
+  "internal_component_type": "Light",
+  "data": {
+    "color": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 1
+    },
+    "intensity": 1,
+    "shadow_caster": false,
+    "radi": {
+      "X": 5000,
+      "Y": 5000
+    },
+    "softness": 0.1000000014901161
   }
 }

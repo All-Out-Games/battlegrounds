@@ -46,7 +46,7 @@ public class EffectShadowStep : FightEffect
             //Log.Warn($"Hit = {hit}, Entity = {rc.Entity?.Name}");
             if (hit)
             {
-                Polygon_Collider eg = rc.Entity.GetComponent<Polygon_Collider>();
+                Collider eg = rc.Collider;
                 if (eg != null)
                 {
                     dir *= 0.1f;

@@ -64,7 +64,7 @@ public class EffectIceFist : FightEffect
         
         if (hit) // If players are too close, always hit
         {
-            var other = rc.Entity.GetComponent<DamageableObject>();
+            var other = rc.Collider.GetComponent<DamageableObject>();
             if (other != null)
             {
                 FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
@@ -73,7 +73,7 @@ public class EffectIceFist : FightEffect
                 other.TakeDamage(FightPlayer, info);
                 if (lv > 4)
                 {
-                    rc.Entity.GetComponent<PlayerCollisionChild>()?.Player.AddEffect<EffectMovementSpeedChange>(FightPlayer, 1.5f,
+                    rc.Collider.GetComponent<PlayerCollisionChild>()?.Player.AddEffect<EffectMovementSpeedChange>(FightPlayer, 1.5f,
                         change =>
                         {
                             change.SpdModifier = 0.9f;
@@ -99,7 +99,7 @@ public class EffectIceFist : FightEffect
                     fp.TakeDamage(FightPlayer, info);
                     if (lv > 4)
                     {
-                        rc.Entity.GetComponent<PlayerCollisionChild>()?.Player.AddEffect<EffectMovementSpeedChange>(FightPlayer, 1.5f,
+                        rc.Collider.GetComponent<PlayerCollisionChild>()?.Player.AddEffect<EffectMovementSpeedChange>(FightPlayer, 1.5f,
                             change =>
                             {
                                 change.SpdModifier = 0.9f;

@@ -66,7 +66,7 @@ public class EffectPunch : FightEffect
         info.SkillKey = FightPlayer.PunchLevel == 1 ? "Punch" : $"Punch{FightPlayer.PunchLevel}";
         if (hit) // If players are too close, always hit
         {
-            var other = rc.Entity.GetComponent<DamageableObject>();
+            var other = rc.Collider.GetComponent<DamageableObject>();
             if (other != null)
             {
                 

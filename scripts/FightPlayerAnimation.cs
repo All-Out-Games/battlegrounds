@@ -294,7 +294,8 @@ public partial class FightPlayer
 
     public void UnsetAnimTrigger(string variableName)
     {
-        SpineAnimator.SpineInstance.StateMachine.UnsetTrigger(variableName);
+        // This is now intrinsic behavior. To be removed
+        // SpineAnimator.SpineInstance.StateMachine.UnsetTrigger(variableName);
     }
 
     public void SetBonePosition(string bone, Vector2 pos)
