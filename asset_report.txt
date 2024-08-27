@@ -252,6 +252,7 @@
 37008 bytes - environment/CentralHub/Dummy_Body.png.ao
 35040 bytes - SFX/UI/enter_pvp_arena.wav.ao
 34056 bytes - SFX/Effects/knocked_down2.wav.ao
+33184 bytes - SFX/UI/gain_exp_afk_area.wav.ao
 30656 bytes - SceneProps_tmp/aura_circle.png.ao.ios
 29784 bytes - SFX/Effects/backstab_victim.wav.ao
 29104 bytes - environment/AFK_tmp/rock_2.png.ao.ios
@@ -501,6 +502,7 @@
 6328 bytes - SFX/Effects/punch_strong.wav.ao
 6320 bytes - SFX/Effects/rollout_start.wav.ao
 6256 bytes - environment/AFK_tmp/rock_3.png.ao.ios
+6128 bytes - SFX/UI/kill_elimination.wav.ao
 5976 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills_icon_pressed.png.ao.ios
 5976 bytes - UI/LargeMenuButtons/skills_icon_pressed.png.ao.ios
 5944 bytes - environment/AFK_tmp/rock_3.png.ao

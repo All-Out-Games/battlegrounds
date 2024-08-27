@@ -291,6 +291,8 @@ SFX/Objects/bear_trap-appear_set_up.wav - .ao - 66ad2601cf7a5e4159a6c402 - 15602
 SFX/Objects/bear_trap-snap_closed.wav - .ao - 66ad2601cf7a5e4159a6c403 - 5698733051945858040
 SFX/Objects/fountain_loop.wav - .ao - 66b50143cf7a5e4159a6c51e - 17123349947514671954
 SFX/UI/enter_pvp_arena.wav - .ao - 66b50143cf7a5e4159a6c520 - 1602682121109635273
+SFX/UI/gain_exp_afk_area.wav - .ao - 66ce0f3860ed1ef1ffbc4c5d - 369121609167767913
+SFX/UI/kill_elimination.wav - .ao - 66ce0f3860ed1ef1ffbc4c5c - 18003554981030637491
 SFX/UI/open_shop.wav - .ao - 66b50143cf7a5e4159a6c522 - 15967314141189846510
 SFX/UI/open_skill_menu.wav - .ao - 66b50144cf7a5e4159a6c524 - 2202298359802231256
 SFX/UI/ui_button.wav - .ao - 66ad110fcf7a5e4159a6c3ea - 6331010140746818706

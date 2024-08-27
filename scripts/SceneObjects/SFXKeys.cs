@@ -101,7 +101,9 @@ public static class SFXKeys
 
     public static AudioAsset SkillShopAudio = Assets.GetAsset<AudioAsset>("SFX/UI/open_shop.wav");
     public static AudioAsset SkillPageAudio = Assets.GetAsset<AudioAsset>("SFX/UI/open_skill_menu.wav");
+    public static AudioAsset AFKAudio = Assets.GetAsset<AudioAsset>("SFX/UI/gain_exp_afk_area.wav");
+    public static AudioAsset EliminationAudio = Assets.GetAsset<AudioAsset>("SFX/UI/kill_elimination.wav");
 
     #endregion
-    
+
 }

@@ -1,5 +1,6 @@
 ﻿using AO;
 using Assembly.scripts;
+using Assembly.scripts.SceneObjects;
 
 // This class is for events that are scoped to the player.
 
@@ -178,6 +179,7 @@ public partial class FightPlayer
         if (IsLocal && PlayerStatus == PlayerStatus.Combat)
         {
             FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"EXP+{xp}");
+            SFX.Play(SFXKeys.EliminationAudio, new SFX.PlaySoundDesc());
         }
     }
     
@@ -188,6 +190,7 @@ public partial class FightPlayer
         {
             FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"EXP+{xp}");
             _overlay.CalculateAfkExp();
+            SFX.Play(SFXKeys.AFKAudio, new SFX.PlaySoundDesc());
         }
     }
     
