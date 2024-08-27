@@ -48,7 +48,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "$AO/new/main_menu/gems/gem_resource_icon.png",
+    "sprite": "UI/Glory/glory_shines.png",
     "tint": {
       "X": 1,
       "Y": 1,

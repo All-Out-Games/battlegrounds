@@ -534,7 +534,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig SpoonThrowConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Spoon Throw",
-        DescriptionTextKey = "Telekinetically throw a spoon in a direction that deals damage to players struck.",
+        DescriptionTextKey = "Telekinetically throw a spoon in a direction that deals damage.",
         UpgradeTextKey = "*: Cooldown -1\n **: Damage +1\n ***: Damage +1\n ****: Range +2",
         BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = "%OVERRIDE%",
@@ -561,7 +561,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig BefuddleConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Befuddle",
-        DescriptionTextKey = $"Project a cloud of psychic energy that confuses enemy for {EffectConfig.ProjectileConfig.BefuddleConfusionTime}s.",
+        DescriptionTextKey = $"Project a cloud of energy that confuses enemy for {EffectConfig.ProjectileConfig.BefuddleConfusionTime}s.",
         UpgradeTextKey = "*: Cooldown -1\n **: Cooldown -1\n ***: Cooldown -1\n ****: Range +2",
         BaseDamageKey = EffectConfig.ProjectileConfig.BefuddleDamageBase,
         RangeDescriptionKey = "%OVERRIDE%",
@@ -636,7 +636,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig ConcentrateConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Concentration",
-        DescriptionTextKey = $"You gain more health from SelfHeal and Regeneration. If your SelfHeal gets interrupted, you still recover some health and get Rage for {EffectConfig.SelfHealConfig.ConcentrateRageTime}s.",
+        DescriptionTextKey = $"Gain more health from Self-Heal and Regeneration. If Self-Heal is interrupted, recover some health and gain Rage for {EffectConfig.SelfHealConfig.ConcentrateRageTime}s.",
         IconPath = "AbilityIcon_Merged/psionic/concentration.png",
         RangeDescriptionKey = "Passive",
         UnlockLevel = 21,
@@ -754,7 +754,7 @@ public static partial class SkillConfig
     {
         DisplayName = "Psychic Mastery",
         DescriptionTextKey =
-            "Become one with your powers. Your Psybolt is larger, and your Psionic Beam absorbs health on each hit.",
+            "Become one with your powers! \n Psybolt: Enhance size and knockback; \n Psionic Beam: Absorbs health.",
         RangeDescriptionKey = "Passive",
         IconPath = "AbilityIcon_Merged/psionic/psychic_mastery.png",
         UnlockLevel = 29,
@@ -776,7 +776,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig InvisibilityConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = $"Turn invisible for {EffectConfig.InvisibilityConfig.InvisTime} seconds. Being hit by a projectile will knock you out of invisibility!",
+        DescriptionTextKey = $"Turn invisible for {EffectConfig.InvisibilityConfig.InvisTime} seconds. Being hit by a projectile will end your invisibility early!",
         UpgradeTextKey = "*: Cooldown -1\n **: Cooldown -1\n ***: Duration +1\n ****: Boost Speed +10% During Effect",
         CooldownKey = "%OVERRIDE%",
         IconPath = "AbilityIcon_Merged/stealth/invisibility.png",
@@ -846,7 +846,7 @@ public static partial class SkillConfig
 
     public static readonly SkillTreeNodeConfig ShurikenConfig = new SkillTreeNodeConfig()
     {
-        DescriptionTextKey = "Throw a shuriken dealing damage to other players. It will critically strike if you hit the target from behind.",
+        DescriptionTextKey = "Throw a shuriken dealing damage to other players, critically striking if you hit the target from behind.",
         UpgradeTextKey = "*: Damage +1 \n **: Cooldown -1\n ***: Damage +1\n ****: 20% More Crit Damage",
         BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = $"{EffectConfig.ProjectileConfig.ShurikenRange}m",
@@ -940,7 +940,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig NinjaMasteryConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Ninja Mastery",
-        DescriptionTextKey = "Master ninjas can throw their kunai further and their shuriken, on a successful hit, will bounce to a second target.",
+        DescriptionTextKey = "Become a master ninja! \n Backstab Kunai: Throw it further; \n Shuriken: Bounce towards a second target.",
         RangeDescriptionKey = "Passive",
         IconPath = "AbilityIcon_Merged/stealth/ninja_mastery.png",
         UnlockLevel = 28,

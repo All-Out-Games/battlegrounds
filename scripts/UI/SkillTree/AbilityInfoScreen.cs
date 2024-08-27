@@ -10,7 +10,7 @@ public class AbilityInfoScreen : Component
 
     [Serialized] private UIImage _background;
     [Serialized] private UIText _description;
-    [Serialized] private UIText _baseDmg, _atk;
+    [Serialized] private UIText _baseDmg;
     [Serialized] private UIText _cooldown;
     [Serialized] private UIText _range;
 
@@ -49,10 +49,10 @@ public class AbilityInfoScreen : Component
         else
         {
             SetNonDamageSkill(false);
-            _baseDmg.Text = (stConfig.BaseDamageKey == SkillConfig._overrideValue_
+            int dmg = (stConfig.BaseDamageKey == SkillConfig._overrideValue_
                 ? SkillConfig.GetOverrideBaseDamage(stConfig.SkillKey, FightClubUtils.GetLocalFightPlayer())
-                : stConfig.BaseDamageKey).ToString();
-            _atk.Text = FightClubUtils.GetLocalFightPlayer().CurrentAttack.ToString();
+                : stConfig.BaseDamageKey) + FightClubUtils.GetLocalFightPlayer().CurrentAttack;
+            _baseDmg.Text = dmg.ToString();
         }
     }
 

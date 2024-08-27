@@ -409,8 +409,7 @@ public static partial class SkillConfig
         {
             case "BearTrap":
                 res =
-                    $"Place a hidden bear trap that triggers on the next player to walk over it. The trap will last " +
-                    $"{EffectConfig.BearTrapConfig.TrapLifeTime + EffectConfig.BearTrapConfig.LifeTimeGrowth * (fp.GetSkillTree().GetSkillLevel("BearTrap")-1)}s seconds on the ground.";
+                    "Place a hidden bear trap that triggers on the next player to walk over it.";
                 break;
             case "LightFeet":
                 int lflv = fp.GetSkillTree().GetSkillLevel("LightFeet");
@@ -429,14 +428,14 @@ public static partial class SkillConfig
                 break;
             case "ClawSlash":
                 res =
-                    $"Slash with a razor sharp claw damaging and causing bleed. Bleed deals {EffectConfig.ClawSlashConfig.BleedDmgBase} damage per second for {EffectConfig.ClawSlashConfig.BleedTimeBase + (fp.GetSkillTree().GetSkillLevel("ClawSlash") > 4 ? 2 : 0)} seconds.";
+                    $"Slash with a razor sharp claw damaging and causing bleed that deals {EffectConfig.ClawSlashConfig.BleedDmgBase} damage per second for {EffectConfig.ClawSlashConfig.BleedTimeBase + (fp.GetSkillTree().GetSkillLevel("ClawSlash") > 4 ? 2 : 0)} seconds.";
                 break;
             case "SelfDestruct":
                 res = $"Unleash a powerful explosion that damages all nearby enemies, but also deals {EffectConfig.SelfDestructConfig.BaseSelfDmg - (fp.GetSkillTree().GetSkillLevel("SelfDestruct") > 4 ? 10 : 0)} damage to yourself.";
                 break;
             case "ShadowStep":
-                EffectConfig.ShadowStepConfig sscfg = EffectConfig.ShadowStepConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("ShadowStep"));
-                res = "Using your ninja way, teleport a short distance in the direction you're moving." + $" Also grants Shadow Armor for 2s, which blocks {sscfg.ShadowArmorAmount}damage for {sscfg.ShadowArmorEffectiveTime} time(s)";
+                EffectConfig.ShadowStepConfig sscfg = EffectConfig.ShadowStepConfig.GetDefault(int.Min(1, fp.GetSkillTree().GetSkillLevel("ShadowStep")));
+                res = "Teleport a short distance in the direction you're moving." + $" Also grants Shadow Armor for 2s, which blocks {sscfg.ShadowArmorAmount} damage for {sscfg.ShadowArmorEffectiveTime} time(s)";
                 break;
             case "Shield":
                 EffectConfig.ShieldConfig scfg =
@@ -446,14 +445,14 @@ public static partial class SkillConfig
             case "IronSkin":
                 EffectConfig.IronSkinConfig iscfg = EffectConfig.IronSkinConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("IronSkin"));
                 res =
-                    $"Harden your skin and reduce {float.Round((1f - iscfg.DmgModifer) * 100, 0)}% damage for {iscfg.Duration} seconds.";
+                    $"Harden your skin and reduce damage by {float.Round((1f - iscfg.DmgModifer) * 100, 0)}% for {iscfg.Duration} seconds.";
                 break;
             case "SelfHeal":
                 int healAmt = EffectConfig.SelfHealConfig.HealAmtBase;
                 if (fp.GetSkillTree().GetSkillLevel("SelfHeal") > 4) healAmt += 5;
                 if (fp.HasSkill("Concentrate")) healAmt += 20;
                 res =
-                    $"Channel healing energy for {EffectConfig.SelfHealConfig.ChannelTime}s to restore {healAmt} health. This channel can be interrupted by other players.";
+                    $"Channel healing energy for {EffectConfig.SelfHealConfig.ChannelTime}s to restore {healAmt} health.";
                 if (fp.HasSkill("Concentrate")) res += " You also gain Rage when you are interrupted.";
                 break;
             case "Regeneration":
@@ -462,12 +461,12 @@ public static partial class SkillConfig
                 if (fp.GetSkillTree().GetSkillLevel("Regeneration") > 3) duration += 1;
                 if (fp.HasSkill("Concentrate")) regenAmt += 2;
                 res =
-                    $"Regenerate {regenAmt} health per second over {duration}s seconds.";
+                    $"Regenerate {regenAmt} health per second over {duration}s.";
                 if (fp.GetSkillTree().GetSkillLevel("Regeneration") > 3) res += " Boost speed by 3% during this effect.";
                 break;
             case "Hypnotize":
                 res =
-                    $"Concentrate and select a target, then cause the player to fall sleep for {EffectConfig.HypnotizeConfig.HypnotizeTime + (fp.GetSkillTree().GetSkillLevel("Hypnotize") > 4 ? 1 : 0)}s. The player will wake up early if damaged.";
+                    $"Select a target, then cause the player to fall asleep for {EffectConfig.HypnotizeConfig.HypnotizeTime + (fp.GetSkillTree().GetSkillLevel("Hypnotize") > 4 ? 1 : 0)}s. The player will wake up early if damaged.";
                 break;
         }
 

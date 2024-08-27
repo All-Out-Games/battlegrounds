@@ -192,7 +192,7 @@ AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao - 66a9c97596cebaeb1f3
 AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao.ios - 66a9c97596cebaeb1f3299ab - 18224562795921330414
 AbilityIcon_Separate/x_icon_ability.png - .ao - 66a9cdbb96cebaeb1f3299ae - 2967783583052140701
 AbilityIcon_Separate/x_icon_ability.png - .ao.ios - 66a9cdbb96cebaeb1f3299af - 13164514700408627865
-AbilityLoadoutPage.prefab - .ao - 66ce112a60ed1ef1ffbc4c60 - 7318990291464123212
+AbilityLoadoutPage.prefab - .ao - 66ce1ada60ed1ef1ffbc4c7d - 12765199928354766924
 AbilityUpgradeDialog.prefab - .ao - 66bbd8cf83ee6f3bbee1931a - 2339095606238477241
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
 BattlegroundInfoOverlay.prefab - .ao - 66baba0d83ee6f3bbee191ba - 4880104689168888380
@@ -237,7 +237,7 @@ PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 66c7a90f60ed1ef1ffbc3eae - 3691909516463296595
 Rage_Aura.prefab - .ao - 66ad96d6cf7a5e4159a6c44a - 2127671326789894962
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
-ResourcesOverlayWindow.prefab - .ao - 66c9698a60ed1ef1ffbc40f8 - 10858109216367496706
+ResourcesOverlayWindow.prefab - .ao - 66ce1ad960ed1ef1ffbc4c79 - 2904168633187629861
 SFX/Effects/backstab_attack.wav - .ao - 66ad89becf7a5e4159a6c436 - 16112955543606674532
 SFX/Effects/backstab_teleport.wav - .ao - 66ad89becf7a5e4159a6c438 - 8158155750117357873
 SFX/Effects/backstab_victim.wav - .ao - 66ad89becf7a5e4159a6c437 - 1465047161017477406
@@ -305,7 +305,7 @@ ShadowStepVFX.prefab - .ao - 66859955b45eb9e8339c0ffd - 11550510081096301958
 Shield_FX.prefab - .ao - 66a7fb546732dee0bb811e8e - 10171497738848877739
 ShurikenProjectile.prefab - .ao - 66a91b0496cebaeb1f32988f - 1922884962774569859
 SkillTreeItem.prefab - .ao - 66bfe3a183ee6f3bbee194d0 - 13262934492951160510
-SkillTreePage.prefab - .ao - 66be70cc83ee6f3bbee194b3 - 10455480980570497485
+SkillTreePage.prefab - .ao - 66ce1b9860ed1ef1ffbc4c80 - 9843869466532201073
 SpoonProjectile.prefab - .ao - 66a91b0496cebaeb1f329890 - 11818330664990311604
 Stat_Aura.prefab - .ao - 66b1373ccf7a5e4159a6c4a4 - 11034765975460030984
 TotalDarknessOverlay.prefab - .ao - 6685d28fb45eb9e8339c10be - 15557225266589634022
@@ -361,6 +361,16 @@ UI/Bars/border.png - .ao - 66b13b85cf7a5e4159a6c4a6 - 13076663795422265221
 UI/Bars/border.png - .ao.ios - 66b13b85cf7a5e4159a6c4a7 - 11121674596510720087
 UI/CheckMark.png - .ao - 66c9698b60ed1ef1ffbc40fa - 10325974098968886308
 UI/CheckMark.png - .ao.ios - 66c9698b60ed1ef1ffbc40fb - 13539075324007794126
+UI/Glory/glory.png - .ao - 66ce1ad860ed1ef1ffbc4c66 - 3060769762751807701
+UI/Glory/glory.png - .ao.ios - 66ce1ad860ed1ef1ffbc4c67 - 8754558131596439676
+UI/Glory/glory_pack1.png - .ao - 66ce1ad860ed1ef1ffbc4c68 - 6544960547838274807
+UI/Glory/glory_pack1.png - .ao.ios - 66ce1ad860ed1ef1ffbc4c6c - 9896601171517565579
+UI/Glory/glory_pack2.png - .ao - 66ce1ad960ed1ef1ffbc4c6d - 14969411881790523335
+UI/Glory/glory_pack2.png - .ao.ios - 66ce1ad960ed1ef1ffbc4c6e - 5607887252549221283
+UI/Glory/glory_pack3.png - .ao - 66ce1ad960ed1ef1ffbc4c70 - 6358028294973952927
+UI/Glory/glory_pack3.png - .ao.ios - 66ce1ad960ed1ef1ffbc4c73 - 5808224760802330381
+UI/Glory/glory_shines.png - .ao - 66ce1ad960ed1ef1ffbc4c74 - 429034567676105522
+UI/Glory/glory_shines.png - .ao.ios - 66ce1ad960ed1ef1ffbc4c77 - 14747784518690326685
 UI/LargeMenuButtons/Large Menu Buttons/large_button.png - .ao - 66aad25bcf7a5e4159a6b76b - 18231134355042940051
 UI/LargeMenuButtons/Large Menu Buttons/large_button.png - .ao.ios - 66aad25bcf7a5e4159a6b766 - 3983896806962664064
 UI/LargeMenuButtons/Large Menu Buttons/large_button_highlight.png - .ao - 66aad25bcf7a5e4159a6b768 - 5076871486006783888

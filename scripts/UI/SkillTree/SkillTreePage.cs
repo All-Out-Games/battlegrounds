@@ -313,7 +313,7 @@ public class SkillTreePage : UniqueUIWindow
                 }
                 else
                 {
-                    _buyText.Text = $"Earn {upgradeCost - _localPlayer.Gem} Gems!";
+                    _buyText.Text = $"Earn {upgradeCost - _localPlayer.Gem} Glory!";
                     _buyButton.Interactable = false;
                 }
                 break;

@@ -22,7 +22,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "$AO/new/main_menu/gems/gem_resource_icon.png",
+    "sprite": "UI/Glory/glory.png",
     "tint": {
       "X": 1,
       "Y": 1,
@@ -41,21 +41,21 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.2000000029802322,
-      "Y": 0
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000
     },
     "max": {
-      "X": 0.4000000059604645,
-      "Y": 1
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000
     },
     "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
+      "X": -25,
+      "Y": -25,
+      "Z": -25,
+      "W": -25
     },
     "offset": {
-      "X": 0,
+      "X": -45,
       "Y": 0
     }
   }
