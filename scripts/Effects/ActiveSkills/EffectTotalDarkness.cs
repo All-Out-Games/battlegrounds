@@ -60,8 +60,7 @@ public class EffectTotalDarkness : FightEffect
     public void DarkAttack()
     {
         // Blind Every Player in combat
-        var fpList = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(FightPlayer.Entity.Position,
-            EffectConfig.TotalDarknessConfig.Range);
+        var fpList = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(FightPlayer.Entity.Position, EffectConfig.TotalDarknessConfig.Range, Player);
         
         _config = EffectConfig.TotalDarknessConfig.GetConfig(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("TotalDarkness"));
 

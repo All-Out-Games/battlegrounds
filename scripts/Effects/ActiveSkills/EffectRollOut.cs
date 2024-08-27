@@ -124,7 +124,7 @@ public class EffectRollOut : FightEffect
         base.OnEffectUpdate();
         if (Util.OneTime(ElapsedTime > NextDmgTick, ref Ticked))
         {
-            foreach (var fp in FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 2))
+            foreach (var fp in FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 2, Player))
             {
                 RolloutDamage(fp);
             }

@@ -103,7 +103,7 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
     public override void OnEffectUpdate()
     {
         base.OnEffectUpdate();
-        foreach (var fp in FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 1.5f))
+        foreach (var fp in FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 1.5f, Player))
         {
             if (!_interactedEntity.Contains(fp.Entity))
             {

@@ -85,8 +85,7 @@ public class EffectIceFist : FightEffect
         {
             // Damage the object anyways if they are very very close, if no rays hit
             var closeTargets =
-                FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position,
-                    EffectConfig.PunchConfig.PunchMustHitRange);
+                FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, EffectConfig.PunchConfig.PunchMustHitRange, Player);
             closeTargets.Remove(FightPlayer);
 
             if (closeTargets.Count > 0)

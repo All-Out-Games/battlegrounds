@@ -59,6 +59,12 @@ public class EffectPunch : FightEffect
         // SFX based on punch lvl
         SFX.Play(SFXKeys.GetPunchSFXByLevel(FightPlayer.PunchLevel), DefaultSoundDesc);
         
+        var entities = FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(Player);
+        foreach (var e in entities)
+        {
+            Log.Info("Entity: " + e.Name);
+        }
+
         var hit = Physics.RaycastWithWhitelist(Entity.Position, punchDir.Normalized,
             EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(Player), new Entity[]{ },out rc);
 
@@ -69,7 +75,6 @@ public class EffectPunch : FightEffect
             var other = rc.Collider.GetComponent<DamageableObject>();
             if (other != null)
             {
-                
                 // other.Player.TakeDamage(FightPlayer, info);
                 other.TakeDamage(FightPlayer, info);
             }
@@ -77,9 +82,7 @@ public class EffectPunch : FightEffect
         else
         {
             // Damage the object anyways if they are very very close, if no rays hit
-            var closeTargets =
-                FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position,
-                    EffectConfig.PunchConfig.PunchMustHitRange);
+            var closeTargets = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, EffectConfig.PunchConfig.PunchMustHitRange, Player);
             closeTargets.Remove(FightPlayer);
             //Log.Warn($"{closeTargets.Count}");
             if (closeTargets.Count > 0)

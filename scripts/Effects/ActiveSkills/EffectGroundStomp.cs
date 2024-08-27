@@ -73,7 +73,7 @@ public class EffectGroundStomp : FightEffectWithNoFlinch
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.StompDamage, DamageType.AOE);
         info.SkillKey = SkillConfig.GroundStompConfig.SkillKey;
         
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.GroundStompConfig.StompRadius * Config.StompSizeMultiplier);
+        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.GroundStompConfig.StompRadius * Config.StompSizeMultiplier, Player);
         foreach (var other in cbPlayers)
         {
             if(other.Entity.NetworkId == FightPlayer.Entity.NetworkId) continue;

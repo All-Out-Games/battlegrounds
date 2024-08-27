@@ -72,7 +72,7 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
     private void KnockingBlast()
     {
         Vector2 selfPos = FightPlayer.Entity.Position;
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.SelfDestructConfig.BlastRange);
+        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.SelfDestructConfig.BlastRange, Player);
             
         foreach (var fp in cbPlayers)
         {

@@ -268,11 +268,12 @@ public class FightClubGameManager : System<FightClubGameManager> {
 
     #region Utils
 
-    public List<FightPlayer> GetCombatPlayers()
+    public List<FightPlayer> GetCombatPlayers(Player exclude)
     {
         List<FightPlayer> fightPlayers = new List<FightPlayer>();
         foreach (var p in Player.AllPlayers)
         {
+            if (p == exclude) continue;
             if(p is FightPlayer { PlayerStatus: PlayerStatus.Combat } fp) fightPlayers.Add(fp);
         }
         return fightPlayers;
@@ -284,18 +285,18 @@ public class FightClubGameManager : System<FightClubGameManager> {
     
     public Entity[] GetCombatPlayersAsEntities(Player exclude)
     {
-        return GetCombatPlayers().Where(player => player != exclude).Select(item => item.Entity).ToArray();
+        return GetCombatPlayers(exclude).Select(item => item.Entity).ToArray();
     }
 
     public Entity[] GetCombatPlayersCollisionEntities(Player exclude)
     {
-        return GetCombatPlayers().Where(player => player != exclude).Select(item => item.CollisionEntity).ToArray();
+        return GetCombatPlayers(exclude).Select(item => item.CollisionEntity).ToArray();
     }
 
-    public List<FightPlayer> OverlapCircleForCombatPlayers(Vector2 center, float radius)
+    public List<FightPlayer> OverlapCircleForCombatPlayers(Vector2 center, float radius, Player exclude)
     {
         List<FightPlayer> hitPlayers = new List<FightPlayer>();
-        foreach (var other in GetCombatPlayers())
+        foreach (var other in GetCombatPlayers(exclude))
         {
             if (Vector2.Distance(center, other.Entity.Position) < radius)
             {

@@ -100,7 +100,7 @@ public class EffectLeapSlam : FightEffectWithImmunity
         FightPlayer.AddDash(Vector2.Zero, 0); // Remove Dash
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlamDamage, DamageType.AOE, FightPlayer.DamageInfo.KnockBackInterruptLevel);
         info.SkillKey = SkillConfig.LeapSlamConfig.SkillKey;
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.LeapSlamConfig.SlamRadius * _config.SlamAreaMultiplier);
+        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.LeapSlamConfig.SlamRadius * _config.SlamAreaMultiplier, Player);
         bool hit = false;
         foreach (var other in cbPlayers)
         {

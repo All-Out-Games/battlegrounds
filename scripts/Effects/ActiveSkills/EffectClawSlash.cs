@@ -112,7 +112,7 @@ public class EffectClawSlash : FightEffect
             entity.LocalRotation = FightClubUtils.AngleBetween(Vector2.Left, AbilityPositionOrDirection);
         });
 
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.ClawSlashConfig.SlashRadius);
+        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.ClawSlashConfig.SlashRadius, Player);
         foreach (var other in cbPlayers)
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlashDamage);
