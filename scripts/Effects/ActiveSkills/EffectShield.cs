@@ -55,6 +55,12 @@ public class EffectShield : FightEffect
         }
     }
 
+    public override void OnEffectUpdate()
+    {
+        base.OnEffectUpdate();
+        ShieldVfx.Entity.LocalEnabled = FightPlayer.SpineAnimator.LocalEnabled;
+    }
+
     public void AssignConfig(EffectConfig.ShieldConfig cfg)
     {
         Config = cfg;

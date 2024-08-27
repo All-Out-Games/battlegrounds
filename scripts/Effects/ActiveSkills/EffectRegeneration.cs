@@ -81,6 +81,7 @@ public class EffectRegeneration : FightEffect
             NextDmgTick += 1;
             Ticked = false;
         }
+        _aura.Entity.LocalEnabled = FightPlayer.SpineAnimator.LocalEnabled;
     }
     
     private void Regenerate()
