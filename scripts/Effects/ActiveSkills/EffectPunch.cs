@@ -58,12 +58,6 @@ public class EffectPunch : FightEffect
         
         // SFX based on punch lvl
         SFX.Play(SFXKeys.GetPunchSFXByLevel(FightPlayer.PunchLevel), DefaultSoundDesc);
-        
-        var entities = FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(Player);
-        foreach (var e in entities)
-        {
-            Log.Info("Entity: " + e.Name);
-        }
 
         var hit = Physics.RaycastWithWhitelist(Entity.Position, punchDir.Normalized,
             EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(Player), new Entity[]{ },out rc);
