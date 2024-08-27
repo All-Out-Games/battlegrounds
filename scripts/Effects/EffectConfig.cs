@@ -91,7 +91,7 @@ public static class EffectConfig
     {
         public static int PunchDmgBase = 1;
         public static int PunchDmgGrowth = 2;
-        public static float PunchAnimationTime = 0.6f; // Entire duration of the punch animation
+        public static float PunchAnimationTime = 0.75f; // Entire duration of the punch animation
         public static float PunchActivationTime = 0.25f;  // Delay time before activating the collider
         public static float PunchRange = 2.5f;
         public static float PunchTargetRange = 4;
