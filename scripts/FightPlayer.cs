@@ -235,14 +235,30 @@ public partial class FightPlayer : Player
         }
     }
 
+    private SyncVar<int> _expBoostMultiplier = new(1);
+
+    public int ExpBoostMultiplier
+    {
+        get => _expBoostMultiplier;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _expBoostMultiplier.Set(value);
+                Save.SetInt(this, "ExpBoostMultiplier", value);
+            }
+        }
+    }
+
     public bool IsExpBoosted()
     {
         return ExpBoostTime > 0;
     }
 
-    public void AddExpBoostTime(int minutes)
+    public void AddExpBoostTime(int minutes, int multiplier = 2)
     {
         ExpBoostTime += minutes;
+        ExpBoostMultiplier = multiplier;
     }
 
     /// <summary>
@@ -366,6 +382,7 @@ public partial class FightPlayer : Player
         Level = Save.GetInt(this, "Level");
         Exp = Save.GetInt(this, "Exp");
         ExpBoostTime = Save.GetInt(this, "ExpBoostTime");
+        ExpBoostMultiplier = Save.GetInt(this, "ExpBoostMultiplier");
     }
     
     #region EventFunctions

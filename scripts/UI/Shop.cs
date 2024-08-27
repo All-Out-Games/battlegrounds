@@ -383,11 +383,11 @@ public class Shop : System<Shop>
                     player.ServerGiveTemporaryBuff(StatModifierKind.ClickPower, 2.0f, MINUTES(30));
                     return (true, "");
                 }*/
-                case "xp_booster_15": player.AddExpBoostTime(15);
+                case "xp_booster_3x": player.AddExpBoostTime(5, 3);
                     return (true, "");
-                case "xp_booster_30": player.AddExpBoostTime(30);
+                case "xp_booster_5x": player.AddExpBoostTime(5, 5);
                     return (true, "");
-                case "xp_booster_60": player.AddExpBoostTime(60);
+                case "xp_booster_7x": player.AddExpBoostTime(5, 7);
                     return (true, "");
                 case "gems_1000": player.Gem += 1000;
                     return (true, "");
@@ -473,9 +473,9 @@ public static class ShopData
                         DisplaySize = ItemDisplaySize.TripleEntry,
                         Entries = new()
                         {
-                            new () { ItemId = "xp_booster_15",     Icons = new() { "" } },
-                            new () { ItemId = "xp_booster_30",             Icons = new() { "" } },
-                            new () { ItemId = "xp_booster_60",             Icons = new() { "" } },
+                            new () { ItemId = "xp_booster_3x",     Icons = new() { "" } },
+                            new () { ItemId = "xp_booster_5x",             Icons = new() { "" } },
+                            new () { ItemId = "xp_booster_7x",             Icons = new() { "" } },
 
                         },
                     },
@@ -533,9 +533,9 @@ public static class ShopData
         new () { Id = "starter_pack3",        ProductId = "66cce47ee9d028e4047b468a", Currency = Currency.Sparks, Kind = ItemKind.Pass, },
 
 
-        new () { Id = "xp_booster_15",                  ProductId = "66c959936203839a49e78260", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
-        new () { Id = "xp_booster_30",          ProductId = "66c959ad7c153a47bed5102f", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
-        new () { Id = "xp_booster_60",             ProductId = "66c95a367c153a47bed51030", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
+        new () { Id = "xp_booster_3x",                  ProductId = "66c959936203839a49e78260", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
+        new () { Id = "xp_booster_5x",          ProductId = "66c959ad7c153a47bed5102f", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
+        new () { Id = "xp_booster_7x",             ProductId = "66c95a367c153a47bed51030", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
         
         new () { Id = "gems_1000",             ProductId = "66cd6aed2f5300747619dfcf", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
         new () { Id = "gems_5000",             ProductId = "66cd6c7e0cad8f4bf7405094", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
