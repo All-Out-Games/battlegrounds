@@ -282,14 +282,14 @@ public class FightClubGameManager : System<FightClubGameManager> {
     // Collision Entity we created on the player is considerably larger, they should be used for ray-cast based abilities to make them easier to hit
     // For AoE's just use the player's default collider.
     
-    public Entity[] GetCombatPlayersAsEntities()
+    public Entity[] GetCombatPlayersAsEntities(Player exclude)
     {
-        return GetCombatPlayers().Select(item => item.Entity).ToArray();
+        return GetCombatPlayers().Where(player => player != exclude).Select(item => item.Entity).ToArray();
     }
 
-    public Entity[] GetCombatPlayersCollisionEntities()
+    public Entity[] GetCombatPlayersCollisionEntities(Player exclude)
     {
-        return GetCombatPlayers().Select(item => item.CollisionEntity).ToArray();
+        return GetCombatPlayers().Where(player => player != exclude).Select(item => item.CollisionEntity).ToArray();
     }
 
     public List<FightPlayer> OverlapCircleForCombatPlayers(Vector2 center, float radius)

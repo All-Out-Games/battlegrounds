@@ -60,7 +60,7 @@ public class EffectPunch : FightEffect
         SFX.Play(SFXKeys.GetPunchSFXByLevel(FightPlayer.PunchLevel), DefaultSoundDesc);
         
         var hit = Physics.RaycastWithWhitelist(Entity.Position, punchDir.Normalized,
-            EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(), new Entity[]{ },out rc);
+            EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(Player), new Entity[]{ },out rc);
 
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
         info.SkillKey = FightPlayer.PunchLevel == 1 ? "Punch" : $"Punch{FightPlayer.PunchLevel}";

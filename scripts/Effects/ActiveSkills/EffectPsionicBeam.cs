@@ -155,7 +155,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
     private void BeamDamage()
     {
         var fpInRadius =
-            FightClubGameManager.Instance.GetCombatPlayersCollisionEntities();
+            FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(Player);
         bool explode = FightPlayer.GetSkillTree().GetSkillLevel("PsionicBeam") > 4;
         if (AO.Physics.RaycastWithWhitelist(_eyePos, _rayEnd - _eyePos, _rayLength, fpInRadius, new Entity[] { },
                 out Physics.RaycastHit hit))

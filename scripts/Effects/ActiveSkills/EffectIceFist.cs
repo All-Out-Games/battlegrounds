@@ -59,7 +59,7 @@ public class EffectIceFist : FightEffect
 
         int lv = FightPlayer.GetSkillTree().GetSkillLevel("IceFist");
         var hit = Physics.RaycastWithWhitelist(Entity.Position, punchDir.Normalized,
-            EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(), new Entity[]{ },out rc);
+            EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(Player), new Entity[]{ },out rc);
 
         
         if (hit) // If players are too close, always hit
