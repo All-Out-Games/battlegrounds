@@ -78,8 +78,8 @@ AbilityIcon_Merged/psionic/psythrow_launch.png - .ao - 669027deb45eb9e8339c1b9c 
 AbilityIcon_Merged/psionic/psythrow_launch.png - .ao.ios - 669027deb45eb9e8339c1b9d - 8585635597702673032
 AbilityIcon_Merged/psionic/regeneration.png - .ao - 66902822b45eb9e8339c1ba1 - 8500657442666518033
 AbilityIcon_Merged/psionic/regeneration.png - .ao.ios - 66902822b45eb9e8339c1ba0 - 6985081292265877100
-AbilityIcon_Merged/psionic/self_heal.png - .ao - 669018edb45eb9e8339c1b70 - 2183350384715985512
-AbilityIcon_Merged/psionic/self_heal.png - .ao.ios - 669018edb45eb9e8339c1b72 - 10364134515721437578
+AbilityIcon_Merged/psionic/self_heal.png - .ao - 66ce1dbc60ed1ef1ffbc4c84 - 10409901121418030433
+AbilityIcon_Merged/psionic/self_heal.png - .ao.ios - 66ce1dbc60ed1ef1ffbc4c83 - 17159268075563121507
 AbilityIcon_Merged/psionic/spoon_throw.png - .ao - 669018edb45eb9e8339c1b74 - 6439977994966901814
 AbilityIcon_Merged/psionic/spoon_throw.png - .ao.ios - 669018eeb45eb9e8339c1b78 - 13743406190301636296
 AbilityIcon_Merged/stealth/backstab.png - .ao - 669018eeb45eb9e8339c1b7b - 12312636042370791843
@@ -170,8 +170,8 @@ AbilityIcon_Separate/psionic/psythrow_icon.png - .ao - 66a9c6a796cebaeb1f329930 
 AbilityIcon_Separate/psionic/psythrow_icon.png - .ao.ios - 66a9c6a796cebaeb1f329933 - 8405808669239654009
 AbilityIcon_Separate/psionic/regeneration_icon.png - .ao - 66a9c88a96cebaeb1f329948 - 3595918412924471248
 AbilityIcon_Separate/psionic/regeneration_icon.png - .ao.ios - 66a9c88a96cebaeb1f32994a - 2465141408454810350
-AbilityIcon_Separate/psionic/self_heal_icon.png - .ao - 66a9c6a896cebaeb1f329939 - 13061592375277654607
-AbilityIcon_Separate/psionic/self_heal_icon.png - .ao.ios - 66a9c6a896cebaeb1f32993a - 10641660171134345834
+AbilityIcon_Separate/psionic/self_heal_icon.png - .ao - 66ce1dbc60ed1ef1ffbc4c82 - 5435547508363209955
+AbilityIcon_Separate/psionic/self_heal_icon.png - .ao.ios - 66ce1dbc60ed1ef1ffbc4c86 - 18079320583440806150
 AbilityIcon_Separate/psionic/spoon_throw_icon.png - .ao - 66a9c6a896cebaeb1f32993d - 2528992171646891014
 AbilityIcon_Separate/psionic/spoon_throw_icon.png - .ao.ios - 66a9c6a896cebaeb1f32993e - 17400202692446342264
 AbilityIcon_Separate/stealth/backstab_icon.png - .ao - 66a9c97396cebaeb1f32998c - 3475323059913285720

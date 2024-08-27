@@ -534,7 +534,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig SpoonThrowConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Spoon Throw",
-        DescriptionTextKey = "Telekinetically throw a spoon in a direction that deals damage.",
+        DescriptionTextKey = "Fire an energy spoon in a direction that deals damage.",
         UpgradeTextKey = "*: Cooldown -1\n **: Damage +1\n ***: Damage +1\n ****: Range +2",
         BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = "%OVERRIDE%",
