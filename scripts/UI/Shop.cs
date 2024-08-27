@@ -389,6 +389,12 @@ public class Shop : System<Shop>
                     return (true, "");
                 case "xp_booster_30": player.AddExpBoostTime(30);
                     return (true, "");
+                case "gems_1000": player.Gem += 1000;
+                    return (true, "");
+                case "gems_5000": player.Gem += 5000;
+                    return (true, "");
+                case "gems_10000": player.Gem += 10000;
+                    return (true, "");
             }
 
             Log.Error($"Unknown boost: {item.Id}");
@@ -475,6 +481,17 @@ public static class ShopData
                     },
                     new ShopRow()
                     {
+                        DisplaySize = ItemDisplaySize.TripleEntry,
+                        Entries = new()
+                        {
+                            new () { ItemId = "gems_1000",     Icons = new() { "" } },
+                            new () { ItemId = "gems_5000",             Icons = new() { "" } },
+                            new () { ItemId = "gems_10000",             Icons = new() { "" } },
+
+                        },
+                    },
+                    new ShopRow()
+                    {
                         DisplaySize = ItemDisplaySize.SingleBigEntry,
                         Entries = new()
                         {
@@ -496,7 +513,7 @@ public static class ShopData
                         {
                             new () { ItemId = "starter_pack3",     Icons = new() { "" } },
                         }
-                    }
+                    },
                 }
             },
             
@@ -520,6 +537,9 @@ public static class ShopData
         new () { Id = "xp_booster_15",          ProductId = "66c959ad7c153a47bed5102f", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
         new () { Id = "xp_booster_30",             ProductId = "66c95a367c153a47bed51030", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
         
+        new () { Id = "gems_1000",             ProductId = "66cd6aed2f5300747619dfcf", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
+        new () { Id = "gems_5000",             ProductId = "66cd6c7e0cad8f4bf7405094", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
+        new () { Id = "gems_10000",             ProductId = "66cd6c990cad8f4bf7405095", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
     };
 
     public class Pack
