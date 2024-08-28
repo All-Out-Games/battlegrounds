@@ -193,7 +193,7 @@ AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao.ios - 66a9c97596cebae
 AbilityIcon_Separate/x_icon_ability.png - .ao - 66a9cdbb96cebaeb1f3299ae - 2967783583052140701
 AbilityIcon_Separate/x_icon_ability.png - .ao.ios - 66a9cdbb96cebaeb1f3299af - 13164514700408627865
 AbilityLoadoutPage.prefab - .ao - 66ce1ada60ed1ef1ffbc4c7d - 12765199928354766924
-AbilityUpgradeDialog.prefab - .ao - 66ce2e2160ed1ef1ffbc4cb0 - 15227345963868667842
+AbilityUpgradeDialog.prefab - .ao - 66cf776c60ed1ef1ffbc4d04 - 16640627896841390257
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
 BattlegroundInfoOverlay.prefab - .ao - 66baba0d83ee6f3bbee191ba - 4880104689168888380
 BearTrap.prefab - .ao - 66a91b0496cebaeb1f329889 - 7049423839909874616
