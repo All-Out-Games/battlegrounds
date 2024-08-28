@@ -56,40 +56,35 @@ public static class LevelingData
     };
 
     /// <summary>
-    /// [Server Only] Made for double XP events.
-    /// We check the date and decide if we want to give out more XP 
+    /// [Server Only] Get Xp multiplier, additive.
+    /// TODO: Rework the whole booster thing
     /// </summary>
     /// <param name="xp"></param>
     /// <returns></returns>
-    public static int GetMultipliedExp(int xp)
+    public static int GetBoostedExpMultiplier(FightPlayer fp)
     {
-        //Log.Warn($"Day is: {DateTime.Now.Day}");
-        if (DoubleXP(DateTime.UtcNow))
-        {
-            return (int)float.Ceiling(xp * 1.2f);
-        }
-        return xp;
-    }
-
-    public static int GetBoostedExp(int xp, FightPlayer fp)
-    {
+        int res = 1;
         if (fp.IsExpBoosted())
         {
-            xp *= fp.ExpBoostMultiplier;
+            res = fp.ExpBoostMultiplier;
         }
         else
         {
             fp.ExpBoostMultiplier = 1;
         }
 
-        return xp;
+        if (DoubleXP(DateTime.UtcNow))
+        {
+            res += 1;
+        }
+        return res;
     }
 
     public static bool DoubleXP(DateTime timeNow)
     {
         //Log.Error(timeNow.Kind.ToString());
         var timeConverted = TimeZoneInfo.ConvertTimeFromUtc(timeNow, PST);
-        return timeConverted.DayOfWeek == DayOfWeek.Saturday || timeConverted.DayOfWeek == DayOfWeek.Sunday;
+        return timeConverted.DayOfWeek == DayOfWeek.Sunday || timeConverted.DayOfWeek is <= DayOfWeek.Saturday and >= DayOfWeek.Thursday;
     }
 
     public static int GetTrueXp(int level, int victimLevel, int xp)

@@ -48,7 +48,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "1.2x Exp On Weekends! (Combat Only)",
+    "text": "2x Exp Event Active!",
     "settings": {
       "font_id": "$AO/fonts/Asap_Condensed-ExtraBold-Fixed.ttf",
       "size": 36,
