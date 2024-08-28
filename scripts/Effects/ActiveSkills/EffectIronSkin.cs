@@ -77,14 +77,7 @@ public class EffectIronSkin : FightEffect
     public override void OnEffectUpdate()
     {
         base.OnEffectUpdate();
-        if (FightPlayer.SpineAnimator.LocalEnabled)
-        {
-            _auraAnimator.LocalEnabled = true;
-        }
-        else
-        {
-            _auraAnimator.LocalEnabled = false;
-        }
+        _auraAnimator.LocalEnabled = FightPlayer.SpineAnimator.LocalEnabled;
 
         if (Util.OneTime(DurationRemaining < 1, ref _faded))
         {

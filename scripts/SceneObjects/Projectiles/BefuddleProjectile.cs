@@ -35,8 +35,8 @@ public class BefuddleProjectile : BaseProjectile
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged) with {InterruptLevel = FightPlayer.DamageInfo.StunInterruptLevel};
             info.ReactionInfo.Flinch = false;
-            fp.TakeDamage(Owner, info);
             info.SkillKey = SkillConfig.BefuddleConfig.SkillKey;
+            fp.TakeDamage(Owner, info);
             fp.AddEffect<EffectConfusion>(Owner, ConfusionTime, confusion => confusion.ConfusionIntensity = ConfusionIntensity);
             if (!Pierce)
             {

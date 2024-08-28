@@ -505,7 +505,7 @@ public static partial class SkillConfig
         DisplayName = "Leap Slam",
         DescriptionTextKey = "Leap forward and slam the ground with your fists, damaging and knocking away other players.",
         UpgradeTextKey= "*: Damage +1\n **: Cooldown -1\n ***: Cooldown -1\n ****: Slam Area +25%",
-        BaseDamageKey = EffectConfig.LeapSlamConfig.SlamDamageBase,
+        BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = "5m",
         CooldownKey = $"{EffectConfig.LeapSlamConfig.Cooldown}s",
         IconPath = "AbilityIcon_Merged/brawler/leaping_fist_slam.png",

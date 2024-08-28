@@ -75,7 +75,11 @@ public static class LevelingData
     {
         if (fp.IsExpBoosted())
         {
-            xp *= 2;
+            xp *= fp.ExpBoostMultiplier;
+        }
+        else
+        {
+            fp.ExpBoostMultiplier = 1;
         }
 
         return xp;
