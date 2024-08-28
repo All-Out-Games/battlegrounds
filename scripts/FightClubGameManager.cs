@@ -24,7 +24,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public override void Awake()
     {
         Chat.RegisterChatCommandHandler(RunChatCommand);
-        
+        Analytics.EnableAutomaticAnalytics("d19a5e187e989175aa53e371525016b3", "aeefb0db200260a7863498e8a67d25e2a41795e0");
     }
 
     public override void Start()
