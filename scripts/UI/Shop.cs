@@ -65,6 +65,15 @@ public class Shop : System<Shop>
         {
             return false;
         }
+        
+        
+        var fp = Network.LocalPlayer as FightPlayer;
+        bool disabled = item.Kind == ShopData.ItemKind.Boost && fp?.ExpBoostTime > 0;
+        using var _1 = UI.PUSH_DISABLED(disabled);
+        if (disabled)
+        {
+            UI.PushColorMultiplier(new Vector4(0.5f, 0.5f, 0.5f, 1f));
+        }
 
         using var __ = UI.PUSH_ID(entry.ItemId);
 
@@ -158,6 +167,22 @@ public class Shop : System<Shop>
             scrollView.ScrollTo(entryRect);
         }
 
+        if (disabled)
+        {
+            UI.PopColorMultiplier();
+            UI.Text(entryRect, $"{fp.ExpBoostTime} Min Left", new UI.TextSettings() {
+                Font = UIManager.DefaultFont,
+                Size = 36,
+                Color = new Vector4((float)0xFE / 255.0f, (float)0xCB / 255.0f, (float)0x34 / 255.0f, 1),
+                Outline = true,
+                OutlineThickness = 3,
+                HorizontalAlignment = UI.HorizontalAlignment.Center,
+                VerticalAlignment = UI.VerticalAlignment.Center,
+                WordWrap = true,
+                LineHeightMultiplier = 0.8f
+            });
+        }
+        
         return true;
     }
     
@@ -389,6 +414,16 @@ public class Shop : System<Shop>
                     return (true, "");
                 case "xp_booster_7x": player.AddExpBoostTime(5, 7);
                     return (true, "");
+            }
+
+            Log.Error($"Unknown boost: {item.Id}");
+            return (false, "");
+        }
+
+        if (item.Kind == ShopData.ItemKind.Coins)
+        {
+            switch (item.Id)
+            {
                 case "gems_1000": player.Gem += 1000;
                     return (true, "");
                 case "gems_5000": player.Gem += 5000;
@@ -396,8 +431,7 @@ public class Shop : System<Shop>
                 case "gems_10000": player.Gem += 10000;
                     return (true, "");
             }
-
-            Log.Error($"Unknown boost: {item.Id}");
+            Log.Error($"Unknown coin pack: {item.Id}");
             return (false, "");
         }
 
@@ -537,9 +571,9 @@ public static class ShopData
         new () { Id = "xp_booster_5x",          ProductId = "66c959ad7c153a47bed5102f", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
         new () { Id = "xp_booster_7x",             ProductId = "66c95a367c153a47bed51030", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
         
-        new () { Id = "gems_1000",             ProductId = "66cd6aed2f5300747619dfcf", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
-        new () { Id = "gems_5000",             ProductId = "66cd6c7e0cad8f4bf7405094", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
-        new () { Id = "gems_10000",             ProductId = "66cd6c990cad8f4bf7405095", Currency = Currency.Sparks, Kind = ItemKind.Boost, },
+        new () { Id = "gems_1000",             ProductId = "66cd6aed2f5300747619dfcf", Currency = Currency.Sparks, Kind = ItemKind.Coins, },
+        new () { Id = "gems_5000",             ProductId = "66cd6c7e0cad8f4bf7405094", Currency = Currency.Sparks, Kind = ItemKind.Coins, },
+        new () { Id = "gems_10000",             ProductId = "66cd6c990cad8f4bf7405095", Currency = Currency.Sparks, Kind = ItemKind.Coins, },
     };
 
     public class Pack
