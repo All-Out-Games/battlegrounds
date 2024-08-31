@@ -408,11 +408,11 @@ public class Shop : System<Shop>
                     player.ServerGiveTemporaryBuff(StatModifierKind.ClickPower, 2.0f, MINUTES(30));
                     return (true, "");
                 }*/
-                case "xp_booster_3x": player.AddExpBoostTime(5, 3);
+                case "xp_booster_3x": player.AddExpBoostTime(15, 3);
                     return (true, "");
-                case "xp_booster_5x": player.AddExpBoostTime(5, 5);
+                case "xp_booster_5x": player.AddExpBoostTime(15, 5);
                     return (true, "");
-                case "xp_booster_7x": player.AddExpBoostTime(5, 7);
+                case "xp_booster_7x": player.AddExpBoostTime(15, 7);
                     return (true, "");
             }
 
