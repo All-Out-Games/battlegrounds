@@ -84,7 +84,7 @@ public static class LevelingData
     {
         //Log.Error(timeNow.Kind.ToString());
         var timeConverted = TimeZoneInfo.ConvertTimeFromUtc(timeNow, PST);
-        return timeConverted.DayOfWeek == DayOfWeek.Sunday || timeConverted.DayOfWeek is <= DayOfWeek.Saturday and >= DayOfWeek.Thursday;
+        return timeConverted.DayOfWeek == DayOfWeek.Sunday || timeConverted.DayOfWeek == DayOfWeek.Saturday;
     }
 
     public static int GetTrueXp(int level, int victimLevel, int xp)
