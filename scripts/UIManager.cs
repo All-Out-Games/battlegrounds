@@ -287,7 +287,6 @@ public partial class UIManager : System<UIManager>
             HoveredColor    = new Vector4(0.9f, 0.9f, 0.9f, 1),
             PressedColor    = new Vector4(0.7f, 0.7f, 0.7f, 1),
             DisabledColor   = new Vector4(0.5f, 0.5f, 0.5f, 1),
-            ClickedColor    = new Vector4(1, 1, 1, 1),
             ColorMultiplier = new Vector4(1, 1, 1, 1),
             PressScaling    = 0.8f,
             Sprite = sprite,

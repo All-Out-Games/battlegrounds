@@ -78,7 +78,8 @@ public class EffectBackstab : EffectNoMovement
 
 public class EffectBackstabCaster : FightEffectWithImmunity
 {
-    // This effect will teleport the caster of the Kunai to the back of the victim
+    // This effect will teleport the owner of the Kunai to the back of the victim.
+    // It is casted by the victim after they are hit by the Kunai, so the Caster is the victim and the FightPlayer field is the Kunai owner.
     public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
     public override bool FreezePlayer => true;
@@ -95,11 +96,32 @@ public class EffectBackstabCaster : FightEffectWithImmunity
             return;
         }
         
-        FightPlayer.UnsetAnimTrigger("RESET");
         FightPlayer.SetAnimTrigger("backstab");
 
-        Vector2 casterPos = Caster.Entity.Position - victimFp.GetFacingDirectionAsVector();
-        FightPlayer.Teleport(casterPos);
+        Vector2 casterPos = victimFp.Entity.Position;
+        Vector2 facing = victimFp.GetFacingDirectionAsVector();
+        
+        
+        Physics.RaycastHit rc;
+        var hit = Physics.RaycastWithWhitelist(victimFp.Entity.Position, -victimFp.GetFacingDirectionAsVector(),
+            EffectConfig.ShadowStepConfig.MovementDistance, new Entity[]{ FightClubGameManager.References.PvpZoneEdge.Entity }, 
+            new Entity[]{ },out rc);
+        if (hit)
+        {
+            // Modify this position so that we don't end up off the map
+            casterPos +=  facing;
+            // Also set the victim's facing direction to the opposite side
+            victimFp.SetFacingDirection(!victimFp.GetFacingDirection());
+        }
+        else
+        {
+            casterPos -= facing;
+        }
+
+        if (Network.IsServer)
+        {
+            FightPlayer.Teleport(casterPos);
+        }
         SFX.Play(SFXKeys.BackStabTeleportAudio, DefaultSoundDesc);
 
         DurationRemaining = EffectConfig.BackStabConfig.BackstabTime;
