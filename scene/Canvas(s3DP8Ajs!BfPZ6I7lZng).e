@@ -5,8 +5,7 @@
   "name": "Canvas",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -22,18 +21,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UICanvas",
   "data": {
-    "layer": 0,
-    "ui_scale_multiplier": 1,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "interactable": true,
-    "start_with_safe_rect": true,
-    "world_space": false,
-    "hide_in_editor": false
+    "start_with_safe_rect": true
   }
 },
 {
@@ -42,23 +30,6 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
-    "min": {
-      "X": 0,
-      "Y": 0
-    },
-    "max": {
-      "X": 1,
-      "Y": 1
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
-    }
+
   }
 }

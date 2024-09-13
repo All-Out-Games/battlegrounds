@@ -24,45 +24,10 @@
   "data": {
     "text": "ELIMINATION",
     "settings": {
-      "font_id": "",
       "size": 4,
-      "color": {
-        "X": 1,
-        "Y": 1,
-        "Z": 1,
-        "W": 1
-      },
-      "valign": 1,
-      "halign": 1,
-      "word_wrap": false,
-      "word_wrap_start_offset": 0,
-      "offset": {
-        "X": 0,
-        "Y": 0
-      },
       "do_drop_shadow": true,
-      "drop_shadow_offset": {
-        "X": 1,
-        "Y": -1
-      },
-      "drop_shadow_color": {
-        "X": 0,
-        "Y": 0,
-        "Z": 0,
-        "W": 1
-      },
-      "do_outline": true,
-      "outline_thickness": 2,
-      "outline_color": {
-        "X": 0,
-        "Y": 0,
-        "Z": 0,
-        "W": 1
-      },
-      "spacing_multiplier": 1,
-      "line_height_multiplier": 1
-    },
-    "push_text_rect": false
+      "do_outline": true
+    }
   }
 },
 {
@@ -73,15 +38,6 @@
   "data": {
     "layer": 1,
     "ui_scale_multiplier": 0.1000000014901161,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "interactable": true,
-    "start_with_safe_rect": false,
-    "world_space": true,
-    "hide_in_editor": false
+    "world_space": true
   }
 }

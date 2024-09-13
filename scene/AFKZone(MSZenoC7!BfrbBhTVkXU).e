@@ -23,17 +23,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/AFK_tmp/cliff.png",
-    "depth_offset": 11,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "layer": 0,
-    "wait_for_load": false,
-    "wrap": false,
-    "mask_in_shadow": false
+    "depth_offset": 11
   }
 },
 {
@@ -42,7 +32,6 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Edge_Collider",
   "data": {
-    "is_trigger": false,
     "is_loop": true,
     "points": [
       {
@@ -81,10 +70,6 @@
         "X": 7.4426879882812500,
         "Y": -4.7199249267578125
       }
-    ],
-    "density": 1,
-    "friction": 0.2000000029802322,
-    "restitution": 0,
-    "restitution_threshold": 1
+    ]
   }
 }

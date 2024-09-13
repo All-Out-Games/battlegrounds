@@ -26,13 +26,7 @@
     "skeleton_data_asset": "environment/CentralHub/Fountain/BAT003_fountain.spine",
     "ordered_skins": [
 
-    ],
-    "depth_offset": 0,
-    "skeleton_scale": {
-      "X": 1,
-      "Y": 1
-    },
-    "mask_in_shadow": false
+    ]
   }
 },
 {
@@ -42,7 +36,6 @@
   "mono_component_type": "BaseVFX",
   "data": {
     "Loop": true,
-    "Animator": "0:0",
     "EntityLifeTime": 10,
     "IsPermanent": true,
     "StartAnimationStr": [

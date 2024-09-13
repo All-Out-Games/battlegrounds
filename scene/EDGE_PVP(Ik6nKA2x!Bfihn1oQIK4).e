@@ -5,8 +5,7 @@
   "name": "EDGE_PVP",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -22,7 +21,6 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Edge_Collider",
   "data": {
-    "is_trigger": false,
     "is_loop": true,
     "points": [
       {
@@ -153,10 +151,6 @@
         "X": -13.3834381103515625,
         "Y": -23.9115676879882812
       }
-    ],
-    "density": 1,
-    "friction": 0.2000000029802322,
-    "restitution": 0,
-    "restitution_threshold": 1
+    ]
   }
 }

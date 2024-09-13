@@ -24,16 +24,6 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/AFK_tmp/rock_1.png",
-    "depth_offset": 19,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "layer": 0,
-    "wait_for_load": false,
-    "wrap": false,
-    "mask_in_shadow": false
+    "depth_offset": 19
   }
 }

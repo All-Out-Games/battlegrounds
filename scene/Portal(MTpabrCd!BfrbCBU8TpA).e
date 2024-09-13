@@ -31,8 +31,7 @@
     "skeleton_scale": {
       "X": 2.4000000953674316,
       "Y": 2.4000000953674316
-    },
-    "mask_in_shadow": false
+    }
   }
 },
 {
@@ -41,14 +40,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Interactable",
   "data": {
-    "prompt_offset": {
-      "X": 0,
-      "Y": 1
-    },
-    "text": "Teleport to the Hub",
-    "hold_text": "",
-    "radius": 2,
-    "required_hold_time": 0.6000000238418579
+    "text": "Teleport to the Hub"
   }
 },
 {

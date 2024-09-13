@@ -9,4 +9,6 @@ scene_backups
 scene_temp
 .idea
 .vs
+.vscode
 *.ao
+*.sln

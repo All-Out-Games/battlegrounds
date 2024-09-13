@@ -22,17 +22,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/AFK_tmp/signpost_noob.png",
-    "depth_offset": -1.2599999904632568,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "layer": 0,
-    "wait_for_load": false,
-    "wrap": false,
-    "mask_in_shadow": false
+    "depth_offset": -1.2599999904632568
   }
 },
 {
@@ -56,13 +46,7 @@
       "Y": 0.7300000190734863
     },
     "offset": {
-      "X": 0,
       "Y": -0.7900000214576721
-    },
-    "is_trigger": false,
-    "density": 1,
-    "friction": 0.2000000029802322,
-    "restitution": 0,
-    "restitution_threshold": 1
+    }
   }
 }

@@ -5,7 +5,6 @@
   "name": "BoothShadow",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
     "Y": -0.7900257110595703
   },
   "local_rotation": 0,
@@ -23,16 +22,6 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/CentralHub/Skill_Booths/Booth2_Shadow.png",
-    "depth_offset": 0,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "layer": -4,
-    "wait_for_load": false,
-    "wrap": false,
-    "mask_in_shadow": false
+    "layer": -4
   }
 }

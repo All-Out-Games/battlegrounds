@@ -5,8 +5,7 @@
   "name": "Collision",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -30,11 +29,6 @@
     "offset": {
       "X": 0.0234441757202148,
       "Y": -0.7970948219299316
-    },
-    "is_trigger": false,
-    "density": 1,
-    "friction": 0.2000000029802322,
-    "restitution": 0,
-    "restitution_threshold": 1
+    }
   }
 }

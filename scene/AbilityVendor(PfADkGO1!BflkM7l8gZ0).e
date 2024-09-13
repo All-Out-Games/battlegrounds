@@ -25,17 +25,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/CentralHub/Skill_Booths/Booth2.png",
-    "depth_offset": -1.4900000095367432,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "layer": 0,
-    "wait_for_load": false,
-    "wrap": false,
-    "mask_in_shadow": false
+    "depth_offset": -1.4900000095367432
   }
 },
 {
@@ -44,14 +34,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Interactable",
   "data": {
-    "prompt_offset": {
-      "X": 0,
-      "Y": 1
-    },
-    "text": "Skill Shop",
-    "hold_text": "",
-    "radius": 2,
-    "required_hold_time": 0.6000000238418579
+    "text": "Skill Shop"
   }
 },
 {
@@ -61,15 +44,7 @@
   "internal_component_type": "Circle_Collider",
   "data": {
     "size": 3,
-    "offset": {
-      "X": 0,
-      "Y": 0
-    },
-    "is_trigger": true,
-    "density": 1,
-    "friction": 0.2000000029802322,
-    "restitution": 0,
-    "restitution_threshold": 1
+    "is_trigger": true
   }
 },
 {

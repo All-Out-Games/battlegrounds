@@ -25,17 +25,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/CentralHub/Leaderboard2.png",
-    "depth_offset": -2.5000000000000000,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "layer": 0,
-    "wait_for_load": false,
-    "wrap": false,
-    "mask_in_shadow": false
+    "depth_offset": -2.5000000000000000
   }
 },
 {
@@ -66,11 +56,6 @@
     "offset": {
       "X": -0.0214147567749023,
       "Y": -1.9059453010559082
-    },
-    "is_trigger": false,
-    "density": 1,
-    "friction": 0.2000000029802322,
-    "restitution": 0,
-    "restitution_threshold": 1
+    }
   }
 }

@@ -5,8 +5,7 @@
   "name": "SceneReferenceHolder",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -40,17 +39,12 @@
   "internal_component_type": "Light",
   "data": {
     "color": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
       "W": 1
     },
-    "intensity": 1,
     "shadow_caster": false,
     "radi": {
       "X": 5000,
       "Y": 5000
-    },
-    "softness": 0.1000000014901161
+    }
   }
 }

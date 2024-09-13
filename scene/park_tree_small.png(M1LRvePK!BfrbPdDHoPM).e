@@ -24,17 +24,7 @@
   "internal_component_type": "Sprite_Renderer",
   "data": {
     "texture": "environment/AFK_tmp/park_tree_small.png",
-    "depth_offset": -3,
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "layer": 0,
-    "wait_for_load": false,
-    "wrap": false,
-    "mask_in_shadow": false
+    "depth_offset": -3
   }
 },
 {
@@ -45,13 +35,7 @@
   "data": {
     "size": 1,
     "offset": {
-      "X": 0,
       "Y": -1.8700000047683716
-    },
-    "is_trigger": false,
-    "density": 1,
-    "friction": 0.2000000029802322,
-    "restitution": 0,
-    "restitution_threshold": 1
+    }
   }
 }

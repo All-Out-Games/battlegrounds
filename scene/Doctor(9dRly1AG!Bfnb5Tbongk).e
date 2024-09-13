@@ -29,12 +29,7 @@
       "body/doctor",
       "hat/doctor_head_mirror"
     ],
-    "depth_offset": -0.3000000119209290,
-    "skeleton_scale": {
-      "X": 1,
-      "Y": 1
-    },
-    "mask_in_shadow": false
+    "depth_offset": -0.3000000119209290
   }
 },
 {
@@ -45,7 +40,6 @@
   "data": {
     "Loop": true,
     "Animator": "270292589827709:1722468067623267000",
-    "EntityLifeTime": 0,
     "IsPermanent": true,
     "StartAnimationStr": [
       "Idle"
