@@ -959,7 +959,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig TotalDarknessConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Total Darkness",
-        DescriptionTextKey = $"Release a wave of darkness that blinds all nearby players for {EffectConfig.TotalDarknessConfig.BlindTime}s seconds.",
+        DescriptionTextKey = $"Release a wave of darkness that blinds all nearby players for {EffectConfig.TotalDarknessConfig.BlindTime} seconds.",
         UpgradeTextKey = "*: Damage +1 \n **: Damage +1\n ***: Cooldown -1\n ****: 25% Life Steal",
         RangeDescriptionKey = $"{EffectConfig.TotalDarknessConfig.Range}m",
         CooldownKey = "%OVERRIDE%",

@@ -434,7 +434,7 @@ public static partial class SkillConfig
                 res = $"Unleash a powerful explosion that damages all nearby enemies, but also deals {EffectConfig.SelfDestructConfig.BaseSelfDmg - (fp.GetSkillTree().GetSkillLevel("SelfDestruct") > 4 ? 10 : 0)} damage to yourself.";
                 break;
             case "ShadowStep":
-                EffectConfig.ShadowStepConfig sscfg = EffectConfig.ShadowStepConfig.GetDefault(int.Min(1, fp.GetSkillTree().GetSkillLevel("ShadowStep")));
+                EffectConfig.ShadowStepConfig sscfg = EffectConfig.ShadowStepConfig.GetDefault(int.Max(1, fp.GetSkillTree().GetSkillLevel("ShadowStep")));
                 res = "Teleport a short distance in the direction you're moving." + $" Also grants Shadow Armor for 2s, which blocks {sscfg.ShadowArmorAmount} damage for {sscfg.ShadowArmorEffectiveTime} time(s)";
                 break;
             case "Shield":
