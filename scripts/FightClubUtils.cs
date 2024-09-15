@@ -22,7 +22,7 @@ public static class FightClubUtils
         return result;
     }
 
-    public static Vector2 RandomPositionInCirle(Vector2 c, float r)
+    public static Vector2 RandomPositionInCircle(Vector2 c, float r)
     {
         float theta = Random.Shared.NextFloat(0, 360);
         float r0 = Random.Shared.NextFloat(0, r);

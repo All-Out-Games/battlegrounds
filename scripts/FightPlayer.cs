@@ -802,8 +802,8 @@ public partial class FightPlayer : Player
             if (Network.IsServer)
             {
                 Zone combatZone = FightClubGameManager.References.PvpZone;
-                //Teleport(Zone.GetRandomPointInZones(combatZone.ZoneId) + combatZone.Entity.Position);
-                Teleport(FightClubUtils.RandomPositionInCirle(combatZone.Entity.Position, combatZone.Entity.LocalScaleX));
+                //Teleport(new Vector2(216.504f, 90.571f));
+                Teleport(FightClubUtils.RandomPositionInCircle(combatZone.Entity.Position, combatZone.Entity.LocalScaleX));
             }
             OnTeleportToCombatZone();
         }
