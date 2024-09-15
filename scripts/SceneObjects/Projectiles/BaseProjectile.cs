@@ -14,6 +14,8 @@ public partial class BaseProjectile : OwnedObjectComponent
     [Serialized] public float LifeTime;
     [Serialized] protected float TimeElapsed;
 
+    [Serialized] public bool Blockable = true;
+
     protected ulong SoundId = default;
 
     public override void OnOwnerLeave(FightPlayer player)
@@ -59,8 +61,22 @@ public partial class BaseProjectile : OwnedObjectComponent
         }
     }
 
+    /// <summary>
+    /// Base function to call when a collision is detected. Do not override unless you absolutely need to.
+    /// Implement different effects in DoProjectileEffect
+    /// </summary>
+    /// <param name="other"></param>
+    /// <param name="predicted"></param>
     protected virtual void OnHit(Entity other, bool predicted)
     {
+        if (Blockable && TimeElapsed > 0.2f) // Must be at least 0.2s old to be blocked
+        {
+            var blockComp = other.GetComponent<ProjectileBlocker>();
+            if (blockComp.Alive())
+            {
+                blockComp.DoBlockerEffect(this);
+            }
+        }
         
         if (!WhiteList.Contains(other))
         {
