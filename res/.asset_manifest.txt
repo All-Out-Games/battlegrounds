@@ -229,6 +229,9 @@ Pipe_Straight.prefab - .ao - 66b0100bcf7a5e4159a6c479 - 4243949072746644775
 Props/BearTrap/BAT003_bear_trap.png - .ao - 66859951b45eb9e8339c0fde - 12680163519278585061
 Props/BearTrap/BAT003_bear_trap.png - .ao.ios - 66859951b45eb9e8339c0fe0 - 7406773091814632799
 Props/BearTrap/BAT003_bear_trap.spine - .ao - 66859952b45eb9e8339c0fe2 - 3855122050485720892
+Props/Crate/BAT003_crate.png - .ao - 66e9175760ed1ef1ffbc59c0 - 7940909903093783536
+Props/Crate/BAT003_crate.png - .ao.ios - 66e9175760ed1ef1ffbc59c1 - 6222203610743878752
+Props/Crate/BAT003_crate.spine - .ao - 66e9175760ed1ef1ffbc59bf - 13270521046917159507
 PsionicBeamExplosion.prefab - .ao - 66c7c80560ed1ef1ffbc3f28 - 8636868043643330879
 PsionicBeamGroundFissue.prefab - .ao - 66c7b28260ed1ef1ffbc3edb - 12450150658249866470
 PsionicBeamGroundFissueEnd.prefab - .ao - 66c7b28260ed1ef1ffbc3eda - 7328066586182626511

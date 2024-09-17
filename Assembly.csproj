@@ -11,11 +11,11 @@
 
   <ItemGroup>
     <Reference Include="CoreAssembly">
-      <HintPath>C:\Users\fangz\AppData\Roaming\AllOut\66e1b67d3821ce322437264f-editor/res/CoreAssembly.dll</HintPath>
+      <HintPath>C:\Users\fangz\AppData\Roaming\AllOut\66e8c5313821ce3224e5dd69-editor/res/CoreAssembly.dll</HintPath>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="C:\Users\fangz\AppData\Roaming\AllOut\66e1b67d3821ce322437264f-editor/res/SourceGenerator/SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="C:\Users\fangz\AppData\Roaming\AllOut\66e8c5313821ce3224e5dd69-editor/res/SourceGenerator/SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 </Project>
