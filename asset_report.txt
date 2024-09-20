@@ -776,6 +776,7 @@
 664 bytes - UI/SkillTree/quit_cross_button.png.ao
 656 bytes - BearTrap.prefab.ao
 648 bytes - UI/AbilityBook/AbilityInfo/dots.png.ao
+640 bytes - Crate.prefab.ao
 640 bytes - UI/AbilityBook/upgrade_arrow.png.ao
 632 bytes - Invisibility_Aura.prefab.ao
 632 bytes - environment/CentralHub/Fountain/Fountain_flow3.png.ao

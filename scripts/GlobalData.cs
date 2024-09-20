@@ -62,5 +62,8 @@ public static class GlobalData
     public static Vector4 SelfIdColor = new Vector4(1, 0.68f, 0, 1);
     public static Vector4 OtherIdColor = Vector4.White;
     public static float KillFeedLifeTime = 4f;
-
+    
+    // Crate Spawn
+    public static float CrateSpawnTime = 1;
+    public static float CrateLifeTime = 10;
 }

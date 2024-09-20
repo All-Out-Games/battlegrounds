@@ -332,6 +332,31 @@ public class FightClubGameManager : System<FightClubGameManager> {
             }
         }
     }
+    
+    /// <summary>
+    /// Spawns a networked prefab.
+    /// </summary>
+    /// <param name="prefabPath"></param>
+    /// <param name="position"></param>
+    /// <param name="afterSpawn"></param>
+    public void ServerSpawn(Prefab pf, Vector2 position, Action<Entity> afterSpawn = null)
+    {
+        if (Network.IsServer)
+        {
+            if (pf == null)
+            {
+                Log.Error("ServerSpawn: Parameter pf is null! Aborting.");
+                return;
+            }
+            Entity expEntity = pf.Instantiate();
+            expEntity.Position = position;
+            Network.Spawn(expEntity);
+            if (afterSpawn != null)
+            {
+                afterSpawn(expEntity);
+            }
+        }
+    }
 
     public void ClientSpawn(string prefabPath, Vector2 position, Action<Entity> afterSpawn = null)
     {

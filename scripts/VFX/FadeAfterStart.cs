@@ -18,6 +18,9 @@ public class FadeAfterStart : Component
     
 
     protected float ElapsedTime = 0;
+
+    public Action OnFaded;
+    protected bool Faded;
     
     public override void Start()
     {
@@ -74,6 +77,11 @@ public class FadeAfterStart : Component
         if (FadeSprite)
         {
             Sprite.Tint = Sprite.Tint with { W = progress10 };
+        }
+
+        if (Util.OneTime(ElapsedTime > FadeTime, ref Faded))
+        {
+            OnFaded?.Invoke();
         }
         
     }

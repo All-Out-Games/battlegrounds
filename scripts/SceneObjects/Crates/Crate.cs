@@ -4,7 +4,7 @@ using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.SceneObjects.Crates
 {
-    public class Crate : Component, IDamageable
+    public partial class Crate : Component, IDamageable
     {
         public static Prefab CratePrefab = Assets.KeepLoaded<Prefab>("Crate.prefab");
         [Serialized] public Spine_Animator Animator;
@@ -21,6 +21,45 @@ namespace Assembly.scripts.SceneObjects.Crates
                 return;
             }
             ConstructStateMachine();
+        }
+
+        public override void Start()
+        {
+            base.Start();
+            if (Network.IsServer)
+            {
+                CallClient_Initialization();
+            }
+            Animator.SpineInstance.StateMachine.SetTrigger("appear");
+
+            Fade.OnFaded += () =>
+            {
+                Fade.OnFaded = null;
+                if(Network.IsServer) CallClient_Despawn();
+            };
+        }
+
+        /// <summary>
+        /// Function for crate init over the network. Roll and assign the item in it, also sets attributes.
+        /// CAUTION: DO NOT CALL THIS EXCEPT IN THE SPAWN ROUTINE
+        /// </summary>
+        [ClientRpc]
+        public void Initialization()
+        {
+            CrateManager.Instance.AliveCrateCount++;
+            Fade.SetPersistFadeTime(GlobalData.CrateLifeTime, GlobalData.CrateLifeTime+1);
+        }
+
+        [ClientRpc]
+        public void Despawn()
+        {
+            Log.Debug($"Despawn called for {Entity.Name}");
+            if (Network.IsServer)
+            {
+                Network.Despawn(Entity);
+                Entity.Destroy();
+            }
+            CrateManager.Instance.AliveCrateCount--;
         }
 
         public void ConstructStateMachine()
