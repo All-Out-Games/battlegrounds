@@ -9,8 +9,9 @@ public class FadeAfterStart : Component
     [Serialized] protected bool FadeSpine;
     [Serialized] protected bool FadeSprite;
 
-    [Serialized] protected float PersistTime = 1f;
-    [Serialized] protected float FadeTime = 1f;
+    [Serialized] protected float PersistTime = 1f; // How long this object should persist before fading
+    [Serialized] protected float FadeTime = 1f; // How many seconds you want before this object completely fades away? 
+    // NOTE: FadeTime must be longer than persist time!
 
     protected Spine_Animator Animator;
     protected Sprite_Renderer Sprite;
@@ -45,6 +46,7 @@ public class FadeAfterStart : Component
         if (FadeTime <= PersistTime)
         {
             Log.Warn("FadeAfterStart: Fade time must be more than persist time!");
+            Entity.Destroy();
         }
 
         if (FadeTime < 0.1f) FadeTime = 0.1f;
@@ -80,5 +82,9 @@ public class FadeAfterStart : Component
     {
         PersistTime = persistTime;
         FadeTime = fadeTime;
+    }
+
+    public bool IsFading(){
+        return ElapsedTime > PersistTime;
     }
 }

@@ -551,6 +551,7 @@ public partial class FightPlayer : Player
             if (CurrentHealth <= 0)
             {
                 FightClubGameManager.Instance.PlayerEliminationEvent.Invoke(source, this, info);
+            
                 CallClient_PlayerDeath();
                 return;
             }

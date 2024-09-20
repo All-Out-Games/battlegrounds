@@ -15,7 +15,7 @@ public class AttachmentObject : Component
     public void Despawn()
     {
         if(Network.IsServer && Networked) Network.Despawn(Entity);
-        Entity.Destroy();
+        else Entity.Destroy();
     }
 
     // Call after instantiate
