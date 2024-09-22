@@ -72,28 +72,29 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
     private void KnockingBlast()
     {
         Vector2 selfPos = FightPlayer.Entity.Position;
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.SelfDestructConfig.BlastRange, Player);
-            
-        foreach (var fp in cbPlayers)
+        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForDamageables(selfPos, EffectConfig.SelfDestructConfig.BlastRange, Player);
+        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.BlastDamage, DamageType.AOE);
+        info.SkillKey = SkillConfig.SelfDestructConfig.SkillKey;
+        info.CrateImmediateDestroy = true;
+        
+        foreach (var dmg in cbPlayers)
         {
-            if (fp == FightPlayer)
+            if(!dmg.Damageable()) continue;
+            if (dmg is PlayerCollisionChild fp)
             {
-                // Self damage
-                FightPlayer.DamageInfo selfDmgInfo = FightPlayer.DamageInfo.CreateSelfDamageInfo(Config.SelfDamage) with{SkillKey = SkillConfig.SelfDestructConfig.SkillKey};
-                FightPlayer.TakeDamage(FightPlayer, selfDmgInfo);
-            }
-            else
-            {
-                if (fp.Damageable())
+                if (fp.Player == FightPlayer)
                 {
-                    FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.BlastDamage, DamageType.AOE);
-                    info.SkillKey = SkillConfig.SelfDestructConfig.SkillKey;
-                    fp.TakeDamage(FightPlayer, info);
-                        
+                    // Self damage
+                    FightPlayer.DamageInfo selfDmgInfo = FightPlayer.DamageInfo.CreateSelfDamageInfo(Config.SelfDamage) with{SkillKey = SkillConfig.SelfDestructConfig.SkillKey};
+                    FightPlayer.TakeDamage(FightPlayer, selfDmgInfo);
+                }
+                else
+                {
                     Vector2 bumpDir = fp.Entity.Position - selfPos;
-                    fp.AddBumpFrom(FightPlayer, bumpDir.Normalized * EffectConfig.SelfDestructConfig.BumpStrength, false);
+                    fp.Player.AddBumpFrom(FightPlayer, bumpDir.Normalized * EffectConfig.SelfDestructConfig.BumpStrength, false);
                 }
             }
+            dmg.TakeDamage(FightPlayer, info);
         }
     }
 }

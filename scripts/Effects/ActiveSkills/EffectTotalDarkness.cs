@@ -60,33 +60,39 @@ public class EffectTotalDarkness : FightEffect
     public void DarkAttack()
     {
         // Blind Every Player in combat
-        var fpList = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(FightPlayer.Entity.Position, EffectConfig.TotalDarknessConfig.Range, Player);
+        var fpList = FightClubGameManager.Instance.OverlapCircleForDamageables(FightPlayer.Entity.Position, EffectConfig.TotalDarknessConfig.Range, Player);
         
         _config = EffectConfig.TotalDarknessConfig.GetConfig(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("TotalDarkness"));
-
-        foreach (var fp in fpList)
+        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage, DamageType.None);
+        info.SkillKey = SkillConfig.TotalDarknessConfig.SkillKey;
+        info.CrateImmediateDestroy = true;
+        
+        foreach (var dmg in fpList)
         {
-            if (fp != FightPlayer && fp.Damageable())
+            if(!dmg.Damageable()) continue;
+            if (dmg is PlayerCollisionChild fp)
             {
-                if (fp.HasEffect<EffectBlinded>())
+                if (fp.Player != FightPlayer)
                 {
-                    fp.GetEffect<EffectBlinded>().DurationRemaining = EffectConfig.TotalDarknessConfig.BlindTime; // Refresh if already blinded
+                    var player = fp.Player;
+                    if (player.HasEffect<EffectBlinded>())
+                    {
+                        player.GetEffect<EffectBlinded>().DurationRemaining = EffectConfig.TotalDarknessConfig.BlindTime; // Refresh if already blinded
+                    }
+                    else
+                    {
+                        player.AddEffect<EffectBlinded>(FightPlayer, EffectConfig.TotalDarknessConfig.BlindTime);
+                    }
+                    if (_config.LifeSteal)
+                    {
+                        info.ReactionInfo.Amount = (int)(info.ReactionInfo.Amount * -EffectConfig.TotalDarknessConfig.FourStarLifeStealMultiplier);
+                        info.DamageNumberColor = GlobalData.HealNumberColor;
+                        FightPlayer.TakeDamage(FightPlayer, info);
+                    } 
                 }
-                else
-                {
-                    fp.AddEffect<EffectBlinded>(FightPlayer, EffectConfig.TotalDarknessConfig.BlindTime);
-                }
-
-                FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage, DamageType.None);
-                info.SkillKey = SkillConfig.TotalDarknessConfig.SkillKey;
-                fp.TakeDamage(FightPlayer, info);
-                if (_config.LifeSteal)
-                {
-                    info.ReactionInfo.Amount = (int)(info.ReactionInfo.Amount * -EffectConfig.TotalDarknessConfig.FourStarLifeStealMultiplier);
-                    info.DamageNumberColor = GlobalData.HealNumberColor;
-                    FightPlayer.TakeDamage(FightPlayer, info);
-                }
+            
             }
+            dmg.TakeDamage(FightPlayer, info);
         }
         FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
     }

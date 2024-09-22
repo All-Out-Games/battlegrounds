@@ -78,8 +78,6 @@ public class EffectGroundStomp : FightEffectWithNoFlinch
         foreach (var other in cbPlayers)
         {
             if(!other.Damageable()) continue;
-            if(other.Entity == FightPlayer.Entity) continue;
-                
             other.TakeDamage(FightPlayer, info);
         }
     }
