@@ -58,21 +58,25 @@ public class EffectBattleCry : FightEffectWithNoFlinch
     private void BattleCry()
     {
         Vector2 selfPos = FightPlayer.Entity.Position;
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.BattleCryConfig.RoarRadius * Config.WaveSizeMultiplier, Player);
+        var damageables = FightClubGameManager.Instance.OverlapCircleForDamageables(selfPos, EffectConfig.BattleCryConfig.RoarRadius * Config.WaveSizeMultiplier, Player);
 
-        foreach (var fp in cbPlayers)
+        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.RoarDamage, DamageType.AOE) with {InterruptLevel = FightPlayer.DamageInfo.StunInterruptLevel};
+        info.ReactionInfo.Flinch = false;
+        info.SkillKey = SkillConfig.BattleCryConfig.SkillKey;
+        info.CrateImmediateDestroy = true;
+        
+        foreach (var dmg in damageables)
         {
-            if (fp == FightPlayer || !fp.Damageable())
+            if(!dmg.Damageable()) continue;
+            if (dmg is PlayerCollisionChild fp)
             {
-                continue;
+                if (fp.Player != FightPlayer && fp.Damageable())
+                {
+                    fp.Player.GetEffectMgr().AddBattleCryStun(FightPlayer.Entity, Config.StunTime);
+                    fp.Player.AddScreenShake(1f,0.5f);
+                }
             }
-
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.RoarDamage, DamageType.AOE) with {InterruptLevel = FightPlayer.DamageInfo.StunInterruptLevel};
-            info.ReactionInfo.Flinch = false;
-            info.SkillKey = SkillConfig.BattleCryConfig.SkillKey;
-            fp.TakeDamage(FightPlayer, info);
-            fp.GetEffectMgr().AddBattleCryStun(FightPlayer.Entity, Config.StunTime);
-            fp.AddScreenShake(1f,0.5f);
+            dmg.TakeDamage(FightPlayer, info);
         }
     }
     

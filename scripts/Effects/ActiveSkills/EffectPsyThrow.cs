@@ -239,7 +239,7 @@ public class EffectPsyExplosion : FightEffect
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.AOE);
             info.AwardCoin = false;
             info.SkillKey = SkillKey;
-            var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(FightPlayer.Position, Radius, Caster);
+            var cbPlayers = FightClubGameManager.Instance.OverlapCircleForDamageables(FightPlayer.Position, Radius, Caster);
             SFX.Play(SFXKeys.PsyboltHitAudio, DefaultSoundDesc);
             foreach (var other in cbPlayers)
             {

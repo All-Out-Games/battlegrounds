@@ -37,6 +37,7 @@ public partial class FightPlayer
 
         public Vector4 DamageNumberColor = GlobalData.DamageNumberColor;
         public string SkillKey = "Punch";
+        public bool CrateImmediateDestroy = false;
         
         // Client & Server Data
         public DamageReactionInfo ReactionInfo = new DamageReactionInfo(); 

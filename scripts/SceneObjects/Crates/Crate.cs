@@ -95,7 +95,16 @@ namespace Assembly.scripts.SceneObjects.Crates
 
         public override void TakeDamage(FightPlayer source, FightPlayer.DamageInfo info)
         {
-            HitPoint --;
+            if (info.CrateImmediateDestroy)
+            {
+                HitPoint -= 114514;
+            }
+            else
+            {
+                HitPoint--;
+            }
+            
+            // Hit animation
             Animator.SpineInstance.StateMachine.SetTrigger("hit");
             if (source.Position.X > Position.X)
             {
@@ -105,9 +114,14 @@ namespace Assembly.scripts.SceneObjects.Crates
             {
                 Animator.SpineInstance.Scale = Animator.SpineInstance.Scale with { X = 1 };
             }
+            
             if(HitPoint <= 0){
                 if(Network.IsServer && !_itemSpawned) CallClient_CrateBreak();
                 _itemSpawned = true;
+            }
+            else
+            {
+                Fade.ExtendLifetime(2f); // Extend time if a crate is damaged but not dead
             }
         }
 

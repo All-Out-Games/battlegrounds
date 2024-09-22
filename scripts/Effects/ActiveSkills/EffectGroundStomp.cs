@@ -72,11 +72,13 @@ public class EffectGroundStomp : FightEffectWithNoFlinch
 
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.StompDamage, DamageType.AOE);
         info.SkillKey = SkillConfig.GroundStompConfig.SkillKey;
+        info.CrateImmediateDestroy = true;
         
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.GroundStompConfig.StompRadius * Config.StompSizeMultiplier, Player);
+        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForDamageables(selfPos, EffectConfig.GroundStompConfig.StompRadius * Config.StompSizeMultiplier, Player);
         foreach (var other in cbPlayers)
         {
-            if(other.Entity.NetworkId == FightPlayer.Entity.NetworkId) continue;
+            if(!other.Damageable()) continue;
+            if(other.Entity == FightPlayer.Entity) continue;
                 
             other.TakeDamage(FightPlayer, info);
         }

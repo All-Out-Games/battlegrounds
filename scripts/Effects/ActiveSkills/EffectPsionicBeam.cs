@@ -155,7 +155,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
     private void BeamDamage()
     {
         var fpInRadius =
-            FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(Player);
+            FightClubGameManager.Instance.GetAllDamagableEntities(Player);
         bool explode = FightPlayer.GetSkillTree().GetSkillLevel("PsionicBeam") > 4;
         if (AO.Physics.RaycastWithWhitelist(_eyePos, _rayEnd - _eyePos, _rayLength, fpInRadius, new Entity[] { },
                 out Physics.RaycastHit hit))
@@ -165,13 +165,19 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
                 return;
             }
             _interactedEntities.Add(hit.Collider);
+
+            DamageableObject dmg = hit.Collider.GetComponent<DamageableObject>();
+            FightPlayer.DamageInfo info =
+                FightPlayer.DamageInfo.CreateDamageInfo(_cfg.Damage, DamageType.Ranged);
+            info.SkillKey = SkillConfig.PsionicBeamConfig.SkillKey;
+            info.CrateImmediateDestroy = true;
             
-            PlayerCollisionChild fp = hit.Collider.GetComponent<PlayerCollisionChild>();
-            if (fp != null && fp.Player != FightPlayer)
+            if (dmg is PlayerCollisionChild fp)
             {
-                FightPlayer.DamageInfo info =
-                    FightPlayer.DamageInfo.CreateDamageInfo(_cfg.Damage, DamageType.Ranged);
-                info.SkillKey = SkillConfig.PsionicBeamConfig.SkillKey;
+                if (fp.Player == FightPlayer)
+                {
+                    return;
+                }
                 fp.Player.TakeDamage(FightPlayer, info);
 
                 var hitVfx = VFXPrefabs.PsionicBeamHitVFX.Instantiate();
@@ -194,6 +200,10 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
 
                     });
                 }
+            }
+            else
+            {
+                dmg.TakeDamage(FightPlayer, info);
             }
         }
     }

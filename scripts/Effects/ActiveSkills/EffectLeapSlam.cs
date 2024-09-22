@@ -100,23 +100,30 @@ public class EffectLeapSlam : FightEffectWithImmunity
         FightPlayer.AddDash(Vector2.Zero, 0); // Remove Dash
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlamDamage, DamageType.AOE, FightPlayer.DamageInfo.KnockBackInterruptLevel);
         info.SkillKey = SkillConfig.LeapSlamConfig.SkillKey;
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.LeapSlamConfig.SlamRadius * _config.SlamAreaMultiplier, Player);
+        info.CrateImmediateDestroy = true;
+        
+        var damageables = FightClubGameManager.Instance.OverlapCircleForDamageables(selfPos, EffectConfig.LeapSlamConfig.SlamRadius * _config.SlamAreaMultiplier, Player);
         bool hit = false;
-        foreach (var other in cbPlayers)
+        foreach (var dmg in damageables)
         {
-            if(other == FightPlayer || !other.Damageable()) continue;
+            if(!dmg.Damageable()) continue;
             
-            other.TakeDamage(FightPlayer, info);
-            Vector2 dir = other.Entity.Position - selfPos;
-            other.AddBump(dir.Normalized * _config.BumpStrength, false);
-            if (Vector2.Dot(dir, other.GetFacingDirectionAsVector()) > 0)
-            {
-                other.SetFacingDirection(!other.GetFacingDirection());
-            }
+            dmg.TakeDamage(FightPlayer, info);
 
-            //other.AddEffect<EffectKnockDown>(FightPlayer, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
-            other.GetEffectMgr().AddLeapSlamKnockdown(FightPlayer.Entity, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
-            hit = true;
+            if (dmg is PlayerCollisionChild fp)
+            {
+                var other = fp.Player;
+                Vector2 dir = other.Entity.Position - selfPos;
+                other.AddBump(dir.Normalized * _config.BumpStrength, false);
+                if (Vector2.Dot(dir, other.GetFacingDirectionAsVector()) > 0)
+                {
+                    other.SetFacingDirection(!other.GetFacingDirection());
+                }
+
+                //other.AddEffect<EffectKnockDown>(FightPlayer, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
+                other.GetEffectMgr().AddLeapSlamKnockdown(FightPlayer.Entity, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
+                hit = true;
+            }
         }
 
         if (hit)

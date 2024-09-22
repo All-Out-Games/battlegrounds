@@ -112,14 +112,22 @@ public class EffectClawSlash : FightEffect
             entity.LocalRotation = FightClubUtils.AngleBetween(Vector2.Left, AbilityPositionOrDirection);
         });
 
-        var cbPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, EffectConfig.ClawSlashConfig.SlashRadius, Player);
-        foreach (var other in cbPlayers)
+        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlashDamage);
+        info.SkillKey = SkillConfig.ClawSlashConfig.SkillKey;
+        info.CrateImmediateDestroy = true;
+        
+        var damageables = FightClubGameManager.Instance.OverlapCircleForDamageables(selfPos, EffectConfig.ClawSlashConfig.SlashRadius, Player);
+        foreach (var dmg in damageables)
         {
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlashDamage);
-            if(other == FightPlayer || !other.Damageable()) continue;
-            info.SkillKey = SkillConfig.ClawSlashConfig.SkillKey;
-            other.TakeDamage(FightPlayer, info);
-            other.GetEffectMgr().AddBleed(FightPlayer.Entity, _config.BleedTime, _config.BleedDmg);
+            if(!dmg.Damageable()) continue;
+            if (dmg is PlayerCollisionChild fp)
+            {
+                if (fp.Player != FightPlayer && fp.Damageable())
+                {
+                    fp.Player.GetEffectMgr().AddBleed(FightPlayer.Entity, _config.BleedTime, _config.BleedDmg);
+                }
+            }
+            dmg.TakeDamage(FightPlayer, info);
         }
     }
 }

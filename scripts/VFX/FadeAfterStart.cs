@@ -101,6 +101,12 @@ public class FadeAfterStart : Component
         ElapsedTime = PersistTime - delay;
     }
 
+    public void ExtendLifetime(float delay = 3f)
+    {
+        PersistTime += delay;
+        FadeTime += delay;
+    }
+
     public bool IsFading(){
         return ElapsedTime > PersistTime;
     }
