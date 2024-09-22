@@ -17,7 +17,7 @@ public class FadeAfterStart : Component
     protected Sprite_Renderer Sprite;
     
 
-    protected float ElapsedTime = 0;
+    public float ElapsedTime = 0;
 
     public Action OnFaded;
     protected bool Faded;

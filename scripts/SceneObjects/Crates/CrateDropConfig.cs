@@ -8,18 +8,16 @@ namespace Assembly.scripts.SceneObjects.Crates
     public class CrateDropConfig
     {
         public string DropName = "Nothing"; // Used for handler
-        public string DropDisplayName = "Nothing!"; // Display under the thing
+        public string DropDisplayName = "Nothing!"; // Popup text
         public string DropTexturePath = ""; // Load Texture on drop
-
-        public bool Special = false; // Call a special handler when spawning the dropped item
     }
+    
     public partial class CratesConfig
     {
         public static CrateDropConfig CoinsConfig = new CrateDropConfig(){
-            DropName = "Coins",
-            DropDisplayName = "",
-            DropTexturePath = "Props/DropItems/HealthPotionS.png",
-            Special = true
+            DropName = "Coin",
+            DropDisplayName = "Coin +5 !",
+            DropTexturePath = "Props/DropItems/coin/coin_1.png",
         };
         
         public static CrateDropConfig HealthPotionSConfig = new CrateDropConfig(){
@@ -29,15 +27,23 @@ namespace Assembly.scripts.SceneObjects.Crates
         };
 
         public static CrateDropConfig HealthPotionMConfig = new CrateDropConfig(){
-            DropName = "HealthPotionS",
+            DropName = "HealthPotionM",
             DropDisplayName = "Health Potion",
             DropTexturePath = "Props/DropItems/HealthPotionM.png"
         };
 
         public static CrateDropConfig HealthPotionLConfig = new CrateDropConfig(){
-            DropName = "HealthPotionS",
+            DropName = "HealthPotionL",
             DropDisplayName = "Large Health Potion",
             DropTexturePath = "Props/DropItems/HealthPotionL.png"
+        };
+
+        public static Dictionary<string, CrateDropConfig> CrateDropConfigs = new()
+        {
+            {CoinsConfig.DropName, CoinsConfig},
+            {HealthPotionSConfig.DropName, HealthPotionSConfig},
+            {HealthPotionMConfig.DropName, HealthPotionMConfig},
+            {HealthPotionLConfig.DropName, HealthPotionLConfig},
         };
     }
 }

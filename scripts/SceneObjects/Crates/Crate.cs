@@ -13,6 +13,8 @@ namespace Assembly.scripts.SceneObjects.Crates
         [Serialized] public FadeAfterStart Fade;
 
         private bool _itemSpawned = false;
+        private Vector2 _damageDir;
+        private CratesConfig _config;
 
         public override void Awake()
         {
@@ -44,8 +46,10 @@ namespace Assembly.scripts.SceneObjects.Crates
         public void Initialization()
         {
             Fade.SetPersistFadeTime(GlobalData.CrateLifeTime, GlobalData.CrateLifeTime+1);
-            HitPoint = 2;
             CrateManager.Instance.Register(this);
+            var cfg = Util.SampleWeightedList(CratesConfig.AllPossibleItems, config => config.Prob, Random.Shared);
+            _config = cfg.Item1;
+            HitPoint = _config.HitPoint;
         }
 
         [ClientRpc]
@@ -103,10 +107,11 @@ namespace Assembly.scripts.SceneObjects.Crates
             {
                 HitPoint--;
             }
-            
+
+            _damageDir = Position - source.Position;
             // Hit animation
             Animator.SpineInstance.StateMachine.SetTrigger("hit");
-            if (source.Position.X > Position.X)
+            if (_damageDir.X < 0)
             {
                 Animator.SpineInstance.Scale = Animator.SpineInstance.Scale with { X = -1 }; // Flip the hit animation
             }
@@ -116,7 +121,7 @@ namespace Assembly.scripts.SceneObjects.Crates
             }
             
             if(HitPoint <= 0){
-                if(Network.IsServer && !_itemSpawned) CallClient_CrateBreak();
+                if(Network.IsServer && !_itemSpawned) CallClient_CrateBreak(_damageDir);
                 _itemSpawned = true;
             }
             else
@@ -126,10 +131,24 @@ namespace Assembly.scripts.SceneObjects.Crates
         }
 
         [ClientRpc]
-        public void CrateBreak(){
+        public void CrateBreak(Vector2 damageDir){
             Animator.SpineInstance.StateMachine.SetTrigger("break");
             Fade.FadeImmediately();
             // TODO: Spawn Dropped Item
+            // Server authoritatively spawn the item dropped.
+            // Pass the last damage direction to push against the direction of the player who broke them 
+            if (_config.Special)
+            {
+                // Put special itemName cases here
+            }
+            else
+            {
+                FightClubGameManager.Instance.ServerSpawn(CrateItemDrop.DropPrefab, Position, entity =>
+                {
+                    CrateItemDrop drop = entity.GetComponent<CrateItemDrop>();
+                    drop.CallClient_Initialization(_config.ItemName, damageDir.Normalized);
+                });
+            }
         }
     }
 }

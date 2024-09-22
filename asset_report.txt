@@ -563,19 +563,25 @@
 5688 bytes - SFX/Effects/spike_shield_activate.wav.ao
 5592 bytes - environment/CentralHub/Booth_shadow.png.ao.ios
 5552 bytes - UI/AbilityBook/Loadout/fonts.png.ao
+5544 bytes - Props/DropItems/HealthPotionM.png.ao.ios
 5440 bytes - ability_icon_tmp/Invisibility_tmp.png.ao
 5272 bytes - VFX/ConfusionCloud/BAT003_confusion_cloud.spine.ao
 5248 bytes - VFX/PsionicBeam/ground_fissue_end.png.ao.ios
+5232 bytes - Props/DropItems/HealthPotionM.png.ao
 5176 bytes - SFX/Effects/player_hit_by_spoon.wav.ao
+5168 bytes - Props/DropItems/HealthPotionS.png.ao.ios
 5128 bytes - VFX/PsionicBeam/ground_fissue_end.png.ao
 5128 bytes - environment/CentralHub/Booth_shadow.png.ao
 5112 bytes - environment/CentralHub/Wave2.png.ao
 5024 bytes - LeaderBoard/RANK 1.png.ao.ios
+4808 bytes - Props/DropItems/HealthPotionS.png.ao
 4768 bytes - LeaderBoard/RANK 1.png.ao
+4600 bytes - Props/DropItems/HealthPotionL.png.ao.ios
 4552 bytes - VFX/PsionicBeam/ground_fissue_repeatable.png.ao.ios
 4424 bytes - VFX/PsionicBeam/ground_fissue_repeatable.png.ao
 4408 bytes - UI/LargeMenuButtons/Large Menu Buttons/large_button_highlight.png.ao.ios
 4408 bytes - UI/LargeMenuButtons/large_button_highlight.png.ao.ios
+4336 bytes - Props/DropItems/HealthPotionL.png.ao
 4072 bytes - SFX/UI/ui_insufficient_funds.wav.ao
 3968 bytes - UI/LargeMenuButtons/Large Menu Buttons/large_button_highlight.png.ao
 3968 bytes - UI/LargeMenuButtons/large_button_highlight.png.ao
@@ -596,6 +602,7 @@
 3112 bytes - Pipe_1.prefab.ao
 3112 bytes - UI/LargeMenuButtons/Large Menu Buttons/large_button.png.ao
 3112 bytes - UI/LargeMenuButtons/large_button.png.ao
+2936 bytes - Props/DropItems/coin/coin_1.png.ao.ios
 2936 bytes - ability_icon_tmp/PsyThrowGrab_Tmp.png.ao
 2928 bytes - UI/SkillTree/small_skill_tree_icons/psionic.png.ao.ios
 2912 bytes - ability_icon_tmp/PsyThrowGrab_Tmp.png.ao.ios
@@ -604,13 +611,16 @@
 2784 bytes - UI/LargeMenuButtons/Large Menu Buttons/stats.png.ao.ios
 2784 bytes - UI/LargeMenuButtons/stats.png.ao.ios
 2760 bytes - LoadoutItemGroup.prefab.ao
+2680 bytes - Props/DropItems/coin/coin_1.png.ao
 2664 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills.png.ao.ios
 2664 bytes - UI/LargeMenuButtons/skills.png.ao.ios
 2648 bytes - UI/SkillTree/small_skill_tree_icons_pressed/defense.png.ao.ios
+2640 bytes - Props/DropItems/coin/coin_2.png.ao.ios
 2616 bytes - AbilityIcon_Separate/x_icon_ability.png.ao
 2608 bytes - UI/SkillTree/replace_ability_icon.png.ao
 2592 bytes - UI/AbilityBook/AbilityInfo/buy_button/coin.png.ao.ios
 2576 bytes - UI/SkillTree/small_skill_tree_icons/stealth.png.ao
+2568 bytes - Props/DropItems/coin/coin_2.png.ao
 2568 bytes - UI/SkillTree/small_skill_tree_icons/psionic.png.ao
 2528 bytes - UI/AbilityBook/AbilityInfo/buy_button/buy_button.png.ao.ios
 2488 bytes - UI/SkillTree/small_skill_tree_icons/brawler.png.ao.ios
@@ -747,6 +757,7 @@
 1032 bytes - UI/SkillTree/ability_mask.png.ao.ios
 1008 bytes - environment/CentralHub/Fountain/Fountain_flow5.png.ao.ios
 1008 bytes - environment/CentralHub/Fountain/Fountain_flow6.png.ao
+968 bytes - Props/DropItems/coin/coin_3.png.ao.ios
 968 bytes - UI/SkillTree/arrow_press.png.ao
 952 bytes - UI/SkillTree/arrow_f.png.ao
 952 bytes - UI/SkillTree/full_channels/Layer 1.png.ao
@@ -761,6 +772,7 @@
 880 bytes - UI/AbilityBook/AbilityInfo/dots.png.ao.ios
 840 bytes - UI/AbilityBook/upgrade_arrow.png.ao.ios
 840 bytes - UI/XPBar/exp_bar/level_backing.png.ao.ios
+824 bytes - Props/DropItems/coin/coin_3.png.ao
 808 bytes - BefuddleProjectile.prefab.ao
 792 bytes - UI/AbilityBook/AbilityInfo/quit_cross_button.png.ao.ios
 792 bytes - UI/SkillTree/quit_cross_button.png.ao.ios
@@ -789,6 +801,7 @@
 560 bytes - BattlegroundInfoOverlay.prefab.ao
 560 bytes - UI/SkillTree/full_channels/corner_empty.png.ao.ios
 552 bytes - ClawSwipe.prefab.ao
+552 bytes - CrateItemDrop.prefab.ao
 552 bytes - FatPlayerCollision.prefab.ao
 552 bytes - UI/SkillTree/full_channels/corner_2_empty.png.ao.ios
 544 bytes - SelfDestructExplosion.prefab.ao

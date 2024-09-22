@@ -66,4 +66,5 @@ public static class GlobalData
     // Crate Spawn
     public static float CrateSpawnTime = 1;
     public static float CrateLifeTime = 10;
+    public static float CrateDropLifeTime = 5;
 }
