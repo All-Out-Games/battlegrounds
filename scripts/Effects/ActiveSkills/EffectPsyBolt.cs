@@ -20,7 +20,7 @@ public class AbilityPsybolt : FightAbility
     public static float GetCooldown(FightPlayer fp)
     {
         int lv = fp.GetSkillTree().GetSkillLevel("Psybolt");
-        float cd = EffectConfig.ProjectileConfig.ShurikenCooldown;
+        float cd = EffectConfig.ProjectileConfig.PsyboltCooldown;
         if (lv > 2)
         {
             cd -= 1;

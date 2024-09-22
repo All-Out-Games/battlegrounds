@@ -124,9 +124,9 @@ public class EffectRollOut : FightEffect
         base.OnEffectUpdate();
         if (Util.OneTime(ElapsedTime > NextDmgTick, ref Ticked))
         {
-            foreach (var fp in FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 2, Player))
+            foreach (var dmg in FightClubGameManager.Instance.OverlapCircleForDamageables(Entity.Position, 2, Player))
             {
-                RolloutDamage(fp);
+                RolloutDamage(dmg);
             }
             NextDmgTick += 1;
             Ticked = false;
@@ -169,27 +169,27 @@ public class EffectRollOut : FightEffect
     protected void OnRolloutCollision(Entity other)
     {
         Log.Debug($"Collide With {other.Name}");
-        PlayerCollisionChild pcc = other.GetComponent<PlayerCollisionChild>();
-        FightPlayer otherPlayer = pcc?.Player;
-        
-        if (otherPlayer != null && otherPlayer.Damageable())
-        {
-            RolloutDamage(otherPlayer);
-        }
+        DamageableObject pcc = other.GetComponent<DamageableObject>();
+        RolloutDamage(pcc);
     }
 
-    protected void RolloutDamage(FightPlayer otherPlayer)
+    protected void RolloutDamage(DamageableObject other)
     {
-        if(otherPlayer == FightPlayer || !otherPlayer.Damageable())
+        if(!other.Damageable() || other.Entity == FightPlayer.Entity)
         {
             return;
         }
-        Vector2 bumpDir = otherPlayer.Entity.Position - Entity.Position;
-        var add = bumpDir.Normalized * _config.BumpStrength;
-        otherPlayer.AddBumpFrom(FightPlayer, add, false);
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.ContactDamage) with {InterruptLevel = FightPlayer.DamageInfo.KnockBackInterruptLevel};
         info.SkillKey = SkillConfig.RollOutNodeConfig.SkillKey;
-        otherPlayer.TakeDamage( FightPlayer, info);
+        other.TakeDamage( FightPlayer, info);
+        if (other is PlayerCollisionChild)
+        {
+            var fp = (PlayerCollisionChild)other;
+            
+            Vector2 bumpDir = other.Entity.Position - Entity.Position;
+            var add = bumpDir.Normalized * _config.BumpStrength;
+            fp.Player.AddBumpFrom(FightPlayer, add, false);
+        }
     }
 
     public override void PreDamageMod(ref FightPlayer.DamageInfo info)

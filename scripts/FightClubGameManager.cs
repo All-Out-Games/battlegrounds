@@ -1,5 +1,6 @@
 
 using AO;
+using Assembly.scripts;
 using Assembly.scripts.SceneObjects.Crates;
 using Assembly.scripts.UI;
 
@@ -316,6 +317,28 @@ public class FightClubGameManager : System<FightClubGameManager> {
             if (Vector2.Distance(center, other.Entity.Position) < radius)
             {
                 hitPlayers.Add(other);
+            }
+        }
+        return hitPlayers;
+    }
+    
+    public List<DamageableObject> OverlapCircleForDamageables(Vector2 center, float radius, Player exclude)
+    {
+        List<DamageableObject> hitPlayers = new();
+        foreach (var other in GetAllDamagableEntities(exclude))
+        {
+            if (Vector2.Distance(center, other.Position) < radius)
+            {
+                DamageableObject dmg = other.GetComponent<DamageableObject>();
+                if (dmg.Alive())
+                {
+                    hitPlayers.Add(dmg);
+                }
+                else
+                {
+                    Log.Warn($"OverlapCircleForDamageables - {other.Name} is not Alive. Skipping.");
+                }
+                
             }
         }
         return hitPlayers;

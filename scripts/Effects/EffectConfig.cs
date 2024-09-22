@@ -245,7 +245,7 @@ public static class EffectConfig
         public static readonly float PsyboltCooldown = 8f;
         public static readonly float PsyboltRange = 10f;
         public static readonly float PsyboltLifeTime = 1f;
-        public static readonly float PsyboltKnockbackStrength = 165f;
+        public static readonly float PsyboltKnockbackStrength = 95f;
         
         // Shuriken
         public static readonly int ShurikenDamageBase = 5;

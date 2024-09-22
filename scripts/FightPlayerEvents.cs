@@ -148,21 +148,24 @@ public partial class FightPlayer
         
         if (Network.IsClient && PlayerStatus == PlayerStatus.Combat)
         {
-            // Override types
-            if (info.OverrideDamageNumber == DamageInfo.DamageNumberOverrideType.Dodged)
-            {
-                FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, GlobalData.OutputDamageNumberColor, "Dodged!");
-                return;
-            }
-
-            if (info.OverrideDamageNumber == DamageInfo.DamageNumberOverrideType.Immune)
-            {
-                FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, GlobalData.OutputDamageNumberColor, "Immune!");
-                return;
-            }
+            
             // Damage numbers only render if the number is related to the local player
             if (IsLocal || source == Network.LocalPlayer) // Player takes the damage or deals damage
             {
+                // Override types
+                if (info.OverrideDamageNumber == DamageInfo.DamageNumberOverrideType.Dodged)
+                {
+                    FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, GlobalData.OutputDamageNumberColor, "Dodged!");
+                    return;
+                }
+
+                if (info.OverrideDamageNumber == DamageInfo.DamageNumberOverrideType.Immune)
+                {
+                    FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, GlobalData.OutputDamageNumberColor, "Immune!");
+                    return;
+                }
+                
+                // Normal Type
                 if (source == Network.LocalPlayer && info.DamageNumberColor == GlobalData.DamageNumberColor)
                 {
                     info.DamageNumberColor = GlobalData.OutputDamageNumberColor;
