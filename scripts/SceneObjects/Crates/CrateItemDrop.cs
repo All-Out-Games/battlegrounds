@@ -11,8 +11,7 @@ public partial class CrateItemDrop : Component
     // We do this because we want to make yoinking other players' drop possible
 
     public static Prefab DropPrefab = Assets.KeepLoaded<Prefab>("CrateItemDrop.prefab");
-
-    public Action<FightPlayer> OnItemGrant; // Handle function to apply some effect to a player
+    
     [Serialized] private Circle_Collider _pickupTrigger;
     [Serialized] private Sprite_Renderer _renderer;
     [Serialized] public FadeAfterStart Fade;
@@ -20,6 +19,7 @@ public partial class CrateItemDrop : Component
     private Vector2 _bump;
     private float _bumpStrength = 3f;
     private bool _activated;
+    private bool _seeking;
 
     private CrateDropConfig _config;
 
@@ -44,12 +44,23 @@ public partial class CrateItemDrop : Component
             Fade.OnFaded = null;
             if(Network.IsServer) CallClient_Despawn();
         };
+        _pickupTrigger.OnCollisionEnter += entity =>
+        {
+            if (Network.IsServer)
+            {
+                FightPlayer fp = entity.GetComponent<FightPlayer>();
+                if (!_seeking && fp.Alive())
+                {
+                    CallClient_StartSeek(fp);
+                }
+            }
+        };
     }
 
     public override void Update()
     {
         base.Update();
-        if(Util.OneTime(TimeElapsed > 0.5f, ref _activated))
+        if(Util.OneTime(TimeElapsed > 1f, ref _activated))
         {
             ActivateDropSeek();
         }
@@ -102,17 +113,47 @@ public partial class CrateItemDrop : Component
         if (Network.IsServer)
         {
             _pickupTrigger.LocalEnabled = true;
+            if (!_seeking)
+            {
+                var lfp = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Position, 2, null);
+                if (lfp.Count > 0)
+                {
+                    CallClient_StartSeek(lfp[0]);
+                }
+            }
         }
         Log.Warn($"Drop Activated - {Entity.Name}");
-    }
-
-    public void StartSeek(FightPlayer fp)
-    {
         
     }
 
+    [ClientRpc]
+    public void StartSeek(FightPlayer fp)
+    {
+        _seeking = true;
+        Fade.ExtendLifetime(2f); // Seek takes 1s
+        Coroutine.Start(Entity, Seek(fp));
+    }
+
+    /// <summary>
+    /// Lerp position to the FP, if fp is alive.
+    /// On server, call grant item when this coroutine ends.
+    /// </summary>
+    /// <param name="fp"></param>
+    /// <returns></returns>
     IEnumerator Seek(FightPlayer fp)
     {
+        if(Network.IsServer) CallClient_DropItemGrant(fp);
         yield return null;
+    }
+
+    [ClientRpc]
+    public virtual void DropItemGrant(FightPlayer fp)
+    {
+        if (fp.Alive())
+        {
+            //Log.Warn($"{Entity.Name} Trying to Grant!");
+            Fade.FadeImmediately(0.1f, 0.15f);
+        }
+        
     }
 }
