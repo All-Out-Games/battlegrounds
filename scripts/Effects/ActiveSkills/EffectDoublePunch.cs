@@ -75,10 +75,9 @@ public class EffectDoublePunch : FightEffect
         
         Physics.RaycastHit rc;
         var hit = Physics.RaycastWithWhitelist(Entity.Position, FightPlayer.GetPunchDirection(),
-            EffectConfig.DoublePunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(Player),new Entity[]{ }, out rc);
+            EffectConfig.DoublePunchConfig.PunchRange, FightClubGameManager.Instance.GetAllDamagableEntities(Player),new Entity[]{ }, out rc);
 
-
-
+        
         /*hit = Physics.Raycast(Entity.Position, FightPlayer.GetPunchDirection(),
             EffectConfig.PunchConfig.PunchRange, out rc);*/
 

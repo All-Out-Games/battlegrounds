@@ -201,7 +201,7 @@ BefuddleProjectile.prefab - .ao - 66a918fc96cebaeb1f329880 - 4708991272801069017
 Befuddle_Hit.prefab - .ao - 66904de1b45eb9e8339c1be8 - 9947058021191885588
 BloodVFX.prefab - .ao - 66a7fba36732dee0bb811e92 - 12549604446384681181
 ClawSwipe.prefab - .ao - 66a1a7616732dee0bb811d55 - 1318749154253486373
-Crate.prefab - .ao - 66ed0cec60ed1ef1ffbc5add - 13923417722301929392
+Crate.prefab - .ao - 66ef5b3860ed1ef1ffbc5c13 - 4113007504410479119
 FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
 FightPlayerRig/playercharacter.png - .ao - 66b54e7acf7a5e4159a6c581 - 3623416252221893877
 FightPlayerRig/playercharacter.png - .ao.ios - 66b54e7acf7a5e4159a6c580 - 3102808124993676841

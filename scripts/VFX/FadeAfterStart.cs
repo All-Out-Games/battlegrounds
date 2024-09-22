@@ -92,6 +92,15 @@ public class FadeAfterStart : Component
         FadeTime = fadeTime;
     }
 
+    /// <summary>
+    /// Set ElapsedTime = PersistTime - delay (default to 0.1f)
+    /// </summary>
+    /// <param name="delay"></param>
+    public void FadeImmediately(float delay = 0.1f)
+    {
+        ElapsedTime = PersistTime - delay;
+    }
+
     public bool IsFading(){
         return ElapsedTime > PersistTime;
     }

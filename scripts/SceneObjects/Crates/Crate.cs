@@ -4,13 +4,15 @@ using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.SceneObjects.Crates
 {
-    public partial class Crate : Component, IDamageable
+    public partial class Crate : DamageableObject
     {
         public static Prefab CratePrefab = Assets.KeepLoaded<Prefab>("Crate.prefab");
         [Serialized] public Spine_Animator Animator;
         [Serialized] public int HitPoint = 1;
 
         [Serialized] public FadeAfterStart Fade;
+
+        private bool _itemSpawned = false;
 
         public override void Awake()
         {
@@ -26,12 +28,7 @@ namespace Assembly.scripts.SceneObjects.Crates
         public override void Start()
         {
             base.Start();
-            if (Network.IsServer)
-            {
-                CallClient_Initialization();
-            }
             Animator.SpineInstance.StateMachine.SetTrigger("appear");
-
             Fade.OnFaded += () =>
             {
                 Fade.OnFaded = null;
@@ -46,8 +43,9 @@ namespace Assembly.scripts.SceneObjects.Crates
         [ClientRpc]
         public void Initialization()
         {
-            CrateManager.Instance.AliveCrateCount++;
             Fade.SetPersistFadeTime(GlobalData.CrateLifeTime, GlobalData.CrateLifeTime+1);
+            HitPoint = 2;
+            CrateManager.Instance.Register(this);
         }
 
         [ClientRpc]
@@ -59,7 +57,9 @@ namespace Assembly.scripts.SceneObjects.Crates
                 Network.Despawn(Entity);
                 Entity.Destroy();
             }
-            CrateManager.Instance.AliveCrateCount--;
+            var c = CrateManager.Instance;
+            c.Deregister(this);
+
         }
 
         public void ConstructStateMachine()
@@ -88,20 +88,33 @@ namespace Assembly.scripts.SceneObjects.Crates
             Animator.SpineInstance.SetStateMachine(stateMachine, Entity);
         }
 
-        public bool Damageable()
+        public override bool Damageable()
         {
             return HitPoint > 0 && !Fade.IsFading();
         }
 
-        public void TakeDamage(FightPlayer source, FightPlayer.DamageInfo info)
+        public override void TakeDamage(FightPlayer source, FightPlayer.DamageInfo info)
         {
             HitPoint --;
+            Animator.SpineInstance.StateMachine.SetTrigger("hit");
+            if (source.Position.X > Position.X)
+            {
+                Animator.SpineInstance.Scale = Animator.SpineInstance.Scale with { X = -1 }; // Flip the hit animation
+            }
+            else
+            {
+                Animator.SpineInstance.Scale = Animator.SpineInstance.Scale with { X = 1 };
+            }
             if(HitPoint <= 0){
-                CrateBreak();
+                if(Network.IsServer && !_itemSpawned) CallClient_CrateBreak();
+                _itemSpawned = true;
             }
         }
 
-        protected void CrateBreak(){
+        [ClientRpc]
+        public void CrateBreak(){
+            Animator.SpineInstance.StateMachine.SetTrigger("break");
+            Fade.FadeImmediately();
             // TODO: Spawn Dropped Item
         }
     }

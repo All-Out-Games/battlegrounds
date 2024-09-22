@@ -7,12 +7,15 @@ public class CrateManager : System<CrateManager>
     /// <summary>
     /// Server Only List of crates
     /// </summary>
+    public List<Crate> CrateRegistry = new List<Crate>();
     public int AliveCrateCount;
+    
 
     public void SpawnCrate()
     {
         if (Network.IsServer)
         {
+            Util.Assert(AliveCrateCount == CrateRegistry.Count, "AliveCrateCount == CrateRegistry.Count");
             // Random pos in combat zone
             Zone combatZone = FightClubGameManager.References.PvpZone;
             FightClubGameManager.Instance.ServerSpawn(Crate.CratePrefab, FightClubUtils.RandomPositionInCircle(combatZone.Entity.Position, combatZone.Entity.LocalScaleX),
@@ -22,7 +25,9 @@ public class CrateManager : System<CrateManager>
                     if (!crt.Alive())
                     {
                         Log.Error("Crate Manager: Crate Component Not Found!");
+                        return;
                     }
+                    crt.CallClient_Initialization();
                 });
         }
     }
@@ -41,8 +46,56 @@ public class CrateManager : System<CrateManager>
         }
     }
 
+    /// <summary>
+    /// Reg/Dereg are both invoked using Client RPC.
+    /// </summary>
+    /// <param name="crt"></param>
+    public void Register(Crate crt)
+    {
+        if (!CrateRegistry.Contains(crt))
+        {
+            CrateRegistry.Add(crt);
+            AliveCrateCount++;
+        }
+        else
+        {
+            Log.Warn($"Crate (nwid {crt.Entity.NetworkId}) registration duplicated!");
+        }
+    }
+
+    public void Deregister(Crate crt)
+    {
+        if (!CrateRegistry.Contains(crt))
+        {
+            Log.Warn($"Crate (nwid {crt.Entity.NetworkId}) does not exist in registry!");
+        }
+        else
+        {
+            CrateRegistry.Remove(crt);
+            AliveCrateCount--;
+        }
+    }
+
     private int GetMaxCrateCount()
     {
         return Int32.Min(2 * Player.AllPlayers.Count, 10);
+    }
+
+    public List<Entity> GetCratesEntity()
+    {
+        return CrateRegistry.Select(item => item.Entity).ToList();
+    }
+
+    public List<Crate> OverlapCircleForCrates(Vector2 center, float radius)
+    {
+        List<Crate> crts = new ();
+        foreach (var other in CrateRegistry)
+        {
+            if (Vector2.Distance(center, other.Entity.Position) < radius)
+            {
+                crts.Add(other);
+            }
+        }
+        return crts;
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using AO;
 using Assembly.scripts;
 using Assembly.scripts.Effects.ActiveSkills;
+using Assembly.scripts.SceneObjects.Crates;
 
 /// <summary>
 /// Model class of the player. Stores data and handle actions using RPC
@@ -736,13 +737,14 @@ public partial class FightPlayer : Player
             // Aim for priority target if you have one 
             if (PriorityTarget != null && proximityPlayers.Contains(PriorityTarget))
             {
+                // PriorityTarget is set in NotifyDealDamage, which is essentially the player you recently damaged. 
                 if (PriorityTarget.Targetable())
                 {
-                    return PriorityTarget.Entity.Position - Entity.Position;
+                    return PriorityTarget.Position - Position;
                 }
                 else
                 {
-                    PriorityTarget = null;
+                    PriorityTarget = null; 
                 }
             }
             
@@ -753,10 +755,26 @@ public partial class FightPlayer : Player
                 {
                     continue;
                 }
-                return fp.Entity.Position - Entity.Position;
+                return fp.Position - Position;
             }
         }
-        return PunchCollider.Entity.Position - Entity.Position;
+        
+        // If no player is detected, try find crates.
+        var proximityCrates =
+            CrateManager.Instance.OverlapCircleForCrates(Position, EffectConfig.PunchConfig.PunchTargetRange);
+        if (proximityCrates.Count > 0)
+        {
+            foreach (var cr in proximityCrates)
+            {
+                // Damageable crate
+                if (cr.Alive() && cr.Damageable())
+                {
+                    return cr.Entity.Position - Position;
+                }
+                
+            }
+        }
+        return PunchCollider.Entity.Position - Position;
     }
 
     #endregion

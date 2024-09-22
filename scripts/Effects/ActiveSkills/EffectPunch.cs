@@ -60,16 +60,18 @@ public class EffectPunch : FightEffect
         SFX.Play(SFXKeys.GetPunchSFXByLevel(FightPlayer.PunchLevel), DefaultSoundDesc);
 
         var hit = Physics.RaycastWithWhitelist(Entity.Position, punchDir.Normalized,
-            EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetCombatPlayersCollisionEntities(Player), new Entity[]{ },out rc);
+            EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetAllDamagableEntities(Player), new Entity[]{ },out rc);
 
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
         info.SkillKey = FightPlayer.PunchLevel == 1 ? "Punch" : $"Punch{FightPlayer.PunchLevel}";
         if (hit) // If players are too close, always hit
         {
             var other = rc.Collider.GetComponent<DamageableObject>();
-            if (other != null)
+            
+            if (other.Alive() && other.Damageable())
             {
                 // other.Player.TakeDamage(FightPlayer, info);
+                Log.Warn($"{rc.Collider.Entity.Name}");
                 other.TakeDamage(FightPlayer, info);
             }
         }

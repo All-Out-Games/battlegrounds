@@ -1,5 +1,6 @@
 
 using AO;
+using Assembly.scripts.SceneObjects.Crates;
 using Assembly.scripts.UI;
 
 public class FightClubGameManager : System<FightClubGameManager> {
@@ -291,6 +292,20 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public Entity[] GetCombatPlayersCollisionEntities(Player exclude)
     {
         return GetCombatPlayers(exclude).Select(item => item.CollisionEntity).ToArray();
+    }
+
+    /// <summary>
+    /// Important: When you add new damageable entities (inherits DamageableObject)
+    /// Modify this function to include them
+    /// All Punches and AoEs call interfaces in this base class.
+    /// </summary>
+    /// <param name="exclude"></param>
+    /// <returns></returns>
+    public Entity[] GetAllDamagableEntities(Player exclude)
+    {
+        var res = GetCombatPlayers(exclude).Select(item => item.CollisionEntity).ToList();
+        res.AddRange(CrateManager.Instance.GetCratesEntity()); 
+        return res.ToArray();
     }
 
     public List<FightPlayer> OverlapCircleForCombatPlayers(Vector2 center, float radius, Player exclude)
