@@ -64,7 +64,7 @@ public static class GlobalData
     public static float KillFeedLifeTime = 4f;
     
     // Crate Spawn
-    public static float CrateSpawnTime = 1;
-    public static float CrateLifeTime = 10;
-    public static float CrateDropLifeTime = 5;
+    public static float CrateSpawnTime = 10;
+    public static float CrateLifeTime = 25;
+    public static float CrateDropLifeTime = 6;
 }

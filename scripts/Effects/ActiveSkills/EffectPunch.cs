@@ -71,7 +71,7 @@ public class EffectPunch : FightEffect
             if (other.Alive() && other.Damageable())
             {
                 // other.Player.TakeDamage(FightPlayer, info);
-                Log.Warn($"{rc.Collider.Entity.Name}");
+                // Log.Warn($"{rc.Collider.Entity.Name}");
                 other.TakeDamage(FightPlayer, info);
             }
         }

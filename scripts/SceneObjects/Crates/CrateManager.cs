@@ -41,7 +41,7 @@ public class CrateManager : System<CrateManager>
         if (AliveCrateCount <= GetMaxCrateCount() && _crateSpawnTimer > GlobalData.CrateSpawnTime)
         {
             SpawnCrate();
-            Log.Warn($"Box Count: {AliveCrateCount}");
+            //Log.Warn($"Box Count: {AliveCrateCount}");
             _crateSpawnTimer = 0;
         }
     }

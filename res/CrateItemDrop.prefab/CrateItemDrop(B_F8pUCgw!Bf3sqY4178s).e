@@ -5,8 +5,7 @@
   "name": "CrateItemDrop",
   "local_enabled": true,
   "local_position": {
-    "X": -16.3885517120361328,
-    "Y": -17.9345149993896484
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -20,7 +19,8 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Sprite_Renderer",
   "data": {
-    "texture": "Props/DropItems/HealthPotionM.png"
+    "texture": "Props/DropItems/HealthPotionM.png",
+    "depth_offset": 0.3300000131130219
   }
 },
 {

@@ -95,6 +95,7 @@ public partial class CrateItemDrop : Component
         _bump = bumpDir * _bumpStrength;
         Entity.Name = $"{Entity.Name}_{dropName}";
         _renderer.Texture = Assets.KeepLoaded<Texture>(_config.DropTexturePath);
+        Fade.SetPersistFadeTime(GlobalData.CrateDropLifeTime, GlobalData.CrateDropLifeTime + 1);
     }
     
     [ClientRpc]
@@ -112,7 +113,10 @@ public partial class CrateItemDrop : Component
     {
         if (Network.IsServer)
         {
+            // Enable trigger for dropped item
             _pickupTrigger.LocalEnabled = true;
+            
+            // Just in case if there're players in the vacinity already
             if (!_seeking)
             {
                 var lfp = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Position, 2, null);
@@ -122,7 +126,7 @@ public partial class CrateItemDrop : Component
                 }
             }
         }
-        Log.Warn($"Drop Activated - {Entity.Name}");
+        //Log.Warn($"Drop Activated - {Entity.Name}");
         
     }
 
@@ -142,6 +146,21 @@ public partial class CrateItemDrop : Component
     /// <returns></returns>
     IEnumerator Seek(FightPlayer fp)
     {
+        float seekTime = 0;
+        while (seekTime < 1f)
+        {
+            seekTime += Time.DeltaTime;
+            if (fp.Alive())
+            {
+                Entity.Position = Vector2.Lerp(Position, fp.Position, seekTime);
+                yield return null;
+            }
+            else
+            {
+                Fade.FadeImmediately(0.1f, 0.15f);
+                yield break;
+            }
+        }
         if(Network.IsServer) CallClient_DropItemGrant(fp);
         yield return null;
     }
@@ -149,10 +168,31 @@ public partial class CrateItemDrop : Component
     [ClientRpc]
     public virtual void DropItemGrant(FightPlayer fp)
     {
-        if (fp.Alive())
+        if (fp.Alive() && fp.CurrentHealth > 0) // Cancel grant if player is dead/destroyed
         {
             //Log.Warn($"{Entity.Name} Trying to Grant!");
-            Fade.FadeImmediately(0.1f, 0.15f);
+            Fade.FadeImmediately(0.05f, 0.1f);
+            switch (_config.DropName)
+            {
+                case "Coin":
+                    fp.Coins += 5;
+                    break;
+                case "HealthPotionS":
+                    fp.TakeDamage(fp, FightPlayer.DamageInfo.CreateHealInfo(20));
+                    break;
+                case "HealthPotionM":
+                    fp.TakeDamage(fp, FightPlayer.DamageInfo.CreateHealInfo(35));
+                    break;
+                case "HealthPotionL":
+                    fp.TakeDamage(fp, FightPlayer.DamageInfo.CreateHealInfo(50));
+                    break;
+            }
+            
+            // For the local player, spawn a text
+            if (fp.IsLocal && fp.PlayerStatus == PlayerStatus.Combat)
+            {
+                FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.OutputDamageNumberColor, _config.DropDisplayName);
+            }
         }
         
     }
