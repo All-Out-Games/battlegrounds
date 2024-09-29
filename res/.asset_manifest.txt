@@ -306,6 +306,9 @@ SFX/Effects/throw_weapon.wav - .ao - 66ad4e9fcf7a5e4159a6c42a - 1024496504360777
 SFX/Effects/wood_shield_activate.wav - .ao - 66b50143cf7a5e4159a6c51c - 10863746478839718501
 SFX/Objects/bear_trap-appear_set_up.wav - .ao - 66ad2601cf7a5e4159a6c402 - 15602225193008380346
 SFX/Objects/bear_trap-snap_closed.wav - .ao - 66ad2601cf7a5e4159a6c403 - 5698733051945858040
+SFX/Objects/crate-appear.wav - .ao - 66f9c48f60ed1ef1ffbc5fb8 - 17118715818152062119
+SFX/Objects/crate-break.wav - .ao - 66f9c48f60ed1ef1ffbc5fb7 - 11350954489787793020
+SFX/Objects/crate-hit.wav - .ao - 66f9c48f60ed1ef1ffbc5fb6 - 6073332000731522583
 SFX/Objects/fountain_loop.wav - .ao - 66b50143cf7a5e4159a6c51e - 17123349947514671954
 SFX/UI/enter_pvp_arena.wav - .ao - 66b50143cf7a5e4159a6c520 - 1602682121109635273
 SFX/UI/gain_exp_afk_area.wav - .ao - 66ce0f3860ed1ef1ffbc4c5d - 369121609167767913
@@ -323,6 +326,7 @@ Shield_FX.prefab - .ao - 66a7fb546732dee0bb811e8e - 10171497738848877739
 ShurikenProjectile.prefab - .ao - 66a91b0496cebaeb1f32988f - 1922884962774569859
 SkillTreeItem.prefab - .ao - 66bfe3a183ee6f3bbee194d0 - 13262934492951160510
 SkillTreePage.prefab - .ao - 66ce1b9860ed1ef1ffbc4c80 - 9843869466532201073
+SpikeShield_FX.prefab - .ao - 66f9d9cf60ed1ef1ffbc5fc8 - 11972459816054532572
 SpoonProjectile.prefab - .ao - 66a91b0496cebaeb1f329890 - 11818330664990311604
 Stat_Aura.prefab - .ao - 66b1373ccf7a5e4159a6c4a4 - 11034765975460030984
 TotalDarknessOverlay.prefab - .ao - 6685d28fb45eb9e8339c10be - 15557225266589634022

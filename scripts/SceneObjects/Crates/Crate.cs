@@ -50,6 +50,10 @@ namespace Assembly.scripts.SceneObjects.Crates
             var cfg = Util.SampleWeightedList(CratesConfig.AllPossibleItems, config => config.Prob, Random.Shared);
             _config = cfg.Item1;
             HitPoint = _config.HitPoint;
+            if (Network.IsClient)
+            {
+                SFX.Play(SFXKeys.CrateAppearAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
+            }
         }
 
         [ClientRpc]
@@ -127,6 +131,10 @@ namespace Assembly.scripts.SceneObjects.Crates
             else
             {
                 Fade.ExtendLifetime(2f); // Extend time if a crate is damaged but not dead
+                if (Network.IsClient)
+                {
+                    SFX.Play(SFXKeys.CrateHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
+                }
             }
         }
 
@@ -134,7 +142,6 @@ namespace Assembly.scripts.SceneObjects.Crates
         public void CrateBreak(Vector2 damageDir){
             Animator.SpineInstance.StateMachine.SetTrigger("break");
             Fade.FadeImmediately();
-            // TODO: Spawn Dropped Item
             // Server authoritatively spawn the item dropped.
             // Pass the last damage direction to push against the direction of the player who broke them 
             if (_config.Special)
@@ -148,6 +155,11 @@ namespace Assembly.scripts.SceneObjects.Crates
                     CrateItemDrop drop = entity.GetComponent<CrateItemDrop>();
                     drop.CallClient_Initialization(_config.ItemName, damageDir.Normalized);
                 });
+            }
+
+            if (Network.IsClient)
+            {
+                SFX.Play(SFXKeys.CrateBreakAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
             }
         }
     }

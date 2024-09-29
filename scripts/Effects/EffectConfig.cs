@@ -219,6 +219,34 @@ public static class EffectConfig
 
     #endregion
 
+    #region cfg: SpikeShield
+
+    public struct SpikeShieldConfig
+    {
+        public static float DefaultReturnMultiplier = 0.5f;
+        public static float DefaultLifetime = 4f;
+        public static float Cooldown = 10f;
+
+        public float ReturnMultiplier;
+        public float Lifetime;
+
+        public static SpikeShieldConfig GetDefault(int level)
+        {
+            SpikeShieldConfig cfg = new SpikeShieldConfig()
+            {
+                ReturnMultiplier = DefaultReturnMultiplier,
+                Lifetime = DefaultLifetime
+            };
+            if (level > 2) cfg.Lifetime += 1;
+            if (level > 3) cfg.Lifetime += 1;
+            if (level > 4) cfg.ReturnMultiplier = 0.6f;
+
+            return cfg;
+        }
+    }
+
+    #endregion
+
     #region Cfg: Ranged Projectile
 
     /// <summary>

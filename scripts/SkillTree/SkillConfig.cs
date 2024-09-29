@@ -308,6 +308,9 @@ public static partial class SkillConfig
             case "PsionicBeam":
                 res = $"{AbilityPsionicBeam.GetCooldown(fp)}s";
                 break;
+            case "SpikeShield":
+                res = $"{AbilitySpikeShield.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -467,6 +470,12 @@ public static partial class SkillConfig
             case "Hypnotize":
                 res =
                     $"Select a target, then cause the player to fall asleep for {EffectConfig.HypnotizeConfig.HypnotizeTime + (fp.GetSkillTree().GetSkillLevel("Hypnotize") > 4 ? 1 : 0)}s. The player will wake up early if damaged.";
+                break;
+            case "SpikeShield":
+                EffectConfig.SpikeShieldConfig ssdcfg =
+                    EffectConfig.SpikeShieldConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("SpikeShield"));
+                res =
+                    $"Summon a spiked bubble that lasts {ssdcfg.Lifetime}s. Reflect {float.Round((1f - ssdcfg.ReturnMultiplier) * 100, 0)}% Melee damage to the source.";
                 break;
         }
 

@@ -304,10 +304,29 @@ public static partial class SkillConfig
         IconPath = "AbilityIcon_Merged/defense/iron_aura.png",
         AbilityIconPath = "AbilityIcon_Separate/defense/iron_aura_icon.png",
         ParentNodeKeys = new string[] { "Shield" },
-        ChildrenNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "SpikeShield" },
     };
 
-
+    public static readonly SkillTreeNodeConfig SpikeShieldConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Spike Guard",
+        DescriptionTextKey = "%OVERRIDE%",
+        UpgradeTextKey = "*: Cooldown -1\n **: Duration +1\n ***: Duration +1\n ****: Reflection +10%",
+        CooldownKey = "%OVERRIDE%",
+        UnlockLevel = 16,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Defensive,
+        UpgradeCost = 2550,
+        GridX = 2,
+        GridY = 2,
+        SkillKey = "SpikeShield",
+        IconPath = "AbilityIcon_Merged/defense/spike_guard.png",
+        AbilityIconPath = "AbilityIcon_Separate/defense/spike_guard.png",
+        ParentNodeKeys = new string[] { "IronSkin" },
+        ChildrenNodeKeys = new string[] { },
+    };
 
     #endregion
 
@@ -1030,6 +1049,7 @@ public static partial class SkillConfig
             { "Shield", ShieldConfig },
             { "HealthBoostD", HealthBoostDNodeConfig},
             { "IronSkin", IronSkinConfig},
+            {"SpikeShield", SpikeShieldConfig},
             // Brawler
             { "ShoulderCrash", ShoulderCrashNodeConfig },
             { "GroundStomp", GroundStompConfig },
@@ -1072,7 +1092,7 @@ public static partial class SkillConfig
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>()
     {
         // Defensive
-        "Punch", "RollOut", "Shield","IronSkin",
+        "Punch", "RollOut", "Shield","IronSkin","SpikeShield",
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam", 
         // Psionic
@@ -1124,6 +1144,10 @@ public partial class FightAbility
         {SC.BackstabConfig.SkillKey, typeof(AbilityBackstab)},
         {SC.TotalDarknessConfig.SkillKey, typeof(AbilityTotalDarkness)},
         {SC.IceFistNodeConfig.SkillKey, typeof(AbilityIceFist)},
-        {SC.IronSkinConfig.SkillKey, typeof(AbilityIronSkin)}
+        {SC.IronSkinConfig.SkillKey, typeof(AbilityIronSkin)},
+        {SC.SpikeShieldConfig.SkillKey, typeof(AbilitySpikeShield)}
     };
 }
+
+// [Add Skill] Item 5: If you have override items, handle them in SkillConfig.cs
+// by adding the entry in respective switch cases

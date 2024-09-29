@@ -2,11 +2,11 @@
 using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 
-public class AbilityShield : FightAbility
+public class AbilitySpikeShield : FightAbility
 {
-    public override string SkillKey => "Shield";
+    public override string SkillKey => "SpikeShield";
 
-    public override Type Effect => typeof(EffectShield);
+    public override Type Effect => typeof(EffectSpikeShield);
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
     
@@ -14,8 +14,8 @@ public class AbilityShield : FightAbility
 
     public static float GetCooldown(FightPlayer fp)
     {
-        float cd = EffectConfig.ShieldConfig.Cooldown;
-        int lv = fp.GetSkillTree().GetSkillLevel("Shield");
+        float cd = EffectConfig.SpikeShieldConfig.Cooldown;
+        int lv = fp.GetSkillTree().GetSkillLevel("SpikeShield");
         if (lv > 1)
         {
             cd -= 1;
@@ -28,20 +28,20 @@ public class AbilityShield : FightAbility
 /// Base class of a shield ability.
 /// Shield abilities will overwrite each other. Only one of them may exist on a player.
 /// </summary>
-public class EffectShield : FightEffect
+public class EffectSpikeShield : FightEffect
 {
     protected EffectConfig.ShieldConfig Config;
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => false;
     public override bool IsValidTarget => true;
 
-    protected ShieldVFX ShieldVfx;
+    protected SpikeShieldVFX ShieldVfx;
 
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
         
-        AssignConfig(EffectConfig.ShieldConfig.GetDefault(FightPlayer.GetSkillTree().GetSkillLevel("Shield")));
+        AssignConfig(EffectConfig.ShieldConfig.GetDefault(FightPlayer.GetSkillTree().GetSkillLevel("SpikeShield")));
         FightPlayer.MaxShield = Config.ShieldAmt;
         FightPlayer.CurrentShield = Config.ShieldAmt;
         FightPlayer.OnReceiveDamage += OnDamageEvent;
@@ -88,7 +88,7 @@ public class EffectShield : FightEffect
     {
         if (info.ReactionInfo.ShieldBroken)
         {
-            FightPlayer.RemoveEffect<EffectShield>(true);
+            FightPlayer.RemoveEffect<EffectSpikeShield>(true);
         }
         else
         {
@@ -98,7 +98,7 @@ public class EffectShield : FightEffect
 
     protected virtual void AddShieldFx()
     {
-        ShieldVfx = VFXPrefabs.ShieldFx.Instantiate().GetComponent<ShieldVFX>();
+        ShieldVfx = VFXPrefabs.SpikeShieldFx.Instantiate().GetComponent<SpikeShieldVFX>();
         ShieldVfx.Spawn(FightPlayer.Entity, new Vector2(0, 0.22f), false, DurationRemaining+1.5f);
         ShieldVfx.SetAnimTrigger("appear");
     }

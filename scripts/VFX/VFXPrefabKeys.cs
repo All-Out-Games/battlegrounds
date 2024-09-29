@@ -25,6 +25,7 @@ public static class VFXPrefabKeys
     public static string RegenerationAuraPath = "RegenerationAura.prefab";
     public static string BloodSplurtPath = "BloodVFX.prefab";
     public static string ShieldVFXPath = "Shield_FX.prefab";
+    public static string SpikeShieldVFXPath = "SpikeShield_FX.prefab";
     public static string InvisibilityAuraPath = "Invisibility_Aura.prefab";
     public static string StatAuraPath = "Stat_Aura.prefab";
 }
@@ -44,4 +45,5 @@ public static class VFXPrefabs
     public static Prefab InvisibilityAura = Assets.GetAsset<Prefab>(VFXPrefabKeys.InvisibilityAuraPath);
     public static Prefab BloodSplurt = Assets.GetAsset<Prefab>(VFXPrefabKeys.BloodSplurtPath);
     public static Prefab ShieldFx = Assets.GetAsset<Prefab>(VFXPrefabKeys.ShieldVFXPath);
+    public static Prefab SpikeShieldFx = Assets.GetAsset<Prefab>(VFXPrefabKeys.SpikeShieldVFXPath);
 }

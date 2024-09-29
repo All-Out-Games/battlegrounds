@@ -32,9 +32,6 @@ public static class SFXKeys
     
     public static AudioAsset DoublePunchAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/punch_double.wav");
     public static AudioAsset IcePunchAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/punch_ice.wav");
-    
-    public static AudioAsset BearTrapSetAudio = Assets.GetAsset<AudioAsset>("SFX/Objects/bear_trap-appear_set_up.wav");
-    public static AudioAsset BearTrapSnapAudio = Assets.GetAsset<AudioAsset>("SFX/Objects/bear_trap-snap_closed.wav");
 
     public static AudioAsset HealingStartAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/heal_start.wav");
     public static AudioAsset HealingLoopAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/healing_loop.wav");
@@ -106,4 +103,14 @@ public static class SFXKeys
 
     #endregion
 
+    #region Objects
+
+    public static AudioAsset BearTrapSetAudio = Assets.GetAsset<AudioAsset>("SFX/Objects/bear_trap-appear_set_up.wav");
+    public static AudioAsset BearTrapSnapAudio = Assets.GetAsset<AudioAsset>("SFX/Objects/bear_trap-snap_closed.wav");
+
+    public static AudioAsset CrateHitAudio = Assets.GetAsset<AudioAsset>("SFX/Objects/crate-hit.wav");
+    public static AudioAsset CrateAppearAudio = Assets.GetAsset<AudioAsset>("SFX/Objects/crate-appear.wav");
+    public static AudioAsset CrateBreakAudio = Assets.GetAsset<AudioAsset>("SFX/Objects/crate-break.wav");
+
+    #endregion
 }
