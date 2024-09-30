@@ -30,7 +30,7 @@ public class AbilitySpikeShield : FightAbility
 /// </summary>
 public class EffectSpikeShield : FightEffect
 {
-    protected EffectConfig.ShieldConfig Config;
+    protected EffectConfig.SpikeShieldConfig Config;
     public override bool IsActiveEffect => false;
     public override bool BlockAbilityActivation => false;
     public override bool IsValidTarget => true;
@@ -41,16 +41,14 @@ public class EffectSpikeShield : FightEffect
     {
         base.OnEffectStart(isDropIn);
         
-        AssignConfig(EffectConfig.ShieldConfig.GetDefault(FightPlayer.GetSkillTree().GetSkillLevel("SpikeShield")));
-        FightPlayer.MaxShield = Config.ShieldAmt;
-        FightPlayer.CurrentShield = Config.ShieldAmt;
+        AssignConfig(EffectConfig.SpikeShieldConfig.GetDefault(FightPlayer.GetSkillTree().GetSkillLevel("SpikeShield")));
         FightPlayer.OnReceiveDamage += OnDamageEvent;
 
         AddShieldFx();
         if (!isDropIn)
         {
-            DurationRemaining = Config.Duration;
-            SoundId = SFX.Play(SFXKeys.WoodShieldAudio, DefaultSoundDesc);
+            DurationRemaining = Config.Lifetime;
+            SoundId = SFX.Play(SFXKeys.SpikeShieldAudio, DefaultSoundDesc);
         }
     }
 
@@ -60,7 +58,7 @@ public class EffectSpikeShield : FightEffect
         ShieldVfx.Entity.LocalEnabled = FightPlayer.SpineAnimator.LocalEnabled;
     }
 
-    public void AssignConfig(EffectConfig.ShieldConfig cfg)
+    public void AssignConfig(EffectConfig.SpikeShieldConfig cfg)
     {
         Config = cfg;
     }
@@ -86,13 +84,21 @@ public class EffectSpikeShield : FightEffect
     
     protected override void OnDamageEvent(FightPlayer source, FightPlayer.DamageInfo info)
     {
-        if (info.ReactionInfo.ShieldBroken)
-        {
-            FightPlayer.RemoveEffect<EffectSpikeShield>(true);
-        }
-        else
+        if (info.DmgType != DamageType.Heal)
         {
             ShieldVfx.SetAnimTrigger("hit");
+        }
+        if (info.DmgType == DamageType.Melee)
+        {
+            // deal damage to source
+            FightPlayer.DamageInfo infoRef = info with { DamageNumberColor = GlobalData.DamageNumberColor, DmgType = DamageType.None, 
+                AwardCoin = false, SkillKey = "SpikeShield"};
+            infoRef.ReactionInfo.Amount = (int)float.Ceiling(info.ReactionInfo.Amount * Config.ReturnMultiplier);
+            infoRef.ReactionInfo.Flinch = false;
+            if (source != FightPlayer && source.Alive() && source.Damageable())
+            {
+                source.TakeDamage(FightPlayer, infoRef);
+            }
         }
     }
 

@@ -60,7 +60,7 @@ public partial class FightPlayer
         {
             DamageInfo info = new DamageInfo();
             info.ReactionInfo.Amount = amount;
-            info.DmgType = DamageType.Melee;
+            info.DmgType = type;
             info.InterruptLevel = interruptLv;
             return info;
         }
@@ -146,6 +146,7 @@ public partial class FightPlayer
     public void NotifyReceiveDamage(FightPlayer source, DamageInfo info)
     {
         OnReceiveDamage?.Invoke(source, info);
+        //Log.Warn($"IsServer = {Network.IsServer} - DmgType = {info.DmgType.ToString()}");
         
         if (Network.IsClient && PlayerStatus == PlayerStatus.Combat)
         {
