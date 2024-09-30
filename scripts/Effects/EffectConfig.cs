@@ -226,6 +226,7 @@ public static class EffectConfig
         public static float DefaultReturnMultiplier = 0.5f;
         public static float DefaultLifetime = 4f;
         public static float Cooldown = 10f;
+        public static float BleedTime = 5f;
 
         public float ReturnMultiplier;
         public float Lifetime;

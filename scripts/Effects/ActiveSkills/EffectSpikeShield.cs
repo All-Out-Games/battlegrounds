@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.Effects;
 using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 
@@ -95,9 +96,19 @@ public class EffectSpikeShield : FightEffect
                 AwardCoin = false, SkillKey = "SpikeShield"};
             infoRef.ReactionInfo.Amount = (int)float.Ceiling(info.ReactionInfo.Amount * Config.ReturnMultiplier);
             infoRef.ReactionInfo.Flinch = false;
-            if (source != FightPlayer && source.Alive() && source.Damageable())
+            if (source != FightPlayer && source.Alive())
             {
                 source.TakeDamage(FightPlayer, infoRef);
+                var bld = source.GetEffect<EffectBleed>();
+                if (bld.Alive())
+                {
+                    bld.Stack(EffectConfig.SpikeShieldConfig.BleedTime, 1);
+                }
+                else
+                {
+                    source.GetEffectMgr().AddBleed(FightPlayer.Entity, EffectConfig.SpikeShieldConfig.BleedTime, 1);
+                }
+                
             }
         }
     }

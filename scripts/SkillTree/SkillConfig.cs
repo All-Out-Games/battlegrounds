@@ -475,7 +475,7 @@ public static partial class SkillConfig
                 EffectConfig.SpikeShieldConfig ssdcfg =
                     EffectConfig.SpikeShieldConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("SpikeShield"));
                 res =
-                    $"Summon a spiked bubble that lasts {ssdcfg.Lifetime}s. Reflect {float.Round((1f - ssdcfg.ReturnMultiplier) * 100, 0)}% Melee damage to the source.";
+                    $"Summon a spiked bubble that lasts {ssdcfg.Lifetime}s. Reflect {float.Round((1f - ssdcfg.ReturnMultiplier) * 100, 0)}% Melee damage to the source, and make them bleed for {EffectConfig.SpikeShieldConfig.BleedTime}s.";
                 break;
         }
 

@@ -55,4 +55,19 @@ public class EffectBleed : FightEffect
         }
         
     }
+
+    /// <summary>
+    /// Called on bleed effect when another bleed effect is about to be applied.
+    /// Refresh duration and add on dps
+    /// </summary>
+    public void Stack(float duration, int dps)
+    {
+        var fade = _aura?.Entity.GetComponent<FadeAfterStart>();
+        DurationRemaining = float.Max(duration, DurationRemaining);
+        PerSecondDmg += dps;
+        if (fade!=null && DurationRemaining > fade.ElapsedTime)
+        {
+            fade.ExtendLifetime(DurationRemaining - fade.ElapsedTime);
+        }
+    }
 }
