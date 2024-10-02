@@ -10,17 +10,15 @@ public abstract class OwnedObjectComponent : Component
 {
     [Serialized] protected FightPlayer Owner;
 
-    public abstract void OnOwnerLeave(FightPlayer player);
-
-    public override void Start()
+    public override void Update()
     {
-        base.Start();
-        FightClubGameManager.Instance.PlayerLeaveEvent += OnOwnerLeave;
+        base.Update();
+        if (!Owner.Alive())
+        {
+            Log.Warn($"Owner of {Entity.Name} is not alive. Despawning.");
+            Despawn();
+        }
     }
 
-    public override void OnDestroy()
-    {
-        base.OnDestroy();
-        FightClubGameManager.Instance.PlayerLeaveEvent -= OnOwnerLeave;
-    }
+    public abstract void Despawn();
 }

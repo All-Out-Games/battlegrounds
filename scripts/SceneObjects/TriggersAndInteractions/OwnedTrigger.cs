@@ -57,6 +57,12 @@ public partial class OwnedTrigger : OwnedObjectComponent
     public override void Update()
     {
         base.Update();
+        if (Owner == null)
+        {
+            Log.Warn($"Did not find owner of owned object for {Entity.Name}!");
+            return;
+        }
+        
         if (Initialized && Util.OneTime(TimeElapsed > EntityLifeTime, ref LifeTimeEnded))
         {
             OnLifeTimeRunOut();
@@ -87,7 +93,7 @@ public partial class OwnedTrigger : OwnedObjectComponent
         Despawn();
     }
 
-    public void Despawn()
+    public override void Despawn()
     {
         Log.Debug($"Despawn called for {Entity.Name}");
         if (Network.IsServer)
@@ -97,15 +103,5 @@ public partial class OwnedTrigger : OwnedObjectComponent
         }
         
         
-    }
-
-    public override void OnOwnerLeave(FightPlayer player)
-    {
-        // When the owner quits, despawn the owned stuff
-        if (Owner == player)
-        {
-            LocalEnabled = false;
-            Despawn();
-        }
     }
 }

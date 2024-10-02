@@ -18,11 +18,6 @@ public partial class BaseProjectile : OwnedObjectComponent
 
     protected ulong SoundId = default;
 
-    public override void OnOwnerLeave(FightPlayer player)
-    {
-        //LocalEnabled = false;
-    }
-
     public override void Start()
     {
         base.Start();
@@ -52,6 +47,10 @@ public partial class BaseProjectile : OwnedObjectComponent
 
     public override void Update()
     {
+        if (!Owner.Alive())
+        {
+            return;
+        }
         base.Update();
         // Server Authoritative Projectile
         TimeElapsed += Time.DeltaTime;
@@ -101,5 +100,10 @@ public partial class BaseProjectile : OwnedObjectComponent
     {
         WhiteList.Add(fp.Entity);
         WhiteList.Add(fp.CollisionEntity);
+    }
+
+    public override void Despawn()
+    {
+        Entity.Destroy();
     }
 }
