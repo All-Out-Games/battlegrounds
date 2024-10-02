@@ -36,16 +36,19 @@ public class EffectProjectileThrow : FightEffect
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        WhiteList = new List<Entity>();
-        WhiteList.Add(FightPlayer.Entity);
+        if (!isDropIn) // Ignore this effect if it happens in drop in.
+        {
+            WhiteList = new List<Entity>();
+            WhiteList.Add(FightPlayer.Entity);
         
-        AssignConfig();
-        FightPlayer.SetAnimTrigger(Config.ThrowTrigger);
-        //FightPlayer.SetMouseIKPosition(AbilityPositionOrDirection);
-        DurationRemaining = FightLayer.GetCurrentStateLength();
-        FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
+            AssignConfig();
+            FightPlayer.SetAnimTrigger(Config.ThrowTrigger);
+            //FightPlayer.SetMouseIKPosition(AbilityPositionOrDirection);
+            DurationRemaining = FightLayer.GetCurrentStateLength();
+            FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
         
-        PlayThrowSound();
+            PlayThrowSound();
+        }
     }
 
     public override void OnEffectEnd(bool interrupt)

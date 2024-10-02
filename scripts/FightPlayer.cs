@@ -409,6 +409,28 @@ public partial class FightPlayer : Player
         //SkillSlotsManager.InitKeybind();
         
         _preDamageEffects = new List<FightEffect>();
+        
+        // Spawn Colliders
+        var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
+        CollisionEntity = collisionPrefab.Instantiate();
+        CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;
+        CollisionEntity.LocalScale = new Vector2(1.5f, 1.5f); // Make players easier to hit by giving them Michelin Man hitbox
+        CollisionEntity.SetParent(Entity, false);
+        // CollisionEntity.LocalPosition =
+        //     new Vector2(CollisionEntity.LocalPosition.X, CollisionEntity.LocalPosition.Y);
+        Collider = CollisionEntity.GetComponent<Circle_Collider>();
+
+        var punchColliderEntity = CollisionEntity.TryGetChildByName("PunchCollider");
+        if (punchColliderEntity != null)
+        {
+            //Log.Debug("Found Punch Collider!");
+            PunchCollider = punchColliderEntity.GetComponent<Box_Collider>();
+        }
+        else
+        {
+            Log.Error("Shin: Punch Collider NOT FOUND");
+        }
+        
         InitializeUI();
         FightClubGameManager.Instance.OnPlayerJoin(this);
         UIManager.Instance.OnPlayerJoin(this);
@@ -435,26 +457,6 @@ public partial class FightPlayer : Player
                 CoinUpdateEvent.Invoke(_coins); 
             }
             
-        }
-        // Colliders
-        var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
-        CollisionEntity = collisionPrefab.Instantiate();
-        CollisionEntity.GetComponent<PlayerCollisionChild>().Player = this;
-        CollisionEntity.LocalScale = new Vector2(1.5f, 1.5f); // Make players easier to hit by giving them Michelin Man hitbox
-        CollisionEntity.SetParent(Entity, false);
-        // CollisionEntity.LocalPosition =
-        //     new Vector2(CollisionEntity.LocalPosition.X, CollisionEntity.LocalPosition.Y);
-        Collider = CollisionEntity.GetComponent<Circle_Collider>();
-
-        var punchColliderEntity = CollisionEntity.TryGetChildByName("PunchCollider");
-        if (punchColliderEntity != null)
-        {
-            //Log.Debug("Found Punch Collider!");
-            PunchCollider = punchColliderEntity.GetComponent<Box_Collider>();
-        }
-        else
-        {
-            Log.Error("Shin: Punch Collider NOT FOUND");
         }
         
         // See FightPlayerAnimation.cs
