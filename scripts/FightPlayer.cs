@@ -402,6 +402,10 @@ public partial class FightPlayer : Player
         PlayerLegacyUi = Entity.GetComponent<FightPlayerLegacyUI>();
         SkillTree = Entity.GetComponent<FightPlayerSkillTree>();
         SkillSlotsManager = Entity.GetComponent<FightPlayerSkillSlotsManager>();
+        
+        // Create state machine
+        // See FightPlayerAnimation.cs
+        InitializeStateMachine();
 
         NameOffset = 0.275f;
 
@@ -434,6 +438,8 @@ public partial class FightPlayer : Player
         InitializeUI();
         FightClubGameManager.Instance.OnPlayerJoin(this);
         UIManager.Instance.OnPlayerJoin(this);
+        
+        Teleport(FightClubGameManager.References.CentralHubZone.Position );
     }
 
     public override void Start()
@@ -458,11 +464,6 @@ public partial class FightPlayer : Player
             }
             
         }
-        
-        // See FightPlayerAnimation.cs
-        InitializeStateMachine();
-        
-        Teleport(FightClubGameManager.References.CentralHubZone.Position );
     }
 
     public override void Update()
