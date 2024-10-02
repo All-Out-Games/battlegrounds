@@ -600,6 +600,9 @@ VFX/ClawSwipe/claw_swipe_BAT003.spine - .ao - 66859957b45eb9e8339c100b - 4634519
 VFX/ConfusionCloud/BAT003_confusion_cloud.png - .ao - 668c5244b45eb9e8339c1a04 - 18166753006273343602
 VFX/ConfusionCloud/BAT003_confusion_cloud.png - .ao.ios - 668c5244b45eb9e8339c1a05 - 10208111526865825595
 VFX/ConfusionCloud/BAT003_confusion_cloud.spine - .ao - 668c5245b45eb9e8339c1a08 - 2286745736354345695
+VFX/GravityCrush/BAT003_gravity_field_AOE.png - .ao - 66fcd17160ed1ef1ffbc60a0 - 12099072789007273699
+VFX/GravityCrush/BAT003_gravity_field_AOE.png - .ao.ios - 66fcd17160ed1ef1ffbc60a1 - 15229677894402571898
+VFX/GravityCrush/BAT003_gravity_field_AOE.spine - .ao - 66fcd17160ed1ef1ffbc609f - 11017305159530236492
 VFX/Invisibility/BAT003_invisibility.png - .ao - 668f192db45eb9e8339c1aa5 - 7390149352479389265
 VFX/Invisibility/BAT003_invisibility.png - .ao.ios - 668f192eb45eb9e8339c1aac - 12607793643640717960
 VFX/Invisibility/BAT003_invisibility.spine - .ao - 668f192eb45eb9e8339c1aa9 - 702127567757875386
