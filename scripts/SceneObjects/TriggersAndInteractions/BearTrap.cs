@@ -66,14 +66,6 @@ public partial class BearTrap : OwnedTrigger
         Animator.SpineInstance.SetStateMachine(stateMachine, Entity);
         Animator.OnAnimationEnd += OnAnimationEnd;
         
-        // Stealth for non local player
-        if (Owner.IsLocal)
-        {
-            Vector4 curColor = Animator.SpineInstance.ColorMultiplier;
-            curColor.W = 1;
-            Animator.SpineInstance.ColorMultiplier = curColor;
-        }
-        
         SFX.Play(SFXKeys.BearTrapSetAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
     }
 
@@ -89,6 +81,7 @@ public partial class BearTrap : OwnedTrigger
         if (Owner == null)
         {
             Log.Warn($"Did not find owner of owned object for {Entity.Name}!");
+            Despawn();
             return;
         }
         if (Util.OneTime(TimeElapsed > TrapArmTime, ref Armed))
@@ -134,6 +127,20 @@ public partial class BearTrap : OwnedTrigger
         TrapArmTime = EffectConfig.BearTrapConfig.TrapArmTime;
         Armed = false;
         Snapped = false;
+        
+        if (!Owner.Alive())
+        {
+            Despawn();
+            return;
+        }
+        
+        // Stealth for non local player
+        if (Owner.IsLocal)
+        {
+            Vector4 curColor = Animator.SpineInstance.ColorMultiplier;
+            curColor.W = 1;
+            Animator.SpineInstance.ColorMultiplier = curColor;
+        }
     }
     
     [ClientRpc]
