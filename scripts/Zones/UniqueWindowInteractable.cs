@@ -30,8 +30,9 @@ public class UniqueWindowInteractable : Component
     public override void OnDestroy()
     {
         base.OnDestroy();
-        WindowOpenInteractable.OnInteract -= OpenWindow;
-        ExitVendorRange.OnCollisionExit -= LeaveVendor;
+        // Don't need to destroy as those exist on the same entity
+        //WindowOpenInteractable.OnInteract -= OpenWindow;
+        //ExitVendorRange.OnCollisionExit -= LeaveVendor;
     }
 
     protected void OpenWindow(Player p)

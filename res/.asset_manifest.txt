@@ -209,6 +209,7 @@ FightPlayerRig/playercharacter.png - .ao.ios - 66b54e7acf7a5e4159a6c580 - 310280
 FightPlayerRig/playercharacter.spine - .ao - 66b85a9a83ee6f3bbee18fa0 - 6077434407343359252
 FightPlayerRig/playercharacter_2.png - .ao - 66b54e7bcf7a5e4159a6c583 - 16733141778334847515
 FightPlayerRig/playercharacter_2.png - .ao.ios - 66b54e7bcf7a5e4159a6c586 - 3641760734195305233
+GravityCrushVFX.prefab - .ao - 66fd8afe60ed1ef1ffbc60a9 - 13322156841833039989
 HitVfx.prefab - .ao - 66a97e6696cebaeb1f3298f8 - 2238227580914794567
 Invisibility_Aura.prefab - .ao - 66a9201c96cebaeb1f3298a1 - 15827307492988365390
 Invisibility_VFX.prefab - .ao - 66a91fe396cebaeb1f32989e - 15138177077832320917

@@ -3,7 +3,7 @@
 19032507499434 1727844640369313000
 {
   "name": "GravityCrushVFX",
-  "local_enabled": true,
+  "local_enabled": false,
   "local_position": {
     "X": -16.7757415771484375,
     "Y": -17.5321102142333984

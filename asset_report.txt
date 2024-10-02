@@ -802,6 +802,7 @@
 608 bytes - BloodVFX.prefab.ao
 592 bytes - BattleCry_Shockwave.prefab.ao
 584 bytes - LeapSlamCrater.prefab.ao
+576 bytes - GravityCrushVFX.prefab.ao
 568 bytes - Invisibility_VFX.prefab.ao
 568 bytes - UI/SkillTree/empty_channels/corner_empty.png.ao.ios
 560 bytes - BattlegroundInfoOverlay.prefab.ao

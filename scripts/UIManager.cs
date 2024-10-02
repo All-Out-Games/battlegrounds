@@ -6,8 +6,8 @@ using Shop = Assembly.scripts.UI.Shop;
 
 public partial class UIManager : System<UIManager>
 {
-    public static Texture CoinTexture = Assets.KeepLoaded<Texture>("UI/AbilityBook/AbilityInfo/buy_button/coin.png");
-    public static Texture GemTexture = Assets.KeepLoaded<Texture>("$AO/new/main_menu/gems/gem_resource_icon.png");
+    // public static Texture CoinTexture = Assets.KeepLoaded<Texture>("UI/AbilityBook/AbilityInfo/buy_button/coin.png");
+    // public static Texture GemTexture = Assets.KeepLoaded<Texture>("$AO/new/main_menu/gems/gem_resource_icon.png");
 
     private Dictionary<string, UniqueUIWindow> UniqueUiWindows = new(); // [PrefabPath : Window Class]
     // Unique window will close all other instances when a new one opens. Overlay windows only themselves
