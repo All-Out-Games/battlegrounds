@@ -33,18 +33,10 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             {
                 CallClient_SyncEquippedSkills(i, Save.GetString(_player, $"SkillSlot{i}", "Empty")); // Send equipped skills from save to player
             }
+            CallClient_SyncCompleted();
         }
-        
-        if (_player.IsLocal)
-        {
-            SkillSlotsPanelEnable(false);
-            ActiveAbilities.Add(_player.GetFightAbility<AbilityPunch>());
-            for (int i = 1; i < 6; i++)
-            {
-                ActiveAbilities.Add(GetAbilityInstance(FightAbility.AbilityQueryDict[_equippedSkillKeys[i]]));
-            }
-        }
-        
+        SkillSlotsPanelEnable(false);
+
     }
 
     private Ability[] GetAbilityArray()
@@ -115,6 +107,19 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     public void SyncEquippedSkills(int index, string skillKey)
     {
         _equippedSkillKeys[index] = skillKey;
+    }
+
+    [ClientRpc]
+    public void SyncCompleted()
+    {
+        if (_player.IsLocal)
+        {
+            ActiveAbilities.Add(_player.GetFightAbility<AbilityPunch>());
+            for (int i = 1; i < 6; i++)
+            {
+                ActiveAbilities.Add(GetAbilityInstance(FightAbility.AbilityQueryDict[_equippedSkillKeys[i]]));
+            }
+        }
     }
 
     public List<FightAbility> GetCurrentAbilities()

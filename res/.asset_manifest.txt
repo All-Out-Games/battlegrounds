@@ -235,6 +235,8 @@ Props/BearTrap/BAT003_bear_trap.spine - .ao - 66859952b45eb9e8339c0fe2 - 3855122
 Props/Crate/BAT003_crate.png - .ao - 66e9175760ed1ef1ffbc59c0 - 7940909903093783536
 Props/Crate/BAT003_crate.png - .ao.ios - 66e9175760ed1ef1ffbc59c1 - 6222203610743878752
 Props/Crate/BAT003_crate.spine - .ao - 66e9175760ed1ef1ffbc59bf - 13270521046917159507
+Props/DropItems/ExpPotionL.png - .ao - 66ff0a2c60ed1ef1ffbc6177 - 8219145556991433754
+Props/DropItems/ExpPotionL.png - .ao.ios - 66ff0a2c60ed1ef1ffbc6178 - 9523189757268908134
 Props/DropItems/HealthPotionL.png - .ao - 66f09fe760ed1ef1ffbc5c29 - 4208628815274255268
 Props/DropItems/HealthPotionL.png - .ao.ios - 66f09fe760ed1ef1ffbc5c27 - 11901114825973221587
 Props/DropItems/HealthPotionM.png - .ao - 66f09fe660ed1ef1ffbc5c15 - 13279382085380233680

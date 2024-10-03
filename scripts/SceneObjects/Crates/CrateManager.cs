@@ -27,7 +27,8 @@ public class CrateManager : System<CrateManager>
                         Log.Error("Crate Manager: Crate Component Not Found!");
                         return;
                     }
-                    crt.CallClient_Initialization();
+                    var cfg = Util.SampleWeightedList(CratesConfig.AllPossibleItems, config => config.Prob, Random.Shared);
+                    crt.CallClient_Initialization(cfg.Item2);
                 });
         }
     }

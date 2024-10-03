@@ -44,17 +44,18 @@ namespace Assembly.scripts.SceneObjects.Crates
         /// CAUTION: DO NOT CALL THIS EXCEPT IN THE SPAWN ROUTINE
         /// </summary>
         [ClientRpc]
-        public void Initialization()
+        public void Initialization(int cfgIndex)
         {
             Fade.SetPersistFadeTime(GlobalData.CrateLifeTime, GlobalData.CrateLifeTime+1);
             CrateManager.Instance.Register(this);
-            var cfg = Util.SampleWeightedList(CratesConfig.AllPossibleItems, config => config.Prob, Random.Shared);
-            _config = cfg.Item1;
+            _config = CratesConfig.AllPossibleItems[cfgIndex];
             HitPoint = _config.HitPoint;
             if (Network.IsClient)
             {
                 SFX.Play(SFXKeys.CrateAppearAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
             }
+
+            Animator.SpineInstance.ColorMultiplier = _config.Tint;
         }
 
         [ClientRpc]

@@ -187,12 +187,22 @@ public partial class CrateItemDrop : Component
                 case "HealthPotionL":
                     fp.TakeDamage(fp, FightPlayer.DamageInfo.CreateHealInfo(50));
                     break;
+                case "ExpPotionL":
+                    if (fp.Level >= LevelingData.MaxLevel)
+                    {
+                        fp.Gem += 200;
+                    }
+                    else
+                    {
+                        fp.Exp += 5000;
+                    }
+                    break;
             }
             
             // For the local player, spawn a text
             if (fp.IsLocal && fp.PlayerStatus == PlayerStatus.Combat)
             {
-                FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.OutputDamageNumberColor, _config.DropDisplayName);
+                FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.OutputDamageNumberColor, CrateDropConfig.GetDisplayString(fp, _config));
             }
         }
         
