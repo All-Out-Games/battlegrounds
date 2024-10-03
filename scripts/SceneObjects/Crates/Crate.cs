@@ -11,10 +11,11 @@ namespace Assembly.scripts.SceneObjects.Crates
         [Serialized] public int HitPoint = 1;
 
         [Serialized] public FadeAfterStart Fade;
+        [Serialized] private CratesConfig _config;
 
         private bool _itemSpawned = false;
         private Vector2 _damageDir;
-        private CratesConfig _config;
+        
 
         public override void Awake()
         {
