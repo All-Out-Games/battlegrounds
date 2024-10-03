@@ -15,13 +15,14 @@ public partial class CrateItemDrop : Component
     [Serialized] private Circle_Collider _pickupTrigger;
     [Serialized] private Sprite_Renderer _renderer;
     [Serialized] public FadeAfterStart Fade;
+    [Serialized] private CrateDropConfig _config;
 
     private Vector2 _bump;
     private float _bumpStrength = 3f;
     private bool _activated;
     private bool _seeking;
 
-    private CrateDropConfig _config;
+    
 
     public float TimeElapsed => Fade.ElapsedTime;
 
