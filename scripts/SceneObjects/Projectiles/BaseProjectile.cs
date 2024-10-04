@@ -37,11 +37,14 @@ public partial class BaseProjectile : OwnedObjectComponent
 
     public override void OnDestroy()
     {
-        EngineProjectile.OnHit -= OnHit;
-        if (SoundId != default)
+        if (EngineProjectile.Alive())
         {
-            //Log.Warn($"Sound Stop ID = {SoundId}");
-            SFX.FadeOutAndStop(SoundId, 0.3f);
+            EngineProjectile.OnHit -= OnHit;
+            if (SoundId != default)
+            {
+                //Log.Warn($"Sound Stop ID = {SoundId}");
+                SFX.FadeOutAndStop(SoundId, 0.3f);
+            }
         }
     }
 

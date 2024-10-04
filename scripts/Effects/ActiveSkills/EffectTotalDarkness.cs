@@ -45,6 +45,7 @@ public class EffectTotalDarkness : FightEffect
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
+        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
     }
 
     public override void OnAnimationEvent(string eventName)

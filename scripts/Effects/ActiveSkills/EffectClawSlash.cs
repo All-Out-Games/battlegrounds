@@ -72,7 +72,7 @@ public class EffectClawSlash : FightEffect
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
+        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent; // NOTE: This was unsubbed twice to avoid other events (with same name) triggering it after the attack
 
         if (FightPlayer.HasSkill("DualClaw"))
         {
@@ -90,7 +90,7 @@ public class EffectClawSlash : FightEffect
     public override void OnAnimationEvent(string eventName)
     {
         base.OnAnimationEvent(eventName);
-        Log.Warn($"{eventName} Triggered");
+        // Log.Warn($"{eventName} Triggered");
         if (eventName == "Attack")
         {
             Slash();
@@ -129,5 +129,6 @@ public class EffectClawSlash : FightEffect
             }
             dmg.TakeDamage(FightPlayer, info);
         }
+        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
     }
 }

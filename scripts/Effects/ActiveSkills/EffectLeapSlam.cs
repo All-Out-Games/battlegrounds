@@ -130,6 +130,8 @@ public class EffectLeapSlam : FightEffectWithImmunity
         {
             SFX.Play(SFXKeys.LeapSlamKnockAudio, DefaultSoundDesc);
         }
+        
+        FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
     }
 }
 
