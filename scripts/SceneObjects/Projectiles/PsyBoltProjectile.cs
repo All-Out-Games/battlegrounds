@@ -19,7 +19,7 @@ public class PsyBoltProjectile : BaseProjectile
             instance.SetSkin("psybolt");
             instance.EnableSkin("psybolt");
             instance.SetAnimation("fly_straight", true);
-            SoundId = SFX.Play(SFXKeys.PsyboltLoopAudio, new SFX.PlaySoundDesc() {EntityToFollow = Entity, Loop = true});
+            SoundId = SFX.Play(SFXKeys.PsyboltLoopAudio, new SFX.PlaySoundDesc() {EntityToFollow = Entity, Loop = true, LoopTimeout = 3f});
             
         }
         else

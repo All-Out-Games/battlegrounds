@@ -40,11 +40,11 @@ public partial class BaseProjectile : OwnedObjectComponent
         if (EngineProjectile.Alive())
         {
             EngineProjectile.OnHit -= OnHit;
-            if (SoundId != default)
-            {
-                //Log.Warn($"Sound Stop ID = {SoundId}");
-                SFX.FadeOutAndStop(SoundId, 0.3f);
-            }
+        }
+        if (SoundId != default)
+        {
+            //Log.Warn($"Sound Stop ID = {SoundId}");
+            SFX.FadeOutAndStop(SoundId, 0.3f);
         }
     }
 

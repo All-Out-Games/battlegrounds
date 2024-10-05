@@ -38,7 +38,7 @@ namespace Assembly.scripts.SceneObjects.Crates
             Prob = 1,
             HitPoint = 5,
             ItemName = "ExpPotionL",
-            Tint = new Vector4(0.5f, 0.1f, 0.95f, 1)
+            Tint = new Vector4(0.5f, 0.1f, 0.95f, 1f)
         };
 
         
