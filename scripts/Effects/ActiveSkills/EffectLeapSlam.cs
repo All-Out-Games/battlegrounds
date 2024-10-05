@@ -100,6 +100,7 @@ public class EffectLeapSlam : FightEffectWithImmunity
         FightPlayer.AddDash(Vector2.Zero, 0); // Remove Dash
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlamDamage, DamageType.AOE, FightPlayer.DamageInfo.KnockBackInterruptLevel);
         info.SkillKey = SkillConfig.LeapSlamConfig.SkillKey;
+        info.SpecialDeathAnimation = true;
         info.CrateImmediateDestroy = true;
         
         var damageables = FightClubGameManager.Instance.OverlapCircleForDamageables(selfPos, EffectConfig.LeapSlamConfig.SlamRadius * _config.SlamAreaMultiplier, Player);
@@ -150,6 +151,11 @@ public class EffectKnockDown : FightEffectWithNoFlinch
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
+        if (FightPlayer.CurrentHealth <= 0)
+        {
+            FightPlayer.RemoveEffect<EffectKnockDown>(false);
+            return;
+        }
         FightPlayer.SetAnimTrigger("sentfly");
         FightPlayer.SpineAnimator.OnAnimationEnd += OnAnimationEnd;
         FightPlayer.OnReceiveDamage += OnDamageEvent;

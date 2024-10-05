@@ -36,8 +36,9 @@ public partial class FightPlayer
         public DamageNumberOverrideType OverrideDamageNumber = DamageNumberOverrideType.None;
 
         public Vector4 DamageNumberColor = GlobalData.DamageNumberColor;
-        public string SkillKey = "Punch";
+        public string SkillKey = "Punch"; // Usage: Fetch icon on the kill feed; Fetch special death animation
         public bool CrateImmediateDestroy = false;
+        public bool SpecialDeathAnimation = false;
         
         // Client & Server Data
         public DamageReactionInfo ReactionInfo = new DamageReactionInfo(); 

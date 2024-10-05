@@ -114,6 +114,7 @@ public class EffectClawSlash : FightEffect
 
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlashDamage);
         info.SkillKey = SkillConfig.ClawSlashConfig.SkillKey;
+        info.SpecialDeathAnimation = true;
         info.CrateImmediateDestroy = true;
         
         var damageables = FightClubGameManager.Instance.OverlapCircleForDamageables(selfPos, EffectConfig.ClawSlashConfig.SlashRadius, Player);

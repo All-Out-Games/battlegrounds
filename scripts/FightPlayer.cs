@@ -556,7 +556,7 @@ public partial class FightPlayer : Player
             {
                 FightClubGameManager.Instance.PlayerEliminationEvent.Invoke(source, this, info);
             
-                CallClient_PlayerDeath();
+                CallClient_PlayerDeath(info, info.SkillKey); // TODO: The engine does not support str serialization in structs yet
                 return;
             }
         }
@@ -576,10 +576,16 @@ public partial class FightPlayer : Player
     /// [Server & Client]
     /// </summary>
     [ClientRpc]
-    public void PlayerDeath()
+    public void PlayerDeath(DamageInfo damageInfo, string skillKey)
     {
         ClearAllEffects();
-        EffectManager.AddEffect<EffectDeath>(null, GlobalData.RespawnTime, null);
+        EffectManager.AddEffect<EffectDeath>(null, GlobalData.RespawnTime, death =>
+        {
+            if (damageInfo.SpecialDeathAnimation)
+            {
+                death.DeathAnimationTrigger = EffectDeath.GetSpecialDeathAnimationTrigger(skillKey);
+            }
+        });
     }
     
     #endregion

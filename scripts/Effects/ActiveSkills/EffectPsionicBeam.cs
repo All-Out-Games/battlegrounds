@@ -170,6 +170,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
             FightPlayer.DamageInfo info =
                 FightPlayer.DamageInfo.CreateDamageInfo(_cfg.Damage, DamageType.Ranged);
             info.SkillKey = SkillConfig.PsionicBeamConfig.SkillKey;
+            info.SpecialDeathAnimation = true;
             info.CrateImmediateDestroy = true;
             
             if (dmg is PlayerCollisionChild fp)

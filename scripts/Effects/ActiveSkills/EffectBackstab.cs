@@ -65,6 +65,7 @@ public class EffectBackstab : EffectNoMovement
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage);
             info.ReactionInfo.Flinch = false;
             info.SkillKey = SkillConfig.BackstabConfig.SkillKey;
+            info.SpecialDeathAnimation = true;
             FightPlayer.TakeDamage(_fp, info);
             if (_config.LifeSteal)
             {

@@ -75,6 +75,7 @@ public class EffectSelfDestruct : FightEffectWithNoFlinch
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForDamageables(selfPos, EffectConfig.SelfDestructConfig.BlastRange, Player);
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.BlastDamage, DamageType.AOE);
         info.SkillKey = SkillConfig.SelfDestructConfig.SkillKey;
+        info.SpecialDeathAnimation = true;
         info.CrateImmediateDestroy = true;
         
         foreach (var dmg in cbPlayers)

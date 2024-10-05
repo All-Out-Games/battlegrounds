@@ -5,11 +5,43 @@ using Assembly.scripts.Effects;
 public class EffectDeath : FightEffectWithImmunity
 {
     protected override string InvincibilityReason => "Dead";
+    public string DeathAnimationTrigger = "death";
+
+    public static string GetSpecialDeathAnimationTrigger(string skillKey)
+    {
+        // TODO: Death Audio
+        string res = "death";
+        switch (skillKey)
+        {
+            case "LeapSlam":
+                res = "death_knock";
+                break;
+            case "ClawSlash":
+                res = "death_swiped";
+                break;
+            case "SelfDestruct":
+                res = "death_poof";
+                break;
+            case "PsionicBeam":
+                res = "death_poof";
+                break;
+            case "Backstab":
+                res = "death_swiped";
+                break;
+        }
+
+        if (res == "death")
+        {
+            Log.Warn("You didn't specify the trigger for a special death animation! Write a case in EffectDeath!");
+        }
+        return res;
+    }
 
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        FightPlayer.SetAnimTrigger("death");
+        // FightPlayer.SetAnimTrigger("RESET");
+        FightPlayer.SetAnimTrigger(DeathAnimationTrigger);
         FightPlayer.AddDash(Vector2.Zero, 0);
         FightPlayer.AddBump(Vector2.Zero, true);
     }
@@ -19,11 +51,12 @@ public class EffectDeath : FightEffectWithImmunity
         base.OnEffectUpdate();
         if (MainLayer.CurrentState.Name == "Idle")
         {
-            FightPlayer.SetAnimTrigger("death");
+            FightPlayer.SetAnimTrigger(DeathAnimationTrigger);
         }
         else
         {
             FightPlayer.UnsetAnimTrigger("death");
+            FightPlayer.UnsetAnimTrigger(DeathAnimationTrigger);
         }
     }
 

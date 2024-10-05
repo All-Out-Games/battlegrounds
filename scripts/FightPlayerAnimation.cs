@@ -27,8 +27,9 @@ public partial class FightPlayer
         fightLayer.CreateTransition(idleState, emptyState, true);
         fightLayer.CreateGlobalTransition(idleState).CreateTriggerCondition(resetALTrigger);
 
-        #region Basic Punch
+        #region Basic
 
+        // Punches
         
         var punch1Trigger = stateMachine.CreateVariable("punch1", StateMachineVariableKind.TRIGGER);
         var punch1State = fightLayer.CreateState("BAT_003/punch_small_AL_mIK", 0, false);
@@ -44,7 +45,20 @@ public partial class FightPlayer
         var punch3State = fightLayer.CreateState("BAT_003/punch_strongest_AL_mIK", 0, false);
         fightLayer.CreateGlobalTransition(punch3State).CreateTriggerCondition(punch3Trigger);
         fightLayer.CreateTransition(punch3State, idleState, true);
-
+        
+        // Deaths
+        var knockDeathTrigger = stateMachine.CreateVariable("death_knock", StateMachineVariableKind.TRIGGER);
+        var knockDeathState = aoLayer.CreateState("BAT_003/death_knocked_down", 0, false);
+        aoLayer.CreateGlobalTransition(knockDeathState).CreateTriggerCondition(knockDeathTrigger);
+        
+        var poofDeathTrigger = stateMachine.CreateVariable("death_poof", StateMachineVariableKind.TRIGGER);
+        var poofDeathState = aoLayer.CreateState("BAT_003/death_poof", 0, false);
+        aoLayer.CreateGlobalTransition(poofDeathState).CreateTriggerCondition(poofDeathTrigger);
+        
+        var swipedDeathTrigger = stateMachine.CreateVariable("death_swiped", StateMachineVariableKind.TRIGGER);
+        var swipedDeathState = aoLayer.CreateState("BAT_003/death_swiped", 0, false);
+        aoLayer.CreateGlobalTransition(swipedDeathState).CreateTriggerCondition(swipedDeathTrigger);
+        
         #endregion
 
         #region Brawler
