@@ -48,7 +48,7 @@ public class CrateManager : System<CrateManager>
     }
 
     /// <summary>
-    /// Reg/Dereg are both invoked using Client RPC.
+    /// [Server Only]
     /// </summary>
     /// <param name="crt"></param>
     public void Register(Crate crt)

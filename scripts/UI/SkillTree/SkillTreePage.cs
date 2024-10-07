@@ -66,6 +66,20 @@ public class SkillTreePage : UniqueUIWindow
         _skillTree ??= _localPlayer.GetSkillTree();
         _treeItems = new Dictionary<string, SkillTreeItem>();
         _treePipes = new Dictionary<Tuple<int, int>, SkillTreePipes>();
+
+        if (!_slotsMgr.Alive() || !_slotsMgr.Ready)
+        {
+            Log.Error("Skill Tree Page Opened when slots not ready!");
+            UIManager.Instance.CloseAllUniqueWindow();
+            return;
+        }
+        
+        if (!_skillTree.Alive() || !_skillTree.Initialized)
+        {
+            Log.Error("Skill Tree Page Opened when skill tree not ready!");
+            UIManager.Instance.CloseAllUniqueWindow();
+            return;
+        }
         
         
         // First Open Phase 1
@@ -211,7 +225,7 @@ public class SkillTreePage : UniqueUIWindow
 
     private void UpdateAllItems(int coins = 0)
     {
-        var currentAbilities = _slotsMgr.GetCurrentAbilities().Select(ability => ability.SkillKey).ToArray();
+        var currentAbilities = _slotsMgr.GetEquippedSkillkeys();
         foreach (var item in _treeItems)
         {
             item.Value.UpdateItem(_skillTree,currentAbilities );

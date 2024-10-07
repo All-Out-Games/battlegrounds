@@ -6,6 +6,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     private bool _localDrawAbility;
     private List<FightAbility> ActiveAbilities = new List<FightAbility>();
     private string[] _equippedSkillKeys = new string[6];
+    public bool Ready = false;
     
     public override void Update()
     {
@@ -119,11 +120,18 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             {
                 ActiveAbilities.Add(GetAbilityInstance(FightAbility.AbilityQueryDict[_equippedSkillKeys[i]]));
             }
+
+            Ready = true;
         }
     }
 
     public List<FightAbility> GetCurrentAbilities()
     {
         return ActiveAbilities;
+    }
+
+    public string[] GetEquippedSkillkeys()
+    {
+        return _equippedSkillKeys;
     }
 }

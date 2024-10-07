@@ -252,8 +252,9 @@ public class AbilityLoadoutPage : UniqueUIWindow
     private void FetchEquippedSkills()
     {
         // Put equipped abilities in slots
-        List<FightAbility> faList = _slotsMgr.GetCurrentAbilities();
-        _equippedSkillKey = faList.Select(a => a.SkillKey).ToArray();
+        // List<FightAbility> faList = _slotsMgr.GetCurrentAbilities();
+        //_equippedSkillKey = faList.Select(a => a.SkillKey).ToArray();
+        _equippedSkillKey = _slotsMgr.GetEquippedSkillkeys();
         // Punch
         string punchKey = "Punch";
         if (_slotsMgr.GetFightPlayer().PunchLevel > 1) punchKey = $"Punch{_slotsMgr.GetFightPlayer().PunchLevel}";

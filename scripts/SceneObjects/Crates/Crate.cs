@@ -37,6 +37,7 @@ namespace Assembly.scripts.SceneObjects.Crates
                 Fade.OnFaded = null;
                 if(Network.IsServer) CallClient_Despawn();
             };
+            CrateManager.Instance?.Register(this);
         }
 
         /// <summary>
@@ -47,7 +48,6 @@ namespace Assembly.scripts.SceneObjects.Crates
         public void Initialization(int cfgIndex)
         {
             Fade.SetPersistFadeTime(GlobalData.CrateLifeTime, GlobalData.CrateLifeTime+1);
-            CrateManager.Instance.Register(this);
             _config = CratesConfig.AllPossibleItems[cfgIndex];
             HitPoint = _config.HitPoint;
             if (Network.IsClient)
@@ -67,9 +67,14 @@ namespace Assembly.scripts.SceneObjects.Crates
                 Network.Despawn(Entity);
                 Entity.Destroy();
             }
-            var c = CrateManager.Instance;
-            c.Deregister(this);
+            
+        }
 
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+            var c = CrateManager.Instance;
+            c?.Deregister(this);
         }
 
         public void ConstructStateMachine()
