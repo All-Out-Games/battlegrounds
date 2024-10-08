@@ -254,7 +254,8 @@ public static class EffectConfig
     {
         public static float DefaultLifetime = 5f;
         public static float Cooldown = 11f;
-        public static float ProjectileSpeedMultiplier = 0.5f;
+        public static float ProjectileSpeedMultiplier = 0.1f;
+        public static float PlayerSpeedMultiplier = 0.75f;
 
         public float FieldSize;
         public float Lifetime;

@@ -44,4 +44,34 @@ public static class FightClubUtils
         }
         btn.Settings = btn.Settings with { Sprite = tex, SpritePressed = tex};
     }
+    
+    public static T GetComponentBase<T>(this Entity entity, ulong componentId = 0) where T : Component
+    {
+        if (!entity.Alive())
+        {
+            throw new NullReferenceException("Entity was destroyed.");
+        }
+
+        List<Component> lst = new List<Component>();
+        entity.GetAllComponents( lst);
+        foreach (var c in lst)
+        {
+            if (componentId != 0 && c.Id != componentId) continue;
+            if (c.GetType().DerivesFrom(typeof(T)))
+            {
+                return (T)c;
+            }
+        }
+
+        foreach (var c in lst)
+        {
+            if (componentId != 0 && c.Id != componentId) continue;
+            if (c is T t)
+            {
+                return t;
+            }
+        }
+
+        return null;
+    }
 }

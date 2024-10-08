@@ -1,5 +1,6 @@
 ﻿using Assembly.scripts.VFX;
 using AO;
+using Assembly.scripts.SceneObjects.Projectiles;
 
 namespace Assembly.scripts.SceneObjects.TriggersAndInteractions;
 
@@ -20,11 +21,19 @@ public class GravityField : Component
         else
         {
             _circleCollider.OnCollisionEnter += OnGravityFieldEnter;
+            _circleCollider.OnCollisionExit += OnGravityFieldExit;
         }
     }
 
     private void OnGravityFieldEnter(Entity other)
     {
-        // TODO
+        var bp = other.GetComponent<BaseProjectile>();
+        bp?.ModifySpeed(EffectConfig.GravityCrushConfig.ProjectileSpeedMultiplier);
+    }
+    
+    private void OnGravityFieldExit(Entity other)
+    {
+        var bp = other.GetComponent<BaseProjectile>();
+        bp?.ResumeSpeed();
     }
 }

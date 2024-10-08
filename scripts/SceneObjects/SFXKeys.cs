@@ -92,6 +92,8 @@ public static class SFXKeys
     public static AudioAsset SpikeShieldAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/spike_shield_activate.wav");
     public static AudioAsset IronAuradAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/light_feet_activate.wav");
     public static AudioAsset LightFeetAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/iron_aura_activate.wav");
+
+    public static AudioAsset GravityCrushAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/darkness_loop.wav");
     
     
     #endregion

@@ -311,6 +311,9 @@ public static partial class SkillConfig
             case "SpikeShield":
                 res = $"{AbilitySpikeShield.GetCooldown(fp)}s";
                 break;
+            case "GravityCrush":
+                res = $"{AbilityGravityCrush.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -328,6 +331,9 @@ public static partial class SkillConfig
                 break;
             case "Befuddle":
                 res = $"{(fp.GetSkillTree().GetSkillLevel("Befuddle") > 4  ? EffectConfig.ProjectileConfig.BefuddleRange + 2 : EffectConfig.ProjectileConfig.BefuddleRange)}m";
+                break;
+            case "GravityCrush":
+                res = $"{(fp.GetSkillTree().GetSkillLevel("GravityCrush") > 4  ? 3 : 4)}m";
                 break;
         }
         return res;
@@ -476,6 +482,11 @@ public static partial class SkillConfig
                     EffectConfig.SpikeShieldConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("SpikeShield"));
                 res =
                     $"Summon a spiked bubble that lasts {ssdcfg.Lifetime}s. Reflect {float.Round((1f - ssdcfg.ReturnMultiplier) * 100, 0)}% Melee damage to the source, and make them bleed for {EffectConfig.SpikeShieldConfig.BleedTime}s.";
+                break;
+            case "GravityCrush":
+                EffectConfig.GravityCrushConfig gccfg =
+                    EffectConfig.GravityCrushConfig.GetDefault(fp.GetSkillTree().GetSkillLevel("GravityCrush"));
+                res = $"Create a gravity field around you, slowing down nearby players and projectiles for {gccfg.Lifetime}s";
                 break;
         }
 

@@ -5,11 +5,11 @@ using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
 
-public class AbilitySpikeShield : FightAbility
+public class AbilityGravityCrush : FightAbility
 {
     public override string SkillKey => "GravityCrush";
 
-    public override Type Effect => typeof(EffectSpikeShield);
+    public override Type Effect => typeof(EffectGravityCrush);
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
     
@@ -17,7 +17,7 @@ public class AbilitySpikeShield : FightAbility
 
     public static float GetCooldown(FightPlayer fp)
     {
-        float cd = EffectConfig.SpikeShieldConfig.Cooldown;
+        float cd = EffectConfig.GravityCrushConfig.Cooldown;
         int lv = fp.GetSkillTree().GetSkillLevel("GravityCrush");
         if (lv > 1)
         {
@@ -40,24 +40,45 @@ public class EffectGravityCrush : FightEffect
 
     private EffectConfig.GravityCrushConfig _config;
 
+    private float NextDmgTick;
+    private bool Ticked;
+
 
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
         
         AssignConfig(EffectConfig.GravityCrushConfig.GetDefault(FightPlayer.GetSkillTree().GetSkillLevel("GravityCrush")));
-
-        AddGravityFx();
         if (!isDropIn)
         {
             DurationRemaining = _config.Lifetime;
-            SoundId = SFX.Play(SFXKeys.SpikeShieldAudio, DefaultSoundDesc); 
+            SoundId = SFX.Play(SFXKeys.GravityCrushAudio, DefaultSoundDesc with{ Loop = true, LoopTimeout = DurationRemaining + 3f}); 
         }
+        AddGravityFx();
     }
 
     public override void OnEffectUpdate()
     {
         base.OnEffectUpdate();
+        if (Util.OneTime(ElapsedTime > NextDmgTick, ref Ticked))
+        {
+            foreach (var fp in FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 2, Player))
+            {
+                var ef = fp.GetEffect<EffectMovementSpeedChange>();
+                if (ef.Alive())
+                {
+                    ef.SpdModifier = EffectConfig.GravityCrushConfig.PlayerSpeedMultiplier;
+                    ef.DurationRemaining += 0.5f;
+                    
+                }
+                else
+                {
+                    fp.AddEffect<EffectMovementSpeedChange>(FightPlayer, 0.5f, change => change.SpdModifier = EffectConfig.GravityCrushConfig.PlayerSpeedMultiplier);
+                }
+            }
+            NextDmgTick += 0.5f;
+            Ticked = false;
+        }
         
     }
 
@@ -73,15 +94,30 @@ public class EffectGravityCrush : FightEffect
         {
             _gravityField.LocalEnabled = false;
         }
+        _gravityFieldVfx.SetAnimTrigger("disappear");
+
+        if (SoundId != default)
+        {
+            SFX.FadeOutAndStop(SoundId, 1f);
+        }
     }
     
 
     protected virtual void AddGravityFx()
     {
-        var attachment = VFXPrefabs.SpikeShieldFx.Instantiate();
+        var attachment = VFXPrefabs.GravityCrushFx.Instantiate();
         _gravityFieldVfx = attachment.GetComponent<GravityFieldVFX>();
-        _gravityFieldVfx.Spawn(FightPlayer.Entity, new Vector2(0, 0.22f), false, DurationRemaining+1.5f);
-        _gravityFieldVfx.SetAnimTrigger("appear");
         _gravityField = attachment.GetComponent<GravityField>();
+        if (_gravityField.Alive() && _gravityFieldVfx.Alive())
+        {
+            _gravityFieldVfx.Spawn(FightPlayer.Entity, new Vector2(0, 0.22f), false, DurationRemaining+1.5f);
+            _gravityFieldVfx.SetAnimTrigger("appear");
+        }
+        else
+        {
+            Log.Error("Gravity Field components NOT FOUND on GravityCrush FX prefab!");
+        }
+        
+        
     }
 }

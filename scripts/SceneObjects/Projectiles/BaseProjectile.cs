@@ -1,4 +1,5 @@
 using AO;
+using Vector2 = System.Numerics.Vector2;
 
 namespace Assembly.scripts.SceneObjects.Projectiles;
 
@@ -18,6 +19,9 @@ public partial class BaseProjectile : OwnedObjectComponent
 
     protected ulong SoundId = default;
 
+    [Serialized] protected float EngineProjectileSpeed;
+    [Serialized] protected float SpeedModifier;
+
     public override void Start()
     {
         base.Start();
@@ -33,6 +37,8 @@ public partial class BaseProjectile : OwnedObjectComponent
         EngineProjectile.OnHit += OnHit;
 
         TimeElapsed = 0;
+        EngineProjectileSpeed = EngineProjectile.Speed;
+        SpeedModifier = 1.0f;
     }
 
     public override void OnDestroy()
@@ -108,5 +114,23 @@ public partial class BaseProjectile : OwnedObjectComponent
     public override void Despawn()
     {
         Entity.Destroy();
+    }
+
+    public void ModifySpeed(float multiplier)
+    {
+        SpeedModifier = multiplier;
+        if (EngineProjectile.Alive())
+        {
+            EngineProjectile.Speed = EngineProjectileSpeed * SpeedModifier;
+        }
+    }
+
+    public void ResumeSpeed()
+    {
+        if (EngineProjectile.Alive())
+        {
+            EngineProjectile.Speed = EngineProjectileSpeed;
+        }
+        
     }
 }

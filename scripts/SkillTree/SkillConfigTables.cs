@@ -233,7 +233,7 @@ public static partial class SkillConfig
         IconPath = "AbilityIcon_Merged/defense/rollout.png",
         AbilityIconPath = "AbilityIcon_Separate/defense/rollout_icon.png",
         ParentNodeKeys = new string[] { "Shield" },
-        ChildrenNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "GravityCrush" },
     };
 
     /// <summary>
@@ -325,6 +325,28 @@ public static partial class SkillConfig
         IconPath = "AbilityIcon_Merged/defense/spike_guard.png",
         AbilityIconPath = "AbilityIcon_Separate/defense/spike_guard.png",
         ParentNodeKeys = new string[] { "IronSkin" },
+        ChildrenNodeKeys = new string[] { },
+    };
+
+    public static readonly SkillTreeNodeConfig GravityCrushConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Gravity Crush",
+        DescriptionTextKey = "%OVERRIDE%",
+        RangeDescriptionKey = "%OVERRIDE%",
+        UpgradeTextKey = "*: Cooldown -1\n **: Duration +1\n ***: Duration +1\n ****: Field Size +20%",
+        CooldownKey = "%OVERRIDE%",
+        UnlockLevel = 20,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Defensive,
+        UpgradeCost = 2900,
+        GridX = 1,
+        GridY = 2,
+        SkillKey = "GravityCrush",
+        IconPath = "AbilityIcon_Merged/defense/gravity_crush.png",
+        AbilityIconPath = "AbilityIcon_Separate/defense/gravity_crush_icon.png",
+        ParentNodeKeys = new string[] { "RollOut" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -1050,6 +1072,7 @@ public static partial class SkillConfig
             { "HealthBoostD", HealthBoostDNodeConfig},
             { "IronSkin", IronSkinConfig},
             {"SpikeShield", SpikeShieldConfig},
+            {"GravityCrush", GravityCrushConfig},
             // Brawler
             { "ShoulderCrash", ShoulderCrashNodeConfig },
             { "GroundStomp", GroundStompConfig },
@@ -1092,7 +1115,7 @@ public static partial class SkillConfig
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>()
     {
         // Defensive
-        "Punch", "RollOut", "Shield","IronSkin","SpikeShield",
+        "Punch", "RollOut", "Shield","IronSkin","SpikeShield","GravityCrush",
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam", 
         // Psionic
@@ -1145,7 +1168,8 @@ public partial class FightAbility
         {SC.TotalDarknessConfig.SkillKey, typeof(AbilityTotalDarkness)},
         {SC.IceFistNodeConfig.SkillKey, typeof(AbilityIceFist)},
         {SC.IronSkinConfig.SkillKey, typeof(AbilityIronSkin)},
-        {SC.SpikeShieldConfig.SkillKey, typeof(AbilitySpikeShield)}
+        {SC.SpikeShieldConfig.SkillKey, typeof(AbilitySpikeShield)},
+        {SC.GravityCrushConfig.SkillKey, typeof(AbilityGravityCrush)}
     };
 }
 
