@@ -32,7 +32,7 @@ public partial class OwnedTrigger : OwnedObjectComponent
         Log.Debug($"Entity {entity.Name} enters.");
         
         FightPlayer fp = entity.GetComponent<FightPlayer>();
-        if (fp != null)
+        if (fp.Alive())
         {
             OnOtherPlayerEnter(fp);
         }

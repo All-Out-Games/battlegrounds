@@ -248,6 +248,33 @@ public static class EffectConfig
 
     #endregion
 
+    #region cfg: GravityCrush
+
+    public struct GravityCrushConfig
+    {
+        public static float DefaultLifetime = 5f;
+        public static float Cooldown = 11f;
+        public static float ProjectileSpeedMultiplier = 0.5f;
+
+        public float FieldSize;
+        public float Lifetime;
+
+        public static GravityCrushConfig GetDefault(int level)
+        {
+            GravityCrushConfig cfg = new GravityCrushConfig()
+            {
+                FieldSize = 1.0f,
+                Lifetime = DefaultLifetime
+            };
+            if (level > 2) cfg.Lifetime += 1;
+            if (level > 3) cfg.Lifetime += 1;
+            if (level > 4) cfg.FieldSize = 1.2f;
+            return cfg;
+        }
+    }
+
+    #endregion
+
     #region Cfg: Ranged Projectile
 
     /// <summary>

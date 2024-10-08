@@ -5,15 +5,13 @@
   "name": "GravityCrushVFX",
   "local_enabled": true,
   "local_position": {
-    "X": -16.7757415771484375,
-    "Y": -17.5321102142333984
+
   },
   "local_rotation": 0,
   "local_scale": {
     "X": 1,
     "Y": 1
-  },
-  "previous_sibling": "54040865964219:1723590134132524500"
+  }
 },
 {
   "cid": 1,
@@ -45,5 +43,14 @@
   "data": {
     "EntityLifeTime": 5,
     "Animator": "19032508294642:1727844640369631800"
+  }
+},
+{
+  "cid": 2,
+  "aoid": "54621832051966:1728365963231085100",
+  "component_type": "Mono_Component",
+  "mono_component_type": "GravityField",
+  "data": {
+
   }
 }
