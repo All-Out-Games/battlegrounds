@@ -122,6 +122,8 @@ public partial class BaseProjectile : OwnedObjectComponent
         if (EngineProjectile.Alive())
         {
             EngineProjectile.Speed = EngineProjectileSpeed * SpeedModifier;
+            var rb = GetComponent<Rigidbody>();
+            rb.Velocity *= SpeedModifier;
         }
     }
 
@@ -130,6 +132,8 @@ public partial class BaseProjectile : OwnedObjectComponent
         if (EngineProjectile.Alive())
         {
             EngineProjectile.Speed = EngineProjectileSpeed;
+            var rb = GetComponent<Rigidbody>();
+            rb.Velocity /= SpeedModifier;
         }
         
     }

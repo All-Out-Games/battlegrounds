@@ -8,8 +8,8 @@ public class GravityField : Component
 {
 
     private Circle_Collider _circleCollider;
-    
-    
+
+    private List<Entity> _interactedEntity;
     public override void Awake()
     {
         base.Awake();
@@ -22,18 +22,25 @@ public class GravityField : Component
         {
             _circleCollider.OnCollisionEnter += OnGravityFieldEnter;
             _circleCollider.OnCollisionExit += OnGravityFieldExit;
+            _interactedEntity = new List<Entity>();
         }
+        
     }
 
     private void OnGravityFieldEnter(Entity other)
     {
+        if(_interactedEntity.Contains(other)) return;
+        _interactedEntity.Add(other);
         var bp = other.GetComponent<BaseProjectile>();
         bp?.ModifySpeed(EffectConfig.GravityCrushConfig.ProjectileSpeedMultiplier);
     }
     
     private void OnGravityFieldExit(Entity other)
     {
-        var bp = other.GetComponent<BaseProjectile>();
-        bp?.ResumeSpeed();
+        if (_interactedEntity.Contains(other))
+        {
+            var bp = other.GetComponent<BaseProjectile>();
+            bp?.ResumeSpeed();
+        }
     }
 }
