@@ -5,8 +5,7 @@
   "name": "Rage_Aura",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -28,8 +27,7 @@
     "skeleton_scale": {
       "X": 1.2000000476837158,
       "Y": 1.2000000476837158
-    },
-    "mask_in_shadow": false
+    }
   }
 },
 {
@@ -38,7 +36,7 @@
   "component_type": "Mono_Component",
   "mono_component_type": "AttachmentObject",
   "data": {
-    "EntityLifeTime": 15
+    "EntityLifeTime": 9999
   }
 },
 {
@@ -50,7 +48,7 @@
     "Loop": true,
     "Animator": "54201960338275:1720218104369626200",
     "EntityLifeTime": 9,
-    "IsPermanent": false,
+    "IsPermanent": true,
     "StartAnimationStr": [
       "rage_loop"
     ]
@@ -63,7 +61,6 @@
   "mono_component_type": "FadeAfterStart",
   "data": {
     "FadeSpine": true,
-    "FadeSprite": false,
     "PersistTime": 9,
     "FadeTime": 10
   }

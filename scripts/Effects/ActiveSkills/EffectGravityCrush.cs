@@ -52,7 +52,7 @@ public class EffectGravityCrush : FightEffect
         if (!isDropIn)
         {
             DurationRemaining = _config.Lifetime;
-            SoundId = SFX.Play(SFXKeys.GravityCrushAudio, DefaultSoundDesc with{ Loop = true, LoopTimeout = DurationRemaining + 3f}); 
+            SoundId = SFX.Play(SFXKeys.GravityCrushAudio, DefaultSoundDesc with{ Loop = true, LoopTimeout = DurationRemaining + 3f, Volume = 0.35f}); 
         }
         AddGravityFx();
     }
@@ -62,7 +62,7 @@ public class EffectGravityCrush : FightEffect
         base.OnEffectUpdate();
         if (Util.OneTime(ElapsedTime > NextDmgTick, ref Ticked))
         {
-            foreach (var fp in FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 2, Player))
+            foreach (var fp in FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, _config.FieldSize * 2, Player))
             {
                 var ef = fp.GetEffect<EffectMovementSpeedChange>();
                 if (ef.Alive())
@@ -108,6 +108,7 @@ public class EffectGravityCrush : FightEffect
         var attachment = VFXPrefabs.GravityCrushFx.Instantiate();
         _gravityFieldVfx = attachment.GetComponent<GravityFieldVFX>();
         _gravityField = attachment.GetComponent<GravityField>();
+        _gravityFieldVfx.Entity.LocalScale = new Vector2(_config.FieldSize, _config.FieldSize);
         if (_gravityField.Alive() && _gravityFieldVfx.Alive())
         {
             _gravityFieldVfx.Spawn(FightPlayer.Entity, new Vector2(0, 0.22f), false, DurationRemaining+1.5f);

@@ -2,6 +2,7 @@ using System.Collections;
 using AO;
 using Assembly.scripts;
 using Assembly.scripts.SceneObjects;
+using Assembly.scripts.VFX;
 
 public class AbilityPunch : FightAbility
 {
@@ -11,6 +12,49 @@ public class AbilityPunch : FightAbility
     public override TargettingMode TargettingMode => TargettingMode.Self;
 
     public override string SkillIconPath => SkillConfig.GetPunchAbilityIconPath(FightPlayer.PunchLevel);
+}
+
+public class EffectMagicPunch : FightEffect
+{
+    public override bool IsActiveEffect => false;
+    private StatAuraVFX _aura;
+    private Spine_Animator _auraAnimator;
+    private bool _faded;
+    // Flag-like effect. Does nothing itself but changes how effectPunch behaves!
+
+    public override void OnEffectStart(bool isDropIn)
+    {
+        base.OnEffectStart(isDropIn);
+        AddAura();
+    }
+    
+    public override void OnEffectUpdate()
+    {
+        base.OnEffectUpdate();
+        _auraAnimator.LocalEnabled = FightPlayer.SpineAnimator.LocalEnabled;
+
+        if (Util.OneTime(DurationRemaining < 1, ref _faded))
+        {
+            _aura.SetAnimTrigger("disappear");
+        }
+        
+    }
+    
+    private void AddAura()
+    {
+        Prefab auraPrefab = VFXPrefabs.StatAura;
+        _aura = auraPrefab.Instantiate().GetComponent<StatAuraVFX>();
+        _aura.SetSkin("attack", new Vector4(1f, 0.431f, 0.78f, 1));
+        _aura.SetAnimTrigger("appear");
+        _auraAnimator = _aura.Animator;
+        _aura.Spawn(FightPlayer.Entity,new Vector2(0f, 0.2f), false, DurationRemaining+1f);
+    }
+
+    public void Extend(float sec)
+    {
+        _aura.ExtendLifetime(sec);
+        DurationRemaining += sec;
+    }
 }
 
 public class EffectPunch : FightEffect

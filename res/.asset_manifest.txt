@@ -209,7 +209,7 @@ FightPlayerRig/playercharacter.png - .ao.ios - 66b54e7acf7a5e4159a6c580 - 310280
 FightPlayerRig/playercharacter.spine - .ao - 66b85a9a83ee6f3bbee18fa0 - 6077434407343359252
 FightPlayerRig/playercharacter_2.png - .ao - 66b54e7bcf7a5e4159a6c583 - 16733141778334847515
 FightPlayerRig/playercharacter_2.png - .ao.ios - 66b54e7bcf7a5e4159a6c586 - 3641760734195305233
-GravityCrushVFX.prefab - .ao - 6705691d60ed1ef1ffbc632c - 10138374466896797875
+GravityCrushVFX.prefab - .ao - 6709dcc360ed1ef1ffbc66c7 - 10138374466896797875
 HitVfx.prefab - .ao - 66a97e6696cebaeb1f3298f8 - 2238227580914794567
 Invisibility_Aura.prefab - .ao - 66a9201c96cebaeb1f3298a1 - 15827307492988365390
 Invisibility_VFX.prefab - .ao - 66a91fe396cebaeb1f32989e - 15138177077832320917
@@ -243,6 +243,10 @@ Props/DropItems/HealthPotionM.png - .ao - 66f09fe660ed1ef1ffbc5c15 - 13279382085
 Props/DropItems/HealthPotionM.png - .ao.ios - 66f09fe660ed1ef1ffbc5c16 - 1424630039383149506
 Props/DropItems/HealthPotionS.png - .ao - 66f09fe660ed1ef1ffbc5c17 - 7078938200499448916
 Props/DropItems/HealthPotionS.png - .ao.ios - 66f09fe760ed1ef1ffbc5c1b - 16833210664667617819
+Props/DropItems/MagicPunchPotion.png - .ao - 6709e93e60ed1ef1ffbc66dd - 17158289780735729021
+Props/DropItems/MagicPunchPotion.png - .ao.ios - 6709e93e60ed1ef1ffbc66de - 15446405286052187145
+Props/DropItems/RagePotion.png - .ao - 6709e3fb60ed1ef1ffbc66d6 - 17007665639985188025
+Props/DropItems/RagePotion.png - .ao.ios - 6709e3fb60ed1ef1ffbc66d1 - 13436657322864324940
 Props/DropItems/coin/coin_1.png - .ao - 66f09fe760ed1ef1ffbc5c1c - 9614235122363370894
 Props/DropItems/coin/coin_1.png - .ao.ios - 66f09fe760ed1ef1ffbc5c1d - 13393662746407420487
 Props/DropItems/coin/coin_2.png - .ao - 66f09fe760ed1ef1ffbc5c20 - 17714222631659736160
@@ -255,7 +259,7 @@ PsionicBeamGroundFissueEnd.prefab - .ao - 66c7b28260ed1ef1ffbc3eda - 73280665861
 PsionicRay.prefab - .ao - 66cccd9d60ed1ef1ffbc41c0 - 4385044125699635652
 PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 66c7a90f60ed1ef1ffbc3eae - 3691909516463296595
-Rage_Aura.prefab - .ao - 66ad96d6cf7a5e4159a6c44a - 2127671326789894962
+Rage_Aura.prefab - .ao - 6709f5fa60ed1ef1ffbc66e1 - 5094729185261374799
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
 ResourcesOverlayWindow.prefab - .ao - 66cf694a60ed1ef1ffbc4cfd - 7100138169920654440
 SFX/Effects/backstab_attack.wav - .ao - 66ad89becf7a5e4159a6c436 - 16112955543606674532

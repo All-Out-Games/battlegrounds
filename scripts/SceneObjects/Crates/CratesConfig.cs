@@ -12,17 +12,17 @@ namespace Assembly.scripts.SceneObjects.Crates
         public Vector4 Tint = Vector4.White;
 
         public static CratesConfig HealthPotionSDropCfg = new CratesConfig{
-            Prob = 50,
+            Prob = 80,
             ItemName = "HealthPotionS"
         };
 
         public static CratesConfig HealthPotionMDropCfg = new CratesConfig{
-            Prob = 30,
+            Prob = 50,
             ItemName = "HealthPotionM"
         };
 
         public static CratesConfig HealthPotionLDropCfg = new CratesConfig{
-            Prob = 20,
+            Prob = 25,
             HitPoint = 3, // Rarer items have higher HP crates as an indication of "You hit something big!"
             ItemName = "HealthPotionL"
         };
@@ -41,7 +41,21 @@ namespace Assembly.scripts.SceneObjects.Crates
             Tint = new Vector4(0.5f, 0.1f, 0.95f, 1f)
         };
 
-        
+        public static CratesConfig MagicPunchPotionCfg = new CratesConfig()
+        {
+            Prob = 20,
+            HitPoint = 4,
+            ItemName = "MagicPunchPotion",
+            Tint = new Vector4(1f, 0.431f, 0.78f, 1f)
+        };
+
+        public static CratesConfig RagePotionCfg = new CratesConfig()
+        {
+            Prob = 20,
+            HitPoint = 4,
+            ItemName = "RagePotion",
+            Tint = new Vector4(1f, 0.1f, 0.1f, 1f)
+        };
         
         // Modify this list and create corresponding Item config in CrateDropConfig.cs
         public static List<CratesConfig> AllPossibleItems = new List<CratesConfig>()
@@ -50,7 +64,9 @@ namespace Assembly.scripts.SceneObjects.Crates
             HealthPotionMDropCfg,
             HealthPotionLDropCfg,
             CoinsDropCfg,
-            ExpPotionLCfg
+            ExpPotionLCfg,
+            MagicPunchPotionCfg,
+            RagePotionCfg
         };
 
         public CratesConfig()

@@ -27,6 +27,7 @@ public class EffectRageCast : FightEffectWithNoFlinch
     public override bool BlockAbilityActivation => !_casted; // Block during cast
 
     private float _animDuration = 1f;
+    private float _rageDuration = 8f;
     private bool _casted;
 
     public override bool IsActiveEffect => true;
@@ -40,21 +41,24 @@ public class EffectRageCast : FightEffectWithNoFlinch
         FightPlayer.AddSpeedModifier(0.0f);
         if (!isDropIn)
         {
-            SoundId = SFX.Play(SFXKeys.RageAudio, DefaultSoundDesc);
-            DurationRemaining = _animDuration + EffectConfig.RageConfig.Duration;
+            _rageDuration = EffectConfig.RageConfig.Duration;
             if (FightPlayer.GetSkillTree().GetSkillLevel("Rage") > 4)
             {
-                DurationRemaining += 2;
+                _rageDuration += 2;
             }
+            SoundId = SFX.Play(SFXKeys.RageAudio, DefaultSoundDesc);
+            DurationRemaining = _animDuration + _rageDuration;
         }
     }
 
     public override void OnEffectUpdate()
     {
         base.OnEffectUpdate();
+        
         if (Util.OneTime(ElapsedTime > _animDuration, ref _casted))
         {
-            FightPlayer.GetAbility<AbilityRage>().AppliedEffect = FightPlayer.AddEffect<EffectRage>(FightPlayer, EffectConfig.RageConfig.Duration);
+            FightPlayer.GetAbility<AbilityRage>().AppliedEffect = EffectRage.CastOrExtendRage(FightPlayer, _rageDuration);
+                
             FightPlayer.RemoveSpeedModifier(0.0f);
         }
     }
@@ -101,12 +105,12 @@ public class EffectRage : FightEffect
         Prefab auraPrefab = VFXPrefabs.RageAura;
         _aura = auraPrefab.Instantiate().GetComponent<AttachmentObject>();
         _auraAnimator = _aura.Entity.GetComponent<Spine_Animator>();
-        _aura.Spawn(FightPlayer.Entity,new Vector2(-0.3f, 0.9f), false, DurationRemaining);
+        _aura.Spawn(FightPlayer.Entity,new Vector2(-0.3f, 0.9f), false, 9999);
 
         var auraFade = _aura.Entity.GetComponent<FadeAfterStart>();
         if (auraFade != null)
         {
-            auraFade.SetPersistFadeTime(DurationRemaining-1.5f, DurationRemaining-0.75f);
+            auraFade.SetPersistFadeTime(DurationRemaining-1f, DurationRemaining);
         }
         
     }
@@ -115,5 +119,27 @@ public class EffectRage : FightEffect
     {
         base.OnEffectUpdate();
         _auraAnimator.LocalEnabled = FightPlayer.SpineAnimator.LocalEnabled;
+    }
+    
+    public void Extend(float sec)
+    {
+        var auraFade = _aura.Entity.GetComponent<FadeAfterStart>();
+        auraFade?.ExtendLifetime(sec);
+        DurationRemaining += sec;
+    }
+
+    public static EffectRage CastOrExtendRage(FightPlayer fp, float duration)
+    {
+        EffectRage rg = fp.GetEffect<EffectRage>();
+        if (rg.Alive())
+        {
+            rg.Extend(duration);
+        }
+        else
+        {
+            rg = fp.AddEffect<EffectRage>(fp, duration);
+        }
+
+        return rg;
     }
 }

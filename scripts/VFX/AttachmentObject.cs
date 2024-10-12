@@ -45,4 +45,11 @@ public class AttachmentObject : Component
 
         TimeElapsed += Time.DeltaTime;
     }
+
+    // This lifetime system can be replaced with the FadeAfterStart Component. You should always use that component to do fade if possible
+    // See EffectRage.cs
+    public void ExtendLifetime(float sec)
+    {
+        EntityLifeTime += sec;
+    }
 }

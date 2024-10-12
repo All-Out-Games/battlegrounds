@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using AO;
+using Assembly.scripts.Effects.ActiveSkills;
 using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.SceneObjects.Crates;
@@ -196,6 +197,20 @@ public partial class CrateItemDrop : Component
                     {
                         fp.Exp += 5000;
                     }
+                    break;
+                case "MagicPunchPotion":
+                    var mp = fp.GetEffect<EffectMagicPunch>();
+                    if (mp != null)
+                    {
+                        mp.Extend(25);
+                    }
+                    else
+                    {
+                        fp.AddEffect<EffectMagicPunch>(fp, 25);
+                    }
+                    break;
+                case "RagePotion":
+                    EffectRage.CastOrExtendRage(fp, 7.5f);
                     break;
             }
             

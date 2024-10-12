@@ -264,12 +264,12 @@ public static class EffectConfig
         {
             GravityCrushConfig cfg = new GravityCrushConfig()
             {
-                FieldSize = 1.0f,
+                FieldSize = 2.0f,
                 Lifetime = DefaultLifetime
             };
             if (level > 2) cfg.Lifetime += 1;
             if (level > 3) cfg.Lifetime += 1;
-            if (level > 4) cfg.FieldSize = 1.2f;
+            if (level > 4) cfg.FieldSize *= 1.2f;
             return cfg;
         }
     }

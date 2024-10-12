@@ -29,9 +29,9 @@ public class GravityFieldVFX: AttachmentObject
         mainLayer.CreateGlobalTransition(appearState).CreateTriggerCondition(appearTrigger);
         mainLayer.CreateTransition(appearState, idleState, true);
         mainLayer.CreateTransition(idleState, disappearState, false).CreateTriggerCondition(disappearTrigger);
-        mainLayer.CreateTransition(disappearState, emptyState, true);
+        //mainLayer.CreateTransition(disappearState, emptyState, true);
         
-        mainLayer.SetInitialState(appearState);
+        mainLayer.SetInitialState(emptyState);
         
         Animator.SpineInstance.SetStateMachine(stateMachine, Entity);
     }
