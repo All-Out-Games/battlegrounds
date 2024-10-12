@@ -82,7 +82,7 @@ namespace Assembly.scripts.SceneObjects.Crates
         {
             DropName = "RagePotion",
             DropDisplayName = "Rage Potion",
-            DropTexturePath = "Props/DropItemsRagePotion.png"
+            DropTexturePath = "Props/DropItems/RagePotion.png"
         };
 
         public static Dictionary<string, CrateDropConfig> CrateDropConfigs = new()

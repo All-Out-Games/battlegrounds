@@ -1,6 +1,7 @@
 using System.Collections;
 using AO;
 using Assembly.scripts;
+using Assembly.scripts.Effects.ActiveSkills;
 using Assembly.scripts.SceneObjects;
 using Assembly.scripts.VFX;
 
@@ -95,6 +96,8 @@ public class EffectPunch : FightEffect
     {
         //Log.Debug($"Punch! Dmg: {Config.PunchDamage}");
         Physics.RaycastHit rc;
+        bool magic = FightPlayer.HasEffect<EffectMagicPunch>();
+        int magicDmg = 0;
         
         // Re-adjust aiming
         punchDir = FightPlayer.GetPunchDirection();
@@ -108,7 +111,12 @@ public class EffectPunch : FightEffect
 
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
         info.SkillKey = FightPlayer.PunchLevel == 1 ? "Punch" : $"Punch{FightPlayer.PunchLevel}";
-        if (hit) // If players are too close, always hit
+        if (magic)
+        {
+            info.ReactionInfo.Amount = 1;
+            magicDmg = Config.PunchDamage - 1;
+        }
+        if (hit) // Ray
         {
             var other = rc.Collider.GetComponent<DamageableObject>();
             
@@ -117,6 +125,16 @@ public class EffectPunch : FightEffect
                 // other.Player.TakeDamage(FightPlayer, info);
                 // Log.Warn($"{rc.Collider.Entity.Name}");
                 other.TakeDamage(FightPlayer, info);
+                if (magic && other is PlayerCollisionChild fp)
+                {
+                    fp.Player.AddEffect<EffectPsyExplosion>(FightPlayer, 1f, explosion =>
+                    {
+                        explosion.Damage = magicDmg;
+                        explosion.Radius = 3;
+                        explosion.SkillKey = info.SkillKey;
+
+                    });
+                }
             }
         }
         else
@@ -131,6 +149,17 @@ public class EffectPunch : FightEffect
                 {
                     // other.Player.TakeDamage(FightPlayer, info);
                     fp.TakeDamage(FightPlayer, info);
+                    
+                    if (magic)
+                    {
+                        fp.AddEffect<EffectPsyExplosion>(FightPlayer, 1f, explosion =>
+                        {
+                            explosion.Damage = magicDmg;
+                            explosion.Radius = 3;
+                            explosion.SkillKey = info.SkillKey;
+
+                        });
+                    }
                 }
             }
         }
