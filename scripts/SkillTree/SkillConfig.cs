@@ -187,7 +187,7 @@ public static partial class SkillConfig
     /// <returns></returns>
     public static string GetIconPath(string key)
     {
-        if (key == "Empty")
+        if (key == "Empty" || key == null)
         {
             return FightAbility.DefaultIconPath;
         }
@@ -202,7 +202,7 @@ public static partial class SkillConfig
     /// <returns></returns>
     public static string GetAbilityIconPath(string key)
     {
-        if (key == "Empty")
+        if (key == "Empty" || key == null)
         {
             return FightAbility.DefaultAbilityIcon;
         }

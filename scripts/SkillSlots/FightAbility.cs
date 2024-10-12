@@ -39,7 +39,7 @@ public partial class FightAbility : Ability
 
     public override bool CanUse()
     {
-        if (SkillKey == "Empty") return false;
+        if (SkillKey == "Empty" || SkillKey == null) return false;
         return FightPlayer.SkillCastGeneralCheck() && FightPlayer.GetSkillTree().SkillLevelDict[SkillKey] > 0;
     }
 

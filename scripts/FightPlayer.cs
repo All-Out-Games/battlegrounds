@@ -17,7 +17,6 @@ public partial class FightPlayer : Player
     [Serialized] protected FightPlayerSkillSlotsManager SkillSlotsManager;
 
     protected Circle_Collider Collider; // MAIN Collider used for damage
-    protected Box_Collider PunchCollider;
     protected CameraControl CameraInterface;
     protected FightPlayer PriorityTarget;
     
@@ -423,17 +422,7 @@ public partial class FightPlayer : Player
         // CollisionEntity.LocalPosition =
         //     new Vector2(CollisionEntity.LocalPosition.X, CollisionEntity.LocalPosition.Y);
         Collider = CollisionEntity.GetComponent<Circle_Collider>();
-
-        var punchColliderEntity = CollisionEntity.TryGetChildByName("PunchCollider");
-        if (punchColliderEntity != null)
-        {
-            //Log.Debug("Found Punch Collider!");
-            PunchCollider = punchColliderEntity.GetComponent<Box_Collider>();
-        }
-        else
-        {
-            Log.Error("Shin: Punch Collider NOT FOUND");
-        }
+        
         
         InitializeUI();
         FightClubGameManager.Instance.OnPlayerJoin(this);
@@ -783,7 +772,7 @@ public partial class FightPlayer : Player
                 
             }
         }
-        return PunchCollider.Entity.Position - Position;
+        return GetFacingDirectionAsVector();
     }
 
     #endregion
