@@ -5,8 +5,7 @@
   "name": "RightColumn",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -14,6 +13,7 @@
     "Y": 1
   },
   "previous_sibling": "9177330268687:1721842474990587700",
+  "next_sibling": "767497665901696:1728850281378991600",
   "parent": "9039432223691:1721842405931079600"
 },
 {
@@ -37,8 +37,7 @@
       "W": -300
     },
     "offset": {
-      "X": 450,
-      "Y": 0
+      "X": 450
     }
   }
 }

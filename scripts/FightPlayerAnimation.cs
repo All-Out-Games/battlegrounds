@@ -20,11 +20,12 @@ public partial class FightPlayer
         
         // AL Layer
         var fightLayer = stateMachine.CreateLayer("fight_layer", 10);
-        var idleState = fightLayer.CreateState("BAT_003/Idle_short_AL", 0, false);
-        var emptyState = fightLayer.CreateState("__CLEAR_TRACK__", 0, true);
+        //var idleState = fightLayer.CreateState("BAT_003/Idle_short_AL", 0, false);
+        //var emptyState = fightLayer.CreateState("__CLEAR_TRACK__", 0, true);
+        var idleState = fightLayer.CreateState("__CLEAR_TRACK__", 0, false);
 
-        fightLayer.SetInitialState(emptyState);
-        fightLayer.CreateTransition(idleState, emptyState, true);
+        fightLayer.SetInitialState(idleState);
+        //fightLayer.CreateTransition(idleState, emptyState, true);
         fightLayer.CreateGlobalTransition(idleState).CreateTriggerCondition(resetALTrigger);
 
         #region Basic

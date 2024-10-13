@@ -149,7 +149,7 @@ public partial class CrateItemDrop : Component
     IEnumerator Seek(FightPlayer fp)
     {
         float seekTime = 0;
-        while (seekTime < 1f)
+        while (seekTime < 1f && Entity.Alive())
         {
             seekTime += Time.DeltaTime;
             if (fp.Alive())

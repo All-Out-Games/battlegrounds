@@ -43,16 +43,16 @@ namespace Assembly.scripts.SceneObjects.Crates
 
         public static CratesConfig MagicPunchPotionCfg = new CratesConfig()
         {
-            Prob = 20,
-            HitPoint = 4,
+            Prob = 35,
+            HitPoint = 3,
             ItemName = "MagicPunchPotion",
             Tint = new Vector4(1f, 0.431f, 0.78f, 1f)
         };
 
         public static CratesConfig RagePotionCfg = new CratesConfig()
         {
-            Prob = 20,
-            HitPoint = 4,
+            Prob = 35,
+            HitPoint = 3,
             ItemName = "RagePotion",
             Tint = new Vector4(1f, 0.1f, 0.1f, 1f)
         };

@@ -5,8 +5,7 @@
   "name": "TreeIcons",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -29,16 +28,6 @@
     "max": {
       "X": 0.9800000190734863,
       "Y": 0.9900000095367432
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
     }
   }
 }

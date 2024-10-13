@@ -77,7 +77,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         return -1;
     }
     
-    public void ReplaceSlot(int index, FightAbility faInstanc)
+    public void ReplaceSlot(int index, FightAbility faInstanc, float cooldownAfterReplace = 0)
     {
         // just to be sure
         if (index < 0 || index > ActiveAbilities.Count)
@@ -85,6 +85,10 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             return;
         }
         ActiveAbilities[index] = faInstanc;
+        if (cooldownAfterReplace != 0)
+        {
+            faInstanc.CooldownRemaining = cooldownAfterReplace;
+        }
     }
 
     [ServerRpc]

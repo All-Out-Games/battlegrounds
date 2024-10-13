@@ -5,8 +5,7 @@
   "name": "LeftColumn",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -23,22 +22,15 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0,
       "Y": 0.5000000000000000
     },
     "max": {
-      "X": 0,
       "Y": 0.5000000000000000
     },
     "insets": {
       "X": -450,
       "Y": -900,
-      "Z": -450,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
+      "Z": -450
     }
   }
 }

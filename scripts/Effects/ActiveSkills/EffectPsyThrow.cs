@@ -114,7 +114,7 @@ public class EffectPsyThrowReady : FightEffectWithNoFlinch
             _originalIndex = slotsMgr.GetAbilityIndex(f);
             if (_originalIndex > 0)
             {
-                slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityPsyThrowLaunch)));
+                slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityPsyThrowLaunch)), 0.5f);
             }
             else
             {

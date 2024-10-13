@@ -78,7 +78,7 @@ public class EffectRollOut : FightEffect
             _originalIndex = slotsMgr.GetAbilityIndex(f);
             if (_originalIndex > 0)
             {
-                slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityRollOutCancel)));
+                slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityRollOutCancel)), 2);
             }
             else
             {

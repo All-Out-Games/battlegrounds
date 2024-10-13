@@ -249,6 +249,10 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
         float acc = t;
         while (acc > 0)
         {
+            if (!fissure.Alive())
+            {
+                yield break;
+            }
             acc -= Time.DeltaTime;
             rdr.Tint = rdr.Tint with { W = Util.Lerp(0,1, acc/t) };
             yield return null;

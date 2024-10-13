@@ -5,8 +5,7 @@
   "name": "GemImage",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -23,15 +22,7 @@
   "internal_component_type": "UIImage",
   "data": {
     "sprite": "UI/Glory/glory.png",
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "fit_aspect": true,
-    "fit_aspect_kind": 0,
-    "fit_aspect_anchor": 0
+    "fit_aspect": true
   }
 },
 {
@@ -55,8 +46,7 @@
       "W": -25
     },
     "offset": {
-      "X": -45,
-      "Y": 0
+      "X": -45
     }
   }
 }

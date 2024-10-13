@@ -5,8 +5,7 @@
   "name": "infoScreen",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -21,7 +20,6 @@
   "component_type": "Mono_Component",
   "mono_component_type": "AbilityInfoScreen",
   "data": {
-    "InfoQuitBtn": "0:0",
     "_title": "37009194278065:1721677668607350300",
     "_background": "75660654264766:1721945436687920000",
     "_description": "46078274781160:1721771382689189400",
@@ -39,22 +37,11 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.0500000007450581,
-      "Y": 0
+      "X": 0.0500000007450581
     },
     "max": {
       "X": 0.8000000119209290,
       "Y": 0.8999999761581421
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
     }
   }
 }
