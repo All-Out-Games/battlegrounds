@@ -353,7 +353,12 @@ public class AbilityLoadoutPage : UniqueUIWindow
     {
         for (int i = 1; i < 6; i++)
         {
-            Type f = FightAbility.AbilityQueryDict[_equippedSkillKey[i]];
+            string equippedKey = _equippedSkillKey[i];
+            if (equippedKey == null)
+            {
+                break;
+            }
+            Type f = FightAbility.AbilityQueryDict[equippedKey];
             
             _slotsMgr.ReplaceSlot(i, _slotsMgr.GetAbilityInstance(f));
             _slotsMgr.CallServer_SetSavedSkillSlot(i, _equippedSkillKey[i]);
