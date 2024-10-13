@@ -121,13 +121,7 @@ public partial class BearTrap : OwnedTrigger
         TrapArmTime = EffectConfig.BearTrapConfig.TrapArmTime;
         Armed = false;
         Snapped = false;
-        
-        if (!Owner.Alive())
-        {
-            Despawn();
-            return;
-        }
-        
+
         // Stealth for non local player
         if (Owner.IsLocal)
         {

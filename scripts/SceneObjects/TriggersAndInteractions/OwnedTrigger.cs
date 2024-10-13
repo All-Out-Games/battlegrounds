@@ -46,12 +46,19 @@ public partial class OwnedTrigger : OwnedObjectComponent
     [ClientRpc]
     public virtual void Initialization(Entity owner, float lifeTime)
     {
-        Owner = owner.GetComponent<FightPlayer>();
-        EntityLifeTime = lifeTime;
-        InteractedEntities = new List<Entity>();
-        TriggerCollider.OnCollisionEnter += OnEntityEnter;
-        Log.Debug($"Initialized! Owner = {owner.Name}");
-        Initialized = true;
+        if (owner.Alive())
+        {
+            Owner = owner.GetComponent<FightPlayer>();
+            EntityLifeTime = lifeTime;
+            InteractedEntities = new List<Entity>();
+            TriggerCollider.OnCollisionEnter += OnEntityEnter;
+            Log.Debug($"Initialized! Owner = {owner.Name}");
+            Initialized = true;
+        }
+        else
+        {
+            Despawn();
+        }
     }
 
     public override void Update()

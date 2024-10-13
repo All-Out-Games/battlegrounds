@@ -79,6 +79,11 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     
     public void ReplaceSlot(int index, FightAbility faInstanc)
     {
+        // just to be sure
+        if (index < 0 || index > ActiveAbilities.Count)
+        {
+            return;
+        }
         ActiveAbilities[index] = faInstanc;
     }
 
