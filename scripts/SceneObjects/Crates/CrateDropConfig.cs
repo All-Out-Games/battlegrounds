@@ -8,9 +8,9 @@ namespace Assembly.scripts.SceneObjects.Crates
 {
     public struct CrateDropConfig
     {
-        public string DropName = "Nothing"; // Used for handler
-        public string DropDisplayName = "Nothing!"; // Popup text
-        public string DropTexturePath = ""; // Load Texture on drop
+        [Serialized] public string DropName = "Nothing"; // Used for handler
+        [Serialized] public string DropDisplayName = "Nothing!"; // Popup text
+        [Serialized] public string DropTexturePath = ""; // Load Texture on drop
 
         public CrateDropConfig()
         {
@@ -40,52 +40,52 @@ namespace Assembly.scripts.SceneObjects.Crates
     
     public partial struct CratesConfig
     {
-        public static CrateDropConfig CoinsConfig = new CrateDropConfig(){
+        public static readonly CrateDropConfig CoinsConfig = new CrateDropConfig(){
             DropName = "Coin",
             DropDisplayName = "Coin +5!",
             DropTexturePath = "Props/DropItems/coin/coin_1.png",
         };
         
-        public static CrateDropConfig HealthPotionSConfig = new CrateDropConfig(){
+        public static readonly CrateDropConfig HealthPotionSConfig = new CrateDropConfig(){
             DropName = "HealthPotionS",
             DropDisplayName = "Small Health Potion",
             DropTexturePath = "Props/DropItems/HealthPotionS.png"
         };
 
-        public static CrateDropConfig HealthPotionMConfig = new CrateDropConfig(){
+        public static readonly CrateDropConfig HealthPotionMConfig = new CrateDropConfig(){
             DropName = "HealthPotionM",
             DropDisplayName = "Health Potion",
             DropTexturePath = "Props/DropItems/HealthPotionM.png"
         };
 
-        public static CrateDropConfig HealthPotionLConfig = new CrateDropConfig(){
+        public static readonly CrateDropConfig HealthPotionLConfig = new CrateDropConfig(){
             DropName = "HealthPotionL",
             DropDisplayName = "Large Health Potion",
             DropTexturePath = "Props/DropItems/HealthPotionL.png"
         };
 
-        public static CrateDropConfig ExpPotionLConfig = new CrateDropConfig()
+        public static readonly CrateDropConfig ExpPotionLConfig = new CrateDropConfig()
         {
             DropName = "ExpPotionL",
             DropDisplayName = "Exp +5000!",
             DropTexturePath = "Props/DropItems/ExpPotionL.png"
         };
 
-        public static CrateDropConfig MagicPunchPotionConfig = new CrateDropConfig()
+        public static readonly CrateDropConfig MagicPunchPotionConfig = new CrateDropConfig()
         {
             DropName = "MagicPunchPotion",
             DropDisplayName = "Magic Punch Potion",
             DropTexturePath = "Props/DropItems/MagicPunchPotion.png"
         };
         
-        public static CrateDropConfig RagePotionConfig = new CrateDropConfig()
+        public static readonly CrateDropConfig RagePotionConfig = new CrateDropConfig()
         {
             DropName = "RagePotion",
             DropDisplayName = "Rage Potion",
             DropTexturePath = "Props/DropItems/RagePotion.png"
         };
 
-        public static Dictionary<string, CrateDropConfig> CrateDropConfigs = new()
+        public static readonly Dictionary<string, CrateDropConfig> CrateDropConfigs = new()
         {
             {CoinsConfig.DropName, CoinsConfig},
             {HealthPotionSConfig.DropName, HealthPotionSConfig},

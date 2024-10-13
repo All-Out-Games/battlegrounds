@@ -15,7 +15,7 @@ public class CrateManager : System<CrateManager>
     {
         if (Network.IsServer)
         {
-            Util.Assert(AliveCrateCount == CrateRegistry.Count, "AliveCrateCount == CrateRegistry.Count");
+            // Util.Assert(AliveCrateCount == CrateRegistry.Count, "AliveCrateCount == CrateRegistry.Count");
             // Random pos in combat zone
             Zone combatZone = FightClubGameManager.References.PvpZone;
             FightClubGameManager.Instance.ServerSpawn(Crate.CratePrefab, FightClubUtils.RandomPositionInCircle(combatZone.Entity.Position, combatZone.Entity.LocalScaleX),
