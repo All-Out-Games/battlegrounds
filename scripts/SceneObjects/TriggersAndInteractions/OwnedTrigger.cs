@@ -64,8 +64,9 @@ public partial class OwnedTrigger : OwnedObjectComponent
     public override void Update()
     {
         base.Update();
-        if (Owner == null)
+        if (!Owner.Alive())
         {
+            OnLifeTimeRunOut();
             Log.Warn($"Did not find owner of owned object for {Entity.Name}!");
             return;
         }
@@ -73,7 +74,6 @@ public partial class OwnedTrigger : OwnedObjectComponent
         if (Initialized && Util.OneTime(TimeElapsed > EntityLifeTime, ref LifeTimeEnded))
         {
             OnLifeTimeRunOut();
-            Log.Debug($"LifeTime Runout called for {Entity.Name}");
         }
 
         TimeElapsed += Time.DeltaTime;
@@ -97,6 +97,7 @@ public partial class OwnedTrigger : OwnedObjectComponent
     /// </summary>
     protected virtual void OnLifeTimeRunOut()
     {
+        Log.Debug($"LifeTime Runout called for {Entity.Name}");
         Despawn();
     }
 
