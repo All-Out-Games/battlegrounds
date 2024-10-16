@@ -16,6 +16,9 @@ public class SceneReferenceHolder : Component
             Log.Error("You have more than one instances of SceneReferenceHolder in scenes! Some references might break");
         }
         
+        Assets.KeepLoaded(Background1, synchronous: false);
+        Assets.KeepLoaded(Background2, synchronous: false);
+        Assets.KeepLoaded(Background3, synchronous: false);
     }
     
     
@@ -31,4 +34,8 @@ public class SceneReferenceHolder : Component
     [Serialized] public Texture FrameWhiteBottom;
     [Serialized] public Texture CheckMark;
     [Serialized] public Texture SparkIcon;
+
+    [Serialized] public Texture Background1;
+    [Serialized] public Texture Background2;
+    [Serialized] public Texture Background3;
 }

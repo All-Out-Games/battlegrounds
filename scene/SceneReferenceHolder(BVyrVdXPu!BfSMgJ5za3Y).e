@@ -29,7 +29,10 @@
     "FrameWhite": "environment/AFK_tmp/modal-9slice.png",
     "FrameWhiteBottom": "UI/UI_Frame_White.png",
     "CheckMark": "UI/CheckMark.png",
-    "SparkIcon": "$AO/new/icons/sparks/spark_icon.png"
+    "SparkIcon": "$AO/new/icons/sparks/spark_icon.png",
+    "Background1": "environment/CentralHub/BG.png",
+    "Background2": "environment/PvP/BG.png",
+    "Background3": "environment/AFK_tmp/world1_ground_texture.png"
   }
 },
 {
