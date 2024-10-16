@@ -245,7 +245,11 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
     private IEnumerator FissureDissipate(Entity fissure, float t)
     {
         yield return new WaitForSeconds(t);
-        Sprite_Renderer rdr = fissure.GetComponent<Sprite_Renderer>();
+        Sprite_Renderer rdr = fissure?.GetComponent<Sprite_Renderer>();
+        if (!rdr.Alive())
+        {
+            yield break;
+        }
         float acc = t;
         while (acc > 0)
         {

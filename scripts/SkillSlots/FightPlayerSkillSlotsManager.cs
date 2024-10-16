@@ -14,11 +14,15 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         {
             if (_localDrawAbility)
             {
-                _player.DrawDefaultAbilityUI(new Player.AbilityDrawOptions()
+                var opt = new Player.AbilityDrawOptions()
                 {
                     Abilities = GetAbilityArray(),
                     AbilityElementSize = 75
-                });
+                };
+                if (opt.Abilities.Length > 0)
+                {
+                    _player.DrawDefaultAbilityUI(opt);
+                }
             }
         }
         
