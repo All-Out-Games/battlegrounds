@@ -40,7 +40,16 @@ public class EffectMagicPunch : FightEffect
         }
         
     }
-    
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        if (_aura.Alive())
+        {
+            _aura.EndLifetime();
+        }
+    }
+
     private void AddAura()
     {
         Prefab auraPrefab = VFXPrefabs.StatAura;

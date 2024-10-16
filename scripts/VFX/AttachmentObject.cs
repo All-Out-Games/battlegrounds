@@ -52,4 +52,9 @@ public class AttachmentObject : Component
     {
         EntityLifeTime += sec;
     }
+
+    public void EndLifetime()
+    {
+        TimeElapsed = EntityLifeTime - 0.1f;
+    }
 }
