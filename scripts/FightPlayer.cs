@@ -496,7 +496,7 @@ public partial class FightPlayer : Player
     /// <param name="info"></param>
     public void TakeDamage(FightPlayer source, DamageInfo info)
     {
-        if (CurrentHealth <= 0 || !source.Alive()) return; // Avoid damaging the dead, avoid dropped player
+        if (CurrentHealth <= 0 || !source.Alive() || PlayerStatus != PlayerStatus.Combat) return; // Avoid damaging the dead, avoid dropped player
         info.SourceNetworkId = source.Entity.NetworkId;
         
         // Pre-damage event, chained invoke
