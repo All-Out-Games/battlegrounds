@@ -86,9 +86,8 @@ public class EffectTotalDarkness : FightEffect
                     }
                     if (_config.LifeSteal)
                     {
-                        info.ReactionInfo.Amount = (int)(info.ReactionInfo.Amount * -EffectConfig.TotalDarknessConfig.FourStarLifeStealMultiplier);
-                        info.DamageNumberColor = GlobalData.HealNumberColor;
-                        FightPlayer.TakeDamage(FightPlayer, info);
+                        FightPlayer.DamageInfo healInfo = FightPlayer.DamageInfo.CreateHealInfo((int)(EffectConfig.TotalDarknessConfig.FourStarLifeStealMultiplier * info.ReactionInfo.Amount));
+                        FightPlayer.TakeDamage(FightPlayer, healInfo);
                     } 
                 }
             

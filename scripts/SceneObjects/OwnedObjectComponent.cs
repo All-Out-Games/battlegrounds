@@ -1,4 +1,6 @@
 ﻿using AO;
+using StreamReader = AO.StreamReader;
+using StreamWriter = AO.StreamWriter;
 
 namespace Assembly.scripts.SceneObjects;
 
@@ -6,9 +8,10 @@ namespace Assembly.scripts.SceneObjects;
 /// Components that has a owner.
 /// Implement OnOwnerLeave to destroy entity when the player leaves.
 /// </summary>
-public abstract class OwnedObjectComponent : Component
+public abstract class OwnedObjectComponent : Component, INetworkedComponent
 {
     [Serialized] protected FightPlayer Owner;
+    
 
     public override void Update()
     {
@@ -21,4 +24,17 @@ public abstract class OwnedObjectComponent : Component
     }
 
     public abstract void Despawn();
+    public void NetworkSerialize(StreamWriter writer)
+    {
+        writer.WriteNetworkedEntity(Owner.Entity);
+    }
+
+    public void NetworkDeserialize(StreamReader reader)
+    {
+        var ownerEntity = reader.ReadNetworkedEntity();
+        if (ownerEntity.Alive())
+        {
+            Owner = ownerEntity.GetComponent<FightPlayer>();
+        }
+    }
 }

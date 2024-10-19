@@ -13,6 +13,15 @@ public partial class BearTrap : OwnedTrigger
     protected override void OnOtherPlayerEnter(FightPlayer fp)
     {
         base.OnOtherPlayerEnter(fp);
+        if (Network.IsServer)
+        {
+            CallClient_BearTrapSnap(fp);
+        }
+    }
+
+    [ClientRpc]
+    public void BearTrapSnap(FightPlayer fp)
+    {
         if (fp != Owner)
         {
             if (fp.Damageable())
