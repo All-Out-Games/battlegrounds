@@ -23,7 +23,6 @@ public class VFX : Component
         base.Awake();
         Animator = Entity.GetComponent<Spine_Animator>();
         
-        //Animator.DepthOffset = 3;
     }
     
     /// <summary>
@@ -40,9 +39,9 @@ public class BaseVFX : VFX
 {
     [Serialized] public string[] StartAnimationStr; // Random Play
     
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
         var rngTrigger = StartAnimationStr.GetRandom();
         Animator.SpineInstance.SetAnimation(rngTrigger, Loop);
     }

@@ -42,12 +42,12 @@ public partial class BearTrap : OwnedTrigger
         Vector4 curColor = Animator.SpineInstance.ColorMultiplier;
         curColor.W = 0;
         Animator.SpineInstance.ColorMultiplier = curColor;
+        
+        InitializeStateMachine();
     }
 
-    public override void Start()
+    public void InitializeStateMachine()
     {
-        base.Start();
-        
         // Make a state machine.
         var stateMachine = StateMachine.Make();
         var mainLayer = stateMachine.CreateLayer("main");
@@ -58,7 +58,7 @@ public partial class BearTrap : OwnedTrigger
         var snapCloseState = mainLayer.CreateState("snap_close", 0, false);
         var disappearState = mainLayer.CreateState("dissappear", 0, false);
         var disappearClosedState = mainLayer.CreateState("dissappear_closed", 0, false);
-        var emptyState = mainLayer.CreateState("__CLEAR_TRACK__", 0, false);
+        var emptyState = mainLayer.CreateState("Null", 0, false);
 
         var snapTrigger = stateMachine.CreateVariable("snap", StateMachineVariableKind.TRIGGER);
         var disappearTrigger = stateMachine.CreateVariable("expire", StateMachineVariableKind.TRIGGER);

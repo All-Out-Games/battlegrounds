@@ -431,9 +431,12 @@ public partial class FightPlayer : Player
         Teleport(FightClubGameManager.References.CentralHubZone.Position );
     }
 
-    public override void Start()
+    private bool _lazyInited;
+    /// <summary>
+    /// Previously named Start(). That function is REMOVED from the engine!
+    /// </summary>
+    public void LazyInit()
     {
-        //Log.Debug($"Client Start!");
         if (Network.IsServer)
         {
             // DO save related things here! You cannot sync stuff in Awake
@@ -457,6 +460,10 @@ public partial class FightPlayer : Player
 
     public override void Update()
     {
+        if (Util.OneTime(true, ref _lazyInited))
+        {
+            LazyInit();
+        }
         BumpDecay();
         DashDecay();
         if (Network.IsServer && PlayerStatus != PlayerStatus.Combat)

@@ -12,14 +12,7 @@ public partial class UIManager : System<UIManager>
     private Dictionary<string, UniqueUIWindow> UniqueUiWindows = new(); // [PrefabPath : Window Class]
     // Unique window will close all other instances when a new one opens. Overlay windows only themselves
     // You must manage overlay windows yourself
-    private Dictionary<string, BaseUIWindow> OverlayWindows = new(); 
-
-
-    private string _scoreTxt;
-    private string _resourceTxt;
-    private string _atkTxt;
-    private string _multiplierTxt;
-    private string _moneyTxt;
+    private Dictionary<string, BaseUIWindow> OverlayWindows = new();
 
     public string PopupTxt;
     public float PopupRemainingTime;
@@ -40,13 +33,6 @@ public partial class UIManager : System<UIManager>
         _defaultButtonSettings = new UI.ButtonSettings()
             { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") };
         _defaultTextSettings = new UI.TextSettings() { Font = DefaultFont, Size = 24, Color = Vector4.LightBlue };
-    }
-    
-    public override void Start()
-    {
-        _scoreTxt = "0";
-        _resourceTxt = "0";
-        _moneyTxt = "0";
     }
 
 

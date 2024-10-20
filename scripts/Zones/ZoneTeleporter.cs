@@ -9,9 +9,9 @@ public class ZoneTeleporter : Component
     protected Interactable InteractableComp;
     protected string defaulTxt;
 
-    public override void Start()
+    public override void Awake()
     {
-        
+        base.Awake();
         InteractableComp = Entity.GetComponent<Interactable>();
         InteractableComp.OnInteract += OnInteract;
         InteractableComp.CanUseCallback = (Player p) =>

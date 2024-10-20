@@ -26,11 +26,7 @@ namespace Assembly.scripts.SceneObjects.Crates
                 return;
             }
             ConstructStateMachine();
-        }
-
-        public override void Start()
-        {
-            base.Start();
+            
             Animator.SpineInstance.StateMachine.SetTrigger("appear");
             Fade.OnFaded += () =>
             {

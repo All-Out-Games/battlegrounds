@@ -10,7 +10,7 @@ public class AudioObject : Component
 
     public ulong SoundId;
 
-    public override void Start()
+    public override void Awake()
     {
         base.Start();
         SoundId = SFX.Play(clip, new SFX.PlaySoundDesc() { Loop = IsLoop, LoopTimeout = TimeOutForLoop, EntityToFollow = Entity});

@@ -19,7 +19,7 @@ public class Shop : System<Shop>
 
     public string ScrollToIAP;
 
-    public override void Start()
+    public override void Awake()
     {
         if (Network.IsServer)
         {
