@@ -6,9 +6,9 @@ namespace Assembly.scripts.SceneObjects.Projectiles;
 public partial class BackstabKunaiProjectile : BaseProjectile
 {
     private Spine_Animator _animator;
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
         _animator = Entity.GetComponent<Spine_Animator>();
         if (_animator != null)
         {

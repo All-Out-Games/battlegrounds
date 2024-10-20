@@ -9,9 +9,10 @@ using AO;
 public class UniqueUIWindow : BaseUIWindow
 {
     [Serialized] protected UIButton CloseButton; // Unique UI Window must have a close button.
-    public override void Start()
+    public override void Awake()
     {
         Log.Debug("Start Function called in UniqueUIWindow");
+        base.Awake();
         CloseButton ??= Entity.TryGetChildByName("CloseButton").GetComponent<UIButton>();
         if (CloseButton == null)
         {
@@ -19,7 +20,6 @@ public class UniqueUIWindow : BaseUIWindow
             Entity.Destroy();
             return;
         }
-        //base.Start();
         CloseButton.OnClicked += CloseWindow;
     }
 }

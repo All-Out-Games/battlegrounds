@@ -25,11 +25,17 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
                 }
             }
         }
+
+        if (Util.OneTime(true, ref _lazyInited))
+        {
+            LazyInit();
+        }
         
     }
-    
 
-    public override void Start()
+
+    private bool _lazyInited;
+    public void LazyInit()
     {
         if (Network.IsServer)
         {

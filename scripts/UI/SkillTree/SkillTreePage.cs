@@ -41,11 +41,7 @@ public class SkillTreePage : UniqueUIWindow
     private FightPlayerSkillSlotsManager _slotsMgr;
     private SkillTreeItem _selectedItem;
     private FightPlayer _localPlayer;
-
-    public override void Start()
-    {
-        base.Start();
-    }
+    
 
     public override void OnInstantiate()
     {

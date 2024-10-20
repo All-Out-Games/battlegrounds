@@ -9,7 +9,7 @@ public class UniqueWindowInteractable : Component
     protected Interactable WindowOpenInteractable;
     protected Circle_Collider ExitVendorRange;
 
-    public override void Start()
+    public override void Awake()
     {
         base.Start();
         WindowOpenInteractable = Entity.GetComponent<Interactable>();

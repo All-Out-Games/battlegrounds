@@ -22,9 +22,9 @@ public class FadeAfterStart : Component
     public Action OnFaded;
     protected bool Faded;
     
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
         ElapsedTime = 0;
         if (FadeSpine)
         {

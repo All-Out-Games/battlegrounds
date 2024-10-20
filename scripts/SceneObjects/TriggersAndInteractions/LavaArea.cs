@@ -6,9 +6,9 @@ public class LavaArea : Component
 {
     [Serialized] private Box_Collider _collider;
 
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
         _collider.OnCollisionEnter += OnLavaDamage;
     }
 

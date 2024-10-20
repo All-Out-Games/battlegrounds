@@ -29,18 +29,15 @@ public partial class CrateItemDrop : Component
 
     public override void Awake()
     {
+        base.Awake();
         if (Fade == null)
         {
             Log.Error("ItemDrop: Prefab does not have a Fade Component! Serialize this field in your prefab!");
             Entity.Destroy();
+            return;
         }
-        base.Awake();
+        
         _pickupTrigger.LocalEnabled = false;
-    }
-
-    public override void Start()
-    {
-        base.Start();
         Fade.OnFaded += () =>
         {
             Fade.OnFaded = null;
@@ -58,6 +55,7 @@ public partial class CrateItemDrop : Component
             }
         };
     }
+    
 
     public override void Update()
     {
@@ -84,9 +82,9 @@ public partial class CrateItemDrop : Component
     [ClientRpc]
     public void Initialization(string dropName, Vector2 bumpDir)
     {
-        if (CratesConfig.CrateDropConfigs.ContainsKey(dropName))
+        if (CratesConfig.CrateDropConfigs.TryGetValue(dropName, out var config))
         {
-            _config = CratesConfig.CrateDropConfigs[dropName];
+            _config = config;
         }
         else
         {
@@ -135,9 +133,12 @@ public partial class CrateItemDrop : Component
     [ClientRpc]
     public void StartSeek(FightPlayer fp)
     {
-        _seeking = true;
-        Fade.ExtendLifetime(2f); // Seek takes 1s
-        Coroutine.Start(Entity, Seek(fp));
+        if (fp.Alive())
+        {
+            _seeking = true;
+            Fade.ExtendLifetime(2f); // Seek takes 1s
+            Coroutine.Start(Entity, Seek(fp));
+        }
     }
 
     /// <summary>

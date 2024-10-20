@@ -22,9 +22,9 @@ public partial class BaseProjectile : OwnedObjectComponent
     [Serialized] protected float EngineProjectileSpeed;
     [Serialized] protected float SpeedModifier;
 
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
         EngineProjectile = Entity.GetComponent<Projectile>();
         if (EngineProjectile == null)
         {
@@ -32,10 +32,16 @@ public partial class BaseProjectile : OwnedObjectComponent
             Entity.Destroy();
             return;
         }
-        WhiteList.Add(Owner.Entity);
-        WhiteList.Add(Owner.CollisionEntity);
+        EngineProjectile.Awaken();
         EngineProjectile.OnHit += OnHit;
 
+        
+    }
+    
+    private void LazyInitialize()
+    {
+        WhiteList.Add(Owner.Entity);
+        WhiteList.Add(Owner.CollisionEntity);
         TimeElapsed = 0;
         EngineProjectileSpeed = EngineProjectile.Speed;
         SpeedModifier = 1.0f;
@@ -93,6 +99,11 @@ public partial class BaseProjectile : OwnedObjectComponent
         }
     }
 
+    /// <summary>
+    /// Override ME!
+    /// </summary>
+    /// <param name="other"></param>
+    /// <param name="predicted"></param>
     protected virtual void DoProjectileEffect(Entity other, bool predicted)
     {
         // NOTE: Will be called on Server/Client
@@ -103,6 +114,8 @@ public partial class BaseProjectile : OwnedObjectComponent
         Owner = owner;
         Damage = dmg;
         Pierce = pierce;
+        
+        LazyInitialize();
     }
 
     public void AddIgnoredPlayer(FightPlayer fp)

@@ -10,12 +10,13 @@ public class ShurikenProjectile : BaseProjectile
     
     private Spine_Animator _animator;
     
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
         _animator = Entity.GetComponent<Spine_Animator>();
         if (_animator != null)
         {
+            _animator.Awaken();
             var instance = _animator.SpineInstance;
             instance.SetSkin("shuriken");
             instance.EnableSkin("shuriken");
