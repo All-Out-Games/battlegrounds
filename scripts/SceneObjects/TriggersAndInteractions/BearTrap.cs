@@ -22,14 +22,14 @@ public partial class BearTrap : OwnedTrigger
     [ClientRpc]
     public void BearTrapSnap(FightPlayer fp)
     {
-        if (fp != Owner)
+        if (fp != Owner && fp.Alive())
         {
             if (fp.Damageable())
             {
                 fp.AddEffect<EffectBearTrapSnare>(Owner);
             }
             Animator.SpineInstance.ColorMultiplier = new Vector4(1,1,1, 1);
-            Animator.SpineInstance.StateMachine.SetTrigger("snap");
+            Animator.SpineInstance?.StateMachine?.SetTrigger("snap");
             Snapped = true;
             SFX.Play(SFXKeys.BearTrapSnapAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
         }
