@@ -909,7 +909,8 @@ public partial class FightPlayer : Player
         _healTimer += deltaTime;
         if (_healTimer > 1)
         {
-            TakeDamage(this, DamageInfo.CreateHealInfo(20));
+            // This is called outside of combat, so we don't use takedamage. Instead, we heal directly
+            CurrentHealth = Int32.Min(CurrentHealth + 20, MaxHealth);
             _healTimer = 0;
         }
     }

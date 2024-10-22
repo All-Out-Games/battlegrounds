@@ -34,7 +34,7 @@ public class AfkInfoWindow : UniqueUIWindow
             levelBonus += GlobalData.AfkMidLevelBonus;
         }
 
-        int serverBonus = Player.AllPlayers.Count < 5 ? GlobalData.AfkUnpopulatedServerBonusExp : 0;
+        int serverBonus = Scene.Components<FightPlayer>().Count() < 5 ? GlobalData.AfkUnpopulatedServerBonusExp : 0;
 
         afk = afk + levelBonus + serverBonus;
         if (fp.IsExpBoosted())

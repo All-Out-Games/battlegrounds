@@ -127,7 +127,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
                     return;
                 }
 
-                var target = Player.AllPlayers.FirstOrDefault(p => p.Name == parts[1]);
+                var target = Scene.Components<FightPlayer>().FirstOrDefault(p => p.Name == parts[1]);
                 if (parts[1] == "self" || parts[1] == "me")
                 {
                     target = player;
@@ -244,7 +244,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
                     Chat.SendMessage(player, "Usage: /fetchstat <playerid>");
                     return;
                 }
-                target = Player.AllPlayers.FirstOrDefault(p => p.Name == parts[1]);
+                target = Scene.Components<FightPlayer>().FirstOrDefault(fp => fp.Name == parts[1]);
                 if (parts[1] == "self" || parts[1] == "me")
                 {
                     target = player;
@@ -270,10 +270,10 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public List<FightPlayer> GetCombatPlayers(Player exclude)
     {
         List<FightPlayer> fightPlayers = new List<FightPlayer>();
-        foreach (var p in Player.AllPlayers)
+        foreach (var p in Scene.Components<FightPlayer>())
         {
             if (p == exclude) continue;
-            if(p is FightPlayer { PlayerStatus: PlayerStatus.Combat } fp) fightPlayers.Add(fp);
+            if(p is { PlayerStatus: PlayerStatus.Combat } fp) fightPlayers.Add(fp);
         }
         return fightPlayers;
     }

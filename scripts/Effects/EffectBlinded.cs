@@ -12,7 +12,7 @@ public class EffectBlinded : FightEffect
         if (FightPlayer.IsLocal)
         {
             FightClubGameManager.References.TotalDarknessOverlay.LocalEnabled = true;
-            foreach (var pl in Player.AllPlayers)
+            foreach (var pl in Scene.Components<FightPlayer>())
             {
                 if (!pl.IsLocal)
                 {
@@ -28,7 +28,7 @@ public class EffectBlinded : FightEffect
         if (FightPlayer.IsLocal)
         {
             FightClubGameManager.References.TotalDarknessOverlay.LocalEnabled = false;
-            foreach (var pl in Player.AllPlayers)
+            foreach (var pl in Scene.Components<FightPlayer>())
             {
                 if (!pl.IsLocal)
                 {

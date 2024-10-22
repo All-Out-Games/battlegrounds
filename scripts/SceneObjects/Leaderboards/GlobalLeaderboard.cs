@@ -49,7 +49,7 @@ public partial class GlobalLeaderboard : Component
                 CallClient_UpdateLeaderboardData(names, scores);
             });
 
-            foreach(Player p in Player.AllPlayers)
+            foreach(Player p in Scene.Components<FightPlayer>())
             {
                 var player = p;
                 Save.OrderedGet(LeaderboardId, player.UserId, 0, entry => {

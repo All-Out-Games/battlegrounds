@@ -79,7 +79,7 @@ public class CrateManager : System<CrateManager>
 
     private int GetMaxCrateCount()
     {
-        return Int32.Min(2 * Player.AllPlayers.Count, 10);
+        return Int32.Min(2 * Scene.Components<FightPlayer>().Count(), 10);
     }
 
     public List<Entity> GetCratesEntity()
