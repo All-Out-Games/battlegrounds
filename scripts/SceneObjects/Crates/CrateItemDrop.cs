@@ -33,7 +33,7 @@ public partial class CrateItemDrop : Component
         if (Fade == null)
         {
             Log.Error("ItemDrop: Prefab does not have a Fade Component! Serialize this field in your prefab!");
-            Entity.Destroy();
+            Despawn();
             return;
         }
         
@@ -89,7 +89,7 @@ public partial class CrateItemDrop : Component
         else
         {
             Log.Error($"{dropName} does not exist in CratesConfig!");
-            if(Network.IsServer) Network.Despawn(Entity);
+            if(Network.IsServer) Despawn();
         }
 
         _bump = bumpDir * _bumpStrength;
