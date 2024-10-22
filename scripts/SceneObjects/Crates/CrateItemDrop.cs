@@ -89,7 +89,7 @@ public partial class CrateItemDrop : Component
         else
         {
             Log.Error($"{dropName} does not exist in CratesConfig!");
-            Entity.Destroy();
+            if(Network.IsServer) Network.Despawn(Entity);
         }
 
         _bump = bumpDir * _bumpStrength;
