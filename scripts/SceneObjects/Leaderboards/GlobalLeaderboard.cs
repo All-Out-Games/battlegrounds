@@ -76,9 +76,13 @@ public partial class GlobalLeaderboard : Component
         using var _4 = UI.PUSH_SCALE_FACTOR(0.770f);
         using var _5 = UI.PUSH_COLOR_MULTIPLIER(LeaderboardSpriteRenderer.Tint);
 
-        var rect = new Rect(Entity.Position).Grow(0.4f, 1.6f, 1.72f, 1.6f);
+        var cameraRect = Camera.GetCurrentCameraWorldRect();
+        var viewportRect = new Rect(Entity.Position).Grow(0.4f, 1.6f, 1.72f, 1.6f);
 
-        var myRect = rect.CutBottom(0.3f);
+        
+
+        var myRect = viewportRect.CutBottom(0.3f);
+        if (cameraRect.Overlaps(myRect))
         {
             UI.Image(myRect, LeaderboardBgMe, Vector4.White);
             var textSize = 0.15f;
@@ -128,7 +132,7 @@ public partial class GlobalLeaderboard : Component
             });
         }
 
-        var scrollView = UI.PushScrollView("world_leaderboard", rect, new UI.ScrollViewSettings() { Vertical = true, Horizontal = false, ClipPadding = new Vector4(0, 0.1f, 0, 0) });
+        var scrollView = UI.PushScrollView("world_leaderboard", viewportRect, new UI.ScrollViewSettings() { Vertical = true, Horizontal = false, ClipPadding = new Vector4(0, 0.1f, 0, 0) });
         var contentCutRect = scrollView.contentRect.TopRect();
         for (int i = 0; i < 50; i++)
         {
@@ -150,68 +154,72 @@ public partial class GlobalLeaderboard : Component
             var entryRect = contentCutRect.CutTop(h);
             if (i == 0) entryRect = entryRect.GrowRight(0.075f);
 
-            UI.Image(entryRect, tex, Vector4.White);
+            if (entryRect.Overlaps(viewportRect) && cameraRect.Overlaps(entryRect))
+            { 
+                UI.Image(entryRect, tex, Vector4.White);
 
-            using var _6 = UI.PUSH_LAYER_RELATIVE(1);
+                using var _6 = UI.PUSH_LAYER_RELATIVE(1);
 
-            var textSize = 0.15f;
-            if (i < 3) textSize = 0.215f;
+                var textSize = 0.15f;
+                if (i < 3) textSize = 0.215f;
 
-            var rankTextSize = textSize * 1.5f;
-            var rankRect = entryRect.LeftRect().Offset(0.2f, 0);
-            if (i == 0) rankRect = rankRect.Offset(0, -0.03f);
-            Vector4 rankColor = new Vector4(41.0f/255.0f, 35.0f/255.0f, 39.0f/255.0f, 1.0f);
-            if (i == 0) rankColor = new Vector4(184.0f/255.0f, 105.0f/255.0f, 0.0f/255.0f, 1.0f);
-            if (i == 1) rankColor = new Vector4(63.0f/255.0f, 67.0f/255.0f, 79.0f/255.0f, 1.0f);
-            if (i == 2) rankColor = new Vector4(126.0f/255.0f, 37.0f/255.0f, 16.0f/255.0f, 1.0f);
+                var rankTextSize = textSize * 1.5f;
+                var rankRect = entryRect.LeftRect().Offset(0.2f, 0);
+                if (i == 0) rankRect = rankRect.Offset(0, -0.03f);
+                Vector4 rankColor = new Vector4(41.0f/255.0f, 35.0f/255.0f, 39.0f/255.0f, 1.0f);
+                if (i == 0) rankColor = new Vector4(184.0f/255.0f, 105.0f/255.0f, 0.0f/255.0f, 1.0f);
+                if (i == 1) rankColor = new Vector4(63.0f/255.0f, 67.0f/255.0f, 79.0f/255.0f, 1.0f);
+                if (i == 2) rankColor = new Vector4(126.0f/255.0f, 37.0f/255.0f, 16.0f/255.0f, 1.0f);
 
-            var rankText = $"{i+1}";
-            if (i < 0) rankText = "TBD";
+                var rankText = $"{i+1}";
+                if (i < 0) rankText = "TBD";
 
-            var finalRankRect = UI.Text(rankRect, $"{i+1}", new UI.TextSettings() {
-                Font = UI.Fonts.Asap,
-                Color = rankColor,
-                Size = rankTextSize,
-                HorizontalAlignment = UI.HorizontalAlignment.Left,
-                VerticalAlignment = UI.VerticalAlignment.Center,
-            });
-            var rankSuffixRect = finalRankRect.RightRect().Offset(0, -0.02f);
-            var suffix = "th";
-            if (i % 10 == 0 && i != 10) suffix = "st";
-            if (i % 10 == 1 && i != 11) suffix = "nd";
-            if (i % 10 == 2 && i != 12) suffix = "rd";
-            if (i < 0) suffix = "";
-            UI.Text(rankSuffixRect, suffix, new UI.TextSettings() {
-                Font = UI.Fonts.Asap,
-                Color = rankColor,
-                Size = rankTextSize * 0.5f,
-                HorizontalAlignment = UI.HorizontalAlignment.Left,
-                VerticalAlignment = UI.VerticalAlignment.Top
-            });
+                var finalRankRect = UI.Text(rankRect, $"{i+1}", new UI.TextSettings() {
+                    Font = UI.Fonts.Asap,
+                    Color = rankColor,
+                    Size = rankTextSize,
+                    HorizontalAlignment = UI.HorizontalAlignment.Left,
+                    VerticalAlignment = UI.VerticalAlignment.Center,
+                });
+                var rankSuffixRect = finalRankRect.RightRect().Offset(0, -0.02f);
+                var suffix = "th";
+                if (i % 10 == 0 && i != 10) suffix = "st";
+                if (i % 10 == 1 && i != 11) suffix = "nd";
+                if (i % 10 == 2 && i != 12) suffix = "rd";
+                if (i < 0) suffix = "";
+                UI.Text(rankSuffixRect, suffix, new UI.TextSettings() {
+                    Font = UI.Fonts.Asap,
+                    Color = rankColor,
+                    Size = rankTextSize * 0.5f,
+                    HorizontalAlignment = UI.HorizontalAlignment.Left,
+                    VerticalAlignment = UI.VerticalAlignment.Top
+                });
 
-            var nameRect = entryRect.LeftRect().Offset(1, 0);
-            if (i == 0) nameRect = nameRect.Offset(0, -0.03f);
-            UI.Text(nameRect, entry.Name , new UI.TextSettings() {
-                Font = UI.Fonts.Asap,
-                Color = Vector4.White,
-                Size = textSize,
-                HorizontalAlignment = UI.HorizontalAlignment.Left,
-                VerticalAlignment = UI.VerticalAlignment.Center,
-                Outline = true,
-                OutlineThickness = 3,
-            });
+                var nameRect = entryRect.LeftRect().Offset(1, 0);
+                if (i == 0) nameRect = nameRect.Offset(0, -0.03f);
+                UI.Text(nameRect, entry.Name , new UI.TextSettings() {
+                    Font = UI.Fonts.Asap,
+                    Color = Vector4.White,
+                    Size = textSize,
+                    HorizontalAlignment = UI.HorizontalAlignment.Left,
+                    VerticalAlignment = UI.VerticalAlignment.Center,
+                    Outline = true,
+                    OutlineThickness = 3,
+                });
 
-            var scoreRect = entryRect.RightRect().Offset(-0.175f, 0);
-            if (i == 0) scoreRect = scoreRect.Offset(-0.075f, -0.03f);
-            UI.Text(scoreRect, Util.FormatDouble(entry.Score), new UI.TextSettings() {
-                Font = UI.Fonts.Asap,
-                Color = Vector4.White,
-                Size = textSize,
-                HorizontalAlignment = UI.HorizontalAlignment.Right,
-                VerticalAlignment = UI.VerticalAlignment.Center,
-                Outline = true,
-                OutlineThickness = 3,
-            });
+                var scoreRect = entryRect.RightRect().Offset(-0.175f, 0);
+                if (i == 0) scoreRect = scoreRect.Offset(-0.075f, -0.03f);
+                UI.Text(scoreRect, Util.FormatDouble(entry.Score), new UI.TextSettings() {
+                    Font = UI.Fonts.Asap,
+                    Color = Vector4.White,
+                    Size = textSize,
+                    HorizontalAlignment = UI.HorizontalAlignment.Right,
+                    VerticalAlignment = UI.VerticalAlignment.Center,
+                    Outline = true,
+                    OutlineThickness = 3,
+                });
+            }
+
 
             contentCutRect.CutTop(0.05f);
         }
