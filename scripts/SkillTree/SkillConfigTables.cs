@@ -359,7 +359,7 @@ public static partial class SkillConfig
         BaseDamageKey = _overrideValue_,
         UpgradeTextKey = "*: Cooldown -1\n **: Damage +1\n ***: Damage +1\n ****: Parry Time +50%",
         CooldownKey = "%OVERRIDE%",
-        UnlockLevel = 27,
+        UnlockLevel = 31,
         MaximumLevel = 5,
         UpgradeGemCost = _tierTwoGemCost,
         NType = NodeType.SkillUnlock,

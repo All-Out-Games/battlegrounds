@@ -4,7 +4,7 @@ namespace Assembly.scripts;
 
 public static class LevelingData
 {
-    public static readonly int MaxLevel = 29; // The displayed level is the actual level PLUS ONE
+    public static readonly int MaxLevel = 32; // The displayed level is the actual level PLUS ONE
     public static readonly int XpForDamage = 5;
     public static readonly int XpForKill = 100;
     
@@ -21,7 +21,8 @@ public static class LevelingData
         27500, 33000, 39000, 45500, 52500,
         60000, 68000, 76500, 85500, 95000,
         105000, 115500, 126500, 138000, 150000,
-        162500, 175500, 189000, 203000, 217500
+        162500, 175500, 189000, 203000, 217500,
+        232500, 248000, 264000, 280500, 297500
     };
     
     // Total XP a player needs for level i
@@ -31,7 +32,8 @@ public static class LevelingData
         33000, 39000, 45500, 52500, 60000, 
         68000, 76500, 85500, 95000, 105000, 
         115500, 126500, 138000, 150000, 162500,
-        175500, 189000, 203000, 217500, 232500
+        175500, 189000, 203000, 217500, 232500,
+        248000, 264000, 280500, 297500, 315000
     };
 
     public static readonly int MaxXp = NextLevelXp[MaxLevel];
@@ -43,7 +45,8 @@ public static class LevelingData
         600, 600, 600, 600, 4000,
         900, 900, 900, 900, 8000,
         1200, 1200, 1200, 1200, 16000,
-        1500, 1500, 1500, 1500, 32000
+        1500, 1500, 1500, 1500, 32000,
+        1200, 1200, 1200, 1200, 
     };
     
     public static readonly int[] GemRewards = {
@@ -52,7 +55,8 @@ public static class LevelingData
         0, 0, 0, 0, 900,
         0, 0, 0, 0, 1200,
         0, 0, 0, 0, 1500,
-        0, 0, 0, 0, 1800
+        0, 0, 0, 0, 1800,
+        100, 100, 100, 100, 200,
     };
 
     /// <summary>
