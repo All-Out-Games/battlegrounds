@@ -46,7 +46,7 @@ public static class LevelingData
         900, 900, 900, 900, 8000,
         1200, 1200, 1200, 1200, 16000,
         1500, 1500, 1500, 1500, 32000,
-        1200, 1200, 1200, 1200, 
+        1200, 1200, 1200, 1200, 18000
     };
     
     public static readonly int[] GemRewards = {

@@ -1,4 +1,6 @@
 ﻿using AO;
+using Assembly.scripts.SceneObjects;
+
 namespace Assembly.scripts.Effects.ActiveSkills;
 
 public class AbilityParry : FightAbility
@@ -30,6 +32,7 @@ public class EffectParry : FightEffect
         if (!isDropIn)
         {
             FightPlayer.SetAnimTrigger("parry_start"); // We can omit this trigger for drop-in, this effect should be < 2s
+            SFX.Play(SFXKeys.ParryStartAudio, DefaultSoundDesc);
             DurationRemaining = _config.ParryTime;
         }
         
@@ -68,6 +71,7 @@ public class EffectParry : FightEffect
     public void CounterAttack()
     {
         FightPlayer.SetAnimTrigger("parry_attack");
+        SFX.Play(SFXKeys.ParryAttackAudio, DefaultSoundDesc);
         Vector2 selfPos = FightPlayer.Entity.Position;
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForDamageables(selfPos, EffectConfig.ParryConfig.CounterAttackRange, Player);
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Dmg, DamageType.AOE);
@@ -88,6 +92,8 @@ public class EffectParry : FightEffect
             dmg.TakeDamage(FightPlayer, info);
         }
 
-        
+        FightPlayer.AddEffect<EffectNoMovement>(Player, 0.25f);
+
+
     }
 }

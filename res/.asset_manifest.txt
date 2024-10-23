@@ -285,6 +285,9 @@ SFX/Effects/knocked_down_getup.wav - .ao - 66ad9ee6cf7a5e4159a6c457 - 1520240787
 SFX/Effects/kunai_shuriken_projectile_loop.wav - .ao - 66ad2e59cf7a5e4159a6c406 - 5055125734165588881
 SFX/Effects/leaping_slam.wav - .ao - 66ad594acf7a5e4159a6c42e - 3293684565893333631
 SFX/Effects/light_feet_activate.wav - .ao - 66b50141cf7a5e4159a6c510 - 11888145908665970614
+SFX/Effects/parry_end.wav - .ao - 6719580eada08dbbbde3ef64 - 15353980569081843764
+SFX/Effects/parry_start.wav - .ao - 6719580eada08dbbbde3ef63 - 948470060806037442
+SFX/Effects/parry_trigger.wav - .ao - 6719580eada08dbbbde3ef62 - 9948538213855463868
 SFX/Effects/pisonic_beam_loop.wav - .ao - 66ad2e59cf7a5e4159a6c407 - 16150917166322171328
 SFX/Effects/player_hit_by_befuddle.wav - .ao - 66b50141cf7a5e4159a6c512 - 6642647711310762565
 SFX/Effects/player_hit_by_shuriken.wav - .ao - 66b50142cf7a5e4159a6c514 - 17542474789942228288
