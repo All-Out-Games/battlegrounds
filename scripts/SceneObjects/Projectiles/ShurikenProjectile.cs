@@ -52,14 +52,14 @@ public class ShurikenProjectile : BaseProjectile
                 //EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerShurikenConfig(Owner.CurrentAttack, 1);
                 Vector2 bounceDir = Vector2.Rotate(dir.Normalized, 1.57f, Vector2.Zero).Normalized;
                 var newShuriken = Reflect(Owner, 1, bounceDir); // Reflect a lv 1 shuriken to imitate bounce
-                newShuriken.AddIgnoredPlayer(fp); // Don't hit the same player again
+                newShuriken?.AddIgnoredPlayer(fp); // Don't hit the same player again
             }
 
             if (overrideType == FightPlayer.DamageInfo.DamageNumberOverrideType.Parry)
             {
                 // Reflected! Change owner and send the projectile back.
                 Vector2 refDir = -dir;
-                var newShuriken = Reflect(fp, Owner.Alive()? Owner.GetSkillTree().GetSkillLevel("Shuriken") : 1, refDir); // Reflect a lv 1 shuriken to imitate bounce
+                Reflect(fp, Owner.Alive()? Owner.GetSkillTree().GetSkillLevel("Shuriken") : 1, refDir); // Reflect a lv 1 shuriken to imitate bounce
             }
             
             if (!Pierce)

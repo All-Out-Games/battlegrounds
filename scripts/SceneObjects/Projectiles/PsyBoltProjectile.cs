@@ -36,24 +36,64 @@ public class PsyBoltProjectile : BaseProjectile
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged) with {InterruptLevel = 2000};
             info.SkillKey = SkillConfig.PsyboltConfig.SkillKey;
             fp.TakeDamage(Owner, info);
-            Vector2 dir = other.Position - Entity.Position;
-            fp.AddBumpFrom(Owner, dir * KnockBackStrength, false);
+            
+            var overrideType = fp.TakeDamage(Owner, info);
+            bool reachedPlayer = overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Dodged &&
+                                 overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Parry;
+            
+            if (overrideType == FightPlayer.DamageInfo.DamageNumberOverrideType.Parry)
+            {
+                // Reflected! Change owner and send the projectile back.
+                Vector2 refDir = Entity.Position - other.Position;
+                Reflect(fp, Owner.Alive()? Owner.GetSkillTree().GetSkillLevel("Psybolt") : 1, refDir);
+            }
+
+            if (reachedPlayer)
+            {
+                Vector2 dir = other.Position - Entity.Position;
+                fp.AddBumpFrom(Owner, dir * KnockBackStrength, false);
+            }
             //fp.AddBumpFrom(Owner, EngineProjectile.Direction, false);
             
             if (!Pierce)
             {
                 Entity.Destroy();
             }
-            
-            FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.HitVfxPath, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
-                entity =>
-                {
-                    SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
-                    vfx.StartVFX("hit_psybolt", false);
-                    SFX.Play(SFXKeys.PsyboltHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
-                }
-            );
+
+            if (reachedPlayer)
+            {
+                FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.HitVfxPath, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
+                    entity =>
+                    {
+                        SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
+                        vfx.StartVFX("hit_psybolt", false);
+                        SFX.Play(SFXKeys.PsyboltHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
+                    }
+                );
+            }
         }
+    }
+    
+    protected override BaseProjectile Reflect(FightPlayer newOwner, int level, Vector2 direction)
+    {
+        base.Reflect(newOwner, level, direction);
+        if (Owner.Alive() && newOwner.Alive())
+        {
+            EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerPsyboltConfig(newOwner.CurrentAttack, level);
+            Entity proj = Game.SpawnProjectile(newOwner, config.ProjectilePrefabKey,
+                config.ProjectilePrefabKey,
+                Entity.Position, direction);
+            Projectile projComp = proj.GetComponent<Projectile>();
+            projComp.Speed = config.Speed;
+            projComp.Lifetime = config.ProjectileLifetime;
+            
+            PsyBoltProjectile supplementProjectileComp = proj.GetComponent<PsyBoltProjectile>();
+            supplementProjectileComp.LifeTime = config.ProjectileLifetime;
+            supplementProjectileComp.InitializeProjectile(newOwner, config.Damage, false);
+            return supplementProjectileComp;
+        }
+
+        return null;
     }
     
 }
