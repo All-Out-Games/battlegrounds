@@ -501,9 +501,9 @@ public partial class FightPlayer : Player
     /// </summary>
     /// <param name="source"></param>
     /// <param name="info"></param>
-    public void TakeDamage(FightPlayer source, DamageInfo info)
+    public DamageInfo.DamageNumberOverrideType TakeDamage(FightPlayer source, DamageInfo info)
     {
-        if (CurrentHealth <= 0 || !source.Alive() || PlayerStatus != PlayerStatus.Combat) return; // Avoid damaging the dead, avoid dropped player
+        if (CurrentHealth <= 0 || !source.Alive() || PlayerStatus != PlayerStatus.Combat) return DamageInfo.DamageNumberOverrideType.Immune; // Avoid damaging the dead, avoid dropped player
         info.SourceNetworkId = source.Entity.NetworkId;
         
         // Pre-damage event, chained invoke
@@ -553,10 +553,11 @@ public partial class FightPlayer : Player
                 FightClubGameManager.Instance.PlayerEliminationEvent.Invoke(source, this, info);
             
                 CallClient_PlayerDeath(info, info.SkillKey); // TODO: The engine does not support str serialization in structs yet
-                return;
+                return info.OverrideDamageNumber;
             }
         }
         DamageReaction(CurrentHealth, info);  // All Client side damage reaction goes here
+        return info.OverrideDamageNumber;
     }
     
     public void DamageReaction(int health, DamageInfo info)

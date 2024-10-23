@@ -1,5 +1,4 @@
 using AO;
-using Vector2 = System.Numerics.Vector2;
 
 namespace Assembly.scripts.SceneObjects.Projectiles;
 
@@ -149,5 +148,12 @@ public partial class BaseProjectile : OwnedObjectComponent
             rb.Velocity /= SpeedModifier;
         }
         
+    }
+
+    protected virtual BaseProjectile Reflect(FightPlayer newOwner, int level, AO.Vector2 direction)
+    {
+        // Reflect projectile by spawning a new one. Implementation varies for different projectiles.
+        // Make sure to check the Old/New owners Alive()
+        return null;
     }
 }

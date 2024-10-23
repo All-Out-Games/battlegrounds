@@ -281,7 +281,7 @@ public static class EffectConfig
 
     public struct ParryConfig
     {
-        public static float DefaultParryTime = 1f;
+        public static float DefaultParryTime = 1.5f;
         public static float Cooldown = 15f;
         public static int BaseDamage = 15;
         public static float CounterAttackRange = 3f;

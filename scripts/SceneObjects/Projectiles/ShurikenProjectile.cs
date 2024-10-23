@@ -43,41 +43,64 @@ public class ShurikenProjectile : BaseProjectile
             }
 
             info.SkillKey = SkillConfig.ShurikenConfig.SkillKey;
-            fp.TakeDamage(Owner, info);
+            var overrideType = fp.TakeDamage(Owner, info);
+            bool reachedPlayer = overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Dodged &&
+                                 overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Parry;
             
-            if (Enhanced) // bounce
+            if (Enhanced && reachedPlayer) // bounce
             {
-                EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerShurikenConfig(Owner.CurrentAttack, 1);
+                //EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerShurikenConfig(Owner.CurrentAttack, 1);
                 Vector2 bounceDir = Vector2.Rotate(dir.Normalized, 1.57f, Vector2.Zero).Normalized;
-                
-                Entity proj = Game.SpawnProjectile(Owner, config.ProjectilePrefabKey,
-                    config.ProjectilePrefabKey,
-                    Entity.Position, bounceDir);
-                Projectile projComp = proj.GetComponent<Projectile>();
-                projComp.Speed = config.Speed;
-                projComp.Lifetime = config.ProjectileLifetime;
-            
-                ShurikenProjectile supplementProjectileComp = proj.GetComponent<ShurikenProjectile>();
-                supplementProjectileComp.LifeTime = config.ProjectileLifetime;
-                supplementProjectileComp.InitializeProjectile(Owner, config.Damage, false);
-                supplementProjectileComp.BackDamageMultiplier = EffectConfig.ProjectileConfig.ShurikenBackDamageModifier;
-                supplementProjectileComp.AddIgnoredPlayer(fp); // Don't hit the same player again
-                
+                var newShuriken = Reflect(Owner, 1, bounceDir); // Reflect a lv 1 shuriken to imitate bounce
+                newShuriken.AddIgnoredPlayer(fp); // Don't hit the same player again
+            }
+
+            if (overrideType == FightPlayer.DamageInfo.DamageNumberOverrideType.Parry)
+            {
+                // Reflected! Change owner and send the projectile back.
+                Vector2 refDir = -dir;
+                var newShuriken = Reflect(fp, Owner.Alive()? Owner.GetSkillTree().GetSkillLevel("Shuriken") : 1, refDir); // Reflect a lv 1 shuriken to imitate bounce
             }
             
             if (!Pierce)
             {
                 Entity.Destroy();
             }
-
-            FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.HitVFX, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
-                entity =>
-                {
-                    SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
-                    vfx.StartVFX("hit_generic", false);
-                }
-            );
-            SFX.Play(SFXKeys.ShurikenHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
+            
+            if (reachedPlayer)
+            {
+                FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.HitVFX, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
+                    entity =>
+                    {
+                        SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
+                        vfx.StartVFX("hit_generic", false);
+                    }
+                );
+                SFX.Play(SFXKeys.ShurikenHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
+            }
         }
+    }
+
+    protected override BaseProjectile Reflect(FightPlayer newOwner, int level, Vector2 direction)
+    {
+        base.Reflect(newOwner, level, direction);
+        if (Owner.Alive() && newOwner.Alive())
+        {
+            EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerShurikenConfig(newOwner.CurrentAttack, level);
+            Entity proj = Game.SpawnProjectile(newOwner, config.ProjectilePrefabKey,
+                config.ProjectilePrefabKey,
+                Entity.Position, direction);
+            Projectile projComp = proj.GetComponent<Projectile>();
+            projComp.Speed = config.Speed;
+            projComp.Lifetime = config.ProjectileLifetime;
+            
+            ShurikenProjectile supplementProjectileComp = proj.GetComponent<ShurikenProjectile>();
+            supplementProjectileComp.LifeTime = config.ProjectileLifetime;
+            supplementProjectileComp.InitializeProjectile(newOwner, config.Damage, false);
+            supplementProjectileComp.BackDamageMultiplier = EffectConfig.ProjectileConfig.ShurikenBackDamageModifier;
+            return supplementProjectileComp;
+        }
+
+        return null;
     }
 }
