@@ -255,9 +255,9 @@ public partial class FightPlayer
 
         #endregion
 
-        
-        
-        
+
+        #region Defensive
+
         // Rollout
         var rolloutStartTrigger = stateMachine.CreateVariable("rollout_start", StateMachineVariableKind.TRIGGER);
         var rolloutEndTrigger = stateMachine.CreateVariable("rollout_end", StateMachineVariableKind.TRIGGER);
@@ -285,6 +285,28 @@ public partial class FightPlayer
             .CreateTriggerCondition(knockDownRecoverTrigger);
         aoLayer.CreateTransition(knockDownEndState, aoIdleState, true);
         aoLayer.CreateGlobalTransition(knockDownStartState).CreateTriggerCondition(knockDownTrigger);
+        
+        // Parry states (start-loop-end / trigger)
+        var parryStartTrigger = stateMachine.CreateVariable("parry_start", StateMachineVariableKind.TRIGGER);
+        var parryEndTrigger = stateMachine.CreateVariable("parry_end", StateMachineVariableKind.TRIGGER);
+        var parryAttackTrigger = stateMachine.CreateVariable("parry_attack", StateMachineVariableKind.TRIGGER);
+        
+        var parryStartState = aoLayer.CreateState("BAT_003/parry_start", 0, false);
+        var parryLoopState = aoLayer.CreateState("BAT_003/parry_loop", 0, true);
+        var parryEndState = aoLayer.CreateState("BAT_003/parry_end", 0, false);
+        var parryAttackState = aoLayer.CreateState("BAT_003/parry_trigger", 0, false);
+        
+        aoLayer.CreateGlobalTransition(parryStartState).CreateTriggerCondition(parryStartTrigger);
+        aoLayer.CreateGlobalTransition(parryAttackState).CreateTriggerCondition(parryAttackTrigger);
+        aoLayer.CreateTransition(parryAttackState, aoIdleState, true);
+        aoLayer.CreateTransition(parryStartState, parryLoopState, true);
+        aoLayer.CreateTransition(parryLoopState, parryEndState, false).CreateTriggerCondition(parryEndTrigger);
+        aoLayer.CreateTransition(parryEndState, aoIdleState, true);
+        
+
+        #endregion
+        
+        
 
 
         #region Elemental

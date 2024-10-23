@@ -26,7 +26,8 @@ public partial class FightPlayer
         {
             None,
             Immune,
-            Dodged
+            Dodged,
+            Parry
         }
         // Server Authoratative Data
         public DamageType DmgType = DamageType.Melee;
@@ -156,18 +157,23 @@ public partial class FightPlayer
             if (IsLocal || source == Network.LocalPlayer) // Player takes the damage or deals damage
             {
                 // Override types
-                if (info.OverrideDamageNumber == DamageInfo.DamageNumberOverrideType.Dodged)
+                switch (info.OverrideDamageNumber)
                 {
-                    FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, GlobalData.OutputDamageNumberColor, "Dodged!");
-                    return;
+                    case DamageInfo.DamageNumberOverrideType.None:
+                        break;
+                    case DamageInfo.DamageNumberOverrideType.Immune:
+                        FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, GlobalData.OutputDamageNumberColor, "Immune!");
+                        return;
+                    case DamageInfo.DamageNumberOverrideType.Dodged:
+                        FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, GlobalData.OutputDamageNumberColor, "Dodged!");
+                        return;
+                    case DamageInfo.DamageNumberOverrideType.Parry:
+                        FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, GlobalData.OutputDamageNumberColor, "Parried!");
+                        return;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
 
-                if (info.OverrideDamageNumber == DamageInfo.DamageNumberOverrideType.Immune)
-                {
-                    FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, GlobalData.OutputDamageNumberColor, "Immune!");
-                    return;
-                }
-                
                 // Normal Type
                 if (source == Network.LocalPlayer && info.DamageNumberColor == GlobalData.DamageNumberColor)
                 {

@@ -347,6 +347,30 @@ public static partial class SkillConfig
         IconPath = "AbilityIcon_Merged/defense/gravity_crush.png",
         AbilityIconPath = "AbilityIcon_Separate/defense/gravity_crush_icon.png",
         ParentNodeKeys = new string[] { "RollOut" },
+        ChildrenNodeKeys = new string[] { "Parry" },
+    };
+
+    public static readonly SkillTreeNodeConfig ParryConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Parry",
+        DescriptionTextKey =
+            "Parry your opponents' attack for a short amount of time, followed by a powerful counterattack that also reflects projectiles.",
+        RangeDescriptionKey = "3m",
+        BaseDamageKey = _overrideValue_,
+        UpgradeTextKey = "*: Cooldown -1\n **: Damage +1\n ***: Damage +1\n ****: Parry Time +50%",
+        CooldownKey = "%OVERRIDE%",
+        UnlockLevel = 27,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Defensive,
+        UpgradeCost = 7700,
+        GridX = 1,
+        GridY = 3,
+        SkillKey = "Parry",
+        IconPath = "AbilityIcon_Merged/defense/parry.png",
+        AbilityIconPath = "AbilityIcon_Separate/defense/parry_icon.png",
+        ParentNodeKeys = new string[] { "GravityCrush" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -1073,6 +1097,7 @@ public static partial class SkillConfig
             { "IronSkin", IronSkinConfig},
             {"SpikeShield", SpikeShieldConfig},
             {"GravityCrush", GravityCrushConfig},
+            {"Parry", ParryConfig},
             // Brawler
             { "ShoulderCrash", ShoulderCrashNodeConfig },
             { "GroundStomp", GroundStompConfig },
@@ -1115,7 +1140,7 @@ public static partial class SkillConfig
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>()
     {
         // Defensive
-        "Punch", "RollOut", "Shield","IronSkin","SpikeShield","GravityCrush",
+        "Punch", "RollOut", "Shield","IronSkin","SpikeShield","GravityCrush", "Parry",
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam", 
         // Psionic
@@ -1169,7 +1194,8 @@ public partial class FightAbility
         {SC.IceFistNodeConfig.SkillKey, typeof(AbilityIceFist)},
         {SC.IronSkinConfig.SkillKey, typeof(AbilityIronSkin)},
         {SC.SpikeShieldConfig.SkillKey, typeof(AbilitySpikeShield)},
-        {SC.GravityCrushConfig.SkillKey, typeof(AbilityGravityCrush)}
+        {SC.GravityCrushConfig.SkillKey, typeof(AbilityGravityCrush)},
+        {SC.ParryConfig.SkillKey, typeof(AbilityParry)}
     };
 }
 

@@ -276,6 +276,36 @@ public static class EffectConfig
 
     #endregion
 
+    #region cfg: Parry
+
+
+    public struct ParryConfig
+    {
+        public static float DefaultParryTime = 1f;
+        public static float Cooldown = 15f;
+        public static int BaseDamage = 15;
+        public static float CounterAttackRange = 3f;
+        public static float BumpStrength = 75f;
+
+        public int Dmg;
+        public float ParryTime;
+
+        public static ParryConfig GetDefault(int baseAtk, int level)
+        {
+            ParryConfig cfg = new ParryConfig()
+            {
+                Dmg = BaseDamage + baseAtk,
+                ParryTime = DefaultParryTime
+            };
+            if (level > 2) cfg.Dmg += 1;
+            if (level > 3) cfg.Dmg += 1;
+            if (level > 4) cfg.ParryTime *= 1.5f;
+            return cfg;
+        }
+    }
+
+    #endregion
+
     #region Cfg: Ranged Projectile
 
     /// <summary>
