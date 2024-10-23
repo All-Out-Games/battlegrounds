@@ -235,6 +235,12 @@ public partial class FightPlayer
         aoLayer.CreateGlobalTransition(backstabbedState).CreateTriggerCondition(backstabbedTrigger);
         aoLayer.CreateTransition(backstabbedState, aoIdleState, true);
         
+        // BearTrap - Caster
+        var placeTrapTrigger = stateMachine.CreateVariable("place_trap", StateMachineVariableKind.TRIGGER);
+        var placeTrapState = fightLayer.CreateState("BAT_003/place_trap_AL", 0, false);
+        fightLayer.CreateTransition(placeTrapState, idleState, true);
+        fightLayer.CreateGlobalTransition(placeTrapState).CreateTriggerCondition(placeTrapTrigger);
+        
         // BearTrap - Victim
         var bearTrapTrigger = stateMachine.CreateVariable("beartrapped", StateMachineVariableKind.TRIGGER);
         var bearTrapState = aoLayer.CreateState("BAT_003/bear_trap_full", 0, false);

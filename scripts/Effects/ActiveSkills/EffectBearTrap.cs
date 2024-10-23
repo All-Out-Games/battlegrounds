@@ -25,6 +25,7 @@ public class EffectBearTrap: FightEffect
     {
         base.OnEffectStart(isDropIn);
         DurationRemaining = 0.1f;
+        FightStateMachine.SetTrigger("place_trap");
     }
 
     public override void OnEffectEnd(bool interrupt)
