@@ -89,7 +89,7 @@ public partial class CrateItemDrop : Component
         else
         {
             Log.Error($"{dropName} does not exist in CratesConfig!");
-            if(Network.IsServer) Despawn();
+            if(Network.IsServer) CallClient_Despawn();
         }
 
         _bump = bumpDir * _bumpStrength;
