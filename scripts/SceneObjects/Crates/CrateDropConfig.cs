@@ -16,14 +16,14 @@ namespace Assembly.scripts.SceneObjects.Crates
         {
         }
 
-        public static string GetDisplayString(FightPlayer grantedPlayer, CrateDropConfig cfg)
+        public static string GetDisplayString(FightPlayer grantedPlayer, string dropDisplayName, string dropName)
         {
             if (!grantedPlayer.Alive())
             {
                 return "";
             }
-            string res = cfg.DropDisplayName;
-            switch (cfg.DropName)
+            string res = dropDisplayName;
+            switch (dropName)
             {
                 case "ExpPotionL":
                     if (grantedPlayer.Level >= LevelingData.MaxLevel)

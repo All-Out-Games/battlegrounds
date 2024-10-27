@@ -35,7 +35,7 @@ public class PsyBoltProjectile : BaseProjectile
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged) with {InterruptLevel = 2000};
             info.SkillKey = SkillConfig.PsyboltConfig.SkillKey;
-            fp.TakeDamage(Owner, info);
+            //fp.TakeDamage(Owner, info);
             
             var overrideType = fp.TakeDamage(Owner, info);
             bool reachedPlayer = overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Dodged &&

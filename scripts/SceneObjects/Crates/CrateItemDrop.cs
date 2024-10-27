@@ -16,7 +16,10 @@ public partial class CrateItemDrop : Component
     [Serialized] private Circle_Collider _pickupTrigger;
     [Serialized] private Sprite_Renderer _renderer;
     [Serialized] public FadeAfterStart Fade;
-    [Serialized] private CrateDropConfig _config;
+    
+    [Serialized] public string DropName = "Nothing"; // Used for handler
+    [Serialized] public string DropDisplayName = "Nothing!"; // Popup text
+    [Serialized] public string DropTexturePath = ""; // Load Texture on drop
 
     private Vector2 _bump;
     private float _bumpStrength = 3f;
@@ -84,7 +87,9 @@ public partial class CrateItemDrop : Component
     {
         if (CratesConfig.CrateDropConfigs.TryGetValue(dropName, out var config))
         {
-            _config = config;
+            DropName = config.DropName;
+            DropDisplayName = config.DropDisplayName;
+            DropTexturePath = config.DropTexturePath;
         }
         else
         {
@@ -94,7 +99,7 @@ public partial class CrateItemDrop : Component
 
         _bump = bumpDir * _bumpStrength;
         Entity.Name = $"{Entity.Name}_{dropName}";
-        _renderer.Texture = Assets.KeepLoaded<Texture>(_config.DropTexturePath);
+        _renderer.Texture = Assets.KeepLoaded<Texture>(DropTexturePath);
         Fade.SetPersistFadeTime(GlobalData.CrateDropLifeTime, GlobalData.CrateDropLifeTime + 1);
     }
     
@@ -175,7 +180,7 @@ public partial class CrateItemDrop : Component
         {
             //Log.Warn($"{Entity.Name} Trying to Grant!");
             Fade.FadeImmediately(0.05f, 0.1f);
-            switch (_config.DropName)
+            switch (DropName)
             {
                 case "Coin":
                     fp.Coins += 5;
@@ -218,7 +223,7 @@ public partial class CrateItemDrop : Component
             // For the local player, spawn a text
             if (fp.IsLocal && fp.PlayerStatus == PlayerStatus.Combat)
             {
-                FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.OutputDamageNumberColor, CrateDropConfig.GetDisplayString(fp, _config));
+                FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.OutputDamageNumberColor, CrateDropConfig.GetDisplayString(fp, DropDisplayName, DropName));
             }
         }
         
