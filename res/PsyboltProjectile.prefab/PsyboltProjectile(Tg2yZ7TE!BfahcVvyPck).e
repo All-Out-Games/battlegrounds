@@ -5,8 +5,7 @@
   "name": "PsyboltProjectile",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -21,10 +20,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Rigidbody",
   "data": {
-    "angular_damping": 0,
-    "linear_damping": 0,
-    "gravity_scale": 1,
-    "fixed_rotation": false
+
   }
 },
 {
@@ -33,11 +29,7 @@
   "component_type": "Mono_Component",
   "mono_component_type": "PsyBoltProjectile",
   "data": {
-    "Owner": "0:0",
-    "Damage": 0,
-    "Pierce": false,
-    "LifeTime": 0,
-    "TimeElapsed": 0
+
   }
 },
 {
@@ -46,19 +38,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Projectile",
   "data": {
-    "speed": 0,
-    "direction": {
-      "X": 0,
-      "Y": 0
-    },
-    "start_position": {
-      "X": 0,
-      "Y": 0
-    },
-    "projectile_id": "",
-    "instance_id": "",
-    "spawn_id": 0,
-    "owner_network_id": 0
+
   }
 },
 {
@@ -68,18 +48,13 @@
   "internal_component_type": "Box_Collider",
   "data": {
     "size": {
-      "X": 1,
-      "Y": 1
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000
     },
     "offset": {
-      "X": 0,
-      "Y": 0
+      "X": -0.0000000223517418
     },
-    "is_trigger": true,
-    "density": 1,
-    "friction": 0.2000000029802322,
-    "restitution": 0,
-    "restitution_threshold": 1
+    "is_trigger": true
   }
 },
 {
@@ -92,11 +67,6 @@
     "ordered_skins": [
       "pysbolt"
     ],
-    "depth_offset": 0.5000000000000000,
-    "skeleton_scale": {
-      "X": 1,
-      "Y": 1
-    },
-    "mask_in_shadow": false
+    "depth_offset": 0.5000000000000000
   }
 }

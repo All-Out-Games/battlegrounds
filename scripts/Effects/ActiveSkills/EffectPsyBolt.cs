@@ -68,7 +68,7 @@ public class EffectPsybolt : EffectProjectileThrow
 
         if (FightPlayer.HasSkill("Psychic"))
         {
-            proj.LocalScale *= 2.0f;
+            proj.LocalScale *= 1.25f;
         }
     }
     
