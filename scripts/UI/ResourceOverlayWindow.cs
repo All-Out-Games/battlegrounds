@@ -207,7 +207,7 @@ public class ResourceOverlayWindow : BaseUIWindow
         }
         else
         {
-            Coroutine.ActiveCoroutines.Remove(_coroutineC);
+            //Scene.CGD.ActiveCoroutines.Remove(_coroutineC);
             _coroutineC = Coroutine.Start(this.Entity, TextChangeEmphasize(_levelText, 0.1f, 0.15f,
                 100f, 50f));
         }
