@@ -33,8 +33,7 @@
   "internal_component_type": "Box_Collider",
   "data": {
     "size": {
-      "X": 2,
-      "Y": 1
+      "X": 2
     },
     "offset": {
       "Y": -1

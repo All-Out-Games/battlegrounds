@@ -41,9 +41,6 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Light",
   "data": {
-    "color": {
-      "W": 1
-    },
     "shadow_caster": false,
     "radi": {
       "X": 5000,
