@@ -358,9 +358,10 @@ public class FightClubGameManager : System<FightClubGameManager> {
                 Log.Error($"{prefabPath} does not exist!");
                 return;
             }
-            Entity expEntity = pf.Instantiate();
-            expEntity.Position = position;
-            Network.Spawn(expEntity);
+            // Entity expEntity = pf.Instantiate();
+            // expEntity.Position = position;
+            // Network.Spawn(expEntity);
+            Entity expEntity = Network.InstantiateAndSpawn(pf, entity => entity.Position = position);
             if (afterSpawn != null)
             {
                 afterSpawn(expEntity);
@@ -371,21 +372,26 @@ public class FightClubGameManager : System<FightClubGameManager> {
     /// <summary>
     /// Spawns a networked prefab.
     /// </summary>
-    /// <param name="prefabPath"></param>
+    /// <param name="pf"></param>
     /// <param name="position"></param>
     /// <param name="afterSpawn"></param>
     public void ServerSpawn(Prefab pf, Vector2 position, Action<Entity> afterSpawn = null)
     {
+        if (pf == null)
+        {
+            Log.Error("ServerSpawn: Parameter pf is null! Aborting.");
+            return;
+        }
+        else
+        {
+            Log.Debug($"Network Spawn called for: {pf?.Name} on client.");
+        }
         if (Network.IsServer)
         {
-            if (pf == null)
-            {
-                Log.Error("ServerSpawn: Parameter pf is null! Aborting.");
-                return;
-            }
-            Entity expEntity = pf.Instantiate();
-            expEntity.Position = position;
-            Network.Spawn(expEntity);
+            // Entity expEntity = pf.Instantiate();
+            // expEntity.Position = position;
+            // Network.Spawn(expEntity);
+            Entity expEntity = Network.InstantiateAndSpawn(pf, entity => entity.Position = position);
             if (afterSpawn != null)
             {
                 afterSpawn(expEntity);

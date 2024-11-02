@@ -30,7 +30,8 @@ public class EffectBearTrap: FightEffect
 
     public override void OnEffectEnd(bool interrupt)
     {
-        Vector2 trapPos = FightPlayer.Entity.Position + AbilityPositionOrDirection * EffectConfig.BearTrapConfig.MaxSetupDistance * AbilityMagnitude;
+        // Vector2 trapPos = FightPlayer.Entity.Position + AbilityPositionOrDirection * EffectConfig.BearTrapConfig.MaxSetupDistance * AbilityMagnitude;
+        Vector2 trapPos = FightPlayer.Entity.Position + AbilityPositionOrDirection;
         base.OnEffectEnd(interrupt);
         int lv = FightPlayer.GetSkillTree().GetSkillLevel("BearTrap");
         float lifeTime = EffectConfig.BearTrapConfig.TrapLifeTime +

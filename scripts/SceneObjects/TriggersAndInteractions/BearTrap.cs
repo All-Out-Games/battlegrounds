@@ -89,7 +89,7 @@ public partial class BearTrap : OwnedTrigger
         base.Update();
         if (Util.OneTime(TimeElapsed > TrapArmTime, ref Armed))
         {
-            Log.Warn("Trap Armed!");
+            Log.Warn($"Trap Armed after {TrapArmTime}s! Position = {Position.ToString()}");
         }
 
         
@@ -126,6 +126,7 @@ public partial class BearTrap : OwnedTrigger
     [ClientRpc]
     public override void Initialization(Entity owner, float lifeTime)
     {
+        Awaken();
         base.Initialization(owner, lifeTime);
         TrapArmTime = EffectConfig.BearTrapConfig.TrapArmTime;
         Armed = false;

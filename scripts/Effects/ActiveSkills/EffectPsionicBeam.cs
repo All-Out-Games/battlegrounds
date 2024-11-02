@@ -85,8 +85,9 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
         Entity vfxEntity = VFXPrefabs.PsionicRayVFX.Instantiate();
         _vfx = vfxEntity.GetComponent<BeamVFX>();
         vfxEntity.Position = _eyePos;
-        
-        _rayLength = AbilityMagnitude * EffectConfig.PsionicBeamConfig.MaximumRange;
+
+        _rayLength = AbilityPositionOrDirection.Length;
+        //Log.Warn($"{AbilityPositionOrDirection.ToString()}, L = {_rayLength}, M = {AbilityMagnitude}");
         if (_rayLength < EffectConfig.PsionicBeamConfig.MinimumRange)
             _rayLength = EffectConfig.PsionicBeamConfig.MinimumRange;
         
