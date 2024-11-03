@@ -21,7 +21,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             }
             if (cfg.NeedSpecialHandler)
             {
-                // Special handlers will be called using Reflection
+                // Special handlers will be called using Reflection (Currently Unused @20241103)
                 MethodInfo skillAdder = SkillTreeCompType.GetMethod($"CallClient_{skillKey}_Adder");
                 if (skillAdder == null)
                 {
@@ -36,7 +36,6 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                 switch (cfg.NType)
                 {
                     case SkillConfig.NodeType.SkillUnlock:
-                        CallClient_UnlockAdder(level, skillKey); 
                         break;
                     case SkillConfig.NodeType.SkillReplace:
                         CallClient_ReplacementAdder(level, skillKey, "Punch"); // Currently, punch are the only slot that need replacement
@@ -91,12 +90,6 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     // Note that FightPlayerComponent provides access to player directly (call attribute _player)
 
     #region Generic Handlers
-
-    [ClientRpc]
-    public void UnlockAdder(int level, string skillKey)
-    {
-        
-    }
 
     [ClientRpc]
     public void ReplacementAdder(int level, string skillKey, string slotKey)

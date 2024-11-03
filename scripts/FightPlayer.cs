@@ -3,6 +3,7 @@ using AO;
 using Assembly.scripts;
 using Assembly.scripts.Effects.ActiveSkills;
 using Assembly.scripts.SceneObjects.Crates;
+using TinyJson;
 
 /// <summary>
 /// Model class of the player. Stores data and handle actions using RPC
@@ -10,7 +11,6 @@ using Assembly.scripts.SceneObjects.Crates;
 public partial class FightPlayer : Player
 {
     // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
-    [Serialized] public PlayerStatus PlayerStatus = PlayerStatus.Safe;
     [Serialized] protected FightPlayerEffectManager EffectManager; 
     [Serialized] protected FightPlayerLegacyUI PlayerLegacyUi;
     [Serialized] protected FightPlayerSkillTree SkillTree;
@@ -26,6 +26,20 @@ public partial class FightPlayer : Player
     
     // SyncVars must not be set during Awake(). Do these in Start()
 
+    private SyncVar<int> _status = new(1);
+
+    public PlayerStatus PlayerStatus
+    {
+        get => (PlayerStatus)_status.Value;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _status.Set((int)value);
+            }
+        }
+    }
+    
     private SyncVar<int> currentHealth = new(GlobalData.DefaultMaxHealth);
     public int CurrentHealth 
     { 
@@ -250,6 +264,20 @@ public partial class FightPlayer : Player
         }
     }
 
+    private SyncVar<string> _serializedSkillDict = new("");
+
+    public string SerializedSkillDict
+    {
+        get => _serializedSkillDict.Value;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _serializedSkillDict.Set(value);
+            }
+        }
+    }
+
     public bool IsExpBoosted()
     {
         return ExpBoostTime > 0;
@@ -425,6 +453,7 @@ public partial class FightPlayer : Player
         
         
         InitializeUI();
+        _serializedSkillDict.OnSync += InitSyncVarHandlers;
         FightClubGameManager.Instance.OnPlayerJoin(this);
         UIManager.Instance.OnPlayerJoin(this);
         
@@ -441,6 +470,7 @@ public partial class FightPlayer : Player
         {
             // DO save related things here! You cannot sync stuff in Awake
             ProcessSave();
+            // TODO: Rework this ProcessSave(). LazyInit does not execute for re-drop-in.
             SkillTree.InitializeSkillTreeComp();
             HookupGlobalEvents();
         }
@@ -449,13 +479,30 @@ public partial class FightPlayer : Player
             if (IsLocal)
             {
                 // Stuff related to the local player goes here. e.g. Camera control & UI
-                CameraInterface = Camera.CreateCameraControl(1);
+                CameraInterface = CameraControl.Create(1);
                 CameraInterface.Zoom = 1.0f;
                 // First ui update need to be triggered manually (Save reading happens before this point)
                 CoinUpdateEvent.Invoke(_coins); 
+                
             }
             
         }
+    }
+
+    private void InitSyncVarHandlers(string _, string serializedDict)
+    {
+        if(SkillTree.Alive())
+        {
+            if (serializedDict.IsNullOrEmpty())
+            {
+                SkillTree.SkillLevelDict = new Dictionary<string, int>();
+            }
+            else
+            {
+                SkillTree.SkillLevelDict = serializedDict.FromJson<Dictionary<string, int>>();
+            }
+        }
+
     }
 
     public override void Update()
@@ -822,6 +869,7 @@ public partial class FightPlayer : Player
     {
         PlayerStatus status = (PlayerStatus)statusInt;
         PlayerStatus = status;
+        Log.Warn($"Status Switched - {status.ToString()}");
         if (status == PlayerStatus.Combat)
         {
             if (Network.IsServer)

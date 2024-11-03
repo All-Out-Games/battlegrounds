@@ -37,7 +37,7 @@ public partial class FightPlayer
     }
     
     /// <summary>
-    /// Called when _ex[ SyncVar is updated.
+    /// Called when _exp SyncVar is updated.
     /// Should be UI only. Handle level up / rebirth in SyncVar setters
     /// </summary>
     /// <param name="old"></param>

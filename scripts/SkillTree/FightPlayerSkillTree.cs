@@ -1,4 +1,5 @@
 using AO;
+using TinyJson;
 using StreamReader = AO.StreamReader;
 using StreamWriter = AO.StreamWriter;
 
@@ -11,7 +12,6 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     #region EventFunctions
 
     // This is only invoked on client (in SyncSkill RPC), which ensures the player update UI strictly after the server finishes upgrade and sync to player.
-    public Action<string, int> SkillUpgradeUIEvent; 
     
     // The gameplay logic update for upgrading a skill is handled in SkillHandler.cs
     
@@ -22,15 +22,12 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
         {
             SkillLevelDict[skill] = 0;
         }
-
-        SkillUpgradeUIEvent += OnSkillUpgrade;
     }
     
 
     public override void OnDestroy()
     {
         
-        SkillUpgradeUIEvent -= OnSkillUpgrade;
     }
 
     // We'll need to sync the level for followup clients (the players who joined earlier passed their initialization stage already)
@@ -109,7 +106,8 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                 // Upgrade - Use gems
                 _player.Gem -= cfg.UpgradeGemCost[lvl - 2];
             }
-            
+            // Sync
+            _player.SerializedSkillDict = SkillLevelDict.ToJson();
         }
         
     }
@@ -131,7 +129,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                     SkillLevelDict[skillKey] = 1;
                     AddSkill(skillKey, SkillLevelDict[skillKey]);
                     Save.SetInt(_player, skillKey, 1);
-                    CallClient_SyncSkill(skillKey, 1);
+                    //CallClient_SyncSkill(skillKey, 1);
                     return true;
                 }
                 else if (currentLevel < maxLevel) // Upgrade, currently unused
@@ -141,7 +139,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                     AddSkill(skillKey, SkillLevelDict[skillKey]);
                 
                     Save.SetInt(_player, skillKey, SkillLevelDict[skillKey]);
-                    CallClient_SyncSkill(skillKey, SkillLevelDict[skillKey]);
+                    //CallClient_SyncSkill(skillKey, SkillLevelDict[skillKey]);
                     return true;
                 }
                 else
@@ -170,7 +168,8 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                 SkillLevelDict[skillKey] = 0;
                 RemoveSkill(skillKey);
                 Save.SetInt(_player, skillKey, 0);
-                CallClient_SyncSkill(skillKey, 0);
+                //CallClient_SyncSkill(skillKey, 0);
+                _player.SerializedSkillDict = SkillLevelDict.ToJson();
             }
             else
             {
@@ -236,7 +235,8 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             {
                 int lvl = SkillLevelDict[key];
                 HandleSkill(key, lvl);
-                CallClient_SyncSkill(key, lvl);
+                // Replaced RPC Sync with Serialized SyncVar
+                // CallClient_SyncSkill(key, lvl);
             };
             // Phase 0: Default unlock for all players
             UpgradeSkill("Punch", 1);
@@ -248,46 +248,29 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             }
         
             // Phase 2: Active Skill Unlocks
-        
+            // Doesn't actually do anything. 
             foreach (string asKey in SkillConfig.ActiveSkills)
             {
                 handleSkillWithSync(asKey);
             }
         
             // Phase 3: Active Skill Replacements
-
+            // Only used for Punch 1/2/3, effect is changing player punch level sync var
             foreach (string rpKey in SkillConfig.ReplacementSkills)
             {
                 handleSkillWithSync(rpKey);
             }
         
             // Phase 4: Active Skill Enhancements
+            // Doesn't actually do anything
             foreach (var sbKey in SkillConfig.SkillEnhanceSkills)
             {
                 handleSkillWithSync(sbKey);
             }
-            
+
+            _player.SerializedSkillDict = SkillLevelDict.ToJson();
             Initialized.Set(true);
         }
-    }
-
-    /// <summary>
-    /// [Client Only]
-    /// After Server initialized ST from Save, sync the skill levels to the player
-    /// Will be called each time when the server upgrade a skill as well.
-    /// </summary>
-    [ClientRpc]
-    public void SyncSkill(string skillKey, int level)
-    {
-        if (Network.IsClient)
-        {
-            Log.Debug($"ST Component ID {Id}: Skill Level Get from Server. {skillKey} = {level}");
-            SkillLevelDict[skillKey] = level;
-            // Add / Remove skill are called on server and automatically synced
-            if(Initialized) SkillUpgradeUIEvent.Invoke(skillKey, level); // UI Event
-            
-        }
-        
     }
     
     /// <summary>
@@ -310,14 +293,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     {
         return cost <= _player.Coins;
     }
-
-    /// <summary>
-    /// [Client & Server]
-    /// </summary>
-    public void OnSkillUpgrade(string skillKey, int level)
-    {
-        
-    }
+    
 
     #endregion
 }
