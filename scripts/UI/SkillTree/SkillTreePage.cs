@@ -139,7 +139,6 @@ public class SkillTreePage : UniqueUIWindow
     public override void OpenWindow()
     {
         base.OpenWindow();
-        _localPlayer.CoinUpdateEvent += UpdateAllItems;
         
         SetInfoScreenEnabled(false);
         ResetSelection();
@@ -152,7 +151,6 @@ public class SkillTreePage : UniqueUIWindow
     public override void CloseWindow()
     {
         base.CloseWindow();
-        _localPlayer.CoinUpdateEvent -= UpdateAllItems;
         
         Chat.SetChatMode(Chat.Mode.Default);
     }
@@ -219,7 +217,7 @@ public class SkillTreePage : UniqueUIWindow
         UpdatePipe();
     }
 
-    private void UpdateAllItems(int coins = 0)
+    public void UpdateAllItems()
     {
         var currentAbilities = _slotsMgr.GetEquippedSkillkeys();
         foreach (var item in _treeItems)

@@ -30,6 +30,7 @@ public partial class FightPlayer
             _level.OnSync += NotifyLevelUpdate;
             _exp.OnSync += NotifyExpUpdate;
             _gem.OnSync += NotifyGemUpdate;
+            _coins.OnSync += NotifyCoinUpdate;
             _expBoostTime.OnSync += NotifyExpBoostUpdate;
             
             _combatOverlay = UIManager.Instance.OpenOverlayWindow(UniqueWindowKeys.BattlegroundOverlayWindowPath) as BattlegroundOverlayWindow;
@@ -77,7 +78,7 @@ public partial class FightPlayer
         if (IsLocal)
         {
             _overlay.UpdateGem(gem);
-            NotifyCoinUpdate(Coins); // Refresh coins to update (TODO: This probably need to be renamed as NotifyResourceUpdate)
+            NotifyCoinUpdate(0, Coins); // Refresh coins to update (TODO: This probably need to be renamed as NotifyResourceUpdate)
         }
     }
 

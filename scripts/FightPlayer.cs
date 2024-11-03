@@ -3,6 +3,7 @@ using AO;
 using Assembly.scripts;
 using Assembly.scripts.Effects.ActiveSkills;
 using Assembly.scripts.SceneObjects.Crates;
+using Assembly.scripts.UI.SkillTree;
 using TinyJson;
 
 /// <summary>
@@ -137,17 +138,16 @@ public partial class FightPlayer : Player
         }
     }
     
-    private int _coins = 0;
+    private SyncVar<int> _coins = new(0);
     public int Coins
     {
-        get => _coins;
+        get => _coins.Value;
         set
         {
-            _coins = value; 
             if (Network.IsServer) 
             {
+                _coins.Set(value);
                 Save.SetInt(this, "Coins", value);
-                CallClient_NotifyCoinUpdate(value);
             }
         }
     }
@@ -497,7 +497,7 @@ public partial class FightPlayer : Player
                 CameraInterface = CameraControl.Create(1);
                 CameraInterface.Zoom = 1.0f;
                 // First ui update need to be triggered manually (Save reading happens before this point)
-                CoinUpdateEvent.Invoke(_coins); 
+                NotifyCoinUpdate(0, Coins);
                 
             }
             
@@ -515,6 +515,11 @@ public partial class FightPlayer : Player
             else
             {
                 SkillTree.SkillLevelDict = serializedDict.FromJson<Dictionary<string, int>>();
+                var treeUI = UIManager.Instance.GetUniqueWindow(UniqueWindowKeys.SkillTreePath) as SkillTreePage;
+                if (treeUI is { IsActive: true })
+                {
+                    treeUI.UpdateAllItems();
+                }
             }
         }
 

@@ -126,12 +126,10 @@ public partial class FightPlayer
     #region Local Client Events
 
     // All clients will receive this event, but we only update the ui if the player is local
-    [ClientRpc]
-    public void NotifyCoinUpdate(int c)
+    public void NotifyCoinUpdate(int _, int c)
     {
         if (IsLocal)
         {
-            Coins = c;
             CoinUpdateEvent?.Invoke(c);
         }
     }
