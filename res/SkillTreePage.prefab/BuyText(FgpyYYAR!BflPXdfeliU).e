@@ -25,9 +25,6 @@
     "settings": {
       "font_id": "$AO/fonts/Barlow-ExtraBold.ttf",
       "size": 30,
-      "color": {
-        "W": 1
-      },
       "do_drop_shadow": true
     }
   }

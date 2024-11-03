@@ -22,7 +22,6 @@
   "internal_component_type": "UIRect",
   "data": {
     "max": {
-      "X": 1,
       "Y": 0.8199999928474426
     }
   }

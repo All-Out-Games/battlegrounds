@@ -21,8 +21,6 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "tint": {
-      "W": 1
-    }
+
   }
 }

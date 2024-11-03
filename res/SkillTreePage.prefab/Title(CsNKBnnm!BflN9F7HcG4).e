@@ -25,7 +25,6 @@
       "Y": 0.9100000262260437
     },
     "max": {
-      "X": 1,
       "Y": 0.9800000190734863
     }
   }
@@ -39,10 +38,7 @@
     "text": "Skill Tree",
     "settings": {
       "font_id": "$AO/fonts/Barlow-ExtraBold.ttf",
-      "size": 48,
-      "color": {
-        "W": 1
-      }
+      "size": 48
     }
   }
 }

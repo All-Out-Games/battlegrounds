@@ -35,8 +35,7 @@
   "internal_component_type": "UIRect",
   "data": {
     "max": {
-      "X": 0.5000000000000000,
-      "Y": 1
+      "X": 0.5000000000000000
     }
   }
 }
