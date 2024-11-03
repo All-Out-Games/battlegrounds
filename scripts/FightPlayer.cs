@@ -278,6 +278,20 @@ public partial class FightPlayer : Player
         }
     }
 
+    private SyncVar<string> _serializedSkillLoadout = new("");
+
+    public string SerializedSkillLoadout
+    {
+        get => _serializedSkillLoadout.Value;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _serializedSkillLoadout.Set(value);
+            }
+        }
+    }
+
     public bool IsExpBoosted()
     {
         return ExpBoostTime > 0;
@@ -453,7 +467,8 @@ public partial class FightPlayer : Player
         
         
         InitializeUI();
-        _serializedSkillDict.OnSync += InitSyncVarHandlers;
+        _serializedSkillDict.OnSync += SkillDictHandler;
+        _serializedSkillLoadout.OnSync += SkillLoadoutHandler;
         FightClubGameManager.Instance.OnPlayerJoin(this);
         UIManager.Instance.OnPlayerJoin(this);
         
@@ -489,7 +504,7 @@ public partial class FightPlayer : Player
         }
     }
 
-    private void InitSyncVarHandlers(string _, string serializedDict)
+    private void SkillDictHandler(string _, string serializedDict)
     {
         if(SkillTree.Alive())
         {
@@ -503,6 +518,17 @@ public partial class FightPlayer : Player
             }
         }
 
+    }
+
+    private void SkillLoadoutHandler(string _, string serializedArray)
+    {
+        if (SkillSlotsManager.Alive())
+        {
+            if (!serializedArray.IsNullOrEmpty())
+            {
+                SkillSlotsManager.SyncCompleted(serializedArray);
+            }
+        }
     }
 
     public override void Update()

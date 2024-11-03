@@ -1,4 +1,5 @@
 using AO;
+using TinyJson;
 
 public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
 {
@@ -42,9 +43,9 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             _equippedSkillKeys[0] = "Punch";
             for (int i = 1; i < 6; i++)
             {
-                CallClient_SyncEquippedSkills(i, Save.GetString(_player, $"SkillSlot{i}", "Empty")); // Send equipped skills from save to player
+                _equippedSkillKeys[i] = Save.GetString(_player, $"SkillSlot{i}", "Empty");
             }
-            CallClient_SyncCompleted();
+            _player.SerializedSkillLoadout = _equippedSkillKeys.ToJson();
         }
         SkillSlotsPanelEnable(false);
 
@@ -87,6 +88,12 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         return -1;
     }
     
+    /// <summary>
+    /// Replace Slot. Note that this function alone does not save the slot.
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="faInstanc"></param>
+    /// <param name="cooldownAfterReplace"></param>
     public void ReplaceSlot(int index, FightAbility faInstanc, float cooldownAfterReplace = 0)
     {
         // just to be sure
@@ -104,8 +111,6 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     [ServerRpc]
     public void SetSavedSkillSlot(int index, string skillKey)
     {
-        
-
         if (Network.IsServer)
         {
             // Not valid index
@@ -118,22 +123,18 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             {
                 return;
             }
-            
+            _equippedSkillKeys[index] = skillKey;
             Save.SetString(_player, $"SkillSlot{index}", skillKey);
+            _player.SerializedSkillLoadout = _equippedSkillKeys.ToJson();
         }
     }
-
-    [ClientRpc] 
-    public void SyncEquippedSkills(int index, string skillKey)
+    
+    public void SyncCompleted(string skillKeyJson)
     {
-        _equippedSkillKeys[index] = skillKey;
-    }
-
-    [ClientRpc]
-    public void SyncCompleted()
-    {
+        _equippedSkillKeys = skillKeyJson.FromJson<string[]>();
         if (_player.IsLocal)
         {
+            ActiveAbilities.Clear();
             ActiveAbilities.Add(_player.GetFightAbility<AbilityPunch>());
             for (int i = 1; i < 6; i++)
             {

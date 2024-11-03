@@ -31,6 +31,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     }
 
     // We'll need to sync the level for followup clients (the players who joined earlier passed their initialization stage already)
+    // This is to ensure that skills with higher levels behaves properly
     public override void NetworkSerialize(StreamWriter writer)
     {
         base.NetworkSerialize(writer);
