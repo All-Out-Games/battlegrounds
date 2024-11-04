@@ -74,7 +74,7 @@ public class ZoneTeleporter : Component
                 {
                     player.GetEffectMgr().AddSafePortalCooldown(player.Entity, 60);
                 }
-                player.CallClient_SwitchStatus((int)newStatus);
+                player.SwitchStatus((int)newStatus);
             }
         }
     }

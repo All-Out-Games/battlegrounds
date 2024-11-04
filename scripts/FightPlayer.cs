@@ -491,6 +491,7 @@ public partial class FightPlayer : Player
         }
         else
         {
+            _status.OnSync += OnStatusSync; // We have to ignore the first sync of this variable. It happens before we have skill panel (i.e. any networked components) and will cause null ref
             if (IsLocal)
             {
                 // Stuff related to the local player goes here. e.g. Camera control & UI
@@ -894,72 +895,85 @@ public partial class FightPlayer : Player
     #endregion
 
     #region Zone Management
-
-    [ClientRpc]
+    
     public void SwitchStatus(int statusInt)
     {
         PlayerStatus status = (PlayerStatus)statusInt;
         PlayerStatus = status;
         Log.Warn($"Status Switched - {status.ToString()}");
-        if (status == PlayerStatus.Combat)
+        if (Network.IsServer)
         {
-            if (Network.IsServer)
+            if (status == PlayerStatus.Combat)
             {
                 Zone combatZone = FightClubGameManager.References.PvpZone;
                 //Teleport(new Vector2(216.504f, 90.571f));
                 Teleport(FightClubUtils.RandomPositionInCircle(combatZone.Entity.Position, combatZone.Entity.LocalScaleX));
+                OnTeleportToCombatZone();
+
             }
-            OnTeleportToCombatZone();
-        }
-        else if (status == PlayerStatus.Safe)
-        {
-            if (Network.IsServer)
+            else if (status == PlayerStatus.Safe)
             {
                 Zone hubZone = FightClubGameManager.References.CentralHubZone;
                 //Teleport(Zone.GetRandomPointInZones(hubZone.ZoneId) + hubZone.Entity.Position);
                 Teleport(hubZone.Entity.Position);
+                OnTeleportToSafeZone();
+
             }
-            OnTeleportToSafeZone();
-        }
-        else if (status == PlayerStatus.AFK)
-        {
-            if (Network.IsServer)
+            else if (status == PlayerStatus.AFK)
             {
                 Zone afkZone = FightClubGameManager.References.AfkZone;
                 Teleport(afkZone.Entity.Position);
+                OnTeleportToAfkZone();
             }
-            OnTeleportToAfkZone();
+        }
+    }
+
+    private void OnStatusSync(int _, int statusInt)
+    {
+        PlayerStatus status = (PlayerStatus)statusInt;
+        switch (status)
+        {
+            case PlayerStatus.Combat:
+                OnTeleportToCombatZone();
+                break;
+            case PlayerStatus.Safe:
+                OnTeleportToSafeZone();
+                break;
+            case PlayerStatus.AFK:
+                OnTeleportToAfkZone();
+                break;
         }
     }
 
     public void OnTeleportToCombatZone()
     {
-        SkillSlotsManager.SkillSlotsPanelEnable(true);
         PlayerSwitchZoneEvent?.Invoke((int)PlayerStatus.Combat);
 
         if (IsLocal)
         {
+            SkillSlotsManager.SkillSlotsPanelEnable(true);
             UIManager.Instance.CloseAllUniqueWindow();
         }
     }
 
     public void OnTeleportToSafeZone()
     {
-        SkillSlotsManager.SkillSlotsPanelEnable(false);
+        
         PlayerSwitchZoneEvent?.Invoke((int)PlayerStatus.Safe);
 
         if (IsLocal)
         {
+            SkillSlotsManager.SkillSlotsPanelEnable(false);
             UIManager.Instance.CloseAllUniqueWindow();
         }
     }
 
     public void OnTeleportToAfkZone()
     {
-        SkillSlotsManager.SkillSlotsPanelEnable(false);
         PlayerSwitchZoneEvent?.Invoke((int)PlayerStatus.AFK);
         if (IsLocal)
         {
+            SkillSlotsManager.SkillSlotsPanelEnable(false);
             UIManager.Instance.CloseAllUniqueWindow();
         }
     }
