@@ -21,6 +21,10 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-
+    "tint": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0
+    }
   }
 }
