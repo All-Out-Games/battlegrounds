@@ -133,7 +133,7 @@ public class EffectPsyThrowReady : FightEffectWithNoFlinch
             // So, we throw the victim toward the grabber automatically.
             Caster?.AddEffect<EffectPsyThrowLaunch>(FightPlayer, 1f, launch =>
             {
-                launch.AbilityPositionOrDirection = (FightPlayer.Entity.Position - Caster.Entity.Position).Normalized;
+                launch.AbilityDirection = (FightPlayer.Entity.Position - Caster.Entity.Position).Normalized;
             });
         }
         FightPlayer.SetAnimTrigger("psythrow_attack_throw");
@@ -174,7 +174,7 @@ public class EffectPsyThrowLaunch : FightEffectWithNoFlinch
             Caster.RemoveEffect<EffectPsyThrowReady>(true);
             
             int? lv = (Caster as FightPlayer)?.GetSkillTree().GetSkillLevel("PsyThrow");
-            FightPlayer.AddBump(AbilityPositionOrDirection * EffectConfig.PsyThrowConfig.ThrowStrength, false);
+            FightPlayer.AddBump(AbilityDirection * EffectConfig.PsyThrowConfig.ThrowStrength, false);
             
             //FightPlayer.GetEffectMgr().AddNoMovement(Caster.Entity, 1f);
             DurationRemaining = 1f;

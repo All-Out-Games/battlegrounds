@@ -60,7 +60,7 @@ public class EffectClawSlash : FightEffect
         AssignConfig(EffectConfig.ClawSlashConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("ClawSlash")));
 
         FightPlayer.SetAnimTrigger("clawslash");
-        FightPlayer.SetAimTarget(AbilityPositionOrDirection + FightPlayer.Entity.Position);
+        FightPlayer.SetAimTarget(AbilityDirection + FightPlayer.Entity.Position);
         DurationRemaining = MainLayer.GetCurrentStateLength();
         Log.Debug($"Current Animation = {DurationRemaining}, Current State = {MainLayer.CurrentState.Name}");
         FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
@@ -106,10 +106,10 @@ public class EffectClawSlash : FightEffect
 
     public void Slash()
     {
-        Vector2 selfPos = FightPlayer.Entity.Position + AbilityPositionOrDirection * EffectConfig.ClawSlashConfig.SlashRadius;
+        Vector2 selfPos = FightPlayer.Entity.Position + AbilityDirection * EffectConfig.ClawSlashConfig.SlashRadius * AbilityMagnitude;
         FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.ClawSlashVFXPath, selfPos, entity =>
         {
-            entity.LocalRotation = FightClubUtils.AngleBetween(Vector2.Left, AbilityPositionOrDirection);
+            entity.LocalRotation = FightClubUtils.AngleBetween(Vector2.Left, AbilityDirection);
         });
 
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.SlashDamage);

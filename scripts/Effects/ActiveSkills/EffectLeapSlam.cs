@@ -90,7 +90,7 @@ public class EffectLeapSlam : FightEffectWithImmunity
 
     protected Vector2 GetDashDirection()
     {
-        return AbilityPositionOrDirection;
+        return AbilityDirection;
     }
     
     public void SlamDamage()

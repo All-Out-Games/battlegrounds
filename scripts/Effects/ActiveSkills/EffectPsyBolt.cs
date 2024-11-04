@@ -50,7 +50,7 @@ public class EffectPsybolt : EffectProjectileThrow
 
         Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
             $"{Config.ProjectilePrefabKey}",
-            FightPlayer.Entity.Position + Vector2.Up, AbilityPositionOrDirection);
+            FightPlayer.Entity.Position + Vector2.Up, AbilityDirection);
         //proj.Position = Entity.Position;
         InitializeProjectile(proj);
     }

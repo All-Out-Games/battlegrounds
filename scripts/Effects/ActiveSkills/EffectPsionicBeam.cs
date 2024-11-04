@@ -71,12 +71,12 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
     {
         base.OnEffectStart(isDropIn);
         AssignConfig(EffectConfig.PsionicBeamConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("PsionicBeam")));
-        FightPlayer.SetFacingDirection(AbilityPositionOrDirection.X >= 0);
+        FightPlayer.SetFacingDirection(AbilityDirection.X >= 0);
         FightPlayer.UnsetAnimTrigger("psibeam_end");
         FightPlayer.SetAnimTrigger("psibeam");
         _interactedEntities = new List<Collider>();
         
-        float targetAngle = FightClubUtils.AngleBetween(Vector2.Right,AbilityPositionOrDirection);
+        float targetAngle = FightClubUtils.AngleBetween(Vector2.Right,AbilityDirection);
         _angleHigh = targetAngle + EffectConfig.PsionicBeamConfig.Degrees;
         _angleLow = targetAngle - EffectConfig.PsionicBeamConfig.Degrees;
         
@@ -86,8 +86,7 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
         _vfx = vfxEntity.GetComponent<BeamVFX>();
         vfxEntity.Position = _eyePos;
 
-        _rayLength = AbilityPositionOrDirection.Length;
-        //Log.Warn($"{AbilityPositionOrDirection.ToString()}, L = {_rayLength}, M = {AbilityMagnitude}");
+        _rayLength = AbilityMagnitude;
         if (_rayLength < EffectConfig.PsionicBeamConfig.MinimumRange)
             _rayLength = EffectConfig.PsionicBeamConfig.MinimumRange;
         

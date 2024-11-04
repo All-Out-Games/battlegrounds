@@ -43,7 +43,6 @@ public class EffectProjectileThrow : FightEffect
         
             AssignConfig();
             FightPlayer.SetAnimTrigger(Config.ThrowTrigger);
-            //FightPlayer.SetMouseIKPosition(AbilityPositionOrDirection);
             DurationRemaining = FightLayer.GetCurrentStateLength();
             FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
         
@@ -85,7 +84,7 @@ public class EffectProjectileThrow : FightEffect
 
         Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
             $"{Config.ProjectilePrefabKey}",
-            FightPlayer.Entity.Position, AbilityPositionOrDirection);
+            FightPlayer.Entity.Position, AbilityDirection);
         //proj.Position = Entity.Position;
         InitializeProjectile(proj);
     }

@@ -72,7 +72,7 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
 
     protected Vector2 GetDashDirection()
     {
-        return AbilityPositionOrDirection.Normalized;
+        return AbilityDirection;
     }
     
     protected void OnShoulderCrashCollision(Entity other)
