@@ -283,8 +283,8 @@ public static class EffectConfig
     {
         public static float DefaultParryTime = 1.5f;
         public static float Cooldown = 15f;
-        public static int BaseDamage = 15;
-        public static float CounterAttackRange = 3f;
+        public static int BaseDamage = 18;
+        public static float CounterAttackRange = 4.5f;
         public static float BumpStrength = 75f;
 
         public int Dmg;

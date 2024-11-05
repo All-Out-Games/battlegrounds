@@ -106,7 +106,8 @@ public class EffectClawSlash : FightEffect
 
     public void Slash()
     {
-        Vector2 selfPos = FightPlayer.Entity.Position + AbilityDirection * EffectConfig.ClawSlashConfig.SlashRadius * AbilityMagnitude;
+        Vector2 selfPos = FightPlayer.Entity.Position + AbilityDirection * EffectConfig.ClawSlashConfig.SlashRadius;
+        //Log.Warn($"Claw parameters: Dir: {AbilityDirection} / Mag: {AbilityMagnitude}");
         FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.ClawSlashVFXPath, selfPos, entity =>
         {
             entity.LocalRotation = FightClubUtils.AngleBetween(Vector2.Left, AbilityDirection);
