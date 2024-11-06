@@ -205,7 +205,7 @@ Crate.prefab - .ao - 66ef5b3860ed1ef1ffbc5c13 - 4113007504410479119
 CrateItemDrop.prefab - .ao - 66f0b92d60ed1ef1ffbc5c39 - 10226883231708499473
 FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
 FightPlayerRig/fightplayer.merged_spine_rig - .ao - 67268d01ada08dbbbde3f451 - 17990068727890178002
-FightPlayerRig/player.spine - .ao - 67299e4eada08dbbbde3f4aa - 7238752331607809874
+FightPlayerRig/player.spine - .ao - 672ac3a6ada08dbbbde3f4e0 - 15785455088970621031
 FightPlayerRig/playercharacter.png - .ao - 67291733ada08dbbbde3f469 - 12249824151950965233
 FightPlayerRig/playercharacter.png - .ao.ios - 67291733ada08dbbbde3f46a - 8923593800054166488
 FightPlayerRig/playercharacter.spine - .ao - 67291734ada08dbbbde3f46d - 16262530574898830699
