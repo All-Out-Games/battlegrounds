@@ -316,6 +316,11 @@ public partial class FightPlayer
         fightLayer.CreateGlobalTransition(punchIceState).CreateTriggerCondition(punchIceTrigger);
         fightLayer.CreateTransition(punchIceState, idleState, true);
 
+        var punchWindTrigger = stateMachine.CreateVariable("punch_wind", StateMachineVariableKind.TRIGGER);
+        var punchWindState = fightLayer.CreateState("BAT_003/wind_punch_mIK_AL", 0, false);
+        fightLayer.CreateGlobalTransition(punchWindState).CreateTriggerCondition(punchWindTrigger);
+        fightLayer.CreateTransition(punchWindState, idleState, true);
+
         #endregion
     }
     

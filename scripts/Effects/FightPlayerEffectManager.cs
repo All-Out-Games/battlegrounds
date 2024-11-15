@@ -75,11 +75,11 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
         }
     }
 
-    public void AddLeapSlamKnockdown(Entity caster, float duration)
+    public void AddLeapSlamKnockdown(Entity caster, float duration, float getupTime)
     {
         if (Network.IsServer)
         {
-            CallClient_AddLeapSlamKnockdownInternal(caster, duration);
+            CallClient_AddLeapSlamKnockdownInternal(caster, duration, getupTime);
         }
     }
 
@@ -109,9 +109,10 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
 
 
     [ClientRpc]
-    public void AddLeapSlamKnockdownInternal(Entity caster, float duration)
+    public void AddLeapSlamKnockdownInternal(Entity caster, float duration, float getupTime)
     {
-        _player.AddEffect<EffectKnockDown>(caster.GetComponent<FightPlayer>(), duration);
+        _player.AddEffect<EffectKnockDown>(caster.GetComponent<FightPlayer>(), duration,
+            down => { down.GettingUpTime = getupTime;});
     }
 
     [ClientRpc]

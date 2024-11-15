@@ -319,7 +319,8 @@ public partial class FightPlayer : Player
         int prevLevel = Level;
         // Find next level's xp ceiling, which is the first xp ceiling that's more than the current xp of the player
         int nextXp = LevelingData.NextLevelXp.FirstOrDefault(p => p > Exp, -1);
-        if (nextXp == -1)
+
+        if (nextXp == -1 || nextXp >= LevelingData.MaxXp)
         {
             Log.Error($"{Name} Overflowed the max level! This shouldn't happen unless they are granted a large amount of xp");
             Level = LevelingData.MaxLevel;

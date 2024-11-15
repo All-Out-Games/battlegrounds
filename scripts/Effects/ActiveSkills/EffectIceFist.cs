@@ -36,7 +36,7 @@ public class EffectIceFist : FightEffect
 
     public override void OnEffectUpdate()
     {
-        if (Util.OneTime(ElapsedTime > EffectConfig.PunchConfig.PunchActivationTime, ref Activated))
+        if (Util.OneTime(ElapsedTime > EffectConfig.PunchConfig.DefaultPunchActivationTime, ref Activated))
         {
             Punch();
             Activated = true;
@@ -45,7 +45,7 @@ public class EffectIceFist : FightEffect
 
     public void AssignConfig(EffectConfig.PunchConfig cfg)
     {
-        DurationRemaining = EffectConfig.PunchConfig.PunchAnimationTime;
+        DurationRemaining = cfg.PunchAnimationTime;
         Config = cfg;
     }
     public void Punch()

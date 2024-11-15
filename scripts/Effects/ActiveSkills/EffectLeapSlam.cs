@@ -122,7 +122,7 @@ public class EffectLeapSlam : FightEffectWithImmunity
                 }
 
                 //other.AddEffect<EffectKnockDown>(FightPlayer, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
-                other.GetEffectMgr().AddLeapSlamKnockdown(FightPlayer.Entity, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
+                other.GetEffectMgr().AddLeapSlamKnockdown(FightPlayer.Entity, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f, EffectConfig.LeapSlamConfig.KnockDownTime);
                 hit = true;
             }
         }
@@ -143,6 +143,8 @@ public class EffectKnockDown : FightEffectWithNoFlinch
 
     public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
+
+    public float GettingUpTime = 0.5f;
 
     protected override int InterruptLevel => FightPlayer.DamageInfo.KnockBackInterruptLevel;
 
@@ -173,7 +175,7 @@ public class EffectKnockDown : FightEffectWithNoFlinch
     public override void OnEffectUpdate()
     {
         base.OnEffectUpdate();
-        if (Util.OneTime(ElapsedTime > EffectConfig.LeapSlamConfig.KnockDownTime, ref _gettingup))
+        if (Util.OneTime(ElapsedTime > GettingUpTime, ref _gettingup))
         {
             FightPlayer.SetAnimTrigger("sentfly_end");
             DurationRemaining = MainLayer.GetCurrentStateLength();

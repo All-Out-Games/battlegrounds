@@ -22,6 +22,10 @@ public class VFX : Component
     {
         base.Awake();
         Animator = Entity.GetComponent<Spine_Animator>();
+        if (!Animator.Alive())
+        {
+            Despawn();
+        }
         
     }
     
@@ -99,5 +103,14 @@ public class SelectionVFX : VFX
                 LifeTime += Time.DeltaTime;
             }
         }
+    }
+}
+
+public class SkillShopDoctor : BaseVFX
+{
+    public override void Awake()
+    {
+        base.Awake();
+        Animator.SetCrewchsia(1);
     }
 }

@@ -1073,6 +1073,29 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[] { },
         ChildrenNodeKeys = new string[] { },
     };
+    
+    public static readonly SkillTreeNodeConfig WindPunchNodeConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Wind Punch",
+        DescriptionTextKey = "Channel power of the wind to boost your speed and and unleash a powerful punch to knockdown enemies. ",
+        UpgradeTextKey = "*: Damage +1 \n **: Damage +1\n ***: Cooldown -1\n ****: 4x Boost",
+        BaseDamageKey = _overrideValue_,
+        RangeDescriptionKey = "Melee",
+        CooldownKey = "%OVERRIDE%",
+        IconPath = "AbilityIcon_Merged/elemental/wind_punch.png",
+        AbilityIconPath = "AbilityIcon_Separate/elemental/wind_punch_icon.png",
+        UnlockLevel = 27,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Elemental,
+        UpgradeCost = 7350,
+        SkillKey = "WindPunch",
+        GridX = 1,
+        GridY = 1,
+        ParentNodeKeys = new string[] { "IceFist" },
+        ChildrenNodeKeys = new string[] { },
+    };
 
     #endregion
 
@@ -1130,7 +1153,8 @@ public static partial class SkillConfig
             { "TotalDarkness", TotalDarknessConfig },
             { "NinjaMastery", NinjaMasteryConfig},
             // Elemental
-            { "IceFist", IceFistNodeConfig}
+            { "IceFist", IceFistNodeConfig},
+            {"WindPunch", WindPunchNodeConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -1148,7 +1172,7 @@ public static partial class SkillConfig
         // Stealth
         "Invisibility", "LightFeet", "SpeedBoost","Shuriken", "BearTrap", "ShadowStep", "Backstab", "TotalDarkness",
         // Elemental
-        "IceFist"
+        "IceFist", "WindPunch"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "Punch2", "Punch3" };
@@ -1195,7 +1219,8 @@ public partial class FightAbility
         {SC.IronSkinConfig.SkillKey, typeof(AbilityIronSkin)},
         {SC.SpikeShieldConfig.SkillKey, typeof(AbilitySpikeShield)},
         {SC.GravityCrushConfig.SkillKey, typeof(AbilityGravityCrush)},
-        {SC.ParryConfig.SkillKey, typeof(AbilityParry)}
+        {SC.ParryConfig.SkillKey, typeof(AbilityParry)},
+        {SC.WindPunchNodeConfig.SkillKey, typeof(AbilityWindPunch)}
     };
 }
 

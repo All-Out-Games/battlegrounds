@@ -25,18 +25,18 @@
   "data": {
     "skeleton_data_asset": "$AO/schleem/playercharacter.spine",
     "ordered_skins": [
-      "base/blue1",
       "body/doctor",
-      "hat/doctor_head_mirror"
+      "hat/doctor_head_mirror",
+      "base/crewchsia"
     ],
     "depth_offset": -0.3000000119209290
   }
 },
 {
-  "cid": 3,
-  "aoid": "270985770419892:1722468395833773400",
+  "cid": 2,
+  "aoid": "4475827698163:1731605452455946200",
   "component_type": "Mono_Component",
-  "mono_component_type": "BaseVFX",
+  "mono_component_type": "SkillShopDoctor",
   "data": {
     "Loop": true,
     "Animator": "270292589827709:1722468067623267000",

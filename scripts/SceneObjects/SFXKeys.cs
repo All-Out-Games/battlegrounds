@@ -97,6 +97,9 @@ public static class SFXKeys
 
     public static AudioAsset ParryStartAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/parry_end.wav"); // I feel like parry_end is a better sfx to start the thing
     public static AudioAsset ParryAttackAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/parry_trigger.wav");
+    
+    public static AudioAsset LighteningBoltAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/lightning_bolt.wav");
+    public static AudioAsset WindPunchAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/wind_punch.wav");
     #endregion
 
     #region UI

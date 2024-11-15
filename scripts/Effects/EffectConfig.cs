@@ -91,8 +91,8 @@ public static class EffectConfig
     {
         public static int PunchDmgBase = 1;
         public static int PunchDmgGrowth = 2;
-        public static float PunchAnimationTime = 0.75f; // Entire duration of the punch animation
-        public static float PunchActivationTime = 0.25f;  // Delay time before activating the collider
+        public static float DefaultPunchAnimationTime = 0.75f; // Entire duration of the punch animation
+        public static float DefaultPunchActivationTime = 0.25f;  // Delay time before activating the collider
         public static float PunchRange = 2.5f;
         public static float PunchTargetRange = 4;
         public static float PunchMustHitRange = 0.65f;
@@ -100,6 +100,8 @@ public static class EffectConfig
         
         public int PunchDamage = 5;
         public string AnimationTrigger = "punch";
+        public float PunchAnimationTime = DefaultPunchAnimationTime;
+        public float PunchActivationTime = DefaultPunchActivationTime;
 
         public PunchConfig()
         {
@@ -125,6 +127,20 @@ public static class EffectConfig
             AnimationTrigger = "punch_ice"
         };
         level = int.Min(4, level);
+        cfg.PunchDamage += level - 1;
+        return cfg;
+    }
+
+    public static PunchConfig GetWindPunchConfig(int atk = 0, int level = 1)
+    {
+        PunchConfig cfg = new PunchConfig
+        {
+            PunchDamage = WindPunchConfig.BaseDamage + atk,
+            AnimationTrigger = "punch_wind",
+            PunchAnimationTime = 1.5f,
+            PunchActivationTime = 1.0f
+        };
+        level = int.Min(3, level); // increase dmg by 1 on level 2/3. level 4 reduce cooldown. level 5 increase boost.
         cfg.PunchDamage += level - 1;
         return cfg;
     }
@@ -979,7 +995,17 @@ public static class EffectConfig
     {
         public static float Cooldown = 3f;
         public static int BaseDamage = 5; // This skill uses PunchConfig so this config does not need to be instantiated
-        // See 
+    }
+
+    #endregion
+
+    #region cfg: Wind Punch
+
+    public struct WindPunchConfig
+    {
+        public static float Cooldown = 12f;
+        public static int BaseDamage = 3;
+        public static float BoostModifier = 1.1f;
     }
 
     #endregion

@@ -317,6 +317,9 @@ public static partial class SkillConfig
             case "Parry":
                 res = $"{AbilityParry.GetCooldown(fp)}s";
                 break;
+            case "WindPunch":
+                res = $"{AbilityWindPunch.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -410,6 +413,9 @@ public static partial class SkillConfig
                 break;
             case "Parry":
                 res = EffectConfig.ParryConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("Parry")).Dmg;
+                break;
+            case "WindPunch":
+                res = EffectConfig.GetWindPunchConfig(0, fp.GetSkillTree().GetSkillLevel("WindPunch")).PunchDamage;
                 break;
         }
 
