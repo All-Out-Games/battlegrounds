@@ -33,7 +33,7 @@ public class LevelUpWindow : Component
         if (LevelingData.GemRewards[lvl] != 0)
         {
             GemText.Entity.Parent.LocalEnabled = true;
-            GemText.Text = $"{LevelingData.GemRewards[lvl]} Gems Awarded!";
+            GemText.Text = $"{LevelingData.GemRewards[lvl]} Glory Awarded!";
         }
         else
         {

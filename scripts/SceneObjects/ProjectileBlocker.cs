@@ -22,12 +22,12 @@ public class ProjectileBlocker : Component
     public virtual void DoBlockerEffect(BaseProjectile other)
     {
         other.Entity.Destroy();
-        SFX.Play(SFXKeys.SpoonHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
+        SFX.Play(other.hitSoundId, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
         FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.HitVFX, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
             entity =>
             {
                 SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
-                vfx.StartVFX("hit_generic", false);
+                vfx.StartVFX(other.hitFxId, false);
             }
         );
     }

@@ -17,6 +17,8 @@ public partial class BaseProjectile : OwnedObjectComponent
     [Serialized] public bool Blockable = true;
 
     protected ulong SoundId = default;
+    public string hitFxId = "hit_generic";
+    public AudioAsset hitSoundId = SFXKeys.SpoonHitAudio;
 
     [Serialized] protected float EngineProjectileSpeed;
     [Serialized] protected float SpeedModifier;

@@ -1089,8 +1089,31 @@ public static partial class SkillConfig
         UpgradeGemCost = _tierTwoGemCost,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Elemental,
-        UpgradeCost = 7350,
+        UpgradeCost = 4400,
         SkillKey = "WindPunch",
+        GridX = 0,
+        GridY = 1,
+        ParentNodeKeys = new string[] { "IceFist" },
+        ChildrenNodeKeys = new string[] { },
+    };
+    
+    public static readonly SkillTreeNodeConfig FireballNodeConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Fireball",
+        DescriptionTextKey = "Toss a fireball that explodes and burns your enemy. ",
+        UpgradeTextKey = "*: Damage +1 \n **: Coo1down -1\n ***: Burn +1s\n ****: Fireball split to 3",
+        BaseDamageKey = _overrideValue_,
+        RangeDescriptionKey = "12m",
+        CooldownKey = "%OVERRIDE%",
+        IconPath = "AbilityIcon_Merged/elemental/fireball.png",
+        AbilityIconPath = "AbilityIcon_Separate/elemental/fireball_icon.png",
+        UnlockLevel = 30,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Elemental,
+        UpgradeCost = 5100,
+        SkillKey = "Fireball",
         GridX = 1,
         GridY = 1,
         ParentNodeKeys = new string[] { "IceFist" },
@@ -1154,7 +1177,8 @@ public static partial class SkillConfig
             { "NinjaMastery", NinjaMasteryConfig},
             // Elemental
             { "IceFist", IceFistNodeConfig},
-            {"WindPunch", WindPunchNodeConfig}
+            {"WindPunch", WindPunchNodeConfig},
+            {"Fireball", FireballNodeConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -1172,7 +1196,7 @@ public static partial class SkillConfig
         // Stealth
         "Invisibility", "LightFeet", "SpeedBoost","Shuriken", "BearTrap", "ShadowStep", "Backstab", "TotalDarkness",
         // Elemental
-        "IceFist", "WindPunch"
+        "IceFist", "WindPunch", "Fireball"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "Punch2", "Punch3" };

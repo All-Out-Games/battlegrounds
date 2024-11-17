@@ -5,8 +5,7 @@
   "name": "BtnArea",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -22,7 +21,6 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0,
       "Y": 0.5000000000000000
     },
     "max": {
@@ -32,11 +30,9 @@
     "insets": {
       "X": -275,
       "Y": -200,
-      "Z": -275,
-      "W": 0
+      "Z": -275
     },
     "offset": {
-      "X": 0,
       "Y": -103
     }
   }

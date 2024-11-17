@@ -5,8 +5,7 @@
   "name": "MaskBegin",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -44,7 +43,6 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0,
       "Y": 0.5000000000000000
     },
     "max": {
@@ -54,12 +52,10 @@
     "insets": {
       "X": -37.5000000000000000,
       "Y": -75,
-      "Z": -37.5000000000000000,
-      "W": 0
+      "Z": -37.5000000000000000
     },
     "offset": {
-      "X": 50,
-      "Y": 0
+      "X": 50
     }
   }
 }

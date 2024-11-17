@@ -5,8 +5,7 @@
   "name": "Coins",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -38,7 +37,6 @@
       "W": -100
     },
     "offset": {
-      "X": 0,
       "Y": -10
     }
   }

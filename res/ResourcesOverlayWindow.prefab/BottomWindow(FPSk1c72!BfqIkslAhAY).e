@@ -5,8 +5,7 @@
   "name": "BottomWindow",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -24,8 +23,7 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.5000000000000000,
-      "Y": 0
+      "X": 0.5000000000000000
     },
     "max": {
       "X": 0.5000000000000000,
@@ -34,12 +32,7 @@
     "insets": {
       "X": -500,
       "Y": -600,
-      "Z": 0,
       "W": -600
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
     }
   }
 }

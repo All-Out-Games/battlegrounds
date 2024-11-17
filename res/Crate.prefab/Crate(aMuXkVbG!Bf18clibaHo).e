@@ -13,7 +13,7 @@
     "X": 1,
     "Y": 1
   },
-  "spawn_as_networked_entity": true
+  "network_position": true
 },
 {
   "cid": 1,

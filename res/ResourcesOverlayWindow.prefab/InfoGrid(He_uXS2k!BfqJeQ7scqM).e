@@ -5,8 +5,7 @@
   "name": "InfoGrid",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -24,8 +23,7 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.5000000000000000,
-      "Y": 0
+      "X": 0.5000000000000000
     },
     "max": {
       "X": 0.5000000000000000,
@@ -34,12 +32,7 @@
     "insets": {
       "X": -420,
       "Y": -350,
-      "Z": 0,
       "W": -350
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
     }
   }
 },
@@ -49,7 +42,6 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIDirectionalLayout",
   "data": {
-    "padding": 5,
-    "grow_direction": 0
+    "padding": 5
   }
 }

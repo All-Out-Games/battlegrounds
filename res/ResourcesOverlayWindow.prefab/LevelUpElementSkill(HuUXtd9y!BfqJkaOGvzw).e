@@ -5,8 +5,7 @@
   "name": "LevelUpElementSkill",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -23,7 +22,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIDirectionalLayoutElement",
   "data": {
-    "size": 100
+
   }
 },
 {

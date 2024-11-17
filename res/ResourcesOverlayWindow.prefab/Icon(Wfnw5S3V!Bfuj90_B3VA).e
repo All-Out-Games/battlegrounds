@@ -5,8 +5,7 @@
   "name": "Icon",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -23,7 +22,6 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0,
       "Y": 0.5000000000000000
     },
     "max": {
@@ -33,12 +31,10 @@
     "insets": {
       "X": -20,
       "Y": -40,
-      "Z": -20,
-      "W": 0
+      "Z": -20
     },
     "offset": {
-      "X": 5,
-      "Y": 0
+      "X": 5
     }
   }
 },
@@ -49,14 +45,6 @@
   "internal_component_type": "UIImage",
   "data": {
     "sprite": "UI/XPBar/PotionYellow.png",
-    "tint": {
-      "X": 1,
-      "Y": 1,
-      "Z": 1,
-      "W": 1
-    },
-    "fit_aspect": true,
-    "fit_aspect_kind": 0,
-    "fit_aspect_anchor": 0
+    "fit_aspect": true
   }
 }

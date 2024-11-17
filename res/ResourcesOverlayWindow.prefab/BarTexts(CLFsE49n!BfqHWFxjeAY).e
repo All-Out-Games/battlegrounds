@@ -5,8 +5,7 @@
   "name": "BarTexts",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -38,8 +37,7 @@
       "W": -300
     },
     "offset": {
-      "X": 88,
-      "Y": 0
+      "X": 88
     }
   }
 }

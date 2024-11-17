@@ -5,8 +5,7 @@
   "name": "Level",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -28,18 +27,12 @@
       "Y": 1
     },
     "max": {
-      "X": 0.5000000000000000,
-      "Y": 1
+      "X": 0.5000000000000000
     },
     "insets": {
-      "X": 0,
       "Y": -225,
       "Z": -80,
       "W": -225
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
     }
   }
 }

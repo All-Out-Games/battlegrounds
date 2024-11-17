@@ -46,5 +46,6 @@ public class EffectBefuddle : EffectProjectileThrow
         supplementProjectileComp.InitializeProjectile(FightPlayer, Config.Damage, false);
         supplementProjectileComp.ConfusionTime = EffectConfig.ProjectileConfig.BefuddleConfusionTime;
         supplementProjectileComp.ConfusionIntensity = EffectConfig.ProjectileConfig.BefuddleConfusionIntensity;
+        supplementProjectileComp.hitSoundId = SFXKeys.BefuddleHitAudio;
     }
 }

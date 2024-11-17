@@ -356,6 +356,15 @@ public static class EffectConfig
         public static readonly float ShurikenCooldown = 4f;
         public static readonly float ShurikenRange = 6f;
         public static readonly float ShurikenLifetime = 0.5f;
+        
+        // Fireball
+        public static readonly int FireballDamageBase = 3;
+        public static readonly int FireballBurnDamageBase = 2;
+        public static readonly float FireballCooldown = 9f;
+        public static readonly float FireballRange = 12f;
+        public static readonly float FireballLifeTime = 1.4f;
+        public static readonly float FireballBurnTime = 2.0f;
+        
 
         public float Speed = 15f;
         public float ProjectileLifetime = 2f;
@@ -382,6 +391,7 @@ public static class EffectConfig
                 Damage = SpoonDamageBase + attack,
                 ProjectilePrefabKey = "SpoonProjectile.prefab",
                 ProjectileLifetime = SpoonLifetime,
+                ProjectileLevel = level
             };
             if (level > 2) cfg.Damage += 1;
             if (level > 3) cfg.Damage += 1;
@@ -397,7 +407,8 @@ public static class EffectConfig
                 ProjectilePrefabKey = "BefuddleProjectile.prefab",
                 ProjectileLifetime = BefuddleLifetime,
                 Speed = BefuddleRange / BefuddleLifetime,
-                ThrowTrigger = "befuddle_throw"
+                ThrowTrigger = "befuddle_throw",
+                ProjectileLevel = level
             };
             if (level > 4)
             {
@@ -414,7 +425,8 @@ public static class EffectConfig
                 ProjectilePrefabKey = "PsyboltProjectile.prefab",
                 ProjectileLifetime = PsyboltLifeTime,
                 Speed = PsyboltRange / PsyboltLifeTime,
-                ThrowTrigger = "psybolt"
+                ThrowTrigger = "psybolt",
+                ProjectileLevel = level
             };
             if (level > 1)
             {
@@ -448,6 +460,24 @@ public static class EffectConfig
                 cfg.Damage += 1;
             }
             
+            return cfg;
+        }
+
+        public static ProjectileConfig GetPlayerFireballConfig(int attack, int level)
+        {
+            ProjectileConfig cfg = new ProjectileConfig()
+            {
+                Damage = FireballDamageBase + attack,
+                ProjectilePrefabKey = "FireballProjectile.prefab",
+                ProjectileLifetime = FireballLifeTime,
+                Speed = FireballRange / FireballLifeTime,
+                ProjectileLevel = level
+            };
+            if (level > 1)
+            {
+                cfg.Damage += 1;
+            }
+
             return cfg;
         }
     }

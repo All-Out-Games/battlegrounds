@@ -5,8 +5,7 @@
   "name": "ExpBoost",
   "local_enabled": false,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -37,8 +36,7 @@
       "W": -75
     },
     "offset": {
-      "X": -400,
-      "Y": 0
+      "X": -400
     }
   }
 }

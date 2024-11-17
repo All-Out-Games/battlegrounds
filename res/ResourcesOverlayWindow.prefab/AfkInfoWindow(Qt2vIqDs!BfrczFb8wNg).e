@@ -5,8 +5,7 @@
   "name": "AfkInfoWindow",
   "local_enabled": false,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {

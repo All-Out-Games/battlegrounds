@@ -550,6 +550,7 @@ public partial class FightPlayer : Player
         {
             PeriodicalHeal(Time.DeltaTime);
         }
+        //Log.Warn($"AHHHHH {Network.ServerPrivateInstanceHostId()}");
     }
 
     public override void LateUpdate()

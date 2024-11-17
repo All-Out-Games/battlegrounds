@@ -55,7 +55,7 @@ public class SpoonProjectile : BaseProjectile
                     entity =>
                     {
                         SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
-                        vfx.StartVFX("hit_generic", false);
+                        vfx.StartVFX(hitFxId, false);
                     }
                 );
                 SFX.Play(SFXKeys.SpoonHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });

@@ -320,6 +320,9 @@ public static partial class SkillConfig
             case "WindPunch":
                 res = $"{AbilityWindPunch.GetCooldown(fp)}s";
                 break;
+            case "Fireball":
+                res = $"{AbilityFireball.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -416,6 +419,10 @@ public static partial class SkillConfig
                 break;
             case "WindPunch":
                 res = EffectConfig.GetWindPunchConfig(0, fp.GetSkillTree().GetSkillLevel("WindPunch")).PunchDamage;
+                break;
+            case "Fireball":
+                res = EffectConfig.ProjectileConfig
+                    .GetPlayerFireballConfig(0, fp.GetSkillTree().GetSkillLevel("Fireball")).Damage;
                 break;
         }
 

@@ -52,6 +52,9 @@ public static class SFXKeys
     public static AudioAsset BefuddleHitAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/player_hit_by_befuddle.wav");
     public static AudioAsset ConfusedLoopAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/confused_loop.wav");
     
+    public static AudioAsset FireballHitAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/fire_projectile_hit_explode.wav");
+    public static AudioAsset FireballLoopAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/fire_projectile_loop.wav");
+    
     public static AudioAsset PsiRayAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/pisonic_beam_loop.wav");
 
     public static AudioAsset InvisAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/invisibility_activate.wav");
