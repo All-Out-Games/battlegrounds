@@ -24,12 +24,12 @@ public abstract class OwnedObjectComponent : Component, INetworkedComponent
     }
 
     public abstract void Despawn();
-    public void NetworkSerialize(StreamWriter writer)
+    public virtual void NetworkSerialize(StreamWriter writer)
     {
         writer.WriteNetworkedEntity(Owner.Entity);
     }
 
-    public void NetworkDeserialize(StreamReader reader)
+    public virtual void NetworkDeserialize(StreamReader reader)
     {
         var ownerEntity = reader.ReadNetworkedEntity();
         if (ownerEntity.Alive())
