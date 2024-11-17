@@ -1034,7 +1034,7 @@ public static class EffectConfig
     public struct WindPunchConfig
     {
         public static float Cooldown = 12f;
-        public static int BaseDamage = 3;
+        public static int BaseDamage = 9;
         public static float BoostModifier = 1.1f;
     }
 
