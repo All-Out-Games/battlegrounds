@@ -5,8 +5,7 @@
   "name": "RightColumn",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -27,18 +26,15 @@
       "Y": 0.5000000000000000
     },
     "max": {
-      "X": 1,
       "Y": 0.5000000000000000
     },
     "insets": {
       "X": -450,
-      "Y": 0,
       "Z": -450,
       "W": -700
     },
     "offset": {
-      "X": -50,
-      "Y": 0
+      "X": -50
     }
   }
 }

@@ -5,8 +5,7 @@
   "name": "AbilityBtn_Punch",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -23,22 +22,10 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.0500000007450581,
-      "Y": 0
+      "X": 0.0500000007450581
     },
     "max": {
-      "X": 0.1599999964237213,
-      "Y": 1
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
+      "X": 0.1599999964237213
     }
   }
 }

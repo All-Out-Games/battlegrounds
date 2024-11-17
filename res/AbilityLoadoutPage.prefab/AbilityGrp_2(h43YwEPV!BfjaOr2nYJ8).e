@@ -5,8 +5,7 @@
   "name": "AbilityGrp_2",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -24,22 +23,10 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.4000000059604645,
-      "Y": 0
+      "X": 0.4000000059604645
     },
     "max": {
-      "X": 0.5099999904632568,
-      "Y": 1
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
+      "X": 0.5099999904632568
     }
   }
 },

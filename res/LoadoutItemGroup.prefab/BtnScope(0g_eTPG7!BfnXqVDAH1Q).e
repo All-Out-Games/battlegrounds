@@ -5,8 +5,7 @@
   "name": "BtnScope",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -35,10 +34,6 @@
       "Y": -50,
       "Z": -50,
       "W": -50
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
     }
   }
 },
@@ -48,9 +43,6 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIFitAspect",
   "data": {
-    "aspect_sprite": "",
-    "aspect_hardcoded": 1,
-    "fit_aspect_kind": 0,
-    "fit_aspect_anchor": 0
+
   }
 }

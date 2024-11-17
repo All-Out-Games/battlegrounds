@@ -5,8 +5,7 @@
   "name": "KillFeed",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -21,8 +20,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIDirectionalLayout",
   "data": {
-    "padding": 0,
-    "grow_direction": 0
+
   }
 },
 {
@@ -36,11 +34,9 @@
       "Y": 1
     },
     "max": {
-      "X": 0.5000000000000000,
-      "Y": 1
+      "X": 0.5000000000000000
     },
     "insets": {
-      "X": 0,
       "Y": -300,
       "Z": -240,
       "W": -300

@@ -375,7 +375,6 @@
 15968 bytes - ability_icon_tmp/Befuddle_Tmp.png.ao.astc
 15968 bytes - projectile/TwitterProjectile.png.ao.astc
 15904 bytes - AbilityIcon_Separate/brawler/rage_icon.png.ao.astc
-15784 bytes - AbilityLoadoutPage.prefab.ao
 15736 bytes - AbilityIcon_Separate/brawler/self_destruct_icon.png.ao.astc
 15720 bytes - VFX/SelfDestructExplosion/explosion_big.spine.ao
 15584 bytes - AbilityIcon_Separate/brawler/claw_slash_icon.png.ao.astc
@@ -410,6 +409,7 @@
 13512 bytes - environment/AFK_tmp/rock_1.png.ao.astc
 13416 bytes - AbilityIcon_Separate/brawler/battle_cry_icon.png.ao
 13400 bytes - AbilityIcon_Separate/basic/punch_3_icon.png.ao.astc
+13320 bytes - AbilityLoadoutPage.prefab.ao
 13304 bytes - SFX/Objects/crate-break.wav.ao
 13024 bytes - AbilityIcon_Separate/defense/shield_icon.png.ao.astc
 12968 bytes - VFX/PsionicBeam/BAT003_psionic_explosion.spine.ao
@@ -632,7 +632,6 @@
 2840 bytes - UI/SkillTree/small_skill_tree_icons/stealth.png.ao.astc
 2784 bytes - UI/LargeMenuButtons/Large Menu Buttons/stats.png.ao.astc
 2784 bytes - UI/LargeMenuButtons/stats.png.ao.astc
-2760 bytes - LoadoutItemGroup.prefab.ao
 2680 bytes - Props/DropItems/coin/coin_1.png.ao
 2664 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills.png.ao.astc
 2664 bytes - UI/LargeMenuButtons/skills.png.ao.astc
@@ -665,6 +664,7 @@
 2352 bytes - UI/LargeMenuButtons/Large Menu Buttons/stats.png.ao
 2352 bytes - UI/LargeMenuButtons/stats.png.ao
 2320 bytes - ability_icon_tmp/PsyThrow_Tmp.png.ao
+2320 bytes - LoadoutItemGroup.prefab.ao
 2280 bytes - UI/SkillTree/Brawler.png.ao.astc
 2280 bytes - VFX/LeapFistSlam/BAT003_leaping_fist_slam.spine.ao
 2256 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills.png.ao
@@ -821,12 +821,12 @@
 584 bytes - LeapSlamCrater.prefab.ao
 568 bytes - Invisibility_VFX.prefab.ao
 568 bytes - UI/SkillTree/empty_channels/corner_empty.png.ao.astc
-560 bytes - BattlegroundInfoOverlay.prefab.ao
 560 bytes - UI/SkillTree/full_channels/corner_empty.png.ao.astc
 552 bytes - ClawSwipe.prefab.ao
 552 bytes - CrateItemDrop.prefab.ao
 552 bytes - FatPlayerCollision.prefab.ao
 552 bytes - UI/SkillTree/full_channels/corner_2_empty.png.ao.astc
+544 bytes - BattlegroundInfoOverlay.prefab.ao
 544 bytes - SelfDestructExplosion.prefab.ao
 536 bytes - GravityCrushVFX.prefab.ao
 536 bytes - PsyboltHitVFX.prefab.ao

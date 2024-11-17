@@ -5,8 +5,7 @@
   "name": "AbilityLoadoutPage",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -33,10 +32,6 @@
       "Y": -800,
       "Z": -450,
       "W": -800
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
     }
   }
 },

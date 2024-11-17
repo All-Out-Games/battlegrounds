@@ -5,8 +5,7 @@
   "name": "TreeBtns",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -37,7 +36,6 @@
       "W": -250
     },
     "offset": {
-      "X": 0,
       "Y": 179
     }
   }

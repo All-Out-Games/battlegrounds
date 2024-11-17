@@ -5,8 +5,7 @@
   "name": "UnlockedAbilities",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -23,22 +22,10 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0,
       "Y": 0.0299999993294477
     },
     "max": {
-      "X": 1,
       "Y": 0.6000000238418579
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
     }
   }
 }

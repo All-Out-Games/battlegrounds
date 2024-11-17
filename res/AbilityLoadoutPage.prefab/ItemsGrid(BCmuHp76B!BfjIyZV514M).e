@@ -5,8 +5,7 @@
   "name": "ItemsGrid",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -23,22 +22,10 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.0500000007450581,
-      "Y": 0
+      "X": 0.0500000007450581
     },
     "max": {
-      "X": 0.9499999880790710,
-      "Y": 1
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
+      "X": 0.9499999880790710
     }
   }
 },
@@ -60,13 +47,6 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIScrollView",
   "data": {
-    "vertical": true,
-    "horizontal": false,
-    "content_inset": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    }
+
   }
 }

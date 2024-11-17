@@ -5,8 +5,7 @@
   "name": "Preview",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
@@ -29,16 +28,6 @@
     "max": {
       "X": 0.8999999761581421,
       "Y": 0.8000000119209290
-    },
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    },
-    "offset": {
-      "X": 0,
-      "Y": 0
     }
   }
 }
