@@ -320,6 +320,11 @@ public partial class FightPlayer
         var punchWindState = fightLayer.CreateState("BAT_003/wind_punch_mIK_AL", 0, false);
         fightLayer.CreateGlobalTransition(punchWindState).CreateTriggerCondition(punchWindTrigger);
         fightLayer.CreateTransition(punchWindState, idleState, true);
+        
+        var summonThunderTrigger = stateMachine.CreateVariable("summon_thunder", StateMachineVariableKind.TRIGGER);
+        var summonThunderState = aoLayer.CreateState("BAT_003/summon", 0, false);
+        aoLayer.CreateGlobalTransition(summonThunderState).CreateTriggerCondition(summonThunderTrigger);
+        aoLayer.CreateTransition(summonThunderState, aoIdleState, true);
 
         #endregion
     }

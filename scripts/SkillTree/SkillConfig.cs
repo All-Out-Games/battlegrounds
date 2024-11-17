@@ -344,6 +344,9 @@ public static partial class SkillConfig
             case "GravityCrush":
                 res = $"{(fp.GetSkillTree().GetSkillLevel("GravityCrush") > 4  ? 3 : 4)}m";
                 break;
+            case "Thunderbolt":
+                res = $"{AbilityThunderbolt.GetRange(fp)}m";
+                break;
         }
         return res;
     }
@@ -423,6 +426,9 @@ public static partial class SkillConfig
             case "Fireball":
                 res = EffectConfig.ProjectileConfig
                     .GetPlayerFireballConfig(0, fp.GetSkillTree().GetSkillLevel("Fireball")).Damage;
+                break;
+            case "Thunderbolt":
+                res = EffectConfig.ThunderboltConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("Thunderbolt")).Damage;
                 break;
         }
 

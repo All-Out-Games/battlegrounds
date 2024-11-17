@@ -479,6 +479,13 @@ Props/DropItems/MagicPunchPotion.png - .ao - 6709e93e60ed1ef1ffbc66dd - 17158289
 Props/DropItems/MagicPunchPotion.png - .ao.astc - 67319d8cada08dbbbde3fbaf - 3869268109048727669
 Props/DropItems/RagePotion.png - .ao - 6709e3fb60ed1ef1ffbc66d6 - 17007665639985188025
 Props/DropItems/RagePotion.png - .ao.astc - 67319d8cada08dbbbde3fbb2 - 482231052008212679
+Props/GroundRecticles/ground_reticle.png - .ao - 673a5d6e02386857e8d33460 - 11804843950943063610
+Props/GroundRecticles/ground_reticle.png - .ao.astc - 673a5d6e02386857e8d33461 - 1278615493117429830
+Props/GroundRecticles/lightning_reticle.png - .ao - 673a5d6d02386857e8d3345e - 57652706653587766
+Props/GroundRecticles/lightning_reticle.png - .ao.astc - 673a5d6c02386857e8d3344f - 4216106410385733148
+Props/LightningTrap/BAT003_lightning_trap.png - .ao - 673a5d6c02386857e8d33450 - 5422733628559629826
+Props/LightningTrap/BAT003_lightning_trap.png - .ao.astc - 673a5d6d02386857e8d33451 - 7215707938598448104
+Props/LightningTrap/BAT003_lightning_trap.spine - .ao - 673a5d6d02386857e8d33454 - 16616787167720604919
 PsionicBeamExplosion.prefab - .ao - 66c7c80560ed1ef1ffbc3f28 - 8636868043643330879
 PsionicBeamGroundFissue.prefab - .ao - 66c7b28260ed1ef1ffbc3edb - 12450150658249866470
 PsionicBeamGroundFissueEnd.prefab - .ao - 66c7b28260ed1ef1ffbc3eda - 7328066586182626511
@@ -542,8 +549,11 @@ SFX/Effects/rollout_start.wav - .ao - 66ad9d9ecf7a5e4159a6c451 - 253590208637640
 SFX/Effects/self_destruct.wav - .ao - 66ad9394cf7a5e4159a6c442 - 18352124696951603518
 SFX/Effects/self_destruct_explode.wav - .ao - 66ae6176cf7a5e4159a6c46a - 7596589421445641430
 SFX/Effects/shoulder_crash_loop.wav - .ao - 66b50142cf7a5e4159a6c518 - 400251291864753231
+SFX/Effects/snared_end.wav - .ao - 673a5d6d02386857e8d33455 - 506006255068748907
+SFX/Effects/snared_loop.wav - .ao - 673a5d6d02386857e8d33459 - 11536150552519046552
 SFX/Effects/sound_wave_projectile_loop.wav - .ao - 66ad3a26cf7a5e4159a6c416 - 11178710722811247311
 SFX/Effects/spike_shield_activate.wav - .ao - 66b50142cf7a5e4159a6c51a - 9556373634791649850
+SFX/Effects/summon.wav - .ao - 673a5d6d02386857e8d3345a - 11828694577592669410
 SFX/Effects/throw_weapon.wav - .ao - 66ad4e9fcf7a5e4159a6c42a - 10244965043607779417
 SFX/Effects/wind_punch.wav - .ao - 6736d68a02386857e8d3300f - 11959843466473198217
 SFX/Effects/wood_shield_activate.wav - .ao - 66b50143cf7a5e4159a6c51c - 10863746478839718501
@@ -569,6 +579,7 @@ SkillTreePage.prefab - .ao - 67394d5f02386857e8d33427 - 1221463925342102884
 SpikeShield_FX.prefab - .ao - 66f9d9cf60ed1ef1ffbc5fc8 - 11972459816054532572
 SpoonProjectile.prefab - .ao - 66a91b0496cebaeb1f329890 - 11818330664990311604
 Stat_Aura.prefab - .ao - 66b1373ccf7a5e4159a6c4a4 - 11034765975460030984
+ThunderStrike.prefab - .ao - 673a5d6d02386857e8d3345b - 2161463239406487986
 TotalDarknessOverlay.prefab - .ao - 6685d28fb45eb9e8339c10be - 15557225266589634022
 UI/AbilityBook/AbilityInfo/buy_button/buy_button.png - .ao - 669816f4b45eb9e8339c1f5b - 7538570100970345996
 UI/AbilityBook/AbilityInfo/buy_button/buy_button.png - .ao.astc - 67319d8dada08dbbbde3fbbb - 4288114234939479542
@@ -852,6 +863,9 @@ VFX/Invisibility/BAT003_invisibility.spine - .ao - 668f192eb45eb9e8339c1aa9 - 70
 VFX/LeapFistSlam/BAT003_leaping_fist_slam.png - .ao - 6686e298b45eb9e8339c195c - 7249345791989387760
 VFX/LeapFistSlam/BAT003_leaping_fist_slam.png - .ao.astc - 67319d9dada08dbbbde3fcc7 - 6357413971014227306
 VFX/LeapFistSlam/BAT003_leaping_fist_slam.spine - .ao - 6686e298b45eb9e8339c195a - 17240551233365566934
+VFX/LightningStrike/BAT003_lightning_strike.png - .ao - 673a5d6e02386857e8d33464 - 5488895910630271838
+VFX/LightningStrike/BAT003_lightning_strike.png - .ao.astc - 673a5d6e02386857e8d33466 - 13928174039865654655
+VFX/LightningStrike/BAT003_lightning_strike.spine - .ao - 673a5d6e02386857e8d33467 - 4959268367871110664
 VFX/PsionicBeam/BAT003_psionic_beam.png - .ao - 66859957b45eb9e8339c100e - 426287856886850636
 VFX/PsionicBeam/BAT003_psionic_beam.png - .ao.astc - 67319d9dada08dbbbde3fccc - 1651794605089861383
 VFX/PsionicBeam/BAT003_psionic_beam.spine - .ao - 66cccd5060ed1ef1ffbc41be - 9773031150863909508

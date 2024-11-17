@@ -1039,4 +1039,40 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region cfg: Thunderbolt
+
+    public struct ThunderboltConfig
+    {
+        public static float Cooldown = 15f;
+        public static int BaseDamage = 6;
+        public static readonly float ShockTime = 2.0f;
+        public static float DefaultRange = 7f; // Range + 2 for lv 4
+
+        public static readonly float TotalSummonTime = 1.117f;
+        public static readonly float ThunderSummonTime = 0.3f;
+        public static readonly float ThunderStartTime = 0.275f; // Total delay of attack = Thunder summon + Thunder Start
+        
+
+        public bool GetImmunity; // Immune during cast for lv 5
+        public int Damage;
+
+        public static ThunderboltConfig GetDefault(int atk, int level)
+        {
+            ThunderboltConfig res = new ThunderboltConfig
+            {
+                Damage = BaseDamage + atk,
+                GetImmunity = false
+            };
+            int addAtk = Int32.Min(level, 3) - 1;
+            res.Damage += addAtk;
+            if (level > 4)
+            {
+                res.GetImmunity = true;
+            }
+            return res;
+        }
+    }
+
+    #endregion
 }
