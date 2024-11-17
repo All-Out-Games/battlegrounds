@@ -1,0 +1,37 @@
+BAT003_lightning_trap.png
+	size: 752, 240
+	filter: Linear, Linear
+lightning_trap
+	bounds: 3, 46, 224, 189
+	offsets: 1, 1, 226, 191
+lightning_vfx_1_A
+	bounds: 421, 120, 103, 114
+	offsets: 2, 2, 108, 118
+lightning_vfx_1_B
+	bounds: 306, 120, 112, 115
+	offsets: 2, 2, 116, 119
+lightning_vfx_1_C
+	bounds: 527, 36, 199, 59
+	offsets: 2, 2, 203, 63
+	rotate: 90
+lightning_vfx_2_A
+	bounds: 306, 13, 104, 117
+	offsets: 2, 2, 108, 120
+	rotate: 90
+lightning_vfx_2_B
+	bounds: 426, 3, 96, 114
+	offsets: 3, 2, 101, 118
+lightning_vfx_2_C
+	bounds: 589, 37, 198, 58
+	offsets: 2, 2, 202, 62
+	rotate: 90
+lightning_vfx_3_A
+	bounds: 650, 17, 93, 110
+	offsets: 2, 2, 97, 114
+lightning_vfx_3_B
+	bounds: 650, 130, 98, 105
+	offsets: 2, 2, 102, 109
+lightning_vfx_3_C
+	bounds: 230, 46, 189, 73
+	offsets: 2, 2, 193, 77
+	rotate: 90

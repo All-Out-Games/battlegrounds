@@ -1,0 +1,130 @@
+{
+"skeleton": { "hash": "3vW/QSO5rdE", "spine": "4.0.64", "x": -113, "y": -65.5, "width": 226, "height": 191 },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "lightning_trap", "bone": "root", "attachment": "lightning_trap" },
+	{ "name": "lightning_vfx_1_A", "bone": "root" },
+	{ "name": "lightning_vfx_1_B", "bone": "root" },
+	{ "name": "lightning_vfx_1_C", "bone": "root" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"lightning_trap": {
+				"lightning_trap": { "y": 30, "width": 226, "height": 191 }
+			},
+			"lightning_vfx_1_A": {
+				"lightning_vfx_1_A": { "x": -52.24, "y": 53.24, "width": 108, "height": 118 },
+				"lightning_vfx_2_A": { "x": -52.24, "y": 53.24, "width": 108, "height": 120 },
+				"lightning_vfx_3_A": { "x": -52.24, "y": 53.24, "width": 97, "height": 114 }
+			},
+			"lightning_vfx_1_B": {
+				"lightning_vfx_1_B": { "x": 54.09, "y": 56.04, "width": 116, "height": 119 },
+				"lightning_vfx_2_B": { "x": 54.09, "y": 56.04, "width": 101, "height": 118 },
+				"lightning_vfx_3_B": { "x": 54.09, "y": 56.04, "width": 102, "height": 109 }
+			},
+			"lightning_vfx_1_C": {
+				"lightning_vfx_1_C": { "x": 0.93, "y": -20.9, "width": 203, "height": 63 },
+				"lightning_vfx_2_C": { "x": 0.93, "y": -20.9, "width": 202, "height": 62 },
+				"lightning_vfx_3_C": { "x": 0.93, "y": -20.9, "width": 193, "height": 77 }
+			}
+		}
+	}
+],
+"animations": {
+	"activated": {
+		"slots": {
+			"lightning_vfx_1_A": {
+				"attachment": [
+					{ "name": "lightning_vfx_1_A" },
+					{ "time": 0.0667, "name": "lightning_vfx_2_A" },
+					{ "time": 0.1333, "name": "lightning_vfx_3_A" },
+					{ "time": 0.2, "name": "lightning_vfx_1_A" },
+					{ "time": 0.2667, "name": "lightning_vfx_2_A" },
+					{ "time": 0.3333, "name": "lightning_vfx_3_A" },
+					{ "time": 0.4, "name": "lightning_vfx_1_A" }
+				]
+			},
+			"lightning_vfx_1_B": {
+				"attachment": [
+					{ "name": "lightning_vfx_1_B" },
+					{ "time": 0.0667, "name": "lightning_vfx_2_B" },
+					{ "time": 0.1333, "name": "lightning_vfx_3_B" },
+					{ "time": 0.2, "name": "lightning_vfx_1_B" },
+					{ "time": 0.2667, "name": "lightning_vfx_2_B" },
+					{ "time": 0.3333, "name": "lightning_vfx_3_B" },
+					{ "time": 0.4, "name": "lightning_vfx_1_B" }
+				]
+			},
+			"lightning_vfx_1_C": {
+				"attachment": [
+					{ "name": "lightning_vfx_1_C" },
+					{ "time": 0.0667, "name": "lightning_vfx_2_C" },
+					{ "time": 0.1333, "name": "lightning_vfx_3_C" },
+					{ "time": 0.2, "name": "lightning_vfx_1_C" },
+					{ "time": 0.2667, "name": "lightning_vfx_2_C" },
+					{ "time": 0.3333, "name": "lightning_vfx_3_C" },
+					{ "time": 0.4, "name": "lightning_vfx_1_C" }
+				]
+			}
+		},
+		"bones": {
+			"root": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.0333, "value": -0.54, "curve": "stepped" },
+					{ "time": 0.0667, "value": 0.17, "curve": "stepped" },
+					{ "time": 0.1, "value": -0.54, "curve": "stepped" },
+					{ "time": 0.1333, "value": 0.17, "curve": "stepped" },
+					{ "time": 0.1667, "value": -0.54, "curve": "stepped" },
+					{ "time": 0.2, "value": 0.17, "curve": "stepped" },
+					{ "time": 0.2333, "value": -0.54, "curve": "stepped" },
+					{ "time": 0.2667, "value": 0.17, "curve": "stepped" },
+					{ "time": 0.3, "value": -0.54, "curve": "stepped" },
+					{ "time": 0.3333, "value": 0.17, "curve": "stepped" },
+					{ "time": 0.3667, "value": -0.54, "curve": "stepped" },
+					{ "time": 0.4 }
+				]
+			}
+		}
+	},
+	"appear_set_up": {
+		"bones": {
+			"root": {
+				"rotate": [
+					{ "value": 9.13 },
+					{ "time": 0.1 }
+				],
+				"translate": [
+					{ "x": -5.57, "y": 27.98 },
+					{ "time": 0.0833 },
+					{ "time": 0.1, "y": -0.85 },
+					{ "time": 0.2333 }
+				],
+				"scale": [
+					{ "x": 0.952, "y": 1.077 },
+					{ "time": 0.1, "x": 1.049, "y": 0.988 },
+					{ "time": 0.2 }
+				]
+			}
+		}
+	},
+	"dissappear": {
+		"slots": {
+			"lightning_trap": {
+				"rgba": [
+					{
+						"color": "ffffffff",
+						"curve": [ 0.044, 1, 0.289, 1, 0.044, 1, 0.289, 1, 0.044, 1, 0.289, 1, 0.168, 1, 0.274, 0.53 ]
+					},
+					{ "time": 0.3333, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"idle": {}
+}
+}

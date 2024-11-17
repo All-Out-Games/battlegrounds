@@ -1086,7 +1086,7 @@ public static partial class SkillConfig
         AbilityIconPath = "AbilityIcon_Separate/elemental/wind_punch_icon.png",
         UnlockLevel = 27,
         MaximumLevel = 5,
-        UpgradeGemCost = _tierTwoGemCost,
+        UpgradeGemCost = _tierOneGemCost,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Elemental,
         UpgradeCost = 4400,
