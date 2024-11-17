@@ -34,11 +34,11 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
-    "min": {
-      "X": 0.1000000014901161
-    },
-    "max": {
-      "X": 0.8999999761581421
+    "insets": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "W": 0
     }
   }
 }
