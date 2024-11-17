@@ -28,6 +28,9 @@ public class EffectDeath : FightEffectWithImmunity
             case "Backstab":
                 res = "death_swiped";
                 break;
+            case "Fireball":
+                res = "death_poof";
+                break;
         }
 
         if (res == "death")

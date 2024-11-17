@@ -67,6 +67,14 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
         }
     }
 
+    public void AddBurn(Entity caster, float duration, int dps)
+    {
+        if (Network.IsServer)
+        {
+            CallClient_AddBurnInternal(caster, duration, dps);
+        }
+    }
+
     public void AddBattleCryStun(Entity caster, float duration)
     {
         if (Network.IsServer)
@@ -125,5 +133,12 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     public void AddSafePortalCooldownInternal(Entity caster, float duration)
     {
         _player.AddEffect<EffectSafePortalCooldown>(caster.GetComponent<FightPlayer>(), duration);
+    }
+
+    [ClientRpc]
+    public void AddBurnInternal(Entity caster, float duration, int dps)
+    {
+        _player.AddEffect<EffectBurn>(caster.GetComponent<FightPlayer>(), duration,
+            burn => { burn.PerSecondDmg = dps; });
     }
 }

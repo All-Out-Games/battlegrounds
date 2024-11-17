@@ -1,4 +1,6 @@
-﻿namespace Assembly.scripts.SceneObjects.Projectiles;
+﻿using Assembly.scripts.Effects;
+
+namespace Assembly.scripts.SceneObjects.Projectiles;
 using AO;
 using Assembly.scripts.VFX;
 
@@ -38,7 +40,16 @@ public class FireballProjectile : BaseProjectile
         if (fp != null && fp.Damageable())
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
-            info.SkillKey = SkillConfig.SpoonThrowConfig.SkillKey;
+            info.SkillKey = SkillConfig.FireballNodeConfig.SkillKey;
+            info.SpecialDeathAnimation = true;
+            
+            // For Fireball Lv. 5, we shoot 3 fireballs
+            // That might be too OP if all of them hit the same player.
+            // Solution: If a player is burning, and the burn just started (meaning they just got hit by a fireball)
+            // We reduce the fireball's damage to 1
+            EffectBurn eb = fp.GetEffect<EffectBurn>();
+            if (eb.Alive() && eb.ElapsedTime < 0.3f) info.ReactionInfo.Amount = 1;
+            
             var overrideType = fp.TakeDamage(Owner, info);
             var reachedPlayer = overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Dodged &&
                                 overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Parry;
@@ -57,14 +68,8 @@ public class FireballProjectile : BaseProjectile
 
             if (reachedPlayer)
             {
-                FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.HitVFX, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
-                    entity =>
-                    {
-                        SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
-                        vfx.StartVFX(hitFxId, false);
-                    }
-                );
                 SFX.Play(SFXKeys.FireballHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
+                EffectBurn.AddOrStackBurn(fp, Owner.Entity, BurnTime, EffectConfig.ProjectileConfig.FireballBurnDamageBase);
             }
 
         }

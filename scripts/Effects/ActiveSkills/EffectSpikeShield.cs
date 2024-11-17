@@ -99,15 +99,7 @@ public class EffectSpikeShield : FightEffect
             if (source != FightPlayer && source.Alive())
             {
                 source.TakeDamage(FightPlayer, infoRef);
-                var bld = source.GetEffect<EffectBleed>();
-                if (bld.Alive())
-                {
-                    bld.Stack(EffectConfig.SpikeShieldConfig.BleedTime, 1);
-                }
-                else
-                {
-                    source.GetEffectMgr().AddBleed(FightPlayer.Entity, EffectConfig.SpikeShieldConfig.BleedTime, 1);
-                }
+                EffectBleed.AddOrStackBleed(source, Player.Entity, EffectConfig.SpikeShieldConfig.BleedTime, 1);
                 
             }
         }

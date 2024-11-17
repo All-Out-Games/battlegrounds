@@ -95,10 +95,11 @@ public class EffectWindPunch : FightEffect
             if (other != null)
             {
                 FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
-                info.SkillKey = SkillConfig.IceFistNodeConfig.SkillKey;
+                info.SkillKey = SkillConfig.WindPunchNodeConfig.SkillKey;
+                info.CrateImmediateDestroy = true;
                 // other.Player.TakeDamage(FightPlayer, info);
                 other.TakeDamage(FightPlayer, info);
-                FightPlayer fp = rc.Collider.GetComponent<PlayerCollisionChild>().Player;
+                FightPlayer fp = rc.Collider.GetComponent<PlayerCollisionChild>()?.Player;
                 if (info.OverrideDamageNumber == FightPlayer.DamageInfo.DamageNumberOverrideType.None)
                 {
                     AfterWindPunchHit(fp);

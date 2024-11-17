@@ -363,7 +363,7 @@ public static class EffectConfig
         public static readonly float FireballCooldown = 9f;
         public static readonly float FireballRange = 12f;
         public static readonly float FireballLifeTime = 1.4f;
-        public static readonly float FireballBurnTime = 2.0f;
+        public static readonly float FireballBurnTime = 3.0f;
         
 
         public float Speed = 15f;

@@ -126,7 +126,7 @@ public class EffectClawSlash : FightEffect
             {
                 if (fp.Player != FightPlayer && fp.Damageable())
                 {
-                    fp.Player.GetEffectMgr().AddBleed(FightPlayer.Entity, _config.BleedTime, _config.BleedDmg);
+                    EffectBleed.AddOrStackBleed(fp.Player, Player.Entity, _config.BleedTime, _config.BleedDmg);
                 }
             }
             dmg.TakeDamage(FightPlayer, info);

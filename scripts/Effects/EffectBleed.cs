@@ -1,6 +1,5 @@
 ﻿using AO;
 using Assembly.scripts.VFX;
-using StreamReader = AO.StreamReader;
 
 namespace Assembly.scripts.Effects;
 
@@ -68,6 +67,19 @@ public class EffectBleed : FightEffect
         if (fade!=null && DurationRemaining > fade.ElapsedTime)
         {
             fade.ExtendLifetime(DurationRemaining - fade.ElapsedTime);
+        }
+    }
+
+    public static void AddOrStackBleed(FightPlayer fp, Entity source, float time, int dps)
+    {
+        var bld = fp.GetEffect<EffectBleed>();
+        if (bld.Alive())
+        {
+            bld.Stack(time, dps);
+        }
+        else
+        {
+            fp.GetEffectMgr().AddBleed(source, time, dps);
         }
     }
 }

@@ -47,7 +47,38 @@ public class EffectFireBall : EffectProjectileThrow
         supplementProjectileComp.hitFxId = "hit_fire";
         supplementProjectileComp.hitSoundId = SFXKeys.FireballHitAudio;
         supplementProjectileComp.InitializeProjectile(FightPlayer, Config.Damage, false);
-        supplementProjectileComp.BurnTime = EffectConfig.ProjectileConfig.FireballBurnTime;
+        supplementProjectileComp.BurnTime = EffectConfig.ProjectileConfig.FireballBurnTime + 0.1f;
         if (Config.ProjectileLevel > 3) supplementProjectileComp.BurnTime += 1;
+    }
+
+    public override void ProjectileThrow()
+    {
+        if (Config.ProjectileLevel > 4)
+        {
+            Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
+                $"{Config.ProjectilePrefabKey}",
+                FightPlayer.Entity.Position, AbilityDirection);
+            //proj.Position = Entity.Position;
+            InitializeProjectile(proj);
+
+            Vector2 additionalDir1 = Vector2.Rotate(AbilityDirection, 0.72f, Vector2.Zero);
+            Vector2 additionalDir2 = Vector2.Rotate(AbilityDirection, -0.72f, Vector2.Zero);
+            
+            Entity proj1 = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
+                $"{Config.ProjectilePrefabKey}",
+                FightPlayer.Entity.Position, additionalDir1);
+            
+            Entity proj2 = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
+                $"{Config.ProjectilePrefabKey}",
+                FightPlayer.Entity.Position, additionalDir2);
+            
+            InitializeProjectile(proj1);
+            InitializeProjectile(proj2);
+        }
+        else
+        {
+            base.ProjectileThrow();
+        }
+        
     }
 }
