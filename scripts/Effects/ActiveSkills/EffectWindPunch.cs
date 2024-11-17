@@ -66,6 +66,15 @@ public class EffectWindPunch : FightEffect
         DurationRemaining = cfg.PunchAnimationTime;
         Config = cfg;
     }
+
+    public void AfterWindPunchHit(FightPlayer fp)
+    {
+        if (fp.Alive())
+        {
+            fp.GetEffectMgr().AddLeapSlamKnockdown(FightPlayer.Entity, 1.0f, 0.5f);
+            fp.AddBump(punchDir.Normalized * 75f, false);
+        }
+    }
     public void Punch()
     {
         //Log.Debug($"Punch! Dmg: {Config.PunchDamage}");
@@ -90,10 +99,9 @@ public class EffectWindPunch : FightEffect
                 // other.Player.TakeDamage(FightPlayer, info);
                 other.TakeDamage(FightPlayer, info);
                 FightPlayer fp = rc.Collider.GetComponent<PlayerCollisionChild>().Player;
-                if (fp.Alive())
+                if (info.OverrideDamageNumber == FightPlayer.DamageInfo.DamageNumberOverrideType.None)
                 {
-                    fp.GetEffectMgr().AddLeapSlamKnockdown(FightPlayer.Entity, 1.0f, 0.5f);
-                    fp.AddBump(punchDir.Normalized * 75f, false);
+                    AfterWindPunchHit(fp);
                 }
                 
             }
@@ -113,7 +121,11 @@ public class EffectWindPunch : FightEffect
                     info.SkillKey = SkillConfig.IceFistNodeConfig.SkillKey;
                     // other.Player.TakeDamage(FightPlayer, info);
                     fp.TakeDamage(FightPlayer, info);
-                    fp.GetEffectMgr().AddLeapSlamKnockdown(FightPlayer.Entity, 1.0f, 0.5f);
+                    if (info.OverrideDamageNumber == FightPlayer.DamageInfo.DamageNumberOverrideType.None)
+                    {
+                        AfterWindPunchHit(fp);
+                    }
+                    
                 }
             }
         }

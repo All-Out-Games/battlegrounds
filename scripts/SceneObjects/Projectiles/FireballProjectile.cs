@@ -14,7 +14,7 @@ public class FireballProjectile : BaseProjectile
         {
             _animator.Awaken();
             var instance = _animator.SpineInstance;
-            instance.SetAnimation("fly_loop", true);
+            instance.SetAnimation("flying_loop", true);
             SoundId = SFX.Play(SFXKeys.FireballLoopAudio, new SFX.PlaySoundDesc() {EntityToFollow = Entity, Loop = true, LoopTimeout = 3f});
             _animator.OnAnimationEnd += evt =>
             {
@@ -75,8 +75,7 @@ public class FireballProjectile : BaseProjectile
         base.Reflect(newOwner, level, direction);
         if (Owner.Alive() && newOwner.Alive())
         {
-            // TODO
-            EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerSpoonThrowConfig(newOwner.CurrentAttack, level);
+            EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerFireballConfig(newOwner.CurrentAttack, level);
             Entity proj = Game.SpawnProjectile(newOwner, config.ProjectilePrefabKey,
                 config.ProjectilePrefabKey,
                 Entity.Position, direction);
@@ -84,9 +83,12 @@ public class FireballProjectile : BaseProjectile
             projComp.Speed = config.Speed;
             projComp.Lifetime = config.ProjectileLifetime;
             
-            SpoonProjectile supplementProjectileComp = proj.GetComponent<SpoonProjectile>();
+            FireballProjectile supplementProjectileComp = proj.GetComponent<FireballProjectile>();
+            supplementProjectileComp.hitFxId = hitFxId;
+            supplementProjectileComp.hitSoundId = hitSoundId;
             supplementProjectileComp.LifeTime = config.ProjectileLifetime;
-            supplementProjectileComp.InitializeProjectile(newOwner, config.Damage, false);
+            supplementProjectileComp.InitializeProjectile(newOwner, config.Damage, Pierce);
+            supplementProjectileComp.BurnTime = BurnTime;
             return supplementProjectileComp;
         }
 

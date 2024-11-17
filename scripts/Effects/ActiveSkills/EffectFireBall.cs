@@ -32,7 +32,7 @@ public class EffectFireBall : EffectProjectileThrow
 
     public override void AssignConfig()
     {
-        Config = EffectConfig.ProjectileConfig.GetPlayerBefuddleConfig(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("Fireball"));
+        Config = EffectConfig.ProjectileConfig.GetPlayerFireballConfig(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("Fireball"));
     }
     
 

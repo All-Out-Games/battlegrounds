@@ -1244,7 +1244,8 @@ public partial class FightAbility
         {SC.SpikeShieldConfig.SkillKey, typeof(AbilitySpikeShield)},
         {SC.GravityCrushConfig.SkillKey, typeof(AbilityGravityCrush)},
         {SC.ParryConfig.SkillKey, typeof(AbilityParry)},
-        {SC.WindPunchNodeConfig.SkillKey, typeof(AbilityWindPunch)}
+        {SC.WindPunchNodeConfig.SkillKey, typeof(AbilityWindPunch)},
+        {SC.FireballNodeConfig.SkillKey, typeof(AbilityFireball)}
     };
 }
 

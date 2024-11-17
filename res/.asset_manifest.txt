@@ -487,7 +487,7 @@ PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 671d9b9fada08dbbbde3f08e - 11396103004693384059
 Rage_Aura.prefab - .ao - 6709f5fa60ed1ef1ffbc66e1 - 5094729185261374799
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
-ResourcesOverlayWindow.prefab - .ao - 66cf694a60ed1ef1ffbc4cfd - 7100138169920654440
+ResourcesOverlayWindow.prefab - .ao - 67393f3c02386857e8d3341d - 13535371027856739327
 SceneProps_tmp/aura_circle.png - .ao - 66859954b45eb9e8339c0ff6 - 10293273442432679734
 SceneProps_tmp/aura_circle.png - .ao.astc - 67319d8cada08dbbbde3fbb9 - 1197172714298410924
 SelfDestructExplosion.prefab - .ao - 66a1a7616732dee0bb811d5a - 5339910856129032631

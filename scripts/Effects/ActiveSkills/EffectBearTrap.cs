@@ -47,7 +47,7 @@ public class EffectBearTrap: FightEffect
 
 public class EffectBearTrapSnare : FightEffectWithNoFlinch
 {
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
     public override bool FreezePlayer => true;
 
     public override bool BlockAbilityActivation => true;

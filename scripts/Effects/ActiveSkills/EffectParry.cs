@@ -23,6 +23,7 @@ public class AbilityParry : FightAbility
 public class EffectParry : FightEffect
 {
     public override bool IsActiveEffect => true;
+    protected override bool PreventMovement => true;
     private EffectConfig.ParryConfig _config;
 
     public override void OnEffectStart(bool isDropIn)
@@ -37,10 +38,6 @@ public class EffectParry : FightEffect
         }
         
         FightPlayer.RegisterPreDamageEvent(this);
-        FightPlayer.AddSpeedModifier(0);
-        
-
-        // TODO: Dynamically add a projectile reflector on the player. it should be smaller than the hitbox to trigger the pre-damage mod
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -50,7 +47,6 @@ public class EffectParry : FightEffect
         {
             FightPlayer.SetAnimTrigger("parry_end");
         }
-        FightPlayer.RemoveSpeedModifier(0);
         FightPlayer.RemovePreDamageEvent(this);
     }
 

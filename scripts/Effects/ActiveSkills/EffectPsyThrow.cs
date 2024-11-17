@@ -64,6 +64,10 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
 
     public override void OnEffectStart(bool isDropIn)
     {
+        // remove Rollout & Parry
+        Player.RemoveEffect<EffectRollOut>(true);
+        Player.RemoveEffect<EffectParry>(true);
+        
         base.OnEffectStart(isDropIn);
         DurationRemaining = EffectConfig.PsyThrowConfig.GrabTime;
         _casterFp = Caster as FightPlayer;
@@ -71,8 +75,10 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
         {
             _casterFp.AddEffect<EffectPsyThrowReady>(FightPlayer, DurationRemaining-0.2f); // Let this effect expire slightly earlier to trigger auto-throw
         }
+        
         FightPlayer.SetAnimTrigger("psythrow_grabbed");
         SoundId = SFX.Play(SFXKeys.PsyThrowVictim, DefaultSoundDesc);
+        
     }
 
     public override void OnEffectEnd(bool interrupt)
