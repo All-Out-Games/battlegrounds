@@ -31,6 +31,9 @@ public class EffectDeath : FightEffectWithImmunity
             case "Fireball":
                 res = "death_poof";
                 break;
+            case "Thunderbolt":
+                res = "death_knock";
+                break;
         }
 
         if (res == "death")

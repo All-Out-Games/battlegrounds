@@ -430,6 +430,14 @@ public class Shop : System<Shop>
                     return (true, "");
                 case "gems_10000": player.Gem += 10000;
                     return (true, "");
+                case "coins_300": player.Coins += 300;
+                    return (true, "");
+                case "coins_1000": player.Coins += 1000;
+                    return (true, "");
+                case "coins_3000": player.Coins += 3000;
+                    return (true, "");
+                case "coins_10000": player.Coins += 10000;
+                    return (true, "");
             }
             Log.Error($"Unknown coin pack: {item.Id}");
             return (false, "");
@@ -548,6 +556,25 @@ public static class ShopData
                             new () { ItemId = "starter_pack3",     Icons = new() { "" } },
                         }
                     },
+                    new ShopRow()
+                    {
+                        DisplaySize = ItemDisplaySize.TripleEntry,
+                        Entries = new()
+                        {
+                            new () { ItemId = "coins_300",     Icons = new() { "" } },
+                            new () { ItemId = "coins_1000",             Icons = new() { "" } },
+                            new () { ItemId = "coins_3000",             Icons = new() { "" } },
+
+                        },
+                    },
+                    new ShopRow()
+                    {
+                        DisplaySize = ItemDisplaySize.SingleBigEntry,
+                        Entries = new()
+                        {
+                            new () { ItemId = "coins_10000",     Icons = new() { "" } },
+                        }
+                    }
                 }
             },
             
@@ -574,6 +601,12 @@ public static class ShopData
         new () { Id = "gems_1000",             ProductId = "66cd6aed2f5300747619dfcf", Currency = Currency.Sparks, Kind = ItemKind.Coins, },
         new () { Id = "gems_5000",             ProductId = "66cd6c7e0cad8f4bf7405094", Currency = Currency.Sparks, Kind = ItemKind.Coins, },
         new () { Id = "gems_10000",             ProductId = "66cd6c990cad8f4bf7405095", Currency = Currency.Sparks, Kind = ItemKind.Coins, },
+        
+        new () { Id = "coins_300",             ProductId = "673a845054d47ee427a09bf7", Currency = Currency.Sparks, Kind = ItemKind.Coins, },
+        new () { Id = "coins_1000",             ProductId = "673a846619d7981b15615360", Currency = Currency.Sparks, Kind = ItemKind.Coins, },
+        new () { Id = "coins_3000",             ProductId = "673a84a054d47ee427a09bfc", Currency = Currency.Sparks, Kind = ItemKind.Coins, },
+        new () { Id = "coins_10000",             ProductId = "673a84b95829946eee036a41", Currency = Currency.Sparks, Kind = ItemKind.Coins, },
+
     };
 
     public class Pack

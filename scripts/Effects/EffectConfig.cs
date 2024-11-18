@@ -1052,6 +1052,8 @@ public static class EffectConfig
         public static readonly float TotalSummonTime = 1.117f;
         public static readonly float ThunderSummonTime = 0.3f;
         public static readonly float ThunderStartTime = 0.275f; // Total delay of attack = Thunder summon + Thunder Start
+
+        public static readonly float AoeRange = 2f;
         
 
         public bool GetImmunity; // Immune during cast for lv 5

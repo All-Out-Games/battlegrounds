@@ -29,7 +29,7 @@ public class ReticleObject : Component
         float t = 0;
         while (t < duration)
         {
-            Vector2 s = new Vector2(Util.Lerp(start.X, end.X, t), Util.Lerp(start.Y, end.Y, t));
+            Vector2 s = new Vector2(Util.Lerp(start.X, end.X, t/duration), Util.Lerp(start.Y, end.Y, t/duration));
             t += Time.DeltaTime;
             Reticle.LocalScale = s;
             yield return null;

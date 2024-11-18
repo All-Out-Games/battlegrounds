@@ -305,8 +305,6 @@ public partial class FightPlayer
         
 
         #endregion
-        
-        
 
 
         #region Elemental
@@ -325,6 +323,12 @@ public partial class FightPlayer
         var summonThunderState = aoLayer.CreateState("BAT_003/summon", 0, false);
         aoLayer.CreateGlobalTransition(summonThunderState).CreateTriggerCondition(summonThunderTrigger);
         aoLayer.CreateTransition(summonThunderState, aoIdleState, true);
+        
+        var shockedTrigger = stateMachine.CreateVariable("shocked_start", StateMachineVariableKind.TRIGGER);
+        var shockedEndTrigger = stateMachine.CreateVariable("shocked_end", StateMachineVariableKind.TRIGGER);
+        var shockedState = aoLayer.CreateState("Electrocute_Loop", 0, true);
+        aoLayer.CreateGlobalTransition(shockedState).CreateTriggerCondition(shockedTrigger);
+        aoLayer.CreateTransition(shockedState, aoIdleState, false).CreateTriggerCondition(shockedEndTrigger);
 
         #endregion
     }

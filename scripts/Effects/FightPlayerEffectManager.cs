@@ -91,6 +91,14 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
         }
     }
 
+    public void AddElectrocute(Entity caster, float duration)
+    {
+        if (Network.IsServer)
+        {
+            CallClient_AddElectrocuteInternal(caster, duration);
+        }
+    }
+
     public void AddSafePortalCooldown(Entity caster, float duration)
     {
         CallClient_AddSafePortalCooldownInternal(caster, duration);
@@ -140,5 +148,11 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     {
         _player.AddEffect<EffectBurn>(caster.GetComponent<FightPlayer>(), duration,
             burn => { burn.PerSecondDmg = dps; });
+    }
+
+    [ClientRpc]
+    public void AddElectrocuteInternal(Entity caster, float duration)
+    {
+        _player.AddEffect<EffectElectricShock>(caster.GetComponent<FightPlayer>(), duration);
     }
 }
