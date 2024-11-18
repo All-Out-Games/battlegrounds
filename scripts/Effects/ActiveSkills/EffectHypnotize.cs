@@ -23,7 +23,7 @@ public class AbilityHypnotize : FightAbility
 
     public override bool CanTarget(Player player)
     {
-        return GenericCanTarget(player as FightPlayer) && !player.HasEffect<EffectHypnotize>();
+        return GenericCanTarget(player as FightPlayer) && !player.HasEffect<EffectHypnotize>() && Vector2.Distance(FightPlayer.Position, player.Position) < MaxDistance;
     }
 }
 

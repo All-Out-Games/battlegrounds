@@ -23,6 +23,11 @@ public class AbilityPsyThrow : FightAbility
             ? EffectConfig.PsyThrowConfig.Cooldown - 1
             : EffectConfig.PsyThrowConfig.Cooldown;
     }
+    
+    public override bool CanTarget(Player player)
+    {
+        return GenericCanTarget(player as FightPlayer) && !player.HasEffect<EffectPsyThrow>() && Vector2.Distance(FightPlayer.Position, player.Position) < MaxDistance;
+    }
 
     public static readonly string LaunchSkillKey = "PsyThrowLaunch";
 }

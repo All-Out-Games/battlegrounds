@@ -166,11 +166,19 @@ public class EffectElectricShock : FightEffect
     {
         base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("shocked_start", true);
+        FightPlayer.RegisterPreDamageEvent(this);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.SetAnimTrigger("shocked_end", true);
+        FightPlayer.RemovePreDamageEvent(this);
+    }
+
+    public override void PreDamageMod(ref FightPlayer.DamageInfo info)
+    {
+        base.PreDamageMod(ref info);
+        info.ReactionInfo.Flinch = false;
     }
 }

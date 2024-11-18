@@ -25,6 +25,7 @@ public class EffectBurn: FightEffect
     
     protected void Burn()
     {
+        if (!FightPlayer.Alive() || !FightPlayer.Damageable()) return;
         FightPlayer.DamageInfo selfDmgInfo = FightPlayer.DamageInfo.CreateSelfDamageInfo(PerSecondDmg);
         selfDmgInfo.SkillKey = SkillConfig.FireballNodeConfig.SkillKey;
         selfDmgInfo.SpecialDeathAnimation = true;
