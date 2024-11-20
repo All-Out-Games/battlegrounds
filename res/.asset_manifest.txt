@@ -420,9 +420,9 @@ environment/PvP/Tree_shadow.png - .ao - 66e74e1060ed1ef1ffbc582a - 9563307328288
 environment/PvP/Tree_shadow.png - .ao.astc - 67319dadada08dbbbde3fdaa - 6379953826246538218
 FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
 FightPlayerRig/fightplayer.merged_spine_rig - .ao - 6732fef8ada08dbbbde401b7 - 5391771586628157117
-FightPlayerRig/playercharacter.png - .ao - 67291733ada08dbbbde3f469 - 12249824151950965233
-FightPlayerRig/playercharacter.png - .ao.astc - 67291733ada08dbbbde3f46a - 8923593800054166488
-FightPlayerRig/playercharacter.spine - .ao - 67291734ada08dbbbde3f46d - 16262530574898830699
+FightPlayerRig/playercharacter.png - .ao - 673e32c2f6994d2906c21fb5 - 7354847076195692002
+FightPlayerRig/playercharacter.png - .ao.astc - 673e32c2f6994d2906c21fb4 - 10367718429478122696
+FightPlayerRig/playercharacter.spine - .ao - 673e32c2f6994d2906c21fb3 - 11471934895402857067
 FightPlayerRig/playercharacter_2.png - .ao - 67291734ada08dbbbde3f46f - 637839245613201654
 FightPlayerRig/playercharacter_2.png - .ao.astc - 67291734ada08dbbbde3f472 - 1780059217906997290
 FireballProjectile.prefab - .ao - 6739340802386857e8d33419 - 6615212460275438377

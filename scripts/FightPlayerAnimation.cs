@@ -57,7 +57,7 @@ public partial class FightPlayer
         aoLayer.CreateGlobalTransition(poofDeathState).CreateTriggerCondition(poofDeathTrigger);
         
         var swipedDeathTrigger = stateMachine.CreateVariable("death_swiped", StateMachineVariableKind.TRIGGER);
-        var swipedDeathState = aoLayer.CreateState("BAT_003/death_swiped", 0, false);
+        var swipedDeathState = aoLayer.CreateState("BAT_003/unused/death_no_HP2", 0, false);
         aoLayer.CreateGlobalTransition(swipedDeathState).CreateTriggerCondition(swipedDeathTrigger);
         
         #endregion

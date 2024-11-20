@@ -156,7 +156,7 @@ public class EffectThunderbolt : FightEffect
     }
 }
 
-public class EffectElectricShock : FightEffect
+public class EffectElectricShock : FightEffectWithNoFlinch
 {
     public override bool IsActiveEffect => true;
     protected override bool PreventMovement => true;

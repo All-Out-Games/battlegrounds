@@ -37,7 +37,7 @@ public class FireballProjectile : BaseProjectile
     {
         
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
-        if (fp != null && fp.Damageable())
+        if (fp.Alive() && fp.Damageable())
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
             info.SkillKey = SkillConfig.FireballNodeConfig.SkillKey;
@@ -55,6 +55,7 @@ public class FireballProjectile : BaseProjectile
                                 overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Parry;
             if (!Pierce)
             {
+                Log.Debug($"Fireball hit {fp.Name}!");
                 _animator.SpineInstance.SetAnimation("explode", false);
                 ModifySpeed(0.1f);
             }
