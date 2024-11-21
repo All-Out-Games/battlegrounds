@@ -12,8 +12,7 @@
   "local_scale": {
     "X": 1,
     "Y": 1
-  },
-  "network_position": true
+  }
 },
 {
   "cid": 1,

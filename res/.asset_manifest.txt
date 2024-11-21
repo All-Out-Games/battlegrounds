@@ -233,7 +233,7 @@ Befuddle_Hit.prefab - .ao - 66904de1b45eb9e8339c1be8 - 9947058021191885588
 BefuddleProjectile.prefab - .ao - 66a918fc96cebaeb1f329880 - 4708991272801069017
 BloodVFX.prefab - .ao - 66a7fba36732dee0bb811e92 - 12549604446384681181
 ClawSwipe.prefab - .ao - 66a1a7616732dee0bb811d55 - 1318749154253486373
-Crate.prefab - .ao - 6739191202386857e8d33417 - 12289066114908336557
+Crate.prefab - .ao - 673e9398f6994d2906c21fbf - 3657649699384468690
 CrateItemDrop.prefab - .ao - 66f0b92d60ed1ef1ffbc5c39 - 10226883231708499473
 environment/AFK_tmp/cliff.png - .ao - 66bbe90083ee6f3bbee19356 - 1844921976484692892
 environment/AFK_tmp/cliff.png - .ao.astc - 67319da1ada08dbbbde3fcfd - 17182075144696083159
