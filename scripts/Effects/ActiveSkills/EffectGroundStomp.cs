@@ -57,6 +57,7 @@ public class EffectGroundStomp : FightEffectWithNoFlinch
                     entity.LocalScale *= Config.StompSizeMultiplier;
                 });
             Stomp();
+            FightPlayer.SpineAnimator.OnEvent -= OnAnimationEvent;
         }
     }
 

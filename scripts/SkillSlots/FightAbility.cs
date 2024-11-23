@@ -3,7 +3,8 @@ using Assembly.scripts.Effects.ActiveSkills;
 
 internal class DefaultTargettingEffect : AEffect 
 {
-    public override bool IsActiveEffect => true;
+    public override bool IsActiveEffect => false;
+    public override bool GetInterruptedByNewActiveEffects => true;
     public override void OnEffectStart(bool isDropIn) {}
     public override void OnEffectUpdate() {}
     public override void OnEffectEnd(bool interrupt) {}

@@ -161,6 +161,7 @@ public class EffectElectricShock : FightEffectWithNoFlinch
     public override bool IsActiveEffect => true;
     protected override bool PreventMovement => true;
     public override bool BlockAbilityActivation => true;
+    
 
     public override void OnEffectStart(bool isDropIn)
     {
