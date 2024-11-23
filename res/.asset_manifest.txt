@@ -30,6 +30,17 @@ ability_icon_tmp/SpoonThrow_Tmp.png - .ao - 66859962b45eb9e8339c1066 - 121737389
 ability_icon_tmp/SpoonThrow_Tmp.png - .ao.astc - 67319da0ada08dbbbde3fcfb - 5885993492820915402
 ability_icon_tmp/TotalDarkness_tmp.png - .ao - 66859962b45eb9e8339c106a - 9196926196021730716
 ability_icon_tmp/TotalDarkness_tmp.png - .ao.astc - 67319da0ada08dbbbde3fcfa - 9580703127013150876
+Ability_Preview/brawler/battle_cry.gif - .ao - 6741846cf6994d2906c2219d - 6151974846651838479
+Ability_Preview/brawler/claw_slash.gif - .ao - 6741846df6994d2906c2219f - 10153879491822782299
+Ability_Preview/brawler/double_punch.gif - .ao - 67416e02f6994d2906c22185 - 9873396740306985464
+Ability_Preview/brawler/dual_claw.gif - .ao - 6741846cf6994d2906c2219e - 5259445629725049637
+Ability_Preview/brawler/ground_stomp.gif - .ao - 67416e01f6994d2906c22182 - 246674414570090228
+Ability_Preview/brawler/leaping_fist_slam.gif - .ao - 6741846ef6994d2906c221a4 - 14648941187716982619
+Ability_Preview/brawler/rage.gif - .ao - 67416e02f6994d2906c22184 - 15016048855176709270
+Ability_Preview/brawler/self_destruct.gif - .ao - 67416e00f6994d2906c2217c - 12336116271291397720
+Ability_Preview/brawler/shoulder_crash.gif - .ao - 67416e00f6994d2906c2217d - 10655165847756932413
+Ability_Preview/defense/rollout.gif - .ao - 6741846ef6994d2906c221a3 - 15525283211908364538
+Ability_Preview/defense/shield.gif - .ao - 6741846ef6994d2906c221a5 - 6625223667812044926
 AbilityIcon_Merged/basic/attack_boost.png - .ao - 669018edb45eb9e8339c1b6e - 10263147652751871221
 AbilityIcon_Merged/basic/attack_boost.png - .ao.astc - 67319d80ada08dbbbde3fada - 18303683967893344179
 AbilityIcon_Merged/basic/attack_boost_2.png - .ao - 669018eeb45eb9e8339c1b76 - 17912286123499738307
@@ -224,7 +235,7 @@ AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao - 66a9c97596cebaeb1f3
 AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao.astc - 67319d8bada08dbbbde3fb97 - 3376670361412577081
 AbilityIcon_Separate/x_icon_ability.png - .ao - 66a9cdbb96cebaeb1f3299ae - 2967783583052140701
 AbilityIcon_Separate/x_icon_ability.png - .ao.astc - 67319d8bada08dbbbde3fb98 - 9625147596235807178
-AbilityLoadoutPage.prefab - .ao - 67394d5f02386857e8d33428 - 4230167331864994544
+AbilityLoadoutPage.prefab - .ao - 67417fcbf6994d2906c22191 - 5839107476374477914
 AbilityUpgradeDialog.prefab - .ao - 66cf776c60ed1ef1ffbc4d04 - 16640627896841390257
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
 BattlegroundInfoOverlay.prefab - .ao - 673949b202386857e8d33421 - 8177987076312023311
@@ -575,7 +586,7 @@ ShadowStepVFX.prefab - .ao - 66859955b45eb9e8339c0ffd - 11550510081096301958
 Shield_FX.prefab - .ao - 66a7fb546732dee0bb811e8e - 10171497738848877739
 ShurikenProjectile.prefab - .ao - 66a91b0496cebaeb1f32988f - 1922884962774569859
 SkillTreeItem.prefab - .ao - 66bfe3a183ee6f3bbee194d0 - 13262934492951160510
-SkillTreePage.prefab - .ao - 67394d5f02386857e8d33427 - 1221463925342102884
+SkillTreePage.prefab - .ao - 67416e00f6994d2906c2217f - 12158131299175130820
 SpikeShield_FX.prefab - .ao - 66f9d9cf60ed1ef1ffbc5fc8 - 11972459816054532572
 SpoonProjectile.prefab - .ao - 66a91b0496cebaeb1f329890 - 11818330664990311604
 Stat_Aura.prefab - .ao - 66b1373ccf7a5e4159a6c4a4 - 11034765975460030984
