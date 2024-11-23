@@ -62,4 +62,13 @@
       "W": -800
     }
   }
+},
+{
+  "cid": 3,
+  "aoid": "40718802539573:1732338066533476000",
+  "component_type": "Internal_Component",
+  "internal_component_type": "UICanvas",
+  "data": {
+
+  }
 }

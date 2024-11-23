@@ -1,8 +1,8 @@
 13
-64424509442
-204445980966275 1722289763589230100
+1
+40917145792605 1732338145997888800
 {
-  "name": "Preview_Txt",
+  "name": "NoPreview",
   "local_enabled": true,
   "local_position": {
 
@@ -17,14 +17,14 @@
 },
 {
   "cid": 1,
-  "aoid": "204476007701574:1722289777806434400",
+  "aoid": "40946983442682:1732338157952070800",
   "component_type": "Internal_Component",
-  "internal_component_type": "UIText",
+  "internal_component_type": "UIImage",
   "data": {
-    "text": "Preview Coming Soon...",
-    "settings": {
-      "do_drop_shadow": true,
-      "do_outline": true
+    "tint": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0
     }
   }
 }
