@@ -775,8 +775,8 @@ public static class EffectConfig
     public struct HypnotizeConfig
     {
         public static readonly float HypnotizeTime = 3.6f;
-        public static readonly float HypnotizeRange = 5f;
-        public static readonly float Cooldown = 15f;
+        public static readonly float HypnotizeRange = 8f;
+        public static readonly float Cooldown = 16f;
     }
 
     #endregion
