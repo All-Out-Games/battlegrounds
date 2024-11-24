@@ -34,11 +34,6 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
-    "insets": {
-      "X": 0,
-      "Y": 0,
-      "Z": 0,
-      "W": 0
-    }
+
   }
 }
