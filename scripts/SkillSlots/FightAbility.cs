@@ -1,13 +1,18 @@
 using AO;
 using Assembly.scripts.Effects.ActiveSkills;
 
-internal class DefaultTargettingEffect : AEffect 
+internal class DefaultTargettingEffect : FightEffect
 {
     public override bool IsActiveEffect => false;
     public override bool GetInterruptedByNewActiveEffects => true;
     public override void OnEffectStart(bool isDropIn) {}
-    public override void OnEffectUpdate() {}
+
+    public override void OnEffectUpdate()
+    {
+    }
     public override void OnEffectEnd(bool interrupt) {}
+
+    protected override int InterruptLevel => 1000;
 }
 
 public partial class FightAbility : Ability

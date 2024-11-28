@@ -60,7 +60,7 @@ public class AbilityPsyThrowLaunch : FightAbility
 
 public class EffectPsyThrow : FightEffectWithNoFlinch
 {
-    public override bool IsActiveEffect => false;
+    public override bool IsActiveEffect => true;
 
     private FightPlayer _casterFp;
 
