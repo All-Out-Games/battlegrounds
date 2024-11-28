@@ -281,8 +281,7 @@ public partial class FightPlayer
         var knockDownEndState = aoLayer.CreateState("BAT_003/knocked_down_get_up", 0, false);
 
         aoLayer.CreateTransition(knockDownStartState, knockDownLoopState, true);
-        aoLayer.CreateTransition(knockDownLoopState, knockDownEndState, false)
-            .CreateTriggerCondition(knockDownRecoverTrigger);
+        aoLayer.CreateGlobalTransition(knockDownEndState).CreateTriggerCondition(knockDownRecoverTrigger);
         aoLayer.CreateTransition(knockDownEndState, aoIdleState, true);
         aoLayer.CreateGlobalTransition(knockDownStartState).CreateTriggerCondition(knockDownTrigger);
         
