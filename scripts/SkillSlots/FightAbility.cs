@@ -56,7 +56,7 @@ public partial class FightAbility : Ability
 
     protected bool GenericCanTarget(FightPlayer player)
     {
-        return player.CurrentHealth > 0;
+        return player.CurrentHealth > 0 && player.PlayerStatus == PlayerStatus.Combat;
     }
 
     public override bool OnTryActivate(List<Player> targetPlayers, Vector2 positionOrDirection, float magnitude)

@@ -61,13 +61,17 @@ public class EffectBleed : FightEffect
     /// </summary>
     public void Stack(float duration, int dps)
     {
-        var fade = _aura?.Entity?.GetComponent<FadeAfterStart>();
+        if (_aura.Alive() && _aura.Entity.Alive())
+        {
+            var fade = _aura.Entity.GetComponent<FadeAfterStart>();
+            if (fade.Alive() && DurationRemaining > fade.ElapsedTime)
+            {
+                fade.ExtendLifetime(DurationRemaining - fade.ElapsedTime + 0.15f);
+            }
+        }
+        
         DurationRemaining = float.Max(duration, DurationRemaining);
         PerSecondDmg += dps;
-        if (fade!=null && DurationRemaining > fade.ElapsedTime)
-        {
-            fade.ExtendLifetime(DurationRemaining - fade.ElapsedTime);
-        }
     }
 
     public static void AddOrStackBleed(FightPlayer fp, Entity source, float time, int dps)
