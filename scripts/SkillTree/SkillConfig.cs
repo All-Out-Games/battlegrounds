@@ -77,7 +77,7 @@ public static partial class SkillConfig
         public int BaseDamageKey; // A fixed number for the base damage of the skill
         public string RangeDescriptionKey = "N/A";
         public string CooldownKey = "N/A";
-        
+
         // SPECIAL VALUES:
         // DescriptionKey / BaseDamageKey / RangeDescriptionKey / CooldownKey are used in 
         // You can fill DescriptionKey / RangeDescriptionKey / CooldownKey with '%OVERRIDE%' to trigger a call of
@@ -114,6 +114,7 @@ public static partial class SkillConfig
         public string SkillKey;
         public string IconPath;
         public string AbilityIconPath; // These icons do not have a backplate, used in ability slots
+        public string AbilityPreviewPath; // Info screen GIF previews
         public string[] ChildrenNodeKeys;
         public string[] ParentNodeKeys;
         
@@ -144,6 +145,7 @@ public static partial class SkillConfig
             UIPosition = default;
             SkillKey = "Empty";
             IconPath = FightAbility.DefaultIconPath;
+            AbilityPreviewPath = "Empty";
             ChildrenNodeKeys = new string[] { };
             ParentNodeKeys = new string[] { };
             UpgradeGemCost = new int[] { };

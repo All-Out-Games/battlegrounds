@@ -39,4 +39,14 @@
       "Y": 198
     }
   }
+},
+{
+  "cid": 2,
+  "aoid": "48319349238280:1732341111623095900",
+  "component_type": "Mono_Component",
+  "mono_component_type": "AbilityPreview",
+  "data": {
+    "_previewGif": "40770204154772:1732338087127063700",
+    "_nopreviewScreen": "40917145792605:1732338145997888800"
+  }
 }

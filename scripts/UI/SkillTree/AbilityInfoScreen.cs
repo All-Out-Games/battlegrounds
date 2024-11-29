@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.UI.Loadout;
 
 namespace Assembly.scripts.UI.SkillTree;
 
@@ -16,6 +17,8 @@ public class AbilityInfoScreen : Component
 
     [Serialized] private Entity _damageText;
     [Serialized] private Entity _nondamageText;
+
+    [Serialized] private AbilityPreview _preview;
 
     public void SetDescription(string skillKey)
     {
@@ -40,7 +43,7 @@ public class AbilityInfoScreen : Component
         _description.Text = stConfig.DescriptionTextKey == "%OVERRIDE%" ? SkillConfig.GetOverrideDescription(stConfig.SkillKey, FightClubUtils.GetLocalFightPlayer()) : stConfig.DescriptionTextKey;
         _cooldown.Text = stConfig.CooldownKey == "%OVERRIDE%" ? SkillConfig.GetOverrideCooldown(stConfig.SkillKey, FightClubUtils.GetLocalFightPlayer()) : stConfig.CooldownKey;
         _range.Text = stConfig.RangeDescriptionKey == "%OVERRIDE%" ? SkillConfig.GetOverrideRange(stConfig.SkillKey, FightClubUtils.GetLocalFightPlayer()) : stConfig.RangeDescriptionKey;;
-        
+        _preview.SetPreview(stConfig.AbilityPreviewPath);
         
         if (stConfig.BaseDamageKey == 0)
         {
