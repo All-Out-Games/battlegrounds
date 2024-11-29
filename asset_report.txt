@@ -926,7 +926,6 @@
 192 bytes - UI/SkillTree/empty_channels/horizontal_empty.png.ao
 184 bytes - UI/SkillTree/full_channels/horizontal_empty.png.ao
 184 bytes - UI/SkillTree/full_channels/vertical_empty.png.ao
-176 bytes - FightPlayerRig/fightplayer.merged_spine_rig.ao
 176 bytes - UI/SkillTree/full_channels/horizontal_empty.png.ao.astc
 176 bytes - UI/SkillTree/full_channels/vertical_empty.png.ao.astc
 176 bytes - UI/XPBar/exp_bar/notch_back.png.ao.astc

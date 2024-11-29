@@ -458,7 +458,6 @@ environment/PvP/Tree2.png - .ao.astc - 67319dadada08dbbbde3fda9 - 13626427332749
 environment/PvP/Tree_shadow.png - .ao - 66e74e1060ed1ef1ffbc582a - 956330732828844023
 environment/PvP/Tree_shadow.png - .ao.astc - 67319dadada08dbbbde3fdaa - 6379953826246538218
 FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
-FightPlayerRig/fightplayer.merged_spine_rig - .ao - 6732fef8ada08dbbbde401b7 - 5391771586628157117
 FightPlayerRig/playercharacter.png - .ao - 673e32c2f6994d2906c21fb5 - 7354847076195692002
 FightPlayerRig/playercharacter.png - .ao.astc - 673e32c2f6994d2906c21fb4 - 10367718429478122696
 FightPlayerRig/playercharacter.spine - .ao - 673e32c2f6994d2906c21fb3 - 11471934895402857067
