@@ -265,6 +265,7 @@ AbilityIcon_Separate/x_icon_ability.png - .ao - 66a9cdbb96cebaeb1f3299ae - 29677
 AbilityIcon_Separate/x_icon_ability.png - .ao.astc - 67319d8bada08dbbbde3fb98 - 9625147596235807178
 AbilityLoadoutPage.prefab - .ao - 674934caf6994d2906c2377c - 11952140790991749339
 AbilityUpgradeDialog.prefab - .ao - 66cf776c60ed1ef1ffbc4d04 - 16640627896841390257
+AdCrate.prefab - .ao - 674a50a5f6994d2906c23cfa - 6334134733328222967
 BattleCry_Shockwave.prefab - .ao - 66a91fe396cebaeb1f32989d - 15761732561393860752
 BattlegroundInfoOverlay.prefab - .ao - 673949b202386857e8d33421 - 8177987076312023311
 BearTrap.prefab - .ao - 66a91b0496cebaeb1f329889 - 7049423839909874616

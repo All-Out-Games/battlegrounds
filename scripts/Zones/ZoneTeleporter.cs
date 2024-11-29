@@ -70,7 +70,7 @@ public class ZoneTeleporter : Component
                 {
                     return;
                 }
-                if (newStatus == PlayerStatus.Safe)
+                if (newStatus == PlayerStatus.Safe && player.PlayerStatus == PlayerStatus.Combat)
                 {
                     player.GetEffectMgr().AddSafePortalCooldown(player.Entity, 60);
                 }

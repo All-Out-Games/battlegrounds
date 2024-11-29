@@ -38,4 +38,6 @@ public class SceneReferenceHolder : Component
     [Serialized] public Texture Background1;
     [Serialized] public Texture Background2;
     [Serialized] public Texture Background3;
+
+    [Serialized] public Entity[] SceneAdCrateSpawnLocations;
 }

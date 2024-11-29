@@ -855,6 +855,7 @@
 760 bytes - VFX/BloodSplurt/BAT003_blood_splurt.png.ao
 752 bytes - KunaiProjectile.prefab.ao
 744 bytes - ShurikenProjectile.prefab.ao
+728 bytes - AdCrate.prefab.ao
 688 bytes - environment/CentralHub/Fountain/Fountain_flow3.png.ao.astc
 672 bytes - UI/XPBar/exp_bar/level_backing.png.ao
 664 bytes - FireballProjectile.prefab.ao
