@@ -458,6 +458,7 @@ environment/PvP/Tree2.png - .ao.astc - 67319dadada08dbbbde3fda9 - 13626427332749
 environment/PvP/Tree_shadow.png - .ao - 66e74e1060ed1ef1ffbc582a - 956330732828844023
 environment/PvP/Tree_shadow.png - .ao.astc - 67319dadada08dbbbde3fdaa - 6379953826246538218
 FatPlayerCollision.prefab - .ao - 6696cf93b45eb9e8339c1e6e - 6905927768021425603
+FightPlayerRig/fightplayer.merged_spine_rig - .ao - 67492df3f6994d2906c23771 - 5391771586628157117
 FightPlayerRig/playercharacter.png - .ao - 673e32c2f6994d2906c21fb5 - 7354847076195692002
 FightPlayerRig/playercharacter.png - .ao.astc - 673e32c2f6994d2906c21fb4 - 10367718429478122696
 FightPlayerRig/playercharacter.spine - .ao - 673e32c2f6994d2906c21fb3 - 11471934895402857067
@@ -613,7 +614,7 @@ ShadowStepVFX.prefab - .ao - 66859955b45eb9e8339c0ffd - 11550510081096301958
 Shield_FX.prefab - .ao - 66a7fb546732dee0bb811e8e - 10171497738848877739
 ShurikenProjectile.prefab - .ao - 66a91b0496cebaeb1f32988f - 1922884962774569859
 SkillTreeItem.prefab - .ao - 66bfe3a183ee6f3bbee194d0 - 13262934492951160510
-SkillTreePage.prefab - .ao - 67416e00f6994d2906c2217f - 12158131299175130820
+SkillTreePage.prefab - .ao - 67492d0bf6994d2906c2376f - 12600799557744379726
 SpikeShield_FX.prefab - .ao - 66f9d9cf60ed1ef1ffbc5fc8 - 11972459816054532572
 SpoonProjectile.prefab - .ao - 66a91b0496cebaeb1f329890 - 11818330664990311604
 Stat_Aura.prefab - .ao - 66b1373ccf7a5e4159a6c4a4 - 11034765975460030984
