@@ -1038,7 +1038,7 @@ public partial class FightPlayer : Player
     public void OnEnterSpectatorMode()
     {
         PlayerSwitchZoneEvent?.Invoke((int)PlayerStatus.Spectator);
-        AddEffect<EffectSpectralSpawn>(this, 15);
+        AddEffect<EffectSpectralSpawn>(this, 40);
         if (IsLocal)
         {
             SkillSlotsManager.SkillSlotsPanelEnable(true);
