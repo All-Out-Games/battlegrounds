@@ -53,6 +53,7 @@ public static class GlobalData
     public static Vector4 CritNumberColor = new Vector4(1, 0.68f, 0, 1);
     public static Vector4 ShieldNumberColor = Vector4.LightBlue;
     public static Vector4 OutputDamageNumberColor = Vector4.White;
+    public static Vector4 GreyColor = new Vector4(0.2f, 0.2f, 0.2f, 1f);
     
     // Skill Tree
     public static int GridMaxX = 2;

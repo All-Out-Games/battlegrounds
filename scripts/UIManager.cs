@@ -2,7 +2,6 @@
 using AO;
 using Assembly.scripts;
 using Assembly.scripts.UI;
-using Shop = Assembly.scripts.UI.Shop;
 
 public partial class UIManager : System<UIManager>
 {
@@ -16,9 +15,6 @@ public partial class UIManager : System<UIManager>
 
     public string PopupTxt;
     public float PopupRemainingTime;
-
-    public float TimeShopOpened;
-    public bool IsShowingShopWindow;
 
 
     public static FontAsset DefaultFont = Assets.KeepLoaded<FontAsset>("$AO/fonts/Barlow-SemiBold.ttf");
@@ -137,6 +133,8 @@ public partial class UIManager : System<UIManager>
                 window.Value.CloseWindow();
             }
         }
+
+        BgShop.Instance.ItemShopOpen = false;
         return;
     }
 
@@ -250,12 +248,6 @@ public partial class UIManager : System<UIManager>
         return windowRect;
     }
     
-    public void OpenShop()
-    {
-        TimeShopOpened = Time.TimeSinceStartup;
-        IsShowingShopWindow = true;
-    }
-    
     
     public AllOut.DeferImpl AnimateWindowIn(ref Rect rect, float openTime)
     {
@@ -304,12 +296,6 @@ public partial class UIManager : System<UIManager>
                 PopupTxt = "";
             }
             
-        }
-        // Shop (Temporary, waiting for Engine Feature)
-        if (IsShowingShopWindow)
-        {
-            using var _1 = UI.PUSH_ID("SHOP_WINDOW");
-            IsShowingShopWindow = Shop.Instance.DrawShop("Shop", ShopData.MainWorldShopDefinition);
         }
 
         // Global UI Update

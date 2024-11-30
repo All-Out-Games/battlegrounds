@@ -184,10 +184,7 @@ public class ResourceOverlayWindow : BaseUIWindow
     
     public void OnShopButtonClicked()
     {
-        if (!UIManager.Instance.IsShowingShopWindow)
-        {
-            UIManager.Instance.OpenShop();
-        }
+        BgShop.Instance.ItemShopOpen = true;
     }
 
     public void UpdateCurExpTxt(int exp)
