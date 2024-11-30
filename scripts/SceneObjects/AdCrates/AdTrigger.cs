@@ -7,6 +7,10 @@ public class AdTrigger : Component
     [Serialized] public Interactable Trigger;
     
     protected SyncVar<bool> _claimed = new SyncVar<bool>();
+    
+    public string RewardId = "None";
+    public string AdPromptText = "Reward Config Not Found.";
+    public string AdPromptTexturePath = FightAbility.DefaultIconPath;
 
     public bool Claimed
     {
@@ -41,13 +45,14 @@ public class AdTrigger : Component
     {
         if (Ads.IsAdAvailable())
         {
-            Ads.PromptAd("temp", "TempTitle", "Watch an ad to get", Assets.GetAsset<Texture>(SkillConfig.GetIconPath("Rollout")));
+            Claimed = true;
+            Ads.PromptAd(RewardId, "Watch Ad to Claim", AdPromptText, Assets.GetAsset<Texture>(AdPromptTexturePath));
         }
         else
         {
             if (p.IsLocal)
             {
-                Notifications.Show("Ads are unavailable at this moment.");
+                Notifications.Show("Ads are unavailable at this moment. They are only available on mobile.");
             }
         }
     }

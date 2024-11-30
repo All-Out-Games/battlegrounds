@@ -7,24 +7,33 @@ public struct AdCrateConfig
     public string RewardId;
     public Vector4 Tint;
     public float Chance;
+    public string InteractableText;
+    public string AdPromptText;
+    public string AdPromptTexture;
 }
 public class AdCrateSpawner : System<AdCrateSpawner>
 {
     public Entity[] CrateSpawnLocation; // TODO: Configs for Coin / Glory / XP / XP Booster / Spectral Spawn
     private bool _enabled;
-    private static AdCrateConfig[] CrateConfigs = new []
+    public static AdCrateConfig[] CrateConfigs = new []
     {
         new AdCrateConfig()
         {
             RewardId = "xpBoost",
             Tint = Vector4.One,
             Chance = 1,
+            InteractableText = "XP Booster",
+            AdPromptText = "Watch an Ad to claim 5 min 3x XP boost.",
+            AdPromptTexture = "Props/DropItems/ExpPotionS.png"
         },
         new AdCrateConfig()
         {
             RewardId = "xp200",
             Tint = Vector4.One,
-            Chance = 1
+            Chance = 1,
+            InteractableText = "200 XP",
+            AdPromptText = "Watch an Ad to claim 200 XP. You get double if you are lower than Lv. 15.",
+            AdPromptTexture = "Props/DropItems/ExpPotionM.png"
         }
     };
     
@@ -45,6 +54,37 @@ public class AdCrateSpawner : System<AdCrateSpawner>
         }
 
         
+    }
+
+    public override void Awake()
+    {
+        base.Awake();
+        Ads.SetRewardHandler(AdRewardHandler);
+    }
+
+    private bool AdRewardHandler(Player p, string id)
+    {
+        FightPlayer player = p as FightPlayer;
+        if (player.Alive())
+        {
+            int lv = player.Level;
+            switch (id)
+            {
+                case "xpBoost":
+                    player.AddExpBoostTime(5, 3);
+                    break;
+                case "xp200":
+                    int xp = 200;
+                    if (lv < 15)
+                    {
+                        xp *= 2;
+                    }
+
+                    player.Exp += xp;
+                    break;
+            }
+        }
+        return false;
     }
 
     private void SpawnAdCrate()
@@ -77,7 +117,7 @@ public class AdCrateSpawner : System<AdCrateSpawner>
                                 entity.Destroy();
                                 return;
                             }
-                            adCrate.CallClient_Initialization(cfg.Tint, cfg.RewardId);
+                            adCrate.CallClient_Initialization(cfg.Tint, cfg.RewardId, cfg.AdPromptText, cfg.AdPromptTexture, cfg.InteractableText);
                         });
                 }
             }

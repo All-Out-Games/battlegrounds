@@ -11,8 +11,6 @@ public partial class AdCrate : AdTrigger
     
     public static Prefab AdCratePrefab = Assets.KeepLoaded<Prefab>("AdCrate.prefab");
 
-    public string RewardId;
-
     public override void Awake()
     {
         base.Awake();
@@ -36,7 +34,7 @@ public partial class AdCrate : AdTrigger
     /// CAUTION: DO NOT CALL THIS EXCEPT IN THE SPAWN ROUTINE
     /// </summary>
     [ClientRpc]
-    public void Initialization(Vector4 tint, string rewardId)
+    public void Initialization(Vector4 tint, string rewardId, string promptText,string texturePath, string interactableText)
     {
         Fade.SetPersistFadeTime(GlobalData.AdCrateLifeTime, GlobalData.AdCrateLifeTime+1);
         if (Network.IsClient)
@@ -46,6 +44,9 @@ public partial class AdCrate : AdTrigger
 
         Animator.SpineInstance.ColorMultiplier = tint;
         RewardId = rewardId;
+        AdPromptText = promptText;
+        AdPromptTexturePath = texturePath;
+        Trigger.Text = interactableText;
     }
 
     [ClientRpc]
@@ -87,15 +88,16 @@ public partial class AdCrate : AdTrigger
     public override void OnInteract(Player p)
     {
         base.OnInteract(p);
-        CallClient_CrateBreak();
+        if (Network.IsServer && Claimed)
+        {
+            CallClient_CrateBreak();
+        }
     }
     
     [ClientRpc]
     public void CrateBreak(){
         Animator.SpineInstance.StateMachine.SetTrigger("break");
         Fade.FadeImmediately();
-        // Server authoritatively spawn the item dropped.
-        // Pass the last damage direction to push against the direction of the player who broke them 
         if (Network.IsClient)
         {
             SFX.Play(SFXKeys.CrateBreakAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });

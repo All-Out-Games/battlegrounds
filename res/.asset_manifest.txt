@@ -509,6 +509,10 @@ Props/DropItems/coin/coin_3.png - .ao - 66f09fe760ed1ef1ffbc5c23 - 5363668985217
 Props/DropItems/coin/coin_3.png - .ao.astc - 67319d8cada08dbbbde3fbb7 - 14306083380352802926
 Props/DropItems/ExpPotionL.png - .ao - 66ff0a2c60ed1ef1ffbc6177 - 8219145556991433754
 Props/DropItems/ExpPotionL.png - .ao.astc - 67319d8bada08dbbbde3fba7 - 2525985924495697265
+Props/DropItems/ExpPotionM.png - .ao - 674a62c5f6994d2906c23d7c - 290119874421257318
+Props/DropItems/ExpPotionM.png - .ao.astc - 674a62c5f6994d2906c23d7e - 14458157971725379110
+Props/DropItems/ExpPotionS.png - .ao - 674a62c5f6994d2906c23d79 - 5187187413695356424
+Props/DropItems/ExpPotionS.png - .ao.astc - 674a62c4f6994d2906c23d71 - 219346974810243752
 Props/DropItems/HealthPotionL.png - .ao - 66f09fe760ed1ef1ffbc5c29 - 4208628815274255268
 Props/DropItems/HealthPotionL.png - .ao.astc - 67319d8cada08dbbbde3fbac - 8113467239835211696
 Props/DropItems/HealthPotionM.png - .ao - 66f09fe660ed1ef1ffbc5c15 - 13279382085380233680
@@ -519,6 +523,10 @@ Props/DropItems/MagicPunchPotion.png - .ao - 6709e93e60ed1ef1ffbc66dd - 17158289
 Props/DropItems/MagicPunchPotion.png - .ao.astc - 67319d8cada08dbbbde3fbaf - 3869268109048727669
 Props/DropItems/RagePotion.png - .ao - 6709e3fb60ed1ef1ffbc66d6 - 17007665639985188025
 Props/DropItems/RagePotion.png - .ao.astc - 67319d8cada08dbbbde3fbb2 - 482231052008212679
+Props/DropItems/SpectralPotion.png - .ao - 674a62c4f6994d2906c23d72 - 8847969382845190149
+Props/DropItems/SpectralPotion.png - .ao.astc - 674a62c4f6994d2906c23d73 - 3254432993480129186
+Props/DropItems/VengeancePotion.png - .ao - 674a62c5f6994d2906c23d77 - 14612219104380000043
+Props/DropItems/VengeancePotion.png - .ao.astc - 674a62c5f6994d2906c23d78 - 5622864394937217667
 Props/GroundRecticles/ground_reticle.png - .ao - 673a5d6e02386857e8d33460 - 11804843950943063610
 Props/GroundRecticles/ground_reticle.png - .ao.astc - 673a5d6e02386857e8d33461 - 1278615493117429830
 Props/GroundRecticles/lightning_reticle.png - .ao - 673a5d6d02386857e8d3345e - 57652706653587766
