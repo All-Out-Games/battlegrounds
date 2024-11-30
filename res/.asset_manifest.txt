@@ -525,8 +525,8 @@ Props/DropItems/MagicPunchPotion.png - .ao - 6709e93e60ed1ef1ffbc66dd - 17158289
 Props/DropItems/MagicPunchPotion.png - .ao.astc - 67319d8cada08dbbbde3fbaf - 3869268109048727669
 Props/DropItems/RagePotion.png - .ao - 6709e3fb60ed1ef1ffbc66d6 - 17007665639985188025
 Props/DropItems/RagePotion.png - .ao.astc - 67319d8cada08dbbbde3fbb2 - 482231052008212679
-Props/DropItems/SpectralPotion.png - .ao - 674a62c4f6994d2906c23d72 - 8847969382845190149
-Props/DropItems/SpectralPotion.png - .ao.astc - 674a62c4f6994d2906c23d73 - 3254432993480129186
+Props/DropItems/SpectralPotion.png - .ao - 674ac02ff6994d2906c23e5c - 6601265293041560186
+Props/DropItems/SpectralPotion.png - .ao.astc - 674ac02ff6994d2906c23e5b - 11204695746865618386
 Props/DropItems/VengeancePotion.png - .ao - 674a62c5f6994d2906c23d77 - 14612219104380000043
 Props/DropItems/VengeancePotion.png - .ao.astc - 674a62c5f6994d2906c23d78 - 5622864394937217667
 Props/GroundRecticles/ground_reticle.png - .ao - 673a5d6e02386857e8d33460 - 11804843950943063610

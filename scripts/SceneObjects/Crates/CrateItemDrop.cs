@@ -218,6 +218,9 @@ public partial class CrateItemDrop : Component
                 case "RagePotion":
                     EffectRage.CastOrExtendRage(fp, 7.5f);
                     break;
+                case "SpectralPotion":
+                    fp.SpectralCount += 1;
+                    break;
             }
             
             // For the local player, spawn a text

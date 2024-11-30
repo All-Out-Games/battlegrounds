@@ -57,6 +57,14 @@ namespace Assembly.scripts.SceneObjects.Crates
             Tint = new Vector4(1f, 0.1f, 0.1f, 1f)
         };
         
+        public static CratesConfig SpectralPotionCfg = new CratesConfig()
+        {
+            Prob = 15,
+            HitPoint = 3,
+            ItemName = "SpectralPotion",
+            Tint = new Vector4(0.4f, 0f, 0.99f, 1f)
+        };
+        
         // Modify this list and create corresponding Item config in CrateDropConfig.cs
         public static List<CratesConfig> AllPossibleItems = new List<CratesConfig>()
         {
@@ -66,7 +74,8 @@ namespace Assembly.scripts.SceneObjects.Crates
             CoinsDropCfg,
             ExpPotionLCfg,
             MagicPunchPotionCfg,
-            RagePotionCfg
+            RagePotionCfg,
+            SpectralPotionCfg
         };
 
         public CratesConfig()

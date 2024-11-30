@@ -85,6 +85,13 @@ namespace Assembly.scripts.SceneObjects.Crates
             DropTexturePath = "Props/DropItems/RagePotion.png"
         };
 
+        public static readonly CrateDropConfig SpectralPotionConfig = new CrateDropConfig()
+        {
+            DropName = "SpectralPotion",
+            DropDisplayName = "Spectral Potion",
+            DropTexturePath = "Props/DropItems/SpectralPotion.png"
+        };
+
         public static readonly Dictionary<string, CrateDropConfig> CrateDropConfigs = new()
         {
             {CoinsConfig.DropName, CoinsConfig},
@@ -93,7 +100,8 @@ namespace Assembly.scripts.SceneObjects.Crates
             {HealthPotionLConfig.DropName, HealthPotionLConfig},
             {ExpPotionLConfig.DropName, ExpPotionLConfig},
             {MagicPunchPotionConfig.DropName, MagicPunchPotionConfig},
-            {RagePotionConfig.DropName, RagePotionConfig}
+            {RagePotionConfig.DropName, RagePotionConfig},
+            {SpectralPotionConfig.DropName, SpectralPotionConfig}
         };
     }
 }
