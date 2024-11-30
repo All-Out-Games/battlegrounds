@@ -59,7 +59,10 @@ public class AdCrateSpawner : System<AdCrateSpawner>
     public override void Awake()
     {
         base.Awake();
-        Ads.SetRewardHandler(AdRewardHandler);
+        if (Network.IsServer)
+        {
+            Ads.SetRewardHandler(AdRewardHandler);
+        }
     }
 
     private bool AdRewardHandler(Player p, string id)
