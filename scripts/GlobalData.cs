@@ -76,4 +76,9 @@ public static class GlobalData
     public static float VgPotionChance = 0.75f;
     public static float SpectralSpawnChance = 0.2f;
     // TODO: Coins and Glory item
+    
+    // Spectator
+    public static float SpectatorXpRadius = 10f;
+    public static int LowLvSpectatorXp = 200;
+    public static int HighLvSpectatorXp = 40;
 }

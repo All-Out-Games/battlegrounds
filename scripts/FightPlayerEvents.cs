@@ -205,6 +205,16 @@ public partial class FightPlayer
     }
     
     [ClientRpc]
+    public void NotifySpectatorExp(int xp)
+    {
+        if (IsLocal && PlayerStatus == PlayerStatus.Spectator)
+        {
+            FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"EXP+{xp}");
+            SFX.Play(SFXKeys.AFKAudio, new SFX.PlaySoundDesc());
+        }
+    }
+    
+    [ClientRpc]
     public void NotifyElimination(FightPlayer source, FightPlayer victim, DamageInfo info, string skillKey)
     {
         //Log.Warn($"{source.Name} Eliminated {victim.Name} with {skillKey}");

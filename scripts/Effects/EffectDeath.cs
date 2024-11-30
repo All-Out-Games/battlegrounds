@@ -1,5 +1,6 @@
 
 using AO;
+using Assembly.scripts;
 using Assembly.scripts.Effects;
 
 public class EffectDeath : FightEffectWithImmunity
@@ -50,6 +51,23 @@ public class EffectDeath : FightEffectWithImmunity
         FightPlayer.SetAnimTrigger(DeathAnimationTrigger);
         FightPlayer.AddDash(Vector2.Zero, 0);
         FightPlayer.AddBump(Vector2.Zero, true);
+
+        if (Network.IsServer)
+        {
+            List<FightPlayer> spectators =
+                FightClubGameManager.Instance.OverlapCircleForSpectators(Position, GlobalData.SpectatorXpRadius, Player);
+            foreach (var fp in spectators)
+            {
+                if (fp.Alive())
+                {
+                    int xp = fp.Level < GlobalData.AfkMidLevelThreshold ? GlobalData.LowLvSpectatorXp : GlobalData.HighLvSpectatorXp;
+                    xp *= LevelingData.GetBoostedExpMultiplier(fp);
+                    fp.Exp += xp;
+                    fp.CallClient_NotifySpectatorExp(xp);
+                }
+            }
+        }
+        
     }
 
     public override void OnEffectUpdate()

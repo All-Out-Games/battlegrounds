@@ -289,6 +289,17 @@ public class FightClubGameManager : System<FightClubGameManager> {
         }
         return fightPlayers;
     }
+    
+    public List<FightPlayer> GetSpectatorPlayers(Player exclude)
+    {
+        List<FightPlayer> fightPlayers = new List<FightPlayer>();
+        foreach (var p in Scene.Components<FightPlayer>())
+        {
+            if (p == exclude) continue;
+            if(p is { PlayerStatus: PlayerStatus.Spectator } fp) fightPlayers.Add(fp);
+        }
+        return fightPlayers;
+    }
 
     // Difference:
     // Collision Entity we created on the player is considerably larger, they should be used for ray-cast based abilities to make them easier to hit
@@ -348,6 +359,19 @@ public class FightClubGameManager : System<FightClubGameManager> {
                     Log.Warn($"OverlapCircleForDamageables - {other.Name} is not Alive. Skipping.");
                 }
                 
+            }
+        }
+        return hitPlayers;
+    }
+
+    public List<FightPlayer> OverlapCircleForSpectators(Vector2 center, float radius, Player exclude)
+    {
+        List<FightPlayer> hitPlayers = new List<FightPlayer>();
+        foreach (var other in GetSpectatorPlayers(exclude))
+        {
+            if (Vector2.Distance(center, other.Entity.Position) < radius)
+            {
+                hitPlayers.Add(other);
             }
         }
         return hitPlayers;
