@@ -92,6 +92,8 @@ public class AdCrateSpawner : System<AdCrateSpawner>
 
     private void SpawnAdCrate()
     {
+        _enabled = false;
+        return; // TODO: Not doing it when Ads experience is this bad...
         CrateSpawnLocation ??= FightClubGameManager.References.SceneAdCrateSpawnLocations;
         if (CrateSpawnLocation.Length < CrateConfigs.Length)
         {

@@ -8,7 +8,7 @@ public class AdTrigger : Component
     
     protected SyncVar<bool> _claimed = new SyncVar<bool>();
     
-    public string RewardId = "None";
+    public string RewardId = "None"; // TODO: These need to be synced with SyncVars. They got lost when reconnect
     public string AdPromptText = "Reward Config Not Found.";
     public string AdPromptTexturePath = FightAbility.DefaultIconPath;
 
