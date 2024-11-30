@@ -308,16 +308,19 @@ public partial class FightPlayer
 
         #region Elemental
 
+        // Ice Fist
         var punchIceTrigger = stateMachine.CreateVariable("punch_ice", StateMachineVariableKind.TRIGGER);
         var punchIceState = fightLayer.CreateState("BAT_003/punch_ice_AL_mIK", 0, false);
         fightLayer.CreateGlobalTransition(punchIceState).CreateTriggerCondition(punchIceTrigger);
         fightLayer.CreateTransition(punchIceState, idleState, true);
 
+        // Wind Punch
         var punchWindTrigger = stateMachine.CreateVariable("punch_wind", StateMachineVariableKind.TRIGGER);
         var punchWindState = fightLayer.CreateState("BAT_003/wind_punch_mIK_AL", 0, false);
         fightLayer.CreateGlobalTransition(punchWindState).CreateTriggerCondition(punchWindTrigger);
         fightLayer.CreateTransition(punchWindState, idleState, true);
         
+        // Thunderbolt
         var summonThunderTrigger = stateMachine.CreateVariable("summon_thunder", StateMachineVariableKind.TRIGGER);
         var summonThunderState = aoLayer.CreateState("BAT_003/summon", 0, false);
         aoLayer.CreateGlobalTransition(summonThunderState).CreateTriggerCondition(summonThunderTrigger);
@@ -329,6 +332,12 @@ public partial class FightPlayer
         aoLayer.CreateGlobalTransition(shockedState).CreateTriggerCondition(shockedTrigger);
         aoLayer.CreateTransition(shockedState, aoIdleState, false).CreateTriggerCondition(shockedEndTrigger);
 
+        // Meteor (TODO)
+        var meteorLandTrigger = stateMachine.CreateVariable("meteor_land", StateMachineVariableKind.TRIGGER);
+        var meteorLandState = aoLayer.CreateState("BAT_003/meteor_land", 0, false);
+        aoLayer.CreateGlobalTransition(meteorLandState).CreateTriggerCondition(meteorLandTrigger);
+        aoLayer.CreateTransition(meteorLandState, aoIdleState, true);
+
         #endregion
     }
     
@@ -338,6 +347,11 @@ public partial class FightPlayer
     {
         if(resetAL) SpineAnimator.SpineInstance.StateMachine.SetTrigger("RESET_AL");
         SpineAnimator.SpineInstance.StateMachine.SetTrigger(variableName);
+    }
+
+    public void SetAnimBool(string variableName, bool val)
+    {
+        SpineAnimator.SpineInstance.StateMachine.SetBool(variableName, val);
     }
 
     public void SetAnimTriggerWithReset(string variableName, bool resetAL = false)

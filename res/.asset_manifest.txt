@@ -245,6 +245,8 @@ AbilityIcon_Separate/psionic/self_heal_icon.png - .ao - 66ce1dbc60ed1ef1ffbc4c82
 AbilityIcon_Separate/psionic/self_heal_icon.png - .ao.astc - 67319d89ada08dbbbde3fb83 - 2187174731335317146
 AbilityIcon_Separate/psionic/spoon_throw_icon.png - .ao - 66a9c6a896cebaeb1f32993d - 2528992171646891014
 AbilityIcon_Separate/psionic/spoon_throw_icon.png - .ao.astc - 67319d8aada08dbbbde3fb86 - 1399523367756586661
+AbilityIcon_Separate/spectral_spawn.png - .ao - 674aa299f6994d2906c23e4c - 12527468666370144887
+AbilityIcon_Separate/spectral_spawn.png - .ao.astc - 674aa299f6994d2906c23e4b - 13766095069435579961
 AbilityIcon_Separate/stealth/backstab_icon.png - .ao - 66a9c97396cebaeb1f32998c - 3475323059913285720
 AbilityIcon_Separate/stealth/backstab_icon.png - .ao.astc - 67319d8aada08dbbbde3fb87 - 830539333310403949
 AbilityIcon_Separate/stealth/bear_trap_icon.png - .ao - 66a9c97396cebaeb1f329990 - 11509634955585889426
@@ -542,7 +544,7 @@ PsyboltHitVFX.prefab - .ao - 66a91b0496cebaeb1f32988a - 11754199005919494436
 PsyboltProjectile.prefab - .ao - 671d9b9fada08dbbbde3f08e - 11396103004693384059
 Rage_Aura.prefab - .ao - 6709f5fa60ed1ef1ffbc66e1 - 5094729185261374799
 RegenerationAura.prefab - .ao - 66a91b0496cebaeb1f32988e - 3237132331881769622
-ResourcesOverlayWindow.prefab - .ao - 67393f3c02386857e8d3341d - 13535371027856739327
+ResourcesOverlayWindow.prefab - .ao - 674ab36ff6994d2906c23e53 - 10761466912917308068
 SceneProps_tmp/aura_circle.png - .ao - 66859954b45eb9e8339c0ff6 - 10293273442432679734
 SceneProps_tmp/aura_circle.png - .ao.astc - 67319d8cada08dbbbde3fbb9 - 1197172714298410924
 SelfDestructExplosion.prefab - .ao - 66a1a7616732dee0bb811d5a - 5339910856129032631
@@ -554,6 +556,7 @@ SFX/Effects/confused_loop.wav - .ao - 66b50140cf7a5e4159a6c508 - 440694530689419
 SFX/Effects/confusion_ball.wav - .ao - 66ad4e9fcf7a5e4159a6c428 - 13980309189215291514
 SFX/Effects/darkness_activate.wav - .ao - 66b50141cf7a5e4159a6c50b - 17485412967686096163
 SFX/Effects/darkness_loop.wav - .ao - 66b50141cf7a5e4159a6c50e - 1866994766018125668
+SFX/Effects/enter_pvp_arena.wav - .ao - 674abaa2f6994d2906c23e55 - 13255303252743841454
 SFX/Effects/fire_projectile_hit_explode.wav - .ao - 6736d68a02386857e8d3300b - 16517991583454849881
 SFX/Effects/fire_projectile_loop.wav - .ao - 6736d68a02386857e8d3300d - 5423642442770086271
 SFX/Effects/ground_stomp.wav - .ao - 66ad9394cf7a5e4159a6c440 - 8040942330557955187

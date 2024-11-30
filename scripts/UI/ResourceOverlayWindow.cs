@@ -34,6 +34,8 @@ public class ResourceOverlayWindow : BaseUIWindow
     [Serialized] public Entity Shop;
     [Serialized] public UIButton ShopBtn;
 
+    [Serialized] public UIText SpectralText;
+
     private Coroutine _coroutineC;
     private int _currentLevel;
     private int _currentExp;

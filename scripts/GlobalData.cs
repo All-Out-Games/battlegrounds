@@ -6,7 +6,7 @@ public enum PlayerStatus
     Combat,
     Safe,
     AFK,
-    Spectating
+    Spectator
 }
 
 public enum DamageType

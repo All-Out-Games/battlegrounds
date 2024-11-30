@@ -15,7 +15,10 @@ public partial class BearTrap : OwnedTrigger
         base.OnOtherPlayerEnter(fp);
         if (Network.IsServer)
         {
-            CallClient_BearTrapSnap(fp);
+            if (fp.Alive() && fp.PlayerStatus == PlayerStatus.Combat)
+            {
+                CallClient_BearTrapSnap(fp);
+            }
         }
     }
 

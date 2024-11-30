@@ -104,6 +104,8 @@ public static class SFXKeys
     public static AudioAsset LightningBoltAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/lightning_bolt.wav");
     public static AudioAsset LightningBoltSummonAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/summon.wav");
     public static AudioAsset WindPunchAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/wind_punch.wav");
+
+    public static AudioAsset SpectralSpawnAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/enter_pvp_arena.wav");
     #endregion
 
     #region UI

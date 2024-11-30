@@ -16,7 +16,7 @@ public class ZoneTeleporter : Component
         InteractableComp.OnInteract += OnInteract;
         InteractableComp.CanUseCallback = (Player p) =>
         {
-            return true;
+            return !p.HasEffect<EffectSpectralSpawn>();
         };
         defaulTxt = InteractableComp.Text;
 
@@ -59,11 +59,11 @@ public class ZoneTeleporter : Component
     public void OnInteract(Player p)
     {
         var player = (FightPlayer) p;
+        PlayerStatus newStatus;
+        bool parsed =
+            Enum.TryParse(ChangeStatusTo, out newStatus);
         if (Network.IsServer) 
         {
-            PlayerStatus newStatus;
-            bool parsed =
-                Enum.TryParse(ChangeStatusTo, out newStatus);
             if (parsed)
             {
                 if (newStatus == PlayerStatus.Safe && player.HasEffect<EffectSafePortalCooldown>())

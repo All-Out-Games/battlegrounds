@@ -190,6 +190,18 @@ public class FightClubGameManager : System<FightClubGameManager> {
                         Chat.SendMessage(target, $"Booster Given = {amount}");
                         return;
                     }
+                    case "spectralpotion":
+                    {
+                        var amount = 1;
+                        if (parts.Length >= 3)
+                        {
+                            int.TryParse(parts[3], out amount);
+                        }
+                        var fightTarget = target;
+                        fightTarget.SpectralCount += amount;
+                        Chat.SendMessage(target, $"Spectral Given = {amount}");
+                        return;
+                    }
                     default:
                         Chat.SendMessage(player, $"The item {parts[2]} is not found to be granted");
                         break;

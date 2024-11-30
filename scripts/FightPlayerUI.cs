@@ -32,6 +32,7 @@ public partial class FightPlayer
             _gem.OnSync += NotifyGemUpdate;
             _coins.OnSync += NotifyCoinUpdate;
             _expBoostTime.OnSync += NotifyExpBoostUpdate;
+            _spectralCount.OnSync += NotifySpectralUpdate;
             
             _combatOverlay = UIManager.Instance.OpenOverlayWindow(UniqueWindowKeys.BattlegroundOverlayWindowPath) as BattlegroundOverlayWindow;
         }
@@ -87,6 +88,14 @@ public partial class FightPlayer
         if (IsLocal)
         {
             _overlay.UpdateExpBoosterTime(bst);
+        }
+    }
+
+    private void NotifySpectralUpdate(int old, int spc)
+    {
+        if (IsLocal)
+        {
+            _overlay.SpectralText.Text = spc.ToString();
         }
     }
     

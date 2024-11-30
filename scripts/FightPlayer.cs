@@ -1,6 +1,7 @@
 using System.Collections;
 using AO;
 using Assembly.scripts;
+using Assembly.scripts.Effects;
 using Assembly.scripts.Effects.ActiveSkills;
 using Assembly.scripts.SceneObjects.Crates;
 using Assembly.scripts.UI.SkillTree;
@@ -264,6 +265,24 @@ public partial class FightPlayer : Player
         }
     }
 
+    private SyncVar<int> _spectralCount = new(0);
+
+    /// <summary>
+    /// Number of spectral spawn potions available
+    /// </summary>
+    public int SpectralCount
+    {
+        get => _spectralCount.Value;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _spectralCount.Set(value);
+                Save.SetInt(this, "SpectralCount", value);
+            }
+        }
+    }
+
     private SyncVar<string> _serializedSkillDict = new("");
 
     public string SerializedSkillDict
@@ -393,7 +412,7 @@ public partial class FightPlayer : Player
 
     public bool Damageable()
     {
-        return CurrentHealth > 0 && InvincibleReasons.Count == 0 && IsValidTarget;
+        return PlayerStatus == PlayerStatus.Combat && CurrentHealth > 0 && InvincibleReasons.Count == 0 && IsValidTarget;
     }
 
     public bool Targetable()
@@ -426,6 +445,7 @@ public partial class FightPlayer : Player
         Exp = Save.GetInt(this, "Exp");
         ExpBoostTime = Save.GetInt(this, "ExpBoostTime");
         ExpBoostMultiplier = Save.GetInt(this, "ExpBoostMultiplier");
+        SpectralCount = Save.GetInt(this, "SpectralCount");
     }
     
     #region EventFunctions
@@ -665,6 +685,15 @@ public partial class FightPlayer : Player
             }
         });
     }
+
+    [ClientRpc]
+    public void NotificationShow(string txt)
+    {
+        if (IsLocal)
+        {
+            Notifications.Show(txt);
+        }
+    }
     
     #endregion
 
@@ -901,6 +930,12 @@ public partial class FightPlayer : Player
     public void SwitchStatus(int statusInt)
     {
         PlayerStatus status = (PlayerStatus)statusInt;
+        if (status == PlayerStatus.Spectator && SpectralCount < 1)
+        {
+            // Need at least one spectral potion
+            CallClient_NotificationShow("You need Spectral Potion To Become A Spectre!");
+            return;
+        }
         PlayerStatus = status;
         Log.Warn($"Status Switched - {status.ToString()}");
         if (Network.IsServer)
@@ -927,6 +962,23 @@ public partial class FightPlayer : Player
                 Teleport(afkZone.Entity.Position);
                 OnTeleportToAfkZone();
             }
+            else if (status == PlayerStatus.Spectator)
+            {
+                SpectralCount -= 1;
+                Zone combatZone = FightClubGameManager.References.PvpZone;
+                //Teleport(new Vector2(216.504f, 90.571f));
+                Teleport(FightClubUtils.RandomPositionInCircle(combatZone.Entity.Position, combatZone.Entity.LocalScaleX));
+                OnEnterSpectatorMode();
+            }
+        }
+    }
+
+    public void EnterCombatFromSpectator()
+    {
+        PlayerStatus = PlayerStatus.Combat;
+        if (Network.IsServer)
+        {
+            OnTeleportToCombatZone();
         }
     }
 
@@ -943,6 +995,9 @@ public partial class FightPlayer : Player
                 break;
             case PlayerStatus.AFK:
                 OnTeleportToAfkZone();
+                break;
+            case PlayerStatus.Spectator:
+                OnEnterSpectatorMode();
                 break;
         }
     }
@@ -976,6 +1031,17 @@ public partial class FightPlayer : Player
         if (IsLocal)
         {
             SkillSlotsManager.SkillSlotsPanelEnable(false);
+            UIManager.Instance.CloseAllUniqueWindow();
+        }
+    }
+
+    public void OnEnterSpectatorMode()
+    {
+        PlayerSwitchZoneEvent?.Invoke((int)PlayerStatus.Spectator);
+        AddEffect<EffectSpectralSpawn>(this, 15);
+        if (IsLocal)
+        {
+            SkillSlotsManager.SkillSlotsPanelEnable(true);
             UIManager.Instance.CloseAllUniqueWindow();
         }
     }
