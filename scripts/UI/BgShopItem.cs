@@ -71,22 +71,22 @@ public partial class BgShop
         
         new ()
         {
-            Name = "A Handful of Coins", Rarity = ItemRarity.Common,
+            Name = "A Handful of Coins", Rarity = ItemRarity.Common, Icon = "Props/Shop/Pack1.png",
             Id = "coins_300",             SparksProductId = "673a845054d47ee427a09bf7", Price = 0, Description = "Get 300 coins to buy skills."
         },
         new ()
         {
-            Name = "Small Coin Pack", Rarity = ItemRarity.Uncommon,
+            Name = "Small Coin Pack", Rarity = ItemRarity.Uncommon,Icon = "Props/Shop/Pack2.png",
             Id = "coins_1000",             SparksProductId = "673a846619d7981b15615360",Price = 0, Description = "Get 1000 coins to buy skills."
         },
         new ()
         {
-            Name = "Large Coin Pack", Rarity = ItemRarity.Rare,
+            Name = "Large Coin Pack", Rarity = ItemRarity.Rare,Icon = "Props/Shop/Pack3.png",
             Id = "coins_3000",             SparksProductId = "673a84a054d47ee427a09bfc", Price = 0, Description = "Get 3000 coins to buy skills."
         },
         new ()
         {
-            Name = "A Load of Coins", Rarity = ItemRarity.Epic,
+            Name = "A Load of Coins", Rarity = ItemRarity.Epic,Icon = "Props/Shop/Pack4.png",
             Id = "coins_10000",             SparksProductId = "673a84b95829946eee036a41",Price = 0 , Description = "Woah, 10000 coins!"
         },
     };
