@@ -217,7 +217,11 @@ public class EffectPsyThrowLaunch : FightEffectWithNoFlinch
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.SetAnimTrigger("sentfly_end");
-        FightPlayer.AddEffect<EffectGenericPostActionDelay>(Caster, 1f);
+        if (!interrupt)
+        {
+            FightPlayer.AddEffect<EffectGenericPostActionDelay>(Caster, 1f);
+        }
+        
     }
 
     private void AssignConfig(EffectConfig.PsyThrowConfig cfg)
