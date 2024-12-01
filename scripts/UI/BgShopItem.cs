@@ -32,7 +32,7 @@ public partial class BgShop
     {
         new ()
         {
-            Name = "EXP Booster 3x", Rarity = ItemRarity.Uncommon,
+            Name = "EXP Booster 3x", Rarity = ItemRarity.Rare,
             Id = "xp_booster_3x",                  SparksProductId = "66c959936203839a49e78260", Price = 0, Description = "Get 3x Exp for 15min.", Icon = "Props/DropItems/ExpPotionS.png",
             SubCategory = "EXP Boost"
         },
@@ -48,7 +48,27 @@ public partial class BgShop
             Id = "xp_booster_7x",             SparksProductId = "66c95a367c153a47bed51030", Price = 0, Description = "Get 7x Exp for 15min.",Icon = "Props/DropItems/ExpPotionM.png" ,
             SubCategory = "EXP Boost"
         },
-        
+        new()
+        {
+            Name = "Spectral Potion", Rarity = ItemRarity.Rare,
+            Id = "spectral_1x",             SparksProductId = "674ce976a25c7b4822207748", Price = 0,
+            Description = "Consume to use Spectral Spawn. You get XP for spectating as a specter, or you can materialize and take some easy kills.",Icon = "Props/Shop/SpectralPotion.png" ,
+            SubCategory = "Spectre Mode"
+        },
+        new()
+        {
+            Name = "Spectral Potion Bundle", Rarity = ItemRarity.Epic,
+            Id = "spectral_5x",             SparksProductId = "674ce9b71dfd313ecb20dbca", Price = 0, 
+            Description = "Get 5 Spectral Potions!",Icon = "Props/Shop/SpectralPotion5.png" ,
+            SubCategory = "Spectre Mode"
+        },
+        new()
+        {
+            Name = "Spectral Potion Value Pack", Rarity = ItemRarity.Legendary,
+            Id = "spectral_15x",             SparksProductId = "674cea08c2dd855678f8a554", Price = 0, 
+            Description = "Get 15 Spectral Potions!",Icon = "Props/Shop/SpectralPotion15.png" ,
+            SubCategory = "Spectre Mode"
+        },
     };
 
     public static readonly List<ShopCategory.ProductDescription> ResourceProducts = new()

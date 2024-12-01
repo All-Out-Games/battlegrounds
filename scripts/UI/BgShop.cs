@@ -103,6 +103,13 @@ public partial class BgShop : System<BgShop>
                     break;
                 case "coins_10000": player.Coins += 10000;
                     break;
+                
+                case "spectral_1x": player.SpectralCount += 1;
+                    break;
+                case "spectral_5x": player.SpectralCount += 5;
+                    break;
+                case "spectral_15x": player.SpectralCount += 15;
+                    break;
                 default:
                     Log.Error($"Product Id: {productId} is not found in registered products!");
                     success = false;
