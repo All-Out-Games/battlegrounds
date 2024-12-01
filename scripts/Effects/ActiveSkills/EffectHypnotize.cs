@@ -78,7 +78,7 @@ public class EffectHypnotize : FightEffectWithNoFlinch
         FightPlayer.OnReceiveDamage -= OnDamageEvent;
         FightPlayer.UnsetAnimTrigger("knockdown");
         FightPlayer.SetAnimTrigger("knockdown_end");
-        FightPlayer.AddEffect<EffectGenericPostActionDelay>();
+        FightPlayer.AddEffect<EffectGenericPostActionDelay>(Caster, 1f);
         SFX.Play(SFXKeys.HypnotizeGetupAudio, DefaultSoundDesc);
     }
 

@@ -272,6 +272,28 @@ public class FightClubGameManager : System<FightClubGameManager> {
                                          $"PunchDmg = {EffectConfig.GetPlayerPunchConfig(fp.PunchLevel, fp.CurrentAttack).PunchDamage}");
                 Chat.SendMessage(player, $"atk = {fp.CurrentAttack}, mhp = {fp.MaxHealth}, spd = {fp.CombatSpeedPercentage}");
                 break;
+            case "printspeedmod":
+                if (parts.Length != 2)
+                {
+                    Chat.SendMessage(player, "Usage: /printspeedmod <playerid>");
+                    return;
+                }
+                target = Scene.Components<FightPlayer>().FirstOrDefault(fp => fp.Name == parts[1]);
+                if (parts[1] == "self" || parts[1] == "me")
+                {
+                    target = player;
+                }
+                FightPlayer fp_1 = target as FightPlayer;
+                if (fp_1 == null)
+                {
+                    Chat.SendMessage(player, $"Fetchstat failed, player {parts[1]} not found.");
+                    return;
+                }
+                foreach (var fe in player._speedMultipliers)
+                {
+                    Chat.SendMessage(player, $"FE: {fe.Entity.Name} / Mod: {fe.SpeedModifier}");
+                }
+                break;
         }
     }
 

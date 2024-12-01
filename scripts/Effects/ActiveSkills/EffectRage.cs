@@ -32,13 +32,14 @@ public class EffectRageCast : FightEffectWithNoFlinch
 
     public override bool IsActiveEffect => true;
 
+    protected override bool PreventMovement => true;
+
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("rage_stomp");
         
         _animDuration = MainLayer.GetCurrentStateLength();
-        FightPlayer.AddSpeedModifier(0.0f);
         if (!isDropIn)
         {
             _rageDuration = EffectConfig.RageConfig.Duration;
@@ -58,8 +59,7 @@ public class EffectRageCast : FightEffectWithNoFlinch
         if (Util.OneTime(ElapsedTime > _animDuration, ref _casted))
         {
             FightPlayer.GetAbility<AbilityRage>().AppliedEffect = EffectRage.CastOrExtendRage(FightPlayer, _rageDuration);
-                
-            FightPlayer.RemoveSpeedModifier(0.0f);
+            
         }
     }
     

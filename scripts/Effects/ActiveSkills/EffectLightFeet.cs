@@ -23,6 +23,9 @@ public class EffectLightFeet : FightEffect
     private StatAuraVFX _aura;
     private Spine_Animator _auraAnimator;
     private bool _faded;
+
+    public override float SpeedModifier => _cfg.SpeedMtp;
+
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
@@ -34,7 +37,7 @@ public class EffectLightFeet : FightEffect
             DurationRemaining = _cfg.BuffTime;
             SoundId = SFX.Play(SFXKeys.LightFeetAudio, DefaultSoundDesc);
         }
-        FightPlayer.AddSpeedModifier(_cfg.SpeedMtp);
+        FightPlayer.RegisterSpeedModify(this);
         AddAura();
         if (lv > 4)
         {
@@ -45,7 +48,7 @@ public class EffectLightFeet : FightEffect
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        FightPlayer.RemoveSpeedModifier(_cfg.SpeedMtp);
+        FightPlayer.RemoveSpeedModify(this);
     }
     
     private void AddAura()

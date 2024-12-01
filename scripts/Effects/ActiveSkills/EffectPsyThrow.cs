@@ -69,10 +69,7 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
 
     public override void OnEffectStart(bool isDropIn)
     {
-        // remove Rollout & Parry
-        Player.RemoveEffect<EffectRollOut>(true);
-        Player.RemoveEffect<EffectParry>(true);
-        
+
         base.OnEffectStart(isDropIn);
         DurationRemaining = EffectConfig.PsyThrowConfig.GrabTime;
         _casterFp = Caster as FightPlayer;
@@ -88,13 +85,13 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
 
     public override void OnEffectEnd(bool interrupt)
     {
-        base.OnEffectEnd(interrupt);
         if (_casterFp != null)
         {
             _casterFp.RemoveEffect<EffectPsyThrowReady>(false);
         }
 
         SFX.FadeOutAndStop(SoundId, 0.3f);
+        base.OnEffectEnd(interrupt);
     }
 }
 
@@ -220,7 +217,7 @@ public class EffectPsyThrowLaunch : FightEffectWithNoFlinch
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.SetAnimTrigger("sentfly_end");
-        FightPlayer.AddEffect<EffectGenericPostActionDelay>();
+        FightPlayer.AddEffect<EffectGenericPostActionDelay>(Caster, 1f);
     }
 
     private void AssignConfig(EffectConfig.PsyThrowConfig cfg)

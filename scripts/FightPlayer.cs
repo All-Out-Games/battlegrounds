@@ -700,26 +700,40 @@ public partial class FightPlayer : Player
     #region Movement
 
     // Basic Movement Speed Modifier (related to buff)
-    private List<float> _speedMultipliers = new List<float>();
+    public List<FightEffect> _speedMultipliers = new List<FightEffect>();
+    private bool _movementPrevented = false;
     private float GetTotalVelocityMultiplier()
     {
         float baseSpeed = PlayerStatus == PlayerStatus.Combat
             ? GlobalData.CombatSpeedModifier * _combatSpeedPercentage / 100f
             : GlobalData.SafeSpeedModifier;
-        return _speedMultipliers.Count > 0 ? _speedMultipliers.Aggregate((x, y) =>  x*y ) * baseSpeed : baseSpeed;
-    }
-
-    public void AddSpeedModifier(float md)
-    {
-        _speedMultipliers.Add(md);
-    }
-
-    public void RemoveSpeedModifier(float md)
-    {
-        if (!_speedMultipliers.Remove(md))
+        if (_speedMultipliers.Count > 0)
         {
-            Log.Error($"FightPlayer: The Modifier {md} is not found!");
+            foreach (var fe in _speedMultipliers)
+            {
+                baseSpeed *= fe.SpeedModifier;
+            }
         }
+
+        if (Name == "Editor_1")
+        {
+            Log.Warn($"{baseSpeed}");
+            foreach (var fe in _speedMultipliers)
+            {
+                Log.Warn($"FE: {fe.Entity.Name} / Mod: {fe.SpeedModifier}");
+            }
+        }
+        return baseSpeed;
+    }
+
+    public void RegisterSpeedModify(FightEffect fe)
+    {
+        _speedMultipliers.Add(fe);
+    }
+
+    public void RemoveSpeedModify(FightEffect fe)
+    {
+        _speedMultipliers.Remove(fe);
     }
 
     public void ClearSpeedModifier()

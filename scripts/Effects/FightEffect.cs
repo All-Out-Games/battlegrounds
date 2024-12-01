@@ -23,6 +23,8 @@ public abstract class FightEffect : AEffect
     protected virtual bool PreventMovement => false;
     protected virtual bool PreventDamage => false;
 
+    public virtual float SpeedModifier => PreventMovement ? 0.0f : 1.0f;
+
     /// <summary>
     /// Get the owner as FightPlayer & the slot the skill has been triggered from.
     /// If you want to use these fields you must call base.OnEffectStart!
@@ -38,7 +40,7 @@ public abstract class FightEffect : AEffect
 
         if (PreventMovement)
         {
-            FightPlayer.AddSpeedModifier(0);
+            FightPlayer.RegisterSpeedModify(this);
         }
 
         if (PreventDamage)
@@ -51,7 +53,7 @@ public abstract class FightEffect : AEffect
     {
         if (PreventMovement)
         {
-            FightPlayer.RemoveSpeedModifier(0);
+            FightPlayer.RemoveSpeedModify(this);
         }
         if (PreventDamage)
         {

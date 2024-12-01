@@ -35,7 +35,9 @@ public class EffectRegeneration : FightEffect
     private RegenerationVFX _aura;
     private EffectConfig.RegenerateConfig _config;
     private bool _boosted;
-    
+
+    public override float SpeedModifier => 1.03f;
+
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
@@ -58,7 +60,7 @@ public class EffectRegeneration : FightEffect
 
         if (_boosted)
         {
-            FightPlayer.AddSpeedModifier(1.03f);
+            FightPlayer.RegisterSpeedModify(this);
         }
     }
 
@@ -69,7 +71,7 @@ public class EffectRegeneration : FightEffect
         SFX.Stop(SoundId);
         if (_boosted)
         {
-            FightPlayer.RemoveSpeedModifier(1.03f);
+            FightPlayer.RemoveSpeedModify(this);
         }
     }
 

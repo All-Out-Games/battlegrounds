@@ -44,6 +44,8 @@ public class EffectRollOut : FightEffect
     protected float NextDmgTick = 1;
     protected bool Ticked = false;
 
+    public override float SpeedModifier => _config.SpeedBuffMultiplier;
+
     /// <summary>
     /// Call this function before adding the created Effect instance to the player!
     /// </summary>
@@ -107,7 +109,7 @@ public class EffectRollOut : FightEffect
     {
         FightPlayer.UnsetAnimTrigger("rollout_end");
         AssignConfig(EffectConfig.RollOutConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("RollOut")));
-        FightPlayer.AddSpeedModifier(_config.SpeedBuffMultiplier);
+        FightPlayer.RegisterSpeedModify(this);
         
         // TODO: This collision is currently broken because the player collision entity will continuously trigger with the player itself and ignore others
         // It should be fixed when we add collision layers
@@ -138,7 +140,7 @@ public class EffectRollOut : FightEffect
     {
         base.OnEffectEnd(interrupt);
         
-        FightPlayer.RemoveSpeedModifier(_config.SpeedBuffMultiplier);
+        FightPlayer.RemoveSpeedModify(this);
         // FightPlayer.RemovePlayerCollisionFunction(OnRolloutCollision);
         
         FightPlayer.OnReceiveDamage -= OnDamageEvent;

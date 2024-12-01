@@ -60,7 +60,7 @@ public class EffectSelfHeal : FightEffect
             FightPlayer.TakeDamage(FightPlayer, healInfo);
             FightPlayer.SetAnimTrigger("selfheal_end");
             SFX.Play(SFXKeys.HealingEndAudio, DefaultSoundDesc);
-            FightPlayer.AddEffect<EffectGenericPostActionDelay>();
+            FightPlayer.AddEffect<EffectGenericPostActionDelay>(Caster, MainLayer.GetCurrentStateLength());
         }
         else
         {

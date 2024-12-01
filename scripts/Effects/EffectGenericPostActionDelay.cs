@@ -10,16 +10,6 @@ public class EffectGenericPostActionDelay : FightEffectWithNoFlinch
     public override bool BlockAbilityActivation => true;
 
     public override bool IsActiveEffect => true;
-
-    public override void OnEffectStart(bool isDropIn)
-    {
-        base.OnEffectStart(isDropIn);
-        DurationRemaining = MainLayer.GetCurrentStateLength();
-    }
-
-    public override void PreDamageMod(ref FightPlayer.DamageInfo info)
-    {
-        base.PreDamageMod(ref info);
-        DurationRemaining = 0.1f;
-    }
+    
+    
 }

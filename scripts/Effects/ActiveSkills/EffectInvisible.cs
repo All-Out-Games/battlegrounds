@@ -32,6 +32,8 @@ public class EffectInvisible : FightEffect
 
     private bool _boosted = false;
 
+    public override float SpeedModifier => 1.1f;
+
     private AttachmentObject _aura;
     public override void OnEffectStart(bool isDropIn)
     {
@@ -51,7 +53,7 @@ public class EffectInvisible : FightEffect
         if (lv > 4)
         {
             _boosted = true;
-            FightPlayer.AddSpeedModifier(1.1f);
+            FightPlayer.RegisterSpeedModify(this);
         }
         AddInvis(FightPlayer.IsLocal);
         FightPlayer.OnSkillActivate += OnSkillActivationEvent;
@@ -69,7 +71,7 @@ public class EffectInvisible : FightEffect
 
         if (_boosted)
         {
-            FightPlayer.RemoveSpeedModifier(1.1f);
+            FightPlayer.RemoveSpeedModify(this);
         }
     }
 
