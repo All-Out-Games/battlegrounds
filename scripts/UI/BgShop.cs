@@ -30,11 +30,25 @@ public partial class BgShop : System<BgShop>
             //ItemShop.SetPurchaseHandler(OnItemPurchase);
         }
         
-        var weaponCat = ItemShop.AddCategory("Starter Packs");
-        weaponCat.Icon = "Props/DropItems/VengeancePotion.png";
+        var starterCat = ItemShop.AddCategory("Starter Packs");
+        starterCat.Icon = "Props/DropItems/VengeancePotion.png";
         foreach (var p in StarterProducts)
         {
-            weaponCat.AddProduct(p);
+            starterCat.AddProduct(p);
+        }
+        
+        var potionCat = ItemShop.AddCategory("Potions");
+        potionCat.Icon = "Props/DropItems/ExpPotionL.png";
+        foreach (var p in PotionProducts)
+        {
+            potionCat.AddProduct(p);
+        }
+        
+        var resourceCat = ItemShop.AddCategory("Resources");
+        resourceCat.Icon = "Props/DropItems/coin/coin_1.png";
+        foreach (var p in ResourceProducts)
+        {
+            resourceCat.AddProduct(p);
         }
         
         base.Start();
@@ -59,7 +73,7 @@ public partial class BgShop : System<BgShop>
         {
             var prod = _allProducts.FirstOrDefault(prod => prod.SparksProductId == productId);
             success = true;
-            switch (prod.Name)
+            switch (prod.Id)
             {
                 case "starter_pack1": player.Exp += LevelingData.BaselineXp[4];
                     break;
@@ -129,13 +143,14 @@ public partial class BgShop : System<BgShop>
 
         if (Network.LocalPlayer != null && product.SubCategory == "Pass")
         {
-            UI.Text(descriptionRect, "Owned", new UI.TextSettings()
+            bool owned = Purchasing.OwnsGamePassLocal(product.SparksProductId);
+            UI.Text(descriptionRect, owned? "Owned" : "", new UI.TextSettings()
             {
                 Font = UI.Fonts.Barlow,
                 Size = 24,
                 VerticalAlignment = UI.VerticalAlignment.Top,
                 HorizontalAlignment = UI.HorizontalAlignment.Center,
-                Color = Purchasing.OwnsGamePassLocal(product.SparksProductId) ? GlobalData.GreyColor : Vector4.White,
+                Color = GlobalData.GreyColor,
                 WordWrap = true,
                 Outline = true,
                 OutlineThickness = 3.0f,
@@ -149,33 +164,67 @@ public partial class BgShop : System<BgShop>
     
     public PurchaseModification OnBeforeItemPurchase(Player _player, GameProduct product)
     {
-        //var player = (FightPlayer)_player;
+        var player = (FightPlayer)_player;
 
         var modification = new PurchaseModification(product);
 
         modification.ModifyProduct = false;
+        if (player.Alive())
+        {
+            if (product.SubCategory == "Pass")
+            {
+                if (Purchasing.OwnsGamePassLocal(product.SparksProductId))
+                {
+                    modification.ModifyProduct = true;
+                    modification.Color = PurchaseButtonColor.Grey;
+                    modification.OnBuyButtonClicked = () => PurchaseFail(_player, "You already purchased this item!");
+                }
+            }
 
-        if (Purchasing.OwnsGamePassLocal(product.SparksProductId))
-        {
-            modification.ModifyProduct = true;
-            modification.Color = PurchaseButtonColor.Grey;
-            modification.OnBuyButtonClicked = () => PurchaseFail(_player);
+            // Players are only allowed to buy the same exp boosts (prevent overwriting)
+            if (product.SubCategory == "EXP Boost" && player.ExpBoostMultiplier != 1)
+            {
+                switch (product.Id)
+                {
+                    case "xp_booster_3x":
+                        if (player.ExpBoostMultiplier != 3)
+                        {
+                            modification.ModifyProduct = true;
+                            modification.Color = PurchaseButtonColor.Grey;
+                            modification.OnBuyButtonClicked = () => PurchaseFail(_player, "You own a booster of different multiplier. Please wait until it expires.");
+                        }
+                        break;
+                    case "xp_booster_5x":
+                        if (player.ExpBoostMultiplier != 5)
+                        {
+                            modification.ModifyProduct = true;
+                            modification.Color = PurchaseButtonColor.Grey;
+                            modification.OnBuyButtonClicked = () => PurchaseFail(_player, "You own a booster of different multiplier. Please wait until it expires.");
+                        }
+                        break;
+                    case "xp_booster_7x":
+                        if (player.ExpBoostMultiplier != 7)
+                        {
+                            modification.ModifyProduct = true;
+                            modification.Color = PurchaseButtonColor.Grey;
+                            modification.OnBuyButtonClicked = () => PurchaseFail(_player, "You own a booster of different multiplier. Please wait until it expires.");
+                        }
+                        break;
+                }
+            }
         }
-        else
-        {
-            //modification.OnBuyButtonClicked = () => try purchase here somehow?
-        }
+
+        
 
         return modification;
     }
 
 
-    void PurchaseFail(Player player)
+    void PurchaseFail(Player player, string text = "Purchase failed.")
     {
-        FightPlayer p = (FightPlayer)player;
-        if (p.IsLocal)
+        if (player.IsLocal)
         {
-            Notifications.Show("You already purchased this item!");
+            Notifications.Show(text);
         }
     }
 }
