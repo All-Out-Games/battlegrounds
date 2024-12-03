@@ -9,6 +9,9 @@ public class AbilityPreview : Component
 
     public void SetPreview(string previewPath = "Empty")
     {
+        _nopreviewScreen.LocalEnabled = true;
+        _previewGif.Entity.LocalEnabled = false;
+        return;
         if (previewPath == "Empty")
         {
             _nopreviewScreen.LocalEnabled = true;
@@ -21,7 +24,9 @@ public class AbilityPreview : Component
             var gif = Assets.GetAsset<Gif>(previewPath);
             if (gif == null)
             {
-                Log.Error($"{previewPath} is specified, but GIF asset is not found!");
+                Log.Warn($"{previewPath} is specified, but GIF asset is not found!");
+                _nopreviewScreen.LocalEnabled = true;
+                _previewGif.Entity.LocalEnabled = false;
             }
             else
             {
