@@ -5,9 +5,9 @@ namespace Assembly.scripts.SceneObjects.AdCrates;
 public class AdTrigger : Component
 {
     [Serialized] public Interactable Trigger;
-    
+
     protected SyncVar<bool> _claimed = new SyncVar<bool>();
-    
+
     public string RewardId = "None"; // TODO: These need to be synced with SyncVars. They got lost when reconnect
     public string AdPromptText = "Reward Config Not Found.";
     public string AdPromptTexturePath = FightAbility.DefaultIconPath;
@@ -52,7 +52,7 @@ public class AdTrigger : Component
         {
             if (p.IsLocal)
             {
-                Notifications.Show("Ads are unavailable at this moment. They are only available on mobile.");
+                Notifications.Show("Ad bonuses are only available on the iOS and Android app!");
             }
         }
     }

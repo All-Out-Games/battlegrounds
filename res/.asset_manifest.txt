@@ -425,7 +425,7 @@ FatPlayerCollision.prefab - .ao - 674e5deaf6994d2906c249f0 - 1690258769967482796
 FightPlayerRig/fightplayer.merged_spine_rig - .ao - 674e5deaf6994d2906c249f2 - 1663132257603852584
 FightPlayerRig/playercharacter.png - .ao - 674e5ce9f6994d2906c246e6 - 2695951919792913300
 FightPlayerRig/playercharacter.png - .ao.astc - 674e5ce9f6994d2906c246ea - 7910490978658699953
-FightPlayerRig/playercharacter.spine - .ao - 674e5debf6994d2906c249f6 - 3770741507720271973
+FightPlayerRig/playercharacter.spine - .ao - 675096caf6994d2906c25c63 - 8264663131237128899
 FightPlayerRig/playercharacter_2.png - .ao - 674e5debf6994d2906c249f5 - 1531567999432186285
 FightPlayerRig/playercharacter_2.png - .ao.astc - 674e5debf6994d2906c249f8 - 17514452604510451454
 FireballProjectile.prefab - .ao - 6739340802386857e8d33419 - 6615212460275438377

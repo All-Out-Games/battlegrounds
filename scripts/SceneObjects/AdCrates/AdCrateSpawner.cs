@@ -15,7 +15,7 @@ public class AdCrateSpawner : System<AdCrateSpawner>
 {
     public Entity[] CrateSpawnLocation; // TODO: Configs for Coin / Glory / XP / XP Booster / Spectral Spawn
     private bool _enabled;
-    public static AdCrateConfig[] CrateConfigs = new []
+    public static AdCrateConfig[] CrateConfigs = new[]
     {
         new AdCrateConfig()
         {
@@ -36,7 +36,7 @@ public class AdCrateSpawner : System<AdCrateSpawner>
             AdPromptTexture = "Props/DropItems/ExpPotionM.png"
         }
     };
-    
+
 
     private float _crateAdSpawnTimer = 0;
 
@@ -53,7 +53,7 @@ public class AdCrateSpawner : System<AdCrateSpawner>
             }
         }
 
-        
+
     }
 
     public override void Awake()
@@ -92,8 +92,6 @@ public class AdCrateSpawner : System<AdCrateSpawner>
 
     private void SpawnAdCrate()
     {
-        _enabled = false;
-        return; // TODO: Not doing it when Ads experience is this bad...
         CrateSpawnLocation ??= FightClubGameManager.References.SceneAdCrateSpawnLocations;
         if (CrateSpawnLocation.Length < CrateConfigs.Length)
         {
@@ -107,7 +105,7 @@ public class AdCrateSpawner : System<AdCrateSpawner>
         if (_enabled)
         {
             float chance = Random.Shared.NextFloat();
-            for(int i = 0; i < CrateConfigs.Length; i++)
+            for (int i = 0; i < CrateConfigs.Length; i++)
             {
                 var cfg = CrateConfigs[i];
                 if (chance < cfg.Chance)
