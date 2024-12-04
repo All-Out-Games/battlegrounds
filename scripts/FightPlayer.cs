@@ -715,14 +715,14 @@ public partial class FightPlayer : Player
             }
         }
 
-        if (Name == "Editor_1")
-        {
-            Log.Warn($"{baseSpeed}");
-            foreach (var fe in _speedMultipliers)
-            {
-                Log.Warn($"FE: {fe.Entity.Name} / Mod: {fe.SpeedModifier}");
-            }
-        }
+        // if (Name == "Editor_1")
+        // {
+        //     Log.Warn($"{baseSpeed}");
+        //     foreach (var fe in _speedMultipliers)
+        //     {
+        //         Log.Warn($"FE: {fe.Entity.Name} / Mod: {fe.SpeedModifier}");
+        //     }
+        // }
         return baseSpeed;
     }
 

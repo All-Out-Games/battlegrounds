@@ -1,8 +1,10 @@
 using AO;
+using StreamReader = AO.StreamReader;
+using StreamWriter = AO.StreamWriter;
 
 namespace Assembly.scripts.SceneObjects.AdCrates;
 
-public class AdTrigger : Component
+public class AdTrigger : Component, INetworkedComponent
 {
     [Serialized] public Interactable Trigger;
 
@@ -55,5 +57,19 @@ public class AdTrigger : Component
                 Notifications.Show("Ad bonuses are only available on the iOS and Android app!");
             }
         }
+    }
+
+    public void NetworkSerialize(StreamWriter writer)
+    {
+        writer.WriteString(RewardId);
+        writer.WriteString(AdPromptText);
+        writer.WriteString(AdPromptTexturePath);
+    }
+
+    public void NetworkDeserialize(StreamReader reader)
+    {
+        RewardId = reader.ReadString();
+        AdPromptText = reader.ReadString();
+        AdPromptTexturePath = reader.ReadString();
     }
 }
