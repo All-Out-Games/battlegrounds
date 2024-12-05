@@ -338,6 +338,16 @@ public partial class FightPlayer
         aoLayer.CreateGlobalTransition(meteorLandState).CreateTriggerCondition(meteorLandTrigger);
         aoLayer.CreateTransition(meteorLandState, aoIdleState, true);
 
+        // Ice storm
+        var iceStormTrigger = stateMachine.CreateVariable("ice_storm_start", StateMachineVariableKind.TRIGGER);
+        var iceStormEndTrigger = stateMachine.CreateVariable("ice_storm_end", StateMachineVariableKind.TRIGGER);
+        var iceStormStartState = aoLayer.CreateState("BAT_003/ice_storm_start", 0, false);
+        var iceStormLoopState = aoLayer.CreateState("BAT_033/ice_storm_loop", 0, true);
+        var iceStormEndState = aoLayer.CreateState("BAT_003/ice_storm_end", 0, false);
+        aoLayer.CreateGlobalTransition(iceStormStartState).CreateTriggerCondition(iceStormTrigger);
+        aoLayer.CreateTransition(iceStormStartState, iceStormLoopState, true);
+        
+
         #endregion
     }
     

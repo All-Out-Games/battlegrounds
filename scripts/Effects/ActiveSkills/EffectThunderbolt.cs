@@ -115,7 +115,6 @@ public class EffectThunderbolt : FightEffect
 
     public void ThunderAttack()
     {
-        // TODO
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage, DamageType.AOE, FightPlayer.DamageInfo.KnockBackInterruptLevel);
         info.SkillKey = SkillConfig.ThunderboltNodeConfig.SkillKey;
         info.SpecialDeathAnimation = true;

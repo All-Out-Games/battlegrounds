@@ -50,6 +50,7 @@ public class EffectHypnotize : FightEffectWithNoFlinch
     protected override int InterruptLevel => 1000;
 
     protected override bool PreventMovement => true;
+    
 
     public override bool BlockAbilityActivation => true;
 

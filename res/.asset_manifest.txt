@@ -545,7 +545,10 @@ SFX/Effects/heal_end.wav - .ao - 674e5e03f6994d2906c24a88 - 10197304472413070181
 SFX/Effects/heal_start.wav - .ao - 674e5e04f6994d2906c24a8b - 18098554159281930704
 SFX/Effects/healing_loop.wav - .ao - 674e5e04f6994d2906c24a8c - 5227358417936427090
 SFX/Effects/hypnotize.wav - .ao - 674e5e05f6994d2906c24a8e - 1926015288595768183
+SFX/Effects/ice_end.wav - .ao - 67514906f6994d2906c262b2 - 2553071533189480157
+SFX/Effects/ice_loop.wav - .ao - 67514906f6994d2906c262b3 - 4572117382677487336
 SFX/Effects/ice_projectile_hit.wav - .ao - 674e5e05f6994d2906c24a90 - 18313118222832407973
+SFX/Effects/ice_start.wav - .ao - 67514906f6994d2906c262b1 - 16753145535486875559
 SFX/Effects/invisibility_activate.wav - .ao - 674e5e05f6994d2906c24a92 - 16762074313013705370
 SFX/Effects/iron_aura_activate.wav - .ao - 674e5e06f6994d2906c24a95 - 10994351688664184108
 SFX/Effects/knocked_down2.wav - .ao - 674e5e06f6994d2906c24a96 - 16472338161504330273
