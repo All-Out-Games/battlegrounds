@@ -21,7 +21,7 @@ public class AdCrateSpawner : System<AdCrateSpawner>
         {
             RewardId = "xpBoost",
             Tint = Vector4.One,
-            Chance = 1,
+            Chance = 0.25f,
             InteractableText = "XP Booster",
             AdPromptText = "Watch an Ad to claim 5 min 3x XP boost.",
             AdPromptTexture = "Props/DropItems/ExpPotionS.png"
@@ -30,7 +30,7 @@ public class AdCrateSpawner : System<AdCrateSpawner>
         {
             RewardId = "xp200",
             Tint = Vector4.One,
-            Chance = 1,
+            Chance = 0.3f,
             InteractableText = "200 XP",
             AdPromptText = "Watch an Ad to claim 200 XP. You get double if you are lower than Lv. 15.",
             AdPromptTexture = "Props/DropItems/ExpPotionM.png"

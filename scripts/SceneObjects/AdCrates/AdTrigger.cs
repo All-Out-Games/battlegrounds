@@ -48,7 +48,10 @@ public class AdTrigger : Component, INetworkedComponent
         if (Ads.IsAdAvailable())
         {
             Claimed = true;
-            Ads.PromptAd(RewardId, "Watch Ad to Claim", AdPromptText, Assets.GetAsset<Texture>(AdPromptTexturePath));
+            if (p.IsLocal)
+            {
+                Ads.PromptAd(RewardId, "Watch Ad to Claim", AdPromptText, Assets.GetAsset<Texture>(AdPromptTexturePath));
+            }
         }
         else
         {
