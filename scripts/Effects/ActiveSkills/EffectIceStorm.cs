@@ -1,4 +1,5 @@
 ﻿using Assembly.scripts.SceneObjects;
+using Assembly.scripts.SceneObjects.Projectiles;
 using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
@@ -38,6 +39,7 @@ public class EffectIceStorm : FightEffectWithNoFlinch
     private bool _endAnimationPlayed;
 
     private EffectConfig.IceStormConfig _config;
+    private EffectConfig.ProjectileConfig _chunkConfig;
     
     protected float NextDmgTick = 0.5f;
     protected bool Ticked = false;
@@ -47,6 +49,7 @@ public class EffectIceStorm : FightEffectWithNoFlinch
     {
         base.OnEffectStart(isDropIn);
         _config = EffectConfig.IceStormConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("IceStorm"));
+        _chunkConfig = EffectConfig.ProjectileConfig.GetPlayerIceChunkConfig(_config.ProjectileDamage);
         if (!isDropIn)
         {
             SFX.Play(SFXKeys.IceStormStartAudio, DefaultSoundDesc);
@@ -129,8 +132,30 @@ public class EffectIceStorm : FightEffectWithNoFlinch
         {
             SFX.Play(SFXKeys.IceHitAudio, DefaultSoundDesc);
         }
-        // Part II: Ice chunks projectile
-        
-        
+        // Part II: Ice chunks projectile - they are essentially spoons with a skin
+
+        float range = EffectConfig.ProjectileConfig.SpoonRange;
+        var targetPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, range, Player);
+        int numChunks = Int32.Min(_config.LockTarget, targetPlayers.Count); // Lock targets within range
+
+        for (int i = 0; i < numChunks; i++)
+        {
+            if (targetPlayers[i].Alive())
+            {
+                Vector2 chunkStartDir = (targetPlayers[i].Position - selfPos).Normalized;
+                Vector2 chunkStartPos = selfPos + chunkStartDir * range;
+                Entity proj = Game.SpawnProjectile(FightPlayer, _chunkConfig.ProjectilePrefabKey,
+                    $"{_chunkConfig.ProjectilePrefabKey}",
+                    chunkStartPos, -chunkStartDir);
+                
+                Projectile projComp = proj.GetComponent<Projectile>();
+                projComp.Speed = _chunkConfig.Speed;
+                projComp.Lifetime = _chunkConfig.ProjectileLifetime;
+                BaseProjectile supplementProjectileComp = proj.GetComponent<BaseProjectile>();
+                supplementProjectileComp.LifeTime = _chunkConfig.ProjectileLifetime;
+                supplementProjectileComp.InitializeProjectile(FightPlayer, _chunkConfig.Damage, false);
+            }
+            
+        }
     }
 }

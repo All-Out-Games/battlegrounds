@@ -640,16 +640,20 @@
 5128 bytes - Props/DropItems/ExpPotionL.png.ao
 5128 bytes - VFX/PsionicBeam/ground_fissue_end.png.ao
 5112 bytes - environment/CentralHub/Wave2.png.ao
+5080 bytes - projectile/ice_chunk_A.png.ao.astc
 5056 bytes - LeaderBoard/RANK 1.png.ao.astc
 4880 bytes - Props/DropItems/HealthPotionL.png.ao.astc
+4856 bytes - projectile/ice_chunk_A.png.ao
 4808 bytes - Props/DropItems/HealthPotionS.png.ao
 4768 bytes - LeaderBoard/RANK 1.png.ao
 4544 bytes - VFX/PsionicBeam/ground_fissue_repeatable.png.ao.astc
+4488 bytes - projectile/ice_chunk_B.png.ao.astc
 4440 bytes - VFX/GravityCrush/BAT003_gravity_field_AOE.spine.ao
 4424 bytes - VFX/PsionicBeam/ground_fissue_repeatable.png.ao
 4408 bytes - UI/LargeMenuButtons/Large Menu Buttons/large_button_highlight.png.ao.astc
 4408 bytes - UI/LargeMenuButtons/large_button_highlight.png.ao.astc
 4336 bytes - Props/DropItems/HealthPotionL.png.ao
+4264 bytes - projectile/ice_chunk_B.png.ao
 4072 bytes - SFX/UI/ui_insufficient_funds.wav.ao
 3968 bytes - UI/LargeMenuButtons/Large Menu Buttons/large_button_highlight.png.ao
 3968 bytes - UI/LargeMenuButtons/large_button_highlight.png.ao
@@ -674,8 +678,10 @@
 2936 bytes - Props/DropItems/coin/coin_1.png.ao.astc
 2912 bytes - ability_icon_tmp/PsyThrowGrab_Tmp.png.ao.astc
 2912 bytes - UI/SkillTree/small_skill_tree_icons/psionic.png.ao.astc
+2904 bytes - projectile/ice_chunk_C.png.ao.astc
 2848 bytes - UI/SkillTree/small_skill_tree_icons/defense.png.ao.astc
 2832 bytes - UI/SkillTree/small_skill_tree_icons/stealth.png.ao.astc
+2808 bytes - projectile/ice_chunk_C.png.ao
 2776 bytes - UI/LargeMenuButtons/Large Menu Buttons/stats.png.ao.astc
 2776 bytes - UI/LargeMenuButtons/stats.png.ao.astc
 2736 bytes - UI/SkillTree/small_skill_tree_icons_pressed/defense.png.ao.astc
@@ -865,6 +871,7 @@
 632 bytes - Invisibility_Aura.prefab.ao
 624 bytes - Crate.prefab.ao
 608 bytes - BloodVFX.prefab.ao
+608 bytes - IceProjectile.prefab.ao
 592 bytes - BattleCry_Shockwave.prefab.ao
 592 bytes - PsyboltProjectile.prefab.ao
 592 bytes - Rage_Aura.prefab.ao

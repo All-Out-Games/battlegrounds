@@ -12,7 +12,6 @@
     "X": 1,
     "Y": 1
   },
-  "next_sibling": "377316458197998:1716489394196426200",
   "spawn_as_networked_entity": true
 },
 {
@@ -51,10 +50,10 @@
   }
 },
 {
-  "cid": 4,
-  "aoid": "28175650223182:1718997557893531700",
-  "component_type": "Mono_Component",
-  "mono_component_type": "SpoonProjectile",
+  "cid": 6,
+  "aoid": "41020753490335:1733467313418929500",
+  "component_type": "Internal_Component",
+  "internal_component_type": "Trail_Renderer",
   "data": {
 
   }
@@ -69,10 +68,10 @@
   }
 },
 {
-  "cid": 6,
-  "aoid": "41020753490335:1733467313418929500",
-  "component_type": "Internal_Component",
-  "internal_component_type": "Trail_Renderer",
+  "cid": 4,
+  "aoid": "45649628025713:1733469167936988900",
+  "component_type": "Mono_Component",
+  "mono_component_type": "IceChunkProjectile",
   "data": {
 
   }

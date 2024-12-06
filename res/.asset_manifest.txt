@@ -431,6 +431,7 @@ FightPlayerRig/playercharacter_2.png - .ao.astc - 674e5debf6994d2906c249f8 - 175
 FireballProjectile.prefab - .ao - 6739340802386857e8d33419 - 6615212460275438377
 GravityCrushVFX.prefab - .ao - 674e5decf6994d2906c249fa - 8589744853951767240
 HitVfx.prefab - .ao - 674e5decf6994d2906c249fc - 8922161560569567443
+IceProjectile.prefab - .ao - 6752a48af6994d2906c26c16 - 464239242656299715
 Invisibility_Aura.prefab - .ao - 674e5decf6994d2906c249fe - 13012114415043570174
 Invisibility_VFX.prefab - .ao - 674e5dedf6994d2906c24a01 - 17672979264937178813
 KillFeedElement.prefab - .ao - 674e5dedf6994d2906c24a02 - 7989591864985094003
@@ -454,6 +455,12 @@ projectile/BAT003_Projectile/BAT003_projectile.png - .ao.astc - 674e5df2f6994d29
 projectile/BAT003_Projectile/BAT003_projectile.spine - .ao - 674e5df2f6994d2906c24a24 - 6080672083246735137
 projectile/broccoli.png - .ao - 674e5df3f6994d2906c24a27 - 3775797786492496287
 projectile/broccoli.png - .ao.astc - 674e5df3f6994d2906c24a28 - 8070049756362073046
+projectile/ice_chunk_A.png - .ao - 6752a152f6994d2906c26c10 - 7690001264524057815
+projectile/ice_chunk_A.png - .ao.astc - 6752a152f6994d2906c26c0f - 17399263448485560052
+projectile/ice_chunk_B.png - .ao - 6752a151f6994d2906c26c06 - 15875145291041046673
+projectile/ice_chunk_B.png - .ao.astc - 6752a151f6994d2906c26c08 - 5206638789771061439
+projectile/ice_chunk_C.png - .ao - 6752a151f6994d2906c26c07 - 6696702697080511536
+projectile/ice_chunk_C.png - .ao.astc - 6752a152f6994d2906c26c0c - 5714631067742294023
 projectile/popcorn3.png - .ao - 674e5df3f6994d2906c24a2a - 7978382697495178641
 projectile/popcorn3.png - .ao.astc - 67319daeada08dbbbde3fdb8 - 12844469188292837266
 projectile/TwitterProjectile.png - .ao - 674e5df4f6994d2906c24a2c - 3608582557201481316

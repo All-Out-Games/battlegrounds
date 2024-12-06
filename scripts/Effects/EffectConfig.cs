@@ -399,6 +399,18 @@ public static class EffectConfig
             return cfg;
         }
 
+        public static ProjectileConfig GetPlayerIceChunkConfig(int dmg)
+        {
+            ProjectileConfig cfg = new ProjectileConfig()
+            {
+                Damage = dmg,
+                ProjectilePrefabKey = "IceProjectile.prefab",
+                ProjectileLifetime = SpoonLifetime,
+                ProjectileLevel = 1
+            };
+            return cfg;
+        }
+
         public static ProjectileConfig GetPlayerBefuddleConfig(int attack, int level)
         {
             ProjectileConfig cfg = new ProjectileConfig()
