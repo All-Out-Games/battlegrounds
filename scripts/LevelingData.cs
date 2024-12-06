@@ -4,7 +4,7 @@ namespace Assembly.scripts;
 
 public static class LevelingData
 {
-    public static readonly int MaxLevel = 32; // The displayed level is the actual level PLUS ONE
+    public static readonly int MaxLevel = 34; // The displayed level is the actual level PLUS ONE
     public static readonly int XpForDamage = 5;
     public static readonly int XpForKill = 100;
     

@@ -612,6 +612,7 @@
 6128 bytes - SFX/UI/kill_elimination.wav.ao
 6080 bytes - Props/DropItems/ExpPotionS.png.ao
 6040 bytes - Props/DropItems/RagePotion.png.ao.astc
+6008 bytes - SFX/Effects/ice_hit.wav.ao
 5984 bytes - Props/DropItems/MagicPunchPotion.png.ao
 5984 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills_icon_pressed.png.ao.astc
 5984 bytes - UI/LargeMenuButtons/skills_icon_pressed.png.ao.astc

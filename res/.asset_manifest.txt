@@ -546,6 +546,7 @@ SFX/Effects/heal_start.wav - .ao - 674e5e04f6994d2906c24a8b - 180985541592819307
 SFX/Effects/healing_loop.wav - .ao - 674e5e04f6994d2906c24a8c - 5227358417936427090
 SFX/Effects/hypnotize.wav - .ao - 674e5e05f6994d2906c24a8e - 1926015288595768183
 SFX/Effects/ice_end.wav - .ao - 67514906f6994d2906c262b2 - 2553071533189480157
+SFX/Effects/ice_hit.wav - .ao - 67528e3bf6994d2906c26c02 - 102282895575072083
 SFX/Effects/ice_loop.wav - .ao - 67514906f6994d2906c262b3 - 4572117382677487336
 SFX/Effects/ice_projectile_hit.wav - .ao - 674e5e05f6994d2906c24a90 - 18313118222832407973
 SFX/Effects/ice_start.wav - .ao - 67514906f6994d2906c262b1 - 16753145535486875559

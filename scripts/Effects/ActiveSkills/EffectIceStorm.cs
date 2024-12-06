@@ -1,4 +1,7 @@
-﻿namespace Assembly.scripts.Effects.ActiveSkills;
+﻿using Assembly.scripts.SceneObjects;
+using Assembly.scripts.VFX;
+
+namespace Assembly.scripts.Effects.ActiveSkills;
 using AO;
 
 public class AbilityIceStorm : FightAbility
@@ -30,12 +33,15 @@ public class EffectIceStorm : FightEffectWithNoFlinch
 
     public override bool BlockAbilityActivation => true;
 
+    public override float SpeedModifier => _endAnimationPlayed ? 0.15f : 1f;
+
     private bool _endAnimationPlayed;
 
     private EffectConfig.IceStormConfig _config;
     
     protected float NextDmgTick = 0.5f;
     protected bool Ticked = false;
+    protected bool LoopAudioPlayed = false;
 
     public override void OnEffectStart(bool isDropIn)
     {
@@ -43,9 +49,11 @@ public class EffectIceStorm : FightEffectWithNoFlinch
         _config = EffectConfig.IceStormConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("IceStorm"));
         if (!isDropIn)
         {
+            SFX.Play(SFXKeys.IceStormStartAudio, DefaultSoundDesc);
             DurationRemaining = EffectConfig.IceStormConfig.EndAnimationTime + 1f;
         }
         FightPlayer.SetAnimTrigger("ice_storm_start");
+        FightPlayer.RegisterSpeedModify(this);
     }
 
     public override void OnEffectUpdate()
@@ -54,18 +62,75 @@ public class EffectIceStorm : FightEffectWithNoFlinch
         if(Util.OneTime(ElapsedTime > EffectConfig.IceStormConfig.EndAnimationTime, ref _endAnimationPlayed))
         {
             FightPlayer.SetAnimTrigger("ice_storm_end");
+            SFX.Play(SFXKeys.IceStormEndAudio, DefaultSoundDesc);
+            SFX.FadeOutAndStop(SoundId, 1);
         }
         
         if (Util.OneTime(ElapsedTime > NextDmgTick, ref Ticked))
         {
+            if (!LoopAudioPlayed)
+            {
+                SoundId = SFX.Play(SFXKeys.IceStormLoopAudio,
+                    DefaultSoundDesc with { Loop = true, LoopTimeout = DurationRemaining });
+            }
             NextDmgTick += 1;
             Ticked = false;
-            IceAttack();
+            LoopAudioPlayed = true;
+            if (!_endAnimationPlayed)
+            {
+                IceAttack();
+            }
+            
         }
+    }
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        FightPlayer.RemoveSpeedModify(this);
     }
 
     private void IceAttack()
     {
-        Log.Warn("Wochao! Ice!");
+        // Part I: Small AoE with slow and ice damage
+        Vector2 selfPos = FightPlayer.Entity.Position;
+
+        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage, DamageType.AOE);
+        info.SkillKey = SkillConfig.IceStormNodeConfig.SkillKey;
+        info.CrateImmediateDestroy = true;
+        
+        var damageables = FightClubGameManager.Instance.OverlapCircleForDamageables(selfPos, EffectConfig.IceStormConfig.AoeRange, Player);
+
+        bool hit = false;
+        foreach (var dmg in damageables)
+        {
+            if(!dmg.Damageable()) continue;
+            
+            dmg.TakeDamage(FightPlayer, info);
+
+            if (dmg is PlayerCollisionChild fp)
+            {
+                var other = fp.Player;
+
+                //other.AddEffect<EffectKnockDown>(FightPlayer, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
+                other.AddEffect<EffectMovementSpeedChange>(FightPlayer, 1.1f, change => change.SpdModifier = EffectConfig.IceStormConfig.PlayerSpeedMultiplier);
+                hit = true;
+                FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.HitVFX, other.Position with{ Y = other.Position.Y + 0.2f},
+                    entity =>
+                    {
+                        SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
+                        vfx.StartVFX("hit_ice", false);
+                    }
+                );
+            }
+        }
+
+        if (hit)
+        {
+            SFX.Play(SFXKeys.IceHitAudio, DefaultSoundDesc);
+        }
+        // Part II: Ice chunks projectile
+        
+        
     }
 }

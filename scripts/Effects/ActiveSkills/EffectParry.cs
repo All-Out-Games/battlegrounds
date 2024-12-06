@@ -35,6 +35,7 @@ public class EffectParry : FightEffect
             FightPlayer.SetAnimTrigger("parry_start"); // We can omit this trigger for drop-in, this effect should be < 2s
             SFX.Play(SFXKeys.ParryStartAudio, DefaultSoundDesc);
             DurationRemaining = _config.ParryTime;
+            if (Network.IsServer) DurationRemaining += 0.15f; // A bit more leeway on server
         }
         
         FightPlayer.RegisterPreDamageEvent(this);
@@ -53,7 +54,7 @@ public class EffectParry : FightEffect
     public override void PreDamageMod(ref FightPlayer.DamageInfo info)
     {
         base.PreDamageMod(ref info);
-        if (info.DmgType == DamageType.Melee || info.DmgType == DamageType.Ranged)
+        if (info.DmgType == DamageType.Melee || info.DmgType == DamageType.Ranged || info.DmgType == DamageType.AOE)
         {
             info.ReactionInfo.Amount = 0;
             info.OverrideDamageNumber = FightPlayer.DamageInfo.DamageNumberOverrideType.Parry;

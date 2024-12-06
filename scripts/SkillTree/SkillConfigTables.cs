@@ -1191,7 +1191,7 @@ public static partial class SkillConfig
         RangeDescriptionKey = "3m",
         CooldownKey = "%OVERRIDE%",
         IconPath = "AbilityIcon_Merged/elemental/ice_storm.png",
-        AbilityIconPath = "AbilityIcon_Separate/elemental/ice_storm.png",
+        AbilityIconPath = "AbilityIcon_Separate/elemental/ice_storm_icon.png",
         AbilityPreviewPath = "Ability_Preview/elemental/icestorm.gif",
         UnlockLevel = 34,
         MaximumLevel = 5,

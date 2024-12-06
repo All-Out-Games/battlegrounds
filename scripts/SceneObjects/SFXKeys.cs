@@ -106,6 +106,12 @@ public static class SFXKeys
     public static AudioAsset WindPunchAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/wind_punch.wav");
 
     public static AudioAsset SpectralSpawnAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/enter_pvp_arena.wav");
+
+    public static AudioAsset IceStormStartAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/ice_start.wav");
+    public static AudioAsset IceStormLoopAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/ice_loop.wav");
+    public static AudioAsset IceStormEndAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/ice_end.wav");
+    public static AudioAsset IceProjectileHitAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/ice_projectile_hit.wav");
+    public static AudioAsset IceHitAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/ice_hit.wav");
     #endregion
 
     #region UI
