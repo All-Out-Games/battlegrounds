@@ -55,7 +55,14 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Trail_Renderer",
   "data": {
-
+    "texture": "projectile/trail.png",
+    "target_length": 12,
+    "width": 0.6000000238418579,
+    "depth_offset": 1,
+    "tint": {
+      "X": 0.4703703522682190,
+      "Y": 0.8705350160598755
+    }
   }
 },
 {

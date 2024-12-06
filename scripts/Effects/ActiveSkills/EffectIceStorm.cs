@@ -136,25 +136,31 @@ public class EffectIceStorm : FightEffectWithNoFlinch
 
         float range = EffectConfig.ProjectileConfig.SpoonRange;
         var targetPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(selfPos, range, Player);
-        int numChunks = Int32.Min(_config.LockTarget, targetPlayers.Count); // Lock targets within range
 
-        for (int i = 0; i < numChunks; i++)
+        for (int i = 0; i < _config.LockTarget; i++)
         {
-            if (targetPlayers[i].Alive())
+            Vector2 chunkStartDir, chunkStartPos;
+            
+            if (i < targetPlayers.Count && targetPlayers[i].Alive())
             {
-                Vector2 chunkStartDir = (targetPlayers[i].Position - selfPos).Normalized;
-                Vector2 chunkStartPos = selfPos + chunkStartDir * range;
-                Entity proj = Game.SpawnProjectile(FightPlayer, _chunkConfig.ProjectilePrefabKey,
-                    $"{_chunkConfig.ProjectilePrefabKey}",
-                    chunkStartPos, -chunkStartDir);
-                
-                Projectile projComp = proj.GetComponent<Projectile>();
-                projComp.Speed = _chunkConfig.Speed;
-                projComp.Lifetime = _chunkConfig.ProjectileLifetime;
-                BaseProjectile supplementProjectileComp = proj.GetComponent<BaseProjectile>();
-                supplementProjectileComp.LifeTime = _chunkConfig.ProjectileLifetime;
-                supplementProjectileComp.InitializeProjectile(FightPlayer, _chunkConfig.Damage, false);
+                chunkStartDir = (targetPlayers[i].Position - selfPos).Normalized;
             }
+            else
+            {
+                chunkStartDir = new Vector2(Random.Shared.NextFloat(), Random.Shared.NextFloat()).Normalized;
+            }
+            chunkStartPos = selfPos + chunkStartDir * range;
+
+            Entity proj = Game.SpawnProjectile(FightPlayer, _chunkConfig.ProjectilePrefabKey,
+                $"{_chunkConfig.ProjectilePrefabKey}",
+                chunkStartPos, -chunkStartDir);
+                
+            Projectile projComp = proj.GetComponent<Projectile>();
+            projComp.Speed = _chunkConfig.Speed;
+            projComp.Lifetime = _chunkConfig.ProjectileLifetime;
+            BaseProjectile supplementProjectileComp = proj.GetComponent<BaseProjectile>();
+            supplementProjectileComp.LifeTime = _chunkConfig.ProjectileLifetime;
+            supplementProjectileComp.InitializeProjectile(FightPlayer, _chunkConfig.Damage, false);
             
         }
     }

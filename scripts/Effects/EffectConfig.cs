@@ -1092,9 +1092,9 @@ public static class EffectConfig
 
     public struct IceStormConfig
     {
-        public static float Cooldown = 17f;
-        public static int BaseDamage = 0;
-        public static int ProjectileBaseDamage = 1;
+        public static float Cooldown = 21f;
+        public static int BaseDamage = -1;
+        public static int ProjectileBaseDamage = -4;
         public static float AoeRange = 3f;
         public static float PlayerSpeedMultiplier = 0.4f;
         public static float EndAnimationTime = 3.75f;
