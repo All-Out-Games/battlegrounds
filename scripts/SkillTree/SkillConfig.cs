@@ -325,6 +325,9 @@ public static partial class SkillConfig
             case "Fireball":
                 res = $"{AbilityFireball.GetCooldown(fp)}s";
                 break;
+            case "IceStorm":
+                res = $"{AbilityIceStorm.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -431,6 +434,9 @@ public static partial class SkillConfig
                 break;
             case "Thunderbolt":
                 res = EffectConfig.ThunderboltConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("Thunderbolt")).Damage;
+                break;
+            case "IceStorm":
+                res = EffectConfig.IceStormConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("IceStorm")).Damage;
                 break;
         }
 

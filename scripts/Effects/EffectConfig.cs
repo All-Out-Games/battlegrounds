@@ -271,7 +271,7 @@ public static class EffectConfig
         public static float DefaultLifetime = 5f;
         public static float Cooldown = 11f;
         public static float ProjectileSpeedMultiplier = 0.1f;
-        public static float PlayerSpeedMultiplier = 0.75f;
+        public static float PlayerSpeedMultiplier = 0.4f;
 
         public float FieldSize;
         public float Lifetime;
@@ -1075,6 +1075,39 @@ public static class EffectConfig
             return res;
         }
     }
+
+    #region cfg: IceStorm
+
+    public struct IceStormConfig
+    {
+        public static float Cooldown = 17f;
+        public static int BaseDamage = 0;
+        public static int ProjectileBaseDamage = 1;
+        public static float AoeRange = 3f;
+        public static float PlayerSpeedMultiplier = 0.4f;
+        public static float EndAnimationTime = 3.75f;
+        
+        public int Damage;
+        public int ProjectileDamage;
+        public int LockTarget;
+
+        public static IceStormConfig GetDefault(int atk, int level)
+        {
+            IceStormConfig res = new()
+            {
+                Damage = atk + BaseDamage,
+                ProjectileDamage = atk + ProjectileBaseDamage,
+                LockTarget = 1
+            };
+            if (level > 1) res.Damage += 1;
+            if (level > 2) res.ProjectileDamage += 1;
+            // Cooldown -2
+            if (level > 4) res.LockTarget += 1;
+            return res;
+        }
+    }
+
+    #endregion
 
     #endregion
 }

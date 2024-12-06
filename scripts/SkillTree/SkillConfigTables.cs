@@ -1131,7 +1131,7 @@ public static partial class SkillConfig
         GridX = 0,
         GridY = 1,
         ParentNodeKeys = new string[] { "IceFist" },
-        ChildrenNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "IceStorm"},
     };
     
     public static readonly SkillTreeNodeConfig FireballNodeConfig = new SkillTreeNodeConfig()
@@ -1179,6 +1179,30 @@ public static partial class SkillConfig
         GridX = 2,
         GridY = 1,
         ParentNodeKeys = new string[] { "IceFist" },
+        ChildrenNodeKeys = new string[] { },
+    };
+    
+    public static readonly SkillTreeNodeConfig IceStormNodeConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Ice Storm",
+        DescriptionTextKey = "Surround yourself with an ice storm. Slow enemies caught inside and shoot out ice chunks.",
+        UpgradeTextKey = "*: Damage +1 \n **: Chunk Damage +1\n ***: Cooldown -2s\n ****: +1 Ice Chunk",
+        BaseDamageKey = _overrideValue_,
+        RangeDescriptionKey = "3m",
+        CooldownKey = "%OVERRIDE%",
+        IconPath = "AbilityIcon_Merged/elemental/ice_storm.png",
+        AbilityIconPath = "AbilityIcon_Separate/elemental/ice_storm.png",
+        AbilityPreviewPath = "Ability_Preview/elemental/icestorm.gif",
+        UnlockLevel = 34,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Elemental,
+        UpgradeCost = 9200,
+        SkillKey = "IceStorm",
+        GridX = 0,
+        GridY = 2,
+        ParentNodeKeys = new string[] { "WindPunch" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -1241,7 +1265,8 @@ public static partial class SkillConfig
             { "IceFist", IceFistNodeConfig},
             {"WindPunch", WindPunchNodeConfig},
             {"Fireball", FireballNodeConfig},
-            {"Thunderbolt", ThunderboltNodeConfig}
+            {"Thunderbolt", ThunderboltNodeConfig},
+            {"IceStorm", IceStormNodeConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -1259,7 +1284,7 @@ public static partial class SkillConfig
         // Stealth
         "Invisibility", "LightFeet", "SpeedBoost","Shuriken", "BearTrap", "ShadowStep", "Backstab", "TotalDarkness",
         // Elemental
-        "IceFist", "WindPunch", "Fireball", "Thunderbolt"
+        "IceFist", "WindPunch", "Fireball", "Thunderbolt", "IceStorm"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "Punch2", "Punch3" };
@@ -1309,7 +1334,8 @@ public partial class FightAbility
         {SC.ParryConfig.SkillKey, typeof(AbilityParry)},
         {SC.WindPunchNodeConfig.SkillKey, typeof(AbilityWindPunch)},
         {SC.FireballNodeConfig.SkillKey, typeof(AbilityFireball)},
-        {SC.ThunderboltNodeConfig.SkillKey, typeof(AbilityThunderbolt)}
+        {SC.ThunderboltNodeConfig.SkillKey, typeof(AbilityThunderbolt)},
+        {SC.IceStormNodeConfig.SkillKey, typeof(AbilityIceStorm)}
     };
 }
 

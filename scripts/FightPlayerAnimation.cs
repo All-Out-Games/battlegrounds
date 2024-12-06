@@ -346,6 +346,7 @@ public partial class FightPlayer
         var iceStormEndState = aoLayer.CreateState("BAT_003/ice_storm_end", 0, false);
         aoLayer.CreateGlobalTransition(iceStormStartState).CreateTriggerCondition(iceStormTrigger);
         aoLayer.CreateTransition(iceStormStartState, iceStormLoopState, true);
+        aoLayer.CreateTransition(iceStormLoopState, iceStormEndState, false).CreateTriggerCondition(iceStormEndTrigger);
         
 
         #endregion
