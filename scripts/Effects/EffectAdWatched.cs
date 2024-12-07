@@ -37,7 +37,7 @@ public class EffectAdWatched : AEffect
     public override void NetworkSerialize(StreamWriter writer)
     {
         base.NetworkSerialize(writer);
-        writer.WriteString("Info");
+        writer.WriteString(Info);
     }
 
     public override void NetworkDeserialize(StreamReader reader)
