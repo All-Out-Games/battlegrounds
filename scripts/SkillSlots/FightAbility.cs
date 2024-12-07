@@ -66,7 +66,7 @@ public partial class FightAbility : Ability
         FightPlayer.OnSkillActivate?.Invoke(FightPlayer.SkillActivationInfo.GetActivationInfo(Interruptlevel, SkillKey));
         return true;
     }
-    
+
 
 }
 

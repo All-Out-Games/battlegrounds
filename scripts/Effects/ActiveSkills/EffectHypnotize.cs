@@ -51,6 +51,7 @@ public class EffectHypnotize : FightEffectWithNoFlinch
 
     protected override bool PreventMovement => true;
     
+    public override bool IsCC => true;
 
     public override bool BlockAbilityActivation => true;
 
@@ -62,8 +63,7 @@ public class EffectHypnotize : FightEffectWithNoFlinch
         FightPlayer.OnReceiveDamage += OnDamageEvent;
 
         Caster.AddEffect<EffectHypnotizeCaster>();
-        FightPlayer.RemoveEffect<DefaultTargettingEffect>(true);
-        
+
         if (!isDropIn)
         {
             DurationRemaining = EffectConfig.HypnotizeConfig.HypnotizeTime;

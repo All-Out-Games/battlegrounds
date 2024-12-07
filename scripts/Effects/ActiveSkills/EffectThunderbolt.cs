@@ -160,12 +160,13 @@ public class EffectElectricShock : FightEffectWithNoFlinch
     public override bool IsActiveEffect => false;
     protected override bool PreventMovement => true;
     public override bool BlockAbilityActivation => true;
-    
+
+    public override bool IsCC => true;
+
 
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        FightPlayer.RemoveEffect<DefaultTargettingEffect>(true);
         FightPlayer.SetAnimTrigger("shocked_start", true);
         FightPlayer.RegisterPreDamageEvent(this);
     }

@@ -66,12 +66,14 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
 
     protected override bool PreventMovement => true;
     public override bool BlockAbilityActivation => true;
+    
+    public override bool IsCC => true;
 
     public override void OnEffectStart(bool isDropIn)
     {
 
         base.OnEffectStart(isDropIn);
-        FightPlayer.RemoveEffect<DefaultTargettingEffect>(true);
+        
         DurationRemaining = EffectConfig.PsyThrowConfig.GrabTime;
         _casterFp = Caster as FightPlayer;
         if (_casterFp != null)
