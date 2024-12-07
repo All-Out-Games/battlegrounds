@@ -31,7 +31,7 @@ public partial class ChargingStation : OwnedTrigger
         if (fp.Alive())
         {
             fp.AddEffect<EffectOvershield>(Owner, 5f, overshield => overshield.AssignConfig(EffectConfig.ShieldConfig.GetOvershield(_shieldAmount, 5f)));
-            SFX.Play(SFXKeys.BearTrapSnapAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
+            SFX.Play(SFXKeys.ChargingStationChargeAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
             Animator.SpineInstance.StateMachine.SetTrigger("activate");
         }
     }
@@ -46,7 +46,7 @@ public partial class ChargingStation : OwnedTrigger
     public override void OnDestroy()
     {
         base.OnDestroy();
-        // TODO: SFX
+        SFX.Play(SFXKeys.ChargingStationExplodeAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
         FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.LeapSlamCraterVfxPath, Position,
             entity =>
             {
@@ -80,7 +80,7 @@ public partial class ChargingStation : OwnedTrigger
         
         Animator.SpineInstance.SetStateMachine(stateMachine, Entity);
         
-        SFX.Play(SFXKeys.BearTrapSetAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
+        SFX.Play(SFXKeys.ChargingStationAppearAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
     }
     
     public override void Update()

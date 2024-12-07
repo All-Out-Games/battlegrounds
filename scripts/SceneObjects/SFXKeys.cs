@@ -112,6 +112,10 @@ public static class SFXKeys
     public static AudioAsset IceStormEndAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/ice_end.wav");
     public static AudioAsset IceProjectileHitAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/ice_projectile_hit.wav");
     public static AudioAsset IceHitAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/ice_hit.wav");
+    
+    public static AudioAsset ChargingStationAppearAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/charging_station_appear.wav");
+    public static AudioAsset ChargingStationExplodeAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/charging_station_explosion.wav");
+    public static AudioAsset ChargingStationChargeAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/charging_station_activated.wav");
     #endregion
 
     #region UI

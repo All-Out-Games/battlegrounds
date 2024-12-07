@@ -29,6 +29,16 @@ public class AbilityChargingStation : FightAbility
 public class AbilityChargingStationDetonation : FightAbility
 {
     public override string SkillKey => "ChargingStationDetonate";
+
+    public override TargettingMode TargettingMode => TargettingMode.Self;
+
+    public override float Cooldown => 6f;
+    
+    public override Type Effect => typeof(EffectChargingStationDetonate);
+    
+    public override string SkillIconPath => "AbilityIcon_Separate/elemental/detonator.png";
+    
+    public override bool CanUse() => Player.HasEffect<EffectChargingStation>();
 }
 
 public class EffectChargingStation : FightEffect
@@ -36,7 +46,7 @@ public class EffectChargingStation : FightEffect
     public override bool IsActiveEffect => false;
     private ChargingStation _station;
     private EffectConfig.ChargingStationConfig _config;
-    
+    private int _originalIndex;
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
@@ -55,12 +65,27 @@ public class EffectChargingStation : FightEffect
                     _station.CallClient_SetShield(_config.ShieldAmt);
                 });
         }
+        
+        if (FightPlayer.IsLocal)
+        {
+            var slotsMgr = FightPlayer.GetSkillSlots();
+            var f = typeof(AbilityChargingStation);
+            _originalIndex = slotsMgr.GetAbilityIndex(f);
+            if (_originalIndex > 0)
+            {
+                slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityChargingStationDetonation)), 1);
+            }
+            else
+            {
+                Log.Error("Charging Station: Skill Replacement Error! The player does not have the primary skill equipped.");
+            }
+        }
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        if (_station.Alive())
+        if (_station.Alive() && FightPlayer.Alive())
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage, DamageType.AOE, FightPlayer.DamageInfo.KnockBackInterruptLevel);
             info.SkillKey = SkillConfig.ChargingStationNodeConfig.SkillKey;
@@ -84,6 +109,11 @@ public class EffectChargingStation : FightEffect
             
             _station.Despawn();
         }
+        if (_originalIndex > 0 && FightPlayer.IsLocal)
+        {
+            var slotsMgr = FightPlayer.GetSkillSlots();
+            slotsMgr.ReplaceSlot(_originalIndex, slotsMgr.GetAbilityInstance(typeof(AbilityChargingStation)));
+        }
     }
 }
 
@@ -93,7 +123,8 @@ public class EffectChargingStationDetonate : FightEffect
 
     public override void OnEffectStart(bool isDropIn)
     {
-        // TODO
         base.OnEffectStart(isDropIn);
+        DurationRemaining = 0.01f;
+        FightPlayer.RemoveEffect<EffectChargingStation>(true);
     }
 }

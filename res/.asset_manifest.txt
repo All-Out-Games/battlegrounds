@@ -174,6 +174,8 @@ AbilityIcon_Separate/defense/shield_icon.png - .ao - 674e5da2f6994d2906c2484a - 
 AbilityIcon_Separate/defense/shield_icon.png - .ao.astc - 67319d88ada08dbbbde3fb64 - 11049511654537486052
 AbilityIcon_Separate/defense/spike_guard.png - .ao - 674e5da2f6994d2906c2484c - 18078654520972476424
 AbilityIcon_Separate/defense/spike_guard.png - .ao.astc - 674e5da3f6994d2906c2484e - 17267870068668393456
+AbilityIcon_Separate/elemental/detonator.png - .ao - 6753bf0af6994d2906c26cad - 4810886386151665888
+AbilityIcon_Separate/elemental/detonator.png - .ao.astc - 6753bf0af6994d2906c26cac - 6141534547470948134
 AbilityIcon_Separate/elemental/fire_tornado_icon.png - .ao - 674e5da3f6994d2906c24850 - 2847555832690895553
 AbilityIcon_Separate/elemental/fire_tornado_icon.png - .ao.astc - 67319d88ada08dbbbde3fb67 - 14749760128186413983
 AbilityIcon_Separate/elemental/fireball_icon.png - .ao - 674e5da3f6994d2906c24852 - 13556976304957356881
@@ -536,6 +538,10 @@ SelfDestructExplosion.prefab - .ao - 674e5dfff6994d2906c24a6e - 4967900236443195
 SFX/Effects/backstab_attack.wav - .ao - 674e5dfff6994d2906c24a70 - 13380297756859250767
 SFX/Effects/backstab_teleport.wav - .ao - 674e5e00f6994d2906c24a72 - 4356298399446425530
 SFX/Effects/backstab_victim.wav - .ao - 674e5e00f6994d2906c24a74 - 100234496919853591
+SFX/Effects/charging_station_activated.wav - .ao - 6753bb52f6994d2906c26ca3 - 17795938706751898774
+SFX/Effects/charging_station_activated_loop.wav - .ao - 6753bb52f6994d2906c26ca4 - 1674433555531995742
+SFX/Effects/charging_station_appear.wav - .ao - 6753bb52f6994d2906c26ca2 - 3071447504454293211
+SFX/Effects/charging_station_explosion.wav - .ao - 6753bb53f6994d2906c26ca7 - 3061869919701246786
 SFX/Effects/claw_swipe.wav - .ao - 674e5e00f6994d2906c24a76 - 747005872964420617
 SFX/Effects/confused_loop.wav - .ao - 674e5e01f6994d2906c24a78 - 2595311659759859499
 SFX/Effects/confusion_ball.wav - .ao - 674e5e01f6994d2906c24a7a - 11573810234490522786
@@ -589,6 +595,7 @@ SFX/Effects/rollout_start.wav - .ao - 674e5e0ef6994d2906c24aca - 321285242849984
 SFX/Effects/self_destruct.wav - .ao - 674e5e0ff6994d2906c24acc - 13043020283125349640
 SFX/Effects/self_destruct_explode.wav - .ao - 674e5e0ff6994d2906c24ace - 4572312737186184812
 SFX/Effects/shoulder_crash_loop.wav - .ao - 674e5e0ff6994d2906c24ad0 - 13044616808431518548
+SFX/Effects/sizzle_fire.wav - .ao - 6753bb53f6994d2906c26ca8 - 11809494432866602031
 SFX/Effects/snared_end.wav - .ao - 674e5e10f6994d2906c24ad2 - 506006255068748907
 SFX/Effects/snared_loop.wav - .ao - 674e5e10f6994d2906c24ad5 - 11536150552519046552
 SFX/Effects/sound_wave_projectile_loop.wav - .ao - 674e5e10f6994d2906c24ad6 - 8238123039009131044

@@ -328,6 +328,9 @@ public static partial class SkillConfig
             case "IceStorm":
                 res = $"{AbilityIceStorm.GetCooldown(fp)}s";
                 break;
+            case "ChargingStation":
+                res = $"{AbilityChargingStation.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -437,6 +440,10 @@ public static partial class SkillConfig
                 break;
             case "IceStorm":
                 res = EffectConfig.IceStormConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("IceStorm")).Damage;
+                break;
+            case "ChargingStation":
+                res = EffectConfig.ChargingStationConfig
+                    .GetDefault(0, fp.GetSkillTree().GetSkillLevel("ChargingStation")).Damage;
                 break;
         }
 

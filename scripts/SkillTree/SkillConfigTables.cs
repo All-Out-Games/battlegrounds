@@ -1179,13 +1179,13 @@ public static partial class SkillConfig
         GridX = 2,
         GridY = 1,
         ParentNodeKeys = new string[] { "IceFist" },
-        ChildrenNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "ChargingStation" },
     };
     
     public static readonly SkillTreeNodeConfig IceStormNodeConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Ice Storm",
-        DescriptionTextKey = "Surround yourself with an ice storm. Slow enemies caught inside and shoot out ice chunks.",
+        DescriptionTextKey = "Surround yourself with an ice storm. Slow enemies caught inside and damage them with ice chunks.",
         UpgradeTextKey = "*: Damage +1 \n **: Chunk Damage +1\n ***: Cooldown -2s\n ****: +1 Ice Chunk",
         BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = "3m",
@@ -1209,7 +1209,7 @@ public static partial class SkillConfig
     public static readonly SkillTreeNodeConfig ChargingStationNodeConfig = new SkillTreeNodeConfig()
     {
         DisplayName = "Charging Station",
-        DescriptionTextKey = "Place a charging station that charges nearby players for an overshield. You can also detonate it.",
+        DescriptionTextKey = "Place a charging station that charges nearby players with an overshield. You can also detonate it to damage enemies nearby.",
         UpgradeTextKey = "*: Damage +2 \n **: Shield +5\n ***: Cooldown -2s\n ****: Detonation shocks enemies",
         BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = "6m",

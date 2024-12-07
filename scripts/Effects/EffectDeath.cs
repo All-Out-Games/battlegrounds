@@ -35,6 +35,9 @@ public class EffectDeath : FightEffectWithImmunity
             case "Thunderbolt":
                 res = "death_knock";
                 break;
+            case "ChargingStation":
+                res = "death_knock";
+                break;
         }
 
         if (res == "death")
