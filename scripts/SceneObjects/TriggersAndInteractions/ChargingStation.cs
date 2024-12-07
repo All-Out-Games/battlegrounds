@@ -30,7 +30,7 @@ public partial class ChargingStation : OwnedTrigger
     {
         if (fp.Alive())
         {
-            fp.AddEffect<EffectOvershield>(Owner, 5f, overshield => overshield.AssignConfig(EffectConfig.ShieldConfig.GetOvershield(_shieldAmount, 5f)));
+            fp.GetEffectMgr().AddOvershield(Owner.Entity, 6f, _shieldAmount);
             SFX.Play(SFXKeys.ChargingStationChargeAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
             Animator.SpineInstance.StateMachine.SetTrigger("activate");
         }

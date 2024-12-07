@@ -151,5 +151,17 @@ public abstract class FightEffect : AEffect
         }
         // Remove Targeting
         FightPlayer.RemoveEffect<DefaultTargettingEffect>(true);
+        // Remove Other CC
+        foreach (var e in FightPlayer.Effects)
+        {
+            if (e is FightEffect && e != this)
+            {
+                var fe = (FightEffect)e;
+                if (fe.IsCC)
+                {
+                    fe.DurationRemaining = 0.05f;
+                }
+            }
+        }
     }
 }
