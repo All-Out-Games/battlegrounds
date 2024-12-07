@@ -15,7 +15,8 @@ public struct AdCrateConfig
 }
 public partial class AdCrateSpawner : System<AdCrateSpawner>
 {
-    public Entity[] CrateSpawnLocation; // TODO: Configs for Coin / Glory / XP / XP Booster / Spectral Spawn
+    public Entity[] CrateSpawnLocation;
+    public Entity[] CrabSpawnLocation;
     private bool _enabled;
     public static AdCrateConfig[] CrateConfigs = new[]
     {
@@ -32,7 +33,7 @@ public partial class AdCrateSpawner : System<AdCrateSpawner>
         {
             RewardId = "xp200",
             Tint = Vector4.One,
-            Chance = 0.3f,
+            Chance = 1f,
             InteractableText = "200 XP",
             AdPromptText = "Watch an Ad to claim 200 XP. You get double if you are lower than Lv. 15.",
             AdPromptTexture = "Props/DropItems/ExpPotionM.png"
@@ -48,6 +49,19 @@ public partial class AdCrateSpawner : System<AdCrateSpawner>
         }
     };
 
+    public static AdCrateConfig[] CrabConfigs = new[]
+    {
+        new AdCrateConfig()
+        {
+            RewardId = "coin100",
+            Tint = Vector4.One,
+            Chance = 0.18f,
+            InteractableText = "100 Coins",
+            AdPromptText = "Watch an Ad to claim 100 coins.",
+            AdPromptTexture = "Props/Shop/Pack1.png"
+        },
+    };
+
 
     private float _crateAdSpawnTimer = 0;
 
@@ -61,6 +75,7 @@ public partial class AdCrateSpawner : System<AdCrateSpawner>
             {
                 _crateAdSpawnTimer = 0;
                 SpawnAdCrate();
+                SpawnAdCrab();
             }
         }
 
@@ -102,6 +117,10 @@ public partial class AdCrateSpawner : System<AdCrateSpawner>
                     player.SpectralCount += 1;
                     info = "Spectral Potion Granted!";
                     break;
+                case "coin100":
+                    player.Coins += 100;
+                    info = "You caught the crab and sold it for 100 coins!";
+                    break;
             }
 
             p.AddEffect<EffectAdWatched>(p, 10f, watched => watched.Info = info);
@@ -112,7 +131,7 @@ public partial class AdCrateSpawner : System<AdCrateSpawner>
 
     private void SpawnAdCrate()
     {
-        CrateSpawnLocation ??= FightClubGameManager.References.SceneAdCrateSpawnLocations;
+        CrateSpawnLocation = FightClubGameManager.References.SceneAdCrateSpawnLocations;
         if (CrateSpawnLocation.Length < CrateConfigs.Length)
         {
             Log.Error("Ad Crate has less spawn location configured than AdCrateConfigs! Will not spawn Ad Crates!");
@@ -141,6 +160,43 @@ public partial class AdCrateSpawner : System<AdCrateSpawner>
                                 return;
                             }
                             adCrate.CallClient_Initialization(cfg.Tint, cfg.RewardId, cfg.AdPromptText, cfg.AdPromptTexture, cfg.InteractableText);
+                        });
+                }
+            }
+        }
+    }
+
+    private void SpawnAdCrab()
+    {
+        CrabSpawnLocation = FightClubGameManager.References.SceneAdCrabSpawnLocations;
+        if (CrateSpawnLocation.Length < CrabConfigs.Length)
+        {
+            Log.Error("Ad Crab has less spawn location configured than AdCrateConfigs! Will not spawn Ad Crates!");
+            _enabled = false;
+        }
+        else
+        {
+            _enabled = true;
+        }
+        if (_enabled)
+        {
+            float chance = Random.Shared.NextFloat();
+            for (int i = 0; i < CrabConfigs.Length; i++)
+            {
+                var cfg = CrabConfigs[i];
+                if (chance < cfg.Chance)
+                {
+                    FightClubGameManager.Instance.ServerSpawn(AdCrab.AdCrabPrefab, CrabSpawnLocation[i].Position,
+                        entity =>
+                        {
+                            AdCrab adCrab = entity.GetComponent<AdCrab>();
+                            if (adCrab == null)
+                            {
+                                Log.Error("No AdCrab component found!");
+                                entity.Destroy();
+                                return;
+                            }
+                            adCrab.CallClient_Initialization(cfg.Tint, cfg.RewardId, cfg.AdPromptText, cfg.AdPromptTexture, cfg.InteractableText);
                         });
                 }
             }

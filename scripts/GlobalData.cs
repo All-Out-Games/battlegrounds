@@ -71,13 +71,9 @@ public static class GlobalData
     
     // Ad Crate
     public static float AdCrateLifeTime = 25;
+    public static float AdCrabLifeTime = 16;
     public static float AdCrateSpawnTime = 30;
-    public static float XpCrateChance = 0.25f;
-    public static float XpBoostChance = 0.25f;
-    public static float VgPotionChance = 0.75f;
-    public static float SpectralSpawnChance = 0.2f;
-    // TODO: Coins and Glory item
-    
+
     // Spectator
     public static float SpectatorXpRadius = 10f;
     public static int LowLvSpectatorXp = 200;

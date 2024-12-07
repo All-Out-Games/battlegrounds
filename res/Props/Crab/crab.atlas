@@ -1,0 +1,118 @@
+crab.png
+	size: 460, 460
+	filter: Linear, Linear
+Crab/Arm_01
+	bounds: 288, 53, 37, 24
+	offsets: 1, 1, 39, 26
+	rotate: 90
+Crab/Arm_01 copy
+	bounds: 47, 14, 37, 24
+	offsets: 1, 1, 39, 26
+Crab/Arm_02
+	bounds: 130, 18, 32, 35
+	offsets: 1, 1, 34, 37
+	rotate: 90
+Crab/Arm_02 copy
+	bounds: 6, 6, 32, 35
+	offsets: 1, 1, 34, 37
+	rotate: 90
+Crab/Body
+	bounds: 6, 44, 95, 78
+	offsets: 1, 1, 97, 80
+	rotate: 90
+Crab/Claw_01_left
+	bounds: 318, 10, 39, 56
+	offsets: 1, 1, 41, 58
+	rotate: 90
+Crab/Claw_01_right
+	bounds: 171, 6, 39, 56
+	offsets: 1, 1, 41, 58
+	rotate: 90
+Crab/Claw_02_left
+	bounds: 190, 219, 58, 85
+	offsets: 1, 1, 60, 87
+Crab/Claw_02_right
+	bounds: 190, 155, 58, 85
+	offsets: 1, 1, 60, 87
+	rotate: 90
+Crab/Closed_eyed
+	bounds: 319, 55, 94, 40
+	offsets: 1, 1, 96, 42
+	rotate: 90
+Crab/leg_01_left
+	bounds: 91, 195, 34, 54
+Crab/leg_01_right
+	bounds: 91, 135, 34, 54
+Crab/leg_02_left
+	bounds: 130, 56, 53, 58
+Crab/leg_02_right
+	bounds: 255, 96, 53, 58
+	rotate: 90
+Crab/leg_03_left
+	bounds: 190, 322, 61, 48
+	rotate: 90
+Crab/leg_03_right
+	bounds: 345, 243, 61, 48
+	rotate: 90
+Crab/shadow
+	bounds: 135, 185, 198, 49
+	offsets: 1, 1, 200, 51
+	rotate: 90
+Infected Crab/Arm_01
+	bounds: 345, 159, 37, 24
+	offsets: 1, 1, 39, 26
+Infected Crab/Arm_01 copy
+	bounds: 288, 10, 37, 24
+	offsets: 1, 1, 39, 26
+	rotate: 90
+Infected Crab/Arm_02
+	bounds: 384, 355, 32, 35
+	offsets: 1, 1, 34, 37
+Infected Crab/Arm_02 copy
+	bounds: 233, 13, 32, 35
+	offsets: 1, 1, 34, 37
+	rotate: 90
+Infected Crab/Body
+	bounds: 6, 145, 104, 79
+	offsets: 1, 1, 106, 81
+	rotate: 90
+Infected Crab/Claw_01_left
+	bounds: 380, 30, 39, 56
+	offsets: 1, 1, 41, 58
+Infected Crab/Claw_01_right
+	bounds: 384, 396, 39, 56
+	offsets: 1, 1, 41, 58
+Infected Crab/Claw_02_left
+	bounds: 254, 246, 58, 85
+	offsets: 1, 1, 60, 87
+	rotate: 90
+Infected Crab/Claw_02_right
+	bounds: 281, 155, 58, 85
+	offsets: 1, 1, 60, 87
+Infected Crab/Closed_eyed
+	bounds: 189, 51, 93, 39
+	offsets: 1, 1, 95, 41
+Infected Crab/Explosion_01
+	bounds: 245, 310, 133, 142
+	offsets: 1, 1, 135, 144
+Infected Crab/Explosion_02
+	bounds: 6, 255, 128, 123
+	offsets: 1, 1, 130, 125
+	rotate: 90
+Infected Crab/Explosion_03
+	bounds: 6, 389, 233, 63
+	offsets: 1, 1, 235, 65
+Infected Crab/leg_01_left
+	bounds: 90, 75, 34, 54
+Infected Crab/leg_01_right
+	bounds: 90, 15, 34, 54
+Infected Crab/leg_02_left
+	bounds: 131, 120, 53, 59
+Infected Crab/leg_02_right
+	bounds: 190, 96, 53, 59
+	rotate: 90
+Infected Crab/leg_03_left
+	bounds: 345, 189, 61, 48
+Infected Crab/leg_03_right
+	bounds: 365, 92, 61, 48
+	rotate: 90

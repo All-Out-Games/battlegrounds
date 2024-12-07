@@ -230,7 +230,8 @@ AbilityIcon_Separate/x_icon_ability.png - .ao - 674e5db0f6994d2906c248a0 - 11173
 AbilityIcon_Separate/x_icon_ability.png - .ao.astc - 67319d8bada08dbbbde3fb98 - 9625147596235807178
 AbilityLoadoutPage.prefab - .ao - 674934caf6994d2906c2377c - 11952140790991749339
 AbilityUpgradeDialog.prefab - .ao - 674e5db0f6994d2906c248a2 - 687982187149207345
-AdCrate.prefab - .ao - 674a50a5f6994d2906c23cfa - 6334134733328222967
+AdCrab.prefab - .ao - 6753fdc2f6994d2906c26ccd - 15799877603757965979
+AdCrate.prefab - .ao - 6753e84df6994d2906c26cc5 - 6334134733328222967
 BattleCry_Shockwave.prefab - .ao - 674e5db0f6994d2906c248a4 - 2695351636227228935
 BattlegroundInfoOverlay.prefab - .ao - 673949b202386857e8d33421 - 8177987076312023311
 BearTrap.prefab - .ao - 674e5db1f6994d2906c248a6 - 11292285057486236551
@@ -467,6 +468,9 @@ projectile/trail.png - .ao.astc - 6752a518f6994d2906c26c18 - 1801443658791224359
 Props/BearTrap/BAT003_bear_trap.png - .ao - 674e5df5f6994d2906c24a30 - 11822065931529113936
 Props/BearTrap/BAT003_bear_trap.png - .ao.astc - 674e5df5f6994d2906c24a34 - 9945648306828061065
 Props/BearTrap/BAT003_bear_trap.spine - .ao - 674e5df5f6994d2906c24a33 - 4985764642150710400
+Props/Crab/crab.png - .ao - 6753e4d7f6994d2906c26cbd - 14683514255810339353
+Props/Crab/crab.png - .ao.astc - 6753e4d7f6994d2906c26cbb - 15576240738049711826
+Props/Crab/crab.spine - .ao - 6753e4d7f6994d2906c26cbc - 11704924732238952951
 Props/Crate/BAT003_crate.png - .ao - 674e5df6f6994d2906c24a36 - 2256460025598527447
 Props/Crate/BAT003_crate.png - .ao.astc - 674e5df6f6994d2906c24a38 - 10083987653280949054
 Props/Crate/BAT003_crate.spine - .ao - 674e5df6f6994d2906c24a3a - 6782962365089991298
