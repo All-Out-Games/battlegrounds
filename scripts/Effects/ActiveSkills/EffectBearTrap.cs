@@ -47,7 +47,7 @@ public class EffectBearTrap : FightEffect
 
 public class EffectBearTrapSnare : FightEffectWithNoFlinch
 {
-    public override bool IsActiveEffect => true;
+    public override bool IsActiveEffect => false;
     public override bool FreezePlayer => true;
 
     public override bool BlockAbilityActivation => true;
@@ -55,6 +55,7 @@ public class EffectBearTrapSnare : FightEffectWithNoFlinch
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
+        FightPlayer.RemoveEffect<DefaultTargettingEffect>(true);
         FightPlayer.SetAnimTrigger("beartrapped");
         FightPlayer caster = Caster as FightPlayer;
         int dmg = caster == null ? EffectConfig.BearTrapConfig.TrapBaseDamage : EffectConfig.BearTrapConfig.GetDefault(caster.CurrentAttack).Damage;

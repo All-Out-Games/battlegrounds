@@ -60,7 +60,7 @@ public class AbilityPsyThrowLaunch : FightAbility
 
 public class EffectPsyThrow : FightEffectWithNoFlinch
 {
-    public override bool IsActiveEffect => true;
+    public override bool IsActiveEffect => false;
 
     private FightPlayer _casterFp;
 
@@ -71,6 +71,7 @@ public class EffectPsyThrow : FightEffectWithNoFlinch
     {
 
         base.OnEffectStart(isDropIn);
+        FightPlayer.RemoveEffect<DefaultTargettingEffect>(true);
         DurationRemaining = EffectConfig.PsyThrowConfig.GrabTime;
         _casterFp = Caster as FightPlayer;
         if (_casterFp != null)

@@ -157,7 +157,7 @@ public class EffectThunderbolt : FightEffect
 
 public class EffectElectricShock : FightEffectWithNoFlinch
 {
-    public override bool IsActiveEffect => true;
+    public override bool IsActiveEffect => false;
     protected override bool PreventMovement => true;
     public override bool BlockAbilityActivation => true;
     
@@ -165,6 +165,7 @@ public class EffectElectricShock : FightEffectWithNoFlinch
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
+        FightPlayer.RemoveEffect<DefaultTargettingEffect>(true);
         FightPlayer.SetAnimTrigger("shocked_start", true);
         FightPlayer.RegisterPreDamageEvent(this);
     }
