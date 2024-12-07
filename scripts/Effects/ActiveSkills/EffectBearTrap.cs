@@ -16,7 +16,7 @@ public class AbilityBearTrap : FightAbility
     public override float MaxDistance => EffectConfig.BearTrapConfig.MaxSetupDistance;
 }
 
-public class EffectBearTrap: FightEffect
+public class EffectBearTrap : FightEffect
 {
     public override bool IsActiveEffect => false;
 

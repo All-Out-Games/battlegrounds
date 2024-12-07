@@ -147,7 +147,7 @@ public class EffectIceStorm : FightEffectWithNoFlinch
             }
             else
             {
-                chunkStartDir = new Vector2(Random.Shared.NextFloat(), Random.Shared.NextFloat()).Normalized;
+                chunkStartDir = new Vector2(Random.Shared.NextFloat()-0.5f, Random.Shared.NextFloat()-0.5f).Normalized;
             }
             chunkStartPos = selfPos + chunkStartDir * range;
 

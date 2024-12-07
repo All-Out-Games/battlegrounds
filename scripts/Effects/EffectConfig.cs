@@ -1121,5 +1121,37 @@ public static class EffectConfig
 
     #endregion
 
+    #region cfg: ChargingStation
+
+    public struct ChargingStationConfig
+    {
+        public static float Cooldown = 16f;
+        public static int BaseDamage = 9;
+        public static int BaseShieldAmt = 25;
+        public static float LifeTime = 8f;
+        public static float AoeRange = 6f;
+        public static float DeployRange = 8f;
+        public static string StationPrefabPath = "ChargingStation.prefab";
+
+        public int Damage;
+        public int ShieldAmt;
+        public bool Shock; // Shock Time = Thunderbolt
+
+        public static ChargingStationConfig GetDefault(int atk, int level)
+        {
+            ChargingStationConfig res = new()
+            {
+                Damage = atk + BaseDamage,
+                ShieldAmt = BaseShieldAmt,
+                Shock = level > 4
+            };
+            if (level > 1) res.Damage += 2;
+            if (level > 2) res.ShieldAmt += 5;
+            return res;
+        }
+    }
+
+    #endregion
+
     #endregion
 }

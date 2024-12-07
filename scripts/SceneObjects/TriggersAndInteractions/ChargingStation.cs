@@ -1,14 +1,14 @@
-﻿using AO;
+using AO;
 using Assembly.scripts.Effects;
 using Assembly.scripts.Effects.ActiveSkills;
-
 namespace Assembly.scripts.SceneObjects.TriggersAndInteractions;
 
-public partial class BearTrap : OwnedTrigger
+public partial class ChargingStation : OwnedTrigger
 {
-    [Serialized] public bool Snapped;
     [Serialized] protected bool Armed;
     [Serialized] protected float TrapArmTime;
+
+    private int _shieldAmount = EffectConfig.ChargingStationConfig.BaseShieldAmt;
     
     protected override void OnOtherPlayerEnter(FightPlayer fp)
     {
@@ -17,34 +17,26 @@ public partial class BearTrap : OwnedTrigger
         {
             if (fp.Alive() && fp.PlayerStatus == PlayerStatus.Combat)
             {
-                CallClient_BearTrapSnap(fp);
+                // Each player can only be charged once. This is handled in parent class
+                CallClient_ChargePlayer(fp);
             }
         }
     }
 
     [ClientRpc]
-    public void BearTrapSnap(FightPlayer fp)
+    public void ChargePlayer(FightPlayer fp)
     {
-        if (fp != Owner && fp.Alive())
+        if (fp.Alive())
         {
-            if (fp.Damageable())
-            {
-                fp.AddEffect<EffectBearTrapSnare>(Owner);
-            }
-            Animator.SpineInstance.ColorMultiplier = new Vector4(1,1,1, 1);
-            Animator.SpineInstance?.StateMachine?.SetTrigger("snap");
-            Snapped = true;
+            fp.AddEffect<EffectOvershield>(Owner, 5f, overshield => overshield.AssignConfig(EffectConfig.ShieldConfig.GetOvershield(_shieldAmount, 5f)));
             SFX.Play(SFXKeys.BearTrapSnapAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
+            Animator.SpineInstance.StateMachine.SetTrigger("activate");
         }
     }
 
     public override void Awake()
     {
         base.Awake();
-        // Transparent when deployed. Display only for owner
-        Vector4 curColor = Animator.SpineInstance.ColorMultiplier;
-        curColor.W = 0;
-        Animator.SpineInstance.ColorMultiplier = curColor;
         
         InitializeStateMachine();
     }
@@ -58,35 +50,26 @@ public partial class BearTrap : OwnedTrigger
 
         var appearSetUpState = mainLayer.CreateState("appear_set_up", 0, false);
         var idleState = mainLayer.CreateState("idle", 0, true);
-        var snapCloseState = mainLayer.CreateState("snap_close", 0, false);
         var disappearState = mainLayer.CreateState("dissappear", 0, false);
-        var disappearClosedState = mainLayer.CreateState("dissappear_closed", 0, false);
+        var activateState = mainLayer.CreateState("activated", 0, false);
         var emptyState = mainLayer.CreateState("Null", 0, false);
-
-        var snapTrigger = stateMachine.CreateVariable("snap", StateMachineVariableKind.TRIGGER);
+        
         var disappearTrigger = stateMachine.CreateVariable("expire", StateMachineVariableKind.TRIGGER);
+        var activateTrigger = stateMachine.CreateVariable("activate", StateMachineVariableKind.TRIGGER);
 
         mainLayer.SetInitialState(appearSetUpState);
         mainLayer.CreateTransition(appearSetUpState, idleState, true);
-        mainLayer.CreateTransition(idleState, snapCloseState, false).CreateTriggerCondition(snapTrigger);
         mainLayer.CreateGlobalTransition(disappearState).CreateTriggerCondition(disappearTrigger);
-        mainLayer.CreateTransition(snapCloseState, disappearClosedState, true);
+        mainLayer.CreateTransition(idleState, activateState, false).CreateTriggerCondition(activateTrigger);
+        mainLayer.CreateTransition(activateState, idleState, true);
 
         mainLayer.CreateTransition(disappearState, emptyState, true);
-        mainLayer.CreateTransition(disappearClosedState, emptyState, true);
         
         Animator.SpineInstance.SetStateMachine(stateMachine, Entity);
-        Animator.OnAnimationEnd += OnAnimationEnd;
         
         SFX.Play(SFXKeys.BearTrapSetAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
     }
-
-    public override void OnDestroy()
-    {
-        base.OnDestroy();
-        Animator.OnAnimationEnd -= OnAnimationEnd;
-    }
-
+    
     public override void Update()
     {
         base.Update();
@@ -95,28 +78,18 @@ public partial class BearTrap : OwnedTrigger
             Log.Warn($"Trap Armed after {TrapArmTime}s! Position = {Position.ToString()}");
         }
     }
-
-    public void OnAnimationEnd(string anim)
-    {
-        Log.Debug($"Animation End {anim}");
-        if (anim == "dissappear" || anim == "dissappear_closed")
-        {
-            
-            Despawn();
-        }
-        
-    }
+    
 
     protected override void OnLifeTimeRunOut()
     {
         Animator.SpineInstance.StateMachine.SetTrigger("expire");
-        Snapped = true;
-        Animator.SpineInstance.ColorMultiplier = new Vector4(1, 1, 1, 1);
+        Armed = false;
+        // Charging Station despawn is handled by Effect
     }
 
     protected override void OnEntityEnter(Entity entity)
     {
-        if (!Armed || Snapped)
+        if (!Armed)
         {
             // When setup animation is not completed. Trap will not trigger.
             return;
@@ -129,22 +102,13 @@ public partial class BearTrap : OwnedTrigger
     {
         Awaken();
         base.Initialization(owner, lifeTime);
-        TrapArmTime = EffectConfig.BearTrapConfig.TrapArmTime;
+        TrapArmTime = EffectConfig.BearTrapConfig.TrapArmTime; // Same as bear trap (not likely to be changed)
         Armed = false;
-        Snapped = false;
-
-        // Stealth for non local player
-        if (Owner.IsLocal)
-        {
-            Vector4 curColor = Animator.SpineInstance.ColorMultiplier;
-            curColor.W = 1;
-            Animator.SpineInstance.ColorMultiplier = curColor;
-        }
     }
     
     [ClientRpc]
-    public void SetSize(float sizeMultiplier)
+    public void SetShield(int shield)
     {
-        Entity.LocalScale = new Vector2(sizeMultiplier, sizeMultiplier);
+        _shieldAmount = shield;
     }
 }

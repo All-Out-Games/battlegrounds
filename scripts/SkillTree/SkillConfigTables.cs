@@ -1198,11 +1198,35 @@ public static partial class SkillConfig
         UpgradeGemCost = _tierTwoGemCost,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Elemental,
-        UpgradeCost = 9200,
+        UpgradeCost = 10500,
         SkillKey = "IceStorm",
         GridX = 0,
         GridY = 2,
         ParentNodeKeys = new string[] { "WindPunch" },
+        ChildrenNodeKeys = new string[] { },
+    };
+    
+    public static readonly SkillTreeNodeConfig ChargingStationNodeConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Charging Station",
+        DescriptionTextKey = "Place a charging station that charges nearby players for an overshield. You can also detonate it.",
+        UpgradeTextKey = "*: Damage +2 \n **: Shield +5\n ***: Cooldown -2s\n ****: Detonation shocks enemies",
+        BaseDamageKey = _overrideValue_,
+        RangeDescriptionKey = "6m",
+        CooldownKey = "%OVERRIDE%",
+        IconPath = "AbilityIcon_Merged/elemental/lightning_snare.png",
+        AbilityIconPath = "AbilityIcon_Separate/elemental/lightning_snare_icon.png",
+        AbilityPreviewPath = "Ability_Preview/elemental/lightning_snare.gif",
+        UnlockLevel = 32,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Elemental,
+        UpgradeCost = 8800,
+        SkillKey = "ChargingStation",
+        GridX = 2,
+        GridY = 2,
+        ParentNodeKeys = new string[] { "Thunderbolt" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -1266,7 +1290,8 @@ public static partial class SkillConfig
             {"WindPunch", WindPunchNodeConfig},
             {"Fireball", FireballNodeConfig},
             {"Thunderbolt", ThunderboltNodeConfig},
-            {"IceStorm", IceStormNodeConfig}
+            {"IceStorm", IceStormNodeConfig},
+            {"ChargingStation", ChargingStationNodeConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -1284,7 +1309,7 @@ public static partial class SkillConfig
         // Stealth
         "Invisibility", "LightFeet", "SpeedBoost","Shuriken", "BearTrap", "ShadowStep", "Backstab", "TotalDarkness",
         // Elemental
-        "IceFist", "WindPunch", "Fireball", "Thunderbolt", "IceStorm"
+        "IceFist", "WindPunch", "Fireball", "Thunderbolt", "IceStorm", "ChargingStation"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "Punch2", "Punch3" };
@@ -1335,7 +1360,8 @@ public partial class FightAbility
         {SC.WindPunchNodeConfig.SkillKey, typeof(AbilityWindPunch)},
         {SC.FireballNodeConfig.SkillKey, typeof(AbilityFireball)},
         {SC.ThunderboltNodeConfig.SkillKey, typeof(AbilityThunderbolt)},
-        {SC.IceStormNodeConfig.SkillKey, typeof(AbilityIceStorm)}
+        {SC.IceStormNodeConfig.SkillKey, typeof(AbilityIceStorm)},
+        {SC.ChargingStationNodeConfig.SkillKey, typeof(AbilityChargingStation)}
     };
 }
 
