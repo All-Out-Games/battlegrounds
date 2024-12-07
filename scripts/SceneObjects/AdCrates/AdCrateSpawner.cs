@@ -1,6 +1,8 @@
 using AO;
+using Assembly.scripts.Effects;
 using Assembly.scripts.SceneObjects.AdCrates;
 using Assembly.scripts.SceneObjects.Crates;
+using Assembly.scripts.UI;
 
 public struct AdCrateConfig
 {
@@ -11,7 +13,7 @@ public struct AdCrateConfig
     public string AdPromptText;
     public string AdPromptTexture;
 }
-public class AdCrateSpawner : System<AdCrateSpawner>
+public partial class AdCrateSpawner : System<AdCrateSpawner>
 {
     public Entity[] CrateSpawnLocation; // TODO: Configs for Coin / Glory / XP / XP Booster / Spectral Spawn
     private bool _enabled;
@@ -21,7 +23,7 @@ public class AdCrateSpawner : System<AdCrateSpawner>
         {
             RewardId = "xpBoost",
             Tint = Vector4.One,
-            Chance = 0.25f,
+            Chance = 1f,
             InteractableText = "XP Booster",
             AdPromptText = "Watch an Ad to claim 5 min 3x XP boost.",
             AdPromptTexture = "Props/DropItems/ExpPotionS.png"
@@ -30,7 +32,7 @@ public class AdCrateSpawner : System<AdCrateSpawner>
         {
             RewardId = "xp200",
             Tint = Vector4.One,
-            Chance = 0.3f,
+            Chance = 1f,
             InteractableText = "200 XP",
             AdPromptText = "Watch an Ad to claim 200 XP. You get double if you are lower than Lv. 15.",
             AdPromptTexture = "Props/DropItems/ExpPotionM.png"
@@ -70,11 +72,13 @@ public class AdCrateSpawner : System<AdCrateSpawner>
         FightPlayer player = p as FightPlayer;
         if (player.Alive())
         {
+            string info = "";
             int lv = player.Level;
             switch (id)
             {
                 case "xpBoost":
                     player.AddExpBoostTime(5, 3);
+                    info = "XP Boost Granted!";
                     break;
                 case "xp200":
                     int xp = 200;
@@ -82,10 +86,13 @@ public class AdCrateSpawner : System<AdCrateSpawner>
                     {
                         xp *= 2;
                     }
-
+                    info = $"{xp} XP Granted!";
                     player.Exp += xp;
                     break;
             }
+
+            p.AddEffect<EffectAdWatched>(p, 10f, watched => watched.Info = info);
+            return true;
         }
         return false;
     }
@@ -126,4 +133,6 @@ public class AdCrateSpawner : System<AdCrateSpawner>
             }
         }
     }
+
+
 }

@@ -1,6 +1,7 @@
 
 using AO;
 using Assembly.scripts;
+using Assembly.scripts.Effects;
 using Assembly.scripts.SceneObjects.Crates;
 using Assembly.scripts.UI;
 
@@ -293,6 +294,12 @@ public class FightClubGameManager : System<FightClubGameManager> {
                 {
                     Chat.SendMessage(player, $"FE: {fe.Entity.Name} / Mod: {fe.SpeedModifier}");
                 }
+                break;
+            
+            case "postadeffect":
+                Chat.SendMessage(player, "Add Ad Effect");
+                player.GetEffectMgr().CallClient_AddAdWatchedEffect("Test", 10f);
+                //p.AddEffect<EffectAdWatched>(player, 10f, watched => watched.Info = "Test");
                 break;
         }
     }

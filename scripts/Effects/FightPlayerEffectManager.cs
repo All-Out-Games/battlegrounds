@@ -20,6 +20,7 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
         return eff != null;
     }
     
+    
     public bool RemoveEffect<T>(bool interrupt) where T : AEffect
     {
         return _player.RemoveEffect<T>(interrupt);
@@ -154,5 +155,11 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     public void AddElectrocuteInternal(Entity caster, float duration)
     {
         _player.AddEffect<EffectElectricShock>(caster.GetComponent<FightPlayer>(), duration);
+    }
+
+    [ClientRpc]
+    public void AddAdWatchedEffect(string info, float duration)
+    {
+        _player.AddEffect<EffectAdWatched>(null, duration, watched => watched.Info = info);
     }
 }

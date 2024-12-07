@@ -18,6 +18,12 @@ public class LevelUpWindow : Component
     private UIRect _rect;
     private Coroutine _popCoroutine;
 
+    public override void Awake()
+    {
+        base.Awake();
+        _rect ??= GetComponent<UIRect>();
+    }
+
     public void PopAtLevelUp(int lvl)
     {
         if (lvl <= 0 || lvl > LevelingData.MaxLevel)
@@ -96,5 +102,31 @@ public class LevelUpWindow : Component
         Entity.LocalEnabled = false;
         
         yield return null;
+    }
+
+    private IEnumerator SparkleOnlyPopup()
+    {
+        Entity.LocalEnabled = true;
+        _rect.Offset = _rect.Offset with { Y = -2500};
+        
+        _sparkles.Instance.SetSkin("default");
+        _sparkles.Instance.EnableSkin("default");
+        _sparkles.Instance.RefreshSkins();
+        _sparkles.Instance.SetAnimation("hatch", false);
+
+        yield return new WaitForSeconds(3);
+        Entity.LocalEnabled = false;
+        
+        yield return null;
+    }
+
+    public void PlaySparkles()
+    {
+        if ((_popCoroutine.Alive() && _popCoroutine.Finished) || !_popCoroutine.Alive())
+        {
+            // Don't interfere
+            Coroutine.Start(Entity, SparkleOnlyPopup());
+        }
+        
     }
 }

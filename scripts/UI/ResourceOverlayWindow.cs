@@ -225,6 +225,11 @@ public class ResourceOverlayWindow : BaseUIWindow
         }
     }
 
+    public void PopSparkles()
+    {
+        _levelUpWindow?.PlaySparkles();
+    }
+
     private void ExpBarMaskUpdate()
     {
         float totalLevelExp = _nextExp - _baselineExp;
