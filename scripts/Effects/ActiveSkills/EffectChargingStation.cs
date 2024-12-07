@@ -1,3 +1,5 @@
+using Assembly.scripts.VFX;
+
 namespace Assembly.scripts.Effects.ActiveSkills;
 using AO;
 using Assembly.scripts.SceneObjects.TriggersAndInteractions;
@@ -44,7 +46,7 @@ public class EffectChargingStation : FightEffect
             DurationRemaining = EffectConfig.ChargingStationConfig.LifeTime;
             
             Vector2 trapPos = FightPlayer.Entity.Position + AbilityDirection * AbilityMagnitude;
-            int lv = FightPlayer.GetSkillTree().GetSkillLevel("ChargingStation");
+            // int lv = FightPlayer.GetSkillTree().GetSkillLevel("ChargingStation");
             FightClubGameManager.Instance.ServerSpawn(EffectConfig.ChargingStationConfig.StationPrefabPath, trapPos,
                 entity =>
                 {
@@ -60,6 +62,26 @@ public class EffectChargingStation : FightEffect
         base.OnEffectEnd(interrupt);
         if (_station.Alive())
         {
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage, DamageType.AOE, FightPlayer.DamageInfo.KnockBackInterruptLevel);
+            info.SkillKey = SkillConfig.ChargingStationNodeConfig.SkillKey;
+            info.SpecialDeathAnimation = true;
+            info.CrateImmediateDestroy = true;
+            info.ReactionInfo.Flinch = false;
+        
+            var damageables = FightClubGameManager.Instance.OverlapCircleForDamageables(_station.Position, EffectConfig.ChargingStationConfig.AoeRange, Player);
+            foreach (var dmg in damageables)
+            {
+                if(!dmg.Damageable()) continue;
+            
+                dmg.TakeDamage(FightPlayer, info);
+
+                if (_config.Shock &&  dmg is PlayerCollisionChild fp)
+                {
+                    var other = fp.Player;
+                    other.GetEffectMgr().AddElectrocute(FightPlayer.Entity, EffectConfig.ThunderboltConfig.ShockTime);
+                }
+            }
+            
             _station.Despawn();
         }
     }

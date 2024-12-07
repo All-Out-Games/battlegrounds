@@ -1,6 +1,8 @@
 using AO;
 using Assembly.scripts.Effects;
 using Assembly.scripts.Effects.ActiveSkills;
+using Assembly.scripts.VFX;
+
 namespace Assembly.scripts.SceneObjects.TriggersAndInteractions;
 
 public partial class ChargingStation : OwnedTrigger
@@ -39,6 +41,17 @@ public partial class ChargingStation : OwnedTrigger
         base.Awake();
         
         InitializeStateMachine();
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+        // TODO: SFX
+        FightClubGameManager.Instance.ClientSpawn(VFXPrefabKeys.LeapSlamCraterVfxPath, Position,
+            entity =>
+            {
+                entity.LocalScale *= 1.25f;
+            }); 
     }
 
     public void InitializeStateMachine()
