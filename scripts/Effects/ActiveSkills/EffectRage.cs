@@ -32,12 +32,15 @@ public class EffectRageCast : FightEffectWithNoFlinch
 
     public override bool IsActiveEffect => true;
 
-    protected override bool PreventMovement => true;
+    protected override bool PreventMovement => false;
+
+    public override float SpeedModifier => _casted ? 1 : 0;
 
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("rage_stomp");
+        FightPlayer.RegisterSpeedModify(this);
         
         _animDuration = MainLayer.GetCurrentStateLength();
         if (!isDropIn)
@@ -62,7 +65,12 @@ public class EffectRageCast : FightEffectWithNoFlinch
             
         }
     }
-    
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        FightPlayer.RemoveSpeedModify(this);
+    }
 }
 
 public class EffectRage : FightEffect

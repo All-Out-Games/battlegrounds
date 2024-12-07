@@ -470,7 +470,7 @@ Props/BearTrap/BAT003_bear_trap.png - .ao.astc - 674e5df5f6994d2906c24a34 - 9945
 Props/BearTrap/BAT003_bear_trap.spine - .ao - 674e5df5f6994d2906c24a33 - 4985764642150710400
 Props/Crab/crab.png - .ao - 6753e4d7f6994d2906c26cbd - 14683514255810339353
 Props/Crab/crab.png - .ao.astc - 6753e4d7f6994d2906c26cbb - 15576240738049711826
-Props/Crab/crab.spine - .ao - 6753e4d7f6994d2906c26cbc - 11704924732238952951
+Props/Crab/crab.spine - .ao - 67549d33f6994d2906c26cd1 - 7663252255950432672
 Props/Crate/BAT003_crate.png - .ao - 674e5df6f6994d2906c24a36 - 2256460025598527447
 Props/Crate/BAT003_crate.png - .ao.astc - 674e5df6f6994d2906c24a38 - 10083987653280949054
 Props/Crate/BAT003_crate.spine - .ao - 674e5df6f6994d2906c24a3a - 6782962365089991298
