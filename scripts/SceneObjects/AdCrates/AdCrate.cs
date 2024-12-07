@@ -1,9 +1,11 @@
 using AO;
 using Assembly.scripts.VFX;
+using StreamReader = AO.StreamReader;
+using StreamWriter = AO.StreamWriter;
 
 namespace Assembly.scripts.SceneObjects.AdCrates;
 
-public partial class AdCrate : AdTrigger
+public partial class AdCrate : AdTrigger, INetworkedComponent
 {
     [Serialized] public Spine_Animator Animator;
 
@@ -102,5 +104,17 @@ public partial class AdCrate : AdTrigger
         {
             SFX.Play(SFXKeys.CrateBreakAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
         }
+    }
+
+    public new void NetworkDeserialize(StreamReader reader)
+    {
+        base.NetworkDeserialize(reader);
+        Animator.SpineInstance.ColorMultiplier = reader.Read<Vector4>();
+    }
+
+    public new void NetworkSerialize(StreamWriter writer)
+    {
+        base.NetworkSerialize(writer);
+        writer.Write<Vector4>(Animator.SpineInstance.ColorMultiplier);
     }
 }

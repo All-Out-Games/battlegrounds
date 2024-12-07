@@ -23,7 +23,7 @@ public partial class AdCrateSpawner : System<AdCrateSpawner>
         {
             RewardId = "xpBoost",
             Tint = Vector4.One,
-            Chance = 1f,
+            Chance = 0.25f,
             InteractableText = "XP Booster",
             AdPromptText = "Watch an Ad to claim 5 min 3x XP boost.",
             AdPromptTexture = "Props/DropItems/ExpPotionS.png"
@@ -32,10 +32,19 @@ public partial class AdCrateSpawner : System<AdCrateSpawner>
         {
             RewardId = "xp200",
             Tint = Vector4.One,
-            Chance = 1f,
+            Chance = 0.3f,
             InteractableText = "200 XP",
             AdPromptText = "Watch an Ad to claim 200 XP. You get double if you are lower than Lv. 15.",
             AdPromptTexture = "Props/DropItems/ExpPotionM.png"
+        },
+        new AdCrateConfig()
+        {
+            RewardId = "spectral",
+            Tint = new Vector4(0.4f, 0f, 0.99f, 1f),
+            Chance = 0.18f,
+            InteractableText = "Spectral Potion",
+            AdPromptText = "Watch an Ad to claim Spectral Potion.",
+            AdPromptTexture = "Props/DropItems/SpectralPotion.png"
         }
     };
 
@@ -88,6 +97,10 @@ public partial class AdCrateSpawner : System<AdCrateSpawner>
                     }
                     info = $"{xp} XP Granted!";
                     player.Exp += xp;
+                    break;
+                case "spectral":
+                    player.SpectralCount += 1;
+                    info = "Spectral Potion Granted!";
                     break;
             }
 
