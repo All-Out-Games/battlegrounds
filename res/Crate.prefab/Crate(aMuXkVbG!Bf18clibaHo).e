@@ -12,7 +12,8 @@
   "local_scale": {
     "X": 1,
     "Y": 1
-  }
+  },
+  "spawn_as_networked_entity": true
 },
 {
   "cid": 1,

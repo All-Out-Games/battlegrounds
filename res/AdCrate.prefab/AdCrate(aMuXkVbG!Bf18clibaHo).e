@@ -5,15 +5,16 @@
   "name": "AdCrate",
   "local_enabled": true,
   "local_position": {
-    "X": -15.9485826492309570,
-    "Y": -9.9464225769042969
+    "X": -16.6996288299560547,
+    "Y": -17.3325672149658203
   },
   "local_rotation": 0,
   "local_scale": {
     "X": 1,
     "Y": 1
   },
-  "next_sibling": "377316458197998:1716489394196426200"
+  "next_sibling": "377316458197998:1716489394196426200",
+  "spawn_as_networked_entity": true
 },
 {
   "cid": 1,
