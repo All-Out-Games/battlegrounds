@@ -5,7 +5,7 @@
   "name": "signpost_noob.png",
   "local_enabled": true,
   "local_position": {
-    "X": -5.5420265197753906,
+    "X": -0.1154346466064453,
     "Y": -5.5501585006713867
   },
   "local_rotation": 0,

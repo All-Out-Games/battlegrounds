@@ -5,7 +5,7 @@
   "name": "Portal_PvP",
   "local_enabled": true,
   "local_position": {
-    "X": -1.6919794082641602,
+    "X": -7.2285013198852539,
     "Y": -8.1192588806152344
   },
   "local_rotation": 0,
