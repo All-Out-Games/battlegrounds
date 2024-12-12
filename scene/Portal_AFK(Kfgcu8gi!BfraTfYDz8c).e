@@ -5,7 +5,7 @@
   "name": "Portal_AFK",
   "local_enabled": true,
   "local_position": {
-    "X": -1.7450017929077148,
+    "X": -7.3054265975952148,
     "Y": -8.1192588806152344
   },
   "local_rotation": 0,
