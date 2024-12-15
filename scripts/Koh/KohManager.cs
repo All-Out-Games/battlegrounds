@@ -201,6 +201,9 @@ public partial class KohManager : Component
             LastRoundTimerSyncTime = Time.TimeSinceStartup;
         };
 
+        // This part shall be used to sync client/server status.
+        // If you did something after changing the state on the server that you want the client to do the same
+        // Don't use an RPC, use this
         _currentState.OnSync += (old, value) =>
         {
             Log.Warn($"State Changed from {(GameState)old} to {(GameState)value}");
@@ -281,6 +284,10 @@ public partial class KohManager : Component
                         State = GameState.StartRound;
                         goto case GameState.StartRound;
                     }
+                    
+                    // CaptureArea Logic
+                    var zone = CaptureArea.Instance;
+                    var zonePlayers = zone.GetPlayersInside();
                     break;
                 }
                 case GameState.StartRound:
