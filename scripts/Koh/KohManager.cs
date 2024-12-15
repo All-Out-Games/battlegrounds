@@ -1,5 +1,6 @@
 ﻿
 using AO;
+using TinyJson;
 using UI = AO.UI;
 namespace Assembly.Koh;
 
@@ -97,6 +98,78 @@ public partial class KohManager : Component
             }
         }
     }
+
+    // Save player scores, classes and king-time on the server as dict, then jsonize them as sync var
+    // These dicts are destroyed per round. When a player joins, their entries will be created, but it will not be destroyed when they leave (in case they want to join back)
+    private SyncVar<string> _serializedPlayerScore = new SyncVar<string>();
+
+    public string SerializedPlayerScore
+    {
+        get => _serializedPlayerScore.Value;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _serializedPlayerScore.Set(value);
+            }
+        }
+    }
+    public Dictionary<string, int> PlayerScore = new();
+
+    public void UpdatePlayerScoreOnServer()
+    {
+        SerializedPlayerScore = PlayerScore.ToJson();
+    }
+
+    // Classes can be None, Random, Brawler, Ninja, ...
+    // Everyone will be -None- when the round starts or when they join in progress
+    // - Change from None to a class will be free
+    // - Change classes before round starts will also be free
+    // - You need to consume one "Book of the Forgotten" to switch class when the round is in progress
+    // We need to sell this so we will keep player's selection on the server. They can join another server ofc, but they lose the progress
+    private SyncVar<string> _serializedPlayerClass = new SyncVar<string>();
+    
+    public string SerializedPlayerClass
+    {
+        get => _serializedPlayerClass.Value;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _serializedPlayerClass.Set(value);
+            }
+        }
+    }
+
+    public Dictionary<string, string> PlayerClass = new();
+
+    public void UpdatePlayerClassOnServer()
+    {
+        // TODO: This will need a server RPC to call (Player has to request it from UI)
+        SerializedPlayerClass = PlayerClass.ToJson();
+    }
+    
+    private SyncVar<string> _serializedPlayerKingScore = new SyncVar<string>();
+
+    public string SerializedPlayerKingScore
+    {
+        get => _serializedPlayerKingScore.Value;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _serializedPlayerKingScore.Set(value);
+            }
+        }
+    }
+
+    public Dictionary<string, int> PlayerKingScore = new();
+
+    public void UpdatePlayerKingScoreOnServer()
+    {
+        SerializedPlayerKingScore = PlayerKingScore.ToJson();
+    }
+    
     #endregion
 
     #region KoH Scene References
@@ -155,8 +228,7 @@ public partial class KohManager : Component
                 {
                     foreach (var fp in players)
                     {
-                        fp.ClearAllEffects();
-                        fp.ClearSpeedModifier();
+                        ResetAfterRound(fp);
                     }
                     break;
                 }
@@ -245,16 +317,15 @@ public partial class KohManager : Component
                 case GameState.RoundEnd:
                 {
                     GlobalAbilityCanUse = false;
-                    ResetAfterRound();
                     
-                    Zone hubZone = FightClubGameManager.References.CentralHubZone;
+                    //Zone hubZone = FightClubGameManager.References.CentralHubZone;
                     foreach (var fp in players)
                     {
-                        fp.ClearAllEffects();
-                        fp.ClearSpeedModifier();
-                        //fp.Teleport(Zone.GetRandomPointInZones(hubZone.ZoneId) + hubZone.Entity.Position);
+                        ResetAfterRound(fp);
                         fp.SwitchStatus((int)PlayerStatus.Safe);
                     }
+                    // TODO: Do this after countdown
+                    DestroyRound();
 
                     State = GameState.WaitingForPlayers;
                     RoundTimerEnabled = false;
@@ -299,7 +370,7 @@ public partial class KohManager : Component
         var localPlayer = (FightPlayer)Network.LocalPlayer;
         if (localPlayer.Alive())
         {
-            var timerRect = AO.UI.ScreenRect.CutTop(100);
+            var timerRect = AO.UI.ScreenRect.CutTop(100).Offset(0, -100);
             var topBarRect = timerRect.BottomRect().GrowBottom(40).Offset(0, 3);
             var midBarRect = AO.UI.ScreenRect.SubRect(0.5f, 0.8f, 0.5f, 0.8f);
             var midBarRect2 = AO.UI.ScreenRect.SubRect(0.5f, 0.2f, 0.5f, 0.2f);
@@ -367,18 +438,31 @@ public partial class KohManager : Component
             }
 
             Log.Info("Game ID: " + Game.GetGameID());
-            ResetAfterRound();
+            DestroyRound();
         }
     }
 
+    /// <summary>
+    /// [Server Only]
+    /// </summary>
     private void SetupRound()
     {
         
     }
 
-    private void ResetAfterRound()
+    /// <summary>
+    /// [Server Only] Called when the server first started and when round ends.
+    /// </summary>
+    private void DestroyRound()
     {
         
+    }
+
+    private void ResetAfterRound(FightPlayer fp)
+    {
+        fp.ClearAllEffects();
+        fp.ClearSpeedModifier();
+        fp.SetAnimTriggerWithReset("RESET", true); // Reset both layers
     }
 
     private void SetupPortals(bool round)
