@@ -31,9 +31,30 @@ public partial class EffectKing : FightEffect
         }
     }
 
+    private static EffectKing _kingInstance;
+
+    public static EffectKing KingInstance
+    {
+        get
+        {
+            if (_kingInstance.Alive())
+            {
+                return _kingInstance;
+            }
+            var players = Scene.Components<FightPlayer>().ToList();
+            var king = players.Find(fp => fp.HasEffect<EffectKing>());
+            return king.GetEffect<EffectKing>();
+        }
+        set => _kingInstance = value;
+    }
+    
     [ClientRpc]
     public static void GrantKing(FightPlayer fp)
     {
+        if (fp.Alive() && fp.HasEffect<EffectKing>() && fp == KingInstance?.Player)
+        {
+            return;
+        }
         var players = Scene.Components<FightPlayer>().ToList();
         foreach (var p in players)
         {
@@ -47,12 +68,11 @@ public partial class EffectKing : FightEffect
                 {
                     if (!p.HasEffect<EffectKing>())
                     {
-                        p.AddEffect<EffectKing>();
+                        KingInstance = p.AddEffect<EffectKing>();
                     }
                 }
                 
             }
-            
         }
     }
 }

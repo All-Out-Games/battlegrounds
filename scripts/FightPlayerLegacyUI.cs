@@ -1,4 +1,5 @@
 using AO;
+using Assembly.Koh;
 using Assembly.scripts;
 using Assembly.scripts.UI;
 
@@ -28,6 +29,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         if (_player.CurrentHealth > 0 && _hideUIReasons.Count == 0)
         {
             healthRect = DrawHealthBar();
+            DrawKoHScore();
         }
 
         if (_player.IsLocal && _player.PlayerStatus != PlayerStatus.Safe)
@@ -107,6 +109,33 @@ public class FightPlayerLegacyUI : FightPlayerComponent
             ts.Color = new Vector4(0, 0, 0, 0).LerpTo(result.Color, color01);
             UI.Text(rect, result.Text, ts);
         }
+    }
+
+    protected void DrawKoHScore()
+    {
+        var ts = new UI.TextSettings()
+        {
+            Font = UI.Fonts.BarlowBold,
+            Size = 20,
+            VerticalAlignment = UI.VerticalAlignment.Top,
+            HorizontalAlignment = UI.HorizontalAlignment.Right,
+            Color = Vector4.White,
+            Outline = true,
+            OutlineColor = Vector4.Black
+        };
+        
+        using var _1 = UI.PUSH_CONTEXT(UI.Context.WORLD);
+        using var _2 = IM.PUSH_Z(_player.GetZOffset() - 0.0001f); // minus an epsilon so the health bar draws over the player
+        using var _3 = UI.PUSH_SCALE_FACTOR(5.0f / 540.0f);
+        var scoreBarRect = _player.FinalNameRect.BottomCenterRect().GrowLeft(50).GrowRight(50).Offset(0, -20);
+        var kingScoreRect = scoreBarRect.CutLeft(50);
+        var roundScoreRect = scoreBarRect.CutRight(50);
+        UI.Text(kingScoreRect, $"10{_player.KingScore}", ts);
+        UI.Text(roundScoreRect, $"10{_player.RoundScore}",ts);
+        var kingIconRect = kingScoreRect.Grow(10).FitAspect(1).Offset(-10, -14);
+        var scoreIconRect = roundScoreRect.Grow(10).FitAspect(1).Offset(-10, -14);;
+        UI.Image(kingIconRect, KohGlobalData.Crown, Vector4.White);
+        UI.Image(scoreIconRect, KohGlobalData.Clash, Vector4.White);
     }
     
 }

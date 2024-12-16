@@ -1,5 +1,6 @@
 using System.Collections;
 using AO;
+using Assembly.Koh;
 using Assembly.scripts;
 using Assembly.scripts.Effects;
 using Assembly.scripts.Effects.ActiveSkills;
@@ -311,6 +312,40 @@ public partial class FightPlayer : Player
         }
     }
 
+    #region KoH Score
+
+    private SyncVar<int> _roundScore = new SyncVar<int>(0);
+
+    public int RoundScore
+    {
+        get => _roundScore.Value;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _roundScore.Set(value);
+            }
+        }
+    }
+    
+    private SyncVar<int> _kingScore = new SyncVar<int>(0);
+
+    public int KingScore
+    {
+        get => _kingScore.Value;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _kingScore.Set(value);
+            }
+        }
+    }
+
+    #endregion
+    
+    
+
     public bool IsExpBoosted()
     {
         return ExpBoostTime > 0;
@@ -494,6 +529,20 @@ public partial class FightPlayer : Player
         UIManager.Instance.OnPlayerJoin(this);
         
         Teleport(FightClubGameManager.References.CentralHubZone.Position );
+        
+        // KoH Score Sync
+        _kingScore.OnSync += (o, n) =>
+        {
+            KohManager.Instance.DisplayedKingScores[Name] = n;
+            KohManager.Instance.DisplayedKingScores.OrderDescending();
+            
+        };
+
+        _roundScore.OnSync += (o, n) =>
+        {
+            KohManager.Instance.DisplayedScores[Name] = n;
+            KohManager.Instance.DisplayedScores.OrderDescending();
+        };
     }
 
     private bool _lazyInited;

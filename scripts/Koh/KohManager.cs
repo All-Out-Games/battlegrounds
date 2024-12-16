@@ -98,28 +98,7 @@ public partial class KohManager : Component
             }
         }
     }
-
-    // Save player scores, classes and king-time on the server as dict, then jsonize them as sync var
-    // These dicts are destroyed per round. When a player joins, their entries will be created, but it will not be destroyed when they leave (in case they want to join back)
-    private SyncVar<string> _serializedPlayerScore = new SyncVar<string>();
-
-    public string SerializedPlayerScore
-    {
-        get => _serializedPlayerScore.Value;
-        set
-        {
-            if (Network.IsServer)
-            {
-                _serializedPlayerScore.Set(value);
-            }
-        }
-    }
-    public Dictionary<string, int> PlayerScore = new();
-
-    public void UpdatePlayerScoreOnServer()
-    {
-        SerializedPlayerScore = PlayerScore.ToJson();
-    }
+    
 
     // Classes can be None, Random, Brawler, Ninja, ...
     // Everyone will be -None- when the round starts or when they join in progress
@@ -143,32 +122,20 @@ public partial class KohManager : Component
 
     public Dictionary<string, string> PlayerClass = new();
 
-    public void UpdatePlayerClassOnServer()
+    /// <summary>
+    /// Displayed scores. Updated by the OnSync event of player's score field.
+    /// </summary>
+    public Dictionary<string, int> DisplayedScores = new();
+
+    public Dictionary<string, int> DisplayedKingScores = new();
+
+    public void UpdateClassOnServer()
     {
         // TODO: This will need a server RPC to call (Player has to request it from UI)
         SerializedPlayerClass = PlayerClass.ToJson();
     }
-    
-    private SyncVar<string> _serializedPlayerKingScore = new SyncVar<string>();
 
-    public string SerializedPlayerKingScore
-    {
-        get => _serializedPlayerKingScore.Value;
-        set
-        {
-            if (Network.IsServer)
-            {
-                _serializedPlayerKingScore.Set(value);
-            }
-        }
-    }
-
-    public Dictionary<string, int> PlayerKingScore = new();
-
-    public void UpdatePlayerKingScoreOnServer()
-    {
-        SerializedPlayerKingScore = PlayerKingScore.ToJson();
-    }
+    // Player King Score End
     
     #endregion
 
@@ -260,7 +227,7 @@ public partial class KohManager : Component
                     if (playerCount >= KohGlobalData.PlayersRequiredToStart)
                     {
                         State = GameState.CountingDown;
-                        Countdown = 14f;
+                        Countdown = 11f;
                     }
                     break;
                 }
@@ -318,8 +285,8 @@ public partial class KohManager : Component
                     
                     // TODO: Condition 2 - One player held King Effect for more than 120s
                     // TODO: Condition 3 - Only one player left
-                    
-                    // Capture stuff
+
+                    #region Zone Update
                     ServerKohPingTimer -= Time.DeltaTime;
                     if (ServerKohPingTimer < 0)
                     {
@@ -379,23 +346,38 @@ public partial class KohManager : Component
                                 else
                                 {
                                     zone.ZoneHealth -= KohGlobalData.CaptureSpeed;
-                                    if (zone.ZoneHealth < 0)
-                                    {
-                                        // Neutralized zone
-                                        zone.ZoneStatus = CaptureArea.CaptureStatus.Neutral;
-                                        zone.OwnerId = "Neutral";
-                                        zone.OwnerName = "Neutral";
-                                        zone.ZoneHealth = KohGlobalData.ZoneMaxHealth / 2;
-                                    }
                                 }
                             }
                             
+                            if (zone.ZoneHealth < 0)
+                            {
+                                // Neutralized zone
+                                zone.ZoneStatus = CaptureArea.CaptureStatus.Neutral;
+                                zone.OwnerId = "Neutral";
+                                zone.OwnerName = "Neutral";
+                                zone.ZoneHealth = KohGlobalData.ZoneMaxHealth / 2;
+                            }
+                            
                             // Grant EffectKing to the player who holds the zone
+                            // They will get this effect even if they quit and rejoin (the same server)
                             var king = players.Find(fp => fp.UserId == zone.OwnerId);
-                            EffectKing.CallClient_GrantKing(king);
+                            if (king.Alive())
+                            {
+                                king.KingScore += 1;
+                                EffectKing.CallClient_GrantKing(king); 
+                            }
+                            else
+                            {
+                                EffectKing.CallClient_GrantKing(null); // This will remove KingEffect from players
+                            }
+                            
+
+
 
                         }
                     }
+
+                    #endregion
                     break;
                 }
                 case GameState.RoundEnd:
@@ -423,29 +405,29 @@ public partial class KohManager : Component
         #region C/S Update
 
         // TODO
-        switch (State)
-        {
-            case GameState.WaitingForPlayers:
-            {
-                break;
-            }
-            case GameState.CountingDown:
-            {
-                break;
-            }
-            case GameState.StartRound:
-            {
-                break;
-            }
-            case GameState.Round:
-            {
-                break;
-            }
-            case GameState.RoundEnd:
-            {
-                break;
-            }
-        }
+        // switch (State)
+        // {
+        //     case GameState.WaitingForPlayers:
+        //     {
+        //         break;
+        //     }
+        //     case GameState.CountingDown:
+        //     {
+        //         break;
+        //     }
+        //     case GameState.StartRound:
+        //     {
+        //         break;
+        //     }
+        //     case GameState.Round:
+        //     {
+        //         break;
+        //     }
+        //     case GameState.RoundEnd:
+        //     {
+        //         break;
+        //     }
+        // }
 
         #endregion
 
@@ -497,6 +479,7 @@ public partial class KohManager : Component
                         UI.Text(timerRect, roundString, ts);
                     }
                     // Scores
+
                     break;
                 }
                 case GameState.RoundEnd:

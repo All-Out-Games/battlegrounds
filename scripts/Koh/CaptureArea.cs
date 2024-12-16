@@ -116,9 +116,9 @@ public partial class CaptureArea : Component
         return FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Center, 3.3f, null);
     }
 
-    public override void Update()
+    public override void LateUpdate()
     {
-        base.Update();
+        base.LateUpdate();
         // All gameplay stuff handled by manager, this loop just draws the world space UI
         if (Network.LocalPlayer.Alive() && KohManager.Instance.State == GameState.Round)
         {
@@ -131,12 +131,13 @@ public partial class CaptureArea : Component
         var targetPlayerScreenPos = Camera.WorldToScreen(Center + new Vector2(0, -3f));
         // var killerPlayerScreenPos = Camera.WorldToScreen(Entity.Position + new Vector2(0, 0.5f));
         var healthRect = new Rect(targetPlayerScreenPos, targetPlayerScreenPos).Grow(20, 90, 0, 70);
+        var clashRect = new Rect(targetPlayerScreenPos, targetPlayerScreenPos).Grow(50, 50, 35, 35);
         var statusRect = healthRect.Grow(36, 20, 0, 20);
 
         var borderRect = healthRect.Grow(5.5f, 4, 5.5f, 4).Offset(0, -2);
 
         var back = ZoneStatus == CaptureStatus.Captured ? HealthBarBack_Captured : HealthBarBack_Neutral;
-        var fill = ZoneStatus == CaptureStatus.Captured ? HealthBarFill_Captured : HealthBarBack_Neutral;
+        var fill = ZoneStatus == CaptureStatus.Captured ? HealthBarFill_Captured : HealthBarFill_Neutral;
         var pip = ZoneStatus == CaptureStatus.Captured ? Pip_Captured : Pip_Neutral;
 
         // Draw bar background
@@ -150,7 +151,7 @@ public partial class CaptureArea : Component
         var ts = new UI.TextSettings()
         {
             Font = UI.Fonts.BarlowBold,
-            Size = 36,
+            Size = 32,
             VerticalAlignment = UI.VerticalAlignment.Top,
             HorizontalAlignment = UI.HorizontalAlignment.Center,
             Color = Vector4.White,
@@ -158,7 +159,11 @@ public partial class CaptureArea : Component
             OutlineColor = Vector4.Black
         };
         string statusTxt = "NEUTRAL";
-        if (ZoneStatus == CaptureStatus.Contested) statusTxt = "CONTESTED";
+        if (ZoneStatus == CaptureStatus.Contested)
+        {
+            statusTxt = "CONTESTED";
+            UI.Image(clashRect, KohGlobalData.Clash, Vector4.White);
+        }
         if (ZoneStatus == CaptureStatus.Captured) statusTxt = $"King: {OwnerName}";
         UI.Text(statusRect, statusTxt, ts);
 
