@@ -314,7 +314,11 @@ public class FightClubGameManager : System<FightClubGameManager> {
         foreach (var p in Scene.Components<FightPlayer>())
         {
             if (p == exclude) continue;
-            if(p is { PlayerStatus: PlayerStatus.Combat } fp) fightPlayers.Add(fp);
+            var fp = (FightPlayer)p;
+            if (fp.Alive() && !fp.HasEffect<EffectDeath>())
+            {
+                fightPlayers.Add(fp);
+            }
         }
         return fightPlayers;
     }

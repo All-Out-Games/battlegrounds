@@ -177,6 +177,7 @@ public partial class KohManager : Component
     [Serialized] private Entity _loadoutRollerEntity; // AFK Portal replaced
     [Serialized] private Entity _combatPortalEntity; 
     [Serialized] private Entity _spectralPortalEntity;
+    [Serialized] private Entity[] _zonePosition;
 
     #endregion
 
@@ -191,6 +192,7 @@ public partial class KohManager : Component
     #region KoH Variables
 
     public float LastRoundTimerSyncTime = -1000;
+    public float ServerKohPingTimer = 1; // Ping CaptureZone every second on the server
 
     #endregion
     
@@ -258,7 +260,7 @@ public partial class KohManager : Component
                     if (playerCount >= KohGlobalData.PlayersRequiredToStart)
                     {
                         State = GameState.CountingDown;
-                        Countdown = 25f;
+                        Countdown = 14f;
                     }
                     break;
                 }
@@ -285,9 +287,6 @@ public partial class KohManager : Component
                         goto case GameState.StartRound;
                     }
                     
-                    // CaptureArea Logic
-                    var zone = CaptureArea.Instance;
-                    var zonePlayers = zone.GetPlayersInside();
                     break;
                 }
                 case GameState.StartRound:
@@ -319,6 +318,84 @@ public partial class KohManager : Component
                     
                     // TODO: Condition 2 - One player held King Effect for more than 120s
                     // TODO: Condition 3 - Only one player left
+                    
+                    // Capture stuff
+                    ServerKohPingTimer -= Time.DeltaTime;
+                    if (ServerKohPingTimer < 0)
+                    {
+                        ServerKohPingTimer = 1; // Ping the zone per second to update
+                        // CaptureArea Logic
+                        var zone = CaptureArea.Instance;
+                        var zonePlayers = zone.GetPlayersInside();
+                        int zonePlayerCount = zonePlayers.Count;
+                        // Log.Warn($"Pinged zone, got {zonePlayers.Count} Players!");
+                        
+                        // Set zone state
+                        if (zonePlayerCount > 1 && zone.ZoneStatus != CaptureArea.CaptureStatus.Contested)
+                        {
+                            zone.BeforeContestStatus = zone.ZoneStatus;
+                            zone.ZoneStatus = CaptureArea.CaptureStatus.Contested;
+                            // The following branches have player count 0 or 1
+                        }
+
+                        if (zone.ZoneStatus == CaptureArea.CaptureStatus.Contested && zonePlayerCount < 2)
+                        {
+                            zone.ZoneStatus = zone.BeforeContestStatus;
+                        }
+
+                        if (zone.ZoneStatus == CaptureArea.CaptureStatus.Neutral)
+                        {
+                            if (zonePlayerCount == 1 && zonePlayers[0].Alive())
+                            {
+                                zone.ZoneHealth -= KohGlobalData.CaptureSpeed;
+                                if (zone.ZoneHealth < 0)
+                                {
+                                    // Captured from Neutral
+                                    zone.ZoneStatus = CaptureArea.CaptureStatus.Captured;
+                                    zone.OwnerId = zonePlayers[0].UserId;
+                                    zone.OwnerName = zonePlayers[0].Name;
+                                    zone.ZoneHealth = KohGlobalData.ZoneMaxHealth / 2;
+
+                                }
+                            }
+                            else // No Players inside - recover health
+                            {
+                                zone.ZoneHealth += KohGlobalData.ZoneRecoverSpeed;
+                            }
+                        }
+                        else if(zone.ZoneStatus == CaptureArea.CaptureStatus.Captured)
+                        {
+                            if (zonePlayerCount == 0)
+                            {
+                                zone.ZoneHealth -= KohGlobalData.CapturedDecay;
+                            }
+
+                            if (zonePlayerCount == 1)
+                            {
+                                if (zonePlayers[0].UserId == zone.OwnerId)
+                                {
+                                    zone.ZoneHealth += KohGlobalData.ZoneRecoverSpeed;
+                                }
+                                else
+                                {
+                                    zone.ZoneHealth -= KohGlobalData.CaptureSpeed;
+                                    if (zone.ZoneHealth < 0)
+                                    {
+                                        // Neutralized zone
+                                        zone.ZoneStatus = CaptureArea.CaptureStatus.Neutral;
+                                        zone.OwnerId = "Neutral";
+                                        zone.OwnerName = "Neutral";
+                                        zone.ZoneHealth = KohGlobalData.ZoneMaxHealth / 2;
+                                    }
+                                }
+                            }
+                            
+                            // Grant EffectKing to the player who holds the zone
+                            var king = players.Find(fp => fp.UserId == zone.OwnerId);
+                            EffectKing.CallClient_GrantKing(king);
+
+                        }
+                    }
                     break;
                 }
                 case GameState.RoundEnd:
@@ -374,7 +451,7 @@ public partial class KohManager : Component
 
         #region Client Only
 
-        var localPlayer = (FightPlayer)Network.LocalPlayer;
+        var localPlayer = (FightPlayer)Network.LocalPlayer; // Draw UIs here
         if (localPlayer.Alive())
         {
             var timerRect = AO.UI.ScreenRect.CutTop(100).Offset(0, -100);
@@ -454,7 +531,8 @@ public partial class KohManager : Component
     /// </summary>
     private void SetupRound()
     {
-        
+        Vector2 zonePos = _zonePosition.GetRandom(Random.Shared).Position;
+        CaptureArea.Instance.CallClient_SetZonePosition(zonePos);
     }
 
     /// <summary>
@@ -462,7 +540,9 @@ public partial class KohManager : Component
     /// </summary>
     private void DestroyRound()
     {
-        
+        var zone = CaptureArea.Instance;
+        zone.ZoneStatus = CaptureArea.CaptureStatus.Neutral;
+        zone.ZoneHealth = 100;
     }
 
     private void ResetAfterRound(FightPlayer fp)

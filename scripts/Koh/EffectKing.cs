@@ -5,7 +5,7 @@ namespace Assembly.Koh;
 public partial class EffectKing : FightEffect
 {
     public override bool IsActiveEffect => false;
-    public override float SpeedModifier => 0.8f;
+    public override float SpeedModifier => 2.8f; // TODO: Change to 0.8 before publish!
     
     
     public override void OnEffectStart(bool isDropIn)
@@ -34,16 +34,25 @@ public partial class EffectKing : FightEffect
     [ClientRpc]
     public static void GrantKing(FightPlayer fp)
     {
-        if (fp.HasEffect<EffectKing>())
-        {
-            return;
-        }
         var players = Scene.Components<FightPlayer>().ToList();
         foreach (var p in players)
         {
-            p.RemoveEffect<EffectKing>(true);
+            if (p.Alive())
+            {
+                if (p != fp)
+                {
+                    p.RemoveEffect<EffectKing>(true);
+                }
+                else
+                {
+                    if (!p.HasEffect<EffectKing>())
+                    {
+                        p.AddEffect<EffectKing>();
+                    }
+                }
+                
+            }
+            
         }
-
-        fp.AddEffect<EffectKing>();
     }
 }

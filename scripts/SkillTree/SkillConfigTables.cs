@@ -1296,7 +1296,7 @@ public static partial class SkillConfig
 
     // [Add Skill] Item 3: Put Classification Here
     public static readonly HashSet<string> AttrBoostSkills = new HashSet<string>()
-        { "HealthBoost", "AttackBoost", "HealthBoost2", "AttackBoost2", "HealthBoostD" };
+        { "HealthBoost", "AttackBoost", "HealthBoost2", "AttackBoost2", "HealthBoostD", "SpeedBoost" }; 
 
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>()
     {
@@ -1307,7 +1307,7 @@ public static partial class SkillConfig
         // Psionic
         "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize", "PsionicBeam", "PsyThrow",
         // Stealth
-        "Invisibility", "LightFeet", "SpeedBoost","Shuriken", "BearTrap", "ShadowStep", "Backstab", "TotalDarkness",
+        "Invisibility", "LightFeet","Shuriken", "BearTrap", "ShadowStep", "Backstab", "TotalDarkness",
         // Elemental
         "IceFist", "WindPunch", "Fireball", "Thunderbolt", "IceStorm", "ChargingStation"
     };

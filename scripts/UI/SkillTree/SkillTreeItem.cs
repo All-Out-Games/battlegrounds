@@ -84,6 +84,13 @@ public class SkillTreeItem : Component
             _lockedBorder.LocalEnabled = true;
             _boughtBorder.LocalEnabled = false;
         }
+        // Added in KoH
+        if (Config.NTab == SkillConfig.SkillTreeTabs.Basic)
+        {
+            Status = NodeStatus.Locked;
+            _lockedBorder.LocalEnabled = true;
+            _boughtBorder.LocalEnabled = false;
+        }
         
         // Check equipped
         _equippedBorder.LocalEnabled = equippedKeys.Contains(Config.SkillKey);

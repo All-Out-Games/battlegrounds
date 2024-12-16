@@ -694,6 +694,22 @@ UI/Glory/glory_pack3.png - .ao - 674e5e28f6994d2906c24b62 - 1858840786672795748
 UI/Glory/glory_pack3.png - .ao.astc - 674e5e28f6994d2906c24b64 - 11549583798845727463
 UI/Glory/glory_shines.png - .ao - 674e5e29f6994d2906c24b66 - 8491135097850255721
 UI/Glory/glory_shines.png - .ao.astc - 674e5e29f6994d2906c24b69 - 4842375454449682955
+UI/Health_Bar/health_bar_red/healthbar_back.png - .ao - 675f7bc3ad0037d660710542 - 17987435218312369356
+UI/Health_Bar/health_bar_red/healthbar_back.png - .ao.astc - 675f7bc3ad0037d660710546 - 15273103247749553758
+UI/Health_Bar/health_bar_red/healthbar_fill.png - .ao - 675f7bc3ad0037d660710543 - 17664932967987820560
+UI/Health_Bar/health_bar_red/healthbar_fill.png - .ao.astc - 675f7bc0ad0037d66071052a - 16972095709064009756
+UI/Health_Bar/health_bar_red/healthbar_pip.png - .ao - 675f7bc0ad0037d660710529 - 5510203019770195895
+UI/Health_Bar/health_bar_red/healthbar_pip.png - .ao.astc - 675f7bc0ad0037d66071052b - 15246052663870819640
+UI/Health_Bar/health_bar_red/team_flag_red.png - .ao - 675f7bc1ad0037d66071052d - 2631032596070816785
+UI/Health_Bar/health_bar_red/team_flag_red.png - .ao.astc - 675f7bc1ad0037d660710530 - 5026371854114448286
+UI/Health_Bar/level_backing.png - .ao - 675f7bc1ad0037d660710531 - 6005586819808977323
+UI/Health_Bar/level_backing.png - .ao.astc - 675f7bc1ad0037d660710535 - 15313821912079546852
+UI/Health_Bar/shield_back.png - .ao - 675f7bc1ad0037d660710537 - 10864808875853593310
+UI/Health_Bar/shield_back.png - .ao.astc - 675f7bc1ad0037d660710536 - 8692977234592712361
+UI/Health_Bar/shield_fill.png - .ao - 675f7bc2ad0037d66071053a - 8129628927390208883
+UI/Health_Bar/shield_fill.png - .ao.astc - 675f7bc2ad0037d66071053c - 17044615913602794323
+UI/Health_Bar/shield_pip.png - .ao - 675f7bc2ad0037d66071053d - 8188810045621418037
+UI/Health_Bar/shield_pip.png - .ao.astc - 675f7bc3ad0037d660710541 - 4038495077802350602
 UI/LargeMenuButtons/coin_icon.png - .ao - 674e5e29f6994d2906c24b6a - 4683094316572405538
 UI/LargeMenuButtons/coin_icon.png - .ao.astc - 67319d91ada08dbbbde3fc0b - 4813020507296093946
 UI/LargeMenuButtons/Large Menu Buttons/large_button.png - .ao - 674e5e2af6994d2906c24b6c - 10000980801595487117

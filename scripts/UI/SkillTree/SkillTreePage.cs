@@ -335,6 +335,11 @@ public class SkillTreePage : UniqueUIWindow
                 {
                     _buyText.Text = "Need Prerequisite!";
                 }
+                // Added in KoH
+                if (item.Config.NTab == SkillConfig.SkillTreeTabs.Basic)
+                {
+                    _buyText.Text = "Not Available in KoH";
+                }
                 break;
         }
         _costText.Text = $"{upgradeCost}";

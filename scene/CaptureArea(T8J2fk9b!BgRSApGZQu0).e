@@ -13,7 +13,7 @@
     "X": 6,
     "Y": 9
   },
-  "previous_sibling": "39626685824915:1733983240255563300",
+  "previous_sibling": "7475659540636:1734299995356731500",
   "next_sibling": "39538365173420:1733983204870687400",
   "spawn_as_networked_entity": true,
   "network_position": true
@@ -24,7 +24,8 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Sprite_Renderer",
   "data": {
-    "texture": "SceneProps_tmp/aura_circle.png"
+    "texture": "SceneProps_tmp/aura_circle.png",
+    "depth_offset": 0.3000000119209290
   }
 },
 {
@@ -33,6 +34,6 @@
   "component_type": "Mono_Component",
   "mono_component_type": "CaptureArea",
   "data": {
-
+    "_rdr": "87696630419999:1734246540482323700"
   }
 }

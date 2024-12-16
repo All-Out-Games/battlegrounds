@@ -236,17 +236,17 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
             {
                 int lvl = SkillLevelDict[key];
                 HandleSkill(key, lvl);
-                // Replaced RPC Sync with Serialized SyncVar
-                // CallClient_SyncSkill(key, lvl);
             };
             // Phase 0: Default unlock for all players
             UpgradeSkill("Punch", 1);
             
             // Phase 1: Attr Boosts (and passives, which are essentially permanent effects)
-            foreach (string abKey in SkillConfig.AttrBoostSkills)
-            {
-                handleSkillWithSync(abKey);
-            }
+            // DISABLED IN KoH
+            
+            // foreach (string abKey in SkillConfig.AttrBoostSkills)
+            // {
+            //     handleSkillWithSync(abKey);
+            // }
         
             // Phase 2: Active Skill Unlocks
             // Doesn't actually do anything. 
