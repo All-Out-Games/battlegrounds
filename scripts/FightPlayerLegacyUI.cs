@@ -116,26 +116,32 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         var ts = new UI.TextSettings()
         {
             Font = UI.Fonts.BarlowBold,
-            Size = 20,
+            Size = 32,
             VerticalAlignment = UI.VerticalAlignment.Top,
-            HorizontalAlignment = UI.HorizontalAlignment.Right,
+            HorizontalAlignment = UI.HorizontalAlignment.Center,
             Color = Vector4.White,
             Outline = true,
-            OutlineColor = Vector4.Black
+            OutlineColor = Vector4.Black,
+            DoAutofit = false
         };
         
         using var _1 = UI.PUSH_CONTEXT(UI.Context.WORLD);
         using var _2 = IM.PUSH_Z(_player.GetZOffset() - 0.0001f); // minus an epsilon so the health bar draws over the player
         using var _3 = UI.PUSH_SCALE_FACTOR(5.0f / 540.0f);
-        var scoreBarRect = _player.FinalNameRect.BottomCenterRect().GrowLeft(50).GrowRight(50).Offset(0, -20);
-        var kingScoreRect = scoreBarRect.CutLeft(50);
-        var roundScoreRect = scoreBarRect.CutRight(50);
-        UI.Text(kingScoreRect, $"10{_player.KingScore}", ts);
-        UI.Text(roundScoreRect, $"10{_player.RoundScore}",ts);
-        var kingIconRect = kingScoreRect.Grow(10).FitAspect(1).Offset(-10, -14);
-        var scoreIconRect = roundScoreRect.Grow(10).FitAspect(1).Offset(-10, -14);;
-        UI.Image(kingIconRect, KohGlobalData.Crown, Vector4.White);
+        var scoreBarRect = _player.FinalNameRect.BottomCenterRect().GrowLeft(80).GrowRight(80).GrowBottom(35).Offset(0, -200);
+        //UI.Image(scoreBarRect, null, Vector4.White);
+        var kingIconRect = scoreBarRect.CutLeft(50).FitAspect(1).Offset(-10, 0);
+        //UI.Image(kingIconRect, null, Vector4.LightBlue);
+        var scoreIconRect = scoreBarRect.CutLeft(50).FitAspect(1).Offset(25, 0);
+        //UI.Image(scoreIconRect, null, Vector4.Green);
+        var kingScoreRect = kingIconRect.GrowRight(50).Offset(15,0);
+        var roundScoreRect = scoreBarRect.GrowRight(50).Offset(-5, 0);
+        UI.Image(kingIconRect, _player.HasEffect<EffectKing>() ? KohGlobalData.Crown : KohGlobalData.CrownGrey, Vector4.White);
         UI.Image(scoreIconRect, KohGlobalData.Clash, Vector4.White);
+        UI.Text(kingScoreRect, $"{_player.KingScore}", ts);
+        UI.Text(roundScoreRect, $"{_player.RoundScore}",ts);
+
+        
     }
     
 }
