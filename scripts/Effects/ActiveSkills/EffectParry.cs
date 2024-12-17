@@ -71,7 +71,7 @@ public class EffectParry : FightEffect
         SFX.Play(SFXKeys.ParryAttackAudio, DefaultSoundDesc);
         Vector2 selfPos = FightPlayer.Entity.Position;
         var cbPlayers = FightClubGameManager.Instance.OverlapCircleForDamageables(selfPos, EffectConfig.ParryConfig.CounterAttackRange, Player);
-        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Dmg, DamageType.AOE);
+        FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Dmg, DamageType.None); // Changed from AoE to none. Parry must not trigger another player's parry. It will cause a stack overflow
         info.SkillKey = "Parry";
         info.CrateImmediateDestroy = true;
         
