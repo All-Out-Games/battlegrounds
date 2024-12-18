@@ -57,7 +57,8 @@ public class AdTrigger : Component, INetworkedComponent
         {
             if (p.IsLocal)
             {
-                Notifications.Show("Ad bonuses are only available on the iOS and Android app!");
+                string msg = Game.IsMobile ? "Ad is temporarily unavailable. Try again later." : "Ad bonuses are only available on the iOS and Android app!";
+                Notifications.Show(msg);
             }
         }
     }

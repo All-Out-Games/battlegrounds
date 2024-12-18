@@ -123,7 +123,8 @@ public partial class AdCrateSpawner : System<AdCrateSpawner>
                     break;
             }
 
-            p.AddEffect<EffectAdWatched>(p, 10f, watched => watched.Info = info);
+            //p.AddEffect<EffectAdWatched>(p, 10f, watched => watched.Info = info);
+            player.GetEffectMgr().AddAdWatchedEffect(info, 10f);
             return true;
         }
         return false;
