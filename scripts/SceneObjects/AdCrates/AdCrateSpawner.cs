@@ -33,7 +33,7 @@ public partial class AdCrateSpawner : System<AdCrateSpawner>
         {
             RewardId = "xp200",
             Tint = Vector4.One,
-            Chance = 1f,
+            Chance = 0.25f,
             InteractableText = "200 XP",
             AdPromptText = "Watch an Ad to claim 200 XP. You get double if you are lower than Lv. 15.",
             AdPromptTexture = "Props/DropItems/ExpPotionM.png"
@@ -124,7 +124,7 @@ public partial class AdCrateSpawner : System<AdCrateSpawner>
             }
 
             //p.AddEffect<EffectAdWatched>(p, 10f, watched => watched.Info = info);
-            player.GetEffectMgr().AddAdWatchedEffect(info, 10f);
+            player.GetEffectMgr().CallClient_AddAdWatchedEffect(info, 10f);
             return true;
         }
         return false;

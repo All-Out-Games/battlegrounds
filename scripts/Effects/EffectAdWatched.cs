@@ -8,6 +8,7 @@ public class EffectAdWatched : AEffect
 {
     public override bool IsActiveEffect => false;
     public string Info = "Ads reward received.";
+    public bool _poped;
 
     public override void OnEffectStart(bool isDropIn)
     {
@@ -16,17 +17,20 @@ public class EffectAdWatched : AEffect
         {
             DurationRemaining = 10f;
         }
-        if (Player.IsLocal)
-        {
-            Notifications.Show(Info);
-            var wd = UIManager.Instance.GetOverlayWindow<ResourceOverlayWindow>(UniqueWindowKeys.ResourcesOverlayWindowPath);
-            wd.PopSparkles();
-        }
+        
     }
 
     public override void OnEffectUpdate()
     {
-        
+        if (Util.OneTime(ElapsedTime > 1, ref _poped))
+        {
+            if (Player.IsLocal)
+            {
+                Notifications.Show(Info);
+                var wd = UIManager.Instance.GetOverlayWindow<ResourceOverlayWindow>(UniqueWindowKeys.ResourcesOverlayWindowPath);
+                wd.PopSparkles();
+            }
+        }
     }
 
     public override void OnEffectEnd(bool interrupt)
