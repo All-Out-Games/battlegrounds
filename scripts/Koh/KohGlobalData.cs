@@ -19,4 +19,10 @@ public static class KohGlobalData
     public static Texture CrownGrey = Assets.KeepLoaded<Texture>("UI/KoH/crown_grey.png");
     public static Texture Crown = Assets.KeepLoaded<Texture>("UI/KoH/crown.png");
     public static Texture Clash = Assets.KeepLoaded<Texture>("UI/KoH/clash.png");
+    public static Texture BackPlate = Assets.KeepLoaded<Texture>("UI/KoH/backplate.png");
+    
+    // Scoring
+    public static int KingScorePerSecond = 15;
+    public static int KillScore = 100;
+    
 }

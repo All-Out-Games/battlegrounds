@@ -228,7 +228,7 @@ AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao - 674e5daff6994d2906c
 AbilityIcon_Separate/stealth/total_darkness_icon.png - .ao.astc - 67319d8bada08dbbbde3fb97 - 3376670361412577081
 AbilityIcon_Separate/x_icon_ability.png - .ao - 674e5db0f6994d2906c248a0 - 11173360663604695941
 AbilityIcon_Separate/x_icon_ability.png - .ao.astc - 67319d8bada08dbbbde3fb98 - 9625147596235807178
-AbilityLoadoutPage.prefab - .ao - 67631e39ad0037d660710744 - 2181474352976986599
+AbilityLoadoutPage.prefab - .ao - 6765d9b7ad0037d660713487 - 2181474352976986599
 AbilityUpgradeDialog.prefab - .ao - 674e5db0f6994d2906c248a2 - 687982187149207345
 AdCrab.prefab - .ao - 6753fdc2f6994d2906c26ccd - 15799877603757965979
 AdCrate.prefab - .ao - 6753e84df6994d2906c26cc5 - 6334134733328222967
@@ -626,7 +626,7 @@ ShadowStepVFX.prefab - .ao - 674e5e17f6994d2906c24afe - 2144498759267209336
 Shield_FX.prefab - .ao - 674e5e17f6994d2906c24b00 - 5797989548499394546
 ShurikenProjectile.prefab - .ao - 674e5e18f6994d2906c24b03 - 773436890072797573
 SkillTreeItem.prefab - .ao - 674e5e18f6994d2906c24b04 - 159676070975290487
-SkillTreePage.prefab - .ao - 67631e39ad0037d660710745 - 925961262489824462
+SkillTreePage.prefab - .ao - 6765d9b7ad0037d660713488 - 925961262489824462
 SpikeShield_FX.prefab - .ao - 674e5e18f6994d2906c24b06 - 16130426178853784210
 SpoonProjectile.prefab - .ao - 674e5e19f6994d2906c24b08 - 8357255713770159291
 Stat_Aura.prefab - .ao - 674e5e19f6994d2906c24b0a - 9997516903432074068
@@ -710,6 +710,8 @@ UI/Health_Bar/shield_fill.png - .ao - 675f7bc2ad0037d66071053a - 812962892739020
 UI/Health_Bar/shield_fill.png - .ao.astc - 675f7bc2ad0037d66071053c - 17044615913602794323
 UI/Health_Bar/shield_pip.png - .ao - 675f7bc2ad0037d66071053d - 8188810045621418037
 UI/Health_Bar/shield_pip.png - .ao.astc - 675f7bc3ad0037d660710541 - 4038495077802350602
+UI/KoH/backplate.png - .ao - 6765e912ad0037d66071349b - 4035446320090405866
+UI/KoH/backplate.png - .ao.astc - 6765e913ad0037d66071349c - 1298117898479381302
 UI/KoH/clash.png - .ao - 675fbb2dad0037d66071055d - 11367845954386181771
 UI/KoH/clash.png - .ao.astc - 675fbb2dad0037d66071055e - 18437904401809973886
 UI/KoH/crown.png - .ao - 675fb6adad0037d660710559 - 7301845817134495133

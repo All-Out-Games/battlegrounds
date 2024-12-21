@@ -267,6 +267,12 @@ public partial class KohManager : Component
                     RoundTimerEnabled = true;
                     
                     SetupRound();
+
+                    foreach (var fp in players)
+                    {
+                        fp.KingScore = 0;
+                        fp.RoundScore = 0;
+                    }
                     break;
                 }
                 case GameState.Round:
@@ -305,9 +311,38 @@ public partial class KohManager : Component
                             // The following branches have player count 0 or 1
                         }
 
-                        if (zone.ZoneStatus == CaptureArea.CaptureStatus.Contested && zonePlayerCount < 2)
+                        if (zone.ZoneStatus == CaptureArea.CaptureStatus.Contested)
                         {
-                            zone.ZoneStatus = zone.BeforeContestStatus;
+                            if (zonePlayerCount < 2)
+                            {
+                                zone.ZoneStatus = zone.BeforeContestStatus; // No longer contested
+                            }
+                            else
+                            {
+                                bool ownerInside = false;
+                                foreach (var zp in zonePlayers)
+                                {
+                                    if (zp.UserId == zone.OwnerId)
+                                    {
+                                        ownerInside = true;
+                                    }
+                                }
+
+                                if (!ownerInside && zone.BeforeContestStatus == CaptureArea.CaptureStatus.Captured)
+                                {
+                                    // Owner not inside contested zone -> reduce health
+                                    zone.ZoneHealth -= KohGlobalData.CaptureSpeed;
+                                    // Neutralized during contest
+                                    if (zone.ZoneHealth <= 0)
+                                    {
+                                        zone.BeforeContestStatus = CaptureArea.CaptureStatus.Neutral;
+                                        zone.OwnerId = "Neutral";
+                                        zone.OwnerName = "Neutral";
+                                        zone.ZoneHealth = KohGlobalData.ZoneMaxHealth / 2;
+                                    }
+                                }
+                            }
+                            
                         }
 
                         if (zone.ZoneStatus == CaptureArea.CaptureStatus.Neutral)
@@ -364,6 +399,7 @@ public partial class KohManager : Component
                             if (king.Alive())
                             {
                                 king.KingScore += 1;
+                                king.RoundScore += KohGlobalData.KingScorePerSecond;
                                 EffectKing.CallClient_GrantKing(king); 
                             }
                             else
@@ -388,7 +424,11 @@ public partial class KohManager : Component
                     foreach (var fp in players)
                     {
                         ResetAfterRound(fp);
-                        fp.SwitchStatus((int)PlayerStatus.Safe);
+                        if (fp.PlayerStatus != PlayerStatus.Safe)
+                        {
+                            fp.SwitchStatus((int)PlayerStatus.Safe);
+                        }
+                        
                     }
                     // TODO: Do this after countdown
                     DestroyRound();
@@ -440,9 +480,7 @@ public partial class KohManager : Component
             var topBarRect = timerRect.BottomRect().GrowBottom(40).Offset(0, 3);
             var midBarRect = AO.UI.ScreenRect.SubRect(0.5f, 0.8f, 0.5f, 0.8f);
             var midBarRect2 = AO.UI.ScreenRect.SubRect(0.5f, 0.2f, 0.5f, 0.2f);
-
-            var redScoreRect = AO.UI.ScreenRect.CutTop(100).Offset(-200, 0);
-            var blueScoreRect = AO.UI.ScreenRect.CutTop(100).Offset(200, 0);
+            var rightBarRect = UI.ScreenRect.CutRight(200).CutTop(360).Offset(0, -400);
 
             var bottomBarRect = AO.UI.SafeRect.CutBottom(350);
 
@@ -454,6 +492,8 @@ public partial class KohManager : Component
                 case GameState.WaitingForPlayers:
                 {
                     UI.Text(bottomBarRect, $"Waiting for players ({players.Count}/{KohGlobalData.PlayersRequiredToStart})", GetTextSettings(52, 0f, null, UI.HorizontalAlignment.Center));
+                    
+                    
                     break;
                 }
                 case GameState.CountingDown:
@@ -478,8 +518,75 @@ public partial class KohManager : Component
                         var ts = GetTextSettingsColor(40, textColor, 0f, null);
                         UI.Text(timerRect, roundString, ts);
                     }
-                    // Scores
 
+                    List<(string, int)> crownTimeSorted = new List<(string, int)>();
+                    List<(string, int)> roundScoreSorted = new List<(string, int)>();
+                    // Scores (Right side of the screen)
+                    foreach (var fp in players)
+                    {
+                        if (fp.Alive())
+                        {
+                            crownTimeSorted.Add((fp.Name, fp.KingScore));
+                            roundScoreSorted.Add((fp.Name, fp.RoundScore));
+                        }
+                    }
+
+                    crownTimeSorted.Sort((x, y) => y.Item2.CompareTo(x.Item2)); // Sort descending
+                    roundScoreSorted.Sort((x, y) => y.Item2.CompareTo(x.Item2));
+                    
+                    var topKing = crownTimeSorted[0];
+                    var topScore = roundScoreSorted[0];
+                    // 0.2 Current King (72px)
+                    Rect curKingRect = rightBarRect.SubRect(0.1f, 0.8f, 1f, 1f);
+                    UI.Image(curKingRect, KohGlobalData.BackPlate, Vector4.Black);
+                    UI.Image(curKingRect.CutLeft(35).FitAspect(1), KohGlobalData.Crown);
+                    curKingRect = curKingRect.CutRight(150).CenterRect();
+                    Rect curKingRect1 = curKingRect.GrowTop(36);
+                    UI.Text(curKingRect1, "Current King", GetTextSettings(16));
+                    Rect curKingRect2 = curKingRect.GrowBottom(36);
+                    
+                    if (EffectKing.KingInstance.Alive() && EffectKing.KingInstance.Player.Alive())
+                    {
+                        UI.Text(curKingRect2, EffectKing.KingInstance.Player.Name, GetTextSettings(20));
+                    }
+                    else
+                    {
+                        //UI.Image(curKingRect2, null, Vector4.White);
+                        UI.Text(curKingRect2, "None", GetTextSettings(20));
+                    }
+                    // 0.25 Top King Score (80px)
+                    Rect topKingRect = rightBarRect.SubRect(0f, 0.55f, 1f, 0.8f);
+                    UI.Image(topKingRect,KohGlobalData.BackPlate, Vector4.Black);
+                    UI.Image(topKingRect.CutLeft(35).FitAspect(1), KohGlobalData.Crown);
+                    topKingRect = topKingRect.CenterRect();
+                    // var topKing = kingScores.First();
+                    Rect topKingRect1 = topKingRect.GrowTop(40);
+                    UI.Text(topKingRect1, topKing.Item1, GetTextSettings(28));
+                    Rect topKingRect2 = topKingRect.GrowBottom(40);
+                    UI.Text(topKingRect2, topKing.Item2.ToString(), GetTextSettingsColor(28, topKing.Item2 > 100 ? GlobalData.CritNumberColor : Vector4.White));
+                    
+                    // 0.15 My King Score (64px)
+                    Rect myKingRect = rightBarRect.SubRect(0.25f, 0.4f, 1f, 0.55f);
+                    UI.Image(myKingRect, KohGlobalData.BackPlate, Vector4.Black);
+                    UI.Text(myKingRect.SubRect(0f, 0f, 0.3f, 1f), "You", GetTextSettings(24));
+                    UI.Text(myKingRect.SubRect(0.5f, 0f, 1f, 1f), $"{localPlayer.KingScore}", GetTextSettings(24));
+                    
+                    // 0.25 Top Round Score (80px)
+                    // var topScore = roundScores.First();
+                    Rect topRoundRect = rightBarRect.SubRect(0f, 0.15f, 1f, 0.4f);
+                    UI.Image(topRoundRect, KohGlobalData.BackPlate, Vector4.Black);
+                    UI.Image(topRoundRect.CutLeft(35).FitAspect(1), KohGlobalData.Clash);
+                    topRoundRect = topRoundRect.CenterRect();
+                    Rect topRoundRect1 = topRoundRect.GrowTop(40);
+                    UI.Text(topRoundRect1, topScore.Item1, GetTextSettings(24));
+                    Rect topRoundRect2 = topRoundRect.GrowBottom(40);
+                    UI.Text(topRoundRect2, topScore.Item2.ToString(), GetTextSettings(26));
+                    
+                    // 0.15 My Round Score (64px)
+                    Rect myRoundRect = rightBarRect.SubRect(0.25f, 0f, 1f, 0.15f);
+                    UI.Image(myRoundRect, KohGlobalData.BackPlate, Vector4.Black);
+                    UI.Text(myRoundRect.SubRect(0f, 0f, 0.3f, 1f), "You", GetTextSettings(20));
+                    UI.Text(myRoundRect.SubRect(0.5f, 0f, 1f, 1f), $"{localPlayer.RoundScore}", GetTextSettings(24));
                     break;
                 }
                 case GameState.RoundEnd:
@@ -533,6 +640,8 @@ public partial class KohManager : Component
         fp.ClearAllEffects();
         fp.ClearSpeedModifier();
         fp.SetAnimTriggerWithReset("RESET", true); // Reset both layers
+        
+        // Scores will not reset here but when the round starts
     }
 
     private void SetupPortals(bool round)

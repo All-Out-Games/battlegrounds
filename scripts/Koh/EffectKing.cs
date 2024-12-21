@@ -43,7 +43,7 @@ public partial class EffectKing : FightEffect
             }
             var players = Scene.Components<FightPlayer>().ToList();
             var king = players.Find(fp => fp.HasEffect<EffectKing>());
-            return king.GetEffect<EffectKing>();
+            return king.Alive() ? king.GetEffect<EffectKing>() : null;
         }
         set => _kingInstance = value;
     }
