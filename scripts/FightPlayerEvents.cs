@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.Koh;
 using Assembly.scripts;
 using Assembly.scripts.SceneObjects;
 
@@ -188,7 +189,7 @@ public partial class FightPlayer
     {
         if (IsLocal && PlayerStatus == PlayerStatus.Combat)
         {
-            FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"EXP+{xp}");
+            FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"Score+{xp}");
             SFX.Play(SFXKeys.EliminationAudio, new SFX.PlaySoundDesc());
         }
     }
@@ -273,10 +274,7 @@ public partial class FightPlayer
         if (source == this && victim != this && info.DmgType != DamageType.Heal)
         {
             TotalDamageDealt += info.ReactionInfo.Amount;
-            if (info.AwardCoin)
-            {
-                Exp += LevelingData.XpForDamage * LevelingData.GetBoostedExpMultiplier(this);
-            }
+            // Changed in KoH: No longer granting XP.
             // Send a callback to the source of damage. This need to reach client & server
             CallClient_NotifyDealDamage(victim, info);
         }
@@ -288,12 +286,9 @@ public partial class FightPlayer
         {
             // This player eliminated another player
             TotalEliminations += 1;
-            int xp = LevelingData.GetTrueXpDampen(Level, victim.Level, LevelingData.XpForKill);
-
-            xp *= LevelingData.GetBoostedExpMultiplier(this);
-                
-            Exp += xp;
-            CallClient_NotifyKillExp(xp);
+            RoundScore += KohGlobalData.KillScore;
+            // Changed in KoH: Gives score now
+            CallClient_NotifyKillExp(KohGlobalData.KillScore);
         }
 
         if (victim == this && source != this)

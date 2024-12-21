@@ -121,21 +121,15 @@ public partial class KohManager : Component
     }
 
     public Dictionary<string, string> PlayerClass = new();
-
-    /// <summary>
-    /// Displayed scores. Updated by the OnSync event of player's score field.
-    /// </summary>
-    public Dictionary<string, int> DisplayedScores = new();
-
-    public Dictionary<string, int> DisplayedKingScores = new();
+    
 
     public void UpdateClassOnServer()
     {
         // TODO: This will need a server RPC to call (Player has to request it from UI)
         SerializedPlayerClass = PlayerClass.ToJson();
     }
-
-    // Player King Score End
+    
+    
     
     #endregion
 
@@ -160,6 +154,10 @@ public partial class KohManager : Component
 
     public float LastRoundTimerSyncTime = -1000;
     public float ServerKohPingTimer = 1; // Ping CaptureZone every second on the server
+    public KohGlobalData.LastRoundReport RoundReport;
+    private List<FightPlayer> _rewardedPlayer = new List<FightPlayer>();
+    private FightPlayer _winPlayer;
+    private bool _winByScore;
 
     #endregion
     
@@ -267,12 +265,14 @@ public partial class KohManager : Component
                     RoundTimerEnabled = true;
                     
                     SetupRound();
-
                     foreach (var fp in players)
                     {
                         fp.KingScore = 0;
                         fp.RoundScore = 0;
                     }
+                    _rewardedPlayer.Clear();
+                    _winPlayer = null;
+                    _winByScore = false;
                     break;
                 }
                 case GameState.Round:
@@ -287,10 +287,11 @@ public partial class KohManager : Component
                         ServerRoundTimer = 0;
                         RoundTimer = 0;
                         State = GameState.RoundEnd; // Round End Condition 1 - Time's up
+                        if (EffectKing.KingInstance.Alive())
+                        {
+                            _winPlayer = EffectKing.KingInstance.GetKing();
+                        }
                     }
-                    
-                    // TODO: Condition 2 - One player held King Effect for more than 120s
-                    // TODO: Condition 3 - Only one player left
 
                     #region Zone Update
                     ServerKohPingTimer -= Time.DeltaTime;
@@ -407,10 +408,43 @@ public partial class KohManager : Component
                                 EffectKing.CallClient_GrantKing(null); // This will remove KingEffect from players
                             }
                             
-
-
-
                         }
+                        
+                        List<(string, int)> crownTimeSorted = new List<(string, int)>();
+                        // Scores (Right side of the screen)
+                        foreach (var fp in players)
+                        {
+                            if (fp.Alive())
+                            {
+                                crownTimeSorted.Add((fp.Name, fp.KingScore));
+                            }
+                        }
+
+                        crownTimeSorted.Sort((x, y) => y.Item2.CompareTo(x.Item2)); // Sort descending
+                        
+                        var topKing = crownTimeSorted[0];
+                        
+                        // Condition 2 - One player held King Effect for more than 120s
+                        if (topKing.Item2 >= 120)
+                        {
+                            ServerRoundTimer = 0;
+                            RoundTimer = 0;
+                            State = GameState.RoundEnd;
+                            if (EffectKing.KingInstance.Alive())
+                            {
+                                _winPlayer = EffectKing.KingInstance.GetKing();
+                                _winByScore = false;
+                            }
+                        }
+                        // TODO: Condition 3 - Only one player left
+                        if (players.Count == -1)
+                        {
+                            ServerRoundTimer = 0;
+                            RoundTimer = 0;
+                            State = GameState.RoundEnd;
+                        }
+
+                        
                     }
 
                     #endregion
@@ -420,6 +454,30 @@ public partial class KohManager : Component
                 {
                     GlobalAbilityCanUse = false;
                     
+                    List<(string, int)> roundScoreSorted = new List<(string, int)>();
+                    foreach (var fp in players)
+                    {
+                        if (fp.Alive())
+                        {
+                            roundScoreSorted.Add((fp.Name, fp.RoundScore));
+                        }
+                    }
+                    roundScoreSorted.Sort((x, y) => y.Item2.CompareTo(x.Item2));
+                    var topScore = roundScoreSorted[0];
+                    
+                    string winText = KohGlobalData.ScoreWinText;
+                    string winnerName = "None";
+                    _winByScore = !_winPlayer.Alive();
+                    
+                    if (_winByScore)
+                    {
+                        _winPlayer = players.Find(fpw => fpw.Name == topScore.Item1);
+                    }
+
+                    if (_winPlayer.Alive()) winnerName = _winPlayer.Name;
+                    CallClient_GenerateReport(winnerName, winText);
+                    
+                    
                     //Zone hubZone = FightClubGameManager.References.CentralHubZone;
                     foreach (var fp in players)
                     {
@@ -428,7 +486,15 @@ public partial class KohManager : Component
                         {
                             fp.SwitchStatus((int)PlayerStatus.Safe);
                         }
-                        
+
+                        if (!_rewardedPlayer.Contains(fp))
+                        {
+                            _rewardedPlayer.Add(fp);
+                            //Reward player for performance in this round
+                            fp.Coins += KohGlobalData.CalculateCoinReward(fp.KingScore);
+                            fp.Exp += KohGlobalData.CalculateExpReward(fp.RoundScore, fp);
+                            if (fp == _winPlayer) fp.Gem += KohGlobalData.CalculateGloryReward(fp.KingScore);
+                        }
                     }
                     // TODO: Do this after countdown
                     DestroyRound();
@@ -492,17 +558,18 @@ public partial class KohManager : Component
                 case GameState.WaitingForPlayers:
                 {
                     UI.Text(bottomBarRect, $"Waiting for players ({players.Count}/{KohGlobalData.PlayersRequiredToStart})", GetTextSettings(52, 0f, null, UI.HorizontalAlignment.Center));
-                    
-                    
+                    BattleReportBtn(rightBarRect);
                     break;
                 }
                 case GameState.CountingDown:
                 {
                     UI.Text(bottomBarRect, ("Round starts in " + Math.Round(Countdown)) + " seconds...", GetTextSettings(42, 0f, null, UI.HorizontalAlignment.Center));
+                    BattleReportBtn(rightBarRect);
                     break;
                 }
                 case GameState.StartRound:
                 {
+                    RoundReport.HasReport = false;
                     break;
                 }
                 case GameState.Round:
@@ -623,6 +690,8 @@ public partial class KohManager : Component
     {
         Vector2 zonePos = _zonePosition.GetRandom(Random.Shared).Position;
         CaptureArea.Instance.CallClient_SetZonePosition(zonePos);
+        
+        
     }
 
     /// <summary>
@@ -648,6 +717,42 @@ public partial class KohManager : Component
     {
         _combatPortalEntity.LocalEnabled = round;
         _spectralPortalEntity.LocalEnabled = round;
+    }
+
+    /// <summary>
+    /// Generate round report at the end of the round.
+    /// </summary>
+    [ClientRpc]
+    public void GenerateReport(string winner, string winText)
+    {
+        var lp = Network.LocalPlayer as FightPlayer;
+        if (!lp.Alive())
+        {
+            RoundReport.HasReport = false;
+            return;
+        }
+        RoundReport.HasReport = true;
+        RoundReport.Winner = winner;
+        RoundReport.WinText = winText;
+
+        RoundReport.YourCoin = KohGlobalData.CalculateCoinReward(lp.KingScore);
+        RoundReport.YourGlory = 0;
+        RoundReport.YourExp = KohGlobalData.CalculateExpReward(lp.RoundScore, lp);
+
+        if (winner == lp.Name)
+        {
+            RoundReport.YourGlory = KohGlobalData.CalculateGloryReward(lp.KingScore); // At most 12 per round
+        }
+    }
+
+    private void BattleReportBtn(Rect rBarRect)
+    {
+        Rect btnRect = rBarRect.CutTop(72);
+        var res = UI.Button(btnRect, "Round Report", new UI.ButtonSettings() {Sprite = KohGlobalData.Ribbon}, GetTextSettings(16));
+        if (res.Clicked)
+        {
+            UIManager.Instance.OpenUniqueUIWindow(UniqueWindowKeys.BattleReportPagePath);
+        }
     }
 
 

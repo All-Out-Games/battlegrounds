@@ -12,30 +12,30 @@ namespace Assembly.scripts.SceneObjects.Crates
         public Vector4 Tint = Vector4.White;
 
         public static CratesConfig HealthPotionSDropCfg = new CratesConfig{
-            Prob = 80,
+            Prob = 100, // Changed in KoH: Health potions spawn more frequently
             ItemName = "HealthPotionS"
         };
 
         public static CratesConfig HealthPotionMDropCfg = new CratesConfig{
-            Prob = 50,
+            Prob = 70,
             ItemName = "HealthPotionM"
         };
 
         public static CratesConfig HealthPotionLDropCfg = new CratesConfig{
-            Prob = 25,
+            Prob = 50,
             HitPoint = 3, // Rarer items have higher HP crates as an indication of "You hit something big!"
             ItemName = "HealthPotionL"
         };
 
         public static CratesConfig CoinsDropCfg = new CratesConfig{
-            Prob = 500,
+            Prob = 300, 
             HitPoint = 1,
             ItemName = "Coin"
         };
 
         public static CratesConfig ExpPotionLCfg = new CratesConfig()
         {
-            Prob = 1,
+            Prob = 0, // Changed in KoH - Exp potion will not spawn
             HitPoint = 5,
             ItemName = "ExpPotionL",
             Tint = new Vector4(0.5f, 0.1f, 0.95f, 1f)

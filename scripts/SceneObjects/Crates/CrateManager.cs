@@ -79,7 +79,8 @@ public class CrateManager : System<CrateManager>
 
     private int GetMaxCrateCount()
     {
-        return Int32.Min(2 * Scene.Components<FightPlayer>().Count(), 10);
+        // Changed in KoH - Crates spawn less frequently
+        return Int32.Min(Scene.Components<FightPlayer>().Count(), 4);
     }
 
     public List<Entity> GetCratesEntity()

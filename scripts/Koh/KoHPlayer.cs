@@ -38,18 +38,6 @@ public partial class FightPlayer
     
     private void KohAwake()
     {
-        // KoH Score Sync
-        _kingScore.OnSync += (o, n) =>
-        {
-            KohManager.Instance.DisplayedKingScores[Name] = n;
-            KohManager.Instance.DisplayedKingScores.OrderDescending();
-            
-        };
 
-        _roundScore.OnSync += (o, n) =>
-        {
-            KohManager.Instance.DisplayedScores[Name] = n;
-            KohManager.Instance.DisplayedScores.OrderDescending();
-        };
     }
 }

@@ -7,6 +7,7 @@ public static class UniqueWindowKeys
     public static string AbilityUnlockDialogPath = "AbilityUpgradeDialog.prefab";
     public static string SkillTreePath = "SkillTreePage.prefab";
     public static string AbilityLoadoutPagePath = "AbilityLoadoutPage.prefab";
+    public static string BattleReportPagePath = "BattleReportWindow.prefab";
     
     // Overlay Window - they are windows without close buttons. Control them through UI manager
     public static string ResourcesOverlayWindowPath = "ResourcesOverlayWindow.prefab";

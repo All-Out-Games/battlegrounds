@@ -47,6 +47,11 @@ public partial class EffectKing : FightEffect
         }
         set => _kingInstance = value;
     }
+
+    public FightPlayer GetKing()
+    {
+        return FightPlayer;
+    }
     
     [ClientRpc]
     public static void GrantKing(FightPlayer fp)
