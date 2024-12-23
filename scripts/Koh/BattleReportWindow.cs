@@ -11,6 +11,7 @@ public class BattleReportWindow : UniqueUIWindow
     [Serialized] private UIText _gloryTxt;
     [Serialized] private UIText _winTxt;
     [Serialized] private UIText _winnerTxt;
+    [Serialized] private UIText _tipTxt;
 
     public void SetYourReport(int kingTime, int score, KohGlobalData.LastRoundReport rpt, bool win)
     {
@@ -22,6 +23,7 @@ public class BattleReportWindow : UniqueUIWindow
         _coinTxt.Text = $"+{rpt.YourCoin}";
         _expTxt.Text = $"+{rpt.YourExp}";
         _gloryTxt.Text = $"+{rpt.YourGlory}";
+        _tipTxt.Text = $"{KohGlobalData.Tips[rpt.TipIndex]}";
     }
 
     public override void OpenWindow()

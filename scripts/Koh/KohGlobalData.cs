@@ -66,5 +66,6 @@ public static class KohGlobalData
         public int YourGlory;
         public int YourExp;
         public int YourCoin;
+        public int TipIndex;
     }
 }

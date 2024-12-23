@@ -500,8 +500,18 @@ public partial class KohManager : Component
                     // TODO: Do this after countdown
                     DestroyRound();
 
-                    State = GameState.WaitingForPlayers;
+                    State = GameState.RoundConclusion;
                     RoundTimerEnabled = false;
+                    Countdown = 5f;
+                    break;
+                }
+                case GameState.RoundConclusion:
+                {
+                    Countdown -= Time.DeltaTime;
+                    if (Countdown <= 0)
+                    {
+                        State = GameState.WaitingForPlayers;
+                    }
                     break;
                 }
             }
@@ -559,13 +569,19 @@ public partial class KohManager : Component
                 case GameState.WaitingForPlayers:
                 {
                     UI.Text(bottomBarRect, $"Waiting for players ({players.Count}/{KohGlobalData.PlayersRequiredToStart})", GetTextSettings(52, 0f, null, UI.HorizontalAlignment.Center));
-                    BattleReportBtn(rightBarRect);
+                    if (RoundReport.HasReport)
+                    {
+                        BattleReportBtn(rightBarRect);
+                    }
                     break;
                 }
                 case GameState.CountingDown:
                 {
                     UI.Text(bottomBarRect, ("Round starts in " + Math.Round(Countdown)) + " seconds...", GetTextSettings(42, 0f, null, UI.HorizontalAlignment.Center));
-                    BattleReportBtn(rightBarRect);
+                    if (RoundReport.HasReport)
+                    {
+                        BattleReportBtn(rightBarRect);
+                    }
                     break;
                 }
                 case GameState.StartRound:
@@ -661,6 +677,20 @@ public partial class KohManager : Component
                 {
                     break;
                 }
+                case GameState.RoundConclusion:
+                {
+                    if (RoundReport.HasReport)
+                    {
+                        UI.Text(bottomBarRect, $"{RoundReport.Winner} won the round! Starting the next countdown in {Math.Round(Countdown)}s.", GetTextSettings(52));
+                        BattleReportBtn(rightBarRect);
+                    }
+                    else
+                    {
+                        UI.Text(bottomBarRect, $"Last round just ended. Next countdown starts in {Math.Round(Countdown)}. ", GetTextSettings(52));
+                    }
+                    
+                    break;
+                }
             }
         }
         
@@ -739,6 +769,8 @@ public partial class KohManager : Component
         RoundReport.YourCoin = KohGlobalData.CalculateCoinReward(lp.KingScore);
         RoundReport.YourGlory = 0;
         RoundReport.YourExp = KohGlobalData.CalculateExpReward(lp.RoundScore, lp);
+
+        RoundReport.TipIndex = KohGlobalData.Tips.GetRandomIndex(Random.Shared);
 
         if (winner == lp.Name)
         {
@@ -820,5 +852,6 @@ public enum GameState
     CountingDown,
     StartRound,
     Round,
-    RoundEnd
+    RoundEnd,
+    RoundConclusion
 }
