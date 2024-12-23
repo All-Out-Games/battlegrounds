@@ -107,6 +107,11 @@ public static class LevelingData
         {
             xp -= XpHighLevelReward * lvDifference;
         }
+
+        if (xp < 1)
+        {
+            xp = 1;
+        }
         return xp;
     }
     
