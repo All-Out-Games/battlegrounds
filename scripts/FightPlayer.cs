@@ -820,6 +820,11 @@ public partial class FightPlayer : Player
         return SkillTree;
     }
 
+    public CameraControl GetCameraInterface()
+    {
+        return CameraInterface;
+    }
+
     public FightPlayerSkillSlotsManager GetSkillSlots()
     {
         return SkillSlotsManager;
