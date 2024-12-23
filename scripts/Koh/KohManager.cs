@@ -476,8 +476,9 @@ public partial class KohManager : Component
 
                     if (_winPlayer.Alive()) winnerName = _winPlayer.Name;
                     CallClient_GenerateReport(winnerName, winText);
-                    
-                    
+                    CallClient_AddWinnerZoomIn(_winPlayer, _winByScore);
+
+
                     //Zone hubZone = FightClubGameManager.References.CentralHubZone;
                     foreach (var fp in players)
                     {
@@ -743,6 +744,12 @@ public partial class KohManager : Component
         {
             RoundReport.YourGlory = KohGlobalData.CalculateGloryReward(lp.KingScore); // At most 12 per round
         }
+    }
+
+    [ClientRpc]
+    public void AddWinnerZoomIn(FightPlayer fp, bool scoreWin)
+    {
+        fp.AddEffect(null, 5, (EffectWinner w) => w.IsScoreWin = scoreWin);
     }
 
     private void BattleReportBtn(Rect rBarRect)
