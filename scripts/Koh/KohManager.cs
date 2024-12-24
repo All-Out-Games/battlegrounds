@@ -393,9 +393,12 @@ public partial class KohManager : Component
                                 zone.OwnerName = "Neutral";
                                 zone.ZoneHealth = KohGlobalData.ZoneMaxHealth / 2;
                             }
-                            
-                            // Grant EffectKing to the player who holds the zone
-                            // They will get this effect even if they quit and rejoin (the same server)
+                        }
+
+                        // Handle King Effect.
+                        if (zone.OwnerId != "Neutral") // This covers two cases: Contested with owner & captured
+                        {
+                            // Grant EffectKing to the player who holds the zone.
                             var king = players.Find(fp => fp.UserId == zone.OwnerId);
                             if (king.Alive())
                             {
@@ -407,7 +410,10 @@ public partial class KohManager : Component
                             {
                                 EffectKing.CallClient_GrantKing(null); // This will remove KingEffect from players
                             }
-                            
+                        }
+                        else
+                        {
+                            EffectKing.CallClient_GrantKing(null);
                         }
                         
                         List<(string, int)> crownTimeSorted = new List<(string, int)>();
@@ -732,6 +738,8 @@ public partial class KohManager : Component
     {
         var zone = CaptureArea.Instance;
         zone.ZoneStatus = CaptureArea.CaptureStatus.Neutral;
+        zone.OwnerId = "Neutral";
+        zone.OwnerName = "Neutral";
         zone.ZoneHealth = 100;
     }
 
@@ -786,6 +794,11 @@ public partial class KohManager : Component
 
     private void BattleReportBtn(Rect rBarRect)
     {
+        var wd = UIManager.Instance.GetUniqueWindow(UniqueWindowKeys.BattleReportPagePath);
+        if (wd != null && wd.IsActive)
+        {
+            return;
+        }
         Rect btnRect = rBarRect.CutTop(72);
         var res = UI.Button(btnRect, "Round Report", new UI.ButtonSettings() {Sprite = KohGlobalData.Ribbon}, GetTextSettings(16));
         if (res.Clicked)
