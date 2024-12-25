@@ -38,6 +38,6 @@ public partial class FightPlayer
     
     private void KohAwake()
     {
-
+        KoHClassData.KoHSanityCheck();
     }
 }
