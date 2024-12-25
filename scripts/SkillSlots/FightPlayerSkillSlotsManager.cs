@@ -1,4 +1,5 @@
 using AO;
+using Assembly.Koh;
 using TinyJson;
 
 public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
@@ -38,15 +39,16 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     private bool _lazyInited;
     public void LazyInit()
     {
-        if (Network.IsServer)
+        // Not using saved slots in KoH. Moved to KoHSkillReady() below
+        /*if (Network.IsServer)
         {
             _equippedSkillKeys[0] = "Punch";
             for (int i = 1; i < 6; i++)
             {
                 _equippedSkillKeys[i] = Save.GetString(_player, $"SkillSlot{i}", "Empty");
             }
-            _player.SerializedSkillLoadout = _equippedSkillKeys.ToJson();
-        }
+            _player.SerializedSkillLoadout = _equippedSkillKeys.ToJson(); 
+        }*/
         SkillSlotsPanelEnable(false);
 
     }
@@ -142,6 +144,43 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             }
 
             Ready = true;
+        }
+    }
+
+    public void KoHSkillReady()
+    {
+        Ready = true;
+        KoHEquipClass(-1);
+    }
+
+    public void KoHEquipClass(int cidx)
+    {
+        _player.PlayerClassId = cidx;
+        ActiveAbilities.Clear();
+        // Slot 0 - Always Punch
+        _equippedSkillKeys[0] = "Punch";
+        ActiveAbilities.Add(_player.GetFightAbility<AbilityPunch>());
+        
+        if (cidx == -1)
+        {
+            // Equip None class (happens to all players when round ends)
+            // Don't have to do anything
+        }
+        else if (cidx == 0)
+        {
+            // Equip random skills in Player's skill package
+            List<string> abilityNames = _player.PlayerSkillPackage.Rng
+                .Select(id => KohClassData.RngSkills.First(skill => skill.Id == id).SkillKey).ToList();
+            for (int i = 0; i < 4; i++)
+            {
+                ActiveAbilities.Add(GetAbilityInstance(FightAbility.AbilityQueryDict[abilityNames[i]]));
+            }
+            
+        }
+        else
+        {
+            // TODO: Predefined classes
+            // TODO: Handle Passives
         }
     }
 

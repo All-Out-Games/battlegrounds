@@ -1,6 +1,5 @@
 ﻿
 using AO;
-using TinyJson;
 using UI = AO.UI;
 namespace Assembly.Koh;
 
@@ -106,27 +105,13 @@ public partial class KohManager : Component
     // - Change classes before round starts will also be free
     // - You need to consume one "Book of the Forgotten" to switch class when the round is in progress
     // We need to sell this so we will keep player's selection on the server. They can join another server ofc, but they lose the progress
-    private SyncVar<string> _serializedPlayerClass = new SyncVar<string>();
-    
-    public string SerializedPlayerClass
-    {
-        get => _serializedPlayerClass.Value;
-        set
-        {
-            if (Network.IsServer)
-            {
-                _serializedPlayerClass.Set(value);
-            }
-        }
-    }
 
-    public Dictionary<string, string> PlayerClass = new();
+    public Dictionary<string, string> PlayerSkillPackages = new();
     
 
-    public void UpdateClassOnServer()
+    public void RequestSkillPackageUpdate()
     {
-        // TODO: This will need a server RPC to call (Player has to request it from UI)
-        SerializedPlayerClass = PlayerClass.ToJson();
+        // TODO
     }
     
     
@@ -269,6 +254,11 @@ public partial class KohManager : Component
                     {
                         fp.KingScore = 0;
                         fp.RoundScore = 0;
+                        if (fp.PlayerClassId == -1)
+                        {
+                            // If player is still on None Class, equip random class for them
+                            fp.GetSkillSlots().KoHEquipClass(0);
+                        }
                     }
                     _rewardedPlayer.Clear();
                     _winPlayer = null;
@@ -516,7 +506,16 @@ public partial class KohManager : Component
                     Countdown -= Time.DeltaTime;
                     if (Countdown <= 0)
                     {
+                        // End of the round routine
                         State = GameState.WaitingForPlayers;
+                        
+                        // Generate skill packages again
+                        PlayerSkillPackages.Clear();
+                        foreach (var fp in players)
+                        {
+                            string skillPkgJson = fp.GetSkillPackage();
+                            PlayerSkillPackages[fp.Name] = skillPkgJson;
+                        }
                     }
                     break;
                 }
@@ -748,7 +747,8 @@ public partial class KohManager : Component
         fp.ClearAllEffects();
         fp.ClearSpeedModifier();
         fp.SetAnimTriggerWithReset("RESET", true); // Reset both layers
-        
+        fp.GetSkillSlots().KoHEquipClass(-1); // None Class
+
         // Scores will not reset here but when the round starts
     }
 

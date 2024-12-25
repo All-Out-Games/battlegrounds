@@ -21,7 +21,15 @@ public struct KohRandomSkill
     public int Chance;
 }
 
-public static class KoHClassData
+public struct SkillPackage
+{
+    // Generate two class Ids and 4 random skills per roll
+    public int ClassId0;
+    public int ClassId1;
+    public int[] Rng;
+}
+
+public static class KohClassData
 {
     #region Classes
 
@@ -349,10 +357,10 @@ public static class KoHClassData
     /// When a player joins, give them "None" class and draw two different Ids from these classes,
     /// Also generates a random class where 4 skills are drawn from the skill pool
     /// </summary>
-    public static KohClass[] Classes = new[] { RandomClass, Brawler, Defender, Destroyer};
+    public static List<KohClass> Classes = new() { RandomClass, Brawler, Defender, Destroyer};
 
 
-    public static KohRandomSkill[] RngSkills = 
+    public static List<KohRandomSkill> RngSkills = new() 
     {
         ShoulderCrash,
         GroundStomp,
@@ -393,7 +401,7 @@ public static class KoHClassData
 
     public static void KoHSanityCheck()
     {
-        bool Okay = true;
+        bool okay = true;
         // Run this to see if the skill keys are wrong (Don't trust GPT completely!)
         foreach (var kcl in Classes)
         {
@@ -402,7 +410,7 @@ public static class KoHClassData
                 if (!SkillConfig.ActiveSkills.Contains(key))
                 {
                     Log.Error($"Key: {key} in class {kcl.Name} is not found in Active Skills!");
-                    Okay = false;
+                    okay = false;
                 }
             }
         }
@@ -412,13 +420,43 @@ public static class KoHClassData
             if (!SkillConfig.ActiveSkills.Contains(krs.SkillKey))
             {
                 Log.Error($"Key: {krs.SkillKey} in RNG config is not found!");
-                Okay = false;
+                okay = false;
             }
         }
 
-        if (Okay)
+        if (okay)
         {
             Log.Info("Sanity Check passed. Good to go");
         }
+    }
+
+    public static SkillPackage GenerateSkillPackage()
+    {
+        SkillPackage pkg = new SkillPackage();
+        var c1 = Util.SampleWeightedList(Classes, kohc => kohc.Chance, Random.Shared);
+        (KohClass, int) c2 = Util.SampleWeightedList(Classes, kohc => kohc.Chance, Random.Shared);
+        while (c2.Item2 == c1.Item2)
+        {
+            c2 = Util.SampleWeightedList(Classes, kohc => kohc.Chance, Random.Shared);
+        }
+
+        pkg.ClassId0 = c1.Item1.Id;
+        pkg.ClassId1 = c2.Item1.Id;
+        
+        HashSet<int> uniqueIndices = new HashSet<int>();
+        while (uniqueIndices.Count < 4)
+        {
+            var index = Util.SampleWeightedList(RngSkills, kohs => kohs.Chance, Random.Shared);
+            uniqueIndices.Add(index.Item1.Id);
+        }
+
+        pkg.Rng = uniqueIndices.ToArray();
+        return pkg;
+    }
+
+    public static void DebugSkillPackage(FightPlayer fp)
+    {
+        Log.Warn($"{fp.Name}: Class = {fp.PlayerSkillPackage.ClassId0} & {fp.PlayerSkillPackage.ClassId1} \n " +
+                 $"RNGs: {fp.PlayerSkillPackage.Rng[0]} / {fp.PlayerSkillPackage.Rng[1]} / {fp.PlayerSkillPackage.Rng[2]} / {fp.PlayerSkillPackage.Rng[3]}");
     }
 }

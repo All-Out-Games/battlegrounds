@@ -118,7 +118,7 @@ public class ResourceOverlayWindow : BaseUIWindow
     public void SetSkillButton(int status)
     {
         // Log.Error($"STATUS RECEIVED : {status}");
-        _sidebar.LocalEnabled = status != (int)PlayerStatus.Combat;
+        _sidebar.LocalEnabled = false; // KoH: Don't use this button at any time
         Shop.LocalEnabled = status != (int)PlayerStatus.Combat;
         if (status == (int)PlayerStatus.AFK)
         {

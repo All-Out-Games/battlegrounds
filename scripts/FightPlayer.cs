@@ -502,7 +502,7 @@ public partial class FightPlayer : Player
         
         InitializeUI();
         _serializedSkillDict.OnSync += SkillDictHandler;
-        _serializedSkillLoadout.OnSync += SkillLoadoutHandler;
+        // _serializedSkillLoadout.OnSync += SkillLoadoutHandler; // Removed in KoH. We are not using saved loadout here
         FightClubGameManager.Instance.OnPlayerJoin(this);
         UIManager.Instance.OnPlayerJoin(this);
         
@@ -529,6 +529,7 @@ public partial class FightPlayer : Player
         else
         {
             _status.OnSync += OnStatusSync; // We have to ignore the first sync of this variable. It happens before we have skill panel (i.e. any networked components) and will cause null ref
+            KohLazyInit();
             if (IsLocal)
             {
                 // Stuff related to the local player goes here. e.g. Camera control & UI
