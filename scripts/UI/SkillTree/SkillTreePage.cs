@@ -312,7 +312,7 @@ public class SkillTreePage : UniqueUIWindow
                 
                 break;
             case SkillTreeItem.NodeStatus.Upgradable:
-                upgradeCost = item.Config.UpgradeGemCost[_skillTree.GetSkillLevel(item.Config.SkillKey)-1];
+                upgradeCost = item.Config.UpgradeGemCost[_skillTree.GetRealSkillLevel(item.Config.SkillKey)-1];
                 _infoScreen.OverrideDescription(item.Config.UpgradeTextKey);
                 if (_localPlayer.Gem >= upgradeCost)
                 {

@@ -37,7 +37,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
         base.NetworkSerialize(writer);
         foreach (var key in SkillConfig.GetAllSkillKeys())
         {
-            writer.Write<int>(GetSkillLevel(key));
+            writer.Write<int>(GetRealSkillLevel(key));
         }
     }
     // Note: HashSet.UnionWith preserves the order, so we don't need to order the skill keys
@@ -81,7 +81,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
                 return;
             }
         }
-        int prevLvl = GetSkillLevel(skillKey);
+        int prevLvl = GetRealSkillLevel(skillKey);
         if (prevLvl == 0 && _player.Coins < cfg.UpgradeCost)
         {
             UIManager.CallClient_SetPlayerPopup(_player.Entity.NetworkId,$"You don't have enough coin! {cfg.UpgradeCost} needed!", 2f);
@@ -96,7 +96,7 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
         if (UpgradeSkill(skillKey, cfg.MaximumLevel))
         {
             Log.Info($"{skillKey} Upgrade Complete!");
-            int lvl = GetSkillLevel(skillKey); // Lvl after upgrade
+            int lvl = GetRealSkillLevel(skillKey); // Lvl after upgrade
             if (lvl == 1)
             {
                 // Unlock - Use coins
@@ -197,6 +197,32 @@ public partial class FightPlayerSkillTree : FightPlayerComponent
     }
 
     public int GetSkillLevel(string skillKey)
+    {
+        int skillLvl;
+        if (SkillLevelDict.TryGetValue(skillKey, out skillLvl))
+        {
+            // Modified in KoH: If the skill is active, return at least level 1 so that even the new players can use the skill they rolled
+            if (SkillConfig.ActiveSkills.Contains(skillKey))
+            {
+                skillLvl = Int32.Max(1, skillLvl);
+            }
+            return skillLvl;
+        }
+        else
+        {
+            Log.Error($"SkillTree: Skill {skillKey} NOT FOUND");
+            return -1;
+        }
+        
+    }
+
+    /// <summary>
+    /// Added in KoH
+    /// Replaced all instances of GetSkillLevel in the skill upgrade flow, so that players can still upgrade skills in KoH
+    /// </summary>
+    /// <param name="skillKey"></param>
+    /// <returns></returns>
+    public int GetRealSkillLevel(string skillKey)
     {
         int skillLvl;
         if (SkillLevelDict.TryGetValue(skillKey, out skillLvl))

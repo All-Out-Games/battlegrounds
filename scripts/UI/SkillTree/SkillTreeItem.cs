@@ -47,7 +47,7 @@ public class SkillTreeItem : Component
         
         // Check 1: Self Level
         
-        int lvl = skillTree.GetSkillLevel(Config.SkillKey);
+        int lvl = skillTree.GetRealSkillLevel(Config.SkillKey);
         ShowStars(0);
         if (lvl > 0)
         {
@@ -118,7 +118,7 @@ public class SkillTreeItem : Component
         bool attainable = true;
         foreach (string k in Config.GetParentNodeKeys())
         {
-            if (skillTree.GetSkillLevel(k) < 1)
+            if (skillTree.GetRealSkillLevel(k) < 1)
             {
                 attainable = false;
                 break;
