@@ -1,4 +1,5 @@
 using AO;
+using Assembly.Koh;
 using Assembly.scripts;
 using Assembly.scripts.Effects;
 using Assembly.scripts.Effects.ActiveSkills;
@@ -156,7 +157,18 @@ public partial class FightPlayer : Player
 
     public int PunchLevel
     {
-        get => _punchLvl;
+        get
+        {
+            // Changed in KoH -> Player get level 3 when they are king (Battle pass gives level 2 maybe?)
+            if (HasEffect<EffectKing>())
+            {
+                return 3;
+            }
+            else
+            {
+                return 1;
+            }
+        }
         set
         {
             if (Network.IsServer)

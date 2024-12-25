@@ -51,10 +51,10 @@ public static class KohGlobalData
     {
         "You can win the round by holding the zone for 120s total or holding it when the timer expires.",
         "The Basic tree does not provide stats in KoH mode. You get Punch III when you are the king.",
-        "Skills don't need to be unlocked in this game mode, but you still need to do that to upgrade them.",
+        "Skills don't need to be unlocked in this game mode, but you still need to buy them before you can upgrade.",
         "If nobody is holding the zone when the timer expires, the player with highest score wins the game.",
         "All upgrades you purchased in classic Battlegrounds will work here!",
-        "At the end of the round, you get 1 coin for each second you hold the zone!",
+        "No matter you win or not, you get coins for the time you capture the zone.",
         "If you win the round, a small amount of glory will be granted to you based on how long you held the zone."
     };
 
@@ -66,5 +66,6 @@ public static class KohGlobalData
         public int YourGlory;
         public int YourExp;
         public int YourCoin;
+        public int TipIndex;
     }
 }

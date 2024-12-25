@@ -5,8 +5,8 @@
   "name": "signpost_noob.png",
   "local_enabled": true,
   "local_position": {
-    "X": -5.3550643920898438,
-    "Y": -5.5501585006713867
+    "X": -11.3743991851806641,
+    "Y": 1.3295917510986328
   },
   "local_rotation": 0,
   "local_scale": {
@@ -22,7 +22,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Sprite_Renderer",
   "data": {
-    "texture": "environment/AFK_tmp/signpost_noob.png",
+    "texture": "environment/AFK_tmp/sign.png",
     "depth_offset": -1.2599999904632568
   }
 },
@@ -32,7 +32,7 @@
   "component_type": "Mono_Component",
   "mono_component_type": "BillboardSign",
   "data": {
-    "Message": "Hard to fight high levels? AFK First! You get bonus as a new player!",
+    "Message": "Basic tree does not provide stats in this mode.\n\tGlory upgrades still work, and progress is saved for classic Battlegrounds too!",
     "HalfWidth": 1
   }
 },

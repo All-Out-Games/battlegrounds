@@ -31,11 +31,11 @@ public class EffectWinner : FightEffect
         
         if (IsScoreWin)
         {
-            FightPlayer.SetAnimTrigger("Emote/Super_Schleem_Blue");
+            FightPlayer.SetAnimTrigger("win2");
         }
         else
         {
-            FightPlayer.SetAnimTrigger("Emote/Super_Schleem");
+            FightPlayer.SetAnimTrigger("win1");
         }
     }
 

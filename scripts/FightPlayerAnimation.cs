@@ -18,6 +18,16 @@ public partial class FightPlayer
         var aoRunState = aoLayer.TryGetStateByName("Run_Fast");
         var aoMovingBool = stateMachine.TryGetVariableByName("moving");
         
+        // KoH Win pose
+        var superSchleem = aoLayer.CreateState("Emote/Super_Schleem", 0, false);
+        var superSchleemBlue = aoLayer.CreateState("Emote/Super_Schleem_Blue", 0, false);
+        aoLayer.CreateTransition(superSchleem, aoIdleState, true);
+        aoLayer.CreateTransition(superSchleemBlue, aoIdleState, true);
+        var winTrigger1 = stateMachine.CreateVariable("win1", StateMachineVariableKind.TRIGGER);
+        var winTrigger2 = stateMachine.CreateVariable("win2", StateMachineVariableKind.TRIGGER);
+        aoLayer.CreateGlobalTransition(superSchleem).CreateTriggerCondition(winTrigger1);
+        aoLayer.CreateGlobalTransition(superSchleemBlue).CreateTriggerCondition(winTrigger2);
+        
         // AL Layer
         var fightLayer = stateMachine.CreateLayer("fight_layer", 10);
         //var idleState = fightLayer.CreateState("BAT_003/Idle_short_AL", 0, false);
