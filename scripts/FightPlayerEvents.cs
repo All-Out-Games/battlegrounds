@@ -294,6 +294,12 @@ public partial class FightPlayer
                 
             Exp += xp;
             CallClient_NotifyKillExp(xp);
+            
+            // Increment BP quest progress
+            if (!Game.LaunchedFromEditor && Network.IsServer)
+            {
+                Battlepass.IncrementProgress(this, "6772ec6ae715d82e0b733b4e", 1);
+            }
         }
 
         if (victim == this && source != this)
