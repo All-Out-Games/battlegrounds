@@ -21,6 +21,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UICanvas",
   "data": {
+    "layer": 201,
     "start_with_safe_rect": true
   }
 },
