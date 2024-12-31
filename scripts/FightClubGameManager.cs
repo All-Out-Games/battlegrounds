@@ -315,7 +315,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
         {
             if (p == exclude) continue;
             var fp = (FightPlayer)p;
-            if (fp.Alive() && !fp.HasEffect<EffectDeath>())
+            if (fp.Alive() && !fp.HasEffect<EffectDeath>() && fp.PlayerStatus == PlayerStatus.Combat)
             {
                 fightPlayers.Add(fp);
             }

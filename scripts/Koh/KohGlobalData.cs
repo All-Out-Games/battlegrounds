@@ -9,6 +9,7 @@ public static class KohGlobalData
     public static int PlayersRequiredToStart = 1;
     public static float RoundTime = 59;
 
+    // TODO: VIP, Game Pass boosts
     public static int CalculateCoinReward(int kingScore)
     {
         return kingScore / 2;
@@ -58,6 +59,14 @@ public static class KohGlobalData
         "If you win the round, a small amount of glory will be granted to you based on how long you held the zone."
     };
 
+    public static string[] ClassWindowTips =
+    {
+        "If you own the game pass, you can see the random skill you will get.",
+        "Owning the game pass gives you 1s respawn cooldown reduction.",
+        "Gamepass gives you double glory every round.",
+        "If the round already started, switching class will cost 5 glory."
+    };
+
     public struct LastRoundReport
     {
         public bool HasReport;
@@ -68,4 +77,11 @@ public static class KohGlobalData
         public int YourCoin;
         public int TipIndex;
     }
+
+    public static bool OwnKoHGamePass(FightPlayer fp)
+    {
+        // TODO: Add game pass
+        return true;
+    }
+    
 }

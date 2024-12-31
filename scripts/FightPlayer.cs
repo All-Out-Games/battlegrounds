@@ -982,6 +982,7 @@ public partial class FightPlayer : Player
                 //Teleport(new Vector2(216.504f, 90.571f));
                 Teleport(FightClubUtils.RandomPositionInCircle(combatZone.Entity.Position, combatZone.Entity.LocalScaleX));
                 OnTeleportToCombatZone();
+                SkillSlotsManager.OnKoHEnterCombat();
 
             }
             else if (status == PlayerStatus.Safe)
@@ -1005,6 +1006,7 @@ public partial class FightPlayer : Player
                 //Teleport(new Vector2(216.504f, 90.571f));
                 Teleport(FightClubUtils.RandomPositionInCircle(combatZone.Entity.Position, combatZone.Entity.LocalScaleX));
                 OnEnterSpectatorMode();
+                SkillSlotsManager.OnKoHEnterCombat();
             }
         }
     }

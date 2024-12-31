@@ -150,7 +150,14 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     public void KoHSkillReady()
     {
         Ready = true;
-        KoHEquipClass(-1);
+    }
+
+    public void OnKoHEnterCombat()
+    {
+        if (_player.PlayerClassId == -1)
+        {
+            KoHEquipClass(0); // Equip random class, if the player entered combat with None class
+        }
     }
 
     public void KoHEquipClass(int cidx)
@@ -169,8 +176,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         else if (cidx == 0)
         {
             // Equip random skills in Player's skill package
-            List<string> abilityNames = _player.PlayerSkillPackage.Rng
-                .Select(id => KohClassData.RngSkills.First(skill => skill.Id == id).SkillKey).ToList();
+            List<string> abilityNames = KohClassData.GetRandomSkillKeys(_player.PlayerSkillPackage);
             for (int i = 0; i < 4; i++)
             {
                 ActiveAbilities.Add(GetAbilityInstance(FightAbility.AbilityQueryDict[abilityNames[i]]));

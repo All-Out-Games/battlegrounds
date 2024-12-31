@@ -459,4 +459,32 @@ public static class KohClassData
         Log.Warn($"{fp.Name}: Class = {fp.PlayerSkillPackage.ClassId0} & {fp.PlayerSkillPackage.ClassId1} \n " +
                  $"RNGs: {fp.PlayerSkillPackage.Rng[0]} / {fp.PlayerSkillPackage.Rng[1]} / {fp.PlayerSkillPackage.Rng[2]} / {fp.PlayerSkillPackage.Rng[3]}");
     }
+
+    public static string GetClassName(int id)
+    {
+        if (id == -1)
+        {
+            return "None";
+        }
+        else
+        {
+            KohClass c = Classes.First(f => f.Id == id);
+            return c.Name;
+        }
+    }
+
+    public static KohClass GetClassPackage(int id)
+    {
+        if (id < 0)
+        {
+            throw new Exception("None class can't use this function!");
+        }
+        KohClass c = Classes.First(f => f.Id == id);
+        return c;
+    }
+
+    public static List<string> GetRandomSkillKeys(SkillPackage pkg)
+    {
+        return pkg.Rng.Select(id => RngSkills.First(skill => skill.Id == id).SkillKey).ToList();
+    }
 }

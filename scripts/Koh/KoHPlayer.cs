@@ -77,6 +77,7 @@ public partial class FightPlayer
     /// [Server Only] Generate a skill package for this player.
     /// When a player joins this server, we also check that if the server (KoHManager) has the cache of this field.
     /// Because we don't want player quit / rejoin to reroll. They need to buy the reroll!
+    /// This function will also be called when the player request a reroll, and when the round concludes.
     /// </summary>
     public string GetSkillPackage()
     {
@@ -126,7 +127,7 @@ public partial class FightPlayer
 
     private void OnClassIdSync(int idxo, int idxn)
     {
-        SkillSlotsManager.KoHEquipClass(idxn); // Called on client
+        SkillSlotsManager.KoHEquipClass(idxn); // Called on client, when the player equip a class or reconnects, skills are equipped for them.
     }
     
 }
