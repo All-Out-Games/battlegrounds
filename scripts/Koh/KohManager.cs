@@ -680,6 +680,7 @@ public partial class KohManager : Component
                 }
                 case GameState.RoundEnd:
                 {
+                    UIManager.Instance.CloseAllUniqueWindow();
                     break;
                 }
                 case GameState.RoundConclusion:

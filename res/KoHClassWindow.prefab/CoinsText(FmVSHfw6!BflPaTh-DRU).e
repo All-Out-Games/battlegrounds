@@ -12,7 +12,7 @@
     "X": 1,
     "Y": 1
   },
-  "next_sibling": "24681016089852:1721850239255199400",
+  "next_sibling": "163489231373618:1723756727360651400",
   "parent": "17317871155862:1721846551783310500"
 },
 {
@@ -21,7 +21,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "100",
+    "text": "5",
     "settings": {
       "font_id": "$AO/fonts/Barlow-ExtraBold.ttf",
       "size": 36,
@@ -36,7 +36,21 @@
   "internal_component_type": "UIRect",
   "data": {
     "min": {
-      "X": 0.2000000029802322
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000
+    },
+    "max": {
+      "X": 0.5000000000000000,
+      "Y": 0.5000000000000000
+    },
+    "insets": {
+      "X": -15,
+      "Y": -15,
+      "Z": -15,
+      "W": -15
+    },
+    "offset": {
+      "X": 34
     }
   }
 }

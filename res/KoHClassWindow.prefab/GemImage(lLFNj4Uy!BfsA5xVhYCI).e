@@ -1,8 +1,8 @@
 13
-1348619730945
-24681016089852 1721850239255199400
+1408749273089
+163489231373618 1723756727360651400
 {
-  "name": "CoinImage",
+  "name": "GemImage",
   "local_enabled": true,
   "local_position": {
 
@@ -13,22 +13,21 @@
     "Y": 1
   },
   "previous_sibling": "24624425204794:1721850210914415700",
-  "next_sibling": "163489231373618:1723756727360651400",
   "parent": "17317871155862:1721846551783310500"
 },
 {
   "cid": 1,
-  "aoid": "24702088304233:1721850249808189800",
+  "aoid": "163489231457424:1723756727360692600",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {
-    "sprite": "UI/AbilityBook/AbilityInfo/buy_button/coin.png",
+    "sprite": "UI/Glory/glory.png",
     "fit_aspect": true
   }
 },
 {
   "cid": 2,
-  "aoid": "24727325886319:1721850262447201500",
+  "aoid": "163489231515108:1723756727360721400",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
@@ -41,13 +40,13 @@
       "Y": 0.5000000000000000
     },
     "insets": {
-      "X": -20,
-      "Y": -20,
-      "Z": -20,
-      "W": -20
+      "X": -25,
+      "Y": -25,
+      "Z": -25,
+      "W": -25
     },
     "offset": {
-      "X": -45
+      "X": -23
     }
   }
 }

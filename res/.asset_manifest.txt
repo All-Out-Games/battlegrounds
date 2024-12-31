@@ -440,6 +440,7 @@ IceProjectile.prefab - .ao - 6752a56bf6994d2906c26c1e - 3898667714857707133
 Invisibility_Aura.prefab - .ao - 674e5decf6994d2906c249fe - 13012114415043570174
 Invisibility_VFX.prefab - .ao - 674e5dedf6994d2906c24a01 - 17672979264937178813
 KillFeedElement.prefab - .ao - 674e5dedf6994d2906c24a02 - 7989591864985094003
+KoHClassWindow.prefab - .ao - 67736ba2d60dd6a1a60ca580 - 10412700807827972962
 KunaiProjectile.prefab - .ao - 674e5dedf6994d2906c24a04 - 3883123613706713803
 LeaderBoard/RANK 1.png - .ao - 674e5deef6994d2906c24a06 - 4765039937284411778
 LeaderBoard/RANK 1.png - .ao.astc - 674e5deef6994d2906c24a08 - 15870723087197134429
@@ -469,6 +470,8 @@ projectile/trail.png - .ao.astc - 6752a518f6994d2906c26c18 - 1801443658791224359
 Props/BearTrap/BAT003_bear_trap.png - .ao - 674e5df5f6994d2906c24a30 - 11822065931529113936
 Props/BearTrap/BAT003_bear_trap.png - .ao.astc - 674e5df5f6994d2906c24a34 - 9945648306828061065
 Props/BearTrap/BAT003_bear_trap.spine - .ao - 674e5df5f6994d2906c24a33 - 4985764642150710400
+Props/chest.png - .ao - 67736834d60dd6a1a60ca575 - 9993594191449706044
+Props/chest.png - .ao.astc - 67736834d60dd6a1a60ca576 - 6365292447739749379
 Props/Crab/crab.png - .ao - 6753e4d7f6994d2906c26cbd - 14683514255810339353
 Props/Crab/crab.png - .ao.astc - 6753e4d7f6994d2906c26cbb - 15576240738049711826
 Props/Crab/crab.spine - .ao - 67549d33f6994d2906c26cd1 - 7663252255950432672

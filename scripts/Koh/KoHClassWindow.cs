@@ -10,6 +10,10 @@ public class KoHClassWindow : UniqueUIWindow
     [Serialized] public KohClassButton ClassTwoBtn;
     [Serialized] public UIText SelectedClassName;
     public int SelectedId = -1;
+
+    [Serialized] public UIButton ConfirmBtn;
+    [Serialized] public Entity GlorySwitchText;
+    [Serialized] public Entity NormalSwitchText;
     
     public FightPlayer LocalPlayer => Network.LocalPlayer as FightPlayer;
     private KohClassButton[] AllButton => new[] { RandomClassBtn, ClassOneBtn, ClassTwoBtn};
@@ -21,6 +25,8 @@ public class KoHClassWindow : UniqueUIWindow
         {
             btn.SelectButton.OnClicked += btn.Click;
         }
+
+        ConfirmBtn.OnClicked += OnConfirm;
     }
 
     public override void OpenWindow()
@@ -33,13 +39,12 @@ public class KoHClassWindow : UniqueUIWindow
         ClassTwoBtn.InitWithClass(lpkg.ClassId1, LocalPlayer.PlayerClassId, ref lpkg, this);
 
         SelectedClassName.Text = KohClassData.GetClassName(LocalPlayer.PlayerClassId);
-    }
 
-    public override void CloseWindow()
-    {
-        base.CloseWindow();
-        // TODO: Send a server RPC to save the class...
+        bool costlySwitch = KohManager.Instance.State == GameState.Round && LocalPlayer.PlayerClassId != -1; // Round started and the player has selected a class
+        NormalSwitchText.LocalEnabled = !costlySwitch;
+        GlorySwitchText.LocalEnabled = costlySwitch;
     }
+    
 
     public void OnClassSelected(int id)
     {
@@ -56,6 +61,11 @@ public class KoHClassWindow : UniqueUIWindow
             }
         }
         
+    }
+
+    public void OnConfirm()
+    {
+        // Server RPC to confirm the class
     }
 }
 
@@ -123,10 +133,7 @@ public class KohClassButton : Component
             throw new Exception($"Skill Package Error! Id = {id}");
         }
 
-        if (currentPlayerClassId == ButtonId)
-        {
-            CheckmarkEntity.LocalEnabled = true;
-        }
+        CheckmarkEntity.LocalEnabled = currentPlayerClassId == ButtonId;
     }
 
     public void Click()
@@ -148,5 +155,6 @@ public class KohSkillItem : Component
             _stars[i].LocalEnabled = i < level - 1;
         }
         FightClubUtils.SetButtonTexture(ItemButton, SkillConfig.GetIconPath(skillKey));
+        SkillName.Text = SkillConfig.GetConfig(skillKey).GetDisplayName();
     }
 }
