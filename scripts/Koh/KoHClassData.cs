@@ -80,7 +80,12 @@ public static class KohClassData
         Chance = 6,
         Rarity = ItemRarity.Rare,
         SkillKeys = new string[]{ "GroundStomp", "Rage", "BattleCry", "SelfDestruct" },
-        Description = "Use your offense capability to induce chaos. Passively gain 5 speed."
+        Description = "Use your AoE capability to induce chaos. Passively gain 5 speed.",
+        Passive = new SkillConfig.StatBuff()
+        {
+            BoostType = SkillConfig.StatType.BaseSpeed,
+            BoostValue = 5
+        }
     };
 
     #endregion
@@ -481,6 +486,19 @@ public static class KohClassData
         }
         KohClass c = Classes.First(f => f.Id == id);
         return c;
+    }
+
+    public static string GetClassDescription(int id)
+    {
+        if (id == -1)
+        {
+            return "You are not using a class. You will automatically equip random skills when you enter combat.";
+
+        }
+        else
+        {
+            return GetClassPackage(id).Description;
+        }
     }
 
     public static List<string> GetRandomSkillKeys(SkillPackage pkg)

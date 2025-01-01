@@ -8,15 +8,21 @@ public class KoHClassWindow : UniqueUIWindow
     [Serialized] public KohClassButton RandomClassBtn;
     [Serialized] public KohClassButton ClassOneBtn;
     [Serialized] public KohClassButton ClassTwoBtn;
-    [Serialized] public UIText SelectedClassName;
+    [Serialized] public UIText SelectedClassName; // Class the player is currently on
     public int SelectedId = -1;
 
     [Serialized] public UIButton ConfirmBtn;
     [Serialized] public Entity GlorySwitchText;
     [Serialized] public Entity NormalSwitchText;
+
+    [Serialized] public UIText ClickedClassName; // Class that the player clicked
+    [Serialized] public UIText ClickedClassDesc;
+    
     
     public FightPlayer LocalPlayer => Network.LocalPlayer as FightPlayer;
     private KohClassButton[] AllButton => new[] { RandomClassBtn, ClassOneBtn, ClassTwoBtn};
+
+    public bool CostlySwitch; // When a player has a class and the round has already started, switching classes will cost glory.
 
     public override void OnInstantiate()
     {
@@ -40,9 +46,16 @@ public class KoHClassWindow : UniqueUIWindow
 
         SelectedClassName.Text = KohClassData.GetClassName(LocalPlayer.PlayerClassId);
 
-        bool costlySwitch = KohManager.Instance.State == GameState.Round && LocalPlayer.PlayerClassId != -1; // Round started and the player has selected a class
-        NormalSwitchText.LocalEnabled = !costlySwitch;
-        GlorySwitchText.LocalEnabled = costlySwitch;
+        CostlySwitch = KohManager.Instance.State == GameState.Round && LocalPlayer.PlayerClassId != -1; // Round started and the player has selected a class
+        NormalSwitchText.LocalEnabled = !CostlySwitch;
+        GlorySwitchText.LocalEnabled = CostlySwitch;
+        if (CostlySwitch)
+        {
+            ConfirmBtn.Interactable = LocalPlayer.Gem >= KohGlobalData.SwitchClassCost;
+        }
+        
+        ClickedClassName.Text = KohClassData.GetClassName(LocalPlayer.PlayerClassId);
+        ClickedClassDesc.Text = KohClassData.GetClassDescription(LocalPlayer.PlayerClassId);
     }
     
 
@@ -54,6 +67,8 @@ public class KoHClassWindow : UniqueUIWindow
             if (id == btn.ButtonId)
             {
                 btn.CheckmarkEntity.LocalEnabled = true;
+                ClickedClassName.Text = KohClassData.GetClassName(id);
+                ClickedClassDesc.Text = KohClassData.GetClassDescription(id);
             }
             else
             {
@@ -66,6 +81,8 @@ public class KoHClassWindow : UniqueUIWindow
     public void OnConfirm()
     {
         // Server RPC to confirm the class
+        LocalPlayer.CallServer_RequestEquipClass(SelectedId, CostlySwitch);
+        CloseWindow();
     }
 }
 

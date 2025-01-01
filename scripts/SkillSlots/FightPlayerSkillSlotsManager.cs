@@ -162,12 +162,20 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
 
     public void KoHEquipClass(int cidx)
     {
+        var sk = _player.GetSkillTree();
+        
+        // Remove Passives
+        if (_player.PlayerClassId > 0) // Current class is not None or Random 
+        {
+            var currentSkillPkg = KohClassData.GetClassPackage(_player.PlayerClassId);
+            sk.StatRemover("Passive", currentSkillPkg.Passive);
+        }
         _player.PlayerClassId = cidx;
         ActiveAbilities.Clear();
         // Slot 0 - Always Punch
         _equippedSkillKeys[0] = "Punch";
         ActiveAbilities.Add(_player.GetFightAbility<AbilityPunch>());
-        
+        List<string> abilityNames;
         if (cidx == -1)
         {
             // Equip None class (happens to all players when round ends)
@@ -176,7 +184,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         else if (cidx == 0)
         {
             // Equip random skills in Player's skill package
-            List<string> abilityNames = KohClassData.GetRandomSkillKeys(_player.PlayerSkillPackage);
+            abilityNames = KohClassData.GetRandomSkillKeys(_player.PlayerSkillPackage);
             for (int i = 0; i < 4; i++)
             {
                 ActiveAbilities.Add(GetAbilityInstance(FightAbility.AbilityQueryDict[abilityNames[i]]));
@@ -185,8 +193,14 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         }
         else
         {
-            // TODO: Predefined classes
-            // TODO: Handle Passives
+            var newPkg = KohClassData.GetClassPackage(cidx);
+            abilityNames = newPkg.SkillKeys.ToList();
+            for (int i = 0; i < 4; i++)
+            {
+                ActiveAbilities.Add(GetAbilityInstance(FightAbility.AbilityQueryDict[abilityNames[i]]));
+            }
+            // Passive
+            sk.StatAdder(0, "Passive", newPkg.Passive);
         }
     }
 

@@ -64,7 +64,7 @@ public partial class FightPlayer
         {
             if (Network.IsServer)
             {
-                _playerClassId.Set(value);
+                _playerClassId.Set(value); // Note: Always change this field using SkillSlotManager.KohEquipClass
             }
         }
     }
@@ -84,6 +84,30 @@ public partial class FightPlayer
         PlayerSkillPackage = KohClassData.GenerateSkillPackage();
         SerializedPlayerSkillPackage = PlayerSkillPackage.ToJson();
         return SerializedPlayerSkillPackage;
+    }
+
+    [ServerRpc]
+    public void RequestEquipClass(int cidx, bool costGlory)
+    {
+        List<int> legalClasses = KohClassData.Classes.Select(cls => cls.Id).ToList();
+        // Must equip a legal class
+        if (!legalClasses.Contains(cidx))
+        {
+            Log.Error($"Player {Name} tried to equip an illegal class Id {cidx}!");
+            return;
+        }
+
+        if (costGlory)
+        {
+            if (Gem < KohGlobalData.SwitchClassCost)
+            {
+                Log.Error($"Player {Name} tried to switch class when not having enough Glory!");
+                return;
+            }
+
+            Gem -= KohGlobalData.SwitchClassCost;
+        }
+        SkillSlotsManager.KoHEquipClass(cidx);
     }
 
     private void KohAwake()

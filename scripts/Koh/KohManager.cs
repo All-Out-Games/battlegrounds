@@ -254,11 +254,6 @@ public partial class KohManager : Component
                     {
                         fp.KingScore = 0;
                         fp.RoundScore = 0;
-                        if (fp.PlayerClassId == -1)
-                        {
-                            // If player is still on None Class, equip random class for them
-                            fp.GetSkillSlots().KoHEquipClass(0);
-                        }
                     }
                     _rewardedPlayer.Clear();
                     _winPlayer = null;

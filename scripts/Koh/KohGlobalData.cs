@@ -24,6 +24,8 @@ public static class KohGlobalData
     {
         return (int)(0.1f * kingScore);
     }
+
+    public static int SwitchClassCost = 5;
     
     
     // Zone Health
