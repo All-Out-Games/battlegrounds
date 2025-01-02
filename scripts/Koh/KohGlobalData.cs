@@ -82,7 +82,7 @@ public static class KohGlobalData
     public static bool OwnKoHGamePass(FightPlayer fp)
     {
         // TODO: Add game pass
-        return false;
+        return true;
     }
     
 }

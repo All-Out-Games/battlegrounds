@@ -1,8 +1,8 @@
 13
-1
-17017602220475 1735773162030438300
+21474836481
+43309017414843 1735783695454055800
 {
-  "name": "ClassDesc",
+  "name": "Reroll",
   "local_enabled": true,
   "local_position": {
 
@@ -12,13 +12,12 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "16092082902750:1721845937907070600",
-  "next_sibling": "43309017414843:1735783695454055800",
+  "previous_sibling": "17017602220475:1735773162030438300",
   "parent": "3808872171317:1735601877689538500"
 },
 {
   "cid": 1,
-  "aoid": "17060876841283:1735773179368033500",
+  "aoid": "43309017959773:1735783695454273900",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
@@ -37,14 +36,14 @@
       "W": -250
     },
     "offset": {
-      "X": -525,
+      "X": 525,
       "Y": -380
     }
   }
 },
 {
   "cid": 2,
-  "aoid": "17991390907412:1735773552170287200",
+  "aoid": "43309018042950:1735783695454306700",
   "component_type": "Internal_Component",
   "internal_component_type": "UIImage",
   "data": {

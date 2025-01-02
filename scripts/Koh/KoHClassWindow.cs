@@ -1,4 +1,5 @@
-﻿using AO;
+﻿using System.Collections;
+using AO;
 using Assembly.scripts;
 
 namespace Assembly.Koh;
@@ -18,6 +19,12 @@ public class KoHClassWindow : UniqueUIWindow
     [Serialized] public UIText ClickedClassName; // Class that the player clicked
     [Serialized] public UIText ClickedClassDesc;
     
+    // Refresh stuff
+    [Serialized] public UIText CouponNum;
+    [Serialized] public UIText CoinNum;
+    [Serialized] public UIButton CouponRefreshBtn;
+    [Serialized] public UIButton CoinRefreshBtn;
+    
     
     public FightPlayer LocalPlayer => Network.LocalPlayer as FightPlayer;
     private KohClassButton[] AllButton => new[] { RandomClassBtn, ClassOneBtn, ClassTwoBtn};
@@ -33,11 +40,24 @@ public class KoHClassWindow : UniqueUIWindow
         }
 
         ConfirmBtn.OnClicked += OnConfirm;
+        CouponRefreshBtn.OnClicked += () =>
+        {
+            RequestRefresh(true);
+        };
+        CoinRefreshBtn.OnClicked += () =>
+        {
+            RequestRefresh(false);
+        };
     }
 
     public override void OpenWindow()
     {
         base.OpenWindow();
+        UpdatePageInfo();
+    }
+
+    public void UpdatePageInfo()
+    {
         // Init 3 class items. 
         ref var lpkg = ref LocalPlayer.PlayerSkillPackage;
         RandomClassBtn.InitWithClass(0, LocalPlayer.PlayerClassId, ref lpkg, this);
@@ -53,11 +73,18 @@ public class KoHClassWindow : UniqueUIWindow
         {
             ConfirmBtn.Interactable = LocalPlayer.Gem >= KohGlobalData.SwitchClassCost;
         }
+        else
+        {
+            ConfirmBtn.Interactable = true;
+        }
         
         ClickedClassName.Text = KohClassData.GetClassName(LocalPlayer.PlayerClassId);
         ClickedClassDesc.Text = KohClassData.GetClassDescription(LocalPlayer.PlayerClassId);
+        
+        CoinNum.Text = LocalPlayer.Coins.ToString();
+        CouponNum.Text = LocalPlayer.LuckCoupons.ToString();
+        Coroutine.Start(Entity, DisableRefreshForAWhile());
     }
-    
 
     public void OnClassSelected(int id)
     {
@@ -83,6 +110,20 @@ public class KoHClassWindow : UniqueUIWindow
         // Server RPC to confirm the class
         LocalPlayer.CallServer_RequestEquipClass(SelectedId, CostlySwitch);
         CloseWindow();
+    }
+
+    public void RequestRefresh(bool consumeCoupon)
+    {
+        LocalPlayer.CallServer_RequestSkillPackageRefresh(consumeCoupon);
+    }
+
+    IEnumerator DisableRefreshForAWhile()
+    {
+        CoinRefreshBtn.Interactable = false;
+        CouponRefreshBtn.Interactable = false;
+        yield return new WaitForSeconds(1);
+        CoinRefreshBtn.Interactable = LocalPlayer.Coins >= 100;
+        CouponRefreshBtn.Interactable = LocalPlayer.LuckCoupons >= 100;
     }
 }
 

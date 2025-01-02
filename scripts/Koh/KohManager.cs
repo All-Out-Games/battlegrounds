@@ -513,7 +513,8 @@ public partial class KohManager : Component
                         PlayerSkillPackages.Clear();
                         foreach (var fp in players)
                         {
-                            string skillPkgJson = fp.GetSkillPackage();
+                            // Refresh for everyone one the server
+                            string skillPkgJson = fp.RefreshSkillPackage();
                             PlayerSkillPackages[fp.Name] = skillPkgJson;
                         }
                     }
