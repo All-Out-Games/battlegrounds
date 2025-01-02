@@ -5,30 +5,30 @@ namespace Assembly.Koh;
 public partial class EffectKing : FightEffect
 {
     public override bool IsActiveEffect => false;
-    public override float SpeedModifier => 2.8f; // TODO: Change to 0.8 before publish!
+    public override float SpeedModifier => 0.8f;
     
     
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
         FightPlayer.RegisterSpeedModify(this);
-        FightPlayer.CurrentAttack += 5;
+        FightPlayer.CurrentAttack += 1;
+        
+        float currentHealthPercentage = FightPlayer.CurrentHealth / (float)FightPlayer.MaxHealth;
         FightPlayer.MaxHealth += 20;
-        FightPlayer.DamageInfo healInfo = FightPlayer.DamageInfo.CreateHealInfo(20);
-
-        FightPlayer.TakeDamage(FightPlayer, healInfo);
+        FightPlayer.CurrentHealth = (int)(FightPlayer.MaxHealth * currentHealthPercentage);
+        
+        // Additionally, the king is healed for 2 HP when they remains in the zone. See zone update in KohManager
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
+        float currentHealthPercentage = FightPlayer.CurrentHealth / (float)FightPlayer.MaxHealth;
         FightPlayer.RemoveSpeedModify(this);
-        FightPlayer.CurrentAttack -= 5;
+        FightPlayer.CurrentAttack -= 1;
         FightPlayer.MaxHealth -= 20;
-        if (FightPlayer.CurrentHealth > FightPlayer.MaxHealth)
-        {
-            FightPlayer.CurrentHealth = FightPlayer.MaxHealth;
-        }
+        FightPlayer.CurrentHealth = (int)(FightPlayer.MaxHealth * currentHealthPercentage);
     }
 
     private static EffectKing _kingInstance;

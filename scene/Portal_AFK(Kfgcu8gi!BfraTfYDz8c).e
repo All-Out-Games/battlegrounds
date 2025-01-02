@@ -3,10 +3,10 @@
 46145610696738 1723586970968342300
 {
   "name": "Portal_AFK",
-  "local_enabled": true,
+  "local_enabled": false,
   "local_position": {
     "X": -7.3054265975952148,
-    "Y": -8.1192588806152344
+    "Y": -17.0000095367431641
   },
   "local_rotation": 0,
   "local_scale": {

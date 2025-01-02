@@ -20,12 +20,14 @@ public static class KohGlobalData
         return LevelingData.GetBoostedExpMultiplier(fp) * roundScore / 2;
     }
 
-    public static int CalculateGloryReward(int kingScore)
+    public static int CalculateGloryReward(int kingScore, FightPlayer fp)
     {
-        return (int)(0.1f * kingScore);
+        int multiplier = OwnKoHGamePass(fp) ? 2 : 1;
+        return multiplier * (int)(0.1f * kingScore);
     }
 
     public static int SwitchClassCost = 5;
+    public static int KingHealInZone = 2;
     
     
     // Zone Health

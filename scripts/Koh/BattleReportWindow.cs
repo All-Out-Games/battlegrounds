@@ -12,6 +12,7 @@ public class BattleReportWindow : UniqueUIWindow
     [Serialized] private UIText _winTxt;
     [Serialized] private UIText _winnerTxt;
     [Serialized] private UIText _tipTxt;
+    [Serialized] private Entity _x2Txt;
 
     public void SetYourReport(int kingTime, int score, KohGlobalData.LastRoundReport rpt, bool win)
     {
@@ -34,6 +35,7 @@ public class BattleReportWindow : UniqueUIWindow
         if (rpt.HasReport && lp.Alive())
         {
             SetYourReport(lp.KingScore, lp.RoundScore, rpt, rpt.Winner == lp.Name);
+            _x2Txt.LocalEnabled = KohGlobalData.OwnKoHGamePass(lp);
         }
         else
         {

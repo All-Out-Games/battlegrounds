@@ -672,8 +672,8 @@
 4368 bytes - UI/KoH/crown.png.ao
 4336 bytes - Props/DropItems/HealthPotionL.png.ao
 4264 bytes - projectile/ice_chunk_B.png.ao
+4184 bytes - BattleReportWindow.prefab.ao
 4072 bytes - SFX/UI/ui_insufficient_funds.wav.ao
-4032 bytes - BattleReportWindow.prefab.ao
 3968 bytes - UI/LargeMenuButtons/Large Menu Buttons/large_button_highlight.png.ao
 3968 bytes - UI/LargeMenuButtons/large_button_highlight.png.ao
 3920 bytes - UI/XPBar/Sparkles/FAT_sparkles.png.ao.astc

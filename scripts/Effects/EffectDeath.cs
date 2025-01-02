@@ -54,6 +54,7 @@ public class EffectDeath : FightEffectWithImmunity
         FightPlayer.SetAnimTrigger(DeathAnimationTrigger);
         FightPlayer.AddDash(Vector2.Zero, 0);
         FightPlayer.AddBump(Vector2.Zero, true);
+        FightPlayer.GetPlayerUIComp().AddPlayerUIInvisibleReason("Death");
         
         // Spectator XP removed
 
@@ -80,6 +81,7 @@ public class EffectDeath : FightEffectWithImmunity
         FightPlayer.SetAnimTrigger("RESET_AL");
         FightPlayer.SwitchStatus((int)PlayerStatus.Safe); // teleport the player to central hub
         FightPlayer.CurrentHealth = FightPlayer.MaxHealth;
+        FightPlayer.GetPlayerUIComp().RemovePlayerUIInvisibleReason("Death");
 
         var slots = FightPlayer.GetSkillSlots().GetCurrentAbilities();
         foreach (var slot in slots)

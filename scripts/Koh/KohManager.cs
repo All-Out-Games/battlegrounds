@@ -296,7 +296,8 @@ public partial class KohManager : Component
                             zone.ZoneStatus = CaptureArea.CaptureStatus.Contested;
                             // The following branches have player count 0 or 1
                         }
-
+                        
+                        
                         if (zone.ZoneStatus == CaptureArea.CaptureStatus.Contested)
                         {
                             if (zonePlayerCount < 2)
@@ -389,7 +390,11 @@ public partial class KohManager : Component
                             {
                                 king.KingScore += 1;
                                 king.RoundScore += KohGlobalData.KingScorePerSecond;
-                                EffectKing.CallClient_GrantKing(king); 
+                                EffectKing.CallClient_GrantKing(king);
+                                if (zonePlayers.Contains(king) && king.CurrentHealth <= king.MaxHealth-KohGlobalData.KingHealInZone)
+                                {
+                                    king.CurrentHealth += KohGlobalData.KingHealInZone; // Heal king inside the zone
+                                }
                             }
                             else
                             {
@@ -485,7 +490,7 @@ public partial class KohManager : Component
                             //Reward player for performance in this round
                             fp.Coins += KohGlobalData.CalculateCoinReward(fp.KingScore);
                             fp.Exp += KohGlobalData.CalculateExpReward(fp.RoundScore, fp);
-                            if (fp == _winPlayer) fp.Gem += KohGlobalData.CalculateGloryReward(fp.KingScore);
+                            if (fp == _winPlayer) fp.Gem += KohGlobalData.CalculateGloryReward(fp.KingScore, fp);
                         }
                     }
                     // TODO: Do this after countdown
@@ -778,7 +783,7 @@ public partial class KohManager : Component
 
         if (winner == lp.Name)
         {
-            RoundReport.YourGlory = KohGlobalData.CalculateGloryReward(lp.KingScore); // At most 12 per round
+            RoundReport.YourGlory = KohGlobalData.CalculateGloryReward(lp.KingScore, lp); // At most 12 per round
         }
     }
 

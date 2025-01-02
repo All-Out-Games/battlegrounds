@@ -180,6 +180,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
         {
             // Equip None class (happens to all players when round ends)
             // Don't have to do anything
+            _player.GetPlayerUIComp().ClassDisplayName = "";
         }
         else if (cidx == 0)
         {
@@ -189,7 +190,8 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             {
                 ActiveAbilities.Add(GetAbilityInstance(FightAbility.AbilityQueryDict[abilityNames[i]]));
             }
-            
+
+            _player.GetPlayerUIComp().ClassDisplayName = "Random";
         }
         else
         {
@@ -201,6 +203,7 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
             }
             // Passive
             sk.StatAdder(0, "Passive", newPkg.Passive);
+            _player.GetPlayerUIComp().ClassDisplayName = newPkg.Name;
         }
     }
 

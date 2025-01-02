@@ -12,6 +12,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
     private static Texture BarBorder = Assets.KeepLoaded<Texture>("UI/Bars/border.png");
     private static Texture LvPlate = Assets.KeepLoaded<Texture>("UI/LargeMenuButtons/Large Menu Buttons/large_button.png");
     private List<string> _hideUIReasons = new List<string>();
+    public string ClassDisplayName = "";
 
     public void AddPlayerUIInvisibleReason(string reason)
     {
@@ -59,6 +60,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         {
             DrawShieldBar(healthRect);
         }
+        DrawKohInfo(healthRect);
         return healthRect;
     }
 
@@ -70,6 +72,26 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         float shieldPercent = _player.CurrentShield / (float)_player.MaxShield;
         var shieldPercentRect = shieldRect.SubRect(0, 0, shieldPercent, 1, 0, 0, 0, 0);
         UI.Image(shieldPercentRect, null, Vector4.LightBlue);
+    }
+
+    protected void DrawKohInfo(Rect healthRect)
+    {
+        var ts = new UI.TextSettings()
+        {
+            Font = UI.Fonts.AsapBold,
+            Size = 20,
+            VerticalAlignment = UI.VerticalAlignment.Top,
+            HorizontalAlignment = UI.HorizontalAlignment.Center,
+            Color = Vector4.White,
+            Outline = true,
+            OutlineColor = Vector4.Black,
+            DoAutofit = false,
+            Offset = new Vector2(0, 5)
+        };
+        
+        UI.Text(healthRect, $"{_player.CurrentHealth}", ts);
+        Rect clsRect = healthRect.Offset(0, -20);
+        UI.Text(clsRect, ClassDisplayName, ts);
     }
 
     protected void DrawDamageNumber()

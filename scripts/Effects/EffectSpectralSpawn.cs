@@ -39,7 +39,7 @@ public class EffectSpectralSpawn : FightEffect
         if (FightPlayer.IsLocal)
         {
             var slotsMgr = FightPlayer.GetSkillSlots();
-            slotsMgr.ReplaceSlot(0, slotsMgr.GetAbilityInstance(typeof(AbilitySpectreMaterialze)), 5);
+            slotsMgr.ReplaceSlot(0, slotsMgr.GetAbilityInstance(typeof(AbilitySpectreMaterialze)), 2); // Changed from 5 to 2s in KoH
             _overlay =
                 UIManager.Instance.GetOverlayWindow<ResourceOverlayWindow>("ResourcesOverlayWindow.prefab");
         }
