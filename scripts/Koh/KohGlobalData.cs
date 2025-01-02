@@ -60,16 +60,13 @@ public static class KohGlobalData
         "If nobody is holding the zone when the timer expires, the player with highest score wins the game.",
         "All upgrades you purchased in classic Battlegrounds will work here!",
         "No matter you win or not, you get coins for the time you capture the zone.",
-        "If you win the round, a small amount of glory will be granted to you based on how long you held the zone."
-    };
-
-    public static string[] ClassWindowTips =
-    {
+        "If you win the round, a small amount of glory will be granted to you based on how long you held the zone.",
         "If you own the game pass, you can see the random skill you will get.",
         "Owning the game pass gives you 1s respawn cooldown reduction.",
         "Gamepass gives you double glory every round.",
         "If the round already started, switching class will cost 5 glory."
     };
+    
 
     public struct LastRoundReport
     {
@@ -85,7 +82,7 @@ public static class KohGlobalData
     public static bool OwnKoHGamePass(FightPlayer fp)
     {
         // TODO: Add game pass
-        return true;
+        return false;
     }
     
 }

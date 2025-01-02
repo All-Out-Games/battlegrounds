@@ -501,6 +501,21 @@ public static class KohClassData
         }
     }
 
+    public static string GetRarityBackground(ItemRarity rarity)
+    {
+        switch (rarity)
+        {
+            case ItemRarity.Rare:
+                return "UI/AbilityBook/AbilityInfo/info_window_defense.png";
+            case ItemRarity.Epic:
+                return "UI/AbilityBook/AbilityInfo/info_window_psionic.png";
+            case ItemRarity.Legendary:
+                return "UI/AbilityBook/AbilityInfo/info_window_elemental.png";
+            default:
+                return "UI/AbilityBook/AbilityInfo/info_window_basic.png";
+        }
+    }
+
     public static List<string> GetRandomSkillKeys(SkillPackage pkg)
     {
         return pkg.Rng.Select(id => RngSkills.First(skill => skill.Id == id).SkillKey).ToList();

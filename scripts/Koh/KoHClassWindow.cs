@@ -116,6 +116,7 @@ public class KohClassButton : Component
             // Random, use the id in the pkg
             skillKeys = KohClassData.GetRandomSkillKeys(pkg);
             _className.Text = "Random";
+            _backPlate.Sprite = Assets.GetAsset<Texture>(KohClassData.GetRarityBackground(ItemRarity.Common));
         }
         else
         {
@@ -124,7 +125,9 @@ public class KohClassButton : Component
             var classpkg = KohClassData.GetClassPackage(id);
             skillKeys = classpkg.SkillKeys.ToList();
             _className.Text = classpkg.Name;
+            _backPlate.Sprite = Assets.GetAsset<Texture>(KohClassData.GetRarityBackground(classpkg.Rarity));
         }
+        
 
         if (skillKeys != null && skillKeys.Count == 4)
         {

@@ -511,6 +511,8 @@ Props/GroundRecticles/lightning_reticle.png - .ao.astc - 674e5cebf6994d2906c246f
 Props/LightningTrap/BAT003_lightning_trap.png - .ao - 674e5cebf6994d2906c246f4 - 5726906139401577890
 Props/LightningTrap/BAT003_lightning_trap.png - .ao.astc - 674e5cecf6994d2906c246f6 - 11064370672755449933
 Props/LightningTrap/BAT003_lightning_trap.spine - .ao - 674e5dfbf6994d2906c24a5b - 11470229911709403585
+Props/RedFlag.png - .ao - 6775ebb7d60dd6a1a60cb57f - 11879031215114597262
+Props/RedFlag.png - .ao.astc - 6775ebb7d60dd6a1a60cb580 - 3368595706489387316
 Props/Shop/GloryLarge.png - .ao - 674bb76bf6994d2906c2421b - 6267624883298840701
 Props/Shop/GloryLarge.png - .ao.astc - 674bb76bf6994d2906c24219 - 16623110277107765306
 Props/Shop/GloryMedium.png - .ao - 674bb76cf6994d2906c2421e - 9086595784314864399
