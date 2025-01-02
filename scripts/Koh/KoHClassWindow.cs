@@ -123,7 +123,7 @@ public class KoHClassWindow : UniqueUIWindow
         CouponRefreshBtn.Interactable = false;
         yield return new WaitForSeconds(1);
         CoinRefreshBtn.Interactable = LocalPlayer.Coins >= 100;
-        CouponRefreshBtn.Interactable = LocalPlayer.LuckCoupons >= 100;
+        CouponRefreshBtn.Interactable = LocalPlayer.LuckCoupons >= 1;
     }
 }
 

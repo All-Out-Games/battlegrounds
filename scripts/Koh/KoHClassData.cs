@@ -47,7 +47,7 @@ public static class KohClassData
     {
         Id = 1,
         Name = "Brawler",
-        Chance = 12,
+        Chance = 15,
         Rarity = ItemRarity.Common,
         SkillKeys = new string[]{"ShoulderCrash", "DoublePunch", "ClawSlash", "LeapSlam"},
         Description = "Fists and claws, simple and effective. Passively gain 10 Health. ",
@@ -62,7 +62,7 @@ public static class KohClassData
     {
         Id = 2,
         Name = "Defender",
-        Chance = 12,
+        Chance = 15,
         Rarity = ItemRarity.Common,
         SkillKeys = new string[]{ "Shield", "RollOut", "IronSkin", "Parry"},
         Description = "Take the defensive stance. Passively gain 15 Health.",
@@ -77,10 +77,40 @@ public static class KohClassData
     {
         Id = 3,
         Name = "Destroyer",
-        Chance = 6,
+        Chance = 8,
         Rarity = ItemRarity.Rare,
         SkillKeys = new string[]{ "GroundStomp", "Rage", "BattleCry", "SelfDestruct" },
         Description = "Use your AoE capability to induce chaos. Passively gain 5 speed.",
+        Passive = new SkillConfig.StatBuff()
+        {
+            BoostType = SkillConfig.StatType.BaseSpeed,
+            BoostValue = 5
+        }
+    };
+
+    public static KohClass DarkKnight = new KohClass()
+    {
+        Id = 4,
+        Name = "Dark Knight",
+        Chance = 3,
+        Rarity = ItemRarity.Epic,
+        SkillKeys = new string[] { "GravityCrush", "SpikeShield", "TotalDarkness", "ShadowStep" },
+        Description = "The last one standing in the shadows. Passively gain 3 attack.",
+        Passive = new SkillConfig.StatBuff()
+        {
+            BoostType = SkillConfig.StatType.AttackPower,
+            BoostValue = 3
+        }
+    };
+
+    public static KohClass Ninja = new KohClass()
+    {
+        Id = 5,
+        Name = "Ninja",
+        Chance = 3,
+        Rarity = ItemRarity.Epic,
+        SkillKeys = new string[] { "Shuriken", "Backstab", "BearTrap", "Invisibility" },
+        Description = "Live for the perfect ambush. Passively gain 5 speed.",
         Passive = new SkillConfig.StatBuff()
         {
             BoostType = SkillConfig.StatType.BaseSpeed,
@@ -362,7 +392,7 @@ public static class KohClassData
     /// When a player joins, give them "None" class and draw two different Ids from these classes,
     /// Also generates a random class where 4 skills are drawn from the skill pool
     /// </summary>
-    public static List<KohClass> Classes = new() { RandomClass, Brawler, Defender, Destroyer};
+    public static List<KohClass> Classes = new() { RandomClass, Brawler, Defender, Destroyer, DarkKnight, Ninja};
 
 
     public static List<KohRandomSkill> RngSkills = new() 

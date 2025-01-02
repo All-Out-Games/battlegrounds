@@ -159,6 +159,7 @@ public partial class FightPlayer
 
     private void KohAwake()
     {
+        KohClassData.KoHSanityCheck();
         if (Network.IsServer)
         {
             // Routine 1: Check Skill Packages
@@ -175,6 +176,7 @@ public partial class FightPlayer
                 KohManager.Instance.PlayerSkillPackages[Name] = skillPkgJson;
             }
             //  Originally planned to save player classes too, but I feel like I don't have to. If they quit then rejoin, they lost all the scores.
+            LuckCoupons = Save.GetInt(this, "LuckCoupons", 0);
         }
     }
 

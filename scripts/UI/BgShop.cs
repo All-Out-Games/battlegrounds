@@ -30,8 +30,8 @@ public partial class BgShop : System<BgShop>
             //ItemShop.SetPurchaseHandler(OnItemPurchase);
         }
         
-        var starterCat = ItemShop.AddCategory("Starter Packs");
-        starterCat.Icon = "Props/DropItems/VengeancePotion.png";
+        var starterCat = ItemShop.AddCategory("King of the Hill");
+        starterCat.Icon = "UI/KoH/GamePass.png";
         foreach (var p in StarterProducts)
         {
             starterCat.AddProduct(p);
@@ -109,6 +109,15 @@ public partial class BgShop : System<BgShop>
                 case "spectral_5x": player.SpectralCount += 5;
                     break;
                 case "spectral_15x": player.SpectralCount += 15;
+                    break;
+                
+                case "10_luck_coupon": player.LuckCoupons += 10;
+                    break;
+                case "25_luck_coupon": player.LuckCoupons += 25;
+                    break;
+                case "50_luck_coupon": player.LuckCoupons += 50;
+                    break;
+                case "koh_gamepass":
                     break;
                 default:
                     Log.Error($"Product Id: {productId} is not found in registered products!");

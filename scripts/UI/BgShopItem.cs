@@ -8,24 +8,31 @@ public partial class BgShop
     {
         new()
         {
-            Name = "Starter Pack Lv.5", Rarity = ItemRarity.Common,
-            Id = "starter_pack1", SparksProductId = "66cce39be9d028e4047b4687", Price = 0, Description = "Get 7,500 XP, which is enough to level you up to Lv.5.",
-            SubCategory = "Pass", Icon = "Props/DropItems/HealthPotionS.png"
+            Name = "10 Luck Coupons", Rarity = ItemRarity.Uncommon,
+            Id = "10_luck_coupon", SparksProductId = "6776179ee9dab16189587b54", Price = 0, Description = "Get 10 luck coupons to reroll your loadout.",
+            SubCategory = "King of the Hill", Icon = "UI/KoH/LuckCoupon_10.png"
         },
         new()
         {
-            Name = "Starter Pack Lv.10", Rarity = ItemRarity.Uncommon,
-            Id = "starter_pack2", SparksProductId = "66cce3e1007431448b01c811", Price = 0,
-            Description = "Get 27,500 XP, which is enough to level you up to Lv.10.",
-            SubCategory = "Pass", Icon = "Props/DropItems/HealthPotionM.png"
+            Name = "Luck Coupon Bundle", Rarity = ItemRarity.Rare,
+            Id = "25_luck_coupon", SparksProductId = "677617fce9dab16189587b65", Price = 0,
+            Description = "Get 25% extra value by buying this bundle!",
+            SubCategory = "King of the Hill", Icon = "UI/KoH/LuckCoupon_25.png"
         },
         new()
         {
-            Name = "Starter Pack Lv.15", Rarity = ItemRarity.Rare,
-            Id = "starter_pack3", SparksProductId = "66cce47ee9d028e4047b468a", Price = 0,
-            Description = "Get 65,000 XP, which is enough to level you up to Lv.15.",
-            SubCategory = "Pass", Icon = "Props/DropItems/HealthPotionL.png"
+            Name = "Luck Coupon Pack", Rarity = ItemRarity.Epic,
+            Id = "50_luck_coupon", SparksProductId = "6776189ee9dab16189587b89", Price = 0,
+            Description = "Get 50% extra value by buying this pack!",
+            SubCategory = "King of the Hill", Icon = "UI/KoH/LuckCoupon_50.png"
         },
+        new()
+        {
+            Name = "KoH Game Pass", Rarity = ItemRarity.Mythic,
+            Id = "koh_gamepass", SparksProductId = "677616d6e9dab16189587b41", Price = 0,
+            Description = "Buy it to be able to see the content of your random class. Also provide double glory yield, shorter respawn timer.",
+            SubCategory = "Pass", Icon = "UI/KoH/GamePass.png"
+        }
     };
     
     public static readonly List<ShopCategory.ProductDescription> PotionProducts = new()
