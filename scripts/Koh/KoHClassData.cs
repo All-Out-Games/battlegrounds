@@ -118,6 +118,52 @@ public static class KohClassData
         }
     };
 
+    public static KohClass Psychic = new()
+    {
+        Id = 6,
+        Name = "Psychic",
+        Chance = 8,
+        Rarity = ItemRarity.Rare,
+        SkillKeys = new string[] { "SpoonThrow", "Befuddle", "Hypnotize", "PsionicBeam" },
+        Description = "A psionic warrior that controls a 1v1 battle. Passively gain 1 attack.",
+        Passive = new SkillConfig.StatBuff()
+        {
+            BoostType = SkillConfig.StatType.AttackPower,
+            BoostValue = 1
+        }
+    };
+
+    public static KohClass Telekinetic = new()
+    {
+        Id = 7,
+        Name = "Telekinetic",
+        Chance = 3,
+        Rarity = ItemRarity.Epic,
+        SkillKeys = new string[] { "Psybolt", "Regeneration", "WindPunch", "PsyThrow" },
+        Description = "Grab, knock and manipulate your enemies with telekenetic powers. Passively gain 5 health.",
+        Passive = new SkillConfig.StatBuff()
+        {
+            BoostType = SkillConfig.StatType.MaxHealth,
+            BoostValue = 5
+        }
+    };
+
+    public static KohClass StormLord = new()
+    {
+        Id = 8,
+        Name = "Storm Lord",
+        Chance = 1,
+        Rarity = ItemRarity.Legendary,
+        SkillKeys = new string[] { "IceFist", "IceStorm", "ChargingStation", "Thunderbolt" },
+        Description = "The storm and thunder heed your calls. Passively gain 3 speed.",
+        Passive = new SkillConfig.StatBuff()
+        {
+            BoostType = SkillConfig.StatType.BaseSpeed,
+            BoostValue = 3
+        }
+
+    };
+
     #endregion
 
     public static KohRandomSkill ShoulderCrash = new()
@@ -392,7 +438,7 @@ public static class KohClassData
     /// When a player joins, give them "None" class and draw two different Ids from these classes,
     /// Also generates a random class where 4 skills are drawn from the skill pool
     /// </summary>
-    public static List<KohClass> Classes = new() { RandomClass, Brawler, Defender, Destroyer, DarkKnight, Ninja};
+    public static List<KohClass> Classes = new() { RandomClass, Brawler, Defender, Destroyer, DarkKnight, Ninja, Psychic, Telekinetic, StormLord};
 
 
     public static List<KohRandomSkill> RngSkills = new() 

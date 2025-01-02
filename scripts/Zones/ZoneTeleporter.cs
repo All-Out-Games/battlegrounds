@@ -66,13 +66,9 @@ public class ZoneTeleporter : Component
         {
             if (parsed)
             {
-                if (newStatus == PlayerStatus.Safe && player.HasEffect<EffectSafePortalCooldown>())
+                if (newStatus == PlayerStatus.Combat && player.HasEffect<EffectSafePortalCooldown>())
                 {
                     return;
-                }
-                if (newStatus == PlayerStatus.Safe && player.PlayerStatus == PlayerStatus.Combat)
-                {
-                    player.GetEffectMgr().AddSafePortalCooldown(player.Entity, 60);
                 }
                 player.SwitchStatus((int)newStatus);
             }

@@ -91,6 +91,9 @@ public class EffectDeath : FightEffectWithImmunity
         
         FightPlayer.ClearAllEffects();
         FightPlayer.ClearSpeedModifier();
+
+        float cooldown = Purchasing.OwnsGamePass(FightPlayer, "677616d6e9dab16189587b41") ? 4 : 5; // Respawn CD
+        FightPlayer.AddEffect<EffectSafePortalCooldown>(null, cooldown);
     }
 
     public override bool IsActiveEffect => false;

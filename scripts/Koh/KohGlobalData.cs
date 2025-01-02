@@ -6,8 +6,8 @@ namespace Assembly.Koh;
 public static class KohGlobalData
 {
     // Round
-    public static int PlayersRequiredToStart = 1;
-    public static float RoundTime = 59;
+    public static int PlayersRequiredToStart = 3;
+    public static float RoundTime = 301;
 
     // TODO: VIP, Game Pass boosts
     public static int CalculateCoinReward(int kingScore)

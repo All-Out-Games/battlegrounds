@@ -1,5 +1,6 @@
 ﻿
 using AO;
+using Assembly.scripts.Effects;
 using UI = AO.UI;
 namespace Assembly.Koh;
 
@@ -432,8 +433,15 @@ public partial class KohManager : Component
                                 _winByScore = false;
                             }
                         }
-                        // TODO: Condition 3 - Only one player left
-                        if (players.Count == -1)
+                        
+                        if (players.Count == 1)
+                        {
+                            ServerRoundTimer = 0;
+                            RoundTimer = 0;
+                            State = GameState.RoundEnd;
+                            _winPlayer = players[0];
+                        }
+                        else if (players.Count == 0)
                         {
                             ServerRoundTimer = 0;
                             RoundTimer = 0;
@@ -677,6 +685,17 @@ public partial class KohManager : Component
                     UI.Image(myRoundRect, KohGlobalData.BackPlate, Vector4.Black);
                     UI.Text(myRoundRect.SubRect(0f, 0f, 0.3f, 1f), "You", GetTextSettings(20));
                     UI.Text(myRoundRect.SubRect(0.5f, 0f, 1f, 1f), $"{localPlayer.RoundScore}", GetTextSettings(24));
+                    
+                    // Redeployment timer (if applicable)
+                    if (localPlayer.PlayerStatus == PlayerStatus.Safe)
+                    {
+                        var respBlocker = localPlayer.GetEffect<EffectSafePortalCooldown>();
+                        if (respBlocker.Alive())
+                        {
+                            UI.Text(bottomBarRect, $"Redeployment in {float.Round(respBlocker.DurationRemaining, 1)}s...", GetTextSettings(52));
+                        }
+                    }
+                    
                     break;
                 }
                 case GameState.RoundEnd:
