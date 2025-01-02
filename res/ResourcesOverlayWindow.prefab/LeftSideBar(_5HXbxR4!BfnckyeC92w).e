@@ -18,11 +18,15 @@
 },
 {
   "cid": 1,
-  "aoid": "276630695921527:1722471068620453900",
+  "aoid": "76367334046764:1735796939977052300",
   "component_type": "Internal_Component",
-  "internal_component_type": "UICutRect",
+  "internal_component_type": "UIRect",
   "data": {
-    "side": 3,
-    "size": 200
+    "max": {
+      "X": 0
+    },
+    "insets": {
+      "Y": -200
+    }
   }
 }

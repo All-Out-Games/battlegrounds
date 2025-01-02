@@ -440,7 +440,7 @@ IceProjectile.prefab - .ao - 6752a56bf6994d2906c26c1e - 3898667714857707133
 Invisibility_Aura.prefab - .ao - 674e5decf6994d2906c249fe - 13012114415043570174
 Invisibility_VFX.prefab - .ao - 674e5dedf6994d2906c24a01 - 17672979264937178813
 KillFeedElement.prefab - .ao - 674e5dedf6994d2906c24a02 - 7989591864985094003
-KoHClassWindow.prefab - .ao - 67760831d60dd6a1a60cb589 - 4602035226793033661
+KoHClassWindow.prefab - .ao - 67762810d60dd6a1a60cb5aa - 2516147725036457456
 KunaiProjectile.prefab - .ao - 674e5dedf6994d2906c24a04 - 3883123613706713803
 LeaderBoard/RANK 1.png - .ao - 674e5deef6994d2906c24a06 - 4765039937284411778
 LeaderBoard/RANK 1.png - .ao.astc - 674e5deef6994d2906c24a08 - 15870723087197134429
@@ -541,7 +541,7 @@ PsyboltHitVFX.prefab - .ao - 674e5dfdf6994d2906c24a66 - 6075844420614785389
 PsyboltProjectile.prefab - .ao - 671d9b9fada08dbbbde3f08e - 11396103004693384059
 Rage_Aura.prefab - .ao - 674e5dfdf6994d2906c24a67 - 2357365277573319219
 RegenerationAura.prefab - .ao - 674e5dfef6994d2906c24a68 - 17007734008698641232
-ResourcesOverlayWindow.prefab - .ao - 674ab36ff6994d2906c23e53 - 10761466912917308068
+ResourcesOverlayWindow.prefab - .ao - 677628dad60dd6a1a60cb5ac - 5155963222752564763
 SceneProps_tmp/aura_circle.png - .ao - 674e5dfef6994d2906c24a6a - 4389022407708573024
 SceneProps_tmp/aura_circle.png - .ao.astc - 674e5dfff6994d2906c24a6c - 6592390607511499147
 SelfDestructExplosion.prefab - .ao - 674e5dfff6994d2906c24a6e - 496790023644319529

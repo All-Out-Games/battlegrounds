@@ -295,7 +295,7 @@ public partial class UIManager : System<UIManager>
                 PopupRemainingTime = 0;
                 PopupTxt = "";
             }
-            
+
         }
 
         // Global UI Update

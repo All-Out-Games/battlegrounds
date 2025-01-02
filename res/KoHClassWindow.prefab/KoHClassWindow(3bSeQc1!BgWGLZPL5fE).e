@@ -41,8 +41,6 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
-    "max": {
-      "X": 0.8999999761581421
-    }
+
   }
 }
