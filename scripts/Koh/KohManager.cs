@@ -211,7 +211,7 @@ public partial class KohManager : Component
                     if (playerCount >= KohGlobalData.PlayersRequiredToStart)
                     {
                         State = GameState.CountingDown;
-                        Countdown = 11f;
+                        Countdown = 30f;
                     }
                     break;
                 }

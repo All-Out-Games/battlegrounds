@@ -34,7 +34,7 @@ public static class KohGlobalData
     public static int ZoneMaxHealth = 100;
     public static int ZoneRecoverSpeed = 3;
     public static int CapturedDecay = 5;
-    public static int CaptureSpeed = 10;
+    public static int CaptureSpeed = 15;
     
     // Assets
     public static Texture CrownGrey = Assets.KeepLoaded<Texture>("UI/KoH/crown_grey.png");
@@ -64,7 +64,8 @@ public static class KohGlobalData
         "If you own the game pass, you can see the random skill you will get.",
         "Owning the game pass gives you 1s respawn cooldown reduction.",
         "Gamepass gives you double glory every round.",
-        "If the round already started, switching class will cost 5 glory."
+        "If the round already started, switching class will cost 5 glory.",
+        "Customized loadout and stat boosts are only available in Battlegrounds classic. You also level up faster in classic."
     };
     
 

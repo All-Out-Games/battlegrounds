@@ -77,13 +77,13 @@ public static class KohClassData
     {
         Id = 3,
         Name = "Destroyer",
-        Chance = 8,
-        Rarity = ItemRarity.Rare,
+        Chance = 3,
+        Rarity = ItemRarity.Epic,
         SkillKeys = new string[]{ "GroundStomp", "Rage", "BattleCry", "SelfDestruct" },
-        Description = "Use your AoE capability to induce chaos. Passively gain 5 speed.",
+        Description = "Use your AoE capability to induce chaos. Passively gain 5 health.",
         Passive = new SkillConfig.StatBuff()
         {
-            BoostType = SkillConfig.StatType.BaseSpeed,
+            BoostType = SkillConfig.StatType.MaxHealth,
             BoostValue = 5
         }
     };
@@ -92,8 +92,8 @@ public static class KohClassData
     {
         Id = 4,
         Name = "Dark Knight",
-        Chance = 3,
-        Rarity = ItemRarity.Epic,
+        Chance = 8,
+        Rarity = ItemRarity.Rare,
         SkillKeys = new string[] { "GravityCrush", "SpikeShield", "TotalDarkness", "ShadowStep" },
         Description = "The last one standing in the shadows. Passively gain 3 attack.",
         Passive = new SkillConfig.StatBuff()

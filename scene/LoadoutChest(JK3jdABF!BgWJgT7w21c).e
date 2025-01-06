@@ -5,15 +5,17 @@
   "name": "LoadoutChest",
   "local_enabled": true,
   "local_position": {
-    "X": -21.2127132415771484,
-    "Y": -20.7207736968994141
+    "X": -1.7224960327148438,
+    "Y": -8.0521306991577148
   },
   "local_rotation": 0,
   "local_scale": {
     "X": 2,
     "Y": 2
   },
-  "previous_sibling": "377316458197998:1716489394196426200",
+  "previous_sibling": "46145610696738:1723586970968342300",
+  "next_sibling": "31069919089008:1716413396906995300",
+  "parent": "359905312717597:1716331881724713300",
   "spawn_as_networked_entity": true
 },
 {
