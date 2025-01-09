@@ -34,8 +34,6 @@ public partial class BaseProjectile : OwnedObjectComponent
             return;
         }
         EngineProjectile.Awaken();
-        EngineProjectile.OnHit += OnHit;
-
         
     }
     
@@ -46,6 +44,7 @@ public partial class BaseProjectile : OwnedObjectComponent
         TimeElapsed = 0;
         EngineProjectileSpeed = EngineProjectile.Speed;
         SpeedModifier = 1.0f;
+        EngineProjectile.OnHit += OnHit;
     }
 
     public override void OnDestroy()
