@@ -35,8 +35,17 @@ public class FightClubGameManager : System<FightClubGameManager> {
         {
             Array.Sort(players, (a, b) =>
             {
-                return ((FightPlayer)b).TotalEliminations.CompareTo(((FightPlayer)a).TotalEliminations);
+                return ((FightPlayer)a).TotalEliminations.CompareTo(((FightPlayer)b).RoundWins);
             });
+        });
+        
+        Leaderboard.Register("Wins", (Player[] players, string[] scores) =>
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                var player = (FightPlayer)players[i];
+                scores[i] = $"{player.RoundWins}";
+            }
         });
         
         Leaderboard.Register("Kills", (Player[] players, string[] scores) =>
@@ -48,14 +57,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
             }
         });
         
-        Leaderboard.Register("Level", (Player[] players, string[] scores) =>
-        {
-            for (int i = 0; i < players.Length; i++)
-            {
-                var player = (FightPlayer)players[i];
-                scores[i] = $"{player.Level+1}";
-            }
-        });
+        
 
         Game.SetVoiceEnabled(true);
     }

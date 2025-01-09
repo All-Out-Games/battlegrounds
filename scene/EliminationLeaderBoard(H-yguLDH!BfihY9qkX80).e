@@ -40,7 +40,7 @@
     "LeaderboardBgOther": "LeaderBoard/RANK 4.png",
     "LeaderboardBgMe": "LeaderBoard/RANK ME.png",
     "LeaderboardSpriteRenderer": "35169888820238:1721084858623744700",
-    "LeaderboardId": "TotalEliminations"
+    "LeaderboardId": "KohRoundWins"
   }
 },
 {

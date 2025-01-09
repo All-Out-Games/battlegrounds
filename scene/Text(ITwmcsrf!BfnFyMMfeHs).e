@@ -13,7 +13,6 @@
     "X": 0.9999998807907104,
     "Y": 0.9999998211860657
   },
-  "next_sibling": "131716932631209:1723271052450300700",
   "parent": "35169888678087:1721084858623688500"
 },
 {
@@ -22,7 +21,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "UIText",
   "data": {
-    "text": "ELIMINATION",
+    "text": "ROUND WON",
     "settings": {
       "size": 4,
       "do_drop_shadow": true,

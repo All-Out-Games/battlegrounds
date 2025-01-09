@@ -236,6 +236,7 @@ public partial class GlobalLeaderboard : Component
         Entries.Clear();
         for (int i = 0; i < names.Length; i++)
         {
+            Log.Warn($"{names}: {scores}");
             Entries.Add(new LeaderboardEntry() { Name = names[i], Score = scores[i] });
         }
     }

@@ -35,6 +35,21 @@ public partial class FightPlayer
         }
     }
 
+    private SyncVar<int> _kohRoundWins = new SyncVar<int>(0);
+
+    public int RoundWins
+    {
+        get => _kohRoundWins.Value;
+        set
+        {
+            if (Network.IsServer)
+            {
+                _kohRoundWins.Set(value);
+                Save.SetInt(this, "KohRoundWins", _kohRoundWins.Value);
+            }
+        }
+    }
+
     #endregion
 
     #region KoH Class and Skills
@@ -177,6 +192,7 @@ public partial class FightPlayer
             }
             //  Originally planned to save player classes too, but I feel like I don't have to. If they quit then rejoin, they lost all the scores.
             LuckCoupons = Save.GetInt(this, "LuckCoupons", 0);
+            RoundWins = Save.GetInt(this, "KohRoundWins", 0);
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿
 using AO;
 using Assembly.scripts.Effects;
+using Assembly.scripts.SceneObjects;
 using UI = AO.UI;
 namespace Assembly.Koh;
 
@@ -108,7 +109,8 @@ public partial class KohManager : Component
     // We need to sell this so we will keep player's selection on the server. They can join another server ofc, but they lose the progress
 
     public Dictionary<string, string> PlayerSkillPackages = new();
-    
+
+    private bool _countdownPlayed = false;
 
     public void RequestSkillPackageUpdate()
     {
@@ -478,7 +480,11 @@ public partial class KohManager : Component
                         _winPlayer = players.Find(fpw => fpw.Name == topScore.Item1);
                     }
 
-                    if (_winPlayer.Alive()) winnerName = _winPlayer.Name;
+                    if (_winPlayer.Alive())
+                    {
+                        winnerName = _winPlayer.Name;
+                        _winPlayer.RoundWins += 1;
+                    }
                     CallClient_GenerateReport(winnerName, winText);
                     CallClient_AddWinnerZoomIn(_winPlayer, _winByScore);
 
@@ -576,8 +582,7 @@ public partial class KohManager : Component
             var bottomBarRect = AO.UI.SafeRect.CutBottom(350);
 
             using var _ = AO.UI.PUSH_LAYER(RoleNameLayer);
-
-            // TODO
+            
             switch (State)
             {
                 case GameState.WaitingForPlayers:
@@ -591,10 +596,16 @@ public partial class KohManager : Component
                 }
                 case GameState.CountingDown:
                 {
-                    UI.Text(bottomBarRect, ("Round starts in " + Math.Round(Countdown)) + " seconds...", GetTextSettings(42, 0f, null, UI.HorizontalAlignment.Center));
+                    int secondsLeft = (int)Math.Round(Countdown);
+                    UI.Text(bottomBarRect, $"Round starts in {secondsLeft} seconds...", GetTextSettings(42, 0f, null, UI.HorizontalAlignment.Center));
                     if (RoundReport.HasReport)
                     {
                         BattleReportBtn(rightBarRect);
+                    }
+
+                    if (Util.OneTime(secondsLeft == 2, ref _countdownPlayed))
+                    {
+                        SFX.Play(SFXKeys.CountdownAudio, new SFX.PlaySoundDesc());
                     }
                     break;
                 }
@@ -701,6 +712,7 @@ public partial class KohManager : Component
                 case GameState.RoundEnd:
                 {
                     UIManager.Instance.CloseAllUniqueWindow();
+                    _countdownPlayed = false;
                     break;
                 }
                 case GameState.RoundConclusion:

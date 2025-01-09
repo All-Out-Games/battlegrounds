@@ -620,6 +620,7 @@ SFX/Objects/crate-appear.wav - .ao - 674e5e13f6994d2906c24ae6 - 1203937786788471
 SFX/Objects/crate-break.wav - .ao - 674e5e13f6994d2906c24ae8 - 6138722103349345170
 SFX/Objects/crate-hit.wav - .ao - 674e5e14f6994d2906c24aea - 18240280723226924937
 SFX/Objects/fountain_loop.wav - .ao - 674e5e14f6994d2906c24aec - 1287453262947120641
+SFX/UI/contest_countdown.wav - .ao - 677f2fd7793f9e63737ac0fc - 9223475086119178858
 SFX/UI/enter_pvp_arena.wav - .ao - 674e5e14f6994d2906c24aee - 13255303252743841454
 SFX/UI/gain_exp_afk_area.wav - .ao - 674e5e15f6994d2906c24af0 - 246365794711235093
 SFX/UI/kill_elimination.wav - .ao - 674e5e15f6994d2906c24af2 - 9482390221504320128
@@ -627,7 +628,10 @@ SFX/UI/open_shop.wav - .ao - 674e5e15f6994d2906c24af4 - 14838454074300664751
 SFX/UI/open_skill_menu.wav - .ao - 674e5e16f6994d2906c24af6 - 6487745346947627886
 SFX/UI/ui_button.wav - .ao - 674e5e16f6994d2906c24af8 - 12957757548562934326
 SFX/UI/ui_buy.wav - .ao - 674e5e16f6994d2906c24afa - 6613620409981532750
+SFX/UI/ui_buy_item_upgrade.wav - .ao - 677f2fd7793f9e63737ac0fa - 14223689547984519762
+SFX/UI/ui_earn_coins.wav - .ao - 677f2fd7793f9e63737ac0fb - 16920199475025574723
 SFX/UI/ui_insufficient_funds.wav - .ao - 674e5e17f6994d2906c24afc - 14437220588409354800
+SFX/UI/ui_open_shop.wav - .ao - 677f2fd8793f9e63737ac100 - 14904960077306779611
 ShadowStepVFX.prefab - .ao - 674e5e17f6994d2906c24afe - 2144498759267209336
 Shield_FX.prefab - .ao - 674e5e17f6994d2906c24b00 - 5797989548499394546
 ShurikenProjectile.prefab - .ao - 674e5e18f6994d2906c24b03 - 773436890072797573
