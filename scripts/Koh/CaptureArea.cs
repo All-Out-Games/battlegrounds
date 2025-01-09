@@ -113,7 +113,7 @@ public partial class CaptureArea : Component
     public List<FightPlayer> GetPlayersInside()
     {
         //Log.Warn($"{Center}");
-        return FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Center, 3.3f, null);
+        return FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Center, 4.5f, null);
     }
 
     public override void LateUpdate()
@@ -128,7 +128,7 @@ public partial class CaptureArea : Component
 
     protected Rect DrawHealthBar()
     {
-        var targetPlayerScreenPos = Camera.WorldToScreen(Center + new Vector2(0, -3f));
+        var targetPlayerScreenPos = Camera.WorldToScreen(Center + new Vector2(0, -5f));
         // var killerPlayerScreenPos = Camera.WorldToScreen(Entity.Position + new Vector2(0, 0.5f));
         var healthRect = new Rect(targetPlayerScreenPos, targetPlayerScreenPos).Grow(20, 90, 0, 70);
         var clashRect = new Rect(targetPlayerScreenPos, targetPlayerScreenPos).Grow(50, 50, 35, 35);
@@ -139,7 +139,7 @@ public partial class CaptureArea : Component
         var back = ZoneStatus == CaptureStatus.Captured ? HealthBarBack_Captured : HealthBarBack_Neutral;
         var fill = ZoneStatus == CaptureStatus.Captured ? HealthBarFill_Captured : HealthBarFill_Neutral;
         var pip = ZoneStatus == CaptureStatus.Captured ? Pip_Captured : Pip_Neutral;
-
+        UI.PushScaleFactor(1.25f);
         // Draw bar background
         UI.Image(borderRect, back, Vector4.White, new UI.NineSlice());
 
@@ -166,7 +166,7 @@ public partial class CaptureArea : Component
         }
         if (ZoneStatus == CaptureStatus.Captured) statusTxt = $"King: {OwnerName}";
         UI.Text(statusRect, statusTxt, ts);
-
+        UI.PopScaleFactor();
         return healthRect;
     }
     
