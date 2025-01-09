@@ -45,7 +45,8 @@ public partial class FightPlayer
             if (Network.IsServer)
             {
                 _kohRoundWins.Set(value);
-                Save.SetInt(this, "KohRoundWins", _kohRoundWins.Value);
+                Save.SetInt(this, "KohRoundWins", value);
+                Save.OrderedSet("KohRoundWins", $"{this.UserId}",value);
             }
         }
     }

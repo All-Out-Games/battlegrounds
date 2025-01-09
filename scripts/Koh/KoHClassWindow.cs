@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using AO;
 using Assembly.scripts;
+using Assembly.scripts.SceneObjects;
 
 namespace Assembly.Koh;
 
@@ -54,7 +55,9 @@ public class KoHClassWindow : UniqueUIWindow
     {
         base.OpenWindow();
         UpdatePageInfo();
+        SFX.Play(SFXKeys.LoadoutOpenAudio, new SFX.PlaySoundDesc());
     }
+    
 
     public void UpdatePageInfo()
     {
@@ -110,6 +113,7 @@ public class KoHClassWindow : UniqueUIWindow
         // Server RPC to confirm the class
         LocalPlayer.CallServer_RequestEquipClass(SelectedId, CostlySwitch);
         CloseWindow();
+        SFX.Play(SFXKeys.LoadoutCloseAudio, new SFX.PlaySoundDesc());
     }
 
     public void RequestRefresh(bool consumeCoupon)

@@ -124,7 +124,6 @@ public static class SFXKeys
     public static AudioAsset SkillPageAudio = Assets.GetAsset<AudioAsset>("SFX/UI/open_skill_menu.wav");
     public static AudioAsset AFKAudio = Assets.GetAsset<AudioAsset>("SFX/UI/gain_exp_afk_area.wav");
     public static AudioAsset EliminationAudio = Assets.GetAsset<AudioAsset>("SFX/UI/kill_elimination.wav");
-    public static AudioAsset CountdownAudio = Assets.GetAsset<AudioAsset>("SFX/UI/contest_countdown.wav");
 
     #endregion
 
@@ -136,6 +135,14 @@ public static class SFXKeys
     public static AudioAsset CrateHitAudio = Assets.GetAsset<AudioAsset>("SFX/Objects/crate-hit.wav");
     public static AudioAsset CrateAppearAudio = Assets.GetAsset<AudioAsset>("SFX/Objects/crate-appear.wav");
     public static AudioAsset CrateBreakAudio = Assets.GetAsset<AudioAsset>("SFX/Objects/crate-break.wav");
+
+    #endregion
+
+    #region KoH
+
+    public static AudioAsset CountdownAudio = Assets.GetAsset<AudioAsset>("SFX/UI/contest_countdown.wav");
+    public static AudioAsset LoadoutOpenAudio = Assets.GetAsset<AudioAsset>("SFX/UI/ui_open_shop.wav");
+    public static AudioAsset LoadoutCloseAudio = Assets.GetAsset<AudioAsset>("SFX/UI/ui_insufficient_funds.wav");
 
     #endregion
 }
