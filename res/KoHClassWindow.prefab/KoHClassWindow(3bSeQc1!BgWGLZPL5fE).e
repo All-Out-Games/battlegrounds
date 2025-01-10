@@ -43,13 +43,4 @@
   "data": {
 
   }
-},
-{
-  "cid": 2,
-  "aoid": "27520552505926:1736482346012981000",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UICanvas",
-  "data": {
-
-  }
 }
