@@ -27,7 +27,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
     public override void Awake()
     {
         Chat.RegisterChatCommandHandler(RunChatCommand);
-        Analytics.EnableAutomaticAnalytics("d19a5e187e989175aa53e371525016b3", "aeefb0db200260a7863498e8a67d25e2a41795e0");
+        Analytics.EnableAutomaticAnalytics("c40073ae7b4d1f1c8c4685b351c12905", "3f6f5dd7f25a2f1ca0606e6b8416a3b423d92065");
         
         PlayerEliminationEvent += OnPlayerElimination;
         
