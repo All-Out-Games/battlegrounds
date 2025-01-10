@@ -707,9 +707,9 @@ public partial class KohManager : Component
                         }
                         PointToWorldPosition(_combatPortalEntity.Position, Vector4.LightGreen);
                     }
-                    else if(localPlayer.PlayerStatus == PlayerStatus.Combat && EffectKing.KingInstance.Alive())
+                    else if(localPlayer.PlayerStatus == PlayerStatus.Combat && EffectKing.KingInstance.Alive() && localPlayer != EffectKing.KingInstance.Player)
                     {
-                        PointToWorldPosition(CaptureArea.Instance.Position, Vector4.Red);
+                        PointToWorldPosition(CaptureArea.Instance.Position, Vector4.Red, true);
                     }
                     
                     break;
@@ -896,7 +896,7 @@ public partial class KohManager : Component
         return ts;
     }
     
-    public static void PointToWorldPosition(Vector2 position, Vector4 tint)
+    public static void PointToWorldPosition(Vector2 position, Vector4 tint, bool hideBelowThreshold = false)
     {
         var worldOffset = (position - Network.LocalPlayer.Position);
         var sellAreaScreenPos = Camera.WorldToScreen(position);
@@ -906,7 +906,7 @@ public partial class KohManager : Component
         var distance = worldOffset.Length;
         float arrowSize = 50;
         var anim = (float)Math.Pow(Math.Abs(Math.Sin(Math.PI * Time.TimeSinceStartup)), 0.75);
-        float distanceThreshold = 3;
+        float distanceThreshold = 4.5f;
         if (distance >= (distanceThreshold + 0.5f))
         {
             var t = 1 - Ease.T(distance - distanceThreshold, 1);
@@ -916,7 +916,7 @@ public partial class KohManager : Component
             var rotation = Math.Atan2(dir.Y, dir.X) * (180.0 / Math.PI);
             UI.Image(rect, Assets.GetAsset<Texture>("UI/KoH/Arrow_Side.png"), tint, default, (float)rotation);
         }
-        else
+        else if(!hideBelowThreshold)
         {
             var rect = new Rect(sellAreaScreenPos, sellAreaScreenPos).Grow(arrowSize);
             rect = rect.Offset(0, anim * 50);
