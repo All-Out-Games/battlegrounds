@@ -705,6 +705,11 @@ public partial class KohManager : Component
                         {
                             UI.Text(bottomBarRect, $"Redeployment in {float.Round(respBlocker.DurationRemaining, 1)}s...", GetTextSettings(52));
                         }
+                        PointToWorldPosition(_combatPortalEntity.Position, Vector4.LightGreen);
+                    }
+                    else if(localPlayer.PlayerStatus == PlayerStatus.Combat && EffectKing.KingInstance.Alive())
+                    {
+                        PointToWorldPosition(CaptureArea.Instance.Position, Vector4.Red);
                     }
                     
                     break;
@@ -889,6 +894,34 @@ public partial class KohManager : Component
             Offset = new Vector2(0, offset),
         };
         return ts;
+    }
+    
+    public static void PointToWorldPosition(Vector2 position, Vector4 tint)
+    {
+        var worldOffset = (position - Network.LocalPlayer.Position);
+        var sellAreaScreenPos = Camera.WorldToScreen(position);
+        var playerScreenPos = Camera.WorldToScreen(Network.LocalPlayer.Position + new Vector2(0, 0.5f));
+        var dir = (sellAreaScreenPos - playerScreenPos).Normalized;
+        var pos = playerScreenPos;
+        var distance = worldOffset.Length;
+        float arrowSize = 50;
+        var anim = (float)Math.Pow(Math.Abs(Math.Sin(Math.PI * Time.TimeSinceStartup)), 0.75);
+        float distanceThreshold = 3;
+        if (distance >= (distanceThreshold + 0.5f))
+        {
+            var t = 1 - Ease.T(distance - distanceThreshold, 1);
+            var arrowScreenPos = new Rect(pos, pos).Offset(dir.X * 300, dir.Y * 300).Center; // note(josh): using rects to scale by screen size
+            arrowScreenPos = Vector2.Lerp(arrowScreenPos, sellAreaScreenPos, t);
+            var rect = new Rect(arrowScreenPos, arrowScreenPos).Grow(arrowSize);
+            var rotation = Math.Atan2(dir.Y, dir.X) * (180.0 / Math.PI);
+            UI.Image(rect, Assets.GetAsset<Texture>("UI/KoH/Arrow_Side.png"), tint, default, (float)rotation);
+        }
+        else
+        {
+            var rect = new Rect(sellAreaScreenPos, sellAreaScreenPos).Grow(arrowSize);
+            rect = rect.Offset(0, anim * 50);
+            UI.Image(rect, Assets.GetAsset<Texture>("UI/KoH/Arrow_Side.png"), tint, default, 270);
+        }
     }
 }
 

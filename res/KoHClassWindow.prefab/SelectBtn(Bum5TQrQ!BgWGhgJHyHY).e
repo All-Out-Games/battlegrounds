@@ -40,13 +40,4 @@
       "Y": -235
     }
   }
-},
-{
-  "cid": 1,
-  "aoid": "7636650444374:1735603411253163000",
-  "component_type": "Internal_Component",
-  "internal_component_type": "UIButton",
-  "data": {
-
-  }
 }
