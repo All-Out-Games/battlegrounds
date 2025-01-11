@@ -30,7 +30,7 @@ public partial class BgShop
         {
             Name = "KoH Game Pass", Rarity = ItemRarity.Mythic,
             Id = "koh_gamepass", SparksProductId = "677616d6e9dab16189587b41", Price = 0,
-            Description = "Buy it to be able to see the content of your random class. Also provide double glory yield, shorter respawn timer.",
+            Description = "Buy it to be able to see the content of your random class. Your respawn will be shortened to 4s, and you get double glory when you win a round.",
             SubCategory = "Pass", Icon = "UI/KoH/GamePass.png"
         }
     };
