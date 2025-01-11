@@ -108,6 +108,7 @@ public class EffectGravityCrush : FightEffect
         var attachment = VFXPrefabs.GravityCrushFx.Instantiate();
         _gravityFieldVfx = attachment.GetComponent<GravityFieldVFX>();
         _gravityField = attachment.GetComponent<GravityField>();
+        _gravityField.Owner = FightPlayer;
         _gravityFieldVfx.Entity.LocalScale = new Vector2(_config.FieldSize, _config.FieldSize);
         if (_gravityField.Alive() && _gravityFieldVfx.Alive())
         {

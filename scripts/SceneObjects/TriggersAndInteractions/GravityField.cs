@@ -10,6 +10,8 @@ public class GravityField : Component
     private Circle_Collider _circleCollider;
 
     private List<Entity> _interactedEntity;
+
+    public FightPlayer Owner;
     public override void Awake()
     {
         base.Awake();
@@ -32,7 +34,11 @@ public class GravityField : Component
         if(_interactedEntity.Contains(other)) return;
         _interactedEntity.Add(other);
         var bp = other.GetComponent<BaseProjectile>();
-        bp?.ModifySpeed(EffectConfig.GravityCrushConfig.ProjectileSpeedMultiplier);
+        if (bp.Alive() && Owner != bp.GetOwner())
+        {
+            bp.ModifySpeed(EffectConfig.GravityCrushConfig.ProjectileSpeedMultiplier);
+        }
+        
     }
     
     private void OnGravityFieldExit(Entity other)
