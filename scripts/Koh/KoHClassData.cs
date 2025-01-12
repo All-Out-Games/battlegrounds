@@ -164,6 +164,21 @@ public static class KohClassData
 
     };
 
+    public static KohClass Ranger = new()
+    {
+        Id = 9,
+        Name = "Ranger",
+        Chance = 8,
+        Rarity = ItemRarity.Rare,
+        SkillKeys = new string[] { "Psybolt", "Fireball", "LightFeet", "Regeneration" },
+        Description = "An agile fighter that specializes in ranged attacks. Passively gain 3 speed.",
+        Passive = new SkillConfig.StatBuff()
+        {
+            BoostType = SkillConfig.StatType.BaseSpeed,
+            BoostValue = 3
+        }
+    };
+
     #endregion
 
     public static KohRandomSkill ShoulderCrash = new()
@@ -438,7 +453,7 @@ public static class KohClassData
     /// When a player joins, give them "None" class and draw two different Ids from these classes,
     /// Also generates a random class where 4 skills are drawn from the skill pool
     /// </summary>
-    public static List<KohClass> Classes = new() { RandomClass, Brawler, Defender, Destroyer, DarkKnight, Ninja, Psychic, Telekinetic, StormLord};
+    public static List<KohClass> Classes = new() { RandomClass, Brawler, Defender, Destroyer, DarkKnight, Ninja, Psychic, Telekinetic, StormLord, Ranger};
 
 
     public static List<KohRandomSkill> RngSkills = new() 

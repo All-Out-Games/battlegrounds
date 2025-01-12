@@ -35,7 +35,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
         {
             Array.Sort(players, (a, b) =>
             {
-                return ((FightPlayer)a).RoundWins.CompareTo(((FightPlayer)b).RoundWins);
+                return ((FightPlayer)b).RoundWins.CompareTo(((FightPlayer)a).RoundWins);
             });
         });
         
