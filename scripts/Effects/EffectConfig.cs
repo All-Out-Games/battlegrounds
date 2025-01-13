@@ -1163,6 +1163,7 @@ public static class EffectConfig
         public static float DashSpeed = 1600f;
         public static float DashTime = 0.15f;
         public static float Cooldown = 13f;
+        public static int BleedDps = 3;
         public static int BaseDmg = 5;
 
         public int Damage;

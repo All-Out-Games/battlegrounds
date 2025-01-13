@@ -434,6 +434,7 @@ FightPlayerRig/playercharacter.spine - .ao - 675096caf6994d2906c25c63 - 82646631
 FightPlayerRig/playercharacter_2.png - .ao - 674e5debf6994d2906c249f5 - 1531567999432186285
 FightPlayerRig/playercharacter_2.png - .ao.astc - 674e5debf6994d2906c249f8 - 17514452604510451454
 FireballProjectile.prefab - .ao - 6739340802386857e8d33419 - 6615212460275438377
+FoSSlash.prefab - .ao - 67859d79793f9e63737ad023 - 10518550431150780964
 GravityCrushVFX.prefab - .ao - 674e5decf6994d2906c249fa - 8589744853951767240
 HitVfx.prefab - .ao - 674e5decf6994d2906c249fc - 8922161560569567443
 IceProjectile.prefab - .ao - 6752a56bf6994d2906c26c1e - 3898667714857707133
@@ -504,6 +505,8 @@ Props/DropItems/SpectralPotion.png - .ao - 674ac02ff6994d2906c23e5c - 6601265293
 Props/DropItems/SpectralPotion.png - .ao.astc - 674ac02ff6994d2906c23e5b - 11204695746865618386
 Props/DropItems/VengeancePotion.png - .ao - 674a62c5f6994d2906c23d77 - 14612219104380000043
 Props/DropItems/VengeancePotion.png - .ao.astc - 674a62c5f6994d2906c23d78 - 5622864394937217667
+Props/FlashOfSteel/FoSSlash.png - .ao - 678599d8793f9e63737ad01b - 14555219632318839852
+Props/FlashOfSteel/FoSSlash.png - .ao.astc - 678599d8793f9e63737ad01a - 2003753422884303118
 Props/GroundRecticles/ground_reticle.png - .ao - 674e5ceaf6994d2906c246ec - 13519533673276912784
 Props/GroundRecticles/ground_reticle.png - .ao.astc - 674e5ceaf6994d2906c246ee - 17513538547079004455
 Props/GroundRecticles/lightning_reticle.png - .ao - 674e5cebf6994d2906c246f0 - 4065664044103921175
@@ -560,6 +563,9 @@ SFX/Effects/darkness_loop.wav - .ao - 674e5e02f6994d2906c24a7f - 991913965232432
 SFX/Effects/enter_pvp_arena.wav - .ao - 674e5e02f6994d2906c24a80 - 13255303252743841454
 SFX/Effects/fire_projectile_hit_explode.wav - .ao - 674e5e02f6994d2906c24a82 - 16517991583454849881
 SFX/Effects/fire_projectile_loop.wav - .ao - 674e5e03f6994d2906c24a85 - 5423642442770086271
+SFX/Effects/FoS_charge.wav - .ao - 67859d79793f9e63737ad024 - 5016011713519960489
+SFX/Effects/FoS_hit.wav - .ao - 67859d79793f9e63737ad022 - 18424973809646557121
+SFX/Effects/FoS_pre.wav - .ao - 67859d79793f9e63737ad026 - 5160601802728144550
 SFX/Effects/ground_stomp.wav - .ao - 674e5e03f6994d2906c24a86 - 7660713699913782125
 SFX/Effects/heal_end.wav - .ao - 674e5e03f6994d2906c24a88 - 10197304472413070181
 SFX/Effects/heal_start.wav - .ao - 674e5e04f6994d2906c24a8b - 18098554159281930704

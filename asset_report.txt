@@ -555,6 +555,7 @@
 9104 bytes - UI/SkillTree/skill_tree_window_9slice.png.ao.astc
 9096 bytes - SFX/Effects/heal_end.wav.ao
 9008 bytes - SFX/Effects/ice_projectile_hit.wav.ao
+8992 bytes - SFX/Effects/FoS_charge.wav.ao
 8968 bytes - SFX/Effects/backstab_teleport.wav.ao
 8968 bytes - SFX/Effects/claw_swipe.wav.ao
 8952 bytes - AbilityIcon_Separate/stealth/shuriken_icon.png.ao
@@ -628,6 +629,7 @@
 6488 bytes - ability_icon_tmp/RollOut_Tmp.png.ao
 6448 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills_icon.png.ao.astc
 6448 bytes - UI/LargeMenuButtons/skills_icon.png.ao.astc
+6424 bytes - SFX/Effects/FoS_hit.wav.ao
 6424 bytes - UI/SkillTree/big_skill_tree_icons/basic.png.ao
 6368 bytes - UI/LargeMenuButtons/Large Menu Buttons/skills_icon.png.ao
 6368 bytes - UI/LargeMenuButtons/skills_icon.png.ao
@@ -698,6 +700,7 @@
 3808 bytes - VFX/StatusUp/BAT003_status_up.spine.ao
 3768 bytes - UI/XPBar/Sparkles/FAT_sparkles.png.ao
 3760 bytes - UI/XPBar/Sparkles/FAT_eggs.spine.ao
+3736 bytes - SFX/Effects/FoS_pre.wav.ao
 3688 bytes - UI/SkillTree/locked_border.png.ao.astc
 3632 bytes - SFX/UI/ui_open_shop.wav.ao
 3528 bytes - UI/LargeMenuButtons/Large Menu Buttons/large_button.png.ao.astc
@@ -835,6 +838,7 @@
 1568 bytes - UI/SkillTree/range_icon.png.ao
 1536 bytes - LeaderBoard/RANK 3.png.ao
 1536 bytes - UI/SkillTree/tree_selected.png.ao
+1528 bytes - Props/FlashOfSteel/FoSSlash.png.ao.astc
 1512 bytes - UI/SkillTree/small_skill_tree_icons_pressed/brawler.png.ao
 1496 bytes - UI/AbilityBook/AbilityInfo/gif_size.png.ao.astc
 1472 bytes - environment/CentralHub/Portals/animation/BAT003_portals.spine.ao
@@ -852,6 +856,7 @@
 1328 bytes - environment/CentralHub/Fountain/Fountain_flow1.png.ao.astc
 1288 bytes - UI/Health_Bar/shield_back.png.ao.astc
 1280 bytes - UI/SkillTree/ability_backing.png.ao.astc
+1272 bytes - Props/FlashOfSteel/FoSSlash.png.ao
 1272 bytes - UI/AbilityBook/AbilityInfo/gif_size.png.ao
 1264 bytes - UI/LargeMenuButtons/topbar_bg.png.ao.astc
 1224 bytes - UI/Health_Bar/shield_back.png.ao
@@ -962,6 +967,7 @@
 448 bytes - environment/CentralHub/Fountain/Fountain_flow7.png.ao
 448 bytes - UI/SkillTree/full_channels/cross_empty.png.ao
 440 bytes - UI/SkillTree/empty_channels/corner_empty.png.ao
+432 bytes - FoSSlash.prefab.ao
 432 bytes - PsionicBeamGroundFissue.prefab.ao
 424 bytes - UI/Bars/border.png.ao.astc
 416 bytes - PsionicBeamGroundFissueEnd.prefab.ao

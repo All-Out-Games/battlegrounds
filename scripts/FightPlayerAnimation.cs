@@ -318,6 +318,11 @@ public partial class FightPlayer
         var fosState = aoLayer.CreateState("Attack_Melee_2", 0, false);
         aoLayer.CreateGlobalTransition(fosState).CreateTriggerCondition(fosStartTrigger); // Need a RESET trigger to reset
         
+        // FoS victim
+        var fosVictimTrigger = stateMachine.CreateVariable("fos_victim", StateMachineVariableKind.TRIGGER);
+        var fosVictimState = aoLayer.CreateState("Idle_Drowsy", 0, true);
+        aoLayer.CreateGlobalTransition(fosVictimState).CreateTriggerCondition(fosVictimTrigger); // They'll get flinched and return idle at the end
+        
         #endregion
 
 
