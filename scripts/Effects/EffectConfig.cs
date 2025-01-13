@@ -1154,4 +1154,42 @@ public static class EffectConfig
     #endregion
 
     #endregion
+
+    #region cfg: Flash Of Steel
+
+    public struct FlashOfSteelConfig
+    {
+        public static float DashDelay = 0.5f;
+        public static float DashSpeed = 1600f;
+        public static float DashTime = 0.15f;
+        public static float Cooldown = 13f;
+        public static int BaseDmg = 5;
+
+        public int Damage;
+        public bool ApplyBleed;
+        public static FlashOfSteelConfig GetDefault(int atk, int level)
+        {
+            FlashOfSteelConfig res = new FlashOfSteelConfig()
+            {
+                Damage = atk + BaseDmg,
+                ApplyBleed = false
+            };
+            if (level > 2)
+            {
+                res.Damage += 1;
+            }
+            if (level > 3)
+            {
+                res.Damage += 1;
+            }
+
+            if (level > 4)
+            {
+                res.ApplyBleed = true;
+            }
+            return res;
+        }
+    }
+
+    #endregion
 }

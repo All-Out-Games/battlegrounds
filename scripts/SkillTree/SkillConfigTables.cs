@@ -282,7 +282,7 @@ public static partial class SkillConfig
         GridY = 1,
         SkillKey = "HealthBoostD",
         ParentNodeKeys = new string[] { "Shield" },
-        ChildrenNodeKeys = new string[] {  },
+        ChildrenNodeKeys = new string[] { "FlashOfSteel" },
         Buff = new StatBuff
         {
             BoostType = StatType.MaxHealth,
@@ -381,6 +381,31 @@ public static partial class SkillConfig
         AbilityPreviewPath = "Ability_Preview/defense/parry.gif",
         ParentNodeKeys = new string[] { "GravityCrush" },
         ChildrenNodeKeys = new string[] { },
+    };
+    
+    public static readonly SkillTreeNodeConfig FlashOfSteelConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Flash Of Steel",
+        DescriptionTextKey =
+            "An extremely fast slash that tears through the enemies behind you.",
+        RangeDescriptionKey = "7m",
+        BaseDamageKey = _overrideValue_,
+        UpgradeTextKey = "*: Cooldown -1\n **: Damage +1\n ***: Damage +1\n ****: Apply Bleed x3 to victims",
+        CooldownKey = "%OVERRIDE%",
+        UnlockLevel = 1, // TODO: 36
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Defensive,
+        UpgradeCost = 10750,
+        GridX = 0,
+        GridY = 2,
+        SkillKey = "FlashOfSteel",
+        IconPath = "AbilityIcon_Merged/defense/flash_of_steel.png",
+        AbilityIconPath = "AbilityIcon_Separate/defense/flash_of_steel_icon.png",
+        //AbilityPreviewPath = "Ability_Preview/defense/parry.gif",
+        ParentNodeKeys = new string[] { "HealthBoostD" },
+        ChildrenNodeKeys = new string[] { }, // TODO: Blade Frenzy
     };
 
     #endregion
@@ -581,6 +606,7 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[] { "ClawSlash" },
         ChildrenNodeKeys = new string[] { },
     };
+    
 
     public static readonly SkillTreeNodeConfig LeapSlamConfig = new SkillTreeNodeConfig()
     {
@@ -1254,6 +1280,7 @@ public static partial class SkillConfig
             {"SpikeShield", SpikeShieldConfig},
             {"GravityCrush", GravityCrushConfig},
             {"Parry", ParryConfig},
+            {"FlashOfSteel", FlashOfSteelConfig},
             // Brawler
             { "ShoulderCrash", ShoulderCrashNodeConfig },
             { "GroundStomp", GroundStompConfig },
@@ -1301,7 +1328,7 @@ public static partial class SkillConfig
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>()
     {
         // Defensive
-        "Punch", "RollOut", "Shield","IronSkin","SpikeShield","GravityCrush", "Parry",
+        "Punch", "RollOut", "Shield","IronSkin","SpikeShield","GravityCrush", "Parry", "FlashOfSteel",
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam", 
         // Psionic
@@ -1361,7 +1388,8 @@ public partial class FightAbility
         {SC.FireballNodeConfig.SkillKey, typeof(AbilityFireball)},
         {SC.ThunderboltNodeConfig.SkillKey, typeof(AbilityThunderbolt)},
         {SC.IceStormNodeConfig.SkillKey, typeof(AbilityIceStorm)},
-        {SC.ChargingStationNodeConfig.SkillKey, typeof(AbilityChargingStation)}
+        {SC.ChargingStationNodeConfig.SkillKey, typeof(AbilityChargingStation)},
+        {SC.FlashOfSteelConfig.SkillKey, typeof(AbilityFlashOfSteel)}
     };
 }
 

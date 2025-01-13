@@ -46,6 +46,8 @@ AbilityIcon_Merged/basic/punch_3.png - .ao - 674e5d7af6994d2906c24750 - 44873903
 AbilityIcon_Merged/basic/punch_3.png - .ao.astc - 674e5d7af6994d2906c24752 - 14545118771444030604
 AbilityIcon_Merged/brawler/battle_cry.png - .ao - 674e5d7af6994d2906c24754 - 13986528665598801892
 AbilityIcon_Merged/brawler/battle_cry.png - .ao.astc - 674e5d7bf6994d2906c24756 - 14373060648100078465
+AbilityIcon_Merged/brawler/blade_storm.png - .ao - 6784a86f793f9e63737acfed - 14339077721308924598
+AbilityIcon_Merged/brawler/blade_storm.png - .ao.astc - 6784a86f793f9e63737acfee - 6482606747047953825
 AbilityIcon_Merged/brawler/claw_slash.png - .ao - 674e5d7bf6994d2906c24759 - 8785368004719787310
 AbilityIcon_Merged/brawler/claw_slash.png - .ao.astc - 674e5d7bf6994d2906c2475a - 160074699562248726
 AbilityIcon_Merged/brawler/double_punch.png - .ao - 674e5d7cf6994d2906c2475d - 4541243504119638257
@@ -62,6 +64,10 @@ AbilityIcon_Merged/brawler/self_destruct.png - .ao - 674e5d7ff6994d2906c24770 - 
 AbilityIcon_Merged/brawler/self_destruct.png - .ao.astc - 674e5d7ff6994d2906c24773 - 3859680665935722413
 AbilityIcon_Merged/brawler/shoulder_crash.png - .ao - 674e5d80f6994d2906c24774 - 17852863025569319360
 AbilityIcon_Merged/brawler/shoulder_crash.png - .ao.astc - 674e5d80f6994d2906c24776 - 5193305146891386361
+AbilityIcon_Merged/defense/blade_frenzy.png - .ao - 67844689793f9e63737acfd2 - 5898033538146328717
+AbilityIcon_Merged/defense/blade_frenzy.png - .ao.astc - 6784468a793f9e63737acfd7 - 5853456142019099356
+AbilityIcon_Merged/defense/flash_of_steel.png - .ao - 6784a86f793f9e63737acfec - 6638281583932632930
+AbilityIcon_Merged/defense/flash_of_steel.png - .ao.astc - 6784a870793f9e63737acff3 - 9689877174789267848
 AbilityIcon_Merged/defense/gravity_crush.png - .ao - 674e5d80f6994d2906c24778 - 2594226211672200791
 AbilityIcon_Merged/defense/gravity_crush.png - .ao.astc - 674e5d81f6994d2906c2477a - 5260559462555147124
 AbilityIcon_Merged/defense/iron_aura.png - .ao - 674e5d81f6994d2906c2477c - 6158554500377271112
@@ -148,6 +154,8 @@ AbilityIcon_Separate/basic/punch_icon.png - .ao - 674e5d9af6994d2906c2481a - 136
 AbilityIcon_Separate/basic/punch_icon.png - .ao.astc - 67319d86ada08dbbbde3fb4b - 4344947852139095460
 AbilityIcon_Separate/brawler/battle_cry_icon.png - .ao - 674e5d9bf6994d2906c2481c - 11180067981420549755
 AbilityIcon_Separate/brawler/battle_cry_icon.png - .ao.astc - 674e5d9bf6994d2906c2481e - 3610533945673233710
+AbilityIcon_Separate/brawler/blade_storm.png - .ao - 6784a870793f9e63737acff2 - 13801898645532645663
+AbilityIcon_Separate/brawler/blade_storm.png - .ao.astc - 6784a870793f9e63737acff4 - 13878382205695960437
 AbilityIcon_Separate/brawler/claw_slash_icon.png - .ao - 674e5d9bf6994d2906c24820 - 17295258175376819279
 AbilityIcon_Separate/brawler/claw_slash_icon.png - .ao.astc - 674e5d9cf6994d2906c24822 - 511588625170658411
 AbilityIcon_Separate/brawler/double_punch_icon.png - .ao - 674e5d9cf6994d2906c24824 - 18110569268970479825
@@ -162,6 +170,12 @@ AbilityIcon_Separate/brawler/self_destruct_icon.png - .ao - 674e5d9ef6994d2906c2
 AbilityIcon_Separate/brawler/self_destruct_icon.png - .ao.astc - 674e5d9ff6994d2906c24836 - 3501652040254139344
 AbilityIcon_Separate/brawler/shoulder_crash_icon.png - .ao - 674e5d9ff6994d2906c24838 - 4214480058561560800
 AbilityIcon_Separate/brawler/shoulder_crash_icon.png - .ao.astc - 674e5d9ff6994d2906c2483a - 5935664943280204559
+AbilityIcon_Separate/defense/blade_attack.png - .ao - 6784468b793f9e63737acfde - 18019998513969892322
+AbilityIcon_Separate/defense/blade_attack.png - .ao.astc - 6784468b793f9e63737acfe0 - 6900861501639531856
+AbilityIcon_Separate/defense/blade_frenzy_icon.png - .ao - 6784468b793f9e63737acfe2 - 6046215950317937278
+AbilityIcon_Separate/defense/blade_frenzy_icon.png - .ao.astc - 6784468c793f9e63737acfe4 - 9173015136638985958
+AbilityIcon_Separate/defense/flash_of_steel_icon.png - .ao - 6784a870793f9e63737acff7 - 6509418253429759283
+AbilityIcon_Separate/defense/flash_of_steel_icon.png - .ao.astc - 6784a871793f9e63737acff9 - 5942426549650333470
 AbilityIcon_Separate/defense/gravity_crush_icon.png - .ao - 674e5da0f6994d2906c2483c - 10635255930869861855
 AbilityIcon_Separate/defense/gravity_crush_icon.png - .ao.astc - 67319d87ada08dbbbde3fb5b - 10233222342527472786
 AbilityIcon_Separate/defense/iron_aura_icon.png - .ao - 674e5da0f6994d2906c2483e - 12942035253279592246
@@ -507,6 +521,8 @@ Props/GroundRecticles/lightning_reticle.png - .ao.astc - 674e5cebf6994d2906c246f
 Props/LightningTrap/BAT003_lightning_trap.png - .ao - 674e5cebf6994d2906c246f4 - 5726906139401577890
 Props/LightningTrap/BAT003_lightning_trap.png - .ao.astc - 674e5cecf6994d2906c246f6 - 11064370672755449933
 Props/LightningTrap/BAT003_lightning_trap.spine - .ao - 674e5dfbf6994d2906c24a5b - 11470229911709403585
+Props/ParticleA.png - .ao - 6784a871793f9e63737acffa - 2644425191748432936
+Props/ParticleA.png - .ao.astc - 6784a871793f9e63737acffd - 4118612472835726875
 Props/Shop/GloryLarge.png - .ao - 674bb76bf6994d2906c2421b - 6267624883298840701
 Props/Shop/GloryLarge.png - .ao.astc - 674bb76bf6994d2906c24219 - 16623110277107765306
 Props/Shop/GloryMedium.png - .ao - 674bb76cf6994d2906c2421e - 9086595784314864399
