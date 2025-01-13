@@ -313,6 +313,11 @@ public partial class FightPlayer
         aoLayer.CreateTransition(parryEndState, aoIdleState, true);
         
 
+        // Flash Of Steel
+        var fosStartTrigger = stateMachine.CreateVariable("fos_start", StateMachineVariableKind.TRIGGER);
+        var fosState = aoLayer.CreateState("Attack_Melee_2", 0, false);
+        aoLayer.CreateGlobalTransition(fosState).CreateTriggerCondition(fosStartTrigger); // Need a RESET trigger to reset
+        
         #endregion
 
 
