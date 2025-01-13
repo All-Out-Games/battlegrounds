@@ -412,12 +412,12 @@ public partial class FightPlayer : Player
 
     public bool Damageable()
     {
-        return PlayerStatus == PlayerStatus.Combat && CurrentHealth > 0 && InvincibleReasons.Count == 0 && IsValidTarget;
+        return PlayerStatus == PlayerStatus.Combat && CurrentHealth > 0 && InvincibleReasons.Count == 0;
     }
 
     public bool Targetable()
     {
-        return !HasEffect<EffectInvisible>() && Damageable();
+        return !HasEffect<EffectInvisible>() && Damageable()  && IsValidTarget;
     }
 
     public void AddInvincibilityReason(string reason)

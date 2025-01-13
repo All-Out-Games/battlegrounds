@@ -1,4 +1,5 @@
 ﻿using AO;
+using Assembly.scripts.SceneObjects;
 
 namespace Assembly.scripts.Effects.ActiveSkills;
 
@@ -39,13 +40,65 @@ public class TrailEffect : FightEffect
     {
         _entity = Entity.Create();
         _entity.SetParent(Player.Entity, false);
-        _entity.LocalPosition = new Vector2(0,.2f);
+        _entity.LocalPosition = new Vector2(0,.4f);
         _trail = _entity.AddComponent<Trail_Renderer>();
         _trail.TargetLength = 20;
-        _trail.Width = 3;
+        _trail.Width = 2;
         _trail.Tint = Vector4.Red;
         _trail.Texture = TrailTexture;
         _trail.DepthOffset = 1;
+    }
+}
+
+public class FosHitEffect : FightEffect
+{
+    public static float DamageDelay = 0.8f;
+    public static string SlashPrefabPath = "FoSSlash.prefab";
+
+    private bool _damaged;
+    public override bool IsActiveEffect => false;
+    public override bool IsCC => true;
+    public override bool BlockAbilityActivation => true;
+    protected override bool PreventMovement => true;
+
+    private Entity _slashEffect;
+
+    public int Damage;
+    public bool Bleed;
+
+    public override void OnEffectStart(bool isDropIn)
+    {
+        base.OnEffectStart(isDropIn);
+        FightPlayer.SetAnimTrigger("fos_victim", true);
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        if(Util.OneTime(ElapsedTime > DamageDelay, ref _damaged))
+        {
+            if (Caster.Alive())
+            {
+                var info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Melee, FightPlayer.DamageInfo.StunInterruptLevel);
+                FightPlayer.TakeDamage((FightPlayer)Caster,info);
+                if (Bleed)
+                {
+                    FightPlayer.GetEffectMgr().AddBleed(Player.Entity, 4, 3);
+                }
+                FightClubGameManager.Instance.ClientSpawn(SlashPrefabPath, Position + new Vector2(0, 0.55f), entity => _slashEffect = entity);
+                SFX.Play(SFXKeys.FoSHitAudio, DefaultSoundDesc);
+            }
+        }
+    }
+
+    public override void OnEffectEnd(bool interrupt)
+    {
+        base.OnEffectEnd(interrupt);
+        FightPlayer.SetAnimTrigger("RESET");
+        if (_slashEffect.Alive())
+        {
+            _slashEffect.Destroy();
+        }
     }
 }
 
@@ -61,6 +114,9 @@ public class EffectFlashOfSteel : FightEffectWithImmunity
     protected override string InvincibilityReason => "FlashOfSteel";
 
     private bool _dash;
+
+    private Vector2 _startPos;
+    private Vector2 _endPos;
     
     public override void OnEffectStart(bool isDropIn)
     {
@@ -69,14 +125,14 @@ public class EffectFlashOfSteel : FightEffectWithImmunity
             FightPlayer.GetSkillTree().GetSkillLevel("FlashOfSteel"));
 
         // The player is invincible and not allowed to input movement during the dash
-        //FightStateMachine.UnsetTrigger("shoulder_crash_end");
-        FightPlayer.SetAnimTrigger("melee");
+        FightPlayer.SetFacingDirection(AbilityDirection.X > 0);
         if (!isDropIn)
         {
             //SFX.Play(SFXKeys.ShoulderCrashAudio, DefaultSoundDesc);
             DurationRemaining = EffectConfig.FlashOfSteelConfig.DashTime + EffectConfig.FlashOfSteelConfig.DashDelay + 0.1f;
             FightPlayer.SetAnimTrigger("fos_start", true);
             FightPlayer.AddEffect<TrailEffect>(null, 1f);
+            SFX.Play(SFXKeys.FoSPrepareAudio, DefaultSoundDesc);
         }
         
     }
@@ -88,9 +144,9 @@ public class EffectFlashOfSteel : FightEffectWithImmunity
             Vector2 dir = AbilityDirection;
             FightPlayer.SetFacingDirection(dir.X > 0);
             FightPlayer.AddDash(dir * EffectConfig.FlashOfSteelConfig.DashSpeed, EffectConfig.FlashOfSteelConfig.DashTime);
+            _startPos = Position;
+            SFX.Play(SFXKeys.FoSChargeAudio, DefaultSoundDesc);
         }
-        
-        // TODO SFX
     }
 
     public override void OnEffectEnd(bool interrupt)
@@ -98,6 +154,35 @@ public class EffectFlashOfSteel : FightEffectWithImmunity
         base.OnEffectEnd(interrupt);
         FightPlayer.SetAnimTrigger("RESET");
         FightPlayer.RemoveEffect<TrailEffect>(false);
-        //TODO DAMAGE
+        _endPos = Position;
+        // DAMAGE
+        Vector2 damageLine = _endPos - _startPos;
+        Vector2 damageDirIncrement = damageLine.Normalized;
+        int incrementCount = (int)(damageLine.Length * 2);
+        HashSet<FightPlayer> hitPlayers = new HashSet<FightPlayer>();
+        for (int i = 0; i < incrementCount; i++)
+        {
+            Vector2 center = _startPos + damageDirIncrement * i * 0.5f;
+            var lst = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(center, 1, FightPlayer);
+            foreach (var fp in lst)
+            {
+                hitPlayers.Add(fp);
+            }
+        }
+        var endLst = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(_endPos, 1, FightPlayer);
+        foreach (var fp in endLst)
+        {
+            hitPlayers.Add(fp);
+        }
+
+        
+        foreach (var fp in hitPlayers)
+        {
+            fp.AddEffect<FosHitEffect>(Player,1.1f, (effect =>
+            {
+                effect.Damage = _config.Damage;
+                effect.Bleed = _config.ApplyBleed;
+            }));
+        }
     }
 }

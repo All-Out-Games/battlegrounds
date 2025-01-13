@@ -116,6 +116,10 @@ public static class SFXKeys
     public static AudioAsset ChargingStationAppearAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/charging_station_appear.wav");
     public static AudioAsset ChargingStationExplodeAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/charging_station_explosion.wav");
     public static AudioAsset ChargingStationChargeAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/charging_station_activated.wav");
+
+    public static AudioAsset FoSPrepareAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/FoS_pre.wav");
+    public static AudioAsset FoSChargeAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/FoS_charge.wav");
+    public static AudioAsset FoSHitAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/FoS_hit.wav");
     #endregion
 
     #region UI
