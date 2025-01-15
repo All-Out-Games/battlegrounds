@@ -7,7 +7,7 @@
   "local_position": {
 
   },
-  "local_rotation": 15,
+  "local_rotation": 0,
   "local_scale": {
     "X": 5,
     "Y": 8

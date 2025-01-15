@@ -312,7 +312,18 @@ public partial class FightPlayer
         var fosVictimTrigger = stateMachine.CreateVariable("fos_victim", StateMachineVariableKind.TRIGGER);
         var fosVictimState = aoLayer.CreateState("Idle_Drowsy", 0, true);
         aoLayer.CreateGlobalTransition(fosVictimState).CreateTriggerCondition(fosVictimTrigger); // They'll get flinched and return idle at the end
+
+        // Blade Frenzy
+        var bladeFrenzyTrigger = stateMachine.CreateVariable("bf_start", StateMachineVariableKind.TRIGGER);
+        var bladeFrenzySpinState = aoLayer.CreateState("BAT_003/parry_end", 0, false);
+        aoLayer.CreateGlobalTransition(bladeFrenzySpinState).CreateTriggerCondition(bladeFrenzyTrigger);
+        aoLayer.CreateTransition(bladeFrenzySpinState, aoIdleState, true);
         
+        var katanaSlashTrigger = stateMachine.CreateVariable("bf_slash", StateMachineVariableKind.TRIGGER);
+        var katanaState = fightLayer.CreateState("Attack_Melee_1_mIK_AL2", 0, false);
+        fightLayer.CreateGlobalTransition(katanaState).CreateTriggerCondition(katanaSlashTrigger);
+        fightLayer.CreateTransition(katanaState, idleState, true);
+
         #endregion
 
 
@@ -338,15 +349,9 @@ public partial class FightPlayer
         
         var shockedTrigger = stateMachine.CreateVariable("shocked_start", StateMachineVariableKind.TRIGGER);
         var shockedEndTrigger = stateMachine.CreateVariable("shocked_end", StateMachineVariableKind.TRIGGER);
-        var shockedState = aoLayer.CreateState("Electrocute_Loop", 0, true);
+        var shockedState = aoLayer.CreateState("BAT_003/snared_loop", 0, true);
         aoLayer.CreateGlobalTransition(shockedState).CreateTriggerCondition(shockedTrigger);
         aoLayer.CreateTransition(shockedState, aoIdleState, false).CreateTriggerCondition(shockedEndTrigger);
-
-        // Meteor (TODO)
-        var meteorLandTrigger = stateMachine.CreateVariable("meteor_land", StateMachineVariableKind.TRIGGER);
-        var meteorLandState = aoLayer.CreateState("BAT_003/meteor_land", 0, false);
-        aoLayer.CreateGlobalTransition(meteorLandState).CreateTriggerCondition(meteorLandTrigger);
-        aoLayer.CreateTransition(meteorLandState, aoIdleState, true);
 
         // Ice storm
         var iceStormTrigger = stateMachine.CreateVariable("ice_storm_start", StateMachineVariableKind.TRIGGER);
@@ -359,6 +364,12 @@ public partial class FightPlayer
         aoLayer.CreateTransition(iceStormStartState, iceStormLoopState, true);
         aoLayer.CreateTransition(iceStormLoopState, iceStormEndState, false).CreateTriggerCondition(iceStormEndTrigger);
         aoLayer.CreateTransition(iceStormEndState, aoIdleState, true);
+        
+        // Meteor (TODO)
+        var meteorLandTrigger = stateMachine.CreateVariable("meteor_land", StateMachineVariableKind.TRIGGER);
+        var meteorLandState = aoLayer.CreateState("BAT_003/meteor_land", 0, false);
+        aoLayer.CreateGlobalTransition(meteorLandState).CreateTriggerCondition(meteorLandTrigger);
+        aoLayer.CreateTransition(meteorLandState, aoIdleState, true);
 
 
         #endregion
@@ -394,5 +405,31 @@ public partial class FightPlayer
     public void SetBonePosition(string bone, Vector2 pos)
     {
         SpineAnimator.SpineInstance.SetBonePosition(bone, pos);
+    }
+
+    public void SetKatana(bool active)
+    {
+        if (active)
+        {
+            string katana = "weapons/katana/base";
+            if (TotalEliminations > 10000)
+            {
+                katana = "weapons/katana/gold";
+            }
+
+            if (TotalEliminations > 30000)
+            {
+                katana = "weapons/katana/diamond";
+            }
+            SpineAnimator.SpineInstance.EnableSkin(katana);
+        }
+        else
+        {
+            SpineAnimator.SpineInstance.DisableSkin("weapons/katana/base");
+            SpineAnimator.SpineInstance.DisableSkin("weapons/katana/gold");
+            SpineAnimator.SpineInstance.DisableSkin("weapons/katana/diamond");
+        }
+        
+        SpineAnimator.SpineInstance.RefreshSkins();
     }
 }

@@ -38,6 +38,9 @@ public class EffectDeath : FightEffectWithImmunity
             case "ChargingStation":
                 res = "death_knock";
                 break;
+            case "FlashOfSteel":
+                res = "death_swiped";
+                break;
         }
 
         if (res == "death")

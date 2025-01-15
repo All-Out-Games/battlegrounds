@@ -1,0 +1,28 @@
+flash_of_steel.png
+	size: 524, 60
+	filter: Linear, Linear
+	scale: 0.5
+images/0
+	bounds: 354, 15, 39, 55
+	offsets: 34, 0, 73, 63
+	rotate: 90
+images/1
+	bounds: 415, 17, 37, 53
+	offsets: 39, 2, 76, 57
+	rotate: 90
+images/2
+	bounds: 296, 6, 48, 52
+	offsets: 32, 2, 84, 54
+	rotate: 90
+images/3
+	bounds: 473, 10, 44, 44
+	offsets: 32, 0, 76, 44
+images/4
+	bounds: 6, 10, 102, 44
+	offsets: 4, 0, 106, 44
+images/5
+	bounds: 112, 15, 97, 39
+	offsets: 8, 2, 106, 44
+images/6
+	bounds: 215, 19, 75, 35
+	offsets: 17, 4, 95, 43

@@ -89,13 +89,18 @@ public partial class FightPlayerSkillSlotsManager : FightPlayerComponent
     }
     
     /// <summary>
-    /// Replace Slot. Note that this function alone does not save the slot.
+    /// [Client Only] Replace Slot. Note that this function alone does not save the slot.
     /// </summary>
     /// <param name="index"></param>
     /// <param name="faInstanc"></param>
     /// <param name="cooldownAfterReplace"></param>
     public void ReplaceSlot(int index, FightAbility faInstanc, float cooldownAfterReplace = 0)
     {
+        if (Network.IsServer)
+        {
+            Log.Error("You can't run this on the server!");
+            return;
+        }
         // just to be sure
         if (index < 0 || index > ActiveAbilities.Count)
         {
