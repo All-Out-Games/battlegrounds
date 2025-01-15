@@ -1,0 +1,12 @@
+illusion_slash.png
+	size: 420, 136
+	filter: Linear, Linear
+	scale: 0.5
+images/1
+	bounds: 6, 6, 131, 123
+images/2
+	bounds: 281, 13, 131, 116
+	offsets: 3, 2, 135, 120
+images/3
+	bounds: 143, 10, 132, 119
+	offsets: 0, 2, 133, 123

@@ -52,8 +52,9 @@ public class TrailEffect : FightEffect
 
 public class FosHitEffect : FightEffect
 {
-    public static float DamageDelay = 0.8f;
+    public static float DamageDelay = 1.2f;
     public static string SlashPrefabPath = "FoSSlash.prefab";
+    public static string SoulPrefabPath = "FoSEffect.prefab";
 
     private bool _damaged;
     public override bool IsActiveEffect => false;
@@ -62,6 +63,8 @@ public class FosHitEffect : FightEffect
     protected override bool PreventMovement => true;
 
     private Entity _slashEffect;
+    private Entity _soulEffect;
+    private Spine_Animator _soulAnimator;
 
     public int Damage;
     public bool Bleed;
@@ -70,6 +73,30 @@ public class FosHitEffect : FightEffect
     {
         base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimTrigger("fos_victim", true);
+        FightClubGameManager.Instance.ClientSpawn(SoulPrefabPath, Position + new Vector2(0, 1.35f), entity =>
+        {
+            _soulEffect = entity;
+            _soulAnimator = entity.GetComponent<Spine_Animator>();
+            var stateMachine = StateMachine.Make();
+            var mainLayer = stateMachine.CreateLayer("main");
+        
+            var emptyState = mainLayer.CreateState("__CLEAR_TRACK__", 0, true);
+            var appearState = mainLayer.CreateState("appear", 0, false);
+            var idleState = mainLayer.CreateState("loop", 0, true);
+            var disappearState = mainLayer.CreateState("disappear", 0, false);
+
+            var appearTrigger = stateMachine.CreateVariable("fos_soul_start", StateMachineVariableKind.TRIGGER);
+            var disappearTrigger = stateMachine.CreateVariable("fos_soul_crack", StateMachineVariableKind.TRIGGER);
+            mainLayer.CreateGlobalTransition(appearState).CreateTriggerCondition(appearTrigger);
+            mainLayer.CreateTransition(appearState, idleState, true);
+            mainLayer.CreateGlobalTransition(disappearState).CreateTriggerCondition(disappearTrigger);
+            mainLayer.CreateTransition(disappearState, emptyState, true);
+            mainLayer.SetInitialState(emptyState);
+            
+            _soulAnimator.SpineInstance.SetStateMachine(stateMachine, _soulEffect);
+
+            _soulAnimator.SpineInstance.StateMachine.SetTrigger("fos_soul_start");
+        });
     }
 
     public override void Update()
@@ -80,13 +107,21 @@ public class FosHitEffect : FightEffect
             if (Caster.Alive())
             {
                 var info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Melee, FightPlayer.DamageInfo.StunInterruptLevel);
-                FightPlayer.TakeDamage((FightPlayer)Caster,info);
-                if (Bleed)
+                info.SkillKey = "FlashOfSteel";
+
+                if (Bleed && Damage < FightPlayer.CurrentHealth)
                 {
-                    FightPlayer.GetEffectMgr().AddBleed(Player.Entity, 4, 3);
+                    EffectBleed.AddOrStackBleed((FightPlayer)Player, Caster.Entity, 4, EffectConfig.FlashOfSteelConfig.BleedDps);
                 }
-                FightClubGameManager.Instance.ClientSpawn(SlashPrefabPath, Position + new Vector2(0, 0.55f), entity => _slashEffect = entity);
-                SFX.Play(SFXKeys.FoSHitAudio, DefaultSoundDesc);
+                FightPlayer.TakeDamage((FightPlayer)Caster,info);
+                
+
+                if (Network.IsClient && _soulAnimator.Alive())
+                {
+                    FightClubGameManager.Instance.ClientSpawn(SlashPrefabPath, Position + new Vector2(0, 0.55f), entity => _slashEffect = entity);
+                    SFX.Play(SFXKeys.FoSHitAudio, DefaultSoundDesc);
+                    _soulAnimator.SpineInstance.StateMachine.SetTrigger("fos_soul_crack");
+                }
             }
         }
     }
@@ -94,10 +129,15 @@ public class FosHitEffect : FightEffect
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
-        FightPlayer.SetAnimTrigger("RESET");
+        //FightPlayer.SetAnimTrigger("RESET");
         if (_slashEffect.Alive())
         {
             _slashEffect.Destroy();
+        }
+
+        if (_soulEffect.Alive())
+        {
+            _soulEffect.Destroy();
         }
     }
 }
@@ -126,6 +166,7 @@ public class EffectFlashOfSteel : FightEffectWithImmunity
 
         // The player is invincible and not allowed to input movement during the dash
         FightPlayer.SetFacingDirection(AbilityDirection.X > 0);
+        FightPlayer.SetKatana(true);
         if (!isDropIn)
         {
             //SFX.Play(SFXKeys.ShoulderCrashAudio, DefaultSoundDesc);
@@ -178,11 +219,16 @@ public class EffectFlashOfSteel : FightEffectWithImmunity
         
         foreach (var fp in hitPlayers)
         {
-            fp.AddEffect<FosHitEffect>(Player,1.1f, (effect =>
+            if (fp.Damageable())
             {
-                effect.Damage = _config.Damage;
-                effect.Bleed = _config.ApplyBleed;
-            }));
+                fp.AddEffect<FosHitEffect>(Player,1.5f, (effect =>
+                {
+                    effect.Damage = _config.Damage;
+                    effect.Bleed = _config.ApplyBleed;
+                }));
+            }
         }
+        
+        FightPlayer.SetKatana(false);
     }
 }

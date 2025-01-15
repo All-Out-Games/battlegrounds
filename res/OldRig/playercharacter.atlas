@@ -1,670 +1,666 @@
 playercharacter.png
-	size: 4096, 936
+	size: 4096, 940
 	filter: Linear, Linear
 	scale: 0.5
 003Battle/Claws/finger_L claw
-	bounds: 3503, 858, 17, 22
+	bounds: 3503, 860, 17, 22
 003Battle/Claws/thumb_L claw
-	bounds: 1618, 401, 19, 26
+	bounds: 1618, 403, 19, 26
 003Battle/Confusion_Ball/cloud ball01
-	bounds: 2224, 73, 98, 87
+	bounds: 109, 74, 98, 87
 003Battle/Confusion_Ball/cloud ball02
-	bounds: 3817, 55, 87, 74
+	bounds: 3164, 57, 87, 74
 003Battle/Confusion_Ball/cloud shine
-	bounds: 1618, 184, 139, 138
+	bounds: 6, 167, 139, 138
 	offsets: 8, 8, 156, 159
 003Battle/Confusion_Ball/dizzy spiral
-	bounds: 3503, 737, 16, 17
+	bounds: 3503, 739, 16, 17
 003Battle/Confusion_Ball/question mark ball
-	bounds: 3642, 599, 21, 30
+	bounds: 3642, 601, 21, 30
 003Battle/Giant Fists/giant fist L
-	bounds: 2822, 269, 62, 64
+	bounds: 787, 21, 62, 64
+	rotate: 90
 003Battle/Giant Fists/giant fist R
-	bounds: 1608, 45, 67, 71
+	bounds: 3257, 50, 67, 71
+	rotate: 90
 003Battle/Hypnotize/circle_particle
-	bounds: 3498, 597, 16, 16
+	bounds: 3498, 599, 16, 16
 	offsets: 1, 1, 18, 18
 003Battle/Hypnotize/hypnosis_back
-	bounds: 2663, 339, 222, 226
+	bounds: 2663, 341, 222, 226
 	offsets: 1, 1, 224, 228
 003Battle/Hypnotize/hypnosis_front
-	bounds: 1927, 258, 207, 206
+	bounds: 1927, 260, 207, 206
 	offsets: 2, 1, 219, 217
 003Battle/Hypnotize/particle_back
-	bounds: 2459, 8, 40, 40
+	bounds: 1133, 9, 40, 40
 	offsets: 2, 2, 44, 44
 003Battle/Hypnotize/star_particle
-	bounds: 301, 8, 37, 36
+	bounds: 3736, 12, 37, 36
 	offsets: 1, 1, 39, 38
 003Battle/Ice Storm/glow
-	bounds: 3788, 668, 262, 254
+	bounds: 3788, 670, 262, 254
 	offsets: 12, 10, 286, 274
 	rotate: 90
 003Battle/Ice Storm/ground_snowflake
-	bounds: 3208, 635, 289, 295
+	bounds: 3208, 637, 289, 295
 	offsets: 9, 11, 307, 317
 003Battle/Ice Storm/ice_chunk_A
-	bounds: 985, 6, 56, 54
+	bounds: 2962, 6, 56, 54
 003Battle/Ice Storm/ice_chunk_B
-	bounds: 2601, 195, 43, 58
+	bounds: 812, 217, 43, 58
+	rotate: 90
 003Battle/Ice Storm/ice_chunk_C
-	bounds: 2676, 9, 38, 36
+	bounds: 1353, 12, 38, 36
 003Battle/Ice Storm/line_A
-	bounds: 4048, 796, 40, 134
+	bounds: 4048, 798, 40, 134
 	offsets: 1, 1, 42, 136
 003Battle/Ice Storm/line_B
-	bounds: 1017, 166, 114, 147
+	bounds: 2341, 157, 114, 147
 	offsets: 1, 1, 116, 149
 	rotate: 90
 003Battle/Ice Storm/line_C
-	bounds: 3783, 12, 50, 37
+	bounds: 857, 13, 50, 37
 	offsets: 1, 1, 52, 39
 003Battle/Ice Storm/line_D
-	bounds: 3773, 297, 194, 135
+	bounds: 2341, 277, 194, 135
 	offsets: 1, 1, 196, 137
 003Battle/Ice Storm/snow_particle_A
-	bounds: 2168, 8, 47, 52
+	bounds: 2504, 6, 47, 52
 	offsets: 1, 1, 49, 54
 003Battle/Ice Storm/snow_particle_B
-	bounds: 2107, 11, 49, 55
+	bounds: 2121, 71, 49, 55
 	offsets: 1, 1, 51, 57
-	rotate: 90
 003Battle/Ice Storm/snow_particle_C
-	bounds: 2854, 15, 50, 55
+	bounds: 616, 249, 50, 55
 	offsets: 1, 1, 52, 57
 003Battle/Ice Storm/snow_particle_D
-	bounds: 3663, 635, 24, 24
+	bounds: 3663, 637, 24, 24
 	offsets: 1, 1, 26, 26
-003Battle/Katana/Katana Diamond
-	bounds: 832, 113, 53, 174
-	rotate: 90
-003Battle/Katana/Katana Gold
-	bounds: 2601, 116, 53, 174
-	rotate: 90
-003Battle/Katana/Katana base
-	bounds: 1590, 122, 53, 174
-	rotate: 90
 003Battle/Parry/ring
-	bounds: 2915, 386, 239, 240
+	bounds: 2915, 388, 239, 240
 	offsets: 5, 5, 249, 249
 	rotate: 90
 003Battle/Parry/secondary_sparkle
-	bounds: 1109, 7, 32, 32
+	bounds: 1912, 11, 32, 32
 	offsets: 1, 1, 35, 35
 003Battle/Parry/sparkle
-	bounds: 3086, 290, 57, 90
+	bounds: 529, 64, 57, 90
 	offsets: 6, 0, 69, 90
 003Battle/PsyBolt/head_glow
-	bounds: 1115, 45, 75, 75
+	bounds: 3999, 54, 75, 75
 	offsets: 7, 7, 89, 89
 003Battle/PsyBolt/hit/shockwave_A
-	bounds: 1279, 10, 46, 42
+	bounds: 2889, 8, 46, 42
 	offsets: 1, 1, 48, 44
 003Battle/PsyBolt/hit/shockwave_B
-	bounds: 3225, 8, 37, 45
+	bounds: 4051, 218, 37, 45
 	offsets: 1, 1, 39, 47
 003Battle/PsyBolt/hit/shockwave_C
-	bounds: 1681, 11, 38, 30
+	bounds: 1507, 14, 38, 30
 	offsets: 1, 1, 40, 32
 003Battle/PsyThrow/psychic_particle_A Merged
-	bounds: 1618, 377, 19, 18
+	bounds: 3464, 400, 19, 18
 	offsets: 1, 1, 21, 20
 003Battle/PsyThrow/psychic_particle_B Merged
-	bounds: 3503, 719, 12, 12
+	bounds: 3503, 721, 12, 12
 	offsets: 1, 1, 14, 14
 003Battle/PsyThrow/psychic_particle_C Merged
-	bounds: 3566, 473, 21, 21
+	bounds: 3566, 475, 21, 21
 	offsets: 1, 1, 23, 23
 003Battle/PsyThrow/psythrow_body
-	bounds: 545, 286, 169, 162
+	bounds: 3161, 256, 169, 162
 	offsets: 2, 2, 173, 166
 003Battle/PsyThrow/psythrow_hand
-	bounds: 3715, 73, 96, 85
+	bounds: 322, 71, 96, 85
 	offsets: 2, 2, 100, 89
 003Battle/RollOutFX/smoke_A
-	bounds: 3106, 15, 44, 53
+	bounds: 3767, 397, 44, 53
 	offsets: 1, 1, 46, 55
-	rotate: 90
 003Battle/RollOutFX/smoke_B
-	bounds: 1966, 86, 42, 55
+	bounds: 2588, 110, 42, 55
 	offsets: 1, 1, 44, 57
+	rotate: 90
 003Battle/RollOutFX/smoke_C
-	bounds: 4039, 464, 50, 56
+	bounds: 4039, 466, 50, 56
 	offsets: 1, 1, 52, 58
 003Battle/RollOutFX/smoke_D
-	bounds: 2413, 8, 40, 40
+	bounds: 2494, 231, 40, 40
 	offsets: 1, 1, 42, 42
 003Battle/RollOutFX/spark_A
-	bounds: 2653, 316, 31, 17
+	bounds: 538, 433, 31, 17
 	offsets: 1, 1, 33, 19
 003Battle/RollOutFX/spark_B
-	bounds: 836, 474, 21, 21
+	bounds: 836, 476, 21, 21
 	offsets: 1, 1, 23, 23
 003Battle/RollOutFX/spinning_1
-	bounds: 163, 160, 132, 127
+	bounds: 336, 162, 132, 127
 	offsets: 2, 2, 135, 131
 	rotate: 90
 003Battle/RollOutFX/spinning_2
-	bounds: 2472, 140, 123, 113
+	bounds: 3200, 137, 123, 113
 	offsets: 2, 1, 127, 115
 003Battle/RollOutFX/spinning_3
-	bounds: 545, 161, 133, 119
+	bounds: 1157, 139, 133, 119
 	offsets: 2, 2, 137, 123
 003Battle/RollOutFX/spinning_4
-	bounds: 3752, 164, 134, 127
+	bounds: 1017, 155, 134, 127
 	offsets: 2, 2, 138, 131
 003Battle/SelfDestruct/background_glow_shafts
-	bounds: 297, 251, 197, 242
+	bounds: 3761, 243, 197, 242
 	rotate: 90
 003Battle/SelfDestruct/glow
-	bounds: 1258, 262, 197, 196
+	bounds: 1258, 264, 197, 196
 	offsets: 4, 4, 205, 204
 003Battle/SelfDestruct/light_shaft
-	bounds: 4035, 526, 52, 136
+	bounds: 4035, 528, 52, 136
 	offsets: 2, 1, 56, 144
 003Battle/Spittle/spittle1
-	bounds: 3757, 439, 21, 13
+	bounds: 1618, 360, 21, 13
 003Battle/Spittle/spittle2
-	bounds: 143, 432, 24, 16
+	bounds: 399, 434, 24, 16
 003Battle/TotalDarkness/darkness_cloud/darkness_cloud1
-	bounds: 2936, 149, 100, 103
+	bounds: 3329, 123, 100, 103
 	offsets: 0, 2, 102, 107
+	rotate: 90
 003Battle/TotalDarkness/darkness_cloud/darkness_cloud2
-	bounds: 3629, 65, 80, 84
+	bounds: 2981, 66, 80, 84
 	offsets: 1, 2, 83, 88
 003Battle/TotalDarkness/darkness_cloud/darkness_cloud3
-	bounds: 1289, 126, 113, 130
+	bounds: 2042, 132, 113, 130
 	offsets: 1, 2, 114, 142
+	rotate: 90
 003Battle/TotalDarkness/darkness_cloud/darkness_cloud4
-	bounds: 908, 42, 71, 65
+	bounds: 2753, 32, 71, 65
 	offsets: 1, 2, 73, 68
 003Battle/TotalDarkness/darkness_cloud/darkness_cloud5
-	bounds: 2015, 149, 100, 103
+	bounds: 2875, 132, 100, 103
 	offsets: 0, 2, 102, 107
 003Battle/TotalDarkness/darkness_cloud/darkness_cloud6
-	bounds: 745, 66, 80, 84
+	bounds: 4009, 269, 80, 84
 	offsets: 1, 2, 83, 88
 003Battle/TotalDarkness/darkness_cloud/darkness_cloud7
-	bounds: 1170, 126, 113, 130
+	bounds: 1923, 124, 113, 130
 	offsets: 1, 2, 114, 142
 003Battle/TotalDarkness/darkness_cloud/darkness_cloud8
-	bounds: 831, 42, 71, 65
+	bounds: 2676, 37, 71, 65
 	offsets: 1, 2, 73, 68
 003Battle/TotalDarkness/darkness_speedlines
-	bounds: 2388, 416, 514, 269
+	bounds: 2388, 418, 514, 269
 	offsets: 6, 1, 524, 274
 	rotate: 90
 003Battle/TotalDarkness/darkness_wave
-	bounds: 6, 454, 824, 476
+	bounds: 6, 456, 824, 476
 	offsets: 21, 10, 849, 491
 003Battle/TotalDarkness/glow
-	bounds: 2915, 631, 299, 287
+	bounds: 2915, 633, 299, 287
 	offsets: 9, 4, 315, 295
 	rotate: 90
 003Battle/TotalDarkness/ground_burst
-	bounds: 836, 501, 427, 429
+	bounds: 836, 503, 427, 429
 	offsets: 1, 1, 429, 432
 003Battle/TotalDarkness/spark
-	bounds: 2663, 571, 246, 359
+	bounds: 2663, 573, 246, 359
 	offsets: 1, 2, 248, 363
 003Battle/TotalDarkness/star_field
-	bounds: 1649, 530, 400, 398
+	bounds: 1649, 532, 400, 398
 	rotate: 90
 003Battle/birds/bird frame1
-	bounds: 2505, 10, 40, 35
+	bounds: 1461, 14, 40, 35
 	offsets: 0, 1, 40, 36
 003Battle/birds/bird frame2
-	bounds: 1115, 127, 43, 33
+	bounds: 1304, 15, 43, 33
 003Battle/electro_snare/lightning shock1
-	bounds: 138, 6, 56, 54
+	bounds: 3477, 7, 56, 54
 	offsets: 1, 1, 59, 57
 003Battle/electro_snare/lightning shock10
-	bounds: 3926, 646, 26, 16
+	bounds: 3926, 648, 26, 16
 	offsets: 2, 1, 29, 18
 003Battle/electro_snare/lightning shock2
-	bounds: 3654, 552, 17, 11
+	bounds: 3654, 554, 17, 11
 	offsets: 2, 2, 21, 14
 003Battle/electro_snare/lightning shock3
-	bounds: 3735, 913, 46, 17
+	bounds: 3735, 915, 46, 17
 	offsets: 2, 1, 50, 19
 003Battle/electro_snare/lightning shock4
-	bounds: 486, 31, 97, 39
+	bounds: 1702, 38, 97, 39
 	offsets: 1, 1, 99, 42
 003Battle/electro_snare/lightning shock5
-	bounds: 1436, 12, 60, 63
+	bounds: 3600, 17, 60, 63
 	offsets: 1, 1, 63, 66
 	rotate: 90
 003Battle/electro_snare/lightning shock6
-	bounds: 3503, 836, 10, 16
+	bounds: 3503, 838, 10, 16
 	offsets: 1, 2, 12, 20
 003Battle/electro_snare/lightning shock7
-	bounds: 2891, 480, 18, 14
+	bounds: 2891, 482, 18, 14
 	offsets: 1, 2, 21, 17
 003Battle/electro_snare/lightning shock8
-	bounds: 3905, 8, 41, 39
+	bounds: 1179, 10, 41, 39
 	offsets: 1, 2, 44, 42
 003Battle/electro_snare/lightning shock9
-	bounds: 712, 9, 50, 51
+	bounds: 3539, 10, 50, 51
 	offsets: 2, 2, 54, 54
 003Battle/eyeball_glow
-	bounds: 1904, 147, 105, 105
+	bounds: 906, 134, 105, 105
 	offsets: 6, 6, 117, 117
 003Battle/fist_aura/base aura
-	bounds: 1196, 48, 77, 72
+	bounds: 899, 56, 77, 72
 	offsets: 6, 6, 90, 84
 003Battle/fist_aura/shine aura1
-	bounds: 3420, 14, 61, 58
+	bounds: 3669, 19, 61, 58
 	offsets: 4, 11, 84, 84
 003Battle/fist_aura/shine aura2
-	bounds: 1364, 12, 66, 60
+	bounds: 2281, 20, 66, 60
 	offsets: 28, 7, 110, 74
 003Battle/healing ring
-	bounds: 1649, 328, 272, 196
+	bounds: 1649, 330, 272, 196
 	offsets: 5, 5, 282, 207
 003Battle/ice_fist
-	bounds: 416, 14, 64, 63
+	bounds: 1063, 22, 64, 63
 003Battle/meteor/back glow
-	bounds: 2053, 470, 329, 460
+	bounds: 2053, 472, 329, 460
 	offsets: 44, 18, 383, 512
 003Battle/meteor/bottom
-	bounds: 3982, 250, 190, 108
+	bounds: 2541, 227, 190, 108
 	offsets: 1, 1, 192, 110
-	rotate: 90
 003Battle/meteor/cloud1A
-	bounds: 650, 7, 56, 55
+	bounds: 2121, 6, 56, 55
 003Battle/meteor/cloud1B
-	bounds: 589, 14, 56, 55
-	rotate: 90
+	bounds: 682, 8, 56, 55
 003Battle/meteor/cloud2A
-	bounds: 2514, 51, 83, 78
+	bounds: 3745, 54, 83, 78
 	offsets: 0, 1, 83, 79
-	rotate: 90
 003Battle/meteor/cloud2B
-	bounds: 449, 370, 83, 78
+	bounds: 1146, 55, 83, 78
 	offsets: 0, 1, 83, 79
 003Battle/meteor/cloud3A
-	bounds: 3715, 13, 62, 54
+	bounds: 3409, 9, 62, 54
 003Battle/meteor/cloud4A
-	bounds: 2551, 8, 37, 37
+	bounds: 1997, 28, 37, 37
 003Battle/meteor/cloud5A
-	bounds: 2994, 10, 49, 49
+	bounds: 177, 8, 49, 49
 003Battle/meteor/cloud5B
-	bounds: 768, 11, 49, 49
+	bounds: 525, 9, 49, 49
 003Battle/meteor/cloud6A
-	bounds: 334, 50, 76, 75
+	bounds: 1333, 54, 76, 75
 003Battle/meteor/cloud6B
-	bounds: 3910, 53, 76, 75
+	bounds: 2792, 103, 76, 75
 003Battle/meteor/orange layer
-	bounds: 3208, 422, 207, 284
+	bounds: 3208, 424, 207, 284
 	offsets: 2, 2, 211, 288
 	rotate: 90
 003Battle/meteor/side1
-	bounds: 3618, 29, 83, 30
+	bounds: 2415, 28, 83, 30
 	offsets: 1, 1, 85, 32
 003Battle/meteor/side2
-	bounds: 3347, 120, 132, 70
+	bounds: 2654, 108, 132, 70
 	offsets: 1, 1, 134, 72
-	rotate: 90
 003Battle/meteor/yellow layer
-	bounds: 1461, 272, 151, 186
+	bounds: 1461, 274, 151, 186
 	offsets: 0, 0, 151, 196
 003Battle/rage clouds/cloud1
-	bounds: 6, 8, 58, 53
+	bounds: 2183, 8, 58, 53
 003Battle/rage clouds/cloud2
-	bounds: 1047, 9, 56, 51
+	bounds: 2353, 7, 56, 51
 003Battle/shinobi dagger
-	bounds: 2764, 26, 84, 44
+	bounds: 592, 29, 84, 44
 	offsets: 0, 1, 84, 45
 003Battle/shoulder charge/base shield
-	bounds: 3339, 258, 129, 158
+	bounds: 1618, 195, 129, 158
 	offsets: 5, 2, 136, 162
+	rotate: 90
 003Battle/shoulder charge/gradient01
-	bounds: 1763, 181, 135, 141
+	bounds: 1782, 183, 135, 141
 	offsets: 1, 0, 136, 141
 003Battle/shoulder charge/gradient02
-	bounds: 3161, 275, 172, 141
+	bounds: 2891, 241, 172, 141
 	offsets: 31, 0, 203, 141
 003Battle/shoulder charge/largeline1
-	bounds: 1170, 264, 66, 16
+	bounds: 4022, 444, 66, 16
 	offsets: 1, 1, 68, 18
 003Battle/shoulder charge/largeline2
-	bounds: 3817, 140, 51, 18
+	bounds: 3069, 263, 51, 18
 	offsets: 1, 1, 53, 20
 003Battle/shoulder charge/largeline3
-	bounds: 3818, 654, 46, 8
+	bounds: 3818, 656, 46, 8
 	offsets: 1, 1, 48, 10
 003Battle/shoulder charge/line1
-	bounds: 3543, 925, 24, 5
+	bounds: 3543, 927, 24, 5
 	offsets: 1, 0, 25, 5
 003Battle/shoulder charge/line2
-	bounds: 4048, 670, 24, 9
+	bounds: 4048, 672, 24, 9
 003Battle/shoulder charge/line3
-	bounds: 3573, 925, 19, 5
+	bounds: 3573, 927, 19, 5
 003Battle/shoulder charge/line4
-	bounds: 1927, 471, 46, 7
+	bounds: 1927, 473, 46, 7
 003Battle/teleport/back shadow
-	bounds: 1461, 143, 123, 123
+	bounds: 1296, 135, 123, 123
 	offsets: 13, 12, 150, 148
 003Battle/teleport/kanji1
-	bounds: 1505, 13, 29, 41
-	rotate: 90
+	bounds: 3905, 7, 29, 41
 003Battle/teleport/kanji2
-	bounds: 2041, 12, 43, 53
+	bounds: 2830, 13, 43, 53
 	rotate: 90
 003Battle/teleport/teleport cloud1
-	bounds: 1408, 198, 43, 58
+	bounds: 3912, 376, 43, 58
 003Battle/teleport/teleport cloud2
-	bounds: 1596, 8, 31, 31
+	bounds: 3300, 12, 31, 31
 	offsets: 1, 1, 33, 33
 003Battle/teleport/teleport cloud3
-	bounds: 4048, 685, 38, 50
+	bounds: 4048, 687, 38, 50
 003Battle/teleport/teleport cloud4
-	bounds: 233, 13, 62, 55
+	bounds: 109, 13, 62, 55
 	offsets: 0, 1, 63, 57
 003Battle/wind_punch/wind_orb
-	bounds: 139, 66, 88, 88
+	bounds: 2494, 64, 88, 88
 	offsets: 2, 2, 92, 92
 003Battle/wind_punch/wind_punch_1
-	bounds: 2015, 61, 86, 82
+	bounds: 1832, 91, 86, 82
 	offsets: 2, 2, 89, 85
+	rotate: 90
 003Battle/wind_punch/wind_punch_2
-	bounds: 6, 67, 86, 84
+	bounds: 3508, 67, 86, 84
 	offsets: 2, 2, 89, 87
 003Battle/wind_punch/wind_punch_3
-	bounds: 651, 68, 88, 82
+	bounds: 693, 69, 88, 82
 	offsets: 1, 2, 90, 86
 003Battle/wind_punch/wind_punch_4
-	bounds: 1873, 60, 87, 81
+	bounds: 2406, 64, 87, 81
 	offsets: 2, 2, 90, 85
+	rotate: 90
 100_buttons/skins/cake
-	bounds: 307, 131, 144, 149
+	bounds: 3771, 122, 144, 149
 	offsets: 19, 30, 179, 179
 	rotate: 90
 100_buttons/vfx/blue_button
-	bounds: 2121, 66, 97, 94
+	bounds: 6, 67, 97, 94
 100_buttons/vfx/electrocute/electricity_sparks1
-	bounds: 1279, 58, 62, 79
-	rotate: 90
+	bounds: 3438, 69, 62, 79
 100_buttons/vfx/electrocute/electricity_sparks2
-	bounds: 1835, 19, 63, 35
+	bounds: 1235, 20, 63, 35
 100_buttons/vfx/electrocute/electricity_sparks3
-	bounds: 459, 200, 74, 46
+	bounds: 301, 19, 74, 46
 100_buttons/vfx/electrocute/electrocute_aura1
-	bounds: 2140, 249, 195, 215
+	bounds: 2140, 251, 195, 215
 	offsets: 1, 1, 197, 217
 100_buttons/vfx/electrocute/electrocute_aura2
-	bounds: 1042, 286, 210, 209
+	bounds: 1042, 288, 210, 209
 	offsets: 1, 1, 212, 211
 100_buttons/vfx/feathers1
-	bounds: 1243, 11, 29, 31
+	bounds: 982, 97, 29, 31
 100_buttons/vfx/feathers2
-	bounds: 419, 91, 25, 35
+	bounds: 3601, 144, 25, 35
 100_buttons/vfx/feathers3
-	bounds: 97, 421, 40, 27
+	bounds: 353, 423, 40, 27
 100_buttons/vfx/red_button
-	bounds: 1012, 66, 97, 94
+	bounds: 2178, 67, 97, 94
 100_buttons/vfx/smoke_particle
-	bounds: 1904, 8, 47, 46
+	bounds: 616, 197, 47, 46
 	offsets: 1, 1, 49, 49
 100_buttons/vfx/smoke_particle2
-	bounds: 2781, 131, 40, 36
+	bounds: 1415, 13, 40, 36
 	offsets: 1, 2, 42, 39
 100_buttons/vfx/smoke_particle3
-	bounds: 200, 29, 27, 31
+	bounds: 2247, 30, 27, 31
 	offsets: 1, 1, 31, 33
 100_buttons/vfx/weapon_swings/swipe333
-	bounds: 6, 298, 150, 311
+	bounds: 262, 300, 150, 311
 	rotate: 90
 100_buttons/vfx/yellow_button
-	bounds: 1770, 81, 97, 94
+	bounds: 1729, 83, 97, 94
 100_buttons/weapons/balloon_sword
-	bounds: 849, 172, 63, 154
+	bounds: 2494, 158, 63, 154
 	rotate: 90
 100_buttons/weapons/beam_sabre
-	bounds: 3161, 475, 23, 150
+	bounds: 3161, 477, 23, 150
 	offsets: 0, 0, 24, 150
 100_buttons/weapons/beehive_launcher
-	bounds: 2891, 258, 189, 122
+	bounds: 3336, 229, 189, 122
+	rotate: 90
 100_buttons/weapons/cactus_sword
-	bounds: 3498, 500, 89, 150
+	bounds: 3498, 502, 89, 150
 	rotate: 90
 100_buttons/weapons/chicken
-	bounds: 3892, 135, 78, 156
+	bounds: 2178, 167, 78, 156
+	rotate: 90
 100_buttons/weapons/disco_ball_shooter
-	bounds: 2515, 259, 151, 132
+	bounds: 2737, 184, 151, 132
 	rotate: 90
 100_buttons/weapons/finger_gun
-	bounds: 1408, 149, 45, 43
+	bounds: 3205, 8, 45, 43
 100_buttons/weapons/foam_hand
-	bounds: 233, 74, 79, 95
-	rotate: 90
+	bounds: 3069, 287, 79, 95
 100_buttons/weapons/gun
-	bounds: 2598, 45, 72, 65
+	bounds: 3834, 44, 72, 65
+	rotate: 90
 2.0.1_additions/eyes/crying/lid_watery_L
-	bounds: 70, 12, 62, 49
+	bounds: 6, 12, 62, 49
 2.0.1_additions/eyes/crying/lid_watery_R
-	bounds: 1966, 21, 69, 34
+	bounds: 2654, 187, 69, 34
 2.0.1_additions/eyes/crying/lighteye_watery_L
-	bounds: 3498, 454, 62, 40
+	bounds: 3498, 456, 62, 40
 2.0.1_additions/eyes/crying/lighteye_watery_R
-	bounds: 3498, 454, 62, 40
+	bounds: 3498, 456, 62, 40
 2.0.1_additions/eyes/crying/tear_watery_L
-	bounds: 1196, 13, 41, 29
+	bounds: 3779, 19, 41, 29
 2.0.1_additions/eyes/crying/tear_watery_R
-	bounds: 2594, 12, 33, 27
+	bounds: 2557, 14, 33, 27
 2.0.1_additions/eyes/lid_rage_L
-	bounds: 3046, 65, 82, 81
+	bounds: 213, 63, 82, 81
 2.0.1_additions/eyes/lid_rage_R
-	bounds: 2427, 54, 80, 81
+	bounds: 3912, 54, 80, 81
 	rotate: 90
 2.0.1_additions/mouths/mouth_cheesy_grin
-	bounds: 3504, 88, 119, 65
+	bounds: 2281, 86, 119, 65
 2.0.1_additions/mouths/mouth_closed_teeth_pain
-	bounds: 3964, 634, 64, 28
+	bounds: 3964, 636, 64, 28
 2.0.1_additions/mouths/mouth_concentration
-	bounds: 2224, 31, 95, 36
+	bounds: 424, 33, 95, 36
 2.0.1_additions/mouths/mouth_grimace
-	bounds: 1927, 484, 102, 40
+	bounds: 1927, 486, 102, 40
 2.0.1_additions/mouths/mouth_open_scream1
-	bounds: 3839, 19, 60, 30
+	bounds: 913, 20, 60, 30
 2.0.1_additions/mouths/mouth_open_scream2
-	bounds: 3165, 15, 54, 38
+	bounds: 3145, 13, 54, 38
 2.0.1_additions/mouths/mouth_rage
-	bounds: 2781, 76, 126, 46
+	bounds: 3600, 83, 126, 46
 2.0.1_additions/mouths/mouth_slack_jawed
-	bounds: 1755, 21, 74, 54
+	bounds: 1832, 31, 74, 54
 2.0.1_additions/mouths/mouth_smug
-	bounds: 3502, 45, 110, 37
+	bounds: 1586, 60, 110, 37
 	offsets: 0, 1, 110, 38
 2.0.1_additions/mouths/mouth_starstruck
-	bounds: 3172, 59, 92, 68
+	bounds: 1235, 61, 92, 68
 2.0.1_additions/mouths/punched_mouth
-	bounds: 2917, 85, 123, 58
+	bounds: 1017, 91, 123, 58
 2.0.1_additions/puffy_cheek
-	bounds: 1681, 47, 68, 69
+	bounds: 3334, 49, 68, 69
+	rotate: 90
 2.0.1_additions/revolver spin
-	bounds: 3049, 12, 51, 47
+	bounds: 232, 10, 51, 47
 Swiped/stomach gash
-	bounds: 2121, 166, 127, 77
+	bounds: 3963, 359, 127, 77
 	offsets: 0, 1, 128, 79
 base_colours/crewchsia/body_base
-	bounds: 449, 77, 92, 111
+	bounds: 596, 78, 92, 111
 	offsets: 42, 31, 179, 180
 base_colours/crewchsia/eyeball_L
-	bounds: 3992, 8, 40, 42
+	bounds: 3773, 349, 40, 42
 	offsets: 1, 0, 42, 42
 base_colours/crewchsia/eyeball_R
-	bounds: 3161, 428, 41, 41
+	bounds: 3161, 430, 41, 41
 base_colours/crewchsia/eyelids/lid_angry
-	bounds: 1552, 12, 38, 30
+	bounds: 3256, 14, 38, 30
 	offsets: 0, 0, 39, 30
 base_colours/crewchsia/eyelids/lid_blink
-	bounds: 2341, 422, 40, 42
+	bounds: 2341, 424, 40, 42
 	offsets: 1, 0, 42, 42
 base_colours/crewchsia/eyelids/lid_happy
-	bounds: 1633, 16, 39, 23
+	bounds: 3337, 20, 39, 23
 	offsets: 1, 0, 41, 23
 base_colours/crewchsia/eyelids/lid_sad
-	bounds: 4048, 741, 40, 49
+	bounds: 4048, 743, 40, 49
 	offsets: 1, 0, 42, 49
 base_colours/crewchsia/finger_L
-	bounds: 1618, 352, 19, 19
+	bounds: 1618, 378, 19, 19
 base_colours/crewchsia/hand_L_fist
-	bounds: 2368, 8, 37, 36
+	bounds: 4042, 12, 37, 36
 base_colours/crewchsia/hand_L_palm
-	bounds: 2325, 8, 37, 36
+	bounds: 3999, 12, 37, 36
 base_colours/crewchsia/hand_R_fist
-	bounds: 344, 9, 37, 35
+	bounds: 2830, 62, 37, 35
 base_colours/crewchsia/leg_L
-	bounds: 3134, 79, 33, 43
+	bounds: 1659, 11, 33, 43
 	offsets: 18, 14, 69, 72
 base_colours/crewchsia/leg_R
-	bounds: 98, 106, 34, 47
+	bounds: 744, 16, 34, 47
 	offsets: 18, 14, 69, 72
 base_colours/crewchsia/mouth_flat
-	bounds: 3886, 651, 31, 11
+	bounds: 3886, 653, 31, 11
 base_colours/crewchsia/mouth_sleep_closed
-	bounds: 2891, 500, 18, 16
+	bounds: 2891, 502, 18, 16
 base_colours/crewchsia/mouth_sleep_open
-	bounds: 39, 423, 52, 25
+	bounds: 295, 425, 52, 25
 base_colours/crewchsia/mouth_teethygrin
-	bounds: 2670, 180, 49, 22
+	bounds: 3062, 22, 49, 22
 base_colours/crewchsia/pupil_L
-	bounds: 2891, 546, 18, 19
+	bounds: 2891, 548, 18, 19
 	offsets: 0, 0, 19, 19
 base_colours/crewchsia/pupil_R
-	bounds: 2891, 522, 18, 18
+	bounds: 2891, 524, 18, 18
 base_colours/crewchsia/thumb_L
-	bounds: 7, 427, 20, 21
+	bounds: 263, 429, 20, 21
 base_colours/jake/Body
-	bounds: 1269, 464, 374, 466
+	bounds: 1269, 466, 374, 466
 	offsets: 72, 74, 540, 540
 base_colours/jake/Leg L
-	bounds: 3225, 132, 116, 137
+	bounds: 3628, 134, 116, 137
 	offsets: 156, 8, 540, 540
+	rotate: 90
 base_colours/jake/Leg R
-	bounds: 3610, 154, 88, 136
+	bounds: 1587, 101, 88, 136
 	offsets: 321, 0, 540, 540
 	rotate: 90
 base_colours/jake/eyeball_L
-	bounds: 2328, 50, 79, 76
+	bounds: 1425, 55, 79, 76
 	offsets: 2, 2, 81, 80
 base_colours/jake/eyeball_R
-	bounds: 3423, 78, 73, 73
+	bounds: 2042, 53, 73, 73
 	offsets: 4, 3, 79, 80
 base_colours/jake/finger_L
-	bounds: 3952, 13, 34, 34
+	bounds: 2080, 13, 34, 34
 	offsets: 0, 0, 35, 34
 base_colours/jake/hand_L_fist
-	bounds: 1530, 48, 72, 68
+	bounds: 3067, 50, 72, 68
 base_colours/jake/hand_L_palm
-	bounds: 3270, 59, 71, 69
+	bounds: 1920, 49, 71, 69
 base_colours/jake/hand_R_fist
-	bounds: 3347, 44, 70, 67
-	rotate: 90
+	bounds: 1510, 50, 70, 67
 base_colours/jake/pupil_L
-	bounds: 98, 68, 34, 34
+	bounds: 2040, 13, 34, 34
 base_colours/jake/pupil_R
-	bounds: 1147, 8, 33, 31
+	bounds: 1950, 12, 33, 31
 	offsets: 0, 1, 33, 33
 base_colours/jake/thumb_L
-	bounds: 1364, 81, 36, 39
+	bounds: 381, 26, 36, 39
 hand_pointing
-	bounds: 546, 76, 99, 79
+	bounds: 424, 75, 99, 79
+knife
+	bounds: 6, 311, 139, 250
+	rotate: 90
 player_skins/Banana_Guy/images/top
-	bounds: 2653, 172, 161, 171
+	bounds: 160, 148, 161, 171
 	offsets: 15, 8, 179, 179
 	rotate: 90
 player_skins/Burger_Guy/images/top
-	bounds: 2320, 131, 147, 133
+	bounds: 3048, 123, 147, 133
 	offsets: 15, 25, 179, 179
 player_skins/Day_1/body_base
-	bounds: 3503, 594, 280, 336
+	bounds: 3503, 596, 280, 336
 	offsets: 60, 99, 435, 435
 player_skins/Golden Poop Skin/body_base
-	bounds: 3484, 239, 255, 285
+	bounds: 3484, 241, 255, 285
 	offsets: 51, 58, 357, 357
 	rotate: 90
 player_skins/Hot_Dog_Guy/images/top
-	bounds: 3068, 126, 147, 157
+	bounds: 1433, 121, 147, 157
 	offsets: 17, 15, 179, 179
 	rotate: 90
 player_skins/Pizza_Guy/images/top
-	bounds: 3441, 155, 140, 167
+	bounds: 3446, 153, 140, 167
 	offsets: 32, 12, 179, 179
 	rotate: 90
 player_skins/Poop Skin/body_base
-	bounds: 753, 240, 255, 285
+	bounds: 753, 242, 255, 285
 	offsets: 51, 58, 357, 357
 	rotate: 90
 player_skins/Poop Skin/leg_L
-	bounds: 4004, 48, 73, 86
+	bounds: 2874, 53, 73, 86
 	offsets: 33, 27, 136, 141
 	rotate: 90
 player_skins/Poop Skin/leg_R
-	bounds: 2676, 41, 69, 83
+	bounds: 2587, 33, 69, 83
 	offsets: 38, 32, 136, 141
 	rotate: 90
 player_skins/alien/antenna
-	bounds: 3270, 20, 67, 33
+	bounds: 1586, 21, 67, 33
 player_skins/alien/body
-	bounds: 2826, 127, 104, 128
+	bounds: 3924, 135, 104, 128
 	offsets: 38, 28, 179, 179
+	rotate: 90
 player_skins/alien/ear_L
-	bounds: 1007, 469, 22, 26
+	bounds: 1007, 471, 22, 26
 player_skins/alien/ear_R
-	bounds: 1618, 433, 22, 25
+	bounds: 1618, 435, 22, 25
 player_skins/alien/leg_L
-	bounds: 720, 300, 37, 43
+	bounds: 4053, 137, 37, 43
 	offsets: 16, 14, 69, 71
 player_skins/alien/leg_R
-	bounds: 3503, 884, 37, 46
+	bounds: 3503, 886, 37, 46
 	offsets: 18, 14, 69, 71
 player_skins/chicken suit/Leg_L
-	bounds: 322, 362, 33, 46
+	bounds: 1577, 222, 33, 46
 	offsets: 18, 11, 69, 71
 player_skins/chicken suit/Leg_R
-	bounds: 300, 414, 34, 46
+	bounds: 3024, 14, 34, 46
 	offsets: 18, 14, 69, 71
-	rotate: 90
 player_skins/chicken suit/skin_top
-	bounds: 3669, 437, 243, 365
+	bounds: 3669, 439, 243, 365
 	offsets: 88, 99, 464, 464
 	rotate: 90
 player_skins/chicken suit/tail
-	bounds: 2254, 169, 55, 74
+	bounds: 2981, 161, 55, 74
 player_skins/garryblox/leg_L
-	bounds: 4045, 9, 35, 45
+	bounds: 3464, 285, 35, 45
 	offsets: 18, 11, 68, 71
-	rotate: 90
 player_skins/garryblox/leg_R
-	bounds: 720, 350, 34, 46
+	bounds: 3940, 14, 34, 46
 	offsets: 20, 11, 68, 71
+	rotate: 90
 player_skins/garryblox/skin_top
-	bounds: 692, 156, 138, 152
+	bounds: 671, 156, 138, 152
 	offsets: 0, 27, 179, 179
-	rotate: 90
 player_skins/henwy/skin_top
-	bounds: 6, 156, 138, 152
+	bounds: 473, 159, 138, 152
 	offsets: 0, 27, 179, 179
-	rotate: 90
 player_skins/potato/body
-	bounds: 3976, 121, 94, 123
+	bounds: 807, 87, 94, 123
 	offsets: 43, 26, 179, 179
 player_skins/potato/leg_L
-	bounds: 3654, 498, 36, 45
+	bounds: 3654, 500, 36, 45
 	offsets: 17, 12, 69, 71
 player_skins/potato/leg_R
-	bounds: 720, 400, 41, 48
+	bounds: 1997, 70, 41, 48
 	offsets: 17, 13, 69, 71
 player_skins/potato/mouth_potato
-	bounds: 3764, 897, 16, 10
+	bounds: 3764, 899, 16, 10
 projectile_spin
-	bounds: 2913, 25, 75, 54
+	bounds: 982, 31, 75, 54
 	offsets: 0, 0, 75, 55
 revolver
-	bounds: 2341, 270, 168, 140
+	bounds: 578, 310, 168, 140
 	offsets: 0, 0, 168, 141
 shadow
-	bounds: 1408, 78, 116, 59
+	bounds: 2541, 353, 116, 59
 	offsets: 3, 3, 122, 64

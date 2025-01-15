@@ -8,6 +8,7 @@ public static partial class SkillConfig
     public static readonly int _overrideValue_ = Int32.MinValue;
     public static readonly int[] _tierOneGemCost = new[] { 250, 625, 1500, 4000};
     public static readonly int[] _tierTwoGemCost = new[] { 400, 1000, 2500, 6250};
+    public static readonly int[] _tierThreeGemCost = new[] { 500, 1250, 3000, 7500 };
     
     // NOTE: The query dictionary (SkillKey : NodeConfig) is defined at the bottom of this file as 'STConfigQueryDict'
     // You MUST define node config and add it to the query dict.
@@ -390,14 +391,14 @@ public static partial class SkillConfig
             "An extremely fast slash that tears through the enemies behind you.",
         RangeDescriptionKey = "7m",
         BaseDamageKey = _overrideValue_,
-        UpgradeTextKey = "*: Cooldown -1\n **: Damage +1\n ***: Damage +1\n ****: Apply Bleed x3 to victims",
+        UpgradeTextKey = "*: Cooldown -1\n **: Damage +1\n ***: Damage +2\n ****: Apply Bleed x3 to victims",
         CooldownKey = "%OVERRIDE%",
         UnlockLevel = 1, // TODO: 36
         MaximumLevel = 5,
         UpgradeGemCost = _tierTwoGemCost,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Defensive,
-        UpgradeCost = 10750,
+        UpgradeCost = 11750,
         GridX = 0,
         GridY = 2,
         SkillKey = "FlashOfSteel",
@@ -405,7 +406,32 @@ public static partial class SkillConfig
         AbilityIconPath = "AbilityIcon_Separate/defense/flash_of_steel_icon.png",
         //AbilityPreviewPath = "Ability_Preview/defense/parry.gif",
         ParentNodeKeys = new string[] { "HealthBoostD" },
-        ChildrenNodeKeys = new string[] { }, // TODO: Blade Frenzy
+        ChildrenNodeKeys = new string[] { "BladeFrenzy" }
+    };
+    
+    public static readonly SkillTreeNodeConfig BladeFrenzyConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Blade Frenzy",
+        DescriptionTextKey =
+            "Pull out your samurai sword. Replace your punch with a powerful swing attack for a few seconds.",
+        RangeDescriptionKey = "Melee",
+        BaseDamageKey = _overrideValue_,
+        UpgradeTextKey = "*: Cooldown -1\n **: Duration +1\n ***: Damage +1\n ****: Allows you to use Illusion Slash",
+        CooldownKey = "%OVERRIDE%",
+        UnlockLevel = 1, // TODO: 40
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierThreeGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Defensive,
+        UpgradeCost = 15000,
+        GridX = 0,
+        GridY = 3,
+        SkillKey = "BladeFrenzy",
+        IconPath = "AbilityIcon_Merged/defense/blade_frenzy.png",
+        AbilityIconPath = "AbilityIcon_Separate/defense/blade_frenzy_icon.png",
+        //AbilityPreviewPath = "Ability_Preview/defense/parry.gif",
+        ParentNodeKeys = new string[] { "FlashOfSteel" },
+        ChildrenNodeKeys = new string[] { }
     };
 
     #endregion
@@ -1281,6 +1307,7 @@ public static partial class SkillConfig
             {"GravityCrush", GravityCrushConfig},
             {"Parry", ParryConfig},
             {"FlashOfSteel", FlashOfSteelConfig},
+            {"BladeFrenzy", BladeFrenzyConfig},
             // Brawler
             { "ShoulderCrash", ShoulderCrashNodeConfig },
             { "GroundStomp", GroundStompConfig },
@@ -1328,7 +1355,7 @@ public static partial class SkillConfig
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>()
     {
         // Defensive
-        "Punch", "RollOut", "Shield","IronSkin","SpikeShield","GravityCrush", "Parry", "FlashOfSteel",
+        "Punch", "RollOut", "Shield","IronSkin","SpikeShield","GravityCrush", "Parry", "FlashOfSteel","BladeFrenzy",
         // Brawler
         "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam", 
         // Psionic
@@ -1389,7 +1416,8 @@ public partial class FightAbility
         {SC.ThunderboltNodeConfig.SkillKey, typeof(AbilityThunderbolt)},
         {SC.IceStormNodeConfig.SkillKey, typeof(AbilityIceStorm)},
         {SC.ChargingStationNodeConfig.SkillKey, typeof(AbilityChargingStation)},
-        {SC.FlashOfSteelConfig.SkillKey, typeof(AbilityFlashOfSteel)}
+        {SC.FlashOfSteelConfig.SkillKey, typeof(AbilityFlashOfSteel)},
+        {SC.BladeFrenzyConfig.SkillKey, typeof(AbilityBladeFrenzy)}
     };
 }
 

@@ -1164,7 +1164,7 @@ public static class EffectConfig
         public static float DashTime = 0.15f;
         public static float Cooldown = 13f;
         public static int BleedDps = 3;
-        public static int BaseDmg = 5;
+        public static int BaseDmg = 16;
 
         public int Damage;
         public bool ApplyBleed;
@@ -1181,13 +1181,52 @@ public static class EffectConfig
             }
             if (level > 3)
             {
-                res.Damage += 1;
+                res.Damage += 2;
             }
 
             if (level > 4)
             {
                 res.ApplyBleed = true;
             }
+            return res;
+        }
+    }
+
+    #endregion
+
+    #region cfg: Blade Frenzy
+
+    public struct BladeFrenzyConfig
+    {
+        public static float DefaultDuration = 6.5f;
+        public static float Cooldown = 15f;
+        public static float IllusionSlashCooldown = 3f;
+        public static int BaseDamage = 3;
+        public static float DefaultSlashAnimationTime = 0.55f; // ~30% faster than punch
+        public static float DefaultSlashActivationTime = 0.25f;
+
+        public int Damage;
+        public bool GiveIllusionSlash;
+        public float Duration;
+
+        public static BladeFrenzyConfig GetDefault(int atk, int level)
+        {
+            BladeFrenzyConfig res = new BladeFrenzyConfig()
+            {
+                Damage = atk + BaseDamage,
+                GiveIllusionSlash = level > 4,
+                Duration = DefaultDuration
+            };
+            if (level > 3)
+            {
+                res.Damage += 1;
+            }
+
+            if (level > 2)
+            {
+                res.Duration += 1;
+            }
+
             return res;
         }
     }

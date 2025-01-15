@@ -428,13 +428,14 @@ environment/PvP/Tree_shadow.png - .ao - 674e5de9f6994d2906c249ec - 1600725844832
 environment/PvP/Tree_shadow.png - .ao.astc - 674e5deaf6994d2906c249ee - 685510780554791038
 FatPlayerCollision.prefab - .ao - 674e5deaf6994d2906c249f0 - 16902587699674827969
 FightPlayerRig/fightplayer.merged_spine_rig - .ao - 674e5deaf6994d2906c249f2 - 1663132257603852584
-FightPlayerRig/playercharacter.png - .ao - 674e5ce9f6994d2906c246e6 - 2695951919792913300
-FightPlayerRig/playercharacter.png - .ao.astc - 674e5ce9f6994d2906c246ea - 7910490978658699953
-FightPlayerRig/playercharacter.spine - .ao - 675096caf6994d2906c25c63 - 8264663131237128899
+FightPlayerRig/playercharacter.png - .ao - 6786d40b793f9e63737ad058 - 6794786448510955121
+FightPlayerRig/playercharacter.png - .ao.astc - 6786d40a793f9e63737ad055 - 1811488004116199878
+FightPlayerRig/playercharacter.spine - .ao - 6786f25f793f9e63737ad070 - 5064020310722027967
 FightPlayerRig/playercharacter_2.png - .ao - 674e5debf6994d2906c249f5 - 1531567999432186285
 FightPlayerRig/playercharacter_2.png - .ao.astc - 674e5debf6994d2906c249f8 - 17514452604510451454
 FireballProjectile.prefab - .ao - 6739340802386857e8d33419 - 6615212460275438377
-FoSSlash.prefab - .ao - 67859d79793f9e63737ad023 - 10518550431150780964
+FoSEffect.prefab - .ao - 6786d491793f9e63737ad06b - 15470982433522332412
+FoSSlash.prefab - .ao - 6786d40c793f9e63737ad05b - 5317468476753571279
 GravityCrushVFX.prefab - .ao - 674e5decf6994d2906c249fa - 8589744853951767240
 HitVfx.prefab - .ao - 674e5decf6994d2906c249fc - 8922161560569567443
 IceProjectile.prefab - .ao - 6752a56bf6994d2906c26c1e - 3898667714857707133
@@ -455,6 +456,9 @@ LeaderBoard/RANK ME.png - .ao - 674e5df0f6994d2906c24a16 - 18355927931936680427
 LeaderBoard/RANK ME.png - .ao.astc - 674e5df1f6994d2906c24a18 - 9598768695101308452
 LeapSlamCrater.prefab - .ao - 674e5df1f6994d2906c24a1b - 16364410912099090893
 LoadoutItemGroup.prefab - .ao - 673949b102386857e8d33420 - 13916418734727225903
+OldRig/playercharacter.png - .ao - 6786fdda793f9e63737ad072 - 2695951919792913300
+OldRig/playercharacter.png - .ao.astc - 6786fdda793f9e63737ad073 - 7910490978658699953
+OldRig/playercharacter.spine - .ao - 6786fddd793f9e63737ad076 - 12077071862157595132
 Pipe_1.prefab - .ao - 674e5df1f6994d2906c24a1c - 4932859284795892587
 Pipe_Straight.prefab - .ao - 674e5df2f6994d2906c24a1e - 5859368875629010514
 projectile/BAT003_Projectile/BAT003_projectile.png - .ao - 674e5df2f6994d2906c24a21 - 3835586870936598686
@@ -505,12 +509,18 @@ Props/DropItems/SpectralPotion.png - .ao - 674ac02ff6994d2906c23e5c - 6601265293
 Props/DropItems/SpectralPotion.png - .ao.astc - 674ac02ff6994d2906c23e5b - 11204695746865618386
 Props/DropItems/VengeancePotion.png - .ao - 674a62c5f6994d2906c23d77 - 14612219104380000043
 Props/DropItems/VengeancePotion.png - .ao.astc - 674a62c5f6994d2906c23d78 - 5622864394937217667
+Props/FlashOfSteel/flash_of_steel.png - .ao - 6786d40d793f9e63737ad05f - 13576731462466091886
+Props/FlashOfSteel/flash_of_steel.png - .ao.astc - 6786d40d793f9e63737ad061 - 10230172549169853774
+Props/FlashOfSteel/flash_of_steel.spine - .ao - 6786d40d793f9e63737ad060 - 17319390477357877833
 Props/FlashOfSteel/FoSSlash.png - .ao - 678599d8793f9e63737ad01b - 14555219632318839852
 Props/FlashOfSteel/FoSSlash.png - .ao.astc - 678599d8793f9e63737ad01a - 2003753422884303118
 Props/GroundRecticles/ground_reticle.png - .ao - 674e5ceaf6994d2906c246ec - 13519533673276912784
 Props/GroundRecticles/ground_reticle.png - .ao.astc - 674e5ceaf6994d2906c246ee - 17513538547079004455
 Props/GroundRecticles/lightning_reticle.png - .ao - 674e5cebf6994d2906c246f0 - 4065664044103921175
 Props/GroundRecticles/lightning_reticle.png - .ao.astc - 674e5cebf6994d2906c246f2 - 6297978938524774863
+Props/IllusionSlash/illusion_slash.png - .ao - 6786d40d793f9e63737ad065 - 16043677048867046081
+Props/IllusionSlash/illusion_slash.png - .ao.astc - 6786d40d793f9e63737ad067 - 4597596555403758728
+Props/IllusionSlash/illusion_slash.spine - .ao - 6786d40d793f9e63737ad066 - 3473664925239621502
 Props/LightningTrap/BAT003_lightning_trap.png - .ao - 674e5cebf6994d2906c246f4 - 5726906139401577890
 Props/LightningTrap/BAT003_lightning_trap.png - .ao.astc - 674e5cecf6994d2906c246f6 - 11064370672755449933
 Props/LightningTrap/BAT003_lightning_trap.spine - .ao - 674e5dfbf6994d2906c24a5b - 11470229911709403585
