@@ -164,6 +164,8 @@ AbilityIcon_Separate/brawler/shoulder_crash_icon.png - .ao - 674e5d9ff6994d2906c
 AbilityIcon_Separate/brawler/shoulder_crash_icon.png - .ao.astc - 674e5d9ff6994d2906c2483a - 5935664943280204559
 AbilityIcon_Separate/defense/gravity_crush_icon.png - .ao - 674e5da0f6994d2906c2483c - 10635255930869861855
 AbilityIcon_Separate/defense/gravity_crush_icon.png - .ao.astc - 67319d87ada08dbbbde3fb5b - 10233222342527472786
+AbilityIcon_Separate/defense/illusion_slash.png - .ao - 67874be2793f9e63737ad089 - 637800575221789726
+AbilityIcon_Separate/defense/illusion_slash.png - .ao.astc - 67874be2793f9e63737ad088 - 1364187278612089127
 AbilityIcon_Separate/defense/iron_aura_icon.png - .ao - 674e5da0f6994d2906c2483e - 12942035253279592246
 AbilityIcon_Separate/defense/iron_aura_icon.png - .ao.astc - 674e5da0f6994d2906c24840 - 975073660925390182
 AbilityIcon_Separate/defense/parry_icon.png - .ao - 674e5da1f6994d2906c24842 - 5249007399339417614
@@ -430,7 +432,7 @@ FatPlayerCollision.prefab - .ao - 674e5deaf6994d2906c249f0 - 1690258769967482796
 FightPlayerRig/fightplayer.merged_spine_rig - .ao - 674e5deaf6994d2906c249f2 - 1663132257603852584
 FightPlayerRig/playercharacter.png - .ao - 6786d40b793f9e63737ad058 - 6794786448510955121
 FightPlayerRig/playercharacter.png - .ao.astc - 6786d40a793f9e63737ad055 - 1811488004116199878
-FightPlayerRig/playercharacter.spine - .ao - 6786f25f793f9e63737ad070 - 5064020310722027967
+FightPlayerRig/playercharacter.spine - .ao - 678728e5793f9e63737ad078 - 8367699568590935808
 FightPlayerRig/playercharacter_2.png - .ao - 674e5debf6994d2906c249f5 - 1531567999432186285
 FightPlayerRig/playercharacter_2.png - .ao.astc - 674e5debf6994d2906c249f8 - 17514452604510451454
 FireballProjectile.prefab - .ao - 6739340802386857e8d33419 - 6615212460275438377
@@ -439,6 +441,7 @@ FoSSlash.prefab - .ao - 6786d40c793f9e63737ad05b - 5317468476753571279
 GravityCrushVFX.prefab - .ao - 674e5decf6994d2906c249fa - 8589744853951767240
 HitVfx.prefab - .ao - 674e5decf6994d2906c249fc - 8922161560569567443
 IceProjectile.prefab - .ao - 6752a56bf6994d2906c26c1e - 3898667714857707133
+IllusionWave.prefab - .ao - 678753bc793f9e63737ad092 - 15715299620528039890
 Invisibility_Aura.prefab - .ao - 674e5decf6994d2906c249fe - 13012114415043570174
 Invisibility_VFX.prefab - .ao - 674e5dedf6994d2906c24a01 - 17672979264937178813
 KillFeedElement.prefab - .ao - 674e5dedf6994d2906c24a02 - 7989591864985094003
@@ -561,6 +564,9 @@ SelfDestructExplosion.prefab - .ao - 674e5dfff6994d2906c24a6e - 4967900236443195
 SFX/Effects/backstab_attack.wav - .ao - 674e5dfff6994d2906c24a70 - 13380297756859250767
 SFX/Effects/backstab_teleport.wav - .ao - 674e5e00f6994d2906c24a72 - 4356298399446425530
 SFX/Effects/backstab_victim.wav - .ao - 674e5e00f6994d2906c24a74 - 100234496919853591
+SFX/Effects/bladestorm_hit_01.wav - .ao - 67874276793f9e63737ad07b - 5144804328531878563
+SFX/Effects/bladestorm_hit_02.wav - .ao - 67874276793f9e63737ad07c - 5143206388307672844
+SFX/Effects/bladestorm_hit_03.wav - .ao - 67874276793f9e63737ad07a - 4643631505472025360
 SFX/Effects/charging_station_activated.wav - .ao - 6753bb52f6994d2906c26ca3 - 17795938706751898774
 SFX/Effects/charging_station_activated_loop.wav - .ao - 6753bb52f6994d2906c26ca4 - 1674433555531995742
 SFX/Effects/charging_station_appear.wav - .ao - 6753bb52f6994d2906c26ca2 - 3071447504454293211
@@ -586,8 +592,12 @@ SFX/Effects/ice_hit.wav - .ao - 67528e3bf6994d2906c26c02 - 102282895575072083
 SFX/Effects/ice_loop.wav - .ao - 67514906f6994d2906c262b3 - 4572117382677487336
 SFX/Effects/ice_projectile_hit.wav - .ao - 674e5e05f6994d2906c24a90 - 18313118222832407973
 SFX/Effects/ice_start.wav - .ao - 67514906f6994d2906c262b1 - 16753145535486875559
+SFX/Effects/illusion_slash_wave.wav - .ao - 67874277793f9e63737ad081 - 4125303735039149530
 SFX/Effects/invisibility_activate.wav - .ao - 674e5e05f6994d2906c24a92 - 16762074313013705370
 SFX/Effects/iron_aura_activate.wav - .ao - 674e5e06f6994d2906c24a95 - 10994351688664184108
+SFX/Effects/katana_slash_01.wav - .ao - 67874277793f9e63737ad080 - 591555113025818861
+SFX/Effects/katana_slash_02.wav - .ao - 67874277793f9e63737ad082 - 6539491958582902708
+SFX/Effects/katana_slash_03.wav - .ao - 67874278793f9e63737ad086 - 18352467675063955549
 SFX/Effects/knocked_down2.wav - .ao - 674e5e06f6994d2906c24a96 - 16472338161504330273
 SFX/Effects/knocked_down_getup.wav - .ao - 674e5e06f6994d2906c24a98 - 11926352486182341146
 SFX/Effects/kunai_shuriken_projectile_loop.wav - .ao - 674e5e07f6994d2906c24a9b - 12343015550777022956
