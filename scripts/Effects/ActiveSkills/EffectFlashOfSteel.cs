@@ -205,13 +205,13 @@ public class EffectFlashOfSteel : FightEffectWithImmunity
         for (int i = 0; i < incrementCount; i++)
         {
             Vector2 center = _startPos + damageDirIncrement * i * 0.5f;
-            var lst = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(center, 1, FightPlayer);
+            var lst = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(center, 1.5f, FightPlayer);
             foreach (var fp in lst)
             {
                 hitPlayers.Add(fp);
             }
         }
-        var endLst = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(_endPos, 1, FightPlayer);
+        var endLst = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(_endPos, 1.5f, FightPlayer);
         foreach (var fp in endLst)
         {
             hitPlayers.Add(fp);
