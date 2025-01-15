@@ -9,12 +9,13 @@ public partial class BaseProjectile : OwnedObjectComponent
     protected List<Entity> WhiteList = new List<Entity>(); // Projectiles will not interact with this list of entities.
 
     [Serialized] protected int Damage = 0;
-    [Serialized] protected bool Pierce = false;
+    
 
     [Serialized] public float LifeTime;
     [Serialized] protected float TimeElapsed;
 
-    [Serialized] public bool Blockable = true;
+    public virtual bool Blockable => true;
+    public virtual bool Pierce => false;
 
     protected ulong SoundId = default;
     public string hitFxId = "hit_generic";
@@ -114,7 +115,7 @@ public partial class BaseProjectile : OwnedObjectComponent
     {
         Owner = owner;
         Damage = dmg;
-        Pierce = pierce;
+        // pierce is not currently used because we don't have dynamic behavior related to that field yet
         
         LazyInitialize();
     }

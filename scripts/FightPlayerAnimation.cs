@@ -57,7 +57,7 @@ public partial class FightPlayer
         aoLayer.CreateGlobalTransition(poofDeathState).CreateTriggerCondition(poofDeathTrigger);
         
         var swipedDeathTrigger = stateMachine.CreateVariable("death_swiped", StateMachineVariableKind.TRIGGER);
-        var swipedDeathState = aoLayer.CreateState("BAT_003/unused/death_no_HP2", 0, false);
+        var swipedDeathState = aoLayer.CreateState("BAT_003/death_swiped", 0, false);
         aoLayer.CreateGlobalTransition(swipedDeathState).CreateTriggerCondition(swipedDeathTrigger);
         
         #endregion
@@ -323,6 +323,11 @@ public partial class FightPlayer
         var katanaState = fightLayer.CreateState("Attack_Melee_1_mIK_AL2", 0, false);
         fightLayer.CreateGlobalTransition(katanaState).CreateTriggerCondition(katanaSlashTrigger);
         fightLayer.CreateTransition(katanaState, idleState, true);
+
+        var illusionSlashTrigger = stateMachine.CreateVariable("illusion_slash", StateMachineVariableKind.TRIGGER);
+        var illusionSlashState = aoLayer.CreateState("Attack_Melee_3", 0, false);
+        aoLayer.CreateGlobalTransition(illusionSlashState).CreateTriggerCondition(illusionSlashTrigger);
+        aoLayer.CreateTransition(illusionSlashState, aoIdleState, true);
 
         #endregion
 

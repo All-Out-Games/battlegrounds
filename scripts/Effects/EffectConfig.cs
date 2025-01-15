@@ -1198,12 +1198,13 @@ public static class EffectConfig
 
     public struct BladeFrenzyConfig
     {
-        public static float DefaultDuration = 6.5f;
-        public static float Cooldown = 15f;
+        public static float DefaultDuration = 7f;
+        public static float Cooldown = 18f;
         public static float IllusionSlashCooldown = 3f;
-        public static int BaseDamage = 3;
-        public static float DefaultSlashAnimationTime = 0.55f; // ~30% faster than punch
-        public static float DefaultSlashActivationTime = 0.25f;
+        public static int IllusionSlashBaseDamage = 15;
+        public static int BaseDamage = 5;
+        public static float DefaultSlashAnimationTime = 0.5f; // ~30% faster than punch
+        public static float DefaultSlashActivationTime = 0.2f;
 
         public int Damage;
         public bool GiveIllusionSlash;
@@ -1228,6 +1229,19 @@ public static class EffectConfig
             }
 
             return res;
+        }
+
+        public static ProjectileConfig GetIllusionSlashCfg(int atk)
+        {
+            ProjectileConfig cfg = new ProjectileConfig()
+            {
+                Damage = atk + IllusionSlashBaseDamage,
+                ProjectilePrefabKey = "IllusionWave.prefab",
+                ProjectileLifetime = 0.6f,
+                ProjectileLevel = 1,
+                Speed = 10f
+            };
+            return cfg;
         }
     }
 

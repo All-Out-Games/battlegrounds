@@ -108,6 +108,7 @@ public class FosHitEffect : FightEffect
             {
                 var info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Melee, FightPlayer.DamageInfo.StunInterruptLevel);
                 info.SkillKey = "FlashOfSteel";
+                info.SpecialDeathAnimation = true;
 
                 if (Bleed && Damage < FightPlayer.CurrentHealth)
                 {
@@ -228,7 +229,10 @@ public class EffectFlashOfSteel : FightEffectWithImmunity
                 }));
             }
         }
-        
-        FightPlayer.SetKatana(false);
+
+        if (!FightPlayer.HasEffect<EffectBladeFrenzy>())
+        {
+            FightPlayer.SetKatana(false);
+        }
     }
 }

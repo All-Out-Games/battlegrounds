@@ -83,7 +83,7 @@ public class EffectPunch : FightEffect
         base.OnEffectStart(isDropIn);
 
         AssignConfig(EffectConfig.GetPlayerPunchConfig(FightPlayer.PunchLevel, FightPlayer.CurrentAttack));
-        FightPlayer.SetAnimTrigger(Config.AnimationTrigger); ;
+        FightPlayer.SetAnimTrigger(Config.AnimationTrigger, true);
     }
     
 
