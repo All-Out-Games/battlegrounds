@@ -184,6 +184,7 @@ public class EffectIllusionSlash : FightEffect
             DurationRemaining = 0.4f;
         }
         FightPlayer.SetAnimTrigger("illusion_slash", true);
+        FightPlayer.SetFacingDirection(AbilityDirection.X > 0);
     }
 
     public override void OnEffectUpdate()
