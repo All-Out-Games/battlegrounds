@@ -7,7 +7,7 @@ using StreamReader = AO.StreamReader;
 /// </summary>
 public abstract class FightEffect : AEffect
 {
-    protected FightPlayer FightPlayer;
+    protected FightPlayer FightPlayer; // Careful with this field! It will only be available after calling base.OnEffectStart
     
     protected StateMachineLayer FightLayer;
     protected StateMachineLayer MainLayer;

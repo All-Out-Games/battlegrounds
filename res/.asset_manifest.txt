@@ -154,8 +154,8 @@ AbilityIcon_Separate/basic/punch_icon.png - .ao - 674e5d9af6994d2906c2481a - 136
 AbilityIcon_Separate/basic/punch_icon.png - .ao.astc - 67319d86ada08dbbbde3fb4b - 4344947852139095460
 AbilityIcon_Separate/brawler/battle_cry_icon.png - .ao - 674e5d9bf6994d2906c2481c - 11180067981420549755
 AbilityIcon_Separate/brawler/battle_cry_icon.png - .ao.astc - 674e5d9bf6994d2906c2481e - 3610533945673233710
-AbilityIcon_Separate/brawler/blade_storm.png - .ao - 6784a870793f9e63737acff2 - 13801898645532645663
-AbilityIcon_Separate/brawler/blade_storm.png - .ao.astc - 6784a870793f9e63737acff4 - 13878382205695960437
+AbilityIcon_Separate/brawler/blade_storm_icon.png - .ao - 67888c666745c7fd2d63883d - 13801898645532645663
+AbilityIcon_Separate/brawler/blade_storm_icon.png - .ao.astc - 67888c666745c7fd2d63883c - 13878382205695960437
 AbilityIcon_Separate/brawler/claw_slash_icon.png - .ao - 674e5d9bf6994d2906c24820 - 17295258175376819279
 AbilityIcon_Separate/brawler/claw_slash_icon.png - .ao.astc - 674e5d9cf6994d2906c24822 - 511588625170658411
 AbilityIcon_Separate/brawler/double_punch_icon.png - .ao - 674e5d9cf6994d2906c24824 - 18110569268970479825
@@ -445,7 +445,7 @@ FatPlayerCollision.prefab - .ao - 674e5deaf6994d2906c249f0 - 1690258769967482796
 FightPlayerRig/fightplayer.merged_spine_rig - .ao - 674e5deaf6994d2906c249f2 - 1663132257603852584
 FightPlayerRig/playercharacter.png - .ao - 6786d40b793f9e63737ad058 - 6794786448510955121
 FightPlayerRig/playercharacter.png - .ao.astc - 6786d40a793f9e63737ad055 - 1811488004116199878
-FightPlayerRig/playercharacter.spine - .ao - 678805c9793f9e63737ad09b - 6126316715730277567
+FightPlayerRig/playercharacter.spine - .ao - 67884d966745c7fd2d63883a - 17884385394374672023
 FightPlayerRig/playercharacter_2.png - .ao - 674e5debf6994d2906c249f5 - 1531567999432186285
 FightPlayerRig/playercharacter_2.png - .ao.astc - 674e5debf6994d2906c249f8 - 17514452604510451454
 FireballProjectile.prefab - .ao - 6739340802386857e8d33419 - 6615212460275438377

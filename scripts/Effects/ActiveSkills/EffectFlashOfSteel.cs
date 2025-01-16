@@ -58,7 +58,7 @@ public class FosHitEffect : FightEffect
 
     private bool _damaged;
     public override bool IsActiveEffect => false;
-    public override bool IsCC => true;
+    public override bool IsCC => false;
     public override bool BlockAbilityActivation => true;
     protected override bool PreventMovement => true;
 

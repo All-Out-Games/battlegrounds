@@ -29,8 +29,6 @@ public sealed class EffectShoulderCrash : FightEffectWithImmunity
     protected override bool PreventMovement => true;
     protected override string InvincibilityReason => "ShoulderCrash";
     
-    protected float NextDmgTick = 1;
-    protected bool Ticked = false;
 
 
     public override void OnEffectStart(bool isDropIn)

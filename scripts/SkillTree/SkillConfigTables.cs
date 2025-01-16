@@ -211,7 +211,7 @@ public static partial class SkillConfig
     
     #endregion
 
-    #region Defensive
+    #region Node Configs: Defensive
 
     /// <summary>
     /// RollOut node
@@ -656,6 +656,30 @@ public static partial class SkillConfig
         GridY = 2,
         SkillKey = "LeapSlam",
         ParentNodeKeys = new string[] { "GroundStomp" },
+        ChildrenNodeKeys = new string[] { "BladeStorm" },
+    };
+    
+    public static readonly SkillTreeNodeConfig BladeStormConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Blade Storm",
+        DescriptionTextKey = "Charge to your enemy and knock them down, then launch a devastating spinning attack.",
+        UpgradeTextKey= "*: Damage +3\n **: Cooldown -1\n ***: Cooldown -1\n ****: Get 50% life steal",
+        BaseDamageKey = _overrideValue_,
+        RangeDescriptionKey = "8m",
+        CooldownKey = $"{EffectConfig.LeapSlamConfig.Cooldown}s",
+        IconPath = "AbilityIcon_Merged/brawler/blade_storm.png",
+        AbilityIconPath = "AbilityIcon_Separate/brawler/blade_storm_icon.png",
+        //AbilityPreviewPath = "Ability_Preview/brawler/leaping_fist_slam.gif",
+        UnlockLevel = 17, // TODO 38
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierThreeGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Brawler,
+        UpgradeCost = 12800,
+        GridX = 0,
+        GridY = 3,
+        SkillKey = "BladeStorm",
+        ParentNodeKeys = new string[] { "LeapSlam" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -1318,6 +1342,7 @@ public static partial class SkillConfig
             { "ClawSlash", ClawSlashConfig },
             { "LeapSlam", LeapSlamConfig },
             { "DualClaw", DualClawConfig},
+            {"BladeStorm", BladeStormConfig},
             // Psionic
             { "SpoonThrow", SpoonThrowConfig },
             { "Befuddle", BefuddleConfig },
@@ -1357,7 +1382,7 @@ public static partial class SkillConfig
         // Defensive
         "Punch", "RollOut", "Shield","IronSkin","SpikeShield","GravityCrush", "Parry", "FlashOfSteel","BladeFrenzy",
         // Brawler
-        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam", 
+        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam", "BladeStorm",
         // Psionic
         "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize", "PsionicBeam", "PsyThrow",
         // Stealth
@@ -1417,7 +1442,8 @@ public partial class FightAbility
         {SC.IceStormNodeConfig.SkillKey, typeof(AbilityIceStorm)},
         {SC.ChargingStationNodeConfig.SkillKey, typeof(AbilityChargingStation)},
         {SC.FlashOfSteelConfig.SkillKey, typeof(AbilityFlashOfSteel)},
-        {SC.BladeFrenzyConfig.SkillKey, typeof(AbilityBladeFrenzy)}
+        {SC.BladeFrenzyConfig.SkillKey, typeof(AbilityBladeFrenzy)},
+        {SC.BladeStormConfig.SkillKey, typeof(AbilityBladeStorm)}
     };
 }
 
