@@ -179,6 +179,21 @@ public static class KohClassData
         }
     };
 
+    public static KohClass Blademaster = new()
+    {
+        Id = 10,
+        Name = "Blademaster",
+        Chance = 100,
+        Rarity = ItemRarity.Legendary,
+        SkillKeys = new string[] {"BladeStorm", "BladeFrenzy", "FlashOfSteel", "Shield"},
+        Description = "A katana-wielding warrior who can outmaneuver opponents with ease. Passively gain 3 speed.",
+        Passive = new SkillConfig.StatBuff()
+        {
+            BoostType = SkillConfig.StatType.BaseSpeed,
+            BoostValue = 3
+        }
+    };
+
     #endregion
 
     public static KohRandomSkill ShoulderCrash = new()
@@ -240,7 +255,7 @@ public static class KohClassData
     public static KohRandomSkill BladeStorm = new()
     {
         Id = 8,
-        SkillKey = "BladeStorm", // TODO
+        SkillKey = "BladeStorm",
         Chance = 1
     };
 
@@ -446,6 +461,20 @@ public static class KohClassData
         SkillKey = "MeteorCrash", // TODO
         Chance = 1
     };
+
+    public static KohRandomSkill BladeFrenzy = new()
+    {
+        Id = 38,
+        SkillKey = "BladeFrenzy",
+        Chance = 1
+    };
+    
+    public static KohRandomSkill FlashOfSteel = new()
+    {
+        Id = 39,
+        SkillKey = "FlashOfSteel",
+        Chance = 1
+    };
     
     
     
@@ -453,7 +482,7 @@ public static class KohClassData
     /// When a player joins, give them "None" class and draw two different Ids from these classes,
     /// Also generates a random class where 4 skills are drawn from the skill pool
     /// </summary>
-    public static List<KohClass> Classes = new() { RandomClass, Brawler, Defender, Destroyer, DarkKnight, Ninja, Psychic, Telekinetic, StormLord, Ranger};
+    public static List<KohClass> Classes = new() { RandomClass, Brawler, Defender, Destroyer, DarkKnight, Ninja, Psychic, Telekinetic, StormLord, Ranger, Blademaster};
 
 
     public static List<KohRandomSkill> RngSkills = new() 
@@ -492,7 +521,10 @@ public static class KohClassData
         Fireball,
         Thunderbolt,
         ChargingStation,
-        IceStorm
+        IceStorm,
+        BladeStorm,
+        FlashOfSteel,
+        BladeFrenzy
     };
 
     public static void KoHSanityCheck()
