@@ -15,8 +15,9 @@ public class AbilityBladeStorm : FightAbility
 
     public static float GetCooldown(FightPlayer fp)
     {
-        //return fp.GetSkillTree().GetSkillLevel("BladeFrenzy") > 1 ? EffectConfig.BladeFrenzyConfig.Cooldown - 1 : EffectConfig.BladeFrenzyConfig.Cooldown;
-        return 1;
+        int lv = int.Max(2, int.Min(fp.GetSkillTree().GetSkillLevel("BladeStorm"), 3));
+        // decrease cooldown at lv 2/3
+        return EffectConfig.BladeStormConfig.Cooldown + 2 - lv;
     }
 }
 
@@ -37,7 +38,7 @@ public class EffectBladeStormKnockdown : FightEffectWithNoFlinch
 
 public partial class EffectBladeStorm: FightEffectWithImmunity
 {
-    private EffectConfig.ShoulderCrashConfig _config;
+    private EffectConfig.BladeStormConfig _config;
     public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => false;
@@ -53,13 +54,13 @@ public partial class EffectBladeStorm: FightEffectWithImmunity
         
         FightPlayer.SetAnimBool("bladestorm_fail", false);
         FightPlayer.SetAnimBool("bladestorm_spin_ended", false);
-        AssignConfig(EffectConfig.ShoulderCrashConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("ShoulderCrash")));
-        DurationRemaining = _config.DashDuration + 0.1f;
+        _config = EffectConfig.BladeStormConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("BladeStorm"));
+        DurationRemaining = EffectConfig.BladeStormConfig.DashTime + 0.1f;
         //FightPlayer.AddPlayerCollisionFunction(OnShoulderCrashCollision);
 
         Vector2 dir = GetDashDirection();
 
-        FightPlayer.AddDash(dir * _config.DashSpeed, _config.DashDuration);
+        FightPlayer.AddDash(dir * EffectConfig.BladeStormConfig.DashSpeed, EffectConfig.BladeStormConfig.DashTime);
         // The player is invincible and not allowed to input movement during the dash
         //FightStateMachine.UnsetTrigger("shoulder_crash_end");
         FightPlayer.SetAnimTrigger("bladestorm_charge");
@@ -69,6 +70,7 @@ public partial class EffectBladeStorm: FightEffectWithImmunity
         }
 
         SoundId = SFX.Play(SFXKeys.ShoulderCrashLoopAudio, DefaultSoundDesc with { Loop = true, LoopTimeout = 10f });
+        FightPlayer.SetKatana(true);
         
     }
 
@@ -85,15 +87,13 @@ public partial class EffectBladeStorm: FightEffectWithImmunity
         else
         {
             FightPlayer.SetAnimBool("bladestorm_fail", true);
+            if (!FightPlayer.HasEffect<EffectBladeFrenzy>())
+            {
+                FightPlayer.SetKatana(false);
+            }
         }
     }
-
-
-
-    public void AssignConfig(EffectConfig.ShoulderCrashConfig cfg)
-    {
-        _config = cfg;
-    }
+    
 
     protected Vector2 GetDashDirection()
     {
@@ -110,14 +110,14 @@ public partial class EffectBladeStorm: FightEffectWithImmunity
             if (touchedPlayers.Count != 0)
             {
                 // Server authoritatively stop this effect (by adding another active effect), and knock touched players down
-                CallClient_OnKnockPlayer(FightPlayer);
+                CallClient_OnKnockPlayer(FightPlayer, _config.DamagePerTick, _config.LifeSteal);
                 _touchedEnemy = true;
             }
         }
     }
 
     [ClientRpc]
-    public static void OnKnockPlayer(FightPlayer caster)
+    public static void OnKnockPlayer(FightPlayer caster, int dmg, bool lifeSteal)
     {
         if (caster.Alive())
         {
@@ -128,8 +128,11 @@ public partial class EffectBladeStorm: FightEffectWithImmunity
                 fp.AddEffect<EffectBladeStormKnockdown>(caster, 1f);
             }
 
-            caster.AddEffect<EffectBladeStormSpin>(caster, 0.6f);
-            // TODO set damage
+            caster.AddEffect<EffectBladeStormSpin>(caster, 0.6f, spin =>
+            {
+                spin.DamagePerTick = dmg;
+                spin.LifeSteal = lifeSteal;
+            }); 
         }
     }
 }
@@ -143,6 +146,7 @@ public class EffectBladeStormSpin : FightEffectWithImmunity
     protected override bool PreventMovement => true;
     protected override string InvincibilityReason => "BladeStormSpin";
     public int DamagePerTick = 5;
+    public bool LifeSteal;
     
     protected float NextDmgTick = 0.17f;
     protected bool Ticked;
@@ -155,10 +159,18 @@ public class EffectBladeStormSpin : FightEffectWithImmunity
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(DamagePerTick, DamageType.Melee, FightPlayer.DamageInfo.KnockBackInterruptLevel);
             foreach (var dmg in FightClubGameManager.Instance.OverlapCircleForDamageables(Entity.Position, 2, Player))
             {
-                var touchedPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 1.5f, Player);
+                var touchedPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 2f, Player);
                 if (touchedPlayers.Count != 0)
                 {
                     dmg.TakeDamage(FightPlayer, info);
+                    if (LifeSteal)
+                    {
+                        var hInfo = FightPlayer.DamageInfo.CreateHealInfo((int)(info.ReactionInfo.Amount *
+                                                                    EffectConfig.BladeStormConfig.LifeStealRatio));
+                        FightPlayer.TakeDamage(FightPlayer, hInfo);
+                    }
+
+                    SFX.Play(SFXKeys.GetRandomBladeStormSound(), DefaultSoundDesc with {Volume = 0.6f});
                 }
             }
             NextDmgTick += 0.17f;
@@ -171,11 +183,16 @@ public class EffectBladeStormSpin : FightEffectWithImmunity
         base.OnEffectStart(isDropIn);
         FightPlayer.SetAnimBool("bladestorm_spin_ended", false);
         FightPlayer.SetAnimTrigger("bladestorm_spin");
+        SFX.Play(SFXKeys.BladeStormSwingAudio, DefaultSoundDesc);
     }
 
     public override void OnEffectEnd(bool interrupt)
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.SetAnimBool("bladestorm_spin_ended", true);
+        if (!FightPlayer.HasEffect<EffectBladeFrenzy>())
+        {
+            FightPlayer.SetKatana(false);
+        }
     }
 }

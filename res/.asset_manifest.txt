@@ -471,9 +471,6 @@ LeaderBoard/RANK ME.png - .ao - 674e5df0f6994d2906c24a16 - 18355927931936680427
 LeaderBoard/RANK ME.png - .ao.astc - 674e5df1f6994d2906c24a18 - 9598768695101308452
 LeapSlamCrater.prefab - .ao - 674e5df1f6994d2906c24a1b - 16364410912099090893
 LoadoutItemGroup.prefab - .ao - 673949b102386857e8d33420 - 13916418734727225903
-OldRig/playercharacter.png - .ao - 6786fdda793f9e63737ad072 - 2695951919792913300
-OldRig/playercharacter.png - .ao.astc - 6786fdda793f9e63737ad073 - 7910490978658699953
-OldRig/playercharacter.spine - .ao - 6786fddd793f9e63737ad076 - 12077071862157595132
 Pipe_1.prefab - .ao - 674e5df1f6994d2906c24a1c - 4932859284795892587
 Pipe_Straight.prefab - .ao - 674e5df2f6994d2906c24a1e - 5859368875629010514
 projectile/BAT003_Projectile/BAT003_projectile.png - .ao - 674e5df2f6994d2906c24a21 - 3835586870936598686
@@ -577,6 +574,7 @@ SFX/Effects/backstab_victim.wav - .ao - 674e5e00f6994d2906c24a74 - 1002344969198
 SFX/Effects/bladestorm_hit_01.wav - .ao - 67874276793f9e63737ad07b - 5144804328531878563
 SFX/Effects/bladestorm_hit_02.wav - .ao - 67874276793f9e63737ad07c - 5143206388307672844
 SFX/Effects/bladestorm_hit_03.wav - .ao - 67874276793f9e63737ad07a - 4643631505472025360
+SFX/Effects/bladestorm_swing.wav - .ao - 678964c86745c7fd2d638846 - 16362021980241319603
 SFX/Effects/charging_station_activated.wav - .ao - 6753bb52f6994d2906c26ca3 - 17795938706751898774
 SFX/Effects/charging_station_activated_loop.wav - .ao - 6753bb52f6994d2906c26ca4 - 1674433555531995742
 SFX/Effects/charging_station_appear.wav - .ao - 6753bb52f6994d2906c26ca2 - 3071447504454293211

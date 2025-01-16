@@ -393,7 +393,7 @@ public static partial class SkillConfig
         BaseDamageKey = _overrideValue_,
         UpgradeTextKey = "*: Cooldown -1\n **: Damage +1\n ***: Damage +2\n ****: Apply Bleed x3 to victims",
         CooldownKey = "%OVERRIDE%",
-        UnlockLevel = 1, // TODO: 36
+        UnlockLevel = 36,
         MaximumLevel = 5,
         UpgradeGemCost = _tierTwoGemCost,
         NType = NodeType.SkillUnlock,
@@ -418,7 +418,7 @@ public static partial class SkillConfig
         BaseDamageKey = _overrideValue_,
         UpgradeTextKey = "*: Cooldown -1\n **: Duration +1\n ***: Damage +1\n ****: Allows you to use Illusion Slash",
         CooldownKey = "%OVERRIDE%",
-        UnlockLevel = 1, // TODO: 40
+        UnlockLevel = 40,
         MaximumLevel = 5,
         UpgradeGemCost = _tierThreeGemCost,
         NType = NodeType.SkillUnlock,
@@ -666,11 +666,11 @@ public static partial class SkillConfig
         UpgradeTextKey= "*: Damage +3\n **: Cooldown -1\n ***: Cooldown -1\n ****: Get 50% life steal",
         BaseDamageKey = _overrideValue_,
         RangeDescriptionKey = "8m",
-        CooldownKey = $"{EffectConfig.LeapSlamConfig.Cooldown}s",
+        CooldownKey = $"%OVERRIDE%",
         IconPath = "AbilityIcon_Merged/brawler/blade_storm.png",
         AbilityIconPath = "AbilityIcon_Separate/brawler/blade_storm_icon.png",
         //AbilityPreviewPath = "Ability_Preview/brawler/leaping_fist_slam.gif",
-        UnlockLevel = 17, // TODO 38
+        UnlockLevel = 38,
         MaximumLevel = 5,
         UpgradeGemCost = _tierThreeGemCost,
         NType = NodeType.SkillUnlock,

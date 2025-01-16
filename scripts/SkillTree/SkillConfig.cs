@@ -331,6 +331,15 @@ public static partial class SkillConfig
             case "ChargingStation":
                 res = $"{AbilityChargingStation.GetCooldown(fp)}s";
                 break;
+            case "BladeFrenzy":
+                res = $"{AbilityBladeFrenzy.GetCooldown(fp)}s";
+                break;
+            case "FlashOfSteel":
+                res = $"{AbilityFlashOfSteel.GetCooldown(fp)}s";
+                break;
+            case "BladeStorm":
+                res = $"{AbilityBladeStorm.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
@@ -444,6 +453,18 @@ public static partial class SkillConfig
             case "ChargingStation":
                 res = EffectConfig.ChargingStationConfig
                     .GetDefault(0, fp.GetSkillTree().GetSkillLevel("ChargingStation")).Damage;
+                break;
+            case "BladeFrenzy":
+                res = EffectConfig.BladeFrenzyConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("BladeFrenzy"))
+                    .Damage;
+                break;
+            case "BladeStorm":
+                res = EffectConfig.BladeStormConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("BladeStorm"))
+                    .DamagePerTick * 3;
+                break;
+            case "FlashOfSteel":
+                res = EffectConfig.FlashOfSteelConfig.GetDefault(0, fp.GetSkillTree().GetSkillLevel("FlashOfSteel"))
+                    .Damage;
                 break;
         }
 

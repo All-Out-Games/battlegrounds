@@ -131,6 +131,18 @@ public static class SFXKeys
     {
         return KatanaSlashes.GetRandom();
     }
+    
+    public static AudioAsset BladeStorm1Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/bladestorm_hit_01.wav");
+    public static AudioAsset BladeStorm2Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/bladestorm_hit_02.wav");
+    public static AudioAsset BladeStorm3Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/bladestorm_hit_03.wav");
+    public static List<AudioAsset> BladeStormCuts = new() { BladeStorm1Audio, BladeStorm2Audio, BladeStorm3Audio };
+    public static AudioAsset BladeStormSwingAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/bladestorm_swing.wav");
+
+    public static AudioAsset GetRandomBladeStormSound()
+    {
+        return BladeStormCuts.GetRandom();
+    }
+    
     #endregion
 
     #region UI
