@@ -325,9 +325,9 @@ public partial class FightPlayer
 
         // Blade Frenzy
         var bladeFrenzyTrigger = stateMachine.CreateVariable("bf_start", StateMachineVariableKind.TRIGGER);
-        var bladeFrenzySpinState = aoLayer.CreateState("BAT_003/parry_end", 0, false);
-        aoLayer.CreateGlobalTransition(bladeFrenzySpinState).CreateTriggerCondition(bladeFrenzyTrigger);
-        aoLayer.CreateTransition(bladeFrenzySpinState, aoIdleState, true);
+        var bladeFrenzyPullState = aoLayer.CreateState("BAT_003/parry_end", 0, false);
+        aoLayer.CreateGlobalTransition(bladeFrenzyPullState).CreateTriggerCondition(bladeFrenzyTrigger);
+        aoLayer.CreateTransition(bladeFrenzyPullState, aoIdleState, true);
         
         var katanaSlashTrigger = stateMachine.CreateVariable("bf_slash", StateMachineVariableKind.TRIGGER);
         var katanaState = fightLayer.CreateState("Attack_Melee_1_mIK_AL2", 0, false);
@@ -338,6 +338,29 @@ public partial class FightPlayer
         var illusionSlashState = aoLayer.CreateState("Attack_Melee_3", 0, false);
         aoLayer.CreateGlobalTransition(illusionSlashState).CreateTriggerCondition(illusionSlashTrigger);
         aoLayer.CreateTransition(illusionSlashState, aoIdleState, true);
+        
+        // Blade Storm
+        var bladeStormTrigger = stateMachine.CreateVariable("bladestorm_charge", StateMachineVariableKind.TRIGGER);
+        var bladeStormSpinTrigger = stateMachine.CreateVariable("bladestorm_spin", StateMachineVariableKind.TRIGGER);
+        var bladeStormChargeFailed = stateMachine.CreateVariable("bladestorm_fail", StateMachineVariableKind.BOOLEAN);
+        var bladeStormSpinEnded = stateMachine.CreateVariable("bladestorm_spin_ended", StateMachineVariableKind.BOOLEAN);
+        var bladeStormChargeState = aoLayer.CreateState("BAT_003/blade_storm_charge", 0, true);
+        var bladeStormSpinState = aoLayer.CreateState("BAT_003/cleaver_spin", 0, true);
+        aoLayer.CreateGlobalTransition(bladeStormChargeState).CreateTriggerCondition(bladeStormTrigger);
+        aoLayer.CreateTransition(bladeStormChargeState, aoIdleState, false)
+            .CreateBoolCondition(bladeStormChargeFailed, true);
+        
+        aoLayer.CreateTransition(bladeStormSpinState, aoIdleState, false)
+            .CreateBoolCondition(bladeStormSpinEnded, true);
+
+        aoLayer.CreateGlobalTransition(bladeStormSpinState).CreateTriggerCondition(bladeStormSpinTrigger);
+            
+        
+        var bladeStormVictimTrigger =
+            stateMachine.CreateVariable("bladestorm_victim", StateMachineVariableKind.TRIGGER);
+        var bladeStormVictimState = aoLayer.CreateState("BAT_003/sent_flying_land", 0, false);
+        aoLayer.CreateGlobalTransition(bladeStormVictimState).CreateTriggerCondition(bladeStormVictimTrigger);
+        aoLayer.CreateTransition(bladeStormVictimState, aoIdleState, true);
 
         #endregion
 
