@@ -157,6 +157,7 @@ public class EffectBladeStormSpin : FightEffectWithImmunity
         if (Util.OneTime(ElapsedTime > NextDmgTick, ref Ticked))
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(DamagePerTick, DamageType.Melee, FightPlayer.DamageInfo.KnockBackInterruptLevel);
+            info.SkillKey = "BladeStorm";
             foreach (var dmg in FightClubGameManager.Instance.OverlapCircleForDamageables(Entity.Position, 2, Player))
             {
                 var touchedPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 2f, Player);
