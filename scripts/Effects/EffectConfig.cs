@@ -1246,4 +1246,32 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region cfg: Blade Storm
+
+    public struct BladeStormConfig
+    {
+        public static int BaseDamage = 5;
+        public static float DashSpeed = 200f;
+        public static float DashTime = 0.75f;
+        public static float Cooldown = 10f;
+        public static float LifeStealRatio = 0.5f;
+
+        public int DamagePerTick; // 3 ticks in total
+        public bool LifeSteal;
+
+        public static BladeStormConfig GetDefault(int atk, int level)
+        {
+            int totalDamage = atk;
+            BladeStormConfig res = new BladeStormConfig()
+            {
+                LifeSteal = level > 4
+            };
+            res.DamagePerTick = BaseDamage + totalDamage / 3; // Approximately 30?
+            if (level > 1) res.DamagePerTick += 1;
+            return res;
+        }
+    }
+
+    #endregion
 }
