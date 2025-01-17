@@ -576,10 +576,12 @@ public partial class KohManager : Component
             var timerRect = AO.UI.ScreenRect.CutTop(100).Offset(0, -100);
             var topBarRect = timerRect.BottomRect().GrowBottom(40).Offset(0, 3);
             var midBarRect = AO.UI.ScreenRect.SubRect(0.5f, 0.8f, 0.5f, 0.8f);
-            var midBarRect2 = AO.UI.ScreenRect.SubRect(0.5f, 0.2f, 0.5f, 0.2f);
+            
             var rightBarRect = UI.ScreenRect.CutRight(200).CutTop(360).Offset(0, -400);
 
             var bottomBarRect = AO.UI.SafeRect.CutBottom(350);
+            var bottomBarRect2 = AO.UI.SafeRect.CutBottom(200).SubRect(0.15f, 0f, 0.85f, 1f);
+            Texture gamePassIcon = Assets.GetAsset<Texture>("UI/KoH/GamePass.png");
 
             using var _ = AO.UI.PUSH_LAYER(RoleNameLayer);
             
@@ -704,7 +706,19 @@ public partial class KohManager : Component
                         if (respBlocker.Alive())
                         {
                             UI.Text(bottomBarRect, $"Redeployment in {float.Round(respBlocker.DurationRemaining, 1)}s...", GetTextSettings(52));
+                            Rect iconRect = bottomBarRect2.CutLeft(200).SubRect(0.25f, 0.25f, 0.75f, 0.75f);
+                            if (!KohGlobalData.OwnKoHGamePass(localPlayer))
+                            {
+                                UI.Text(bottomBarRect2, "Buy the gamepass to reduce your respawn timer by 1s permanently!", GetTextSettings(40));
+                            }
+                            else
+                            {
+                                UI.Text(bottomBarRect2, "You have the gamepass! Your redeployment is accelerated.", GetTextSettings(40));
+                            }
+                            UI.Image(iconRect, gamePassIcon);
                         }
+
+                        
                         PointToWorldPosition(_combatPortalEntity.Position, Vector4.LightGreen);
                     }
                     else if(localPlayer.PlayerStatus == PlayerStatus.Combat && EffectKing.KingInstance.Alive() && localPlayer != EffectKing.KingInstance.Player)

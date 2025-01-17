@@ -401,12 +401,12 @@
 19368 bytes - UI/SkillTree/big_skill_tree_icons/psionic.png.ao.astc
 19344 bytes - AbilityIcon_Separate/defense/spike_guard.png.ao
 19312 bytes - AbilityIcon_Separate/psionic/spoon_throw_icon.png.ao
+19032 bytes - KoHClassWindow.prefab.ao
 19000 bytes - AbilityIcon_Separate/defense/rollout_icon.png.ao.astc
 18976 bytes - AbilityIcon_Separate/psionic/self_heal_icon.png.ao.astc
 18912 bytes - SFX/Effects/knocked_down_getup.wav.ao
 18824 bytes - AbilityIcon_Separate/spectral_spawn.png.ao.astc
 18776 bytes - environment/CentralHub/Skill_Booths/Booth_shadow.png.ao
-18760 bytes - KoHClassWindow.prefab.ao
 18752 bytes - UI/LargeMenuButtons/Large Menu Buttons/ref.png.ao
 18752 bytes - UI/LargeMenuButtons/ref.png.ao
 18728 bytes - AbilityIcon_Separate/psionic/psythrow_icon.png.ao

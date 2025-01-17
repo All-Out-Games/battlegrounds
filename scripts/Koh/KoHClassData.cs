@@ -183,7 +183,7 @@ public static class KohClassData
     {
         Id = 10,
         Name = "Blademaster",
-        Chance = 100,
+        Chance = 1,
         Rarity = ItemRarity.Legendary,
         SkillKeys = new string[] {"BladeStorm", "BladeFrenzy", "FlashOfSteel", "Shield"},
         Description = "A katana-wielding warrior who can outmaneuver opponents with ease. Passively gain 3 speed.",

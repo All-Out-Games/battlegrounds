@@ -459,7 +459,7 @@ IllusionWave.prefab - .ao - 67896c556745c7fd2d638871 - 15715299620528039890
 Invisibility_Aura.prefab - .ao - 674e5decf6994d2906c249fe - 13012114415043570174
 Invisibility_VFX.prefab - .ao - 674e5dedf6994d2906c24a01 - 17672979264937178813
 KillFeedElement.prefab - .ao - 674e5dedf6994d2906c24a02 - 7989591864985094003
-KoHClassWindow.prefab - .ao - 67819e44793f9e63737acfb8 - 3233205717429980816
+KoHClassWindow.prefab - .ao - 6789c9dd6745c7fd2d6388ac - 12576897899630496432
 KunaiProjectile.prefab - .ao - 674e5dedf6994d2906c24a04 - 3883123613706713803
 LeaderBoard/RANK 1.png - .ao - 674e5deef6994d2906c24a06 - 4765039937284411778
 LeaderBoard/RANK 1.png - .ao.astc - 674e5deef6994d2906c24a08 - 15870723087197134429
