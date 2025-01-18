@@ -27,6 +27,8 @@ public class EffectBladeStormKnockdown : FightEffectWithNoFlinch
     public override bool BlockAbilityActivation => true;
     public override bool IsCC => true;
 
+    protected override bool PreventMovement => true;
+
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
@@ -158,9 +160,9 @@ public class EffectBladeStormSpin : FightEffectWithImmunity
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(DamagePerTick, DamageType.Melee, FightPlayer.DamageInfo.KnockBackInterruptLevel);
             info.SkillKey = "BladeStorm";
-            foreach (var dmg in FightClubGameManager.Instance.OverlapCircleForDamageables(Entity.Position, 2, Player))
+            foreach (var dmg in FightClubGameManager.Instance.OverlapCircleForDamageables(Entity.Position, 3.5f, Player))
             {
-                var touchedPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 2f, Player);
+                var touchedPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, 3.5f, Player);
                 if (touchedPlayers.Count != 0)
                 {
                     dmg.TakeDamage(FightPlayer, info);
