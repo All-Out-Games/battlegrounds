@@ -32,14 +32,16 @@ public class AbilitySelfDestruct : FightAbility
     }
 }
 
-public class EffectSelfDestruct : FightEffectWithNoFlinch
+public class EffectSelfDestruct : FightEffectWithImmunity
 {
     protected EffectConfig.SelfDestructConfig Config;
     
     public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
     public override bool IsValidTarget => false;
-    
+
+    protected override string InvincibilityReason => "SelfDestruct";
+
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
