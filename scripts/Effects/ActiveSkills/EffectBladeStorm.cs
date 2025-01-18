@@ -15,7 +15,7 @@ public class AbilityBladeStorm : FightAbility
 
     public static float GetCooldown(FightPlayer fp)
     {
-        int lv = int.Max(2, int.Min(fp.GetSkillTree().GetSkillLevel("BladeStorm"), 3));
+        int lv = int.Max(2, int.Min(fp.GetSkillTree().GetSkillLevel("BladeStorm"), 4));
         // decrease cooldown at lv 2/3
         return EffectConfig.BladeStormConfig.Cooldown + 2 - lv;
     }
