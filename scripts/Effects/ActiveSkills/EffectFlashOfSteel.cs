@@ -96,6 +96,7 @@ public class FosHitEffect : FightEffect
             _soulAnimator.SpineInstance.SetStateMachine(stateMachine, _soulEffect);
 
             _soulAnimator.SpineInstance.StateMachine.SetTrigger("fos_soul_start");
+            //_soulEffect.SetParent(FightPlayer.Entity, false);
         });
     }
 
@@ -143,7 +144,7 @@ public class FosHitEffect : FightEffect
     }
 }
 
-public class EffectFlashOfSteel : FightEffectWithImmunity
+public partial class EffectFlashOfSteel : FightEffectWithImmunity
 {
     public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
@@ -197,36 +198,36 @@ public class EffectFlashOfSteel : FightEffectWithImmunity
         FightPlayer.SetAnimTrigger("RESET");
         FightPlayer.RemoveEffect<TrailEffect>(false);
         _endPos = Position;
-        // DAMAGE
-        Vector2 damageLine = _endPos - _startPos;
-        Vector2 damageDirIncrement = damageLine.Normalized;
-        int incrementCount = (int)(damageLine.Length * 2);
-        HashSet<FightPlayer> hitPlayers = new HashSet<FightPlayer>();
-        for (int i = 0; i < incrementCount; i++)
+        
+        
+        if (Network.IsServer)
         {
-            Vector2 center = _startPos + damageDirIncrement * i * 0.5f;
-            var lst = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(center, 1.5f, FightPlayer);
-            foreach (var fp in lst)
+            // DAMAGE
+            Vector2 damageLine = _endPos - _startPos;
+            Vector2 damageDirIncrement = damageLine.Normalized;
+            int incrementCount = (int)(damageLine.Length * 2);
+            HashSet<FightPlayer> hitPlayers = new HashSet<FightPlayer>();
+            float radius = 1.6f;
+            for (int i = 0; i < incrementCount; i++)
+            {
+                Vector2 center = _startPos + damageDirIncrement * i * 0.5f;
+                var lst = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(center, radius, FightPlayer);
+                foreach (var fp in lst)
+                {
+                    hitPlayers.Add(fp);
+                }
+            }
+            var endLst = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(_endPos, radius, FightPlayer);
+            foreach (var fp in endLst)
             {
                 hitPlayers.Add(fp);
             }
-        }
-        var endLst = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(_endPos, 1.5f, FightPlayer);
-        foreach (var fp in endLst)
-        {
-            hitPlayers.Add(fp);
-        }
-
-        
-        foreach (var fp in hitPlayers)
-        {
-            if (fp.Damageable())
+            foreach (var fp in hitPlayers)
             {
-                fp.AddEffect<FosHitEffect>(Player,1.5f, (effect =>
+                if (fp.Damageable())
                 {
-                    effect.Damage = _config.Damage;
-                    effect.Bleed = _config.ApplyBleed;
-                }));
+                    CallClient_AddFosHit(fp, FightPlayer, _config.Damage, _config.ApplyBleed);
+                }
             }
         }
 
@@ -234,5 +235,15 @@ public class EffectFlashOfSteel : FightEffectWithImmunity
         {
             FightPlayer.SetKatana(false);
         }
+    }
+
+    [ClientRpc]
+    public static void AddFosHit(FightPlayer victim, FightPlayer source, int damage, bool bleed)
+    {
+        victim.AddEffect<FosHitEffect>(source,1.5f, (effect =>
+        {
+            effect.Damage = damage;
+            effect.Bleed = bleed;
+        }));
     }
 }
