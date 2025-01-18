@@ -240,10 +240,14 @@ public partial class EffectFlashOfSteel : FightEffectWithImmunity
     [ClientRpc]
     public static void AddFosHit(FightPlayer victim, FightPlayer source, int damage, bool bleed)
     {
-        victim.AddEffect<FosHitEffect>(source,1.5f, (effect =>
+        if (victim.Alive() && source.Alive())
         {
-            effect.Damage = damage;
-            effect.Bleed = bleed;
-        }));
+            victim.AddEffect<FosHitEffect>(source,1.5f, (effect =>
+            {
+                effect.Damage = damage;
+                effect.Bleed = bleed;
+            }));
+        }
+
     }
 }
