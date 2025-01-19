@@ -126,19 +126,11 @@ public class EffectKatanaSlash : FightEffect
         base.OnEffectStart(isDropIn);
         DurationRemaining = EffectConfig.BladeFrenzyConfig.DefaultSlashAnimationTime;
         
-        EffectBladeFrenzy parentEffect = FightPlayer.GetEffect<EffectBladeFrenzy>();
-        if (parentEffect.Alive())
-        {
-            Damage = parentEffect.Config.Damage;
-            _slashDir = FightPlayer.GetPunchDirection();
-            FightPlayer.SetAimTarget(Entity.Position + _slashDir);
-            FightPlayer.SetAnimTrigger("bf_slash", true);
-            SFX.Play(SFXKeys.GetRandomKatanaSound(), DefaultSoundDesc);
-        }
-        else
-        {
-            DurationRemaining = 0;
-        }
+        Damage = EffectConfig.BladeFrenzyConfig.GetDefault(FightPlayer.CurrentAttack,FightPlayer.GetSkillTree().GetSkillLevel("BladeFrenzy")).Damage;
+        _slashDir = FightPlayer.GetPunchDirection();
+        FightPlayer.SetAimTarget(Entity.Position + _slashDir);
+        FightPlayer.SetAnimTrigger("bf_slash", true);
+        SFX.Play(SFXKeys.GetRandomKatanaSound(), DefaultSoundDesc);
     }
 
     private void Slash()
@@ -167,7 +159,6 @@ public class EffectKatanaSlash : FightEffect
 
 public class EffectIllusionSlash : FightEffect
 {
-    // TODO Projectile attack
     public override bool IsActiveEffect => true;
     public override bool BlockAbilityActivation => true;
 
