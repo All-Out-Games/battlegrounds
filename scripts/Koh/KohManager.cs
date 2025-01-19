@@ -230,10 +230,7 @@ public partial class KohManager : Component
 
                     var countdownBefore = Countdown;
                     Countdown -= Time.DeltaTime;
-                    if (Countdown <= 10 && countdownBefore > 10)
-                    {
-                        Game.SetMatchmakingPriority(1); // Low Prio
-                    }
+
                     if (Countdown <= 0f)
                     {
                         State = GameState.StartRound;
@@ -244,7 +241,6 @@ public partial class KohManager : Component
                 }
                 case GameState.StartRound:
                 {
-                    Game.SetMatchmakingPriority(1);
                     GlobalAbilityCanUse = true;
                     Countdown = 0;
                     ServerRoundTimer = KohGlobalData.RoundTime;
@@ -761,10 +757,6 @@ public partial class KohManager : Component
         if (Network.IsServer)
         {
             State = GameState.WaitingForPlayers;
-            if (Scene.Components<FightPlayer>().ToList().Count >= 2)
-            {
-                Game.SetMatchmakingPriority(0); // low priority
-            }
 
             Log.Info("Game ID: " + Game.GetGameID());
             DestroyRound();
