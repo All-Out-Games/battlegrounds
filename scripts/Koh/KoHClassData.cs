@@ -152,7 +152,7 @@ public static class KohClassData
     {
         Id = 8,
         Name = "Storm Lord",
-        Chance = 1,
+        Chance = 2,
         Rarity = ItemRarity.Legendary,
         SkillKeys = new string[] { "IceFist", "IceStorm", "ChargingStation", "Thunderbolt" },
         Description = "The storm and thunder heed your calls. Passively gain 3 speed.",
@@ -183,7 +183,7 @@ public static class KohClassData
     {
         Id = 10,
         Name = "Blademaster",
-        Chance = 1,
+        Chance = 2,
         Rarity = ItemRarity.Legendary,
         SkillKeys = new string[] {"BladeStorm", "BladeFrenzy", "FlashOfSteel", "Shield"},
         Description = "A katana-wielding warrior who can outmaneuver opponents with ease. Passively gain 3 speed.",

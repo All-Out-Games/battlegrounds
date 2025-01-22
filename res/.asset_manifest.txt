@@ -446,7 +446,7 @@ FatPlayerCollision.prefab - .ao - 674e5deaf6994d2906c249f0 - 1690258769967482796
 FightPlayerRig/fightplayer.merged_spine_rig - .ao - 674e5deaf6994d2906c249f2 - 1663132257603852584
 FightPlayerRig/playercharacter.png - .ao - 67896c546745c7fd2d638868 - 6794786448510955121
 FightPlayerRig/playercharacter.png - .ao.astc - 67896c546745c7fd2d638869 - 1811488004116199878
-FightPlayerRig/playercharacter.spine - .ao - 678b12bf6745c7fd2d63896a - 1425016748030775881
+FightPlayerRig/playercharacter.spine - .ao - 679152ec6745c7fd2d638c8b - 14676542496041999941
 FightPlayerRig/playercharacter_2.png - .ao - 674e5debf6994d2906c249f5 - 1531567999432186285
 FightPlayerRig/playercharacter_2.png - .ao.astc - 674e5debf6994d2906c249f8 - 17514452604510451454
 FireballProjectile.prefab - .ao - 6739340802386857e8d33419 - 6615212460275438377
@@ -525,7 +525,7 @@ Props/DropItems/VengeancePotion.png - .ao - 674a62c5f6994d2906c23d77 - 146122191
 Props/DropItems/VengeancePotion.png - .ao.astc - 674a62c5f6994d2906c23d78 - 5622864394937217667
 Props/FlashOfSteel/flash_of_steel.png - .ao - 67896c556745c7fd2d638873 - 13576731462466091886
 Props/FlashOfSteel/flash_of_steel.png - .ao.astc - 67896c556745c7fd2d638875 - 10230172549169853774
-Props/FlashOfSteel/flash_of_steel.spine - .ao - 67896c556745c7fd2d638876 - 17319390477357877833
+Props/FlashOfSteel/flash_of_steel.spine - .ao - 679152ea6745c7fd2d638c88 - 6164143903776308135
 Props/FlashOfSteel/FoSSlash.png - .ao - 67896c566745c7fd2d63887a - 14555219632318839852
 Props/FlashOfSteel/FoSSlash.png - .ao.astc - 67896c566745c7fd2d63887b - 2003753422884303118
 Props/GroundRecticles/ground_reticle.png - .ao - 674e5ceaf6994d2906c246ec - 13519533673276912784
@@ -534,7 +534,7 @@ Props/GroundRecticles/lightning_reticle.png - .ao - 674e5cebf6994d2906c246f0 - 4
 Props/GroundRecticles/lightning_reticle.png - .ao.astc - 674e5cebf6994d2906c246f2 - 6297978938524774863
 Props/IllusionSlash/illusion_slash.png - .ao - 67896c566745c7fd2d63887c - 16043677048867046081
 Props/IllusionSlash/illusion_slash.png - .ao.astc - 67896c566745c7fd2d63887f - 4597596555403758728
-Props/IllusionSlash/illusion_slash.spine - .ao - 67896c566745c7fd2d638880 - 3473664925239621502
+Props/IllusionSlash/illusion_slash.spine - .ao - 679152ea6745c7fd2d638c87 - 2827161321341407245
 Props/LightningTrap/BAT003_lightning_trap.png - .ao - 674e5cebf6994d2906c246f4 - 5726906139401577890
 Props/LightningTrap/BAT003_lightning_trap.png - .ao.astc - 674e5cecf6994d2906c246f6 - 11064370672755449933
 Props/LightningTrap/BAT003_lightning_trap.spine - .ao - 674e5dfbf6994d2906c24a5b - 11470229911709403585
