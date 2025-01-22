@@ -47,7 +47,7 @@ public static class KohClassData
     {
         Id = 1,
         Name = "Brawler",
-        Chance = 15,
+        Chance = 12,
         Rarity = ItemRarity.Common,
         SkillKeys = new string[]{"ShoulderCrash", "DoublePunch", "ClawSlash", "LeapSlam"},
         Description = "Fists and claws, simple and effective. Passively gain 10 Health. ",
@@ -62,7 +62,7 @@ public static class KohClassData
     {
         Id = 2,
         Name = "Defender",
-        Chance = 15,
+        Chance = 12,
         Rarity = ItemRarity.Common,
         SkillKeys = new string[]{ "Shield", "RollOut", "IronSkin", "Parry"},
         Description = "Take the defensive stance. Passively gain 15 Health.",
@@ -77,7 +77,7 @@ public static class KohClassData
     {
         Id = 3,
         Name = "Destroyer",
-        Chance = 3,
+        Chance = 4,
         Rarity = ItemRarity.Epic,
         SkillKeys = new string[]{ "GroundStomp", "Rage", "BattleCry", "SelfDestruct" },
         Description = "Use your AoE capability to induce chaos. Passively gain 5 health.",
@@ -107,7 +107,7 @@ public static class KohClassData
     {
         Id = 5,
         Name = "Ninja",
-        Chance = 3,
+        Chance = 4,
         Rarity = ItemRarity.Epic,
         SkillKeys = new string[] { "Shuriken", "Backstab", "BearTrap", "Invisibility" },
         Description = "Live for the perfect ambush. Passively gain 5 speed.",
@@ -137,7 +137,7 @@ public static class KohClassData
     {
         Id = 7,
         Name = "Telekinetic",
-        Chance = 3,
+        Chance = 4,
         Rarity = ItemRarity.Epic,
         SkillKeys = new string[] { "Psybolt", "Regeneration", "WindPunch", "PsyThrow" },
         Description = "Grab, knock and manipulate your enemies with telekenetic powers. Passively gain 5 health.",
