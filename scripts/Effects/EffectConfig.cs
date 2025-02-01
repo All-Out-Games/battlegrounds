@@ -93,7 +93,7 @@ public static class EffectConfig
         public static int PunchDmgGrowth = 2;
         public static float DefaultPunchAnimationTime = 0.75f; // Entire duration of the punch animation
         public static float DefaultPunchActivationTime = 0.25f;  // Delay time before activating the collider
-        public static float PunchRange = 2.5f;
+        public static float PunchRange = 2.3f;
         public static float PunchTargetRange = 4;
         public static float PunchMustHitRange = 0.65f;
         
@@ -1152,6 +1152,126 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #endregion
+
+    #region cfg: Flash Of Steel
+
+    public struct FlashOfSteelConfig
+    {
+        public static float DashDelay = 0.5f;
+        public static float DashSpeed = 1600f;
+        public static float DashTime = 0.15f;
+        public static float Cooldown = 13f;
+        public static int BleedDps = 3;
+        public static int BaseDmg = 16;
+
+        public int Damage;
+        public bool ApplyBleed;
+        public static FlashOfSteelConfig GetDefault(int atk, int level)
+        {
+            FlashOfSteelConfig res = new FlashOfSteelConfig()
+            {
+                Damage = atk + BaseDmg,
+                ApplyBleed = false
+            };
+            if (level > 2)
+            {
+                res.Damage += 1;
+            }
+            if (level > 3)
+            {
+                res.Damage += 2;
+            }
+
+            if (level > 4)
+            {
+                res.ApplyBleed = true;
+            }
+            return res;
+        }
+    }
+
+    #endregion
+
+    #region cfg: Blade Frenzy
+
+    public struct BladeFrenzyConfig
+    {
+        public static float DefaultDuration = 7f;
+        public static float Cooldown = 18f;
+        public static float IllusionSlashCooldown = 3f;
+        public static int IllusionSlashBaseDamage = 15;
+        public static int BaseDamage = 5;
+        public static float DefaultSlashAnimationTime = 0.5f; // ~30% faster than punch
+        public static float DefaultSlashActivationTime = 0.2f;
+
+        public int Damage;
+        public bool GiveIllusionSlash;
+        public float Duration;
+
+        public static BladeFrenzyConfig GetDefault(int atk, int level)
+        {
+            BladeFrenzyConfig res = new BladeFrenzyConfig()
+            {
+                Damage = atk + BaseDamage,
+                GiveIllusionSlash = level > 4,
+                Duration = DefaultDuration
+            };
+            if (level > 3)
+            {
+                res.Damage += 1;
+            }
+
+            if (level > 2)
+            {
+                res.Duration += 1;
+            }
+
+            return res;
+        }
+
+        public static ProjectileConfig GetIllusionSlashCfg(int atk)
+        {
+            ProjectileConfig cfg = new ProjectileConfig()
+            {
+                Damage = atk + IllusionSlashBaseDamage,
+                ProjectilePrefabKey = "IllusionWave.prefab",
+                ProjectileLifetime = 0.6f,
+                ProjectileLevel = 1,
+                Speed = 10f
+            };
+            return cfg;
+        }
+    }
+
+    #endregion
+
+    #region cfg: Blade Storm
+
+    public struct BladeStormConfig
+    {
+        public static int BaseDamage = 5;
+        public static float DashSpeed = 200f;
+        public static float DashTime = 0.75f;
+        public static float Cooldown = 10f;
+        public static float LifeStealRatio = 0.5f;
+
+        public int DamagePerTick; // 3 ticks in total
+        public bool LifeSteal;
+
+        public static BladeStormConfig GetDefault(int atk, int level)
+        {
+            int totalDamage = atk;
+            BladeStormConfig res = new BladeStormConfig()
+            {
+                LifeSteal = level > 4
+            };
+            res.DamagePerTick = BaseDamage + totalDamage / 3; // Approximately 30?
+            if (level > 1) res.DamagePerTick += 1;
+            return res;
+        }
+    }
 
     #endregion
 }

@@ -46,11 +46,12 @@ public class EffectHypnotizeCaster : FightEffect
 
 public class EffectHypnotize : FightEffectWithNoFlinch
 {
-    public override bool IsActiveEffect => true;
+    public override bool IsActiveEffect => false;
     protected override int InterruptLevel => 1000;
 
     protected override bool PreventMovement => true;
     
+    public override bool IsCC => true;
 
     public override bool BlockAbilityActivation => true;
 
@@ -62,7 +63,7 @@ public class EffectHypnotize : FightEffectWithNoFlinch
         FightPlayer.OnReceiveDamage += OnDamageEvent;
 
         Caster.AddEffect<EffectHypnotizeCaster>();
-        
+
         if (!isDropIn)
         {
             DurationRemaining = EffectConfig.HypnotizeConfig.HypnotizeTime;
@@ -79,7 +80,10 @@ public class EffectHypnotize : FightEffectWithNoFlinch
         FightPlayer.OnReceiveDamage -= OnDamageEvent;
         FightPlayer.UnsetAnimTrigger("knockdown");
         FightPlayer.SetAnimTrigger("knockdown_end");
-        FightPlayer.AddEffect<EffectGenericPostActionDelay>(Caster, 1f);
+        if (!interrupt)
+        {
+            FightPlayer.AddEffect<EffectGenericPostActionDelay>(Caster, 1f);
+        }
         SFX.Play(SFXKeys.HypnotizeGetupAudio, DefaultSoundDesc);
     }
 

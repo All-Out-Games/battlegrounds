@@ -91,6 +91,7 @@ public class EffectIceStorm : FightEffectWithNoFlinch
     {
         base.OnEffectEnd(interrupt);
         FightPlayer.RemoveSpeedModify(this);
+        SFX.Stop(SoundId);
     }
 
     private void IceAttack()

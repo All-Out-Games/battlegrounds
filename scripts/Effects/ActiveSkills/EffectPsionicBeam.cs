@@ -139,7 +139,10 @@ public class EffectPsionicBeam : FightEffectWithNoFlinch
             _vfx.Despawn();
         }
         FightPlayer.SetAnimTrigger("psibeam_end");
-        FightPlayer.AddEffect<EffectGenericPostActionDelay>(Caster, 0.25f);
+        if (!interrupt)
+        {
+            FightPlayer.AddEffect<EffectGenericPostActionDelay>(Caster, 0.25f);
+        }
         SFX.FadeOutAndStop(SoundId, 0.5f);
     }
 

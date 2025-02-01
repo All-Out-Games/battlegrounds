@@ -13,6 +13,7 @@ internal class DefaultTargettingEffect : FightEffect
     public override void OnEffectEnd(bool interrupt) {}
 
     protected override int InterruptLevel => 1000;
+    
 }
 
 public partial class FightAbility : Ability
@@ -65,7 +66,7 @@ public partial class FightAbility : Ability
         FightPlayer.OnSkillActivate?.Invoke(FightPlayer.SkillActivationInfo.GetActivationInfo(Interruptlevel, SkillKey));
         return true;
     }
-    
+
 
 }
 

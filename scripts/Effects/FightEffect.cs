@@ -7,7 +7,7 @@ using StreamReader = AO.StreamReader;
 /// </summary>
 public abstract class FightEffect : AEffect
 {
-    protected FightPlayer FightPlayer;
+    protected FightPlayer FightPlayer; // Careful with this field! It will only be available after calling base.OnEffectStart
     
     protected StateMachineLayer FightLayer;
     protected StateMachineLayer MainLayer;
@@ -22,6 +22,8 @@ public abstract class FightEffect : AEffect
     // Only the initial values work for these two fields!
     protected virtual bool PreventMovement => false;
     protected virtual bool PreventDamage => false;
+    
+    public virtual bool IsCC => false;
 
     public virtual float SpeedModifier => PreventMovement ? 0.0f : 1.0f;
 
@@ -46,6 +48,12 @@ public abstract class FightEffect : AEffect
         if (PreventDamage)
         {
             FightPlayer.CollisionEntity.LocalEnabled = false;
+        }
+
+        if (IsCC && !IsActiveEffect)
+        {
+            //Log.Error("Tried!");
+            RemoveCurrentActiveEffectAndTargeting();
         }
     }
 
@@ -127,5 +135,33 @@ public abstract class FightEffect : AEffect
     {
         return !(FightLayer.CurrentState == FightLayer.TryGetStateByName("__CLEAR_TRACK__") ||
                 FightLayer.CurrentState == FightLayer.TryGetStateByName("BAT_003/Idle_short_AL"));
+    }
+    
+
+    /// <summary>
+    /// Remove active effect and targeting. Should be called for all CC effects
+    /// </summary>
+    public void RemoveCurrentActiveEffectAndTargeting()
+    {
+        // Remove current active effect, except death
+        var aef = FightPlayer.ActiveEffect;
+        if (!(aef is EffectDeath))
+        {
+            FightPlayer.StopActiveEffect(true);
+        }
+        // Remove Targeting
+        FightPlayer.RemoveEffect<DefaultTargettingEffect>(true);
+        // Remove Other CC
+        foreach (var e in FightPlayer.Effects)
+        {
+            if (e is FightEffect && e != this)
+            {
+                var fe = (FightEffect)e;
+                if (fe.IsCC)
+                {
+                    fe.DurationRemaining = 0.05f;
+                }
+            }
+        }
     }
 }

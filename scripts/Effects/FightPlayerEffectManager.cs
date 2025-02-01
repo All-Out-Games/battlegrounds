@@ -92,6 +92,14 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
         }
     }
 
+    public void AddOvershield(Entity caster, float duration, int amt)
+    {
+        if (Network.IsServer)
+        {
+            CallClient_AddOverShieldInternal(caster, duration, amt);
+        }
+    }
+
     public void AddElectrocute(Entity caster, float duration)
     {
         if (Network.IsServer)
@@ -161,5 +169,11 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     public void AddAdWatchedEffect(string info, float duration)
     {
         _player.AddEffect<EffectAdWatched>(null, duration, watched => watched.Info = info);
+    }
+
+    [ClientRpc]
+    public void AddOverShieldInternal(Entity caster, float duration, int amt)
+    {
+        _player.AddEffect<EffectOvershield>(caster.GetComponent<FightPlayer>(), 5f, overshield => overshield.AssignConfig(EffectConfig.ShieldConfig.GetOvershield(amt, duration)));
     }
 }

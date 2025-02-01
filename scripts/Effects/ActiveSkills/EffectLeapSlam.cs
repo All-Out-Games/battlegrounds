@@ -141,7 +141,9 @@ public class EffectKnockDown : FightEffectWithNoFlinch
     
     protected override bool PreventMovement => true;
 
-    public override bool IsActiveEffect => true;
+    public override bool IsActiveEffect => false;
+
+    public override bool IsCC => true;
     public override bool BlockAbilityActivation => true;
 
     public float GettingUpTime = 0.5f;

@@ -157,10 +157,12 @@ public class EffectThunderbolt : FightEffect
 
 public class EffectElectricShock : FightEffectWithNoFlinch
 {
-    public override bool IsActiveEffect => true;
+    public override bool IsActiveEffect => false;
     protected override bool PreventMovement => true;
     public override bool BlockAbilityActivation => true;
-    
+
+    public override bool IsCC => true;
+
 
     public override void OnEffectStart(bool isDropIn)
     {

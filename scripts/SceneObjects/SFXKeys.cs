@@ -29,7 +29,7 @@ public static class SFXKeys
 
         return Punch1Audio;
     }
-    
+
     public static AudioAsset DoublePunchAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/punch_double.wav");
     public static AudioAsset IcePunchAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/punch_ice.wav");
 
@@ -116,6 +116,33 @@ public static class SFXKeys
     public static AudioAsset ChargingStationAppearAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/charging_station_appear.wav");
     public static AudioAsset ChargingStationExplodeAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/charging_station_explosion.wav");
     public static AudioAsset ChargingStationChargeAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/charging_station_activated.wav");
+
+    public static AudioAsset FoSPrepareAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/FoS_pre.wav");
+    public static AudioAsset FoSChargeAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/FoS_charge.wav");
+    public static AudioAsset FoSHitAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/FoS_hit.wav");
+    
+    public static AudioAsset Katana1Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/katana_slash_01.wav");
+    public static AudioAsset Katana2Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/katana_slash_02.wav");
+    public static AudioAsset Katana3Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/katana_slash_03.wav");
+    public static List<AudioAsset> KatanaSlashes = new() {Katana1Audio, Katana2Audio, Katana3Audio};
+    public static AudioAsset IllusionSlashAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/illusion_slash_wave.wav");
+
+    public static AudioAsset GetRandomKatanaSound()
+    {
+        return KatanaSlashes.GetRandom();
+    }
+    
+    public static AudioAsset BladeStorm1Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/bladestorm_hit_01.wav");
+    public static AudioAsset BladeStorm2Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/bladestorm_hit_02.wav");
+    public static AudioAsset BladeStorm3Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/bladestorm_hit_03.wav");
+    public static List<AudioAsset> BladeStormCuts = new() { BladeStorm1Audio, BladeStorm2Audio, BladeStorm3Audio };
+    public static AudioAsset BladeStormSwingAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/bladestorm_swing.wav");
+
+    public static AudioAsset GetRandomBladeStormSound()
+    {
+        return BladeStormCuts.GetRandom();
+    }
+    
     #endregion
 
     #region UI

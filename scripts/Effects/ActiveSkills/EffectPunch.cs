@@ -83,7 +83,7 @@ public class EffectPunch : FightEffect
         base.OnEffectStart(isDropIn);
 
         AssignConfig(EffectConfig.GetPlayerPunchConfig(FightPlayer.PunchLevel, FightPlayer.CurrentAttack));
-        FightPlayer.SetAnimTrigger(Config.AnimationTrigger); ;
+        FightPlayer.SetAnimTrigger(Config.AnimationTrigger, true);
     }
     
 
@@ -114,9 +114,13 @@ public class EffectPunch : FightEffect
         
         // SFX based on punch lvl
         SFX.Play(SFXKeys.GetPunchSFXByLevel(FightPlayer.PunchLevel), DefaultSoundDesc);
-
+        float range = EffectConfig.PunchConfig.PunchRange;
+        if (Network.IsServer)
+        {
+            range += 0.23f; // 10% more range on the server to compensate for lag
+        }
         var hit = Physics.RaycastWithWhitelist(Entity.Position, punchDir.Normalized,
-            EffectConfig.PunchConfig.PunchRange, FightClubGameManager.Instance.GetAllDamagableEntities(Player), new Entity[]{ },out rc);
+            range, FightClubGameManager.Instance.GetAllDamagableEntities(Player), new Entity[]{ },out rc);
 
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Config.PunchDamage);
         info.SkillKey = FightPlayer.PunchLevel == 1 ? "Punch" : $"Punch{FightPlayer.PunchLevel}";

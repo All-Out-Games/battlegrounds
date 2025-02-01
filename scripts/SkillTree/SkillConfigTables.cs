@@ -8,6 +8,7 @@ public static partial class SkillConfig
     public static readonly int _overrideValue_ = Int32.MinValue;
     public static readonly int[] _tierOneGemCost = new[] { 250, 625, 1500, 4000};
     public static readonly int[] _tierTwoGemCost = new[] { 400, 1000, 2500, 6250};
+    public static readonly int[] _tierThreeGemCost = new[] { 500, 1250, 3000, 7500 };
     
     // NOTE: The query dictionary (SkillKey : NodeConfig) is defined at the bottom of this file as 'STConfigQueryDict'
     // You MUST define node config and add it to the query dict.
@@ -210,7 +211,7 @@ public static partial class SkillConfig
     
     #endregion
 
-    #region Defensive
+    #region Node Configs: Defensive
 
     /// <summary>
     /// RollOut node
@@ -282,7 +283,7 @@ public static partial class SkillConfig
         GridY = 1,
         SkillKey = "HealthBoostD",
         ParentNodeKeys = new string[] { "Shield" },
-        ChildrenNodeKeys = new string[] {  },
+        ChildrenNodeKeys = new string[] { "FlashOfSteel" },
         Buff = new StatBuff
         {
             BoostType = StatType.MaxHealth,
@@ -381,6 +382,56 @@ public static partial class SkillConfig
         AbilityPreviewPath = "Ability_Preview/defense/parry.gif",
         ParentNodeKeys = new string[] { "GravityCrush" },
         ChildrenNodeKeys = new string[] { },
+    };
+    
+    public static readonly SkillTreeNodeConfig FlashOfSteelConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Flash Of Steel",
+        DescriptionTextKey =
+            "An extremely fast slash that tears through the enemies behind you.",
+        RangeDescriptionKey = "7m",
+        BaseDamageKey = _overrideValue_,
+        UpgradeTextKey = "*: Cooldown -1\n **: Damage +1\n ***: Damage +2\n ****: Apply Bleed x3 to victims",
+        CooldownKey = "%OVERRIDE%",
+        UnlockLevel = 36,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Defensive,
+        UpgradeCost = 11750,
+        GridX = 0,
+        GridY = 2,
+        SkillKey = "FlashOfSteel",
+        IconPath = "AbilityIcon_Merged/defense/flash_of_steel.png",
+        AbilityIconPath = "AbilityIcon_Separate/defense/flash_of_steel_icon.png",
+        //AbilityPreviewPath = "Ability_Preview/defense/parry.gif",
+        ParentNodeKeys = new string[] { "HealthBoostD" },
+        ChildrenNodeKeys = new string[] { "BladeFrenzy" }
+    };
+    
+    public static readonly SkillTreeNodeConfig BladeFrenzyConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Blade Frenzy",
+        DescriptionTextKey =
+            "Pull out your samurai sword. Replace your punch with a powerful swing attack for a few seconds.",
+        RangeDescriptionKey = "Melee",
+        BaseDamageKey = _overrideValue_,
+        UpgradeTextKey = "*: Cooldown -1\n **: Duration +1\n ***: Damage +1\n ****: Allows you to use Illusion Slash",
+        CooldownKey = "%OVERRIDE%",
+        UnlockLevel = 40,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierThreeGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Defensive,
+        UpgradeCost = 15000,
+        GridX = 0,
+        GridY = 3,
+        SkillKey = "BladeFrenzy",
+        IconPath = "AbilityIcon_Merged/defense/blade_frenzy.png",
+        AbilityIconPath = "AbilityIcon_Separate/defense/blade_frenzy_icon.png",
+        //AbilityPreviewPath = "Ability_Preview/defense/parry.gif",
+        ParentNodeKeys = new string[] { "FlashOfSteel" },
+        ChildrenNodeKeys = new string[] { }
     };
 
     #endregion
@@ -581,6 +632,7 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[] { "ClawSlash" },
         ChildrenNodeKeys = new string[] { },
     };
+    
 
     public static readonly SkillTreeNodeConfig LeapSlamConfig = new SkillTreeNodeConfig()
     {
@@ -604,6 +656,30 @@ public static partial class SkillConfig
         GridY = 2,
         SkillKey = "LeapSlam",
         ParentNodeKeys = new string[] { "GroundStomp" },
+        ChildrenNodeKeys = new string[] { "BladeStorm" },
+    };
+    
+    public static readonly SkillTreeNodeConfig BladeStormConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Blade Storm",
+        DescriptionTextKey = "Charge to your enemy and knock them down, then launch a devastating spinning attack.",
+        UpgradeTextKey= "*: Damage +3\n **: Cooldown -1\n ***: Cooldown -1\n ****: Get 50% life steal",
+        BaseDamageKey = _overrideValue_,
+        RangeDescriptionKey = "8m",
+        CooldownKey = $"%OVERRIDE%",
+        IconPath = "AbilityIcon_Merged/brawler/blade_storm.png",
+        AbilityIconPath = "AbilityIcon_Separate/brawler/blade_storm_icon.png",
+        //AbilityPreviewPath = "Ability_Preview/brawler/leaping_fist_slam.gif",
+        UnlockLevel = 38,
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierThreeGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Brawler,
+        UpgradeCost = 12800,
+        GridX = 0,
+        GridY = 3,
+        SkillKey = "BladeStorm",
+        ParentNodeKeys = new string[] { "LeapSlam" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -1254,6 +1330,8 @@ public static partial class SkillConfig
             {"SpikeShield", SpikeShieldConfig},
             {"GravityCrush", GravityCrushConfig},
             {"Parry", ParryConfig},
+            {"FlashOfSteel", FlashOfSteelConfig},
+            {"BladeFrenzy", BladeFrenzyConfig},
             // Brawler
             { "ShoulderCrash", ShoulderCrashNodeConfig },
             { "GroundStomp", GroundStompConfig },
@@ -1264,6 +1342,7 @@ public static partial class SkillConfig
             { "ClawSlash", ClawSlashConfig },
             { "LeapSlam", LeapSlamConfig },
             { "DualClaw", DualClawConfig},
+            {"BladeStorm", BladeStormConfig},
             // Psionic
             { "SpoonThrow", SpoonThrowConfig },
             { "Befuddle", BefuddleConfig },
@@ -1301,9 +1380,9 @@ public static partial class SkillConfig
     public static readonly HashSet<string> ActiveSkills = new HashSet<string>()
     {
         // Defensive
-        "Punch", "RollOut", "Shield","IronSkin","SpikeShield","GravityCrush", "Parry",
+        "Punch", "RollOut", "Shield","IronSkin","SpikeShield","GravityCrush", "Parry", "FlashOfSteel","BladeFrenzy",
         // Brawler
-        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam", 
+        "ShoulderCrash", "GroundStomp", "Rage", "DoublePunch", "SelfDestruct", "BattleCry", "ClawSlash", "LeapSlam", "BladeStorm",
         // Psionic
         "SpoonThrow", "Befuddle", "Psybolt", "SelfHeal", "Regeneration", "Hypnotize", "PsionicBeam", "PsyThrow",
         // Stealth
@@ -1361,7 +1440,10 @@ public partial class FightAbility
         {SC.FireballNodeConfig.SkillKey, typeof(AbilityFireball)},
         {SC.ThunderboltNodeConfig.SkillKey, typeof(AbilityThunderbolt)},
         {SC.IceStormNodeConfig.SkillKey, typeof(AbilityIceStorm)},
-        {SC.ChargingStationNodeConfig.SkillKey, typeof(AbilityChargingStation)}
+        {SC.ChargingStationNodeConfig.SkillKey, typeof(AbilityChargingStation)},
+        {SC.FlashOfSteelConfig.SkillKey, typeof(AbilityFlashOfSteel)},
+        {SC.BladeFrenzyConfig.SkillKey, typeof(AbilityBladeFrenzy)},
+        {SC.BladeStormConfig.SkillKey, typeof(AbilityBladeStorm)}
     };
 }
 

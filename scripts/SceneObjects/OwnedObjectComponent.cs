@@ -37,4 +37,9 @@ public abstract class OwnedObjectComponent : Component, INetworkedComponent
             Owner = ownerEntity.GetComponent<FightPlayer>();
         }
     }
+
+    public FightPlayer GetOwner()
+    {
+        return Owner;
+    }
 }

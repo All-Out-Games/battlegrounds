@@ -57,7 +57,7 @@ public partial class FightPlayer
         aoLayer.CreateGlobalTransition(poofDeathState).CreateTriggerCondition(poofDeathTrigger);
         
         var swipedDeathTrigger = stateMachine.CreateVariable("death_swiped", StateMachineVariableKind.TRIGGER);
-        var swipedDeathState = aoLayer.CreateState("BAT_003/unused/death_no_HP2", 0, false);
+        var swipedDeathState = aoLayer.CreateState("BAT_003/death_swiped", 0, false);
         aoLayer.CreateGlobalTransition(swipedDeathState).CreateTriggerCondition(swipedDeathTrigger);
         
         #endregion
@@ -303,6 +303,55 @@ public partial class FightPlayer
         aoLayer.CreateTransition(parryEndState, aoIdleState, true);
         
 
+        // Flash Of Steel
+        var fosStartTrigger = stateMachine.CreateVariable("fos_start", StateMachineVariableKind.TRIGGER);
+        var fosState = aoLayer.CreateState("Attack_Melee_2", 0, false);
+        aoLayer.CreateGlobalTransition(fosState).CreateTriggerCondition(fosStartTrigger); // Need a RESET trigger to reset
+        
+        // FoS victim
+        var fosVictimTrigger = stateMachine.CreateVariable("fos_victim", StateMachineVariableKind.TRIGGER);
+        var fosVictimState = aoLayer.CreateState("Idle_Drowsy", 0, true);
+        aoLayer.CreateGlobalTransition(fosVictimState).CreateTriggerCondition(fosVictimTrigger); // They'll get flinched and return idle at the end
+
+        // Blade Frenzy
+        var bladeFrenzyTrigger = stateMachine.CreateVariable("bf_start", StateMachineVariableKind.TRIGGER);
+        var bladeFrenzyPullState = aoLayer.CreateState("BAT_003/parry_end", 0, false);
+        aoLayer.CreateGlobalTransition(bladeFrenzyPullState).CreateTriggerCondition(bladeFrenzyTrigger);
+        aoLayer.CreateTransition(bladeFrenzyPullState, aoIdleState, true);
+        
+        var katanaSlashTrigger = stateMachine.CreateVariable("bf_slash", StateMachineVariableKind.TRIGGER);
+        var katanaState = fightLayer.CreateState("Attack_Melee_1_mIK_AL2", 0, false);
+        fightLayer.CreateGlobalTransition(katanaState).CreateTriggerCondition(katanaSlashTrigger);
+        fightLayer.CreateTransition(katanaState, idleState, true);
+
+        var illusionSlashTrigger = stateMachine.CreateVariable("illusion_slash", StateMachineVariableKind.TRIGGER);
+        var illusionSlashState = aoLayer.CreateState("Attack_Melee_3", 0, false);
+        aoLayer.CreateGlobalTransition(illusionSlashState).CreateTriggerCondition(illusionSlashTrigger);
+        aoLayer.CreateTransition(illusionSlashState, aoIdleState, true);
+        
+        // Blade Storm
+        var bladeStormTrigger = stateMachine.CreateVariable("bladestorm_charge", StateMachineVariableKind.TRIGGER);
+        var bladeStormSpinTrigger = stateMachine.CreateVariable("bladestorm_spin", StateMachineVariableKind.TRIGGER);
+        var bladeStormChargeFailed = stateMachine.CreateVariable("bladestorm_fail", StateMachineVariableKind.BOOLEAN);
+        var bladeStormSpinEnded = stateMachine.CreateVariable("bladestorm_spin_ended", StateMachineVariableKind.BOOLEAN);
+        var bladeStormChargeState = aoLayer.CreateState("BAT_003/blade_storm_charge", 0, true);
+        var bladeStormSpinState = aoLayer.CreateState("BAT_003/cleaver_spin", 0, true);
+        aoLayer.CreateGlobalTransition(bladeStormChargeState).CreateTriggerCondition(bladeStormTrigger);
+        aoLayer.CreateTransition(bladeStormChargeState, aoIdleState, false)
+            .CreateBoolCondition(bladeStormChargeFailed, true);
+        
+        aoLayer.CreateTransition(bladeStormSpinState, aoIdleState, false)
+            .CreateBoolCondition(bladeStormSpinEnded, true);
+
+        aoLayer.CreateGlobalTransition(bladeStormSpinState).CreateTriggerCondition(bladeStormSpinTrigger);
+            
+        
+        var bladeStormVictimTrigger =
+            stateMachine.CreateVariable("bladestorm_victim", StateMachineVariableKind.TRIGGER);
+        var bladeStormVictimState = aoLayer.CreateState("BAT_003/sent_flying_land", 0, false);
+        aoLayer.CreateGlobalTransition(bladeStormVictimState).CreateTriggerCondition(bladeStormVictimTrigger);
+        aoLayer.CreateTransition(bladeStormVictimState, aoIdleState, true);
+
         #endregion
 
 
@@ -328,15 +377,9 @@ public partial class FightPlayer
         
         var shockedTrigger = stateMachine.CreateVariable("shocked_start", StateMachineVariableKind.TRIGGER);
         var shockedEndTrigger = stateMachine.CreateVariable("shocked_end", StateMachineVariableKind.TRIGGER);
-        var shockedState = aoLayer.CreateState("Electrocute_Loop", 0, true);
+        var shockedState = aoLayer.CreateState("BAT_003/snared_loop", 0, true);
         aoLayer.CreateGlobalTransition(shockedState).CreateTriggerCondition(shockedTrigger);
         aoLayer.CreateTransition(shockedState, aoIdleState, false).CreateTriggerCondition(shockedEndTrigger);
-
-        // Meteor (TODO)
-        var meteorLandTrigger = stateMachine.CreateVariable("meteor_land", StateMachineVariableKind.TRIGGER);
-        var meteorLandState = aoLayer.CreateState("BAT_003/meteor_land", 0, false);
-        aoLayer.CreateGlobalTransition(meteorLandState).CreateTriggerCondition(meteorLandTrigger);
-        aoLayer.CreateTransition(meteorLandState, aoIdleState, true);
 
         // Ice storm
         var iceStormTrigger = stateMachine.CreateVariable("ice_storm_start", StateMachineVariableKind.TRIGGER);
@@ -349,6 +392,12 @@ public partial class FightPlayer
         aoLayer.CreateTransition(iceStormStartState, iceStormLoopState, true);
         aoLayer.CreateTransition(iceStormLoopState, iceStormEndState, false).CreateTriggerCondition(iceStormEndTrigger);
         aoLayer.CreateTransition(iceStormEndState, aoIdleState, true);
+        
+        // Meteor (TODO)
+        var meteorLandTrigger = stateMachine.CreateVariable("meteor_land", StateMachineVariableKind.TRIGGER);
+        var meteorLandState = aoLayer.CreateState("BAT_003/meteor_land", 0, false);
+        aoLayer.CreateGlobalTransition(meteorLandState).CreateTriggerCondition(meteorLandTrigger);
+        aoLayer.CreateTransition(meteorLandState, aoIdleState, true);
 
 
         #endregion
@@ -384,5 +433,31 @@ public partial class FightPlayer
     public void SetBonePosition(string bone, Vector2 pos)
     {
         SpineAnimator.SpineInstance.SetBonePosition(bone, pos);
+    }
+
+    public void SetKatana(bool active)
+    {
+        if (active)
+        {
+            string katana = "weapons/katana/base";
+            if (TotalEliminations > 10000)
+            {
+                katana = "weapons/katana/gold";
+            }
+
+            if (TotalEliminations > 30000)
+            {
+                katana = "weapons/katana/diamond";
+            }
+            SpineAnimator.SpineInstance.EnableSkin(katana);
+        }
+        else
+        {
+            SpineAnimator.SpineInstance.DisableSkin("weapons/katana/base");
+            SpineAnimator.SpineInstance.DisableSkin("weapons/katana/gold");
+            SpineAnimator.SpineInstance.DisableSkin("weapons/katana/diamond");
+        }
+        
+        SpineAnimator.SpineInstance.RefreshSkins();
     }
 }
