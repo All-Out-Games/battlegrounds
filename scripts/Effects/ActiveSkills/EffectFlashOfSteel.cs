@@ -91,7 +91,7 @@ public class FosHitEffect : FightEffect
             mainLayer.CreateTransition(appearState, idleState, true);
             mainLayer.CreateGlobalTransition(disappearState).CreateTriggerCondition(disappearTrigger);
             mainLayer.CreateTransition(disappearState, emptyState, true);
-            mainLayer.SetInitialState(emptyState);
+            mainLayer.InitialState = emptyState;
             
             _soulAnimator.SpineInstance.SetStateMachine(stateMachine, _soulEffect);
 

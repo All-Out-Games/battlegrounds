@@ -42,7 +42,7 @@ public class SpikeShieldVFX : AttachmentObject
         mainLayer.CreateTransition(idleState, disappearState, false).CreateTriggerCondition(disappearTrigger);
         mainLayer.CreateTransition(disappearState, emptyState, true);
         
-        mainLayer.SetInitialState(emptyState);
+        mainLayer.InitialState = emptyState;
         
         Animator.SpineInstance.SetStateMachine(stateMachine, Entity);
     }

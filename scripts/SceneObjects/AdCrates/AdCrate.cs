@@ -83,7 +83,7 @@ public partial class AdCrate : AdTrigger, INetworkedComponent
         mainLayer.CreateTransition(idleState, hitState, false).CreateTriggerCondition(hitTrigger);
         mainLayer.CreateTransition(hitState, idleState, true);
         
-        mainLayer.SetInitialState(emptyState);
+        mainLayer.InitialState = emptyState;
         Animator.SpineInstance.SetStateMachine(stateMachine, Entity);
     }
 

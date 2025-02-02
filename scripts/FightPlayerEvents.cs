@@ -221,7 +221,20 @@ public partial class FightPlayer
         //Log.Warn($"{source.Name} Eliminated {victim.Name} with {skillKey}");
         if (IsLocal && (PlayerStatus == PlayerStatus.Combat || PlayerStatus == PlayerStatus.Spectator))
         {
-            _combatOverlay.AddKillFeed(source.Name, victim.Name, skillKey);
+            int sourceLv = 1;
+            if (source.Alive())
+            {
+                if (skillKey != "punch")
+                {
+                    sourceLv = source.GetSkillTree().GetSkillLevel(skillKey);
+                }
+                else
+                {
+                    sourceLv = source.PunchLevel;
+                }
+                
+            }
+            _combatOverlay.AddKillFeed(source.Name, victim.Name, skillKey,sourceLv);
         }
     }
     
@@ -315,7 +328,7 @@ public partial class FightPlayer
                 baseExp += GlobalData.AfkMidLevelBonus;
             }
 
-            if (AllPlayers.Count < 5)
+            if (Scene.Components<FightPlayer>().Count() < 5)
             {
                 baseExp += GlobalData.AfkUnpopulatedServerBonusExp;
             }

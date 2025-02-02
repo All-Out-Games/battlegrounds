@@ -19,11 +19,11 @@ public class BattlegroundOverlayWindow : BaseUIWindow
         item.Entity.Destroy();
     }
 
-    public void AddKillFeed(string sourceId, string victimId, string skillKey)
+    public void AddKillFeed(string sourceId, string victimId, string skillKey, int skillLv)
     {
         var kf = _killFeedElementPrefab.Instantiate();
         var kfComp =  kf.GetComponent<KillFeedItem>();    
-        kfComp.SetKillFeed(sourceId, victimId, skillKey, this);
+        kfComp.SetKillFeed(sourceId, victimId, skillKey, this, skillLv);
         kf.SetParent(_killFeedScroll, false);
         if (KillFeedList.Count >= MaxKillFeed)
         {
