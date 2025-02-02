@@ -123,17 +123,17 @@ public partial class FightPlayer : Player
             }
         }
     }
-    private SyncVar<int> _totalDamageDealt = new();
+    private SyncVar<int> _deathCount = new();
 
-    public int TotalDamageDealt
+    public int DeathCount
     {
-        get { return _totalDamageDealt.Value; }
+        get { return _deathCount.Value; } 
         set
         {
             if (Network.IsServer)
             {
-                _totalDamageDealt.Set(value);
-                Save.SetInt(this, "TotalDamageDealt", value);
+                _deathCount.Set(value);
+                Save.SetInt(this, "TotalDamageDealt", value);  // repurposed, as TotalDamageDealt is not collected anymore
                 Save.OrderedSet("TotalDamageDealt", $"{this.UserId}", value);
             }
         }
@@ -440,7 +440,7 @@ public partial class FightPlayer : Player
         Coins = Save.GetInt(this, "Coins");
         Gem = Save.GetInt(this, "Gem");
         TotalEliminations = Save.GetInt(this, "TotalEliminations");
-        TotalDamageDealt = Save.GetInt(this, "TotalDamageDealt");
+        DeathCount = Save.GetInt(this, "TotalDamageDealt");
         Level = Save.GetInt(this, "Level");
         Exp = Save.GetInt(this, "Exp");
         ExpBoostTime = Save.GetInt(this, "ExpBoostTime");

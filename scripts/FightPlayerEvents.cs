@@ -285,7 +285,7 @@ public partial class FightPlayer
     {
         if (source == this && victim != this && info.DmgType != DamageType.Heal)
         {
-            TotalDamageDealt += info.ReactionInfo.Amount;
+            // TotalDamageDealt += info.ReactionInfo.Amount; // No longer collects this data
             if (info.AwardCoin)
             {
                 Exp += LevelingData.XpForDamage * LevelingData.GetBoostedExpMultiplier(this);

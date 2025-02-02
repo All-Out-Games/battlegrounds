@@ -7,6 +7,10 @@ public class EffectDeath : FightEffectWithImmunity
 {
     protected override string InvincibilityReason => "Dead";
     public string DeathAnimationTrigger = "death";
+    private bool _showAd;
+    
+    
+    public static int InterstitialDeathCount = 8;
 
     public static string GetSpecialDeathAnimationTrigger(string skillKey)
     {
@@ -57,7 +61,7 @@ public class EffectDeath : FightEffectWithImmunity
         FightPlayer.SetAnimTrigger(DeathAnimationTrigger);
         FightPlayer.AddDash(Vector2.Zero, 0);
         FightPlayer.AddBump(Vector2.Zero, true);
-
+        
         if (Network.IsServer)
         {
             List<FightPlayer> spectators =
@@ -73,6 +77,16 @@ public class EffectDeath : FightEffectWithImmunity
                 }
             }
         }
+
+        if (FightPlayer.IsLocal && FightPlayer.DeathCount % InterstitialDeathCount == 0)
+        {
+            if (!FightPlayer.IsVIP)
+            {
+                _showAd = true;
+                Notifications.Show("A short Ad will play after your respawn. Bypass this ad permanently by buying VIP.");
+            }
+        }
+        FightPlayer.DeathCount += 1;
         
     }
 
@@ -106,6 +120,11 @@ public class EffectDeath : FightEffectWithImmunity
         
         FightPlayer.ClearAllEffects();
         FightPlayer.ClearSpeedModifier();
+        
+        if (_showAd && Ads.IsInterstitialAdLoaded())
+        {
+            Ads.ShowInterstitial();
+        }
     }
 
     public override bool IsActiveEffect => false;
