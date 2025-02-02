@@ -127,7 +127,10 @@ public partial class EffectBladeStorm: FightEffectWithImmunity
             var touchedPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(caster.Position, 1.5f, caster);
             foreach (var fp in touchedPlayers)
             {
-                fp.AddEffect<EffectBladeStormKnockdown>(caster, 1f);
+                if (fp.Alive() && fp.Damageable())
+                {
+                    fp.AddEffect<EffectBladeStormKnockdown>(caster, 1f);
+                }
             }
 
             caster.AddEffect<EffectBladeStormSpin>(caster, 0.6f, spin =>

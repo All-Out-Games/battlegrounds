@@ -247,7 +247,7 @@ AbilityIcon_Separate/x_icon_ability.png - .ao.astc - 67319d8bada08dbbbde3fb98 - 
 AbilityLoadoutPage.prefab - .ao - 67631e39ad0037d660710744 - 2181474352976986599
 AbilityUpgradeDialog.prefab - .ao - 674e5db0f6994d2906c248a2 - 687982187149207345
 AdCrab.prefab - .ao - 6753fdc2f6994d2906c26ccd - 15799877603757965979
-AdCrate.prefab - .ao - 679eab18efc12442558c6519 - 6031399048886613176
+AdCrate.prefab - .ao - 679fe16cefc12442558c66fb - 6334134733328222967
 BattleCry_Shockwave.prefab - .ao - 674e5db0f6994d2906c248a4 - 2695351636227228935
 BattlegroundInfoOverlay.prefab - .ao - 673949b202386857e8d33421 - 8177987076312023311
 BearTrap.prefab - .ao - 674e5db1f6994d2906c248a6 - 11292285057486236551
@@ -256,7 +256,7 @@ BefuddleProjectile.prefab - .ao - 674e5db1f6994d2906c248aa - 8014554843931528083
 BloodVFX.prefab - .ao - 674e5db2f6994d2906c248ac - 3422892601744631579
 ChargingStation.prefab - .ao - 67538f58f6994d2906c26c97 - 14770789444124487866
 ClawSwipe.prefab - .ao - 674e5db2f6994d2906c248ae - 7848076218374585392
-Crate.prefab - .ao - 679eab18efc12442558c6518 - 9653034871257957615
+Crate.prefab - .ao - 679fe16cefc12442558c66fc - 3657649699384468690
 CrateItemDrop.prefab - .ao - 674e5db3f6994d2906c248b1 - 12141092680601925180
 environment/AFK_tmp/cliff.png - .ao - 674e5db3f6994d2906c248b2 - 13085692969799188741
 environment/AFK_tmp/cliff.png - .ao.astc - 67319da1ada08dbbbde3fcfd - 17182075144696083159
