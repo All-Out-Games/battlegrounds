@@ -38,11 +38,20 @@ public class KillFeedItem : Component
             VictimName.Settings = VictimName.Settings with { Color = GlobalData.OtherIdColor };
         }
 
-        LevelText.Text = $"Lv. {skillLv}";
-        if (skillLv == 5)
+        var last = skillKey.Last();
+        if (skillKey[0] == 'P' && last == '3' | last == '2' | last == 'h') // Why not just Contain("punch")
         {
-            LevelText.Settings = LevelText.Settings with {Color = GlobalData.CritNumberColor};
+            LevelText.Entity.LocalEnabled = false;
         }
+        else
+        {
+            LevelText.Text = $"Lv. {skillLv}";
+            if (skillLv == 5)
+            {
+                LevelText.Settings = LevelText.Settings with {Color = GlobalData.CritNumberColor};
+            }
+        }
+        
     }
 
     public override void Update()

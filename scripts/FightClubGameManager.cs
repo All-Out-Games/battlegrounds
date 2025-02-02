@@ -31,7 +31,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
         
         PlayerEliminationEvent += OnPlayerElimination;
         
-        Leaderboard.RegisterSortCallback((Player[] players) =>
+        PlayerList.RegisterSortCallback((Player[] players) =>
         {
             Array.Sort(players, (a, b) =>
             {
@@ -39,7 +39,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
             });
         });
         
-        Leaderboard.Register("Wins", (Player[] players, string[] scores) =>
+        PlayerList.Register("Wins", (Player[] players, string[] scores) =>
         {
             for (int i = 0; i < players.Length; i++)
             {
@@ -48,7 +48,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
             }
         });
         
-        Leaderboard.Register("Kills", (Player[] players, string[] scores) =>
+        PlayerList.Register("Kills", (Player[] players, string[] scores) =>
         {
             for (int i = 0; i < players.Length; i++)
             {
