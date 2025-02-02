@@ -43,6 +43,16 @@ public class KillFeedItem : Component
         {
             LevelText.Settings = LevelText.Settings with {Color = GlobalData.CritNumberColor};
         }
+
+        char last = skillKey.Last();
+        if (skillKey[0] == 'P' && last == '3' | last == '2' | last == 'h') // Why not just Contain("punch")
+        {
+            LevelText.Entity.LocalEnabled = false;
+        }
+        else
+        {
+            LevelText.Entity.LocalEnabled = true;
+        }
     }
 
     public override void Update()
