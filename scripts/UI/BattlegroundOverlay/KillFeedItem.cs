@@ -7,11 +7,12 @@ public class KillFeedItem : Component
     [Serialized] public UIText SourceName;
     [Serialized] public UIText VictimName;
     [Serialized] public UIImage AbilityIcon;
+    [Serialized] public UIText LevelText;
 
     private BattlegroundOverlayWindow _parentPage;
     private float _timeElapsed;
 
-    public void SetKillFeed(string sourceId, string victimId, string skillKey, BattlegroundOverlayWindow parent)
+    public void SetKillFeed(string sourceId, string victimId, string skillKey, BattlegroundOverlayWindow parent, int skillLv)
     {
         _parentPage = parent;
         AbilityIcon.Sprite = Assets.GetAsset<Texture>(SkillConfig.GetAbilityIconPath(skillKey));
@@ -35,6 +36,12 @@ public class KillFeedItem : Component
         else
         {
             VictimName.Settings = VictimName.Settings with { Color = GlobalData.OtherIdColor };
+        }
+
+        LevelText.Text = $"Lv. {skillLv}";
+        if (skillLv == 5)
+        {
+            LevelText.Settings = LevelText.Settings with {Color = GlobalData.CritNumberColor};
         }
     }
 
