@@ -104,7 +104,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
             pos.Y += AOMath.Lerp(0, 0.5f, Ease.OutQuart(result.T));
             var rect = new Rect(pos, pos);
             var color01 = Ease.FadeInAndOut(0.1f, 1, result.T);
-            ts.Color = new Vector4(0, 0, 0, 0).LerpTo(result.Color, color01);
+            ts.Color = Vector4.Lerp(new Vector4(0, 0, 0, 0),result.Color, color01);
             UI.Text(rect, result.Text, ts);
         }
     }

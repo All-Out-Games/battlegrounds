@@ -24,7 +24,7 @@ public partial class FightPlayer
         //var emptyState = fightLayer.CreateState("__CLEAR_TRACK__", 0, true);
         var idleState = fightLayer.CreateState("__CLEAR_TRACK__", 0, false);
 
-        fightLayer.SetInitialState(idleState);
+        fightLayer.InitialState = idleState;
         //fightLayer.CreateTransition(idleState, emptyState, true);
         fightLayer.CreateGlobalTransition(idleState).CreateTriggerCondition(resetALTrigger);
 

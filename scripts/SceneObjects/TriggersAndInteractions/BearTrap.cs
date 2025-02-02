@@ -66,7 +66,7 @@ public partial class BearTrap : OwnedTrigger
         var snapTrigger = stateMachine.CreateVariable("snap", StateMachineVariableKind.TRIGGER);
         var disappearTrigger = stateMachine.CreateVariable("expire", StateMachineVariableKind.TRIGGER);
 
-        mainLayer.SetInitialState(appearSetUpState);
+        mainLayer.InitialState = appearSetUpState;
         mainLayer.CreateTransition(appearSetUpState, idleState, true);
         mainLayer.CreateTransition(idleState, snapCloseState, false).CreateTriggerCondition(snapTrigger);
         mainLayer.CreateGlobalTransition(disappearState).CreateTriggerCondition(disappearTrigger);

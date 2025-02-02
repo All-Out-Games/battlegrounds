@@ -5,15 +5,13 @@
   "name": "KillFeedElement",
   "local_enabled": true,
   "local_position": {
-    "X": 0,
-    "Y": 0
+
   },
   "local_rotation": 0,
   "local_scale": {
     "X": 1,
     "Y": 1
-  },
-  "previous_sibling": "35320638390968:1723498085355218400"
+  }
 },
 {
   "cid": 1,
@@ -32,6 +30,7 @@
   "data": {
     "SourceName": "39760049376909:1723499863965084600",
     "VictimName": "39760049309084:1723499863965057400",
-    "AbilityIcon": "39760049237749:1723499863965028800"
+    "AbilityIcon": "39760049237749:1723499863965028800",
+    "LevelText": "90038671831815:1738469631852619000"
   }
 }

@@ -45,12 +45,12 @@ public class AdTrigger : Component, INetworkedComponent
     }
     public virtual void OnInteract(Player p)
     {
-        if (Ads.IsAdAvailable())
+        if (Ads.IsRewardedAdLoaded())
         {
             Claimed = true;
             if (p.IsLocal)
             {
-                Ads.PromptAd(RewardId, "Watch Ad to Claim", AdPromptText, Assets.GetAsset<Texture>(AdPromptTexturePath));
+                Ads.PromptRewardedAd(RewardId, "Watch Ad to Claim", AdPromptText, Assets.GetAsset<Texture>(AdPromptTexturePath));
             }
         }
         else

@@ -11,7 +11,6 @@ public class UniqueWindowInteractable : Component
 
     public override void Awake()
     {
-        base.Start();
         WindowOpenInteractable = Entity.GetComponent<Interactable>();
         ExitVendorRange = Entity.GetComponent<Circle_Collider>();
         if (WindowOpenInteractable == null || ExitVendorRange == null)

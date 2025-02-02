@@ -25,7 +25,7 @@ public partial class AdCrab : AdTrigger
         mainLayer.CreateGlobalTransition(deadState).CreateTriggerCondition(deadTrigger);
         
         
-        mainLayer.SetInitialState(moveState);
+        mainLayer.InitialState = moveState;
         Animator.SpineInstance.SetStateMachine(stateMachine, Entity);
         Animator.SpineInstance.SetSkin("normal");
         Animator.SpineInstance.EnableSkin("normal");
