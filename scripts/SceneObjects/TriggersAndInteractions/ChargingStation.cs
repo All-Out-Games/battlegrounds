@@ -70,7 +70,7 @@ public partial class ChargingStation : OwnedTrigger
         var disappearTrigger = stateMachine.CreateVariable("expire", StateMachineVariableKind.TRIGGER);
         var activateTrigger = stateMachine.CreateVariable("activate", StateMachineVariableKind.TRIGGER);
 
-        mainLayer.InitialState = emptyState;
+        mainLayer.InitialState = idleState;
         mainLayer.CreateTransition(appearSetUpState, idleState, true);
         mainLayer.CreateGlobalTransition(disappearState).CreateTriggerCondition(disappearTrigger);
         mainLayer.CreateTransition(idleState, activateState, false).CreateTriggerCondition(activateTrigger);
