@@ -134,7 +134,7 @@ public partial class FightPlayer : Player
             {
                 _deathCount.Set(value);
                 Save.SetInt(this, "TotalDamageDealt", value);  // repurposed, as TotalDamageDealt is not collected anymore
-                Save.OrderedSet("TotalDamageDealt", $"{this.UserId}", value);
+                // Save.OrderedSet("TotalDamageDealt", $"{this.UserId}", value);
             }
         }
     }

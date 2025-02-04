@@ -80,10 +80,10 @@ public class EffectDeath : FightEffectWithImmunity
 
         if (FightPlayer.IsLocal && FightPlayer.DeathCount % InterstitialDeathCount == 0)
         {
-            if (!FightPlayer.IsVIP)
+            if (!FightPlayer.IsVIP && FightPlayer.TotalEliminations > 50)
             {
                 _showAd = true;
-                Notifications.Show("A short Ad will play after your respawn. Bypass this ad permanently by buying VIP.");
+                Notifications.Show("A short Ad will play after your respawn. Bypass this Ad by being a VIP!");
             }
         }
         FightPlayer.DeathCount += 1;
