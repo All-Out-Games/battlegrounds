@@ -192,6 +192,7 @@ public partial class KohManager : Component
                 }
             }
         };
+        Game.SetMatchmakingPriority(1); // Default prio for a new server (lower than round end, higher than game in progress)
     }
     public override void Update()
     {
@@ -257,6 +258,7 @@ public partial class KohManager : Component
                     _rewardedPlayer.Clear();
                     _winPlayer = null;
                     _winByScore = false;
+                    Game.SetMatchmakingPriority(0); // Lower prio when round started
                     break;
                 }
                 case GameState.Round:
@@ -509,6 +511,7 @@ public partial class KohManager : Component
                     State = GameState.RoundConclusion;
                     RoundTimerEnabled = false;
                     Countdown = 5f;
+                    Game.SetMatchmakingPriority(2); // High prio when the round hasn't started
                     break;
                 }
                 case GameState.RoundConclusion:

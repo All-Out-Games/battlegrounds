@@ -133,8 +133,8 @@ public partial class FightPlayer : Player
             if (Network.IsServer)
             {
                 _totalDamageDealt.Set(value);
-                Save.SetInt(this, "TotalDamageDealt", value);
-                Save.OrderedSet("TotalDamageDealt", $"{this.UserId}", value);
+                //Save.SetInt(this, "TotalDamageDealt", value);
+                //Save.OrderedSet("TotalDamageDealt", $"{this.UserId}", value);
             }
         }
     }

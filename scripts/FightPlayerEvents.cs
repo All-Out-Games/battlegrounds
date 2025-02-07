@@ -286,7 +286,7 @@ public partial class FightPlayer
     {
         if (source == this && victim != this && info.DmgType != DamageType.Heal)
         {
-            TotalDamageDealt += info.ReactionInfo.Amount;
+            //TotalDamageDealt += info.ReactionInfo.Amount;
             // Changed in KoH: No longer granting XP.
             // Send a callback to the source of damage. This need to reach client & server
             CallClient_NotifyDealDamage(victim, info);
