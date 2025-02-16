@@ -78,14 +78,14 @@ public class EffectDeath : FightEffectWithImmunity
             }
         }
 
-        if (FightPlayer.IsLocal && FightPlayer.DeathCount % InterstitialDeathCount == 0)
+        /*if (FightPlayer.IsLocal && FightPlayer.DeathCount % InterstitialDeathCount == 0)
         {
             if (!FightPlayer.IsVIP && FightPlayer.TotalEliminations > 50)
             {
                 _showAd = true;
                 Notifications.Show("A short Ad will play after your respawn. Bypass this Ad by being a VIP!");
             }
-        }
+        }*/
         FightPlayer.DeathCount += 1;
         
     }
@@ -121,10 +121,11 @@ public class EffectDeath : FightEffectWithImmunity
         FightPlayer.ClearAllEffects();
         FightPlayer.ClearSpeedModifier();
         
-        if (_showAd && Ads.IsInterstitialAdLoaded())
+        // Removed 250216 - Shin
+        /*if (_showAd && Ads.IsInterstitialAdLoaded())
         {
             Ads.ShowInterstitial();
-        }
+        }*/
     }
 
     public override bool IsActiveEffect => false;
