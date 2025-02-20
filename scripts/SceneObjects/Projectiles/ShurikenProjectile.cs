@@ -22,7 +22,7 @@ public class ShurikenProjectile : BaseProjectile
             instance.EnableSkin("shuriken");
             instance.SetAnimation("spin_loop", true);
             SoundId = SFX.Play(SFXKeys.ShurikenLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity, Loop = true, LoopTimeout = 3f});
-            Log.Warn($"Sound Start ID = {SoundId}");
+            //Log.Warn($"Sound Start ID = {SoundId}");
         }
         else
         {

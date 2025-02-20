@@ -40,7 +40,7 @@ public class AttachmentObject : Component
         if (Util.OneTime(TimeElapsed > EntityLifeTime, ref LifeTimeEnded))
         {
             Despawn();
-            Log.Warn($"Entity {Entity.Name} Destroyed!, Lifetime = {EntityLifeTime}");
+            // Log.Warn($"Entity {Entity.Name} Destroyed!, Lifetime = {EntityLifeTime}");
         }
 
         TimeElapsed += Time.DeltaTime;

@@ -331,7 +331,7 @@ public partial class FightPlayer : Player
         // Also note that MaxLevel is index based. The displayed level is _level+1 (i.e. MaxLevel = 29 means the max level is 30)
         if (Level >= LevelingData.MaxLevel)
         {
-            Log.Warn("Max Level hit!");
+            //Log.Warn("Max Level hit!");
             return;
         }
         
@@ -956,7 +956,7 @@ public partial class FightPlayer : Player
             return;
         }
         PlayerStatus = status;
-        Log.Warn($"Status Switched - {status.ToString()}");
+        Log.Info($"Status Switched - {status.ToString()}");
         if (Network.IsServer)
         {
             if (status == PlayerStatus.Combat)
