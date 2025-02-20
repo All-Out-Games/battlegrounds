@@ -313,7 +313,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
         List<FightPlayer> fightPlayers = new List<FightPlayer>();
         foreach (var p in Scene.Components<FightPlayer>())
         {
-            if (p == exclude) continue;
+            if (p == exclude || p.Alive()) continue;
             if(p is { PlayerStatus: PlayerStatus.Combat } fp) fightPlayers.Add(fp);
         }
         return fightPlayers;
@@ -398,7 +398,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
         List<FightPlayer> hitPlayers = new List<FightPlayer>();
         foreach (var other in GetSpectatorPlayers(exclude))
         {
-            if (Vector2.Distance(center, other.Entity.Position) < radius)
+            if (Vector2.Distance(center, other.Entity.Position) < radius && other.Alive())
             {
                 hitPlayers.Add(other);
             }
