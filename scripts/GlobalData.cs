@@ -43,8 +43,8 @@ public static class GlobalData
     public static readonly int AfkLowLevelBonus = 14;
     public static readonly int AfkMidLevelBonus = 6;
 
-    public static FontAsset Asap = Assets.KeepLoaded<FontAsset>("$AO/fonts/Asap-Medium-Fixed.ttf");
-    public static FontAsset AsapBold = Assets.KeepLoaded<FontAsset>("$AO/fonts/Asap-ExtraBold-Fixed.ttf");
+    public static FontAsset Asap = UI.Fonts.Barlow;
+    public static FontAsset AsapBold = UI.Fonts.BarlowBold;
 
     
     // Damage Number Color
