@@ -93,7 +93,7 @@ public class CrateManager : System<CrateManager>
         List<Crate> crts = new ();
         foreach (var other in CrateRegistry)
         {
-            if (Vector2.Distance(center, other.Entity.Position) < radius)
+            if (Vector2.Distance(center, other.Entity.Position) < radius && other.Alive())
             {
                 crts.Add(other);
             }
