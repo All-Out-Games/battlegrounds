@@ -90,7 +90,7 @@ public partial class GlobalLeaderboard : Component
             var rankRect = myRect.LeftRect().Offset(0.2f, 0);
             Vector4 rankColor = new Vector4(41.0f/255.0f, 35.0f/255.0f, 39.0f/255.0f, 1.0f);
             var finalRankRect = UI.Text(rankRect, $"{MyScore.Rank+1}", new UI.TextSettings() {
-                Font = UI.Fonts.Asap,
+                Font = GlobalData.Asap,
                 Color = rankColor,
                 Size = rankTextSize,
                 HorizontalAlignment = UI.HorizontalAlignment.Left,
@@ -102,7 +102,7 @@ public partial class GlobalLeaderboard : Component
             if (MyScore.Rank == 1) suffix = "nd";
             if (MyScore.Rank == 2) suffix = "rd";
             UI.Text(rankSuffixRect, suffix, new UI.TextSettings() {
-                Font = UI.Fonts.Asap,
+                Font = GlobalData.Asap,
                 Color = rankColor,
                 Size = rankTextSize * 0.5f,
                 HorizontalAlignment = UI.HorizontalAlignment.Left,
@@ -111,7 +111,7 @@ public partial class GlobalLeaderboard : Component
 
             var nameRect = myRect.LeftRect().Offset(1, 0);
             UI.Text(nameRect, MyScore.Name , new UI.TextSettings() {
-                Font = UI.Fonts.Asap,
+                Font = GlobalData.Asap,
                 Color = Vector4.White,
                 Size = textSize,
                 HorizontalAlignment = UI.HorizontalAlignment.Left,
@@ -122,7 +122,7 @@ public partial class GlobalLeaderboard : Component
 
             var scoreRect = myRect.RightRect().Offset(-0.175f, 0);
             UI.Text(scoreRect, Util.FormatDouble(MyScore.Score), new UI.TextSettings() {
-                Font = UI.Fonts.Asap,
+                Font = GlobalData.Asap,
                 Color = Vector4.White,
                 Size = textSize,
                 HorizontalAlignment = UI.HorizontalAlignment.Right,
@@ -175,7 +175,7 @@ public partial class GlobalLeaderboard : Component
                 if (i < 0) rankText = "TBD";
 
                 var finalRankRect = UI.Text(rankRect, $"{i+1}", new UI.TextSettings() {
-                    Font = UI.Fonts.Asap,
+                    Font = GlobalData.Asap,
                     Color = rankColor,
                     Size = rankTextSize,
                     HorizontalAlignment = UI.HorizontalAlignment.Left,
@@ -188,7 +188,7 @@ public partial class GlobalLeaderboard : Component
                 if (i % 10 == 2 && i != 12) suffix = "rd";
                 if (i < 0) suffix = "";
                 UI.Text(rankSuffixRect, suffix, new UI.TextSettings() {
-                    Font = UI.Fonts.Asap,
+                    Font = GlobalData.Asap,
                     Color = rankColor,
                     Size = rankTextSize * 0.5f,
                     HorizontalAlignment = UI.HorizontalAlignment.Left,
@@ -198,7 +198,7 @@ public partial class GlobalLeaderboard : Component
                 var nameRect = entryRect.LeftRect().Offset(1, 0);
                 if (i == 0) nameRect = nameRect.Offset(0, -0.03f);
                 UI.Text(nameRect, entry.Name , new UI.TextSettings() {
-                    Font = UI.Fonts.Asap,
+                    Font = GlobalData.Asap,
                     Color = Vector4.White,
                     Size = textSize,
                     HorizontalAlignment = UI.HorizontalAlignment.Left,
@@ -210,7 +210,7 @@ public partial class GlobalLeaderboard : Component
                 var scoreRect = entryRect.RightRect().Offset(-0.175f, 0);
                 if (i == 0) scoreRect = scoreRect.Offset(-0.075f, -0.03f);
                 UI.Text(scoreRect, Util.FormatDouble(entry.Score), new UI.TextSettings() {
-                    Font = UI.Fonts.Asap,
+                    Font = GlobalData.Asap,
                     Color = Vector4.White,
                     Size = textSize,
                     HorizontalAlignment = UI.HorizontalAlignment.Right,
