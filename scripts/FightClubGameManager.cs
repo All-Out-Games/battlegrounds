@@ -376,7 +376,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
         List<DamageableObject> hitPlayers = new();
         foreach (var other in GetAllDamagableEntities(exclude))
         {
-            if (Vector2.Distance(center, other.Position) < radius)
+            if (Vector2.Distance(center, other.Position) < radius && other.Alive())
             {
                 DamageableObject dmg = other.GetComponent<DamageableObject>();
                 if (dmg.Alive())
