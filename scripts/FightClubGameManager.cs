@@ -313,7 +313,7 @@ public class FightClubGameManager : System<FightClubGameManager> {
         List<FightPlayer> fightPlayers = new List<FightPlayer>();
         foreach (var p in Scene.Components<FightPlayer>())
         {
-            if (p == exclude || p.Alive()) continue;
+            if (p == exclude || !p.Alive()) continue;
             if(p is { PlayerStatus: PlayerStatus.Combat } fp) fightPlayers.Add(fp);
         }
         return fightPlayers;

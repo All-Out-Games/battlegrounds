@@ -866,6 +866,7 @@ public partial class FightPlayer : Player
     public Vector2 GetPunchDirection()
     {
         var proximityPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, EffectConfig.PunchConfig.PunchTargetRange, this);
+        
         proximityPlayers.Remove(this);
         if (proximityPlayers.Count > 0)
         {
