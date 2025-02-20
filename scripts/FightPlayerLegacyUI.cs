@@ -64,7 +64,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
     {
         var ts = new UI.TextSettings()
         {
-            Font = UI.Fonts.AsapBold,
+            Font = GlobalData.AsapBold,
             Size = 20,
             VerticalAlignment = UI.VerticalAlignment.Top,
             HorizontalAlignment = UI.HorizontalAlignment.Center,

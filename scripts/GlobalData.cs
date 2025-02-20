@@ -42,8 +42,9 @@ public static class GlobalData
     public static readonly int AfkMidLevelThreshold = 15; // Players with level <= this value will receive +6 from AFK (Stack with the L bonus)
     public static readonly int AfkLowLevelBonus = 14;
     public static readonly int AfkMidLevelBonus = 6;
-    
-    
+
+    public static FontAsset Asap = Assets.GetAsset<FontAsset>("$AO/fonts/Asap-Medium-Fixed.ttf");
+    public static FontAsset AsapBold = Assets.GetAsset<FontAsset>("$AO/fonts/Asap-ExtraBold-Fixed.ttf");
 
     
     // Damage Number Color
