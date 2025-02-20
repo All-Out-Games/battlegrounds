@@ -48,7 +48,7 @@ public class FadeAfterStart : Component
 
         if (FadeTime <= PersistTime)
         {
-            Log.Warn("FadeAfterStart: Fade time must be more than persist time!");
+            //Log.Warn("FadeAfterStart: Fade time must be more than persist time!");
             Entity.Destroy();
         }
 
