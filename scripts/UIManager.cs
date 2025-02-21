@@ -17,7 +17,7 @@ public partial class UIManager : System<UIManager>
     public float PopupRemainingTime;
 
 
-    public static FontAsset DefaultFont = Assets.KeepLoaded<FontAsset>("$AO/fonts/Barlow-SemiBold.ttf");
+    public static FontAsset DefaultFont => GlobalData.Asap;
     private UI.ButtonSettings _defaultButtonSettings;
     private UI.TextSettings _defaultTextSettings;
 
