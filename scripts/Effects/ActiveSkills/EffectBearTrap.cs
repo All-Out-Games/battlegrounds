@@ -64,8 +64,10 @@ public class EffectBearTrapSnare : FightEffectWithNoFlinch
         info.ReactionInfo.Flinch = false;
         info.SkillKey = SkillConfig.BearTrapConfig.SkillKey;
         FightPlayer.TakeDamage(caster, info);
-        
-        DurationRemaining = MainLayer.GetCurrentStateLength();
+
+        DurationRemaining = 3.8f;  //MainLayer.GetCurrentStateLength();
+        // Remove Dash / Bump
+        FightPlayer.AddBump(Vector2.Zero, true);
     }
     
 }
