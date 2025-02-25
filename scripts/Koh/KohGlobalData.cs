@@ -82,9 +82,16 @@ public static class KohGlobalData
 
     public static bool OwnKoHGamePass(FightPlayer fp)
     {
-        if (fp.IsLocal)
+        if (Network.IsClient)
         {
-            return Purchasing.OwnsGamePassLocal("677616d6e9dab16189587b41");
+            if (fp.IsLocal)
+            {
+                return Purchasing.OwnsGamePassLocal("677616d6e9dab16189587b41");
+            }
+            else
+            {
+                return false;
+            }
         }
         return Purchasing.OwnsGamePass(fp, "677616d6e9dab16189587b41");
     }
