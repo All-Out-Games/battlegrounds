@@ -258,7 +258,7 @@ public partial class KohManager : Component
                     _rewardedPlayer.Clear();
                     _winPlayer = null;
                     _winByScore = false;
-                    Game.SetMatchmakingPriority(0); // Lower prio when round started
+                    Game.SetMatchmakingPriority(2); // Lower prio when round started
                     break;
                 }
                 case GameState.Round:
@@ -511,7 +511,7 @@ public partial class KohManager : Component
                     State = GameState.RoundConclusion;
                     RoundTimerEnabled = false;
                     Countdown = 5f;
-                    Game.SetMatchmakingPriority(2); // High prio when the round hasn't started
+                    Game.SetMatchmakingPriority(0); // High prio when the round hasn't started
                     break;
                 }
                 case GameState.RoundConclusion:
