@@ -172,7 +172,7 @@ public partial class EffectFlashOfSteel : FightEffectWithImmunity
         if (!isDropIn)
         {
             //SFX.Play(SFXKeys.ShoulderCrashAudio, DefaultSoundDesc);
-            DurationRemaining = EffectConfig.FlashOfSteelConfig.DashTime + EffectConfig.FlashOfSteelConfig.DashDelay + 0.1f;
+            DurationRemaining = EffectConfig.FlashOfSteelConfig.DashTime + EffectConfig.FlashOfSteelConfig.DashDelay + 0.3f;
             FightPlayer.SetAnimTrigger("fos_start", true);
             FightPlayer.AddEffect<TrailEffect>(null, 1f);
             SFX.Play(SFXKeys.FoSPrepareAudio, DefaultSoundDesc);
