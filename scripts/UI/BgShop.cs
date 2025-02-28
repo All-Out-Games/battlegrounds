@@ -73,6 +73,12 @@ public partial class BgShop : System<BgShop>
         {
             var prod = _allProducts.FirstOrDefault(prod => prod.SparksProductId == productId);
             success = true;
+
+            if (productId == "678014341902847169c60258")
+            {
+                return true; // This is the KoTH early access. Special case, should grant nothing but return true.
+            }
+            
             switch (prod.Id)
             {
                 case "starter_pack1": player.Exp += LevelingData.BaselineXp[4];
