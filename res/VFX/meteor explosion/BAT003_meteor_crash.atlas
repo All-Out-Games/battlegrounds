@@ -1,0 +1,76 @@
+BAT003_meteor_crash.png
+	size: 3852, 3076
+	filter: Linear, Linear
+A
+	bounds: 3564, 437, 242, 277
+	offsets: 1, 1, 244, 279
+B
+	bounds: 2779, 88, 227, 262
+	offsets: 1, 1, 229, 264
+	rotate: 90
+BOOM
+	bounds: 2085, 101, 691, 214
+	offsets: 1, 1, 693, 216
+K
+	bounds: 3266, 437, 255, 297
+	offsets: 1, 1, 257, 299
+M
+	bounds: 3564, 184, 253, 250
+	offsets: 1, 1, 255, 252
+O1
+	bounds: 3044, 91, 218, 224
+	offsets: 1, 1, 220, 226
+O2
+	bounds: 3, 29, 216, 216
+	offsets: 1, 1, 218, 218
+big_ring
+	bounds: 3, 1862, 1477, 1209
+	offsets: 12, 14, 1501, 1237
+circle_fade
+	bounds: 1141, 118, 941, 869
+	offsets: 1, 1, 943, 871
+circle_glow
+	bounds: 1141, 990, 941, 869
+	offsets: 1, 1, 943, 871
+cloud
+	bounds: 2085, 906, 375, 375
+	offsets: 1, 1, 377, 377
+explosion_flare
+	bounds: 2671, 1879, 1192, 1176
+	offsets: 1, 1, 1194, 1178
+	rotate: 90
+flare
+	bounds: 2085, 318, 1178, 416
+	offsets: 9, 1, 1196, 418
+glow
+	bounds: 2671, 737, 1139, 1139
+	offsets: 28, 29, 1195, 1195
+ground_fissure
+	bounds: 2085, 1284, 584, 473
+	offsets: 11, 10, 605, 495
+	rotate: 90
+ground_fissure_glow
+	bounds: 3266, 180, 295, 254
+	offsets: 4, 2, 303, 258
+ground_glow
+	bounds: 3, 875, 1135, 984
+	offsets: 28, 30, 1192, 1036
+halftone_explosion
+	bounds: 1483, 1871, 1185, 1200
+	offsets: 0, 10, 1190, 1210
+medium debris1
+	bounds: 3564, 3, 197, 178
+	offsets: 1, 1, 199, 180
+medium debris2
+	bounds: 3265, 9, 155, 168
+	offsets: 1, 1, 157, 170
+ribbon
+	bounds: 3, 248, 582, 624
+	offsets: 19, 22, 617, 654
+ribbon2
+	bounds: 587, 80, 792, 419
+	offsets: 21, 102, 840, 540
+	rotate: 90
+spark_particle_B
+	bounds: 222, 38, 221, 207
+	offsets: 7, 7, 235, 221
