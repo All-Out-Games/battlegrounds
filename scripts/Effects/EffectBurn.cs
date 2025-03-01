@@ -11,6 +11,7 @@ public class EffectBurn: FightEffect
     public int PerSecondDmg = 0;
     protected float NextDmgTick = 1;
     protected bool Ticked = false;
+    public string Skey = SkillConfig.FireballNodeConfig.SkillKey;
     
 
     public override void OnEffectUpdate()
@@ -27,12 +28,12 @@ public class EffectBurn: FightEffect
     {
         if (!FightPlayer.Alive() || !FightPlayer.Damageable()) return;
         FightPlayer.DamageInfo selfDmgInfo = FightPlayer.DamageInfo.CreateSelfDamageInfo(PerSecondDmg);
-        selfDmgInfo.SkillKey = SkillConfig.FireballNodeConfig.SkillKey;
+        selfDmgInfo.SkillKey = Skey;
         selfDmgInfo.SpecialDeathAnimation = true;
         FightPlayer.TakeDamage(Caster as FightPlayer, selfDmgInfo); // You can create self damage that comes from other players.
         
         SFX.Play(SFXKeys.FireballHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity, Volume = 0.35f});
-        FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.HitVFX, FightPlayer.Position,
+        FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.HitVFX, FightPlayer.Position + new Vector2(0, 0.5f),
             entity =>
             {
                 SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
@@ -62,6 +63,8 @@ public class EffectBurn: FightEffect
         else
         {
             fp.GetEffectMgr().AddBurn(source, time, dps);
+            bld = fp.GetEffect<EffectBurn>();
         }
+        
     }
 }

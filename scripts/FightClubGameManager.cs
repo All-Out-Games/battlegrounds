@@ -5,7 +5,7 @@ using Assembly.scripts.Effects;
 using Assembly.scripts.SceneObjects.Crates;
 using Assembly.scripts.UI;
 
-public class FightClubGameManager : System<FightClubGameManager> {
+public partial class FightClubGameManager : System<FightClubGameManager> {
 
     #region Attributes
     
@@ -505,4 +505,5 @@ public class FightClubGameManager : System<FightClubGameManager> {
     }
 
     #endregion
+    
 }

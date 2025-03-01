@@ -126,6 +126,9 @@ public static class SFXKeys
     public static AudioAsset Katana3Audio = Assets.GetAsset<AudioAsset>("SFX/Effects/katana_slash_03.wav");
     public static List<AudioAsset> KatanaSlashes = new() {Katana1Audio, Katana2Audio, Katana3Audio};
     public static AudioAsset IllusionSlashAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/illusion_slash_wave.wav");
+    
+    public static AudioAsset FireTornadoStartAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/fire_tornado_start.wav");
+    public static AudioAsset FireTornadoLoopAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/fire_tornado_loop.wav");
 
     public static AudioAsset GetRandomKatanaSound()
     {
