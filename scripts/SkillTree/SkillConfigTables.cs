@@ -1231,7 +1231,7 @@ public static partial class SkillConfig
         GridX = 1,
         GridY = 1,
         ParentNodeKeys = new string[] { "IceFist" },
-        ChildrenNodeKeys = new string[] { },
+        ChildrenNodeKeys = new string[] { "FireTornado" },
     };
     
     public static readonly SkillTreeNodeConfig ThunderboltNodeConfig = new SkillTreeNodeConfig()
@@ -1305,6 +1305,30 @@ public static partial class SkillConfig
         ParentNodeKeys = new string[] { "Thunderbolt" },
         ChildrenNodeKeys = new string[] { },
     };
+    
+    public static readonly SkillTreeNodeConfig FireTornadoNodeConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Fire Tornado",
+        DescriptionTextKey = "Release a devastating, enemy-seeking tornado that burns your enemies to ashes.",
+        UpgradeTextKey = "*: Cooldown -1s \n **: Burn +1s\n ***: Tracks more aggressively\n ****: Provides strong knockback",
+        BaseDamageKey = 15,
+        RangeDescriptionKey = "12m",
+        CooldownKey = "%OVERRIDE%",
+        IconPath = "AbilityIcon_Merged/elemental/fire_tornado.png",
+        AbilityIconPath = "AbilityIcon_Separate/elemental/fire_tornado_icon.png",
+        //AbilityPreviewPath = "Ability_Preview/elemental/lightning_snare.gif",
+        UnlockLevel = 1, //42
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierTwoGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Elemental,
+        UpgradeCost = 14100,
+        SkillKey = "FireTornado",
+        GridX = 1,
+        GridY = 2,
+        ParentNodeKeys = new string[] { "Fireball" },
+        ChildrenNodeKeys = new string[] { },
+    };
 
     #endregion
 
@@ -1370,7 +1394,8 @@ public static partial class SkillConfig
             {"Fireball", FireballNodeConfig},
             {"Thunderbolt", ThunderboltNodeConfig},
             {"IceStorm", IceStormNodeConfig},
-            {"ChargingStation", ChargingStationNodeConfig}
+            {"ChargingStation", ChargingStationNodeConfig},
+            {"FireTornado", FireTornadoNodeConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -1388,7 +1413,7 @@ public static partial class SkillConfig
         // Stealth
         "Invisibility", "LightFeet","Shuriken", "BearTrap", "ShadowStep", "Backstab", "TotalDarkness",
         // Elemental
-        "IceFist", "WindPunch", "Fireball", "Thunderbolt", "IceStorm", "ChargingStation"
+        "IceFist", "WindPunch", "Fireball", "Thunderbolt", "IceStorm", "ChargingStation", "FireTornado"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "Punch2", "Punch3" };
@@ -1443,7 +1468,8 @@ public partial class FightAbility
         {SC.ChargingStationNodeConfig.SkillKey, typeof(AbilityChargingStation)},
         {SC.FlashOfSteelConfig.SkillKey, typeof(AbilityFlashOfSteel)},
         {SC.BladeFrenzyConfig.SkillKey, typeof(AbilityBladeFrenzy)},
-        {SC.BladeStormConfig.SkillKey, typeof(AbilityBladeStorm)}
+        {SC.BladeStormConfig.SkillKey, typeof(AbilityBladeStorm)},
+        {SC.FireTornadoNodeConfig.SkillKey, typeof(AbilityFireTornado)}
     };
 }
 

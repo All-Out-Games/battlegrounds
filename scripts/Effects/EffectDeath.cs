@@ -42,6 +42,12 @@ public class EffectDeath : FightEffectWithImmunity
             case "FlashOfSteel":
                 res = "death_swiped";
                 break;
+            case "FireTornado":
+                res = "death_poof";
+                break;
+            case "MeteorCrash":
+                res = "death_poof";
+                break;
         }
 
         if (res == "death")

@@ -1274,4 +1274,31 @@ public static class EffectConfig
     }
 
     #endregion
+
+    #region cfg: Fire Tornado
+
+    public struct FireTornadoConfig
+    {
+        public static float Cooldown = 10f;
+        public static float TrackAggressiveness = 1f; // Tornado will track nearby enemies. Double aggressive when upgraded to Lv.3
+        public static float TrackRange = 6f;
+        public static int BaseDamage = 15;
+        public static int BurnDamage = 2;
+        public static float BurnDuration = 3.0f; // +2s burn time at Lv.4
+        
+        public static ProjectileConfig GetTornadoCfg(int atk, int lv)
+        {
+            ProjectileConfig cfg = new ProjectileConfig()
+            {
+                Damage = atk + BaseDamage,
+                ProjectilePrefabKey = "FireTornado.prefab",
+                ProjectileLifetime = 3f,
+                ProjectileLevel = lv,
+                Speed = 5f
+            };
+            return cfg;
+        }
+    }
+
+    #endregion
 }
