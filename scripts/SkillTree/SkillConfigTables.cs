@@ -1327,6 +1327,30 @@ public static partial class SkillConfig
         GridX = 1,
         GridY = 2,
         ParentNodeKeys = new string[] { "Fireball" },
+        ChildrenNodeKeys = new string[] { "MeteorStrike" },
+    };
+    
+    public static readonly SkillTreeNodeConfig MeteorStrikeNodeConfig = new SkillTreeNodeConfig()
+    {
+        DisplayName = "Meteor Strike",
+        DescriptionTextKey = "Thrust to the sky and turn into a meteor that rains doom upon your foes.",
+        UpgradeTextKey = "*: Damage Area +10% \n **: Cooldown -4s\n ***: Speed Boost 25% during freefall\n ****: You can enter the arena with this skill",
+        BaseDamageKey = 30,
+        RangeDescriptionKey = "20m",
+        CooldownKey = "%OVERRIDE%",
+        IconPath = "AbilityIcon_Merged/elemental/meteor_crash.png",
+        AbilityIconPath = "AbilityIcon_Separate/elemental/meteor_crash_icon.png",
+        //AbilityPreviewPath = "Ability_Preview/elemental/lightning_snare.gif",
+        UnlockLevel = 1, //44
+        MaximumLevel = 5,
+        UpgradeGemCost = _tierThreeGemCost,
+        NType = NodeType.SkillUnlock,
+        NTab = SkillTreeTabs.Elemental,
+        UpgradeCost = 30000,
+        SkillKey = "MeteorStrike",
+        GridX = 1,
+        GridY = 3,
+        ParentNodeKeys = new string[] { "FireTornado" },
         ChildrenNodeKeys = new string[] { },
     };
 
@@ -1395,7 +1419,8 @@ public static partial class SkillConfig
             {"Thunderbolt", ThunderboltNodeConfig},
             {"IceStorm", IceStormNodeConfig},
             {"ChargingStation", ChargingStationNodeConfig},
-            {"FireTornado", FireTornadoNodeConfig}
+            {"FireTornado", FireTornadoNodeConfig},
+            {"MeteorStrike", MeteorStrikeNodeConfig}
         };
 
     // [Add Skill] Item 3: Put Classification Here
@@ -1413,7 +1438,7 @@ public static partial class SkillConfig
         // Stealth
         "Invisibility", "LightFeet", "SpeedBoost","Shuriken", "BearTrap", "ShadowStep", "Backstab", "TotalDarkness",
         // Elemental
-        "IceFist", "WindPunch", "Fireball", "Thunderbolt", "IceStorm", "ChargingStation", "FireTornado"
+        "IceFist", "WindPunch", "Fireball", "Thunderbolt", "IceStorm", "ChargingStation", "FireTornado", "MeteorStrike"
     };
 
     public static readonly HashSet<string> ReplacementSkills = new HashSet<string>() { "Punch2", "Punch3" };
@@ -1469,7 +1494,8 @@ public partial class FightAbility
         {SC.FlashOfSteelConfig.SkillKey, typeof(AbilityFlashOfSteel)},
         {SC.BladeFrenzyConfig.SkillKey, typeof(AbilityBladeFrenzy)},
         {SC.BladeStormConfig.SkillKey, typeof(AbilityBladeStorm)},
-        {SC.FireTornadoNodeConfig.SkillKey, typeof(AbilityFireTornado)}
+        {SC.FireTornadoNodeConfig.SkillKey, typeof(AbilityFireTornado)},
+        {SC.MeteorStrikeNodeConfig.SkillKey, typeof(AbilityMeteorStrike)}
     };
 }
 

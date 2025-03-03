@@ -129,6 +129,10 @@ public static class SFXKeys
     
     public static AudioAsset FireTornadoStartAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/fire_tornado_start.wav");
     public static AudioAsset FireTornadoLoopAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/fire_tornado_loop.wav");
+    
+    public static AudioAsset MeteorStartAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/meteor_start.wav");
+    public static AudioAsset MeteorLoopAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/meteor_loop.wav");
+    public static AudioAsset MeteorLandAudio = Assets.GetAsset<AudioAsset>("SFX/Effects/meteor_land.wav");
 
     public static AudioAsset GetRandomKatanaSound()
     {

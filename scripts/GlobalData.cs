@@ -6,7 +6,8 @@ public enum PlayerStatus
     Combat,
     Safe,
     AFK,
-    Spectator
+    Spectator,
+    TemporarilyOutCombat // Used in Meteor Strike
 }
 
 public enum DamageType

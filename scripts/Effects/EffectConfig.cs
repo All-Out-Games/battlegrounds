@@ -1279,7 +1279,7 @@ public static class EffectConfig
 
     public struct FireTornadoConfig
     {
-        public static float Cooldown = 10f;
+        public static float Cooldown = 13f;
         public static float TrackAggressiveness = 1f; // Tornado will track nearby enemies. Double aggressive when upgraded to Lv.3
         public static float TrackRange = 6f;
         public static int BaseDamage = 15;
@@ -1296,6 +1296,46 @@ public static class EffectConfig
                 ProjectileLevel = lv,
                 Speed = 5f
             };
+            return cfg;
+        }
+    }
+
+    #endregion
+
+    #region cfg: Meteor Crash
+
+    public struct MeteorStrikeConfig
+    {
+        public static float Cooldown = 32f; // Lv.3 -> CD - 4s
+        public static float JumpDuration = 0.783f; // Matches the animation
+        public static float FallDuration = 3f; // Can be tuned
+        public static int BaseDamage = 30;
+        public static float BaseRadius = 6f;
+        public static float BumpStrength = 240f;
+
+        public int Damage;
+        public float SizeMultiplier; // Lv.2 -> +10% Range
+        public float FallSpeedMultiplier; // Default + 10% speed when falling. Lv.4 Boost to 25%
+
+
+        public static MeteorStrikeConfig GetDefault(int atk, int lv)
+        {
+            MeteorStrikeConfig cfg = new MeteorStrikeConfig()
+            {
+                Damage = atk + BaseDamage,
+                SizeMultiplier = 1.0f,
+                FallSpeedMultiplier = 1.1f
+            };
+
+            if (lv > 2)
+            {
+                cfg.SizeMultiplier = 1.1f;
+            }
+
+            if (lv > 4)
+            {
+                cfg.FallSpeedMultiplier = 1.25f;
+            }
             return cfg;
         }
     }

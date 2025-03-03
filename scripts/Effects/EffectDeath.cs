@@ -48,7 +48,7 @@ public class EffectDeath : FightEffectWithImmunity
             case "FireTornado":
                 res = "death_poof";
                 break;
-            case "MeteorCrash":
+            case "MeteorStrike":
                 res = "death_poof";
                 break;
         }

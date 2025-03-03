@@ -17,14 +17,16 @@ public class AbilityFireTornado : FightAbility
 
     public static float GetCooldown(FightPlayer fp)
     {
-        return fp.GetSkillTree().GetSkillLevel("FireTornado") > 1 ? EffectConfig.FlashOfSteelConfig.Cooldown - 1 : EffectConfig.FlashOfSteelConfig.Cooldown;
+        return fp.GetSkillTree().GetSkillLevel("FireTornado") > 1 ? EffectConfig.FireTornadoConfig.Cooldown - 1 : EffectConfig.FireTornadoConfig.Cooldown;
     }
 }
 
 public class EffectFireTornado : FightEffect
 {
     public override bool IsActiveEffect => true;
-    
+
+    protected override bool PreventMovement => true;
+
     public override bool BlockAbilityActivation => true;
 
     private bool _launched;

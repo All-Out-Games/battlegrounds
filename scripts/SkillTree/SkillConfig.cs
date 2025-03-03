@@ -340,6 +340,12 @@ public static partial class SkillConfig
             case "BladeStorm":
                 res = $"{AbilityBladeStorm.GetCooldown(fp)}s";
                 break;
+            case "FireTornado":
+                res = $"{AbilityFireTornado.GetCooldown(fp)}s";
+                break;
+            case "MeteorStrike":
+                res = $"{AbilityMeteorStrike.GetCooldown(fp)}s";
+                break;
         }
 
         return res;
