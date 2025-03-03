@@ -473,6 +473,8 @@ LeaderBoard/RANK ME.png - .ao - 674e5df0f6994d2906c24a16 - 18355927931936680427
 LeaderBoard/RANK ME.png - .ao.astc - 674e5df1f6994d2906c24a18 - 9598768695101308452
 LeapSlamCrater.prefab - .ao - 674e5df1f6994d2906c24a1b - 16364410912099090893
 LoadoutItemGroup.prefab - .ao - 673949b102386857e8d33420 - 13916418734727225903
+MeteorCrater.prefab - .ao - 67c525d23b2deef767b393dc - 13949814250260585821
+MeteorReticle.prefab - .ao - 67c4ea3e3b2deef767b393da - 8806728466521496111
 Pipe_1.prefab - .ao - 674e5df1f6994d2906c24a1c - 4932859284795892587
 Pipe_Straight.prefab - .ao - 674e5df2f6994d2906c24a1e - 5859368875629010514
 projectile/BAT003_Projectile/BAT003_projectile.png - .ao - 674e5df2f6994d2906c24a21 - 3835586870936598686

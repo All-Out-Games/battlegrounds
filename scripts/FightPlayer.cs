@@ -1018,7 +1018,7 @@ public partial class FightPlayer : Player
         PlayerStatus = PlayerStatus.Combat;
         if (Network.IsServer)
         {
-            OnTeleportToCombatZone();
+            OnTeleportToCombatZone(); // Invoke the after-teleport combat (does not actually teleport the player)
         }
     }
 

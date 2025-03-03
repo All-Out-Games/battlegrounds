@@ -10,11 +10,6 @@ public class ReticleObject : Component
 
     public override void Awake()
     {
-        if (Animator == null)
-        {
-            Log.Error($"Animator is not assigned for {Entity.Name}!");
-            Despawn();
-        }
 
         if (Reticle == null)
         {
@@ -49,6 +44,12 @@ public class ReticleObject : Component
 
     public void SetAnimation(string aName, bool loop)
     {
+        if (Animator == null)
+        {
+            Log.Error($"Animator is not assigned for {Entity.Name}!");
+            Despawn();
+            return;
+        }
         Animator.SpineInstance.SetAnimation(aName, loop);
     }
 }

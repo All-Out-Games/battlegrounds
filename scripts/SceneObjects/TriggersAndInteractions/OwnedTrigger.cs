@@ -29,7 +29,7 @@ public partial class OwnedTrigger : OwnedObjectComponent
         
         InteractedEntities.Add(entity);
         
-        Log.Debug($"Entity {entity.Name} enters.");
+        //Log.Debug($"Entity {entity.Name} enters.");
         
         FightPlayer fp = entity.GetComponent<FightPlayer>();
         if (fp.Alive())
@@ -111,5 +111,11 @@ public partial class OwnedTrigger : OwnedObjectComponent
         }
         
         
+    }
+
+    public void RemoveEntityFromWhiteList(Entity en)
+    {
+        // Used in meteor crash. They ignore collisions during casting, and we have to re-enable them to be trapped.
+        InteractedEntities.Remove(en);
     }
 }

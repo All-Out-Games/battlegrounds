@@ -98,11 +98,11 @@ public class FireTornadoProjectile : BaseProjectile
                 var fpp = fdb.Player;
                 var mgr = fdb.Player.GetEffectMgr();
                 float burnDuration = EffectConfig.FireTornadoConfig.BurnDuration;
-                if (ProjectileLevel > 2) burnDuration += 1;
+                if (ProjectileLevel > 2) burnDuration += 2;
                     
                 mgr.AddBurn(Owner.Entity, burnDuration, EffectConfig.FireTornadoConfig.BurnDamage);
 
-                if (ProjectileLevel > 4)
+                if (ProjectileLevel > 4) // Knockback when fully maxed out
                 {
                     Vector2 dir = GetComponent<Rigidbody>().Velocity.Normalized;
                     fpp.AddBump(dir * 175f, false);

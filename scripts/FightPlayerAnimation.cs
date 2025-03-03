@@ -403,13 +403,19 @@ public partial class FightPlayer
         aoLayer.CreateTransition(iceStormLoopState, iceStormEndState, false).CreateTriggerCondition(iceStormEndTrigger);
         aoLayer.CreateTransition(iceStormEndState, aoIdleState, true);
         
-        // Meteor (TODO)
+        // Meteor Strike
         var meteorLandTrigger = stateMachine.CreateVariable("meteor_land", StateMachineVariableKind.TRIGGER);
         var meteorLandState = aoLayer.CreateState("BAT_003/meteor_land", 0, false);
         aoLayer.CreateGlobalTransition(meteorLandState).CreateTriggerCondition(meteorLandTrigger);
         aoLayer.CreateTransition(meteorLandState, aoIdleState, true);
-
-
+        
+        var meteorStartTrigger = stateMachine.CreateVariable("meteor_start", StateMachineVariableKind.TRIGGER);
+        var meteorStartState = aoLayer.CreateState("BAT_003/meteor_start", 0, false);
+        // var meteorStartTrigger = stateMachine.CreateVariable("meteor_start", StateMachineVariableKind.TRIGGER);
+        var meteorLoopState = aoLayer.CreateState("BAT_003/meteor_loop", 0, true);
+        aoLayer.CreateGlobalTransition(meteorStartState).CreateTriggerCondition(meteorStartTrigger);
+        aoLayer.CreateTransition(meteorStartState, meteorLoopState, true);
+        
         #endregion
     }
     
