@@ -1317,12 +1317,12 @@ public static partial class SkillConfig
         IconPath = "AbilityIcon_Merged/elemental/fire_tornado.png",
         AbilityIconPath = "AbilityIcon_Separate/elemental/fire_tornado_icon.png",
         //AbilityPreviewPath = "Ability_Preview/elemental/lightning_snare.gif",
-        UnlockLevel = 1, //42
+        UnlockLevel = 42, //42
         MaximumLevel = 5,
         UpgradeGemCost = _tierTwoGemCost,
         NType = NodeType.SkillUnlock,
         NTab = SkillTreeTabs.Elemental,
-        UpgradeCost = 14100,
+        UpgradeCost = 16600,
         SkillKey = "FireTornado",
         GridX = 1,
         GridY = 2,
@@ -1334,14 +1334,14 @@ public static partial class SkillConfig
     {
         DisplayName = "Meteor Strike",
         DescriptionTextKey = "Thrust to the sky and turn into a meteor that rains doom upon your foes.",
-        UpgradeTextKey = "*: Damage Area +10% \n **: Cooldown -4s\n ***: Speed Boost 25% during freefall\n ****: You can enter the arena with this skill",
+        UpgradeTextKey = "*: Radius +10% \n **: Cooldown -4s\n ***: +25 Falling Speed\n ****: You can enter the arena with this skill",
         BaseDamageKey = 30,
         RangeDescriptionKey = "20m",
         CooldownKey = "%OVERRIDE%",
         IconPath = "AbilityIcon_Merged/elemental/meteor_crash.png",
         AbilityIconPath = "AbilityIcon_Separate/elemental/meteor_crash_icon.png",
         //AbilityPreviewPath = "Ability_Preview/elemental/lightning_snare.gif",
-        UnlockLevel = 1, //44
+        UnlockLevel = 44, //44
         MaximumLevel = 5,
         UpgradeGemCost = _tierThreeGemCost,
         NType = NodeType.SkillUnlock,

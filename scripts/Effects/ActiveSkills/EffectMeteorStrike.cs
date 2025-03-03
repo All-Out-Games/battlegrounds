@@ -14,7 +14,6 @@ public class AbilityMeteorStrike : FightAbility
 
     public static float GetCooldown(FightPlayer fp)
     {
-        return 1; // TODO: after test
         return fp.GetSkillTree().GetSkillLevel("MeteorStrike") > 2
             ? EffectConfig.MeteorStrikeConfig.Cooldown - 4
             : EffectConfig.MeteorStrikeConfig.Cooldown;
