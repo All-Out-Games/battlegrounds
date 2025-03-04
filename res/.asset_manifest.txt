@@ -450,6 +450,7 @@ FightPlayerRig/playercharacter.spine - .ao - 67a3e6e0efc12442558c76e3 - 61845332
 FightPlayerRig/playercharacter_2.png - .ao - 674e5debf6994d2906c249f5 - 1531567999432186285
 FightPlayerRig/playercharacter_2.png - .ao.astc - 674e5debf6994d2906c249f8 - 17514452604510451454
 FireballProjectile.prefab - .ao - 6739340802386857e8d33419 - 6615212460275438377
+FireTornado.prefab - .ao - 67c689ae3b2deef767b39417 - 3804946226103950770
 FoSEffect.prefab - .ao - 67896c556745c7fd2d63886d - 15470982433522332412
 FoSSlash.prefab - .ao - 67896c556745c7fd2d63886e - 5317468476753571279
 GravityCrushVFX.prefab - .ao - 674e5decf6994d2906c249fa - 8589744853951767240
@@ -473,8 +474,8 @@ LeaderBoard/RANK ME.png - .ao - 674e5df0f6994d2906c24a16 - 18355927931936680427
 LeaderBoard/RANK ME.png - .ao.astc - 674e5df1f6994d2906c24a18 - 9598768695101308452
 LeapSlamCrater.prefab - .ao - 674e5df1f6994d2906c24a1b - 16364410912099090893
 LoadoutItemGroup.prefab - .ao - 673949b102386857e8d33420 - 13916418734727225903
-MeteorCrater.prefab - .ao - 67c525d23b2deef767b393dc - 13949814250260585821
-MeteorReticle.prefab - .ao - 67c4ea3e3b2deef767b393da - 8806728466521496111
+MeteorCrater.prefab - .ao - 67c689ae3b2deef767b39416 - 13949814250260585821
+MeteorReticle.prefab - .ao - 67c689ae3b2deef767b39418 - 8806728466521496111
 Pipe_1.prefab - .ao - 674e5df1f6994d2906c24a1c - 4932859284795892587
 Pipe_Straight.prefab - .ao - 674e5df2f6994d2906c24a1e - 5859368875629010514
 projectile/BAT003_Projectile/BAT003_projectile.png - .ao - 674e5df2f6994d2906c24a21 - 3835586870936598686
@@ -595,6 +596,8 @@ SFX/Effects/darkness_loop.wav - .ao - 674e5e02f6994d2906c24a7f - 991913965232432
 SFX/Effects/enter_pvp_arena.wav - .ao - 674e5e02f6994d2906c24a80 - 13255303252743841454
 SFX/Effects/fire_projectile_hit_explode.wav - .ao - 674e5e02f6994d2906c24a82 - 16517991583454849881
 SFX/Effects/fire_projectile_loop.wav - .ao - 674e5e03f6994d2906c24a85 - 5423642442770086271
+SFX/Effects/fire_tornado_loop.wav - .ao - 67c689ae3b2deef767b39419 - 11858210930704000625
+SFX/Effects/fire_tornado_start.wav - .ao - 67c689ae3b2deef767b3941a - 8469387528237205258
 SFX/Effects/FoS_charge.wav - .ao - 67896c576745c7fd2d63888f - 5016011713519960489
 SFX/Effects/FoS_hit.wav - .ao - 67896c576745c7fd2d638891 - 18424973809646557121
 SFX/Effects/FoS_pre.wav - .ao - 67896c576745c7fd2d638893 - 5160601802728144550
@@ -620,6 +623,9 @@ SFX/Effects/kunai_shuriken_projectile_loop.wav - .ao - 674e5e07f6994d2906c24a9b 
 SFX/Effects/leaping_slam.wav - .ao - 674e5e07f6994d2906c24a9c - 12367095343920847835
 SFX/Effects/light_feet_activate.wav - .ao - 674e5e07f6994d2906c24a9e - 17008379666765280207
 SFX/Effects/lightning_bolt.wav - .ao - 674e5e08f6994d2906c24aa0 - 11333274961016278521
+SFX/Effects/meteor_land.wav - .ao - 67c689ae3b2deef767b3941b - 4187782491759383542
+SFX/Effects/meteor_loop.wav - .ao - 67c689af3b2deef767b3941d - 9046370095536967559
+SFX/Effects/meteor_start.wav - .ao - 67c689af3b2deef767b3941c - 13206113686957742512
 SFX/Effects/parry_end.wav - .ao - 6719580eada08dbbbde3ef64 - 15353980569081843764
 SFX/Effects/parry_start.wav - .ao - 6719580eada08dbbbde3ef63 - 948470060806037442
 SFX/Effects/parry_trigger.wav - .ao - 6719580eada08dbbbde3ef62 - 9948538213855463868
@@ -1003,6 +1009,9 @@ VFX/ConfusionCloud/BAT003_confusion_cloud.spine - .ao - 674e5e57f6994d2906c24cb8
 VFX/FireBall/BAT003_fireball.png - .ao - 674e5ceff6994d2906c2470b - 1347605159726296062
 VFX/FireBall/BAT003_fireball.png - .ao.astc - 674e5cf0f6994d2906c2470d - 5153011575828826666
 VFX/FireBall/BAT003_fireball.spine - .ao - 674e5e57f6994d2906c24cbb - 15656483450770692261
+VFX/FireTornado/fire_tornado.png - .ao - 67c689af3b2deef767b3941e - 17143923339353605708
+VFX/FireTornado/fire_tornado.png - .ao.astc - 67c689af3b2deef767b39420 - 15899002354798328259
+VFX/FireTornado/fire_tornado.spine - .ao - 67c689af3b2deef767b3941f - 17406400942259819423
 VFX/GravityCrush/BAT003_gravity_field_AOE.png - .ao - 674e5e57f6994d2906c24cbc - 4668074812220341973
 VFX/GravityCrush/BAT003_gravity_field_AOE.png - .ao.astc - 674e5e58f6994d2906c24cbf - 13221590919078838311
 VFX/GravityCrush/BAT003_gravity_field_AOE.spine - .ao - 674e5e58f6994d2906c24cc0 - 9716898291635747476
@@ -1015,6 +1024,12 @@ VFX/LeapFistSlam/BAT003_leaping_fist_slam.spine - .ao - 674e5e59f6994d2906c24ccc
 VFX/LightningStrike/BAT003_lightning_strike.png - .ao - 674e5cf0f6994d2906c24711 - 11799238941761121279
 VFX/LightningStrike/BAT003_lightning_strike.png - .ao.astc - 674e5cf1f6994d2906c24712 - 13476020871131041652
 VFX/LightningStrike/BAT003_lightning_strike.spine - .ao - 674e5e59f6994d2906c24cce - 13282573879310653286
+VFX/meteor crater/BAT003_meteor_crash_crator.png - .ao - 67c689af3b2deef767b39421 - 6152512556919600009
+VFX/meteor crater/BAT003_meteor_crash_crator.png - .ao.astc - 67c689b03b2deef767b39423 - 14308868317901576754
+VFX/meteor crater/BAT003_meteor_crash_crator.spine - .ao - 67c689b03b2deef767b39422 - 7419239660675151667
+VFX/meteor explosion/BAT003_meteor_crash.png - .ao - 67c689b03b2deef767b39424 - 15152894132102927000
+VFX/meteor explosion/BAT003_meteor_crash.png - .ao.astc - 67c689b13b2deef767b39426 - 15204817684431103804
+VFX/meteor explosion/BAT003_meteor_crash.spine - .ao - 67c689b03b2deef767b39425 - 13770880305049523911
 VFX/PsionicBeam/BAT003_psionic_beam.png - .ao - 674e5e59f6994d2906c24cd0 - 6204316314782808719
 VFX/PsionicBeam/BAT003_psionic_beam.png - .ao.astc - 674e5e59f6994d2906c24cd3 - 13059042566144777527
 VFX/PsionicBeam/BAT003_psionic_beam.spine - .ao - 674e5e59f6994d2906c24cd4 - 3525642506640349581

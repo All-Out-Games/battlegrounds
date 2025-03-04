@@ -194,6 +194,21 @@ public static class KohClassData
         }
     };
 
+    public static KohClass Firelord = new()
+    {
+        Id = 11,
+        Name = "Fire Lord",
+        Chance = 2,
+        Rarity = ItemRarity.Legendary,
+        SkillKeys = new string[] { "Fireball", "FireTornado", "MeteorStrike", "SelfHeal" },
+        Description = "Burn everything to ashes. Passively gain 1 attack.",
+        Passive = new SkillConfig.StatBuff()
+        {
+            BoostType = SkillConfig.StatType.AttackPower,
+            BoostValue = 1
+        }
+    };
+
     #endregion
 
     public static KohRandomSkill ShoulderCrash = new()
@@ -451,14 +466,14 @@ public static class KohClassData
     public static KohRandomSkill FireTornado = new()
     {
         Id = 36,
-        SkillKey = "FireTornado", // TODO
+        SkillKey = "FireTornado", 
         Chance = 1
     };
 
     public static KohRandomSkill MeteorCrash = new()
     {
         Id = 37,
-        SkillKey = "MeteorCrash", // TODO
+        SkillKey = "MeteorStrike", 
         Chance = 1
     };
 
@@ -482,7 +497,7 @@ public static class KohClassData
     /// When a player joins, give them "None" class and draw two different Ids from these classes,
     /// Also generates a random class where 4 skills are drawn from the skill pool
     /// </summary>
-    public static List<KohClass> Classes = new() { RandomClass, Brawler, Defender, Destroyer, DarkKnight, Ninja, Psychic, Telekinetic, StormLord, Ranger, Blademaster};
+    public static List<KohClass> Classes = new() { RandomClass, Brawler, Defender, Destroyer, DarkKnight, Ninja, Psychic, Telekinetic, StormLord, Ranger, Blademaster, Firelord};
 
 
     public static List<KohRandomSkill> RngSkills = new() 
@@ -524,7 +539,9 @@ public static class KohClassData
         IceStorm,
         BladeStorm,
         FlashOfSteel,
-        BladeFrenzy
+        BladeFrenzy,
+        FireTornado,
+        MeteorCrash
     };
 
     public static void KoHSanityCheck()
