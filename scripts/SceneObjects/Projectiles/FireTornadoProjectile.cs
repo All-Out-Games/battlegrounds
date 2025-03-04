@@ -41,7 +41,7 @@ public class FireTornadoProjectile : BaseProjectile
         // Fading
         if (Network.IsClient)
         {
-            Entity.LocalRotation = 0;
+            Entity.Rotation = 0;
             if (Util.OneTime(TimeElapsed + 0.5 > LifeTime, ref _faded))
             {
                 SFX.FadeOutAndStop(SoundId, 0.5f);

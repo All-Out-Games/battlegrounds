@@ -1086,6 +1086,22 @@ public partial class FightPlayer : Player
         }
     }
 
+    public IEnumerator MeteorEntry()
+    {
+        if (SkillTree.GetSkillLevel("MeteorStrike") != 5)
+        {
+            yield break;
+        }
+
+        AddEffect<EffectMeteorStrike>(this);
+        yield return new WaitForSeconds(0.75f);
+        if (Network.IsServer)
+        {
+            Zone combatZone = FightClubGameManager.References.PvpZone;
+            Teleport(FightClubUtils.RandomPositionInCircle(combatZone.Entity.Position, combatZone.Entity.LocalScaleX));
+        }
+    }
+
     #endregion
 
     public void AddScreenShake(float intensity, float duration)

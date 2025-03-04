@@ -39,14 +39,14 @@ public class ZoneTeleporter : Component
     public override void Update()
     {
         base.Update();
-        if (Network.LocalPlayer != null && ChangeStatusTo == "Combat") // Changed in KoH to function as a respawn timer
+        if (Network.LocalPlayer != null && ChangeStatusTo == "Safe")
         {
             var p = Network.LocalPlayer;
             var cd = p.GetEffect(typeof(EffectSafePortalCooldown));
             if (cd != null)
             {
-                InteractableComp.Text = $"Respawn: {float.Round(cd.DurationRemaining, 0)}s";
-                InteractableComp.HoldText = $"Respawn: {float.Round(cd.DurationRemaining, 0)}s";
+                InteractableComp.Text = $"Cooldown: {float.Round(cd.DurationRemaining, 0)}s";
+                InteractableComp.HoldText = $"Cooldown: {float.Round(cd.DurationRemaining, 0)}s";
             }
             else
             {
@@ -66,9 +66,19 @@ public class ZoneTeleporter : Component
         {
             if (parsed)
             {
-                if (newStatus == PlayerStatus.Combat && player.HasEffect<EffectSafePortalCooldown>())
+                if (newStatus == PlayerStatus.Safe && player.HasEffect<EffectSafePortalCooldown>())
                 {
                     return;
+                }
+
+                if (newStatus == PlayerStatus.Combat && player.GetSkillTree().GetSkillLevel("MeteorStrike") == 5)
+                {
+                    player.GetEffectMgr().AddMeteor();
+                    return;
+                }
+                if (newStatus == PlayerStatus.Safe && player.PlayerStatus == PlayerStatus.Combat)
+                {
+                    player.GetEffectMgr().AddSafePortalCooldown(player.Entity, 60);
                 }
                 player.SwitchStatus((int)newStatus);
             }

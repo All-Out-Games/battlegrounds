@@ -113,6 +113,11 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
         CallClient_AddSafePortalCooldownInternal(caster, duration);
     }
 
+    public void AddMeteor()
+    {
+        CallClient_AddMeteorFromPassiveInternal();
+    }
+
     [ClientRpc]
     public void AddNoMovementInternal(Entity caster, float duration)
     {
@@ -175,5 +180,16 @@ public partial class FightPlayerEffectManager : FightPlayerComponent
     public void AddOverShieldInternal(Entity caster, float duration, int amt)
     {
         _player.AddEffect<EffectOvershield>(caster.GetComponent<FightPlayer>(), 5f, overshield => overshield.AssignConfig(EffectConfig.ShieldConfig.GetOvershield(amt, duration)));
+    }
+    
+    [ClientRpc]
+    public void AddMeteorFromPassiveInternal()
+    {
+        if (_player.GetSkillTree().GetSkillLevel("MeteorStrike") != 5)
+        {
+            return;
+        }
+
+        Coroutine.Start(Entity, _player.MeteorEntry());
     }
 }
