@@ -39,7 +39,7 @@ public static class LevelingData
         248000, 264000, 280500, 300000, 335000,// From this point onwards, leveling up will take significantly more effort (n+2500 instead of n+500)
         375000, 417500, 462500, 510000, 560000,
         612500, 667500, 725000, 785000, 847500,
-        912500, 980000, 1052500, 1250000, 2250000 // Ends at Lv 50
+        912500, 980000, 1052500, 1250000, 2000000 // Ends at Lv 50
     };
 
     public static readonly int MaxXp = NextLevelXp[MaxLevel];
@@ -54,8 +54,8 @@ public static class LevelingData
         1500, 1500, 1500, 1500, 32000,
         1200, 1200, 1200, 1200, 18000,
         900, 900, 900, 900, 8000,
-        750, 750, 750, 750, 6000,
-        3500, 3500, 3500, 3500, 15000
+        1250, 1250, 1250, 1250, 9000,
+        2500, 2500, 2500, 2500, 15000
     };
     
     public static readonly int[] GemRewards = {
