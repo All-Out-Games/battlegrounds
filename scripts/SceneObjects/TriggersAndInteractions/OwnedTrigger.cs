@@ -115,7 +115,10 @@ public partial class OwnedTrigger : OwnedObjectComponent
 
     public void RemoveEntityFromWhiteList(Entity en)
     {
-        // Used in meteor crash. They ignore collisions during casting, and we have to re-enable them to be trapped.
-        InteractedEntities.Remove(en);
+        if (en.Alive())
+        {
+            // Used in meteor crash. They ignore collisions during casting, and we have to re-enable them to be trapped.
+            InteractedEntities?.Remove(en);
+        }
     }
 }
