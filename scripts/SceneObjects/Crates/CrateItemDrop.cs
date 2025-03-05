@@ -11,7 +11,7 @@ public partial class CrateItemDrop : Component
     // After 0.5s it will ping nearby players and start to receive OnTriggerEnter
     // We do this because we want to make yoinking other players' drop possible
 
-    public static Prefab DropPrefab = Assets.KeepLoaded<Prefab>("CrateItemDrop.prefab");
+    public static Prefab DropPrefab = Assets.KeepLoaded<Prefab>("CrateItemDrop.prefab", synchronous: false);
     
     [Serialized] private Circle_Collider _pickupTrigger;
     [Serialized] private Sprite_Renderer _renderer;
@@ -99,7 +99,7 @@ public partial class CrateItemDrop : Component
 
         _bump = bumpDir * _bumpStrength;
         Entity.Name = $"{Entity.Name}_{dropName}";
-        _renderer.Texture = Assets.KeepLoaded<Texture>(DropTexturePath);
+        _renderer.Texture = Assets.KeepLoaded<Texture>(DropTexturePath, synchronous: false);
         Fade.SetPersistFadeTime(GlobalData.CrateDropLifeTime, GlobalData.CrateDropLifeTime + 1);
     }
     

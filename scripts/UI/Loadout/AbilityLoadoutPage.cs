@@ -258,7 +258,7 @@ public class AbilityLoadoutPage : UniqueUIWindow
         // Punch
         string punchKey = "Punch";
         if (_slotsMgr.GetFightPlayer().PunchLevel > 1) punchKey = $"Punch{_slotsMgr.GetFightPlayer().PunchLevel}";
-        _punchIcon.Sprite = Assets.KeepLoaded<Texture>(SkillConfig.GetIconPath(punchKey));
+        _punchIcon.Sprite = Assets.KeepLoaded<Texture>(SkillConfig.GetIconPath(punchKey), synchronous: false);
         for (int i = 0; i < 5; i++)
         {
             _loadoutSlots[i].SetSkillKey(_equippedSkillKey[i+1]);
