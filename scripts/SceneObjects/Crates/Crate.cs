@@ -6,7 +6,7 @@ namespace Assembly.scripts.SceneObjects.Crates
 {
     public partial class Crate : DamageableObject
     {
-        public static Prefab CratePrefab = Assets.KeepLoaded<Prefab>("Crate.prefab");
+        public static Prefab CratePrefab = Assets.KeepLoaded<Prefab>("Crate.prefab", synchronous: false);
         [Serialized] public Spine_Animator Animator;
         [Serialized] public int HitPoint = 1;
 

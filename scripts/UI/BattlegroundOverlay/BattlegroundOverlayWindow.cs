@@ -6,7 +6,7 @@ public class BattlegroundOverlayWindow : BaseUIWindow
 {
     [Serialized] private Entity _killFeedScroll;
 
-    private Prefab _killFeedElementPrefab = Assets.KeepLoaded<Prefab>("KillFeedElement.prefab");
+    private Prefab _killFeedElementPrefab = Assets.KeepLoaded<Prefab>("KillFeedElement.prefab", synchronous: false);
     private static readonly int MaxKillFeed = 4;
     /// <summary>
     /// Hold 4 kill feed items. Pop the first one if more come in.

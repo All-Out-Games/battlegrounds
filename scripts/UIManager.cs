@@ -5,8 +5,8 @@ using Assembly.scripts.UI;
 
 public partial class UIManager : System<UIManager>
 {
-    // public static Texture CoinTexture = Assets.KeepLoaded<Texture>("UI/AbilityBook/AbilityInfo/buy_button/coin.png");
-    // public static Texture GemTexture = Assets.KeepLoaded<Texture>("$AO/new/main_menu/gems/gem_resource_icon.png");
+    // public static Texture CoinTexture = Assets.KeepLoaded<Texture>("UI/AbilityBook/AbilityInfo/buy_button/coin.png", synchronous: false);
+    // public static Texture GemTexture = Assets.KeepLoaded<Texture>("$AO/new/main_menu/gems/gem_resource_icon.png", synchronous: false);
 
     private Dictionary<string, UniqueUIWindow> UniqueUiWindows = new(); // [PrefabPath : Window Class]
     // Unique window will close all other instances when a new one opens. Overlay windows only themselves
@@ -238,7 +238,7 @@ public partial class UIManager : System<UIManager>
             });
 
             var exitRect = windowRect.TopRightRect().Grow(20, 20, 20, 20).Offset(-35, -35);
-            var exitResult = UI.Button(exitRect, "EXIT_BUTTON", GetButtonSettings(Assets.KeepLoaded<Texture>("UI/AbilityBook/AbilityInfo/quit_cross_button.png")), new UI.TextSettings());
+            var exitResult = UI.Button(exitRect, "EXIT_BUTTON", GetButtonSettings(Assets.KeepLoaded<Texture>("UI/AbilityBook/AbilityInfo/quit_cross_button.png", synchronous: false)), new UI.TextSettings());
             if (exitResult.Clicked)
             {
                 isShowing = false;
