@@ -104,7 +104,7 @@
 128360 bytes - UI/AbilityBook/unlocked_abilities_backing.png.ao
 126296 bytes - VFX/ClawSwipe/claw_swipe_BAT003.png.ao
 125592 bytes - UI/SkillTree/skill_page_basic.png.ao
-125216 bytes - VFX/meteor explosion/BAT003_meteor_crash.spine.ao
+125224 bytes - VFX/meteor explosion/BAT003_meteor_crash.spine.ao
 124784 bytes - environment/AFK_tmp/park_tree_medium.png.ao.astc
 124672 bytes - VFX/Regeneration/BAT003_heal_regeneration.png.ao.astc
 122720 bytes - UI/AbilityBook/AbilityInfo/info_window_stealth.png.ao.astc
@@ -321,7 +321,7 @@
 37896 bytes - UI/Glory/glory_shines.png.ao.astc
 37312 bytes - Props/Shop/Pack3.png.ao.astc
 37008 bytes - environment/CentralHub/Dummy_Body.png.ao
-36120 bytes - VFX/FireTornado/fire_tornado.spine.ao
+36112 bytes - VFX/FireTornado/fire_tornado.spine.ao
 36080 bytes - Props/Shop/Pack3.png.ao
 35040 bytes - SFX/Effects/enter_pvp_arena.wav.ao
 35040 bytes - SFX/UI/enter_pvp_arena.wav.ao
@@ -357,7 +357,7 @@
 27088 bytes - environment/PvP/Chariot_wheel.png.ao
 26904 bytes - environment/AFK_tmp/rock_4.png.ao.astc
 26832 bytes - environment/CentralHub/Target.png.ao
-26704 bytes - VFX/meteor crater/BAT003_meteor_crash_crator.spine.ao
+26696 bytes - VFX/meteor crater/BAT003_meteor_crash_crator.spine.ao
 26560 bytes - Props/GroundRecticles/lightning_reticle.png.ao
 26448 bytes - ability_icon_tmp/GroundStomp_Tmp.png.ao.astc
 26328 bytes - environment/AFK_tmp/rock_4.png.ao
