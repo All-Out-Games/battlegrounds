@@ -551,6 +551,8 @@ Props/Shop/GloryMedium.png - .ao - 674bb76cf6994d2906c2421e - 908659578431486439
 Props/Shop/GloryMedium.png - .ao.astc - 674bb76af6994d2906c24209 - 2955213330659453570
 Props/Shop/GlorySmall.png - .ao - 674bb76af6994d2906c2420a - 17007916313772799594
 Props/Shop/GlorySmall.png - .ao.astc - 674bb76af6994d2906c2420b - 25798075338767307
+Props/Shop/MegaPotion4.png - .ao - 67c7d72f3b2deef767b3a302 - 5496656120162202753
+Props/Shop/MegaPotion4.png - .ao.astc - 67c7d72f3b2deef767b3a301 - 2844896426414178965
 Props/Shop/Pack1.png - .ao - 674bdeeaf6994d2906c24224 - 6568714635680133412
 Props/Shop/Pack1.png - .ao.astc - 674bdeeaf6994d2906c24222 - 583453893059678585
 Props/Shop/Pack2.png - .ao - 674bdeeaf6994d2906c24221 - 3390140640190480550

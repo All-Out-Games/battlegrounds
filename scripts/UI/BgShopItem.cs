@@ -32,7 +32,8 @@ public partial class BgShop
             Id = "koh_gamepass", SparksProductId = "677616d6e9dab16189587b41", Price = 0,
             Description = "Permanent item! Buy it to be able to see the content of your random class. Your respawn will be shortened to 4s, and you get double glory when you win a round.",
             SubCategory = "Pass", Icon = "UI/KoH/GamePass.png"
-        }
+        },
+        
     };
     
     public static readonly List<ShopCategory.ProductDescription> PotionProducts = new()
