@@ -87,7 +87,8 @@ public partial class BgShop : System<BgShop>
                     break;
                 case "starter_pack3": player.Exp += LevelingData.BaselineXp[14];
                     break;
-                
+                case "starter_pack4": player.Exp += LevelingData.BaselineXp[29];
+                    break;
                 case "xp_booster_3x": player.AddExpBoostTime(15, 3);
                     break;
                 case "xp_booster_5x": player.AddExpBoostTime(15, 5);
