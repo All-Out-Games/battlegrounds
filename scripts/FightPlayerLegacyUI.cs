@@ -10,7 +10,9 @@ using Assembly.scripts.UI;
 public class FightPlayerLegacyUI : FightPlayerComponent
 {
     private static Texture BarBorder = Assets.KeepLoaded<Texture>("UI/Bars/border.png", synchronous: false);
-    private static Texture LvPlate = Assets.KeepLoaded<Texture>("UI/LargeMenuButtons/Large Menu Buttons/large_button.png", synchronous: false),
+
+    private static Texture LvPlate =
+        Assets.KeepLoaded<Texture>("UI/LargeMenuButtons/Large Menu Buttons/large_button.png", synchronous: false);
     private List<string> _hideUIReasons = new List<string>();
     public string ClassDisplayName = "";
 
