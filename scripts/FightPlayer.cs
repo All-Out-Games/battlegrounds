@@ -584,11 +584,10 @@ public partial class FightPlayer : Player
         }
         BumpDecay();
         DashDecay();
-        if (Network.IsServer && PlayerStatus != PlayerStatus.Combat)
+        if (Network.IsServer && PlayerStatus == PlayerStatus.Safe)
         {
             PeriodicalHeal(Time.DeltaTime);
         }
-        //Log.Warn($"AHHHHH {Network.ServerPrivateInstanceHostId()}");
     }
 
     public override void LateUpdate()
