@@ -748,8 +748,11 @@ public partial class FightPlayer : Player
         var velocity = DefaultPlayerVelocityCalculation(currentVelocity, input, deltaTime, GetTotalVelocityMultiplier());
         velocity += Bump * deltaTime;
         velocity += Dash * deltaTime;
+        
+        
         return velocity;
     }
+    
 
     // Bump
     protected Vector2 Bump = Vector2.Zero;
