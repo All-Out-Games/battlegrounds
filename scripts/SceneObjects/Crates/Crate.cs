@@ -6,7 +6,7 @@ namespace Assembly.scripts.SceneObjects.Crates
 {
     public partial class Crate : DamageableObject
     {
-        public static Prefab CratePrefab = Assets.KeepLoaded<Prefab>("Crate.prefab");
+        public static Prefab CratePrefab = Assets.KeepLoaded<Prefab>("Crate.prefab", synchronous: false);
         [Serialized] public Spine_Animator Animator;
         [Serialized] public int HitPoint = 1;
 
@@ -60,18 +60,15 @@ namespace Assembly.scripts.SceneObjects.Crates
             Log.Debug($"Despawn called for {Entity.Name}");
             if (Network.IsServer)
             {
+                var c = CrateManager.Instance;
+                c?.Deregister(this);
+                
                 Network.Despawn(Entity);
                 Entity.Destroy();
             }
             
         }
-
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-            var c = CrateManager.Instance;
-            c?.Deregister(this);
-        }
+        
 
         public void ConstructStateMachine()
         {

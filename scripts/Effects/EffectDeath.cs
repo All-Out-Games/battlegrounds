@@ -7,6 +7,10 @@ public class EffectDeath : FightEffectWithImmunity
 {
     protected override string InvincibilityReason => "Dead";
     public string DeathAnimationTrigger = "death";
+    private bool _showAd;
+    
+    
+    public static int InterstitialDeathCount = 8;
 
     public static string GetSpecialDeathAnimationTrigger(string skillKey)
     {
@@ -41,6 +45,12 @@ public class EffectDeath : FightEffectWithImmunity
             case "FlashOfSteel":
                 res = "death_swiped";
                 break;
+            case "FireTornado":
+                res = "death_poof";
+                break;
+            case "MeteorStrike":
+                res = "death_poof";
+                break;
         }
 
         if (res == "death")
@@ -57,7 +67,7 @@ public class EffectDeath : FightEffectWithImmunity
         FightPlayer.SetAnimTrigger(DeathAnimationTrigger);
         FightPlayer.AddDash(Vector2.Zero, 0);
         FightPlayer.AddBump(Vector2.Zero, true);
-
+        
         if (Network.IsServer)
         {
             List<FightPlayer> spectators =
@@ -73,6 +83,16 @@ public class EffectDeath : FightEffectWithImmunity
                 }
             }
         }
+
+        /*if (FightPlayer.IsLocal && FightPlayer.DeathCount % InterstitialDeathCount == 0)
+        {
+            if (!FightPlayer.IsVIP && FightPlayer.TotalEliminations > 50)
+            {
+                _showAd = true;
+                Notifications.Show("A short Ad will play after your respawn. Bypass this Ad by being a VIP!");
+            }
+        }*/
+        FightPlayer.DeathCount += 1;
         
     }
 
@@ -106,6 +126,12 @@ public class EffectDeath : FightEffectWithImmunity
         
         FightPlayer.ClearAllEffects();
         FightPlayer.ClearSpeedModifier();
+        
+        // Removed 250216 - Shin
+        /*if (_showAd && Ads.IsInterstitialAdLoaded())
+        {
+            Ads.ShowInterstitial();
+        }*/
     }
 
     public override bool IsActiveEffect => false;

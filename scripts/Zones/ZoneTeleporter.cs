@@ -70,6 +70,12 @@ public class ZoneTeleporter : Component
                 {
                     return;
                 }
+
+                if (newStatus == PlayerStatus.Combat && player.GetSkillTree().GetSkillLevel("MeteorStrike") == 5)
+                {
+                    player.GetEffectMgr().AddMeteor();
+                    return;
+                }
                 if (newStatus == PlayerStatus.Safe && player.PlayerStatus == PlayerStatus.Combat)
                 {
                     player.GetEffectMgr().AddSafePortalCooldown(player.Entity, 60);

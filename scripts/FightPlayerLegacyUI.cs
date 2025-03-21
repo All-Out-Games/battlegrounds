@@ -8,8 +8,10 @@ using Assembly.scripts.UI;
 /// </summary>
 public class FightPlayerLegacyUI : FightPlayerComponent
 {
-    private static Texture BarBorder = Assets.KeepLoaded<Texture>("UI/Bars/border.png");
-    private static Texture LvPlate = Assets.KeepLoaded<Texture>("UI/LargeMenuButtons/Large Menu Buttons/large_button.png");
+    private static Texture BarBorder = Assets.KeepLoaded<Texture>("UI/Bars/border.png", synchronous: false);
+
+    private static Texture LvPlate =
+        Assets.KeepLoaded<Texture>("UI/LargeMenuButtons/Large Menu Buttons/large_button.png", synchronous: false);
     private List<string> _hideUIReasons = new List<string>();
 
     public void AddPlayerUIInvisibleReason(string reason)
@@ -49,7 +51,6 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         UI.Image(healthRect, null, Vector4.Black, new UI.NineSlice());
         UI.Image(levelRect, LvPlate, Vector4.White, new UI.NineSlice());
         UI.Text(levelRect.Offset(0,5), $"{_player.Level + 1}", UI.TextSettings.Default with {Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center});
-
         var healthPercent = _player.CurrentHealth / (float)_player.MaxHealth;
         var healthPercentRect = healthRect.SubRect(0, 0, healthPercent, 1, 0, 0, 0, 0);
         UI.Image(healthPercentRect, null, Vector4.HSVLerp(Vector4.Red, Vector4.Green, healthPercent), new UI.NineSlice());
@@ -57,7 +58,26 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         {
             DrawShieldBar(healthRect);
         }
+        DrawHealthTxt(healthRect);
         return healthRect;
+    }
+    
+    protected void DrawHealthTxt(Rect healthRect)
+    {
+        var ts = new UI.TextSettings()
+        {
+            Font = GlobalData.AsapBold,
+            Size = 20,
+            VerticalAlignment = UI.VerticalAlignment.Top,
+            HorizontalAlignment = UI.HorizontalAlignment.Center,
+            Color = Vector4.White,
+            Outline = true,
+            OutlineColor = Vector4.Black,
+            DoAutofit = false,
+            Offset = new Vector2(0, 5)
+        };
+        
+        UI.Text(healthRect, $"{_player.CurrentHealth}", ts);
     }
 
     protected void DrawShieldBar(Rect healthRect)

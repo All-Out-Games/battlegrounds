@@ -129,7 +129,7 @@ public class EffectPunch : FightEffect
             info.ReactionInfo.Amount = 1;
             magicDmg = Config.PunchDamage - 1;
         }
-        if (hit) // Ray
+        if (hit && rc.Collider.Alive()) // Ray
         {
             var other = rc.Collider.GetComponent<DamageableObject>();
             

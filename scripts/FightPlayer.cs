@@ -123,18 +123,18 @@ public partial class FightPlayer : Player
             }
         }
     }
-    private SyncVar<int> _totalDamageDealt = new();
+    private SyncVar<int> _deathCount = new();
 
-    public int TotalDamageDealt
+    public int DeathCount
     {
-        get { return _totalDamageDealt.Value; }
+        get { return _deathCount.Value; } 
         set
         {
             if (Network.IsServer)
             {
-                _totalDamageDealt.Set(value);
-                Save.SetInt(this, "TotalDamageDealt", value);
-                Save.OrderedSet("TotalDamageDealt", $"{this.UserId}", value);
+                _deathCount.Set(value);
+                Save.SetInt(this, "TotalDamageDealt", value);  // repurposed, as TotalDamageDealt is not collected anymore
+                // Save.OrderedSet("TotalDamageDealt", $"{this.UserId}", value);
             }
         }
     }
@@ -331,7 +331,7 @@ public partial class FightPlayer : Player
         // Also note that MaxLevel is index based. The displayed level is _level+1 (i.e. MaxLevel = 29 means the max level is 30)
         if (Level >= LevelingData.MaxLevel)
         {
-            Log.Warn("Max Level hit!");
+            //Log.Warn("Max Level hit!");
             return;
         }
         
@@ -440,7 +440,7 @@ public partial class FightPlayer : Player
         Coins = Save.GetInt(this, "Coins");
         Gem = Save.GetInt(this, "Gem");
         TotalEliminations = Save.GetInt(this, "TotalEliminations");
-        TotalDamageDealt = Save.GetInt(this, "TotalDamageDealt");
+        DeathCount = Save.GetInt(this, "TotalDamageDealt");
         Level = Save.GetInt(this, "Level");
         Exp = Save.GetInt(this, "Exp");
         ExpBoostTime = Save.GetInt(this, "ExpBoostTime");
@@ -566,11 +566,10 @@ public partial class FightPlayer : Player
         }
         BumpDecay();
         DashDecay();
-        if (Network.IsServer && PlayerStatus != PlayerStatus.Combat)
+        if (Network.IsServer && PlayerStatus == PlayerStatus.Safe)
         {
             PeriodicalHeal(Time.DeltaTime);
         }
-        //Log.Warn($"AHHHHH {Network.ServerPrivateInstanceHostId()}");
     }
 
     public override void LateUpdate()
@@ -866,6 +865,7 @@ public partial class FightPlayer : Player
     public Vector2 GetPunchDirection()
     {
         var proximityPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, EffectConfig.PunchConfig.PunchTargetRange, this);
+        
         proximityPlayers.Remove(this);
         if (proximityPlayers.Count > 0)
         {
@@ -956,7 +956,7 @@ public partial class FightPlayer : Player
             return;
         }
         PlayerStatus = status;
-        Log.Warn($"Status Switched - {status.ToString()}");
+        Log.Info($"Status Switched - {status.ToString()}");
         if (Network.IsServer)
         {
             if (status == PlayerStatus.Combat)
@@ -997,7 +997,7 @@ public partial class FightPlayer : Player
         PlayerStatus = PlayerStatus.Combat;
         if (Network.IsServer)
         {
-            OnTeleportToCombatZone();
+            OnTeleportToCombatZone(); // Invoke the after-teleport combat (does not actually teleport the player)
         }
     }
 
@@ -1062,6 +1062,22 @@ public partial class FightPlayer : Player
         {
             SkillSlotsManager.SkillSlotsPanelEnable(true);
             UIManager.Instance.CloseAllUniqueWindow();
+        }
+    }
+
+    public IEnumerator MeteorEntry()
+    {
+        if (SkillTree.GetSkillLevel("MeteorStrike") != 5)
+        {
+            yield break;
+        }
+
+        AddEffect<EffectMeteorStrike>(this);
+        yield return new WaitForSeconds(0.75f);
+        if (Network.IsServer)
+        {
+            Zone combatZone = FightClubGameManager.References.PvpZone;
+            Teleport(FightClubUtils.RandomPositionInCircle(combatZone.Entity.Position, combatZone.Entity.LocalScaleX));
         }
     }
 

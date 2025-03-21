@@ -11,7 +11,7 @@ public partial class AdCrate : AdTrigger, INetworkedComponent
 
     [Serialized] public FadeAfterStart Fade;
     
-    public static Prefab AdCratePrefab = Assets.KeepLoaded<Prefab>("AdCrate.prefab");
+    public static Prefab AdCratePrefab = Assets.KeepLoaded<Prefab>("AdCrate.prefab", synchronous: false);
 
     public override void Awake()
     {

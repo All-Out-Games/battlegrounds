@@ -5,7 +5,7 @@ using AO;
 
 public partial class AdCrab : AdTrigger
 {
-    public static Prefab AdCrabPrefab = Assets.KeepLoaded<Prefab>("AdCrab.prefab");
+    public static Prefab AdCrabPrefab = Assets.KeepLoaded<Prefab>("AdCrab.prefab", synchronous: false);
     [Serialized] public Spine_Animator Animator;
     [Serialized] public FadeAfterStart Fade;
     [Serialized] public Vector2 Speed;

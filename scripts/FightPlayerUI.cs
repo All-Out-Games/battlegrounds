@@ -48,7 +48,7 @@ public partial class FightPlayer
     {
         if (exp - old > 1000)
         {
-            Log.Warn($"Player {Name} got an abnormal amount of EXP!");
+            Log.Info($"Player {Name} got an abnormal amount of EXP!");
         }
         if (IsLocal)
         {
@@ -66,7 +66,7 @@ public partial class FightPlayer
     {
         if (lvl - old > 1)
         {
-            Log.Warn($"Player {Name} got an abnormal amount of LV!");
+            Log.Info($"Player {Name} got an abnormal amount of LV!");
         }
         if (IsLocal)
         {

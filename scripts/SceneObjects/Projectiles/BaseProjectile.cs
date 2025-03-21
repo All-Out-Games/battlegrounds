@@ -85,22 +85,20 @@ public partial class BaseProjectile : OwnedObjectComponent
     /// <param name="predicted"></param>
     protected virtual void OnHit(Entity other, bool predicted)
     {
-        if (Owner.Alive())
+        if(!other.Alive()) return;
+        if (Blockable && TimeElapsed > 0.2f) // Must be at least 0.2s old to be blocked
         {
-            if (Blockable && TimeElapsed > 0.2f) // Must be at least 0.2s old to be blocked
+            var blockComp = other.GetComponent<ProjectileBlocker>();
+            if (blockComp.Alive())
             {
-                var blockComp = other.GetComponent<ProjectileBlocker>();
-                if (blockComp.Alive())
-                {
-                    blockComp.DoBlockerEffect(this);
-                }
+                blockComp.DoBlockerEffect(this);
             }
+        }
         
-            if (!WhiteList.Contains(other))
-            {
-                WhiteList.Add(other);
-                DoProjectileEffect(other, predicted);
-            }
+        if (!WhiteList.Contains(other))
+        {
+            WhiteList.Add(other);
+            DoProjectileEffect(other, predicted);
         }
     }
 

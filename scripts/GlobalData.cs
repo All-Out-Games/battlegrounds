@@ -6,7 +6,8 @@ public enum PlayerStatus
     Combat,
     Safe,
     AFK,
-    Spectator
+    Spectator,
+    TemporarilyOutCombat // Used in Meteor Strike
 }
 
 public enum DamageType
@@ -42,8 +43,9 @@ public static class GlobalData
     public static readonly int AfkMidLevelThreshold = 15; // Players with level <= this value will receive +6 from AFK (Stack with the L bonus)
     public static readonly int AfkLowLevelBonus = 14;
     public static readonly int AfkMidLevelBonus = 6;
-    
-    
+
+    public static FontAsset Asap = UI.Fonts.Barlow;
+    public static FontAsset AsapBold = UI.Fonts.BarlowBold;
 
     
     // Damage Number Color
