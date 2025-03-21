@@ -545,6 +545,8 @@ Props/Shop/GloryMedium.png - .ao - 674bb76cf6994d2906c2421e - 908659578431486439
 Props/Shop/GloryMedium.png - .ao.astc - 674bb76af6994d2906c24209 - 2955213330659453570
 Props/Shop/GlorySmall.png - .ao - 674bb76af6994d2906c2420a - 17007916313772799594
 Props/Shop/GlorySmall.png - .ao.astc - 674bb76af6994d2906c2420b - 25798075338767307
+Props/Shop/MegaPotion4.png - .ao - 67d609c4d1115a848974b3e0 - 5496656120162202753
+Props/Shop/MegaPotion4.png - .ao.astc - 67d609c4d1115a848974b3e1 - 2844896426414178965
 Props/Shop/Pack1.png - .ao - 674bdeeaf6994d2906c24224 - 6568714635680133412
 Props/Shop/Pack1.png - .ao.astc - 674bdeeaf6994d2906c24222 - 583453893059678585
 Props/Shop/Pack2.png - .ao - 674bdeeaf6994d2906c24221 - 3390140640190480550
@@ -730,6 +732,8 @@ UI/AbilityBook/upgrade_arrow.png - .ao - 674e5e25f6994d2906c24b51 - 198979658319
 UI/AbilityBook/upgrade_arrow.png - .ao.astc - 67319d8fada08dbbbde3fbe9 - 16245181626381620607
 UI/Bars/border.png - .ao - 674e5e25f6994d2906c24b52 - 4965195879678577872
 UI/Bars/border.png - .ao.astc - 67319d8fada08dbbbde3fbec - 7973696264482931616
+UI/Champion.png - .ao - 67d609c4d1115a848974b3df - 18339838003007579359
+UI/Champion.png - .ao.astc - 67d609c5d1115a848974b3e2 - 14463284875001383361
 UI/CheckMark.png - .ao - 674e5e25f6994d2906c24b54 - 10825662637874041382
 UI/CheckMark.png - .ao.astc - 674e5e26f6994d2906c24b56 - 10328079095848474763
 UI/Glory/glory.png - .ao - 674e5e26f6994d2906c24b59 - 12026649679599148030

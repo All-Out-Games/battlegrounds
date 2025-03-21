@@ -30,7 +30,7 @@ public partial class BgShop
         {
             Name = "Mega Starter Pack", Rarity = ItemRarity.Mythic,
             Id = "starter_pack4", SparksProductId = "67ba22c40a64e563bd0bb383", Price = 0,
-            Description = "Get 217500 XP, which is enough to level you up to Lv.30. Currently on a discount and will return to regular price (4999) sparks on Mar. 12!",
+            Description = "Get 217500 XP, which is enough to level you up to Lv.30. Currently on a discount and will return to regular price (4999) sparks on Mar. 22!",
             SubCategory = "Pass", Icon = "Props/Shop/MegaPotion4.png"
         },
     };
