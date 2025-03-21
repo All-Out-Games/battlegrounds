@@ -33,10 +33,10 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Circle_Collider",
   "data": {
+    "density": 0,
     "size": 1.2000000476837158,
     "offset": {
       "Y": -3
-    },
-    "density": 0
+    }
   }
 }

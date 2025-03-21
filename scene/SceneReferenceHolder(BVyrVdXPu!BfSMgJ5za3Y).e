@@ -42,17 +42,4 @@
       "54443482380243:1733556558460475100"
     ]
   }
-},
-{
-  "cid": 2,
-  "aoid": "52256556716237:1724711021700520500",
-  "component_type": "Internal_Component",
-  "internal_component_type": "Light",
-  "data": {
-    "shadow_caster": false,
-    "radi": {
-      "X": 5000,
-      "Y": 5000
-    }
-  }
 }
