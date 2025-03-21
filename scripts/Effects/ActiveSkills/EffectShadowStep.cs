@@ -35,7 +35,7 @@ public class EffectShadowStep : FightEffect
         {
             // If it's not wrapped in IsServer, a rare crash might happen when the server fails frame validation.
             
-            Vector2 dir = FightPlayer.Velocity.Length < 0.1f ? FightPlayer.GetFacingDirectionAsVector() : FightPlayer.Velocity.Normalized;
+            Vector2 dir = FightPlayer.Agent.Velocity.Length < 0.1f ? FightPlayer.GetFacingDirectionAsVector() : FightPlayer.Agent.Velocity.Normalized;
             Vector2 tlePosition = FightPlayer.Entity.Position + dir * EffectConfig.ShadowStepConfig.MovementDistance;
             // Raycast. Try to detect edges
             Physics.RaycastHit rc;
