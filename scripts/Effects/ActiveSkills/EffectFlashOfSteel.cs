@@ -100,9 +100,9 @@ public class FosHitEffect : FightEffect
         });
     }
 
-    public override void Update()
+    public override void OnEffectUpdate()
     {
-        base.Update();
+        base.OnEffectUpdate();
         if(Util.OneTime(ElapsedTime > DamageDelay, ref _damaged))
         {
             if (Caster.Alive())
