@@ -155,10 +155,10 @@ public static class EffectConfig
         public static float Cooldown = 6f;
         
         public float DashDuration = 1.0f;
-        public float DashSpeed = 200f;
+        public float DashSpeed = 400f;
         
         public int ContactDamage = 5;
-        public float BumpStrength = 140f;
+        public float BumpStrength = 180f;
         
         public ShoulderCrashConfig()
         {
@@ -348,7 +348,7 @@ public static class EffectConfig
         public static readonly float PsyboltCooldown = 8f;
         public static readonly float PsyboltRange = 10f;
         public static readonly float PsyboltLifeTime = 1f;
-        public static readonly float PsyboltKnockbackStrength = 75f;
+        public static readonly float PsyboltKnockbackStrength = 120f;
         
         // Shuriken
         public static readonly int ShurikenDamageBase = 5;
@@ -712,13 +712,13 @@ public static class EffectConfig
         public static readonly int SlamDamageBase = 15;
         public static readonly float KnockDownTime = 1f;
         public static readonly float Cooldown = 16f;
-        public static readonly float LeapMomentum = 200f;
+        public static readonly float LeapMomentum = 350f;
         public static readonly float SlamRadius = 3f;
         
 
         public int SlamDamage = 5;
         public float SlamAreaMultiplier = 1f;
-        public float BumpStrength = 150f;
+        public float BumpStrength = 240f;
         
         public LeapSlamConfig()
         {
@@ -1160,7 +1160,7 @@ public static class EffectConfig
     public struct FlashOfSteelConfig
     {
         public static float DashDelay = 0.5f;
-        public static float DashSpeed = 1600f;
+        public static float DashSpeed = 3200f;
         public static float DashTime = 0.15f;
         public static float Cooldown = 13f;
         public static int BleedDps = 3;
@@ -1252,7 +1252,7 @@ public static class EffectConfig
     public struct BladeStormConfig
     {
         public static int BaseDamage = 5;
-        public static float DashSpeed = 200f;
+        public static float DashSpeed = 400f;
         public static float DashTime = 0.75f;
         public static float Cooldown = 10f;
         public static float LifeStealRatio = 0.5f;
