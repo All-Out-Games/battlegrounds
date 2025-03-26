@@ -866,12 +866,12 @@
 776 bytes - UI/SkillTree/star.png.ao.astc
 768 bytes - UI/AbilityBook/AbilityInfo/gif_size.png.ao
 768 bytes - UI/SkillTree/highlighted_border.png.ao
-752 bytes - AdCrate.prefab.ao
 752 bytes - KunaiProjectile.prefab.ao
 752 bytes - LeaderBoard/RANK 4.png.ao.astc
 752 bytes - UI/SkillTree/full_channels/Layer 1.png.ao
 744 bytes - ShurikenProjectile.prefab.ao
 736 bytes - UI/SkillTree/range_icon.png.ao.astc
+728 bytes - AdCrate.prefab.ao
 728 bytes - UI/LargeMenuButtons/topbar_bg.png.ao
 720 bytes - UI/SkillTree/ability_mask.png.ao.astc
 712 bytes - LeaderBoard/RANK 4.png.ao
@@ -886,13 +886,13 @@
 664 bytes - FireballProjectile.prefab.ao
 656 bytes - BearTrap.prefab.ao
 656 bytes - ThunderStrike.prefab.ao
-648 bytes - Crate.prefab.ao
 648 bytes - UI/SkillTree/cooldown_icon.png.ao.astc
 640 bytes - UI/SkillTree/arrow_press.png.ao.astc
 632 bytes - FireTornado.prefab.ao
 632 bytes - Invisibility_Aura.prefab.ao
 632 bytes - MeteorCrater.prefab.ao
 632 bytes - UI/SkillTree/arrow.png.ao.astc
+624 bytes - Crate.prefab.ao
 624 bytes - UI/SkillTree/arrow_press_f.png.ao.astc
 616 bytes - BloodVFX.prefab.ao
 616 bytes - environment/CentralHub/Fountain/Fountain_flow4.png.ao.astc
