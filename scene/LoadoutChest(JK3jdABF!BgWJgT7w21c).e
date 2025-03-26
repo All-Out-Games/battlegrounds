@@ -51,7 +51,7 @@
   "component_type": "Internal_Component",
   "internal_component_type": "Circle_Collider",
   "data": {
-    "size": 1.7000000476837158,
-    "is_trigger": true
+    "is_trigger": true,
+    "size": 1.7000000476837158
   }
 }
