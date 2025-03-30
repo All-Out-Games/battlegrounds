@@ -1032,7 +1032,7 @@ public partial class FightPlayer : Player
             }
             else if (status == PlayerStatus.Spectator)
             {
-                SkillSlotsManager.OnKoHEnterCombat();
+                // SkillSlotsManager.OnKoHEnterCombat();
                 SpectralCount -= 1;
                 Zone combatZone = FightClubGameManager.References.PvpZone;
                 //Teleport(new Vector2(216.504f, 90.571f));
@@ -1049,6 +1049,7 @@ public partial class FightPlayer : Player
         if (Network.IsServer)
         {
             OnTeleportToCombatZone(); // Invoke the after-teleport combat (does not actually teleport the player)
+            SkillSlotsManager.OnKoHEnterCombat();
         }
     }
 

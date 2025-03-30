@@ -316,12 +316,10 @@ public partial class FightPlayer
 
             if (IsChampion)
             {
-                if (victim.Level > 19)
-                {
-                    Gem += 5;
-                    CallClient_NotifyGlory(5);
-                }
-                
+                // We don't check level in KotH because it's fair game
+                Gem += 5;
+                CallClient_NotifyGlory(5);
+
             }
         }
 
