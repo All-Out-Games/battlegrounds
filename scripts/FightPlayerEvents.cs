@@ -242,8 +242,11 @@ public partial class FightPlayer
                 
             }
             _combatOverlay.AddKillFeed(source.Name, victim.Name, skillKey,sourceLv);
-            
-            SFX.Play(SFXKeys.EliminationAudio, new SFX.PlaySoundDesc());
+
+            if (source.IsLocal)
+            {
+                SFX.Play(SFXKeys.EliminationAudio, new SFX.PlaySoundDesc());
+            }
         }
     }
     
