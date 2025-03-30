@@ -189,7 +189,6 @@ public partial class FightPlayer
         if (IsLocal && PlayerStatus == PlayerStatus.Combat)
         {
             FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"EXP+{xp}");
-            SFX.Play(SFXKeys.EliminationAudio, new SFX.PlaySoundDesc());
         }
     }
     
@@ -201,6 +200,15 @@ public partial class FightPlayer
             FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"EXP+{xp}");
             _overlay.CalculateAfkExp();
             SFX.Play(SFXKeys.AFKAudio, new SFX.PlaySoundDesc());
+        }
+    }
+
+    [ClientRpc]
+    public void NotifyGlory(int gl)
+    {
+        if (IsLocal && PlayerStatus == PlayerStatus.Combat)
+        {
+            FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"Glory +{gl}");
         }
     }
     
@@ -234,6 +242,8 @@ public partial class FightPlayer
                 
             }
             _combatOverlay.AddKillFeed(source.Name, victim.Name, skillKey,sourceLv);
+            
+            SFX.Play(SFXKeys.EliminationAudio, new SFX.PlaySoundDesc());
         }
     }
     
@@ -301,12 +311,25 @@ public partial class FightPlayer
         {
             // This player eliminated another player
             TotalEliminations += 1;
-            int xp = LevelingData.GetTrueXpDampen(Level, victim.Level, LevelingData.XpForKill);
-
-            xp *= LevelingData.GetBoostedExpMultiplier(this);
+            if (IsChampion)
+            {
+                if (victim.Level > 19)
+                {
+                    Gem += 5;
+                    CallClient_NotifyGlory(5);
+                }
                 
-            Exp += xp;
-            CallClient_NotifyKillExp(xp);
+            }
+            else
+            {
+                int xp = LevelingData.GetTrueXpDampen(Level, victim.Level, LevelingData.XpForKill);
+
+                xp *= LevelingData.GetBoostedExpMultiplier(this);
+                
+                Exp += xp;
+                CallClient_NotifyKillExp(xp);
+            }
+            
             
             // Increment BP quest progress
             if (!Game.LaunchedFromEditor && Network.IsServer)

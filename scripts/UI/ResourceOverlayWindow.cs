@@ -36,6 +36,15 @@ public class ResourceOverlayWindow : BaseUIWindow
 
     [Serialized] public UIText SpectralText;
 
+    // Champion update
+    [Serialized] public ChampionInfoWindow ChampionInfoWindow;
+    [Serialized] public UIButton ChampionButton;
+    [Serialized] public UIImage ChampionIndicator;
+    [Serialized] public Entity ChampionButtonEntity;
+
+    public static Texture ChampionIcon = Assets.GetAsset<Texture>("UI/Champion.png");
+    public static Texture ChampionInactiveIcon = Assets.GetAsset<Texture>("UI/Champion_inactive.png");
+
     private Coroutine _coroutineC;
     private int _currentLevel;
     private int _currentExp;
@@ -53,6 +62,7 @@ public class ResourceOverlayWindow : BaseUIWindow
         // because we don't want the player to see the level up screen
         AfkInfoBtn.OnClicked += ShowAfkWindow;
         ShopBtn.OnClicked += OnShopButtonClicked;
+        ChampionButton.OnClicked += ShowChampionWindow;
     }
 
     public override void OnDestroy()
@@ -73,6 +83,7 @@ public class ResourceOverlayWindow : BaseUIWindow
         
         _localPlayer.PlayerSwitchZoneEvent += SetSkillButton;
         _skillBookButton.OnClicked += OnSkillBtnClicked;
+        
     }
 
     public void UpdateCoin(int coin)
@@ -157,6 +168,12 @@ public class ResourceOverlayWindow : BaseUIWindow
         AfkInfoWindow.OpenWindow();
     }
 
+    public void ShowChampionWindow()
+    {
+        ChampionInfoWindow.OpenWindow();
+        ChampionInfoWindow.SetLocalChampionData();
+    }
+
     public void SetExtraExpActive(bool active)
     {
         _extraXp.LocalEnabled = active;
@@ -192,6 +209,29 @@ public class ResourceOverlayWindow : BaseUIWindow
         _currentExp = exp;
         _curExpText.Text = $"{exp}";
         ExpBarMaskUpdate();
+        
+        // Champion stuff
+        if (_currentExp >= LevelingData.BaselineXp[LevelingData.MaxLevel]) // Player is on the last level
+        {
+            ChampionButtonEntity.LocalEnabled = true;
+            ChampionIndicator.Entity.LocalEnabled = true;
+            if (exp >= LevelingData.NextLevelXp[LevelingData.MaxLevel]) // Player filled level bar
+            {
+                ChampionButton.Settings = ChampionButton.Settings with { Sprite = ChampionIcon, SpritePressed = ChampionIcon};
+                ChampionIndicator.Sprite = ChampionIcon;
+
+            }
+            else
+            {
+                ChampionButton.Settings = ChampionButton.Settings with { Sprite = ChampionInactiveIcon, SpritePressed = ChampionInactiveIcon};
+                ChampionIndicator.Sprite = ChampionInactiveIcon;
+            }
+        }
+        else
+        {
+            ChampionButtonEntity.LocalEnabled = false;
+            ChampionIndicator.Entity.LocalEnabled = false;
+        }
     }
 
     public void UpdateLevelingTxt(int level, int nextExp)
@@ -228,6 +268,11 @@ public class ResourceOverlayWindow : BaseUIWindow
     public void PopSparkles()
     {
         _levelUpWindow?.PlaySparkles();
+    }
+
+    public void PopChampionPromotion()
+    {
+        _levelUpWindow?.PopChampion();
     }
 
     private void ExpBarMaskUpdate()

@@ -13,6 +13,7 @@
     "Y": 1
   },
   "previous_sibling": "102151126654150:1723055829525165000",
+  "next_sibling": "75553897782699:1743295516125076700",
   "parent": "56958464634843:1717453805400844900"
 },
 {
@@ -47,7 +48,6 @@
   "data": {
     "text": "2x Exp Event Active!",
     "settings": {
-      "font_id": "$AO/fonts/Asap_Condensed-ExtraBold-Fixed.ttf",
       "size": 36,
       "do_drop_shadow": true,
       "do_outline": true

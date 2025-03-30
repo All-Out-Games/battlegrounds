@@ -569,7 +569,7 @@ PsyboltHitVFX.prefab - .ao - 67e4478f567ef7a06a149cc0 - 5266241437395817877
 PsyboltProjectile.prefab - .ao - 67e4478f567ef7a06a149cc2 - 16399760380941365731
 Rage_Aura.prefab - .ao - 67e4478f567ef7a06a149cc1 - 13177976775885409367
 RegenerationAura.prefab - .ao - 67e4478f567ef7a06a149cc3 - 14324342823975189427
-ResourcesOverlayWindow.prefab - .ao - 67e4478f567ef7a06a149cc4 - 359236205595645751
+ResourcesOverlayWindow.prefab - .ao - 67e89c83567ef7a06a14fc32 - 11549773007649797127
 SceneProps_tmp/aura_circle.png - .ao - 67e4478f567ef7a06a149cc5 - 2223650288971047757
 SceneProps_tmp/aura_circle.png - .ao.astc - 67e44790567ef7a06a149cc6 - 9921424185683000028
 SelfDestructExplosion.prefab - .ao - 67e44790567ef7a06a149cc8 - 2211490463650350676
@@ -734,6 +734,8 @@ UI/Bars/border.png - .ao - 67e44798567ef7a06a149d65 - 14307284654094001885
 UI/Bars/border.png - .ao.astc - 67e44798567ef7a06a149d66 - 11149908857390850360
 UI/Champion.png - .ao - 67e44798567ef7a06a149d68 - 9538459547917444248
 UI/Champion.png - .ao.astc - 67e44798567ef7a06a149d67 - 14637548693072990248
+UI/Champion_inactive.png - .ao - 67e896a6567ef7a06a14fc30 - 10345990442403725637
+UI/Champion_inactive.png - .ao.astc - 67e896a6567ef7a06a14fc31 - 8537552389753182031
 UI/CheckMark.png - .ao - 67e44798567ef7a06a149d69 - 5783649062673265614
 UI/CheckMark.png - .ao.astc - 67e44799567ef7a06a149d6a - 1250896483999986518
 UI/Glory/glory.png - .ao - 67e44799567ef7a06a149d6b - 7292522817282482248
