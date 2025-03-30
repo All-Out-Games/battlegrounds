@@ -53,8 +53,16 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         UI.Image(borderRect, BarBorder, Vector4.White, new UI.NineSlice());
         UI.Image(healthRect, null, Vector4.Black, new UI.NineSlice());
         UI.Image(levelRect, LvPlate, Vector4.White, new UI.NineSlice());
-        UI.Text(levelRect.Offset(0,5), $"{_player.Level + 1}", UI.TextSettings.Default with {Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center});
-
+        if (_player.IsChampion)
+        {
+            UI.Text(levelRect.Offset(0,5), "C", UI.TextSettings.Default with {Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center, Color = GlobalData.CritNumberColor});
+            var badgeRect = levelRect.Offset(140, 5);
+            UI.Image(badgeRect, ResourceOverlayWindow.ChampionIcon, Vector4.White, new UI.NineSlice());
+        }
+        else
+        {
+            UI.Text(levelRect.Offset(0,5), $"{_player.Level + 1}", UI.TextSettings.Default with {Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center});
+        }
         var healthPercent = _player.CurrentHealth / (float)_player.MaxHealth;
         var healthPercentRect = healthRect.SubRect(0, 0, healthPercent, 1, 0, 0, 0, 0);
         UI.Image(healthPercentRect, null, Vector4.HSVLerp(Vector4.Red, Vector4.Green, healthPercent), new UI.NineSlice());

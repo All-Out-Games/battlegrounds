@@ -190,7 +190,6 @@ public partial class FightPlayer
         if (IsLocal && PlayerStatus == PlayerStatus.Combat)
         {
             FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"Score+{xp}");
-            SFX.Play(SFXKeys.EliminationAudio, new SFX.PlaySoundDesc());
         }
     }
     
@@ -202,6 +201,15 @@ public partial class FightPlayer
             FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"EXP+{xp}");
             _overlay.CalculateAfkExp();
             SFX.Play(SFXKeys.AFKAudio, new SFX.PlaySoundDesc());
+        }
+    }
+
+    [ClientRpc]
+    public void NotifyGlory(int gl)
+    {
+        if (IsLocal && PlayerStatus == PlayerStatus.Combat)
+        {
+            FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"Glory +{gl}");
         }
     }
     
@@ -235,6 +243,8 @@ public partial class FightPlayer
                 
             }
             _combatOverlay.AddKillFeed(source.Name, victim.Name, skillKey,sourceLv);
+            
+            SFX.Play(SFXKeys.EliminationAudio, new SFX.PlaySoundDesc());
         }
     }
     
@@ -299,9 +309,20 @@ public partial class FightPlayer
         {
             // This player eliminated another player
             TotalEliminations += 1;
+            
             RoundScore += KohGlobalData.KillScore;
             // Changed in KoH: Gives score now
             CallClient_NotifyKillExp(KohGlobalData.KillScore);
+
+            if (IsChampion)
+            {
+                if (victim.Level > 19)
+                {
+                    Gem += 5;
+                    CallClient_NotifyGlory(5);
+                }
+                
+            }
         }
 
         if (victim == this && source != this)

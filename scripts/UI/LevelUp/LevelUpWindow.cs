@@ -74,6 +74,36 @@ public class LevelUpWindow : Component
 
         _popCoroutine = Coroutine.Start(Entity, PopOnOutThenRetract());
     }
+    
+    public void PopChampion()
+    {
+        _rect ??= GetComponent<UIRect>();
+        LevelText.Text = "C";
+        CoinText.Text = $"10000 Coins Given!";
+        GemText.Entity.Parent.LocalEnabled = true;
+        GemText.Text = $"10000 Glory Awarded!";
+
+        List<string> unlockedSkills = new List<string>();
+        LevelUpSkillUnlockItem[] unlockItem = { Item1, Item2 };
+        // Enable maximum two of skill unlock items.
+        for (int i = 0; i < unlockItem.Length; i++)
+        {
+            var item = unlockItem[i];
+            if (i < unlockedSkills.Count )
+            {
+                item.SetSkillUnlock(unlockedSkills[i]);
+                item.Entity.LocalEnabled = true;
+            }
+            else
+            {
+                item.Entity.LocalEnabled = false;
+            }
+        }
+
+        _popCoroutine = Coroutine.Start(Entity, PopOnOutThenRetract());
+        
+        
+    }
 
     private IEnumerator PopOnOutThenRetract()
     {
@@ -82,7 +112,7 @@ public class LevelUpWindow : Component
         _sparkles.Instance.SetSkin("default");
         _sparkles.Instance.EnableSkin("default");
         _sparkles.Instance.RefreshSkins();
-        _sparkles.Instance.SetAnimation("hatch", false);
+        _sparkles.Instance.SetAnimation("hatch", false); // Sparkles
         while (progress01 < 1)
         {
             _rect.Offset = _rect.Offset with { Y = -500 + 500 * progress01 };

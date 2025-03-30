@@ -212,7 +212,24 @@ public partial class FightPlayer : Player
                 if (_exp >= LevelingData.NextLevelXp[_level])
                 {
                     TryLevelUp();
+                    TryPromoteChampion();
                 }
+            }
+        }
+    }
+
+    private SyncVar<bool> _isChampion = new();
+
+    public bool IsChampion
+    {
+        get => _isChampion;
+        set
+        {
+            int v = value ? 1 : 0;
+            if (Network.IsServer)
+            {
+                Save.SetInt(this, "IsChampion", v);
+                _isChampion.Set(value);
             }
         }
     }
@@ -399,6 +416,15 @@ public partial class FightPlayer : Player
         }
     }
 
+    private void TryPromoteChampion()
+    {
+        // We must use save here because it might be triggered in the player initialization routine.
+        if (Save.GetInt(this, "IsChampion") != 1 && Exp >= LevelingData.NextLevelXp[LevelingData.MaxLevel])
+        {
+            CallClient_PromoteToChampion();
+        }
+    }
+
     /// <summary>
     /// [Server Only] Remove XP, Skills & Level
     /// </summary>
@@ -460,6 +486,7 @@ public partial class FightPlayer : Player
         ExpBoostTime = Save.GetInt(this, "ExpBoostTime");
         ExpBoostMultiplier = Save.GetInt(this, "ExpBoostMultiplier");
         SpectralCount = Save.GetInt(this, "SpectralCount");
+        IsChampion = Save.GetInt(this, "IsChampion") == 1;
     }
     
     #region EventFunctions
@@ -1134,5 +1161,19 @@ public partial class FightPlayer : Player
             CurrentHealth = Int32.Min(CurrentHealth + 20, MaxHealth);
             _healTimer = 0;
         }
+    }
+
+    [ClientRpc]
+    public void PromoteToChampion()
+    {
+        if(IsChampion || Exp < LevelingData.NextLevelXp[LevelingData.MaxLevel]) return;
+        IsChampion = true;
+        if (IsLocal)
+        {
+            _overlay.PopChampionPromotion();
+        }
+
+        Coins += 10000;
+        Gem += 10000;
     }
 }

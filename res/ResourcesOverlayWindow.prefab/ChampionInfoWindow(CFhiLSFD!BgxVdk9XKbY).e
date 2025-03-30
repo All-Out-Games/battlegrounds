@@ -1,8 +1,8 @@
 13
-528280977409
-73519893487852 1723597938232591200
+296352743425
+9175697269059 1743268922294839000
 {
-  "name": "AfkInfoWindow",
+  "name": "ChampionInfoWindow",
   "local_enabled": false,
   "local_position": {
 
@@ -12,13 +12,12 @@
     "X": 1,
     "Y": 1
   },
-  "previous_sibling": "276603803210872:1722471055887162800",
-  "next_sibling": "9175697269059:1743268922294839000",
+  "previous_sibling": "73519893487852:1723597938232591200",
   "parent": "56713756930459:1717453707360960100"
 },
 {
   "cid": 1,
-  "aoid": "73586317488025:1723597964844778700",
+  "aoid": "9175697864696:1743268922295077300",
   "component_type": "Internal_Component",
   "internal_component_type": "UIRect",
   "data": {
@@ -38,20 +37,19 @@
     },
     "offset": {
       "X": -13,
-      "Y": 250
+      "Y": -260
     }
   }
 },
 {
   "cid": 2,
-  "aoid": "4422093824887:1723656137088526800",
+  "aoid": "15202969818899:1743271337067486700",
   "component_type": "Mono_Component",
-  "mono_component_type": "AfkInfoWindow",
+  "mono_component_type": "ChampionInfoWindow",
   "data": {
-    "CloseButton": "4442454618854:1723656145245899800",
-    "AfkXpTotalNumber": "83691595489349:1723602013435018800",
-    "LevelBonusNumber": "76509294929906:1723599135909834100",
-    "ServerBonusNumber": "76509294851023:1723599135909802300",
-    "BoosterBonusNumber": "76509294775263:1723599135909771900"
+    "CloseButton": "9175698053609:1743268922295152500",
+    "RemainingXp": "10728170555560:1743269544279325700",
+    "ChampionText": "9927631203345:1743269223550419800",
+    "TogoEntity": "16748722990264:1743271956359620200"
   }
 }
