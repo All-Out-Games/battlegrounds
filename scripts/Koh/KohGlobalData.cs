@@ -12,12 +12,12 @@ public static class KohGlobalData
     // TODO: VIP, Game Pass boosts
     public static int CalculateCoinReward(int kingScore)
     {
-        return kingScore / 2;
+        return kingScore;
     }
 
     public static int CalculateExpReward(int roundScore, FightPlayer fp)
     {
-        return LevelingData.GetBoostedExpMultiplier(fp) * roundScore / 2;
+        return LevelingData.GetBoostedExpMultiplier(fp) * roundScore;
     }
 
     public static int CalculateGloryReward(int kingScore, FightPlayer fp)
