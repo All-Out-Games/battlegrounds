@@ -38,7 +38,6 @@
   "data": {
     "text": "N",
     "settings": {
-      "font_id": "$AO/fonts/Asap-ExtraBold-Fixed.ttf",
       "do_drop_shadow": true,
       "do_outline": true,
       "outline_thickness": 5
