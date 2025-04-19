@@ -17,10 +17,10 @@
 },
 {
   "cid": 1,
-  "aoid": "48583026843503:1732341217263119900",
+  "aoid": "24452950915844:1745004382084914200",
   "component_type": "Internal_Component",
-  "internal_component_type": "UIGif",
+  "internal_component_type": "UIImage",
   "data": {
-    "fit_aspect": true
+
   }
 }

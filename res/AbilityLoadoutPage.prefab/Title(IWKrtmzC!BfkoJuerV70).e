@@ -49,7 +49,6 @@
   "data": {
     "text": "Punch",
     "settings": {
-      "font_id": "$AO/fonts/Asap-ExtraBold-Fixed.ttf",
       "size": 48,
       "do_drop_shadow": true,
       "do_outline": true,

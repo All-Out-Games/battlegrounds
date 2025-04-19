@@ -46,7 +46,7 @@
   "component_type": "Mono_Component",
   "mono_component_type": "AbilityPreview",
   "data": {
-    "_previewGif": "5529784762391:1732850659653977400",
+    "_previewImg": "24549075741968:1745004421819037600",
     "_nopreviewScreen": "40917145792605:1732338145997888800"
   }
 }
