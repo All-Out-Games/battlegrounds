@@ -13,23 +13,23 @@ public class IceChunkProjectile : BaseProjectile
 
         float chance = Random.Shared.NextFloat();
         Sprite_Renderer rdr = GetComponent<Sprite_Renderer>();
-        if(rdr != null)
+        if (rdr != null)
         {
             if (chance < 0.33)
             {
                 rdr.Sprite = Assets.GetAsset<Texture>("projectile/ice_chunk_B.png");
             }
-            else if(chance < 0.66)
+            else if (chance < 0.66)
             {
                 rdr.Sprite = Assets.GetAsset<Texture>("projectile/ice_chunk_C.png");
             }
         }
-        
+
     }
 
     protected override void DoProjectileEffect(Entity other, bool predicted)
     {
-        
+
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
         if (fp != null && fp.Damageable())
         {
@@ -42,7 +42,7 @@ public class IceChunkProjectile : BaseProjectile
             {
                 Entity.Destroy();
             }
-            
+
             if (overrideType == FightPlayer.DamageInfo.DamageNumberOverrideType.Parry)
             {
                 // Reflected! Change owner and send the projectile back.
@@ -64,20 +64,20 @@ public class IceChunkProjectile : BaseProjectile
 
         }
     }
-    
+
     protected override BaseProjectile Reflect(FightPlayer newOwner, int level, Vector2 direction)
     {
         base.Reflect(newOwner, level, direction);
         if (Owner.Alive() && newOwner.Alive())
         {
             EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerIceChunkConfig(newOwner.CurrentAttack);
-            Entity proj = Game.SpawnProjectile(newOwner, config.ProjectilePrefabKey,
+            Entity proj = Game.SpawnProjectile(newOwner.Entity, config.ProjectilePrefabKey,
                 config.ProjectilePrefabKey,
                 Entity.Position, direction);
             Projectile projComp = proj.GetComponent<Projectile>();
             projComp.Speed = config.Speed;
             projComp.Lifetime = config.ProjectileLifetime;
-            
+
             IceChunkProjectile supplementProjectileComp = proj.GetComponent<IceChunkProjectile>();
             supplementProjectileComp.LifeTime = config.ProjectileLifetime;
             supplementProjectileComp.InitializeProjectile(newOwner, config.Damage, false);

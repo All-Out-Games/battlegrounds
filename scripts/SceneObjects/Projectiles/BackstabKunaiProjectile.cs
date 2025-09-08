@@ -16,7 +16,7 @@ public partial class BackstabKunaiProjectile : BaseProjectile
             instance.SetSkin("kunai");
             instance.EnableSkin("kunai");
             instance.SetAnimation("fly_straight", true);
-            SoundId = SFX.Play(SFXKeys.ShurikenLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity, Loop = true,LoopTimeout = 3f});
+            SoundId = SFX.Play(SFXKeys.ShurikenLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity, Loop = true, LoopTimeout = 3f });
         }
         else
         {
@@ -28,21 +28,21 @@ public partial class BackstabKunaiProjectile : BaseProjectile
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
         if (fp.Alive() && fp.Damageable())
         {
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(1, DamageType.Ranged) with {InterruptLevel = FightPlayer.DamageInfo.StunInterruptLevel};
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(1, DamageType.Ranged) with { InterruptLevel = FightPlayer.DamageInfo.StunInterruptLevel };
             info.ReactionInfo.Flinch = false;
             info.SkillKey = SkillConfig.BackstabConfig.SkillKey;
-            
+
             var overrideType = fp.TakeDamage(Owner, info);
             bool reachedPlayer = overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Dodged &&
                                  overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Parry;
-            
+
             if (overrideType == FightPlayer.DamageInfo.DamageNumberOverrideType.Parry)
             {
                 // Reflected! Change owner and send the projectile back.
                 Vector2 refDir = Entity.Position - other.Position;
-                Reflect(fp, Owner.Alive()? Owner.GetSkillTree().GetSkillLevel("Backstab") : 1, refDir);
+                Reflect(fp, Owner.Alive() ? Owner.GetSkillTree().GetSkillLevel("Backstab") : 1, refDir);
             }
-            
+
             if (Network.IsServer && reachedPlayer)
             {
                 CallClient_BackstabPlayer(Owner, fp);
@@ -61,20 +61,20 @@ public partial class BackstabKunaiProjectile : BaseProjectile
         target.AddEffect<EffectBackstab>(shooter, EffectConfig.BackStabConfig.BackstabTime);
         shooter.AddEffect<EffectBackstabCaster>(target, EffectConfig.BackStabConfig.BackstabTime);
     }
-    
+
     protected override BaseProjectile Reflect(FightPlayer newOwner, int level, Vector2 direction)
     {
         base.Reflect(newOwner, level, direction);
         if (Owner.Alive() && newOwner.Alive())
         {
             EffectConfig.ProjectileConfig config = EffectConfig.BackStabConfig.GetKunaiConfig();
-            Entity proj = Game.SpawnProjectile(newOwner, config.ProjectilePrefabKey,
+            Entity proj = Game.SpawnProjectile(newOwner.Entity, config.ProjectilePrefabKey,
                 config.ProjectilePrefabKey,
                 Entity.Position, direction);
             Projectile projComp = proj.GetComponent<Projectile>();
             projComp.Speed = config.Speed;
             projComp.Lifetime = config.ProjectileLifetime;
-            
+
             BackstabKunaiProjectile supplementProjectileComp = proj.GetComponent<BackstabKunaiProjectile>();
             supplementProjectileComp.LifeTime = config.ProjectileLifetime;
             supplementProjectileComp.InitializeProjectile(newOwner, config.Damage, false);

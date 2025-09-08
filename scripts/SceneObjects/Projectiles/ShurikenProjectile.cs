@@ -7,9 +7,9 @@ public class ShurikenProjectile : BaseProjectile
 {
     public float BackDamageMultiplier = 1.0f;
     public bool Enhanced = false;
-    
+
     private Spine_Animator _animator;
-    
+
     public override void Awake()
     {
         base.Awake();
@@ -21,7 +21,7 @@ public class ShurikenProjectile : BaseProjectile
             instance.SetSkin("shuriken");
             instance.EnableSkin("shuriken");
             instance.SetAnimation("spin_loop", true);
-            SoundId = SFX.Play(SFXKeys.ShurikenLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity, Loop = true, LoopTimeout = 3f});
+            SoundId = SFX.Play(SFXKeys.ShurikenLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity, Loop = true, LoopTimeout = 3f });
             //Log.Warn($"Sound Start ID = {SoundId}");
         }
         else
@@ -38,7 +38,7 @@ public class ShurikenProjectile : BaseProjectile
             Vector2 dir = other.Position - Entity.Position;
             if (Vector2.Dot(dir, fp.GetFacingDirection() ? Vector2.Right : Vector2.Left) >= 0)
             {
-                info.ReactionInfo.Amount = (int) float.Floor(Damage * BackDamageMultiplier);
+                info.ReactionInfo.Amount = (int)float.Floor(Damage * BackDamageMultiplier);
                 info.DamageNumberColor = GlobalData.CritNumberColor; // Orange
             }
 
@@ -46,7 +46,7 @@ public class ShurikenProjectile : BaseProjectile
             var overrideType = fp.TakeDamage(Owner, info);
             bool reachedPlayer = overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Dodged &&
                                  overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Parry;
-            
+
             if (Enhanced && reachedPlayer) // bounce
             {
                 //EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerShurikenConfig(Owner.CurrentAttack, 1);
@@ -59,14 +59,14 @@ public class ShurikenProjectile : BaseProjectile
             {
                 // Reflected! Change owner and send the projectile back.
                 Vector2 refDir = -dir;
-                Reflect(fp, Owner.Alive()? Owner.GetSkillTree().GetSkillLevel("Shuriken") : 1, refDir); // Reflect a lv 1 shuriken to imitate bounce
+                Reflect(fp, Owner.Alive() ? Owner.GetSkillTree().GetSkillLevel("Shuriken") : 1, refDir); // Reflect a lv 1 shuriken to imitate bounce
             }
-            
+
             if (!Pierce)
             {
                 Entity.Destroy();
             }
-            
+
             if (reachedPlayer)
             {
                 FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.HitVFX, Vector2.Lerp(other.Position, Entity.Position, 0.5f),
@@ -87,13 +87,13 @@ public class ShurikenProjectile : BaseProjectile
         if (Owner.Alive() && newOwner.Alive())
         {
             EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerShurikenConfig(newOwner.CurrentAttack, level);
-            Entity proj = Game.SpawnProjectile(newOwner, config.ProjectilePrefabKey,
+            Entity proj = Game.SpawnProjectile(newOwner.Entity, config.ProjectilePrefabKey,
                 config.ProjectilePrefabKey,
                 Entity.Position, direction);
             Projectile projComp = proj.GetComponent<Projectile>();
             projComp.Speed = config.Speed;
             projComp.Lifetime = config.ProjectileLifetime;
-            
+
             ShurikenProjectile supplementProjectileComp = proj.GetComponent<ShurikenProjectile>();
             supplementProjectileComp.LifeTime = config.ProjectileLifetime;
             supplementProjectileComp.InitializeProjectile(newOwner, config.Damage, false);

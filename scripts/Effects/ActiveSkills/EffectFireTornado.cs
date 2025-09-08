@@ -42,7 +42,7 @@ public class EffectFireTornado : FightEffect
             DurationRemaining = 0.4f;
         }
         FightPlayer.SetAnimTrigger("summon_thunder", true);
-        SFX.Play(SFXKeys.FireTornadoStartAudio, DefaultSoundDesc with{Volume = 0.65f});
+        SFX.Play(SFXKeys.FireTornadoStartAudio, DefaultSoundDesc with { Volume = 0.65f });
         FightPlayer.SetFacingDirection(AbilityDirection.X > 0);
     }
 
@@ -54,11 +54,11 @@ public class EffectFireTornado : FightEffect
             ProjectileThrow();
         }
     }
-    
+
     private void ProjectileThrow()
     {
 
-        Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
+        Entity proj = Game.SpawnProjectile(FightPlayer.Entity, Config.ProjectilePrefabKey,
             $"{Config.ProjectilePrefabKey}",
             Position + AbilityDirection, AbilityDirection);
         //proj.Position = Entity.Position;
