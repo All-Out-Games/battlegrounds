@@ -27,7 +27,7 @@ public partial class GlobalLeaderboard : Component
 
     public override void Awake()
     {
-        if (Network.IsServer) 
+        if (Network.IsServer)
         {
             Coroutine.Start(Entity, UpdateLeaderboard());
         }
@@ -38,7 +38,8 @@ public partial class GlobalLeaderboard : Component
         while (true)
         {
             yield return new WaitForSeconds(10f);
-            Save.OrderedGetAll(LeaderboardId, 0, 50, entries => {
+            Save.OrderedGetAll(LeaderboardId, 0, 50, entries =>
+            {
                 var names = new string[entries.Length];
                 var scores = new double[entries.Length];
                 for (int i = 0; i < entries.Length; i++)
@@ -49,10 +50,11 @@ public partial class GlobalLeaderboard : Component
                 CallClient_UpdateLeaderboardData(names, scores);
             });
 
-            foreach(Player p in Scene.Components<FightPlayer>())
+            foreach (Player p in Scene.Components<FightPlayer>())
             {
                 var player = p;
-                Save.OrderedGet(LeaderboardId, player.UserId, 0, entry => {
+                Save.OrderedGet(LeaderboardId, player.UserId, 0, entry =>
+                {
                     if (player.Alive())
                     {
                         CallClient_UpdateSinglePlayerLeaderboardData(player.Entity.NetworkId, entry.Value, entry.Position);
@@ -71,15 +73,15 @@ public partial class GlobalLeaderboard : Component
 
         var leaderboardZ = AOMath.TransformPoint(LeaderboardSpriteRenderer.Entity.CalculateWorldMatrix(), new Vector2(0, LeaderboardSpriteRenderer.DepthOffset)).Y;
 
-        using var _1 = UI.PUSH_CONTEXT(UI.Context.WORLD);
-        using var _3 = IM.PUSH_Z(leaderboardZ-0.001f);
+        using var _1 = UI.PUSH_CONTEXT(UI.Context.World);
+        using var _3 = IM.PUSH_Z(leaderboardZ - 0.001f);
         using var _4 = UI.PUSH_SCALE_FACTOR(0.770f);
         using var _5 = UI.PUSH_COLOR_MULTIPLIER(LeaderboardSpriteRenderer.Tint);
 
         var cameraRect = Camera.GetCurrentCameraWorldRect();
         var viewportRect = new Rect(Entity.Position).Grow(0.4f, 1.6f, 1.72f, 1.6f);
 
-        
+
 
         var myRect = viewportRect.CutBottom(0.3f);
         if (cameraRect.Overlaps(myRect))
@@ -88,8 +90,9 @@ public partial class GlobalLeaderboard : Component
             var textSize = 0.15f;
             var rankTextSize = textSize * 1.5f;
             var rankRect = myRect.LeftRect().Offset(0.2f, 0);
-            Vector4 rankColor = new Vector4(41.0f/255.0f, 35.0f/255.0f, 39.0f/255.0f, 1.0f);
-            var finalRankRect = UI.Text(rankRect, $"{MyScore.Rank+1}", new UI.TextSettings() {
+            Vector4 rankColor = new Vector4(41.0f / 255.0f, 35.0f / 255.0f, 39.0f / 255.0f, 1.0f);
+            var finalRankRect = UI.TextSync(rankRect, $"{MyScore.Rank + 1}", new UI.TextSettings()
+            {
                 Font = GlobalData.Asap,
                 Color = rankColor,
                 Size = rankTextSize,
@@ -101,7 +104,8 @@ public partial class GlobalLeaderboard : Component
             if (MyScore.Rank == 0) suffix = "st";
             if (MyScore.Rank == 1) suffix = "nd";
             if (MyScore.Rank == 2) suffix = "rd";
-            UI.Text(rankSuffixRect, suffix, new UI.TextSettings() {
+            UI.TextAsync(rankSuffixRect, suffix, new UI.TextSettings()
+            {
                 Font = GlobalData.Asap,
                 Color = rankColor,
                 Size = rankTextSize * 0.5f,
@@ -110,7 +114,8 @@ public partial class GlobalLeaderboard : Component
             });
 
             var nameRect = myRect.LeftRect().Offset(1, 0);
-            UI.Text(nameRect, MyScore.Name , new UI.TextSettings() {
+            UI.TextAsync(nameRect, MyScore.Name, new UI.TextSettings()
+            {
                 Font = GlobalData.Asap,
                 Color = Vector4.White,
                 Size = textSize,
@@ -121,7 +126,8 @@ public partial class GlobalLeaderboard : Component
             });
 
             var scoreRect = myRect.RightRect().Offset(-0.175f, 0);
-            UI.Text(scoreRect, Util.FormatDouble(MyScore.Score), new UI.TextSettings() {
+            UI.TextAsync(scoreRect, Util.FormatDouble(MyScore.Score), new UI.TextSettings()
+            {
                 Font = GlobalData.Asap,
                 Color = Vector4.White,
                 Size = textSize,
@@ -137,7 +143,8 @@ public partial class GlobalLeaderboard : Component
         for (int i = 0; i < 50; i++)
         {
             LeaderboardEntry entry = new LeaderboardEntry() { Name = "TBD", Score = 0 };
-            if (i < Entries.Count) {
+            if (i < Entries.Count)
+            {
                 entry = Entries[i];
             }
 
@@ -155,7 +162,7 @@ public partial class GlobalLeaderboard : Component
             if (i == 0) entryRect = entryRect.GrowRight(0.075f);
 
             if (entryRect.Overlaps(viewportRect) && cameraRect.Overlaps(entryRect))
-            { 
+            {
                 UI.Image(entryRect, tex, Vector4.White);
 
                 using var _6 = UI.PUSH_LAYER_RELATIVE(1);
@@ -166,15 +173,16 @@ public partial class GlobalLeaderboard : Component
                 var rankTextSize = textSize * 1.5f;
                 var rankRect = entryRect.LeftRect().Offset(0.2f, 0);
                 if (i == 0) rankRect = rankRect.Offset(0, -0.03f);
-                Vector4 rankColor = new Vector4(41.0f/255.0f, 35.0f/255.0f, 39.0f/255.0f, 1.0f);
-                if (i == 0) rankColor = new Vector4(184.0f/255.0f, 105.0f/255.0f, 0.0f/255.0f, 1.0f);
-                if (i == 1) rankColor = new Vector4(63.0f/255.0f, 67.0f/255.0f, 79.0f/255.0f, 1.0f);
-                if (i == 2) rankColor = new Vector4(126.0f/255.0f, 37.0f/255.0f, 16.0f/255.0f, 1.0f);
+                Vector4 rankColor = new Vector4(41.0f / 255.0f, 35.0f / 255.0f, 39.0f / 255.0f, 1.0f);
+                if (i == 0) rankColor = new Vector4(184.0f / 255.0f, 105.0f / 255.0f, 0.0f / 255.0f, 1.0f);
+                if (i == 1) rankColor = new Vector4(63.0f / 255.0f, 67.0f / 255.0f, 79.0f / 255.0f, 1.0f);
+                if (i == 2) rankColor = new Vector4(126.0f / 255.0f, 37.0f / 255.0f, 16.0f / 255.0f, 1.0f);
 
-                var rankText = $"{i+1}";
+                var rankText = $"{i + 1}";
                 if (i < 0) rankText = "TBD";
 
-                var finalRankRect = UI.Text(rankRect, $"{i+1}", new UI.TextSettings() {
+                var finalRankRect = UI.TextSync(rankRect, $"{i + 1}", new UI.TextSettings()
+                {
                     Font = GlobalData.Asap,
                     Color = rankColor,
                     Size = rankTextSize,
@@ -187,7 +195,8 @@ public partial class GlobalLeaderboard : Component
                 if (i % 10 == 1 && i != 11) suffix = "nd";
                 if (i % 10 == 2 && i != 12) suffix = "rd";
                 if (i < 0) suffix = "";
-                UI.Text(rankSuffixRect, suffix, new UI.TextSettings() {
+                UI.TextAsync(rankSuffixRect, suffix, new UI.TextSettings()
+                {
                     Font = GlobalData.Asap,
                     Color = rankColor,
                     Size = rankTextSize * 0.5f,
@@ -197,7 +206,8 @@ public partial class GlobalLeaderboard : Component
 
                 var nameRect = entryRect.LeftRect().Offset(1, 0);
                 if (i == 0) nameRect = nameRect.Offset(0, -0.03f);
-                UI.Text(nameRect, entry.Name , new UI.TextSettings() {
+                UI.TextAsync(nameRect, entry.Name, new UI.TextSettings()
+                {
                     Font = GlobalData.Asap,
                     Color = Vector4.White,
                     Size = textSize,
@@ -209,7 +219,8 @@ public partial class GlobalLeaderboard : Component
 
                 var scoreRect = entryRect.RightRect().Offset(-0.175f, 0);
                 if (i == 0) scoreRect = scoreRect.Offset(-0.075f, -0.03f);
-                UI.Text(scoreRect, Util.FormatDouble(entry.Score), new UI.TextSettings() {
+                UI.TextAsync(scoreRect, Util.FormatDouble(entry.Score), new UI.TextSettings()
+                {
                     Font = GlobalData.Asap,
                     Color = Vector4.White,
                     Size = textSize,

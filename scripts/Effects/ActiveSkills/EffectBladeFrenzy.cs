@@ -57,18 +57,18 @@ public class EffectBladeFrenzy : FightEffect
     public override bool BlockAbilityActivation => false;
     public EffectConfig.BladeFrenzyConfig Config;
     private int _originalIndex;
-    
+
     // Replace punch with katana slash
     public override void OnEffectStart(bool isDropIn)
     {
         base.OnEffectStart(isDropIn);
-        Config = EffectConfig.BladeFrenzyConfig.GetDefault(FightPlayer.CurrentAttack,FightPlayer.GetSkillTree().GetSkillLevel("BladeFrenzy"));
+        Config = EffectConfig.BladeFrenzyConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("BladeFrenzy"));
         if (!isDropIn)
         {
             DurationRemaining = Config.Duration;
         }
 
-        
+
         FightPlayer.SetKatana(true);
         FightPlayer.SetAnimTrigger("bf_start");
 
@@ -109,7 +109,7 @@ public class EffectBladeFrenzy : FightEffect
         FightPlayer.SetKatana(false);
     }
 
-    
+
 }
 
 public class EffectKatanaSlash : FightEffect
@@ -125,8 +125,8 @@ public class EffectKatanaSlash : FightEffect
     {
         base.OnEffectStart(isDropIn);
         DurationRemaining = EffectConfig.BladeFrenzyConfig.DefaultSlashAnimationTime;
-        
-        Damage = EffectConfig.BladeFrenzyConfig.GetDefault(FightPlayer.CurrentAttack,FightPlayer.GetSkillTree().GetSkillLevel("BladeFrenzy")).Damage;
+
+        Damage = EffectConfig.BladeFrenzyConfig.GetDefault(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("BladeFrenzy")).Damage;
         _slashDir = FightPlayer.GetPunchDirection();
         FightPlayer.SetAimTarget(Entity.Position + _slashDir);
         FightPlayer.SetAnimTrigger("bf_slash", true);
@@ -186,14 +186,14 @@ public class EffectIllusionSlash : FightEffect
             ProjectileThrow();
         }
     }
-    
+
     private void ProjectileThrow()
     {
         // This function can be overwritten to create different projectile throwing behaviors
         // However, you should try to build the logic of the projectile within itself
         // i.e. inherit the Projectile component and put it on your prefab.
 
-        Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
+        Entity proj = Game.SpawnProjectile(FightPlayer.Entity, Config.ProjectilePrefabKey,
             $"{Config.ProjectilePrefabKey}",
             Position + AbilityDirection, AbilityDirection);
         //proj.Position = Entity.Position;

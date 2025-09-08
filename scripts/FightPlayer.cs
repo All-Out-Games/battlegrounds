@@ -13,7 +13,7 @@ using TinyJson;
 public partial class FightPlayer : Player
 {
     // Player status. Note that we need to keep a list in FightClubGameManager for combat hit detection
-    [Serialized] protected FightPlayerEffectManager EffectManager; 
+    [Serialized] protected FightPlayerEffectManager EffectManager;
     [Serialized] protected FightPlayerLegacyUI PlayerLegacyUi;
     [Serialized] protected FightPlayerSkillTree SkillTree;
     [Serialized] protected FightPlayerSkillSlotsManager SkillSlotsManager;
@@ -21,11 +21,11 @@ public partial class FightPlayer : Player
     protected Circle_Collider Collider; // MAIN Collider used for damage
     protected CameraControl CameraInterface;
     protected FightPlayer PriorityTarget;
-    
+
     public Entity CollisionEntity;
-    
+
     #region Attributes
-    
+
     // SyncVars must not be set during Awake(). Do these in Start()
 
     private SyncVar<int> _status = new(1);
@@ -41,14 +41,15 @@ public partial class FightPlayer : Player
             }
         }
     }
-    
+
     private SyncVar<int> currentHealth = new(GlobalData.DefaultMaxHealth);
-    public int CurrentHealth 
-    { 
+    public int CurrentHealth
+    {
         get => currentHealth.Value;
-        set 
+        set
         {
-            if (Network.IsServer) {
+            if (Network.IsServer)
+            {
                 currentHealth.Set(value);
             }
         }
@@ -60,7 +61,8 @@ public partial class FightPlayer : Player
         get { return currentAttack.Value; }
         set
         {
-            if (Network.IsServer) {
+            if (Network.IsServer)
+            {
                 currentAttack.Set(value);
             }
         }
@@ -127,7 +129,7 @@ public partial class FightPlayer : Player
 
     public int DeathCount
     {
-        get { return _deathCount.Value; } 
+        get { return _deathCount.Value; }
         set
         {
             if (Network.IsServer)
@@ -138,14 +140,14 @@ public partial class FightPlayer : Player
             }
         }
     }
-    
+
     private SyncVar<int> _coins = new(0);
     public int Coins
     {
         get => _coins.Value;
         set
         {
-            if (Network.IsServer) 
+            if (Network.IsServer)
             {
                 _coins.Set(value);
                 Save.SetInt(this, "Coins", value);
@@ -351,7 +353,7 @@ public partial class FightPlayer : Player
             //Log.Warn("Max Level hit!");
             return;
         }
-        
+
         int prevLevel = Level;
         // Find next level's xp ceiling, which is the first xp ceiling that's more than the current xp of the player
         int nextXp = LevelingData.NextLevelXp.FirstOrDefault(p => p > Exp, -1);
@@ -360,14 +362,14 @@ public partial class FightPlayer : Player
         {
             Log.Error($"{Name} Overflowed the max level! This shouldn't happen unless they are granted a large amount of xp");
             Level = LevelingData.MaxLevel;
-            for (int j = prevLevel+1; j <= Level; j++)
+            for (int j = prevLevel + 1; j <= Level; j++)
             {
                 Coins += LevelingData.CoinRewards[j];
                 Gem += LevelingData.GemRewards[j];
             }
 
         }
-        else if(Exp < LevelingData.NextLevelXp[_level+1])
+        else if (Exp < LevelingData.NextLevelXp[_level + 1])
         {
             // Usual case where we raise the player level by one
             Level += 1;
@@ -380,7 +382,7 @@ public partial class FightPlayer : Player
         }
         else
         {
-            
+
             // If the player exp exceeds even the next level's requirement... [Usually only happens with grant command]
             int newLevel = Level;
             for (int i = Level; i <= LevelingData.MaxLevel; i++)
@@ -392,7 +394,7 @@ public partial class FightPlayer : Player
                 }
             }
 
-            for (int j = prevLevel+1; j <= newLevel; j++)
+            for (int j = prevLevel + 1; j <= newLevel; j++)
             {
                 Coins += LevelingData.CoinRewards[j];
                 Gem += LevelingData.GemRewards[j];
@@ -434,7 +436,7 @@ public partial class FightPlayer : Player
     /// which removes damage and flinch event from TakeDamage(). This flag is used in projectiles / traps to make them ignore invincible players.
     /// </summary>
     protected List<string> InvincibleReasons = new List<string>();
-    
+
 
     public bool Damageable()
     {
@@ -443,7 +445,7 @@ public partial class FightPlayer : Player
 
     public bool Targetable()
     {
-        return !HasEffect<EffectInvisible>() && Damageable()  && IsValidTarget;
+        return !HasEffect<EffectInvisible>() && Damageable() && IsValidTarget;
     }
 
     public void AddInvincibilityReason(string reason)
@@ -474,35 +476,35 @@ public partial class FightPlayer : Player
         SpectralCount = Save.GetInt(this, "SpectralCount");
         IsChampion = Save.GetInt(this, "IsChampion") == 1;
     }
-    
+
     #region EventFunctions
-    
+
     public override void Awake()
     {
         if (Network.IsServer)
         {
-            EffectManager = Entity.AddComponent<FightPlayerEffectManager>();
-            PlayerLegacyUi = Entity.AddComponent<FightPlayerLegacyUI>();
-            SkillTree = Entity.AddComponent<FightPlayerSkillTree>();
-            SkillSlotsManager = Entity.AddComponent<FightPlayerSkillSlotsManager>();
+            EffectManager = Entity.Unsafe_AddComponent<FightPlayerEffectManager>();
+            PlayerLegacyUi = Entity.Unsafe_AddComponent<FightPlayerLegacyUI>();
+            SkillTree = Entity.Unsafe_AddComponent<FightPlayerSkillTree>();
+            SkillSlotsManager = Entity.Unsafe_AddComponent<FightPlayerSkillSlotsManager>();
         }
-        
+
         EffectManager = Entity.GetComponent<FightPlayerEffectManager>();
         PlayerLegacyUi = Entity.GetComponent<FightPlayerLegacyUI>();
         SkillTree = Entity.GetComponent<FightPlayerSkillTree>();
         SkillSlotsManager = Entity.GetComponent<FightPlayerSkillSlotsManager>();
-        
+
         // Create state machine
         // See FightPlayerAnimation.cs
         InitializeStateMachine();
 
-        NameOffset = 0.275f;
+        UserNameOffset = 0.275f;
 
         //Log.Debug($"Client Awake!");
         //SkillSlotsManager.InitKeybind();
-        
+
         _preDamageEffects = new List<FightEffect>();
-        
+
         // Spawn Colliders
         var collisionPrefab = Assets.GetAsset<Prefab>("FatPlayerCollision.prefab"); // Player Collider
         CollisionEntity = collisionPrefab.Instantiate();
@@ -512,15 +514,15 @@ public partial class FightPlayer : Player
         // CollisionEntity.LocalPosition =
         //     new Vector2(CollisionEntity.LocalPosition.X, CollisionEntity.LocalPosition.Y);
         Collider = CollisionEntity.GetComponent<Circle_Collider>();
-        
-        
+
+
         InitializeUI();
         _serializedSkillDict.OnSync += SkillDictHandler;
         _serializedSkillLoadout.OnSync += SkillLoadoutHandler;
         FightClubGameManager.Instance.OnPlayerJoin(this);
         UIManager.Instance.OnPlayerJoin(this);
-        
-        Teleport(FightClubGameManager.References.CentralHubZone.Position );
+
+        Teleport(FightClubGameManager.References.CentralHubZone.Position);
     }
 
     private bool _lazyInited;
@@ -547,15 +549,15 @@ public partial class FightPlayer : Player
                 CameraInterface.Zoom = 1.0f;
                 // First ui update need to be triggered manually (Save reading happens before this point)
                 NotifyCoinUpdate(0, Coins);
-                
+
             }
-            
+
         }
     }
 
     private void SkillDictHandler(string _, string serializedDict)
     {
-        if(SkillTree.Alive())
+        if (SkillTree.Alive())
         {
             if (serializedDict.IsNullOrEmpty())
             {
@@ -615,13 +617,13 @@ public partial class FightPlayer : Player
         FightClubGameManager.Instance.OnPlayerLeave(this);
         RemoveGlobalEvents();
     }
-    
+
 
     #endregion
-    
+
 
     #region Health, Damage, Respawn
-    
+
     /// <summary>
     /// [Server & Client, Contains server-only logic] 
     /// The damage function.
@@ -632,16 +634,16 @@ public partial class FightPlayer : Player
     {
         if (CurrentHealth <= 0 || !source.Alive() || PlayerStatus != PlayerStatus.Combat) return DamageInfo.DamageNumberOverrideType.Immune; // Avoid damaging the dead, avoid dropped player
         info.SourceNetworkId = source.Entity.NetworkId;
-        
+
         // Pre-damage event, chained invoke
         foreach (var pfe in _preDamageEffects)
         {
             pfe.PreDamageMod(ref info);
         }
-        
-        
+
+
         int damage = info.ReactionInfo.Amount;
-        
+
         if (Network.IsServer)
         {
             bool isDamage = damage > 0;
@@ -678,7 +680,7 @@ public partial class FightPlayer : Player
             if (CurrentHealth <= 0)
             {
                 FightClubGameManager.Instance.PlayerEliminationEvent.Invoke(source, this, info);
-            
+
                 CallClient_PlayerDeath(info, info.SkillKey); // TODO: The engine does not support str serialization in structs yet
                 return info.OverrideDamageNumber;
             }
@@ -686,7 +688,7 @@ public partial class FightPlayer : Player
         DamageReaction(CurrentHealth, info);  // All Client side damage reaction goes here
         return info.OverrideDamageNumber;
     }
-    
+
     public void DamageReaction(int health, DamageInfo info)
     {
         if (info.ReactionInfo.Flinch)
@@ -695,7 +697,7 @@ public partial class FightPlayer : Player
         }
     }
 
-    
+
     /// <summary>
     /// [Server & Client]
     /// </summary>
@@ -720,7 +722,7 @@ public partial class FightPlayer : Player
             Notifications.Show(txt);
         }
     }
-    
+
     #endregion
 
     #region Movement
@@ -768,18 +770,19 @@ public partial class FightPlayer : Player
     }
     public override Vector2 CalculatePlayerVelocity(Vector2 currentVelocity, Vector2 input, float deltaTime)
     {
-        if (CurrentHealth <= 0) {
+        if (CurrentHealth <= 0)
+        {
             return Vector2.Zero;
         }
-        
+
         var velocity = DefaultPlayerVelocityCalculation(currentVelocity, input, deltaTime, GetTotalVelocityMultiplier());
         velocity += Bump * deltaTime;
         velocity += Dash * deltaTime;
-        
-        
+
+
         return velocity;
     }
-    
+
 
     // Bump
     protected Vector2 Bump = Vector2.Zero;
@@ -790,7 +793,7 @@ public partial class FightPlayer : Player
     {
         Bump = Vector2.Lerp(Bump, Vector2.Zero, Time.DeltaTime * 2.0f);
     }
-    
+
     [ClientRpc]
     public void AddBump(Vector2 add, bool reset)
     {
@@ -798,19 +801,20 @@ public partial class FightPlayer : Player
         {
             EffectManager.AddEffect<EffectNoMovement>(null, 0.75f);
         }
-        
+
         Bump = add; // Changed from accumulation to directly set
 
-        if (reset) {
+        if (reset)
+        {
             this.Entity.GetComponent<Rigidbody>().Velocity *= 0.001f;
         }
     }
-    
+
     public void AddBumpFrom(FightPlayer caster, Vector2 add, bool reset)
     {
         AddBump(add, reset);
     }
-    
+
     // Dash
     public Vector2 Dash = Vector2.Zero;
     protected float DashRemainingDuration;
@@ -824,7 +828,7 @@ public partial class FightPlayer : Player
             : Vector2.Lerp(Dash, Vector2.Zero, Time.DeltaTime * 10.0f);
         //Bump = Vector2.Lerp(Bump, Vector2.Zero, Time.DeltaTime * 2.0f);
     }
-    
+
     [ClientRpc]
     public void AddDash(Vector2 add, float duration)
     {
@@ -832,11 +836,11 @@ public partial class FightPlayer : Player
         Dash = add;
         DashRemainingDuration = duration;
     }
-    
-    
-    
+
+
+
     #endregion
-    
+
     #region Sub Component Getters
 
     public FightPlayerEffectManager GetEffectMgr()
@@ -895,7 +899,7 @@ public partial class FightPlayer : Player
     public Vector2 GetPunchDirection()
     {
         var proximityPlayers = FightClubGameManager.Instance.OverlapCircleForCombatPlayers(Entity.Position, EffectConfig.PunchConfig.PunchTargetRange, this);
-        
+
         proximityPlayers.Remove(this);
         if (proximityPlayers.Count > 0)
         {
@@ -909,10 +913,10 @@ public partial class FightPlayer : Player
                 }
                 else
                 {
-                    PriorityTarget = null; 
+                    PriorityTarget = null;
                 }
             }
-            
+
             foreach (var fp in proximityPlayers)
             {
                 // Ignore invis player, ignore invincible/dead player
@@ -923,7 +927,7 @@ public partial class FightPlayer : Player
                 return fp.Position - Position;
             }
         }
-        
+
         // If no player is detected, try find crates.
         var proximityCrates =
             CrateManager.Instance.OverlapCircleForCrates(Position, EffectConfig.PunchConfig.PunchTargetRange);
@@ -936,7 +940,7 @@ public partial class FightPlayer : Player
                 {
                     return cr.Entity.Position - Position;
                 }
-                
+
             }
         }
         return GetFacingDirectionAsVector();
@@ -957,7 +961,7 @@ public partial class FightPlayer : Player
     {
         return PlayerStatus == PlayerStatus.Combat && CurrentHealth > 0;
     }
-    
+
     public FightAbility GetFightAbility<T>() where T : Ability
     {
         return GetAbility<T>() as FightAbility;
@@ -965,7 +969,7 @@ public partial class FightPlayer : Player
 
     public FightAbility GetFightAbility(Type t)
     {
-        return AbilityInstances.FirstOrDefault<Ability>((Func<Ability, bool>) (a => a.GetType() == t)) as FightAbility;
+        return AbilityInstances.FirstOrDefault<Ability>((Func<Ability, bool>)(a => a.GetType() == t)) as FightAbility;
     }
 
     public Vector2 GetFacingDirectionAsVector()
@@ -975,7 +979,7 @@ public partial class FightPlayer : Player
     #endregion
 
     #region Zone Management
-    
+
     public void SwitchStatus(int statusInt)
     {
         PlayerStatus status = (PlayerStatus)statusInt;
@@ -1064,7 +1068,7 @@ public partial class FightPlayer : Player
 
     public void OnTeleportToSafeZone()
     {
-        
+
         PlayerSwitchZoneEvent?.Invoke((int)PlayerStatus.Safe);
 
         if (IsLocal)
@@ -1122,7 +1126,7 @@ public partial class FightPlayer : Player
     }
 
     private float _healTimer;
-    
+
     /// <summary>
     /// Server Only, Safezone heal
     /// </summary>
@@ -1145,7 +1149,7 @@ public partial class FightPlayer : Player
     [ClientRpc]
     public void PromoteToChampion()
     {
-        if(IsChampion || Exp < LevelingData.NextLevelXp[LevelingData.MaxLevel]) return;
+        if (IsChampion || Exp < LevelingData.NextLevelXp[LevelingData.MaxLevel]) return;
         IsChampion = true;
         if (IsLocal)
         {

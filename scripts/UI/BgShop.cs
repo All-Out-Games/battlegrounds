@@ -6,16 +6,16 @@ public partial class BgShop : System<BgShop>
     public Shop ItemShop;
     public bool ItemShopOpen;
     private List<ShopCategory.ProductDescription> _allProducts;
-    
+
     public override void Start()
     {
         _allProducts = new List<ShopCategory.ProductDescription>();
         _allProducts.AddRange(StarterProducts);
         _allProducts.AddRange(PotionProducts);
         _allProducts.AddRange(ResourceProducts);
-        
+
         if (Network.IsServer) Purchasing.SetPurchaseHandler(SparksPurchaseHandler);
-        
+
 
         ItemShop = Economy.CreateShop("Item Shop");
         ItemShop.SetPurchaseModifier(OnBeforeItemPurchase);
@@ -29,31 +29,31 @@ public partial class BgShop : System<BgShop>
             // Don't need this rn. We don't have non-spark product
             //ItemShop.SetPurchaseHandler(OnItemPurchase);
         }
-        
+
         var starterCat = ItemShop.AddCategory("Starter Packs");
         starterCat.Icon = "Props/DropItems/VengeancePotion.png";
         foreach (var p in StarterProducts)
         {
             starterCat.AddProduct(p);
         }
-        
+
         var potionCat = ItemShop.AddCategory("Potions");
         potionCat.Icon = "Props/DropItems/ExpPotionL.png";
         foreach (var p in PotionProducts)
         {
             potionCat.AddProduct(p);
         }
-        
+
         var resourceCat = ItemShop.AddCategory("Resources");
         resourceCat.Icon = "Props/DropItems/coin/coin_1.png";
         foreach (var p in ResourceProducts)
         {
             resourceCat.AddProduct(p);
         }
-        
+
         base.Start();
     }
-    
+
     public override void Update()
     {
         if (ItemShopOpen)
@@ -68,7 +68,7 @@ public partial class BgShop : System<BgShop>
     {
         bool success = false;
         FightPlayer player = (FightPlayer)p;
-        
+
         if (player.Alive())
         {
             var prod = _allProducts.FirstOrDefault(prod => prod.SparksProductId == productId);
@@ -78,58 +78,75 @@ public partial class BgShop : System<BgShop>
             {
                 return true; // This is the KoTH early access. Special case, should grant nothing but return true.
             }
-            
+
             switch (prod.Id)
             {
-                case "starter_pack1": player.Exp += LevelingData.BaselineXp[4];
+                case "starter_pack1":
+                    player.Exp += LevelingData.BaselineXp[4];
                     break;
-                case "starter_pack2": player.Exp += LevelingData.BaselineXp[9];
+                case "starter_pack2":
+                    player.Exp += LevelingData.BaselineXp[9];
                     break;
-                case "starter_pack3": player.Exp += LevelingData.BaselineXp[14];
+                case "starter_pack3":
+                    player.Exp += LevelingData.BaselineXp[14];
                     break;
-                case "starter_pack4": player.Exp += LevelingData.BaselineXp[29];
+                case "starter_pack4":
+                    player.Exp += LevelingData.BaselineXp[29];
                     break;
-                case "xp_booster_3x": player.AddExpBoostTime(15, 3);
+                case "xp_booster_3x":
+                    player.AddExpBoostTime(15, 3);
                     break;
-                case "xp_booster_5x": player.AddExpBoostTime(15, 5);
+                case "xp_booster_5x":
+                    player.AddExpBoostTime(15, 5);
                     break;
-                case "xp_booster_7x": player.AddExpBoostTime(15, 7);
+                case "xp_booster_7x":
+                    player.AddExpBoostTime(15, 7);
                     break;
-                
-                case "gems_1000": player.Gem += 1000;
+
+                case "gems_1000":
+                    player.Gem += 1000;
                     break;
-                case "gems_5000": player.Gem += 5000;
+                case "gems_5000":
+                    player.Gem += 5000;
                     break;
-                case "gems_10000": player.Gem += 10000;
+                case "gems_10000":
+                    player.Gem += 10000;
                     break;
-                case "coins_300": player.Coins += 300;
+                case "coins_300":
+                    player.Coins += 300;
                     break;
-                case "coins_1000": player.Coins += 1000;
+                case "coins_1000":
+                    player.Coins += 1000;
                     break;
-                case "coins_3000": player.Coins += 3000;
+                case "coins_3000":
+                    player.Coins += 3000;
                     break;
-                case "coins_10000": player.Coins += 10000;
+                case "coins_10000":
+                    player.Coins += 10000;
                     break;
-                
-                case "spectral_1x": player.SpectralCount += 1;
+
+                case "spectral_1x":
+                    player.SpectralCount += 1;
                     break;
-                case "spectral_5x": player.SpectralCount += 5;
+                case "spectral_5x":
+                    player.SpectralCount += 5;
                     break;
-                case "spectral_15x": player.SpectralCount += 15;
+                case "spectral_15x":
+                    player.SpectralCount += 15;
                     break;
                 default:
                     Log.Error($"Product Id: {productId} is not found in registered products!");
                     success = false;
                     break;
             }
-            
+
         }
         else
         {
             Log.Error("Trying to grant item to a destroyed player!");
             success = false;
         }
-        
+
         //var (success, _) = GrantItem(p, item);
         Save.ForceSavePlayer(p);
         return success;
@@ -139,7 +156,7 @@ public partial class BgShop : System<BgShop>
     {
         rect.CutTop(10);
         var descriptionRect = rect.CutTop(200).Inset(0, 15, 0, 15);
-        UI.Text(descriptionRect, product.Description, new UI.TextSettings()
+        UI.TextAsync(descriptionRect, product.Description, new UI.TextSettings()
         {
             Font = UI.Fonts.Barlow,
             Size = 32,
@@ -158,7 +175,7 @@ public partial class BgShop : System<BgShop>
         if (Network.LocalPlayer != null && product.SubCategory == "Pass")
         {
             bool owned = Purchasing.OwnsGamePassLocal(product.SparksProductId);
-            UI.Text(descriptionRect, owned? "Owned" : "", new UI.TextSettings()
+            UI.TextAsync(descriptionRect, owned ? "Owned" : "", new UI.TextSettings()
             {
                 Font = UI.Fonts.Barlow,
                 Size = 24,
@@ -175,7 +192,7 @@ public partial class BgShop : System<BgShop>
         }
 
     }
-    
+
     public PurchaseModification OnBeforeItemPurchase(Player _player, GameProduct product)
     {
         var player = (FightPlayer)_player;
@@ -228,7 +245,7 @@ public partial class BgShop : System<BgShop>
             }
         }
 
-        
+
 
         return modification;
     }

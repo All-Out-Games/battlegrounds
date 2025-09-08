@@ -7,7 +7,7 @@ using AO;
 public class PsyBoltProjectile : BaseProjectile
 {
     public float KnockBackStrength = 20f;
-    
+
     private Spine_Animator _animator;
     public override void Awake()
     {
@@ -20,8 +20,8 @@ public class PsyBoltProjectile : BaseProjectile
             instance.SetSkin("psybolt");
             instance.EnableSkin("psybolt");
             instance.SetAnimation("fly_straight", true);
-            SoundId = SFX.Play(SFXKeys.PsyboltLoopAudio, new SFX.PlaySoundDesc() {EntityToFollow = Entity, Loop = true, LoopTimeout = 3f});
-            
+            SoundId = SFX.Play(SFXKeys.PsyboltLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity, Loop = true, LoopTimeout = 3f });
+
         }
         else
         {
@@ -33,19 +33,19 @@ public class PsyBoltProjectile : BaseProjectile
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
         if (fp != null && fp.Damageable())
         {
-            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged) with {InterruptLevel = 2000};
+            FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged) with { InterruptLevel = 2000 };
             info.SkillKey = SkillConfig.PsyboltConfig.SkillKey;
             //fp.TakeDamage(Owner, info);
-            
+
             var overrideType = fp.TakeDamage(Owner, info);
             bool reachedPlayer = overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Dodged &&
                                  overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Parry;
-            
+
             if (overrideType == FightPlayer.DamageInfo.DamageNumberOverrideType.Parry)
             {
                 // Reflected! Change owner and send the projectile back.
                 Vector2 refDir = Entity.Position - other.Position;
-                Reflect(fp, Owner.Alive()? Owner.GetSkillTree().GetSkillLevel("Psybolt") : 1, refDir);
+                Reflect(fp, Owner.Alive() ? Owner.GetSkillTree().GetSkillLevel("Psybolt") : 1, refDir);
             }
 
             if (reachedPlayer)
@@ -54,7 +54,7 @@ public class PsyBoltProjectile : BaseProjectile
                 fp.AddBumpFrom(Owner, dir * KnockBackStrength, false);
             }
             //fp.AddBumpFrom(Owner, EngineProjectile.Direction, false);
-            
+
             if (!Pierce)
             {
                 Entity.Destroy();
@@ -67,26 +67,26 @@ public class PsyBoltProjectile : BaseProjectile
                     {
                         SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
                         vfx.StartVFX("hit_psybolt", false);
-                        SFX.Play(SFXKeys.PsyboltHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity});
+                        SFX.Play(SFXKeys.PsyboltHitAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity });
                     }
                 );
             }
         }
     }
-    
+
     protected override BaseProjectile Reflect(FightPlayer newOwner, int level, Vector2 direction)
     {
         base.Reflect(newOwner, level, direction);
         if (Owner.Alive() && newOwner.Alive())
         {
             EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerPsyboltConfig(newOwner.CurrentAttack, level);
-            Entity proj = Game.SpawnProjectile(newOwner, config.ProjectilePrefabKey,
+            Entity proj = Game.SpawnProjectile(newOwner.Entity, config.ProjectilePrefabKey,
                 config.ProjectilePrefabKey,
                 Entity.Position, direction);
             Projectile projComp = proj.GetComponent<Projectile>();
             projComp.Speed = config.Speed;
             projComp.Lifetime = config.ProjectileLifetime;
-            
+
             PsyBoltProjectile supplementProjectileComp = proj.GetComponent<PsyBoltProjectile>();
             supplementProjectileComp.LifeTime = config.ProjectileLifetime;
             supplementProjectileComp.InitializeProjectile(newOwner, config.Damage, false);
@@ -95,5 +95,5 @@ public class PsyBoltProjectile : BaseProjectile
 
         return null;
     }
-    
+
 }

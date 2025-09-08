@@ -18,7 +18,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
     {
         _hideUIReasons.Add(reason);
     }
-    
+
     public void RemovePlayerUIInvisibleReason(string reason)
     {
         _hideUIReasons.Remove(reason);
@@ -40,7 +40,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
 
     protected Rect DrawHealthBar()
     {
-        using var _1 = UI.PUSH_CONTEXT(UI.Context.WORLD);
+        using var _1 = UI.PUSH_CONTEXT(UI.Context.World);
         using var _2 = IM.PUSH_Z(_player.GetZOffset() - 0.0001f); // minus an epsilon so the health bar draws over the player
         using var _3 = UI.PUSH_SCALE_FACTOR(5.0f / 540.0f);
         var healthRect = _player.FinalNameRect.BottomCenterRect().Offset(0, -20);
@@ -52,15 +52,15 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         UI.Image(levelRect, LvPlate, Vector4.White, new UI.NineSlice());
         if (_player.IsChampion)
         {
-            UI.Text(levelRect.Offset(0,5), "C", UI.TextSettings.Default with {Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center, Color = GlobalData.CritNumberColor});
+            UI.TextAsync(levelRect.Offset(0, 5), "C", UI.TextSettings.Default with { Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center, Color = GlobalData.CritNumberColor });
             var badgeRect = levelRect.Offset(140, 5);
             UI.Image(badgeRect, ResourceOverlayWindow.ChampionIcon, Vector4.White, new UI.NineSlice());
         }
         else
         {
-            UI.Text(levelRect.Offset(0,5), $"{_player.Level + 1}", UI.TextSettings.Default with {Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center});
+            UI.TextAsync(levelRect.Offset(0, 5), $"{_player.Level + 1}", UI.TextSettings.Default with { Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center });
         }
-        
+
         var healthPercent = _player.CurrentHealth / (float)_player.MaxHealth;
         var healthPercentRect = healthRect.SubRect(0, 0, healthPercent, 1, 0, 0, 0, 0);
         UI.Image(healthPercentRect, null, Vector4.HSVLerp(Vector4.Red, Vector4.Green, healthPercent), new UI.NineSlice());
@@ -71,7 +71,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         DrawHealthTxt(healthRect);
         return healthRect;
     }
-    
+
     protected void DrawHealthTxt(Rect healthRect)
     {
         var ts = new UI.TextSettings()
@@ -86,8 +86,8 @@ public class FightPlayerLegacyUI : FightPlayerComponent
             DoAutofit = false,
             Offset = new Vector2(0, 5)
         };
-        
-        UI.Text(healthRect, $"{_player.CurrentHealth}", ts);
+
+        UI.TextAsync(healthRect, $"{_player.CurrentHealth}", ts);
     }
 
     protected void DrawShieldBar(Rect healthRect)
@@ -102,7 +102,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
 
     protected void DrawDamageNumber()
     {
-        using var _1 = UI.PUSH_CONTEXT(UI.Context.WORLD);
+        using var _1 = UI.PUSH_CONTEXT(UI.Context.World);
         using var _2 = UI.PUSH_LAYER(FightClubGameManager.DamageNumberLayer);
 
         var ts = new UI.TextSettings()
@@ -121,7 +121,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         };
 
         List<DamageNumbers> numbers = FightClubGameManager.Instance.ActiveDamageNumbers;
-        for (int i = numbers.Count-1; i >= 0; i -= 1)
+        for (int i = numbers.Count - 1; i >= 0; i -= 1)
         {
             var result = numbers[i];
             result.T += Time.DeltaTime * 0.5f;
@@ -134,9 +134,9 @@ public class FightPlayerLegacyUI : FightPlayerComponent
             pos.Y += AOMath.Lerp(0, 0.5f, Ease.OutQuart(result.T));
             var rect = new Rect(pos, pos);
             var color01 = Ease.FadeInAndOut(0.1f, 1, result.T);
-            ts.Color = Vector4.Lerp(new Vector4(0, 0, 0, 0),result.Color, color01);
-            UI.Text(rect, result.Text, ts);
+            ts.Color = Vector4.Lerp(new Vector4(0, 0, 0, 0), result.Color, color01);
+            UI.TextAsync(rect, result.Text, ts);
         }
     }
-    
+
 }

@@ -17,7 +17,7 @@ public class FireballProjectile : BaseProjectile
             _animator.Awaken();
             var instance = _animator.SpineInstance;
             instance.SetAnimation("flying_loop", true);
-            SoundId = SFX.Play(SFXKeys.FireballLoopAudio, new SFX.PlaySoundDesc() {EntityToFollow = Entity, Loop = true, LoopTimeout = 3f});
+            SoundId = SFX.Play(SFXKeys.FireballLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity, Loop = true, LoopTimeout = 3f });
             _animator.OnAnimationEnd += evt =>
             {
                 if (evt == "explode")
@@ -35,21 +35,21 @@ public class FireballProjectile : BaseProjectile
 
     protected override void DoProjectileEffect(Entity other, bool predicted)
     {
-        
+
         FightPlayer fp = other.GetComponent<PlayerCollisionChild>()?.Player;
         if (fp.Alive() && fp.Damageable())
         {
             FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(Damage, DamageType.Ranged);
             info.SkillKey = SkillConfig.FireballNodeConfig.SkillKey;
             info.SpecialDeathAnimation = true;
-            
+
             // For Fireball Lv. 5, we shoot 3 fireballs
             // That might be too OP if all of them hit the same player.
             // Solution: If a player is burning, and the burn just started (meaning they just got hit by a fireball)
             // We reduce the fireball's damage to 1
             EffectBurn eb = fp.GetEffect<EffectBurn>();
             if (eb.Alive() && eb.ElapsedTime < 0.3f) info.ReactionInfo.Amount = 1;
-            
+
             var overrideType = fp.TakeDamage(Owner, info);
             var reachedPlayer = overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Dodged &&
                                 overrideType != FightPlayer.DamageInfo.DamageNumberOverrideType.Parry;
@@ -59,12 +59,12 @@ public class FireballProjectile : BaseProjectile
                 _animator.SpineInstance.SetAnimation("explode", false);
                 ModifySpeed(0.1f);
             }
-            
+
             if (overrideType == FightPlayer.DamageInfo.DamageNumberOverrideType.Parry)
             {
                 // Reflected! Change owner and send the projectile back.
                 Vector2 refDir = Entity.Position - other.Position;
-                Reflect(fp, Owner.Alive()? Owner.GetSkillTree().GetSkillLevel("Fireball") : 1, refDir);
+                Reflect(fp, Owner.Alive() ? Owner.GetSkillTree().GetSkillLevel("Fireball") : 1, refDir);
             }
 
             if (reachedPlayer)
@@ -82,13 +82,13 @@ public class FireballProjectile : BaseProjectile
         if (Owner.Alive() && newOwner.Alive())
         {
             EffectConfig.ProjectileConfig config = EffectConfig.ProjectileConfig.GetPlayerFireballConfig(newOwner.CurrentAttack, level);
-            Entity proj = Game.SpawnProjectile(newOwner, config.ProjectilePrefabKey,
+            Entity proj = Game.SpawnProjectile(newOwner.Entity, config.ProjectilePrefabKey,
                 config.ProjectilePrefabKey,
                 Entity.Position, direction);
             Projectile projComp = proj.GetComponent<Projectile>();
             projComp.Speed = config.Speed;
             projComp.Lifetime = config.ProjectileLifetime;
-            
+
             FireballProjectile supplementProjectileComp = proj.GetComponent<FireballProjectile>();
             supplementProjectileComp.hitFxId = hitFxId;
             supplementProjectileComp.hitSoundId = hitSoundId;

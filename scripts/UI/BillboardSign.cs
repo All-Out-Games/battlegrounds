@@ -15,7 +15,7 @@ public partial class BillboardSign : Component
         if (Network.IsServer) return;
         if (Network.LocalPlayer == null) return;
 
-        var localPlayer = (FightPlayer) Network.LocalPlayer;
+        var localPlayer = (FightPlayer)Network.LocalPlayer;
         if ((localPlayer.Entity.Position - Entity.Position).Length > 2)
         {
             NearSinceTime = Time.TimeSinceStartup;
@@ -24,7 +24,7 @@ public partial class BillboardSign : Component
         {
             float jiggle = Util.Jitter(Ease.T(Time.TimeSinceStartup - NearSinceTime, 0.5f), 4);
 
-            UI.PushContext(UI.Context.WORLD); using var _1 = AllOut.Defer(UI.PopContext);
+            UI.PushContext(UI.Context.World); using var _1 = AllOut.Defer(UI.PopContext);
             UI.PushScaleFactor(1.5f); using var _2 = AllOut.Defer(UI.PopScaleFactor);
             UI.PushLayerRelative(2); using var _3 = AllOut.Defer(UI.PopLayer);
 
@@ -33,7 +33,7 @@ public partial class BillboardSign : Component
             var rect = new Rect(pos, pos).CenterRect().OffsetUnscaled(0, 0.3f).Grow(0, adjustedHalfWidth, 0, adjustedHalfWidth);
 
             int bgSerial = IM.GetNextSerial();
-            var actualTextRect = UI.Text(rect, Message, new UI.TextSettings()
+            var actualTextRect = UI.TextSync(rect, Message, new UI.TextSettings()
             {
                 Font = UI.Fonts.Barlow,
                 Size = Game.IsMobile ? 0.3f : 0.2f,

@@ -12,7 +12,7 @@ public class AbilitySpoonThrow : FightAbility
     public override TargettingMode TargettingMode => TargettingMode.Line;
     public override float MaxDistance => EffectConfig.ProjectileConfig.SpoonRange;
     public override int MaxTargets => 1;
-    
+
     public override float Cooldown => GetCooldown(FightPlayer);
 
     public static float GetCooldown(FightPlayer fp)
@@ -40,12 +40,12 @@ public class EffectProjectileThrow : FightEffect
         {
             WhiteList = new List<Entity>();
             WhiteList.Add(FightPlayer.Entity);
-        
+
             AssignConfig();
             FightPlayer.SetAnimTrigger(Config.ThrowTrigger);
             DurationRemaining = FightLayer.GetCurrentStateLength();
             FightPlayer.SpineAnimator.OnEvent += OnAnimationEvent;
-        
+
             PlayThrowSound();
         }
     }
@@ -75,14 +75,14 @@ public class EffectProjectileThrow : FightEffect
         // Override to play other throw sound
         SFX.Play(SFXKeys.ProjectileLThrowAudio, DefaultSoundDesc);
     }
-    
+
     public virtual void ProjectileThrow()
     {
         // This function can be overwritten to create different projectile throwing behaviors
         // However, you should try to build the logic of the projectile within itself
         // i.e. inherit the Projectile component and put it on your prefab.
 
-        Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
+        Entity proj = Game.SpawnProjectile(FightPlayer.Entity, Config.ProjectilePrefabKey,
             $"{Config.ProjectilePrefabKey}",
             FightPlayer.Entity.Position, AbilityDirection);
         //proj.Position = Entity.Position;

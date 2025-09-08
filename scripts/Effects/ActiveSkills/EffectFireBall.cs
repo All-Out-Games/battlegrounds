@@ -13,7 +13,7 @@ public class AbilityFireball : FightAbility
     public override TargettingMode TargettingMode => TargettingMode.Line;
     public override float MaxDistance => EffectConfig.ProjectileConfig.FireballRange;
     public override int MaxTargets => 1;
-    
+
     public override float Cooldown => GetCooldown(FightPlayer);
 
     public static float GetCooldown(FightPlayer fp)
@@ -34,14 +34,14 @@ public class EffectFireBall : EffectProjectileThrow
     {
         Config = EffectConfig.ProjectileConfig.GetPlayerFireballConfig(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("Fireball"));
     }
-    
+
 
     protected override void InitializeProjectile(Entity proj)
     {
         Projectile projComp = proj.GetComponent<Projectile>();
         projComp.Speed = Config.Speed;
         projComp.Lifetime = Config.ProjectileLifetime;
-        
+
         FireballProjectile supplementProjectileComp = proj.GetComponent<FireballProjectile>();
         supplementProjectileComp.LifeTime = Config.ProjectileLifetime;
         supplementProjectileComp.hitFxId = "hit_fire";
@@ -55,7 +55,7 @@ public class EffectFireBall : EffectProjectileThrow
     {
         if (Config.ProjectileLevel > 4)
         {
-            Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
+            Entity proj = Game.SpawnProjectile(FightPlayer.Entity, Config.ProjectilePrefabKey,
                 $"{Config.ProjectilePrefabKey}",
                 FightPlayer.Entity.Position, AbilityDirection);
             //proj.Position = Entity.Position;
@@ -63,15 +63,15 @@ public class EffectFireBall : EffectProjectileThrow
 
             Vector2 additionalDir1 = Vector2.Rotate(AbilityDirection, 0.72f, Vector2.Zero);
             Vector2 additionalDir2 = Vector2.Rotate(AbilityDirection, -0.72f, Vector2.Zero);
-            
-            Entity proj1 = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
+
+            Entity proj1 = Game.SpawnProjectile(FightPlayer.Entity, Config.ProjectilePrefabKey,
                 $"{Config.ProjectilePrefabKey}",
                 FightPlayer.Entity.Position, additionalDir1);
-            
-            Entity proj2 = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
+
+            Entity proj2 = Game.SpawnProjectile(FightPlayer.Entity, Config.ProjectilePrefabKey,
                 $"{Config.ProjectilePrefabKey}",
                 FightPlayer.Entity.Position, additionalDir2);
-            
+
             InitializeProjectile(proj1);
             InitializeProjectile(proj2);
         }
@@ -79,6 +79,6 @@ public class EffectFireBall : EffectProjectileThrow
         {
             base.ProjectileThrow();
         }
-        
+
     }
 }

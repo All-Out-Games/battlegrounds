@@ -14,7 +14,7 @@ public class AbilityPsybolt : FightAbility
     public override TargettingMode TargettingMode => TargettingMode.Line;
     public override float MaxDistance => EffectConfig.ProjectileConfig.PsyboltRange;
     public override int MaxTargets => 1;
-    
+
     public override float Cooldown => GetCooldown(FightPlayer);
 
     public static float GetCooldown(FightPlayer fp)
@@ -41,14 +41,14 @@ public class EffectPsybolt : EffectProjectileThrow
     {
         Config = EffectConfig.ProjectileConfig.GetPlayerPsyboltConfig(FightPlayer.CurrentAttack, FightPlayer.GetSkillTree().GetSkillLevel("Psybolt"));
     }
-    
+
     public override void ProjectileThrow()
     {
         // This function can be overwritten to create different projectile throwing behaviors
         // However, you should try to build the logic of the projectile within itself
         // i.e. inherit the Projectile component and put it on your prefab.
 
-        Entity proj = Game.SpawnProjectile(FightPlayer, Config.ProjectilePrefabKey,
+        Entity proj = Game.SpawnProjectile(FightPlayer.Entity, Config.ProjectilePrefabKey,
             $"{Config.ProjectilePrefabKey}",
             FightPlayer.Entity.Position + Vector2.Up, AbilityDirection);
         //proj.Position = Entity.Position;
@@ -60,7 +60,7 @@ public class EffectPsybolt : EffectProjectileThrow
         Projectile projComp = proj.GetComponent<Projectile>();
         projComp.Speed = Config.Speed;
         projComp.Lifetime = Config.ProjectileLifetime;
-        
+
         PsyBoltProjectile supplementProjectileComp = proj.GetComponent<PsyBoltProjectile>();
         supplementProjectileComp.LifeTime = Config.ProjectileLifetime;
         supplementProjectileComp.InitializeProjectile(FightPlayer, Config.Damage, false);
@@ -71,5 +71,5 @@ public class EffectPsybolt : EffectProjectileThrow
             proj.LocalScale *= 1.25f;
         }
     }
-    
+
 }

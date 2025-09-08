@@ -27,7 +27,7 @@ public partial class UIManager : System<UIManager>
     public override void Awake()
     {
         _defaultButtonSettings = new UI.ButtonSettings()
-            { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") };
+        { Sprite = Assets.GetAsset<Texture>("$AO/new/main_menu/bottom_bar/button.png") };
         _defaultTextSettings = new UI.TextSettings() { Font = DefaultFont, Size = 24, Color = Vector4.LightBlue };
     }
 
@@ -37,7 +37,7 @@ public partial class UIManager : System<UIManager>
         _mainCanvas ??= Entity.FindByName("Canvas").GetComponent<UICanvas>();
         return _mainCanvas;
     }
-    
+
     public void SetPopup(string txt, float time, Player player)
     {
         if (!player.IsLocal)
@@ -94,12 +94,12 @@ public partial class UIManager : System<UIManager>
                 Log.Error($"Cannot get a UniqueUIWindow component from {prefabPath}!");
                 return null;
             }
-            
-            uniqueWd.Entity.SetParent(FindCanvas().Entity,false);
+
+            uniqueWd.Entity.SetParent(FindCanvas().Entity, false);
             UniqueUiWindows.Add(prefabPath, uniqueWd);
             uniqueWd.OnInstantiate();
         }
-        
+
         // Close all that is currently active, then open window
         foreach (var kv in UniqueUiWindows)
         {
@@ -149,8 +149,8 @@ public partial class UIManager : System<UIManager>
                 Log.Error($"Cannot get a UniqueUIWindow component from {prefabPath}!");
                 return null;
             }
-            
-            wd.Entity.SetParent(FindCanvas().Entity,false);
+
+            wd.Entity.SetParent(FindCanvas().Entity, false);
             OverlayWindows.Add(prefabPath, wd);
             wd.OnInstantiate();
         }
@@ -205,7 +205,7 @@ public partial class UIManager : System<UIManager>
             }
         }
     }
-    
+
     public Rect DoNormalWindowFrame(string title, Vector4 titleColor, Texture icon, float width, float height, ref bool isShowing, float timeOpened, bool modalBg = false)
     {
         if (modalBg)
@@ -214,7 +214,7 @@ public partial class UIManager : System<UIManager>
         }
 
         var windowRect = UI.SafeRect.CenterRect();
-        windowRect = windowRect.Grow(height*0.5f, width*0.5f, height*0.5f, width*0.5f);
+        windowRect = windowRect.Grow(height * 0.5f, width * 0.5f, height * 0.5f, width * 0.5f);
         using var _8 = AnimateWindowIn(ref windowRect, timeOpened);
 
         UI.Blocker(windowRect, title);
@@ -227,7 +227,8 @@ public partial class UIManager : System<UIManager>
             var iconRect = windowRect.TopLeftRect().Grow(40, 40, 40, 40).Offset(0, -5);
             UI.Image(iconRect, icon, Vector4.White);
             var textRect = iconRect.CenterRect().Grow(25, 0, 25, 0).Offset(25, 0);
-            UI.Text(textRect, title, new UI.TextSettings(){
+            UI.TextAsync(textRect, title, new UI.TextSettings()
+            {
                 Font = DefaultFont,
                 Color = titleColor,
                 Outline = true,
@@ -247,8 +248,8 @@ public partial class UIManager : System<UIManager>
 
         return windowRect;
     }
-    
-    
+
+
     public AllOut.DeferImpl AnimateWindowIn(ref Rect rect, float openTime)
     {
         float t = Ease.T(Time.TimeSinceStartup - openTime, 0.1f);
@@ -256,17 +257,17 @@ public partial class UIManager : System<UIManager>
         float a = Ease.OutQuart(t);
         return UI.PUSH_COLOR_MULTIPLIER(a);
     }
-    
+
     public UI.ButtonSettings GetButtonSettings(Texture sprite)
     {
         var bs = new UI.ButtonSettings()
         {
-            Color           = new Vector4(1, 1, 1, 1),
-            HoveredColor    = new Vector4(0.9f, 0.9f, 0.9f, 1),
-            PressedColor    = new Vector4(0.7f, 0.7f, 0.7f, 1),
-            DisabledColor   = new Vector4(0.5f, 0.5f, 0.5f, 1),
+            Color = new Vector4(1, 1, 1, 1),
+            HoveredColor = new Vector4(0.9f, 0.9f, 0.9f, 1),
+            PressedColor = new Vector4(0.7f, 0.7f, 0.7f, 1),
+            DisabledColor = new Vector4(0.5f, 0.5f, 0.5f, 1),
             ColorMultiplier = new Vector4(1, 1, 1, 1),
-            PressScaling    = 0.8f,
+            PressScaling = 0.8f,
             Sprite = sprite,
         };
         return bs;
@@ -276,7 +277,7 @@ public partial class UIManager : System<UIManager>
     {
         // Update timers
         {
-            
+
             if (PopupRemainingTime > 0)
             {
                 //Log.Warn(_popupTxt);
@@ -284,9 +285,17 @@ public partial class UIManager : System<UIManager>
                 // Draw the popup
                 {
                     var centerRect = UI.ScreenRect.CenterRect().Grow(235).CutBottom(50);
-                    UI.Text(centerRect, $"{PopupTxt}", new UI.TextSettings() {Font = DefaultFont, Size = 40, Color = Vector4.Black, 
-                        VerticalAlignment = UI.VerticalAlignment.Center, HorizontalAlignment = UI.HorizontalAlignment.Center,
-                        WordWrap = true, Outline = true, OutlineColor = Vector4.White, OutlineThickness = 1f
+                    UI.TextAsync(centerRect, $"{PopupTxt}", new UI.TextSettings()
+                    {
+                        Font = DefaultFont,
+                        Size = 40,
+                        Color = Vector4.Black,
+                        VerticalAlignment = UI.VerticalAlignment.Center,
+                        HorizontalAlignment = UI.HorizontalAlignment.Center,
+                        WordWrap = true,
+                        Outline = true,
+                        OutlineColor = Vector4.White,
+                        OutlineThickness = 1f
                     });
                 }
             }
@@ -295,7 +304,7 @@ public partial class UIManager : System<UIManager>
                 PopupRemainingTime = 0;
                 PopupTxt = "";
             }
-            
+
         }
 
         // Global UI Update
@@ -306,7 +315,7 @@ public partial class UIManager : System<UIManager>
                 // This is also executed when a new player joins
                 if (_timerNextGlobalUIUpdate > 30)
                 {
-                    
+
                     _timerNextGlobalUIUpdate = 0;
 
                     CallClient_SetExpBoostText(LevelingData.DoubleXP(DateTime.UtcNow));
@@ -314,9 +323,9 @@ public partial class UIManager : System<UIManager>
 
                 _timerNextGlobalUIUpdate += Time.DeltaTime;
             }
-            
+
         }
-        
+
     }
 
     public void OnPlayerJoin(Player player)

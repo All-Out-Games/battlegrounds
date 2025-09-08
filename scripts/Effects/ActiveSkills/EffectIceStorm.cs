@@ -12,7 +12,7 @@ public class AbilityIceStorm : FightAbility
     public override Type Effect => typeof(EffectIceStorm);
     public override bool MonitorEffectDuration => true;
     public override TargettingMode TargettingMode => TargettingMode.Self;
-    
+
     public override float Cooldown => GetCooldown(FightPlayer);
 
     public static float GetCooldown(FightPlayer fp)
@@ -40,7 +40,7 @@ public class EffectIceStorm : FightEffectWithNoFlinch
 
     private EffectConfig.IceStormConfig _config;
     private EffectConfig.ProjectileConfig _chunkConfig;
-    
+
     protected float NextDmgTick = 0.5f;
     protected bool Ticked = false;
     protected bool LoopAudioPlayed = false;
@@ -62,13 +62,13 @@ public class EffectIceStorm : FightEffectWithNoFlinch
     public override void OnEffectUpdate()
     {
         base.OnEffectUpdate();
-        if(Util.OneTime(ElapsedTime > EffectConfig.IceStormConfig.EndAnimationTime, ref _endAnimationPlayed))
+        if (Util.OneTime(ElapsedTime > EffectConfig.IceStormConfig.EndAnimationTime, ref _endAnimationPlayed))
         {
             FightPlayer.SetAnimTrigger("ice_storm_end");
             SFX.Play(SFXKeys.IceStormEndAudio, DefaultSoundDesc);
             SFX.FadeOutAndStop(SoundId, 1);
         }
-        
+
         if (Util.OneTime(ElapsedTime > NextDmgTick, ref Ticked))
         {
             if (!LoopAudioPlayed)
@@ -83,7 +83,7 @@ public class EffectIceStorm : FightEffectWithNoFlinch
             {
                 IceAttack();
             }
-            
+
         }
     }
 
@@ -102,14 +102,14 @@ public class EffectIceStorm : FightEffectWithNoFlinch
         FightPlayer.DamageInfo info = FightPlayer.DamageInfo.CreateDamageInfo(_config.Damage, DamageType.AOE);
         info.SkillKey = SkillConfig.IceStormNodeConfig.SkillKey;
         info.CrateImmediateDestroy = true;
-        
+
         var damageables = FightClubGameManager.Instance.OverlapCircleForDamageables(selfPos, EffectConfig.IceStormConfig.AoeRange, Player);
 
         bool hit = false;
         foreach (var dmg in damageables)
         {
-            if(!dmg.Damageable()) continue;
-            
+            if (!dmg.Damageable()) continue;
+
             dmg.TakeDamage(FightPlayer, info);
 
             if (dmg is PlayerCollisionChild fp)
@@ -119,7 +119,7 @@ public class EffectIceStorm : FightEffectWithNoFlinch
                 //other.AddEffect<EffectKnockDown>(FightPlayer, EffectConfig.LeapSlamConfig.KnockDownTime + 0.5f);
                 other.AddEffect<EffectMovementSpeedChange>(FightPlayer, 1.1f, change => change.SpdModifier = EffectConfig.IceStormConfig.PlayerSpeedMultiplier);
                 hit = true;
-                FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.HitVFX, other.Position with{ Y = other.Position.Y + 0.2f},
+                FightClubGameManager.Instance.ClientSpawn(VFXPrefabs.HitVFX, other.Position with { Y = other.Position.Y + 0.2f },
                     entity =>
                     {
                         SelectionVFX vfx = entity.GetComponent<SelectionVFX>();
@@ -141,28 +141,28 @@ public class EffectIceStorm : FightEffectWithNoFlinch
         for (int i = 0; i < _config.LockTarget; i++)
         {
             Vector2 chunkStartDir, chunkStartPos;
-            
+
             if (i < targetPlayers.Count && targetPlayers[i].Alive())
             {
                 chunkStartDir = (targetPlayers[i].Position - selfPos).Normalized;
             }
             else
             {
-                chunkStartDir = new Vector2(Random.Shared.NextFloat()-0.5f, Random.Shared.NextFloat()-0.5f).Normalized;
+                chunkStartDir = new Vector2(Random.Shared.NextFloat() - 0.5f, Random.Shared.NextFloat() - 0.5f).Normalized;
             }
             chunkStartPos = selfPos + chunkStartDir * range;
 
-            Entity proj = Game.SpawnProjectile(FightPlayer, _chunkConfig.ProjectilePrefabKey,
+            Entity proj = Game.SpawnProjectile(FightPlayer.Entity, _chunkConfig.ProjectilePrefabKey,
                 $"{_chunkConfig.ProjectilePrefabKey}",
                 chunkStartPos, -chunkStartDir);
-                
+
             Projectile projComp = proj.GetComponent<Projectile>();
             projComp.Speed = _chunkConfig.Speed;
             projComp.Lifetime = _chunkConfig.ProjectileLifetime;
             BaseProjectile supplementProjectileComp = proj.GetComponent<BaseProjectile>();
             supplementProjectileComp.LifeTime = _chunkConfig.ProjectileLifetime;
             supplementProjectileComp.InitializeProjectile(FightPlayer, _chunkConfig.Damage, false);
-            
+
         }
     }
 }
