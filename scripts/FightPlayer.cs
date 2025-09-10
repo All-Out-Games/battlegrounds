@@ -495,12 +495,12 @@ public partial class FightPlayer : Player
     {
         if (Network.IsServer)
         {
-            EffectManager = Entity.AddComponent<FightPlayerEffectManager>();
-            PlayerLegacyUi = Entity.AddComponent<FightPlayerLegacyUI>();
-            SkillTree = Entity.AddComponent<FightPlayerSkillTree>();
-            SkillSlotsManager = Entity.AddComponent<FightPlayerSkillSlotsManager>();
+            EffectManager = Entity.Unsafe_AddComponent<FightPlayerEffectManager>();
+            PlayerLegacyUi = Entity.Unsafe_AddComponent<FightPlayerLegacyUI>();
+            SkillTree = Entity.Unsafe_AddComponent<FightPlayerSkillTree>();
+            SkillSlotsManager = Entity.Unsafe_AddComponent<FightPlayerSkillSlotsManager>();
         }
-        
+
         EffectManager = Entity.GetComponent<FightPlayerEffectManager>();
         PlayerLegacyUi = Entity.GetComponent<FightPlayerLegacyUI>();
         SkillTree = Entity.GetComponent<FightPlayerSkillTree>();
