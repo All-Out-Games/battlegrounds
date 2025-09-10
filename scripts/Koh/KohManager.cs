@@ -588,7 +588,7 @@ public partial class KohManager : Component
             {
                 case GameState.WaitingForPlayers:
                 {
-                    UI.Text(bottomBarRect, $"Waiting for players ({players.Count}/{KohGlobalData.PlayersRequiredToStart})", GetTextSettings(52, 0f, null, UI.HorizontalAlignment.Center));
+                    UI.TextAsync(bottomBarRect, $"Waiting for players ({players.Count}/{KohGlobalData.PlayersRequiredToStart})", GetTextSettings(52, 0f, null, UI.HorizontalAlignment.Center));
                     if (RoundReport.HasReport)
                     {
                         BattleReportBtn(rightBarRect);
@@ -598,7 +598,7 @@ public partial class KohManager : Component
                 case GameState.CountingDown:
                 {
                     int secondsLeft = (int)Math.Round(Countdown);
-                    UI.Text(bottomBarRect, $"Round starts in {secondsLeft} seconds...", GetTextSettings(42, 0f, null, UI.HorizontalAlignment.Center));
+                    UI.TextAsync(bottomBarRect, $"Round starts in {secondsLeft} seconds...", GetTextSettings(42, 0f, null, UI.HorizontalAlignment.Center));
                     if (RoundReport.HasReport)
                     {
                         BattleReportBtn(rightBarRect);
@@ -626,7 +626,7 @@ public partial class KohManager : Component
                             textColor = Vector4.Lerp(Vector4.Red, Vector4.White, Ease.T(Time.TimeSinceStartup - LastRoundTimerSyncTime, 1f));
                         }
                         var ts = GetTextSettingsColor(40, textColor, 0f, null);
-                        UI.Text(timerRect, roundString, ts);
+                        UI.TextAsync(timerRect, roundString, ts);
                     }
 
                     List<(string, int)> crownTimeSorted = new List<(string, int)>();
@@ -652,17 +652,17 @@ public partial class KohManager : Component
                     UI.Image(curKingRect.CutLeft(35).FitAspect(1), KohGlobalData.Crown);
                     curKingRect = curKingRect.CutRight(150).CenterRect();
                     Rect curKingRect1 = curKingRect.GrowTop(36);
-                    UI.Text(curKingRect1, "Current King", GetTextSettings(16));
+                    UI.TextAsync(curKingRect1, "Current King", GetTextSettings(16));
                     Rect curKingRect2 = curKingRect.GrowBottom(36);
                     
                     if (EffectKing.KingInstance.Alive() && EffectKing.KingInstance.Player.Alive())
                     {
-                        UI.Text(curKingRect2, EffectKing.KingInstance.Player.Name, GetTextSettings(20));
+                        UI.TextAsync(curKingRect2, EffectKing.KingInstance.Player.Name, GetTextSettings(20));
                     }
                     else
                     {
                         //UI.Image(curKingRect2, null, Vector4.White);
-                        UI.Text(curKingRect2, "None", GetTextSettings(20));
+                        UI.TextAsync(curKingRect2, "None", GetTextSettings(20));
                     }
                     // 0.25 Top King Score (80px)
                     Rect topKingRect = rightBarRect.SubRect(0f, 0.55f, 1f, 0.8f);
@@ -671,15 +671,15 @@ public partial class KohManager : Component
                     topKingRect = topKingRect.CenterRect();
                     // var topKing = kingScores.First();
                     Rect topKingRect1 = topKingRect.GrowTop(40);
-                    UI.Text(topKingRect1, topKing.Item1, GetTextSettings(28));
+                    UI.TextAsync(topKingRect1, topKing.Item1, GetTextSettings(28));
                     Rect topKingRect2 = topKingRect.GrowBottom(40);
-                    UI.Text(topKingRect2, topKing.Item2.ToString(), GetTextSettingsColor(28, topKing.Item2 > 100 ? GlobalData.CritNumberColor : Vector4.White));
+                    UI.TextAsync(topKingRect2, topKing.Item2.ToString(), GetTextSettingsColor(28, topKing.Item2 > 100 ? GlobalData.CritNumberColor : Vector4.White));
                     
                     // 0.15 My King Score (64px)
                     Rect myKingRect = rightBarRect.SubRect(0.25f, 0.4f, 1f, 0.55f);
                     UI.Image(myKingRect, KohGlobalData.BackPlate, Vector4.Black);
-                    UI.Text(myKingRect.SubRect(0f, 0f, 0.3f, 1f), "You", GetTextSettings(24));
-                    UI.Text(myKingRect.SubRect(0.5f, 0f, 1f, 1f), $"{localPlayer.KingScore}", GetTextSettings(24));
+                    UI.TextAsync(myKingRect.SubRect(0f, 0f, 0.3f, 1f), "You", GetTextSettings(24));
+                    UI.TextAsync(myKingRect.SubRect(0.5f, 0f, 1f, 1f), $"{localPlayer.KingScore}", GetTextSettings(24));
                     
                     // 0.25 Top Round Score (80px)
                     // var topScore = roundScores.First();
@@ -688,15 +688,15 @@ public partial class KohManager : Component
                     UI.Image(topRoundRect.CutLeft(35).FitAspect(1), KohGlobalData.Clash);
                     topRoundRect = topRoundRect.CenterRect();
                     Rect topRoundRect1 = topRoundRect.GrowTop(40);
-                    UI.Text(topRoundRect1, topScore.Item1, GetTextSettings(24));
+                    UI.TextAsync(topRoundRect1, topScore.Item1, GetTextSettings(24));
                     Rect topRoundRect2 = topRoundRect.GrowBottom(40);
-                    UI.Text(topRoundRect2, topScore.Item2.ToString(), GetTextSettings(26));
+                    UI.TextAsync(topRoundRect2, topScore.Item2.ToString(), GetTextSettings(26));
                     
                     // 0.15 My Round Score (64px)
                     Rect myRoundRect = rightBarRect.SubRect(0.25f, 0f, 1f, 0.15f);
                     UI.Image(myRoundRect, KohGlobalData.BackPlate, Vector4.Black);
-                    UI.Text(myRoundRect.SubRect(0f, 0f, 0.3f, 1f), "You", GetTextSettings(20));
-                    UI.Text(myRoundRect.SubRect(0.5f, 0f, 1f, 1f), $"{localPlayer.RoundScore}", GetTextSettings(24));
+                    UI.TextAsync(myRoundRect.SubRect(0f, 0f, 0.3f, 1f), "You", GetTextSettings(20));
+                    UI.TextAsync(myRoundRect.SubRect(0.5f, 0f, 1f, 1f), $"{localPlayer.RoundScore}", GetTextSettings(24));
                     
                     // Redeployment timer (if applicable)
                     if (localPlayer.PlayerStatus == PlayerStatus.Safe)
@@ -704,15 +704,15 @@ public partial class KohManager : Component
                         var respBlocker = localPlayer.GetEffect<EffectSafePortalCooldown>();
                         if (respBlocker.Alive())
                         {
-                            UI.Text(bottomBarRect, $"Redeployment in {float.Round(respBlocker.DurationRemaining, 1)}s...", GetTextSettings(52));
+                            UI.TextAsync(bottomBarRect, $"Redeployment in {float.Round(respBlocker.DurationRemaining, 1)}s...", GetTextSettings(52));
                             Rect iconRect = bottomBarRect2.CutLeft(200).SubRect(0.25f, 0.25f, 0.75f, 0.75f);
                             if (!KohGlobalData.OwnKoHGamePass(localPlayer))
                             {
-                                UI.Text(bottomBarRect2, "Buy the gamepass to reduce your respawn timer by 1s permanently!", GetTextSettings(40));
+                                UI.TextAsync(bottomBarRect2, "Buy the gamepass to reduce your respawn timer by 1s permanently!", GetTextSettings(40));
                             }
                             else
                             {
-                                UI.Text(bottomBarRect2, "You have the gamepass! Your redeployment is accelerated.", GetTextSettings(40));
+                                UI.TextAsync(bottomBarRect2, "You have the gamepass! Your redeployment is accelerated.", GetTextSettings(40));
                             }
                             UI.Image(iconRect, gamePassIcon);
                         }
@@ -737,12 +737,12 @@ public partial class KohManager : Component
                 {
                     if (RoundReport.HasReport)
                     {
-                        UI.Text(bottomBarRect, $"{RoundReport.Winner} won the round! Starting the next countdown in {Math.Round(Countdown)}s.", GetTextSettings(52));
+                        UI.TextAsync(bottomBarRect, $"{RoundReport.Winner} won the round! Starting the next countdown in {Math.Round(Countdown)}s.", GetTextSettings(52));
                         BattleReportBtn(rightBarRect);
                     }
                     else
                     {
-                        UI.Text(bottomBarRect, $"Last round just ended. Next countdown starts in {Math.Round(Countdown)}. ", GetTextSettings(52));
+                        UI.TextAsync(bottomBarRect, $"Last round just ended. Next countdown starts in {Math.Round(Countdown)}. ", GetTextSettings(52));
                     }
                     
                     break;

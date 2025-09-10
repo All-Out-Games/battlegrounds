@@ -165,7 +165,7 @@ public partial class CaptureArea : Component
             UI.Image(clashRect, KohGlobalData.Clash, Vector4.White);
         }
         if (ZoneStatus == CaptureStatus.Captured) statusTxt = $"King: {OwnerName}";
-        UI.Text(statusRect, statusTxt, ts);
+        UI.TextAsync(statusRect, statusTxt, ts);
         UI.PopScaleFactor();
         return healthRect;
     }

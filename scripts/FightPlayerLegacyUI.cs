@@ -55,13 +55,13 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         UI.Image(levelRect, LvPlate, Vector4.White, new UI.NineSlice());
         if (_player.IsChampion)
         {
-            UI.Text(levelRect.Offset(0,5), "C", UI.TextSettings.Default with {Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center, Color = GlobalData.CritNumberColor});
+            UI.TextAsync(levelRect.Offset(0,5), "C", UI.TextSettings.Default with {Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center, Color = GlobalData.CritNumberColor});
             var badgeRect = levelRect.Offset(140, 5);
             UI.Image(badgeRect, ResourceOverlayWindow.ChampionIcon, Vector4.White, new UI.NineSlice());
         }
         else
         {
-            UI.Text(levelRect.Offset(0,5), $"{_player.Level + 1}", UI.TextSettings.Default with {Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center});
+            UI.TextAsync(levelRect.Offset(0,5), $"{_player.Level + 1}", UI.TextSettings.Default with {Size = 28, HorizontalAlignment = UI.HorizontalAlignment.Center});
         }
         var healthPercent = _player.CurrentHealth / (float)_player.MaxHealth;
         var healthPercentRect = healthRect.SubRect(0, 0, healthPercent, 1, 0, 0, 0, 0);
@@ -99,9 +99,9 @@ public class FightPlayerLegacyUI : FightPlayerComponent
             Offset = new Vector2(0, 5)
         };
         
-        UI.Text(healthRect, $"{_player.CurrentHealth}", ts);
+        UI.TextAsync(healthRect, $"{_player.CurrentHealth}", ts);
         Rect clsRect = healthRect.Offset(0, -20);
-        UI.Text(clsRect, ClassDisplayName, ts);
+        UI.TextAsync(clsRect, ClassDisplayName, ts);
     }
 
     protected void DrawDamageNumber()
@@ -139,7 +139,7 @@ public class FightPlayerLegacyUI : FightPlayerComponent
             var rect = new Rect(pos, pos);
             var color01 = Ease.FadeInAndOut(0.1f, 1, result.T);
             ts.Color = Vector4.Lerp(new Vector4(0, 0, 0, 0),result.Color, color01);
-            UI.Text(rect, result.Text, ts);
+            UI.TextAsync(rect, result.Text, ts);
         }
     }
 
@@ -170,8 +170,8 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         var roundScoreRect = scoreBarRect.GrowRight(50).Offset(-5, 0);
         UI.Image(kingIconRect, _player.HasEffect<EffectKing>() ? KohGlobalData.Crown : KohGlobalData.CrownGrey, Vector4.White);
         UI.Image(scoreIconRect, KohGlobalData.Clash, Vector4.White);
-        UI.Text(kingScoreRect, $"{_player.KingScore}", ts);
-        UI.Text(roundScoreRect, $"{_player.RoundScore}",ts);
+        UI.TextAsync(kingScoreRect, $"{_player.KingScore}", ts);
+        UI.TextAsync(roundScoreRect, $"{_player.RoundScore}",ts);
 
         
     }

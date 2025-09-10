@@ -148,7 +148,7 @@ public partial class BgShop : System<BgShop>
     {
         rect.CutTop(10);
         var descriptionRect = rect.CutTop(200).Inset(0, 15, 0, 15);
-        UI.Text(descriptionRect, product.Description, new UI.TextSettings()
+        UI.TextAsync(descriptionRect, product.Description, new UI.TextSettings()
         {
             Font = UI.Fonts.Barlow,
             Size = 32,
@@ -167,7 +167,7 @@ public partial class BgShop : System<BgShop>
         if (Network.LocalPlayer != null && product.SubCategory == "Pass")
         {
             bool owned = Purchasing.OwnsGamePassLocal(product.SparksProductId);
-            UI.Text(descriptionRect, owned? "Owned" : "", new UI.TextSettings()
+            UI.TextAsync(descriptionRect, owned? "Owned" : "", new UI.TextSettings()
             {
                 Font = UI.Fonts.Barlow,
                 Size = 24,
