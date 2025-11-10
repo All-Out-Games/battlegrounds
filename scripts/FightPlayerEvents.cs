@@ -8,7 +8,7 @@ public partial class FightPlayer
 {
     public Action<int> CoinUpdateEvent;
     public Action<int> PlayerSwitchZoneEvent;
-    
+
 
     // Reserved for effects related to post-damage (e.g. after elimination, add damage)
     public Action<FightPlayer, DamageInfo> OnDealDamage; // Triggered in global damage event. Will contain the ACTUAL damage dealt (i.e. the damage info might be modified by some effects like parry)
@@ -17,9 +17,9 @@ public partial class FightPlayer
     public Action<SkillActivationInfo> OnSkillActivate;
 
     private List<FightEffect> _preDamageEffects;
-    
+
     #region Custom Data Pass to Client
-    
+
     public struct DamageInfo
     {
         public enum DamageNumberOverrideType
@@ -40,12 +40,12 @@ public partial class FightPlayer
         public string SkillKey = "Punch"; // Usage: Fetch icon on the kill feed; Fetch special death animation
         public bool CrateImmediateDestroy = false;
         public bool SpecialDeathAnimation = false;
-        
+
         // Client & Server Data
-        public DamageReactionInfo ReactionInfo = new DamageReactionInfo(); 
+        public DamageReactionInfo ReactionInfo = new DamageReactionInfo();
         public DamageInfo()
         {
-            
+
         }
 
         public static int KnockBackInterruptLevel = 2000;
@@ -82,7 +82,7 @@ public partial class FightPlayer
 
         public static DamageInfo CreateHealInfo(int amount)
         {
-            if(amount < 0) Log.Error("You don't need to input a negative amount for healing. This function will do that for you.");
+            if (amount < 0) Log.Error("You don't need to input a negative amount for healing. This function will do that for you.");
             else
             {
                 amount = -amount;
@@ -104,10 +104,10 @@ public partial class FightPlayer
 
         public DamageReactionInfo()
         {
-            
+
         }
     }
-    
+
     public struct SkillActivationInfo
     {
         public int InterruptLevel; // Generic Interruption
@@ -120,7 +120,7 @@ public partial class FightPlayer
     }
 
     #endregion
-    
+
     // These are functions that handles local client events.
     // They are a type of events that usually invoked for UIs after receiving a SyncVar update 
     #region Local Client Events
@@ -133,24 +133,34 @@ public partial class FightPlayer
             CoinUpdateEvent?.Invoke(c);
         }
     }
-    
+
 
     [ClientRpc]
     public void NotifyDealDamage(FightPlayer victim, DamageInfo info)
     {
-        PriorityTarget = victim;
+        // Check if victim is still alive before setting as priority target
+        if (victim.Alive())
+        {
+            PriorityTarget = victim;
+        }
         OnDealDamage?.Invoke(this, info);
     }
 
     [ClientRpc]
     public void NotifyReceiveDamage(FightPlayer source, DamageInfo info)
     {
+        // Check if source is still alive before processing
+        if (!source.Alive())
+        {
+            return;
+        }
+
         OnReceiveDamage?.Invoke(source, info);
         //Log.Warn($"IsServer = {Network.IsServer} - DmgType = {info.DmgType.ToString()}");
-        
+
         if (Network.IsClient && PlayerStatus == PlayerStatus.Combat)
         {
-            
+
             // Damage numbers only render if the number is related to the local player
             if (IsLocal || source == Network.LocalPlayer) // Player takes the damage or deals damage
             {
@@ -179,7 +189,7 @@ public partial class FightPlayer
                 }
                 FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position + Vector2.Up, info.DamageNumberColor, int.Abs(info.ReactionInfo.Amount).ToString());
             }
-            
+
         }
     }
 
@@ -191,7 +201,7 @@ public partial class FightPlayer
             FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"EXP+{xp}");
         }
     }
-    
+
     [ClientRpc]
     public void NotifyAfkExp(int xp)
     {
@@ -211,7 +221,7 @@ public partial class FightPlayer
             FightClubGameManager.Instance.SpawnDamageNumber(Entity.Position - Vector2.Up, GlobalData.CritNumberColor, $"Glory +{gl}");
         }
     }
-    
+
     [ClientRpc]
     public void NotifySpectatorExp(int xp)
     {
@@ -221,27 +231,30 @@ public partial class FightPlayer
             SFX.Play(SFXKeys.AFKAudio, new SFX.PlaySoundDesc());
         }
     }
-    
+
     [ClientRpc]
     public void NotifyElimination(FightPlayer source, FightPlayer victim, DamageInfo info, string skillKey)
     {
         //Log.Warn($"{source.Name} Eliminated {victim.Name} with {skillKey}");
         if (IsLocal && (PlayerStatus == PlayerStatus.Combat || PlayerStatus == PlayerStatus.Spectator))
         {
-            int sourceLv = 1;
-            if (source.Alive())
+            // Check if both source and victim are still alive before accessing their properties
+            if (!source.Alive() || !victim.Alive())
             {
-                if (skillKey != "punch")
-                {
-                    sourceLv = source.GetSkillTree().GetSkillLevel(skillKey);
-                }
-                else
-                {
-                    sourceLv = source.PunchLevel;
-                }
-                
+                return;
             }
-            _combatOverlay.AddKillFeed(source.Name, victim.Name, skillKey,sourceLv);
+
+            int sourceLv = 1;
+            if (skillKey != "punch")
+            {
+                sourceLv = source.GetSkillTree().GetSkillLevel(skillKey);
+            }
+            else
+            {
+                sourceLv = source.PunchLevel;
+            }
+
+            _combatOverlay.AddKillFeed(source.Name, victim.Name, skillKey, sourceLv);
 
             if (source.IsLocal)
             {
@@ -249,7 +262,7 @@ public partial class FightPlayer
             }
         }
     }
-    
+
 
     #endregion
 
@@ -264,7 +277,7 @@ public partial class FightPlayer
     private void HookupGlobalEvents()
     {
         // Hook up elimination event and damage event.
-        
+
         FightClubGameManager.Instance.PlayerDamageEvent += OnServerPlayerDamage;
 
         FightClubGameManager.Instance.PlayerEliminationEvent += OnServerPlayerElimination;
@@ -280,7 +293,7 @@ public partial class FightPlayer
         FightClubGameManager.Instance.PlayerDamageEvent -= OnServerPlayerDamage;
 
         FightClubGameManager.Instance.PlayerEliminationEvent -= OnServerPlayerElimination;
-        
+
         FightClubGameManager.Instance.AfkTick -= OnAfkTick;
     }
 
@@ -304,7 +317,11 @@ public partial class FightPlayer
                 Exp += LevelingData.XpForDamage * LevelingData.GetBoostedExpMultiplier(this);
             }
             // Send a callback to the source of damage. This need to reach client & server
-            CallClient_NotifyDealDamage(victim, info);
+            // Check if victim is still alive before calling RPC (victim may have been destroyed during event processing)
+            if (victim.Alive())
+            {
+                CallClient_NotifyDealDamage(victim, info);
+            }
         }
     }
 
@@ -321,19 +338,19 @@ public partial class FightPlayer
                     Gem += 5;
                     CallClient_NotifyGlory(5);
                 }
-                
+
             }
             else
             {
                 int xp = LevelingData.GetTrueXpDampen(Level, victim.Level, LevelingData.XpForKill);
 
                 xp *= LevelingData.GetBoostedExpMultiplier(this);
-                
+
                 Exp += xp;
                 CallClient_NotifyKillExp(xp);
             }
-            
-            
+
+
             // Increment BP quest progress
             if (!Game.LaunchedFromEditor && Network.IsServer)
             {
@@ -345,8 +362,12 @@ public partial class FightPlayer
         {
             // This player died (from non-self damage)
         }
-            
-        CallClient_NotifyElimination(source, victim, info, info.SkillKey);
+
+        // Check if both source and victim are still alive before calling RPC
+        if (source.Alive() && victim.Alive())
+        {
+            CallClient_NotifyElimination(source, victim, info, info.SkillKey);
+        }
     }
 
     public void OnAfkTick()
