@@ -1,4 +1,4 @@
-﻿using Assembly.scripts.VFX;
+using Assembly.scripts.VFX;
 
 namespace Assembly.scripts.SceneObjects.Projectiles;
 using AO;
@@ -93,7 +93,7 @@ public class FireTornadoProjectile : BaseProjectile
                 Entity.Destroy();
             }
 
-            if (fp is PlayerCollisionChild fdb)
+            if (fp is PlayerCollisionChild fdb && Owner.Alive())
             {
                 var fpp = fdb.Player;
                 var mgr = fdb.Player.GetEffectMgr();
