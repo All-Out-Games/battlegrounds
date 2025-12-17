@@ -31,7 +31,7 @@ public class ZoneTeleporter : Component
             {
                 spineAnimator.SpineInstance.SetAnimation("idle_loop", true);
             }
-            
+
         }
     }
 
@@ -58,11 +58,11 @@ public class ZoneTeleporter : Component
 
     public void OnInteract(Player p)
     {
-        var player = (FightPlayer) p;
+        var player = (FightPlayer)p;
         PlayerStatus newStatus;
         bool parsed =
             Enum.TryParse(ChangeStatusTo, out newStatus);
-        if (Network.IsServer) 
+        if (Network.IsServer)
         {
             if (parsed)
             {
@@ -80,6 +80,9 @@ public class ZoneTeleporter : Component
                     }
                 }
 
+                // Using a teleporter is a legitimate way to leave/enter zones; clear recent combat activity.
+                player.ResetCombatActivityOnServer();
+
                 if (newStatus == PlayerStatus.Combat && player.GetSkillTree().GetSkillLevel("MeteorStrike") == 5)
                 {
                     player.GetEffectMgr().AddMeteor();
@@ -93,5 +96,5 @@ public class ZoneTeleporter : Component
             }
         }
     }
-    
+
 }

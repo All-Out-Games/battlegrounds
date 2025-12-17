@@ -26,7 +26,7 @@ public partial class FightPlayer : Player
     public Entity CollisionEntity;
 
     // Combat logging prevention
-    public const float CombatLogRecentWindowSeconds = 5f;
+    public const float CombatLogRecentWindowSeconds = 3.5f;
     public const float CombatLogSecondIncidentPortalLockSeconds = 120f;
     public float LastCombatActivityServerTime = -99999f; // server Time.TimeSinceStartup seconds
     public float CombatPortalLockUntilServerTime = -99999f; // server Time.TimeSinceStartup seconds
