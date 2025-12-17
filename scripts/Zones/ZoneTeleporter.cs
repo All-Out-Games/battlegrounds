@@ -71,6 +71,15 @@ public class ZoneTeleporter : Component
                     return;
                 }
 
+                if (newStatus == PlayerStatus.Combat)
+                {
+                    if (player.IsCombatPortalLockedOnServer(out var remaining))
+                    {
+                        player.CallClient_ShowCombatLogDialog(2, remaining);
+                        return;
+                    }
+                }
+
                 if (newStatus == PlayerStatus.Combat && player.GetSkillTree().GetSkillLevel("MeteorStrike") == 5)
                 {
                     player.GetEffectMgr().AddMeteor();

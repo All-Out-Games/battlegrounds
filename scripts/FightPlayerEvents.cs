@@ -283,6 +283,7 @@ public partial class FightPlayer
         FightClubGameManager.Instance.PlayerEliminationEvent += OnServerPlayerElimination;
 
         FightClubGameManager.Instance.AfkTick += OnAfkTick;
+
     }
 
     /// <summary>
@@ -295,6 +296,7 @@ public partial class FightPlayer
         FightClubGameManager.Instance.PlayerEliminationEvent -= OnServerPlayerElimination;
 
         FightClubGameManager.Instance.AfkTick -= OnAfkTick;
+
     }
 
     public void RegisterPreDamageEvent(FightEffect pfe)

@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using AO;
 using Assembly.scripts;
 using Assembly.scripts.Effects;
@@ -23,6 +24,17 @@ public partial class FightPlayer : Player
     protected FightPlayer PriorityTarget;
 
     public Entity CollisionEntity;
+
+    // Combat logging prevention
+    public const float CombatLogRecentWindowSeconds = 5f;
+    public const float CombatLogSecondIncidentPortalLockSeconds = 120f;
+    public float LastCombatActivityServerTime = -99999f; // server Time.TimeSinceStartup seconds
+    public float CombatPortalLockUntilServerTime = -99999f; // server Time.TimeSinceStartup seconds
+
+    // Client-only UI state (local player draws this in legacy UI)
+    public bool CombatLogDialogOpen;
+    public string CombatLogDialogTitle;
+    public string CombatLogDialogMessage;
 
     #region Attributes
 
@@ -535,6 +547,7 @@ public partial class FightPlayer : Player
         {
             // DO save related things here! You cannot sync stuff in Awake
             ProcessSave();
+            ProcessCombatLogPunishmentOnServer();
             // TODO: Rework this ProcessSave(). LazyInit does not execute for re-drop-in.
             SkillTree.InitializeSkillTreeComp();
             HookupGlobalEvents();
@@ -559,7 +572,7 @@ public partial class FightPlayer : Player
     {
         if (SkillTree.Alive())
         {
-            if (serializedDict.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(serializedDict))
             {
                 SkillTree.SkillLevelDict = new Dictionary<string, int>();
             }
@@ -580,7 +593,7 @@ public partial class FightPlayer : Player
     {
         if (SkillSlotsManager.Alive())
         {
-            if (!serializedArray.IsNullOrEmpty())
+            if (!string.IsNullOrEmpty(serializedArray))
             {
                 SkillSlotsManager.SyncCompleted(serializedArray);
             }
@@ -616,6 +629,11 @@ public partial class FightPlayer : Player
     {
         FightClubGameManager.Instance.OnPlayerLeave(this);
         RemoveGlobalEvents();
+
+        if (Network.IsServer)
+        {
+            HandleCombatLogOnServer();
+        }
     }
 
 
@@ -650,6 +668,13 @@ public partial class FightPlayer : Player
             // Actual damage stuff
             if (isDamage)
             {
+                // Combat activity: both the victim taking damage and the attacker dealing damage counts as "in combat"
+                MarkCombatActivityOnServer();
+                if (source.Alive())
+                {
+                    source.MarkCombatActivityOnServer();
+                }
+
                 // Shielded damage
                 if (CurrentShield > 0)
                 {
@@ -679,6 +704,8 @@ public partial class FightPlayer : Player
             // Player Death
             if (CurrentHealth <= 0)
             {
+                // Reset combat timer on death so disconnecting right after dying doesn't count as a combat log.
+                ResetCombatActivityOnServer();
                 FightClubGameManager.Instance.PlayerEliminationEvent.Invoke(source, this, info);
 
                 CallClient_PlayerDeath(info, info.SkillKey); // TODO: The engine does not support str serialization in structs yet
@@ -1122,6 +1149,112 @@ public partial class FightPlayer : Player
         if (IsLocal)
         {
             CameraInterface.Shake(intensity, duration);
+        }
+    }
+
+    public void MarkCombatActivityOnServer()
+    {
+        if (!Network.IsServer) return;
+        LastCombatActivityServerTime = Time.TimeSinceStartup;
+    }
+
+    public void ResetCombatActivityOnServer()
+    {
+        if (!Network.IsServer) return;
+        LastCombatActivityServerTime = -99999f;
+    }
+
+    public bool IsCombatPortalLockedOnServer(out float secondsRemaining)
+    {
+        secondsRemaining = 0;
+        if (!Network.IsServer) return false;
+        secondsRemaining = CombatPortalLockUntilServerTime - Time.TimeSinceStartup;
+        return secondsRemaining > 0;
+    }
+
+    public void AddCombatPortalLockoutOnServer(float seconds)
+    {
+        if (!Network.IsServer) return;
+        CombatPortalLockUntilServerTime = Time.TimeSinceStartup + seconds;
+    }
+
+    public string GetCombatLogMonthKeyUtc()
+    {
+        // Key format requested: combatlogs{year}{month}, e.g. combatlogs202512
+        var now = DateTime.UtcNow;
+        return $"combatlogs{now.Year}{now.Month.ToString("D2")}";
+    }
+
+    public void HandleCombatLogOnServer()
+    {
+        if (!Network.IsServer) return;
+
+        // Only count as a combat log if the player was recently in combat activity.
+        var dt = Time.TimeSinceStartup - LastCombatActivityServerTime;
+        if (dt < 0 || dt >= CombatLogRecentWindowSeconds)
+        {
+            return;
+        }
+
+        var key = GetCombatLogMonthKeyUtc();
+        var prev = Save.GetInt(this, key, 0);
+        Save.SetInt(this, key, prev + 1);
+
+        Save.SetString(this, "lastPlayCombatLogged", "true");
+    }
+
+    public void ProcessCombatLogPunishmentOnServer()
+    {
+        if (!Network.IsServer) return;
+
+        // Clear the flag every time a player joins, but only punish if it was set.
+        var didCombatLogLastSession = Save.GetString(this, "lastPlayCombatLogged", "false") == "true";
+        Save.SetString(this, "lastPlayCombatLogged", "false");
+
+        if (!didCombatLogLastSession)
+        {
+            return;
+        }
+
+        var key = GetCombatLogMonthKeyUtc();
+        var count = Save.GetInt(this, key, 0);
+
+        if (count <= 1)
+        {
+            CallClient_ShowCombatLogDialog(1, 0);
+        }
+        else if (count == 2)
+        {
+            AddCombatPortalLockoutOnServer(CombatLogSecondIncidentPortalLockSeconds);
+            CallClient_ShowCombatLogDialog(2, CombatLogSecondIncidentPortalLockSeconds);
+        }
+        else
+        {
+            CallClient_ShowCombatLogDialog(3, 0);
+            Network.ServerKickPlayer(this, "Kicked for repeated combat logging.");
+        }
+    }
+
+    [ClientRpc]
+    public void ShowCombatLogDialog(int incidentCount, float portalLockSeconds)
+    {
+        if (!IsLocal) return;
+
+        CombatLogDialogOpen = true;
+        if (incidentCount <= 1)
+        {
+            CombatLogDialogTitle = "Combat Logging Warning";
+            CombatLogDialogMessage = "Leaving during combat is not fair to other players. Next time you will be temporarily blocked from entering battle.";
+        }
+        else if (incidentCount == 2)
+        {
+            CombatLogDialogTitle = "Combat Logging Penalty";
+            CombatLogDialogMessage = $"You left during combat. Battle portal locked for {MathF.Round(portalLockSeconds, 0)} seconds.";
+        }
+        else
+        {
+            CombatLogDialogTitle = "Combat Logging";
+            CombatLogDialogMessage = "You were kicked for repeated combat logging.";
         }
     }
 

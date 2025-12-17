@@ -36,6 +36,11 @@ public class FightPlayerLegacyUI : FightPlayerComponent
         {
             DrawDamageNumber();
         }
+
+        if (_player.IsLocal)
+        {
+            CombatLogPenaltyUI.Draw(_player);
+        }
     }
 
     protected Rect DrawHealthBar()
