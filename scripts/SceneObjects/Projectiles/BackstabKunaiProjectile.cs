@@ -43,7 +43,7 @@ public partial class BackstabKunaiProjectile : BaseProjectile
                 Reflect(fp, Owner.Alive() ? Owner.GetSkillTree().GetSkillLevel("Backstab") : 1, refDir);
             }
 
-            if (Network.IsServer && reachedPlayer)
+            if (Network.IsServer && reachedPlayer && Owner.Alive())
             {
                 CallClient_BackstabPlayer(Owner, fp);
             }

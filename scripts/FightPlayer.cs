@@ -1185,6 +1185,8 @@ public partial class FightPlayer : Player
         return $"combatlogs{now.Year}{now.Month.ToString("D2")}";
     }
 
+    public const float CombatLogQuickRejoinWindowMinutes = 10f;
+
     public void HandleCombatLogOnServer()
     {
         if (!Network.IsServer) return;
@@ -1196,28 +1198,43 @@ public partial class FightPlayer : Player
             return;
         }
 
-        var key = GetCombatLogMonthKeyUtc();
-        var prev = Save.GetInt(this, key, 0);
-        Save.SetInt(this, key, prev + 1);
-
-        Save.SetString(this, "lastPlayCombatLogged", "true");
+        // Save the UTC timestamp of when they combat-logged (as ticks string for precision)
+        Save.SetString(this, "combatLogLeftAtUtc", DateTime.UtcNow.Ticks.ToString());
     }
 
     public void ProcessCombatLogPunishmentOnServer()
     {
         if (!Network.IsServer) return;
 
-        // Clear the flag every time a player joins, but only punish if it was set.
-        var didCombatLogLastSession = Save.GetString(this, "lastPlayCombatLogged", "false") == "true";
-        Save.SetString(this, "lastPlayCombatLogged", "false");
+        // Read and clear the combat log timestamp
+        var leftAtStr = Save.GetString(this, "combatLogLeftAtUtc", "");
+        Save.SetString(this, "combatLogLeftAtUtc", "");
 
-        if (!didCombatLogLastSession)
+        if (string.IsNullOrEmpty(leftAtStr))
         {
             return;
         }
 
+        // Parse the timestamp; if invalid, skip punishment
+        if (!long.TryParse(leftAtStr, out var leftAtTicks))
+        {
+            return;
+        }
+
+        var leftAtUtc = new DateTime(leftAtTicks, DateTimeKind.Utc);
+        var minutesSinceLeft = (DateTime.UtcNow - leftAtUtc).TotalMinutes;
+
+        // Only punish if they rejoined quickly (within 10 minutes)
+        if (minutesSinceLeft > CombatLogQuickRejoinWindowMinutes)
+        {
+            return;
+        }
+
+        // Now increment the monthly counter and apply punishment
         var key = GetCombatLogMonthKeyUtc();
-        var count = Save.GetInt(this, key, 0);
+        var prev = Save.GetInt(this, key, 0);
+        var count = prev + 1;
+        Save.SetInt(this, key, count);
 
         if (count <= 1)
         {

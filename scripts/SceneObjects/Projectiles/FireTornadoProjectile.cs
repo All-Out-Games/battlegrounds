@@ -14,7 +14,7 @@ public class FireTornadoProjectile : BaseProjectile
 
     private bool _faded;
     private bool _tracked;
-    
+
     protected float NextTrackingTick = 0.2f;
 
     public override void Awake()
@@ -26,7 +26,7 @@ public class FireTornadoProjectile : BaseProjectile
             _animator.Awaken();
             var instance = _animator.SpineInstance;
             instance.SetAnimation("idle", true);
-            SoundId = SFX.Play(SFXKeys.FireTornadoLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity, Loop = true, LoopTimeout = 3f, Volume = 0.35f, RangeMultiplier = 1.25f});
+            SoundId = SFX.Play(SFXKeys.FireTornadoLoopAudio, new SFX.PlaySoundDesc() { EntityToFollow = Entity, Loop = true, LoopTimeout = 3f, Volume = 0.35f, RangeMultiplier = 1.25f });
         }
         else
         {
@@ -37,7 +37,7 @@ public class FireTornadoProjectile : BaseProjectile
     public override void Update()
     {
         base.Update();
-        
+
         // Fading
         if (Network.IsClient)
         {
@@ -50,10 +50,10 @@ public class FireTornadoProjectile : BaseProjectile
                 {
                     f.FadeImmediately(0.1f, 0.75f);
                 }
-            
+
             }
         }
-        
+
         // Tracking
         if (!_faded)
         {
@@ -86,7 +86,7 @@ public class FireTornadoProjectile : BaseProjectile
             info.SkillKey = SkillConfig.FireTornadoNodeConfig.SkillKey;
             info.CrateImmediateDestroy = true;
             info.SpecialDeathAnimation = true;
-            
+
             fp.TakeDamage(Owner, info);
             if (!Pierce)
             {
@@ -95,11 +95,18 @@ public class FireTornadoProjectile : BaseProjectile
 
             if (fp is PlayerCollisionChild fdb)
             {
+                // Owner may have disconnected while projectile was in flight - 
+                // skip effects that require the caster entity to be serialized
+                if (!Owner.Alive() || !Owner.Entity.Alive())
+                {
+                    return;
+                }
+
                 var fpp = fdb.Player;
                 var mgr = fdb.Player.GetEffectMgr();
                 float burnDuration = EffectConfig.FireTornadoConfig.BurnDuration;
                 if (ProjectileLevel > 2) burnDuration += 2;
-                    
+
                 mgr.AddBurn(Owner.Entity, burnDuration, EffectConfig.FireTornadoConfig.BurnDamage);
 
                 if (ProjectileLevel > 4) // Knockback when fully maxed out
@@ -117,7 +124,7 @@ public class FireTornadoProjectile : BaseProjectile
             }
         }
     }
-    
+
     public void SteerProjectileTo(Vector2 dir)
     {
         //Log.Warn($"Tracking - pos {dir.X}, {dir.Y}");
