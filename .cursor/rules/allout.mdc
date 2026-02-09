@@ -4,7 +4,7 @@ alwaysApply: true
 
 You will be developing a game in a custom 2D engine that DOES NOT HAVE UNITY APIs.
 
-Important rules to follow at all times: 
+## Important rules to follow at all times: 
 - Start files with `using AO;` *Do not import anything except from the C# System namespace*
 - You do not need to write any movement or basic networking code. These are handled for you.
 - To create an entity use ```Entity.Create()```. If you want it to be visible to others you must ```Network.Spawn(entity)``` it (which must be done on the server only) 
@@ -17,9 +17,8 @@ Important rules to follow at all times:
 - Before using a component, you must check that it exists using ```entity.Alive()```. You must use .Alive() INSTEAD of null checks or the game will break. 
 - In the MyPlayer class add IsLocal checks if you only want something to happen on the local client (e.g. creating a CameraControl)
 - These games are mobile-first so don't use any keyboard input
-- To generate random numbers use the `RNG` class. You MUST create a seed `rngSeed = RNG.Seed(Entity.NetworkId)` and then call `RNG.RangeFloat(ref rngSeed, lowVal, highVal)` (You can also use RangeInt. Do NOT try any other RNG methods)
+- To generate random numbers use the `RNG` class. You MUST create a seed `rngSeed = RNG.Seed(Entity.NetworkId)` and then call `RNG.RangeFloat(ref rngSeed, lowVal, highVal)` or `RangeInt`. If you are picking an item from a list, be sure to subtract one from the list Length to avoid out-of-range if appropriate. 
 - If you want to add logging use ```Log.Info(message)```. There are no other logging options. 
-- Entity.Children returns a special Enumerator that must be looped over. You CANNOT use methods like .First or .Where.  
 - The ONLY available Component lifecycle methods to override are Awake, Update, LateUpdate, and OnDestroy.
 - Never use the `private` modifier for methods or fields or things will break.
 - If you need to move a player, use `player.Teleport(position)` instead of setting their position directly. 
@@ -38,8 +37,7 @@ Important rules to follow at all times:
 
 ### Hierarchy
 - Parent with `entity.SetParent(parent, keepWorldPosition)`; read via `entity.Parent`.
-- Enumerate children using `foreach (var child in entity.Children) { ... }`.
-  - This is a special enumerator; do not use LINQ helpers like `.First()` or `.Where()`.
+- Use Entity.Children to access an Entity's children. 
 
 ### Transform
 - World-space: `Position`, `Rotation` (degrees), `RotationTurns` (0..1), `Scale`.
@@ -67,7 +65,6 @@ Important rules to follow at all times:
 ### Best Practices
 - Avoid Unity APIs. Only use engine-provided types and methods.
 - Because the game is 2D, prefer `Vector2` for positions/scales.
-
 
 ## Assets
 - To see available assets list files in the /res directory. You may have to look in nested folders. 
@@ -100,7 +97,7 @@ public void PlaySuccessSound()
 - Classes with RPCs must use the partial keyword
 - You can pass entities to RPCs, but you must make sure you check entity.Alive() in the RPC or the game will crash. 
 - You can pass a target in RPCOptions to only send an RPC to a specific player: `CallClient_SendTargetedMessage("You lost!", new RPCOptions() { Target = LosingPlayer });
-- Client RPCs must only be called on the server or the game will crash. 
+- Client RPCs must ONLY be called from the server or the game will crash. 
 
 ### SyncVars
 SyncVars wrap a primitive and automatically keep it in sync for all clients and the server
@@ -120,3 +117,5 @@ public partial class BattlePlayer : Player
 SyncVars only support the following types: int, float, bool, string, Vector2, Vector3, Vector4, Entity
 
 Never try to run or test the game yourself.
+
+Because this is a new engine, if you're ever in doubt about an API, be sure to check the other rules available to you (e.g. you must reference ui.mdc for ANY UI work). 
