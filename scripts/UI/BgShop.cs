@@ -69,16 +69,21 @@ public partial class BgShop : System<BgShop>
         bool success = false;
         FightPlayer player = (FightPlayer)p;
 
+        if (productId == "678014341902847169c60258")
+        {
+            return true; // This is the KoTH early access. Special case, should grant nothing but return true.
+        }
+
         if (player.Alive())
         {
             var prod = _allProducts.FirstOrDefault(prod => prod.SparksProductId == productId);
-            success = true;
-
-            if (productId == "678014341902847169c60258")
+            if (string.IsNullOrEmpty(prod.Id))
             {
-                return true; // This is the KoTH early access. Special case, should grant nothing but return true.
+                Log.Warn($"Ignoring unknown Sparks product id: {productId}");
+                return false;
             }
 
+            success = true;
             switch (prod.Id)
             {
                 case "starter_pack1":

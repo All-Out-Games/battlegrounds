@@ -365,8 +365,8 @@ public partial class FightPlayer
             // This player died (from non-self damage)
         }
 
-        // Check if both source and victim are still alive before calling RPC
-        if (source.Alive() && victim.Alive())
+        // Check if all referenced players are still networked before calling RPC.
+        if (this.Alive() && Entity.NetworkId != 0 && source.Alive() && victim.Alive())
         {
             CallClient_NotifyElimination(source, victim, info, info.SkillKey);
         }

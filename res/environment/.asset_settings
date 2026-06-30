@@ -1,5 +1,7 @@
 [
-    { "id": "environment/CentralHub/BG.png",                       "texture": { "resample_multiplier": 0.5 } },
-    { "id": "environment/PvP/BG.png",                              "texture": { "resample_multiplier": 0.5 } },
+    { "id": "environment/CentralHub/BG.png",                       "texture": { "resample_multiplier": 0.5 }, "should_mip": true },
+    { "id": "environment/PvP/BG.png",                              "texture": { "resample_multiplier": 0.5 }, "should_mip": true },
     { "id": "environment/PvP/003_Battle_Arena_Fighting_Stage.png", "texture": { "resample_multiplier": 0.5 } },
+    { "id": "environment/PvP/Floor.png",                           "should_mip": true },
+    { "id": "environment/AFK_tmp/pond_big.png",                    "texture": { "resample_multiplier": 0.75 }, "should_mip": true }
 ]
