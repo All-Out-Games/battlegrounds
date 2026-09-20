@@ -169,7 +169,9 @@ public partial class CrateItemDrop : Component
                 yield break;
             }
         }
-        if(Network.IsServer) CallClient_DropItemGrant(fp);
+        // The final yield can outlive the player. Check again before the RPC
+        // serializes its component; the check inside DropItemGrant is too late.
+        if (Network.IsServer && this.Alive() && fp.Alive()) CallClient_DropItemGrant(fp);
         yield return null;
     }
 
